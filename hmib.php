@@ -2094,7 +2094,7 @@ function hmib_summary() {
 			$graph_mproc = hmib_get_graph_template_url($hpgt, $row["id"], 0, round($row["maxProcesses"],0), false);
 
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
-			echo "<td width='120'>";
+			echo "<td style='white-space:nowrap;' width='120'>";
 			echo "<a style='padding:1px;' href='$url?reset=1&action=devices&reset=1&type=" . $row["id"] . "'><img src='$host' title='View Devices' align='absmiddle' border='0'></a>";
 			echo "<a style='padding:1px;' href='$url?reset=1&action=storage&reset=1&type=" . $row["id"] . "'><img src='$storage' title='View Storage' align='absmiddle' border='0'></a>";
 			echo "<a style='padding:1px;' href='$url?reset=1&action=hardware&reset=1&type=" . $row["id"] . "'><img src='$hardw' title='View Hardware' align='absmiddle' border='0'></a>";
@@ -2102,22 +2102,22 @@ function hmib_summary() {
 			echo "<a style='padding:1px;' href='$url?reset=1&action=software&reset=1&type=" . $row["id"] . "'><img src='$inven' title='View Software Inventory' align='absmiddle' border='0'></a>";
 			echo $graph_url;
 			echo "</td>";
-			echo "<td align='left' width='200'>" . $row["name"] . "</td>";
-			echo "<td align='right' width='100'>" . $row["version"] . "</td>";
-			echo "<td align='right'>" . $row["upHosts"] . "</td>";
-			echo "<td align='right'>" . $row["recHosts"] . "</td>";
-			echo "<td align='right'>" . $row["downHosts"] . "</td>";
-			echo "<td align='right'>" . $row["disabledHosts"] . "</td>";
-			echo "<td align='right'>" . $graph_users . "</td>";
-			echo "<td align='right'>" . $row["cpus"] . "</td>";
-			echo "<td align='right'>" . $graph_acpu . " %</td>";
-			echo "<td align='right'>" . $graph_mcpu . " %</td>";
-			echo "<td align='right'>" . round($row["avgMem"],2) . " %</td>";
-			echo "<td align='right'>" . round($row["maxMem"],2) . " %</td>";
-			echo "<td align='right'>" . round($row["avgSwap"],2) . " %</td>";
-			echo "<td align='right'>" . round($row["maxSwap"],2) . " %</td>";
-			echo "<td align='right'>" . $graph_aproc . "</td>";
-			echo "<td align='right'>" . $graph_mproc . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' width='100'>" . $row["name"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='right' width='100'>" . $row["version"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $row["upHosts"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $row["recHosts"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $row["downHosts"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $row["disabledHosts"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $graph_users . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $row["cpus"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $graph_acpu . " %</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $graph_mcpu . " %</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . round($row["avgMem"],2) . " %</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . round($row["maxMem"],2) . " %</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . round($row["avgSwap"],2) . " %</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . round($row["maxSwap"],2) . " %</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $graph_aproc . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $graph_mproc . "</td>";
 		}
 		echo "</tr>";
 	}else{
