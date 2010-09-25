@@ -1,0 +1,51 @@
+/*******************************************************************************
+
+    Author ......... The Cacti Group
+    Contact ........ 
+    Home Site ...... http://www.cacti.net
+    Program ........ Host MIB Audit Tool
+    Version ........ 1.0
+    Purpose ........ Collect Host MIB Table Information for Reporting
+
+*******************************************************************************/
+
+
+----[ Purpose
+
+	This plugin allows you to background collect various Host MIB information
+	and store it in tables that can then be used for graphing and reporting
+	purposes.
+
+----[ Features
+
+	Collects the following Host Resources MIB information via snmp on a schedule
+	
+	1) System Information
+	2) Storage Information
+	3) Device Information
+	4) Running Software Information
+	5) Installed Software Information
+	6) Processor Information
+
+----[ Installation
+
+    Install just like any other plugin, just throw it in the plugin directory,
+    and Install and Enabled from the Plugin Management Interface.
+
+	Once this is done, you have to instruct the plugin as to how it will determine
+	which hosts to poll.
+    
+----[ Possible Bugs?
+   
+    If you figure out this problem, see the Cacti forums!
+
+----[ Future Changes
+    
+    Got any ideas or complaints, please use Mantis!
+
+----[ Changelog
+
+	--- 1.0 ---
+	Initial release
+     
+
