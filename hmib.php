@@ -2031,6 +2031,12 @@ function hmib_summary() {
 		SUM(CASE WHEN host_status=2 THEN 1 ELSE 0 END) AS recHosts,
 		SUM(CASE WHEN host_status=1 THEN 1 ELSE 0 END) AS downHosts,
 		SUM(CASE WHEN host_status=0 THEN 1 ELSE 0 END) AS disabledHosts,
+		SUM(users) AS users,
+		SUM(numCpus) AS cpus,
+		AVG(memUsed) AS avgMem,
+		MAX(memUsed) AS maxMem,
+		AVG(swapUsed) AS avgSwap,
+		MAX(swapUsed) AS maxSwap,
 		AVG(cpuPercent) AS avgCpuPercent,
 		MAX(cpuPercent) AS maxCpuPercent,
 		AVG(processes) AS avgProcesses,
@@ -2044,17 +2050,23 @@ function hmib_summary() {
 	$rows = db_fetch_assoc($sql);
 
 	$display_text = array(
-		"nosort"        => array("Actions",  array("ASC",  "left")),
-		"name"          => array("Type",     array("ASC",  "left")),
-		"(version/1)"       => array("Version",  array("ASC",  "right")),
-		"upHosts"       => array("Up",       array("DESC", "right")),
+		"nosort"        => array("Actions",     array("ASC",  "left")),
+		"name"          => array("Type",        array("ASC",  "left")),
+		"(version/1)"   => array("Version",     array("ASC",  "right")),
+		"upHosts"       => array("Up",          array("DESC", "right")),
 		"recHosts"      => array("Recovering",  array("DESC", "right")),
-		"downHosts"     => array("Down",     array("DESC", "right")),
-		"disabledHosts" => array("Disabled", array("DESC", "right")),
-		"avgCpuPercent" => array("Avg CPU",  array("DESC", "right")),
-		"maxCpuPercent" => array("Max CPU",  array("DESC", "right")),
-		"avgProcesses"  => array("Avg Proc", array("DESC", "right")),
-		"maxProcesses"  => array("Max Proc", array("DESC", "right")));
+		"downHosts"     => array("Down",        array("DESC", "right")),
+		"disabledHosts" => array("Disabled",    array("DESC", "right")),
+		"users"         => array("Logins",      array("DESC", "right")),
+		"cpus"          => array("CPUS",        array("DESC", "right")),
+		"avgCpuPercent" => array("Avg CPU",     array("DESC", "right")),
+		"maxCpuPercent" => array("Max CPU",     array("DESC", "right")),
+		"avgMem"        => array("Avg Mem",     array("DESC", "right")),
+		"maxMem"        => array("Max Mem",     array("DESC", "right")),
+		"avgSwap"       => array("Avg Swap",    array("DESC", "right")),
+		"maxSwap"       => array("Max Swap",    array("DESC", "right")),
+		"avgProcesses"  => array("Avg Proc",    array("DESC", "right")),
+		"maxProcesses"  => array("Max Proc",    array("DESC", "right")));
 
 	hmib_header_sort($display_text, get_request_var_request("sort_column"), get_request_var_request("sort_direction"), "action=summary&sect=hosts");
 
@@ -2067,11 +2079,19 @@ function hmib_summary() {
 	$storage = $config["url_path"] . "plugins/hmib/images/view_storage.gif";
 
 	$htdq    = read_config_option("hmib_dq_host_type");
+	$hcpudq  = read_config_option("hmib_dq_host_cpu");
+	$hugt    = read_config_option("hmib_gt_users");
+	$hpgt    = read_config_option("hmib_gt_processes");
 
 	$i = 0;
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
-			$graph_url = hmib_get_graph_url($htdq, $row["id"]);
+			$graph_url   = hmib_get_graph_url($htdq, $row["id"]);
+			$graph_acpu  = hmib_get_graph_url($hcpudq, $row["id"], round($row["avgCpuPercent"],2), false);
+			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row["id"], round($row["maxCpuPercent"],2), false);
+			$graph_users = hmib_get_graph_template_url($hugt, $row["id"], 0, $row["users"], false);
+			$graph_aproc = hmib_get_graph_template_url($hpgt, $row["id"], 0, round($row["avgProcesses"],0), false);
+			$graph_mproc = hmib_get_graph_template_url($hpgt, $row["id"], 0, round($row["maxProcesses"],0), false);
 
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
 			echo "<td width='120'>";
@@ -2088,10 +2108,16 @@ function hmib_summary() {
 			echo "<td align='right'>" . $row["recHosts"] . "</td>";
 			echo "<td align='right'>" . $row["downHosts"] . "</td>";
 			echo "<td align='right'>" . $row["disabledHosts"] . "</td>";
-			echo "<td align='right'>" . round($row["avgCpuPercent"],2) . " %</td>";
-			echo "<td align='right'>" . round($row["maxCpuPercent"],2) . " %</td>";
-			echo "<td align='right'>" . round($row["avgProcesses"],0) . "</td>";
-			echo "<td align='right'>" . $row["maxProcesses"] . "</td>";
+			echo "<td align='right'>" . $graph_users . "</td>";
+			echo "<td align='right'>" . $row["cpus"] . "</td>";
+			echo "<td align='right'>" . $graph_acpu . " %</td>";
+			echo "<td align='right'>" . $graph_mcpu . " %</td>";
+			echo "<td align='right'>" . round($row["avgMem"],2) . " %</td>";
+			echo "<td align='right'>" . round($row["maxMem"],2) . " %</td>";
+			echo "<td align='right'>" . round($row["avgSwap"],2) . " %</td>";
+			echo "<td align='right'>" . round($row["maxSwap"],2) . " %</td>";
+			echo "<td align='right'>" . $graph_aproc . "</td>";
+			echo "<td align='right'>" . $graph_mproc . "</td>";
 		}
 		echo "</tr>";
 	}else{
@@ -2308,7 +2334,51 @@ function hmib_summary() {
 	html_end_box();
 }
 
-function hmib_get_graph_url($data_query, $index) {
+function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id = 0, $title = "", $image = true) {
+	global $config;
+
+	$url     = $config["url_path"] . "plugins/hmib/hmib.php";
+	$nograph = $config["url_path"] . "plugins/hmib/images/view_graphs_disabled.gif";
+	$graph   = $config["url_path"] . "plugins/hmib/images/view_graphs.gif";
+
+	if (!empty($graph_template)) {
+		if ($host_type > 0) {
+			$sql_join  = "INNER JOIN plugin_hmib_hrSystem AS hrs ON hrs.host_id=gl.host_id";
+			$sql_where = "AND hrs.host_type=$host_type";
+
+			if ($host_id > 0) {
+				$sql_where = "AND gl.host_id=$host_id";
+			}
+		}elseif ($host_id > 0) {
+			$sql_join  = "";
+			$sql_where = "AND gl.host_id=$host_id";
+		}
+
+		$graphs = db_fetch_assoc("SELECT gl.* FROM graph_local AS gl
+			$sql_join
+			WHERE gl.graph_template_id=$graph_template
+			$sql_where");
+
+		$graph_add = "";
+		if (sizeof($graphs)) {
+		foreach($graphs as $graph) {
+			$graph_add .= (strlen($graph_add) ? ",":"") . $graph["id"];
+		}
+		}
+
+		if ($image) {
+			return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
+		}else{
+			return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
+		}
+	}elseif ($image){
+		return "<img src='$nograph' title='Please Select Data Query First from Console->Settings->Host Mib First' align='absmiddle' border='0'>";
+	}else{
+		return $title;
+	}
+}
+
+function hmib_get_graph_url($data_query, $index, $title = "", $image = true) {
 	global $config;
 
 	$url     = $config["url_path"] . "plugins/hmib/hmib.php";
@@ -2328,9 +2398,15 @@ function hmib_get_graph_url($data_query, $index) {
 		}
 		}
 
-		return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
-	}else{
+		if ($image) {
+			return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
+		}else{
+			return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
+		}
+	}elseif ($image){
 		return "<img src='$nograph' title='Please Select Data Query First from Console->Settings->Host Mib First' align='absmiddle' border='0'>";
+	}else{
+		return $title;
 	}
 }
 
@@ -2376,11 +2452,12 @@ function hmib_header_sort($header_items, $sort_column, $sort_direction, $jsprefi
 		/* by default, you will always sort ascending, with the exception of an already sorted column */
 		if ($sort_column == $db_column) {
 			$direction = $new_sort_direction;
-			$display_text=$display_array[0] . "**";
 			if (is_array($display_array[1])) {
-				$align=" align='" . $display_array[1][1] . "'";
+				$align = " align='" . $display_array[1][1] . "'";
+				$display_text = "**" . $display_array[0];
 			}else{
-				$align=" align='left'";
+				$align = " align='left'";
+				$display_text = $display_array[0] . "**";
 			}
 		}else{
 			$display_text = $display_array[0];
