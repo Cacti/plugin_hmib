@@ -2340,9 +2340,12 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
 			if ($host_id > 0) {
 				$sql_where = "AND gl.host_id=$host_id";
 			}
-		}elseif ($host_id > 0) {
+		} elseif ($host_id > 0) {
 			$sql_join  = "";
 			$sql_where = "AND gl.host_id=$host_id";
+		} else {
+			$sql_join  = "";
+			$sql_where = "";
 		}
 
 		$graphs = db_fetch_assoc("SELECT gl.* FROM graph_local AS gl
