@@ -2357,12 +2357,16 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
 		}
 		}
 
-		if ($image) {
-			return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
-		}else{
-			return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
+		if (sizeof($graphs)) {
+			if ($image) {
+				return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
+			}else{
+				return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
+			}
 		}
-	}elseif ($image){
+	}
+
+	if ($image){
 		return "<img src='$nograph' title='Please Select Data Query First from Console->Settings->Host Mib First' align='absmiddle' border='0'>";
 	}else{
 		return $title;
@@ -2377,10 +2381,12 @@ function hmib_get_graph_url($data_query, $index, $title = "", $image = true) {
 	$graph   = $config["url_path"] . "plugins/hmib/images/view_graphs.gif";
 
 	if (!empty($data_query)) {
-		$graphs = db_fetch_assoc("SELECT gl.* FROM graph_local AS gl
-			INNER JOIN snmp_query_graph AS sqg
-			ON gl.graph_template_id=sqg.graph_template_id
-			WHERE sqg.snmp_query_id=$data_query");
+		$sql    = "SELECT gl.* FROM graph_local AS gl
+                        INNER JOIN snmp_query_graph AS sqg
+                        ON gl.graph_template_id=sqg.graph_template_id
+                        WHERE sqg.snmp_query_id=$data_query";
+
+		$graphs = db_fetch_assoc($sql);
 
 		$graph_add = "";
 		if (sizeof($graphs)) {
@@ -2389,12 +2395,16 @@ function hmib_get_graph_url($data_query, $index, $title = "", $image = true) {
 		}
 		}
 
-		if ($image) {
-			return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
-		}else{
-			return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
+		if (sizeof($graphs)) {
+			if ($image) {
+				return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
+			}else{
+				return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
+			}
 		}
-	}elseif ($image){
+	}
+
+	if ($image){
 		return "<img src='$nograph' title='Please Select Data Query First from Console->Settings->Host Mib First' align='absmiddle' border='0'>";
 	}else{
 		return $title;
