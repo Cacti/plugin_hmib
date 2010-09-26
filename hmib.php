@@ -1824,7 +1824,7 @@ function hmib_software() {
 		"description" => array("Name",       array("ASC",  "left")),
 		"name"        => array("Package",    array("DESC", "left")),
 		"type"        => array("Type",       array("ASC",  "left")),
-		"date"        => array("Instaleld",  array("DESC", "right"))
+		"date"        => array("Installed",  array("DESC", "right"))
 	);
 
 	hmib_header_sort($display_text, get_request_var_request("sort_column"), get_request_var_request("sort_direction"), "action=software");
