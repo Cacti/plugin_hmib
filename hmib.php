@@ -277,7 +277,7 @@ function hmib_running() {
 				</tr>
 			</table>
 		</td>
-		<input type='hidden' name='action' value='software'>
+		<input type='hidden' name='action' value='running'>
 		</form>
 	</tr>
 	<?php
@@ -377,7 +377,6 @@ function hmib_running() {
 
 	$display_text = array(
 		"description" => array("Name",        array("ASC",  "left")),
-		"hostname"    => array("Hostname",    array("ASC",  "left")),
 		"hrswr.name"  => array("Process",     array("DESC", "left")),
 		"path"        => array("Path",        array("ASC",  "left")),
 		"parameters"  => array("Parameters",  array("ASC",  "left")),
@@ -393,15 +392,14 @@ function hmib_running() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
-			echo "<td align='left' width='80'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>",  $row["description"]):$row["description"]) . "</td>";
-			echo "<td align='left' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hostname"]):$row["hostname"]) . "</td>";
-			echo "<td align='left' style='white-space:nowrap;' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["name"]):$row["name"]) . "</td>";
-			echo "<td align='left' title='" . $row["path"] . "' style='white-space:nowrap;' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", title_trim($row["path"],40)):title_trim($row["path"],40)) . "</td>";
-			echo "<td align='left' title='" . $row["parameters"] . "' style='white-space:nowrap;' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", title_trim($row["patameters"], 40)):title_trim($row["parameters"],40)) . "</td>";
-			echo "<td align='right'>" . round($row["perfCPU"]/3600,0) . "</td>";
-			echo "<td align='right'>" . round($row["perfMemory"]/1024,2) . "</td>";
-			echo "<td align='left'>"  . (isset($hmib_hrSWTypes[$row["type"]]) ? $hmib_hrSWTypes[$row["type"]]:"Unknown") . "</td>";
-			echo "<td align='right'>" . $row["status"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>",  $row["description"] . "</strong> [" . $row["hostname"] . "]"):$row["description"] . "</strong> [" . $row["hostname"] . "]") . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' style='white-space:nowrap;' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["name"]):$row["name"]) . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' title='" . $row["path"] . "' style='white-space:nowrap;' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", title_trim($row["path"],40)):title_trim($row["path"],40)) . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' title='" . $row["parameters"] . "' style='white-space:nowrap;' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", title_trim($row["patameters"], 40)):title_trim($row["parameters"],40)) . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . round($row["perfCPU"]/3600,0) . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . round($row["perfMemory"]/1024,2) . "</td>";
+			echo "<td style='white-space:nowrap;' align='left'>"  . (isset($hmib_hrSWTypes[$row["type"]]) ? $hmib_hrSWTypes[$row["type"]]:"Unknown") . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $row["status"] . "</td>";
 		}
 		echo "</tr>";
 		print $nav;
@@ -621,7 +619,7 @@ function hmib_hardware() {
 				</tr>
 			</table>
 		</td>
-		<input type='hidden' name='action' value='software'>
+		<input type='hidden' name='action' value='hardware'>
 		</form>
 	</tr>
 	<?php
@@ -712,7 +710,6 @@ function hmib_hardware() {
 
 	$display_text = array(
 		"host.description" => array("Name",     array("ASC",  "left")),
-		"hostname"         => array("Hostname", array("ASC",  "left")),
 		"hrd.description"  => array("Hardware", array("DESC", "left")),
 		"type"             => array("Type",     array("ASC",  "left")),
 		"status"           => array("Status",   array("DESC", "right")),
@@ -725,12 +722,11 @@ function hmib_hardware() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
-			echo "<td align='left' width='80'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hd"]):$row["hd"]) . "</td>";
-			echo "<td align='left' width='200'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hostname"]):$row["hostname"]) . "</td>";
-			echo "<td align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"]):$row["description"]) . "</td>";
-			echo "<td align='left'>"  . (isset($hmib_hrSWTypes[$row["type"]]) ? $hmib_hrSWTypes[$row["type"]]:"Unknown") . "</td>";
-			echo "<td align='right'>" . $row["status"] . "</td>";
-			echo "<td align='right'>" . $row["errors"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hd"] . "</strong> [" . $row["hostname"] . "]"):$row["hd"] . "</strong> [" . $row["hostname"] . "]") . "</td>";
+			echo "<td style='white-space:nowrap;' align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"]):$row["description"]) . "</td>";
+			echo "<td style='white-space:nowrap;' align='left'>"  . (isset($hmib_hrSWTypes[$row["type"]]) ? $hmib_hrSWTypes[$row["type"]]:"Unknown") . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $row["status"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $row["errors"] . "</td>";
 		}
 		echo "</tr>";
 		print $nav;
@@ -950,7 +946,7 @@ function hmib_storage() {
 				</tr>
 			</table>
 		</td>
-		<input type='hidden' name='action' value='software'>
+		<input type='hidden' name='action' value='storage'>
 		</form>
 	</tr>
 	<?php
@@ -1041,11 +1037,10 @@ function hmib_storage() {
 
 	$display_text = array(
 		"host.description"  => array("Name",     array("ASC",  "left")),
-		"hostname"          => array("Hostname", array("ASC",  "left")),
 		"hrsto.description" => array("Hardware", array("DESC", "left")),
 		"type"              => array("Type",     array("ASC",  "left")),
 		"failures"          => array("Errors",   array("DESC", "right")),
-		"percent"           => array("Percent",  array("DESC", "right")),
+		"percent"           => array("Percent Used",  array("DESC", "right")),
 		"used"              => array("Used (MB)",     array("DESC", "right")),
 		"size"              => array("Total (MB)",     array("DESC", "right")),
 		"allocationUnits"   => array("Alloc (KB)",    array("DESC", "right")),
@@ -1057,15 +1052,14 @@ function hmib_storage() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
-			echo "<td align='left' width='80'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hd"]):$row["hd"]) . "</td>";
-			echo "<td align='left' width='200'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hostname"]):$row["hostname"]) . "</td>";
-			echo "<td align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"]):$row["description"]) . "</td>";
-			echo "<td align='left'>"  . (isset($hmib_hrSWTypes[$row["type"]]) ? $hmib_hrSWTypes[$row["type"]]:"Unknown") . "</td>";
-			echo "<td align='right'>" . $row["failures"] . "</td>";
-			echo "<td align='right'>" . round($row["percent"]*100,2) . " %</td>";
-			echo "<td align='right'>" . number_format($row["used"]/1024,0) . "</td>";
-			echo "<td align='right'>" . number_format($row["size"]/1024,0) . "</td>";
-			echo "<td align='right'>" . number_format($row["allocationUnits"]) . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' width='120'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hd"] . "</strong> [" . $row["hostname"] . "]"):$row["hd"] . "<strong> [" . $row["hostname"] . "]") . "</td>";
+			echo "<td style='white-space:nowrap;' align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"]):$row["description"]) . "</td>";
+			echo "<td style='white-space:nowrap;' align='left'>"  . (isset($hmib_hrSWTypes[$row["type"]]) ? $hmib_hrSWTypes[$row["type"]]:"Unknown") . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $row["failures"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . round($row["percent"]*100,2) . " %</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . number_format($row["used"]/1024,0) . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . number_format($row["size"]/1024,0) . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . number_format($row["allocationUnits"]) . "</td>";
 		}
 		echo "</tr>";
 		print $nav;
@@ -1321,6 +1315,7 @@ function hmib_devices() {
 				</tr>
 			</table>
 		</td>
+		<input type='hidden' name='action' value='devices'>
 		</form>
 	</tr>
 	<?php
@@ -1418,7 +1413,6 @@ function hmib_devices() {
 	$display_text = array(
 		"nosort"      => array("Actions",    array("ASC",  "left")),
 		"description" => array("Name",       array("ASC",  "left")),
-		"hostname"    => array("Hostname",   array("ASC",  "right")),
 		"host_status" => array("Status",     array("DESC", "right")),
 		"uptime"      => array("Uptime(d:h:m)",     array("DESC", "right")),
 		"users"       => array("Users",      array("DESC", "right")),
@@ -1469,18 +1463,17 @@ function hmib_devices() {
 				echo "<img src='$nographs' title='No Graphs Defined' align='absmiddle' border='0'>";
 			}
 			echo "</td>";
-			echo "<td align='left' width='80'>" . $row["description"] . "</td>";
-			echo "<td align='right' width='200'>" . $row["hostname"] . "</td>";
-			echo "<td align='right'>" . get_colored_device_status(($row["disabled"] == "on" ? true : false), $row["host_status"]) . "</td>";
-			echo "<td align='right'>" . hmib_format_uptime($days, $hours, $minutes) . "</td>";
-			echo "<td align='right'>" . $row["users"]              . "</td>";
-			echo "<td align='right'>" . $row["cpuPercent"]         . " %</td>";
-			echo "<td align='right'>" . $row["numCpus"]            . "</td>";
-			echo "<td align='right'>" . $row["processes"]          . "</td>";
-			echo "<td align='right'>" . hmib_memory($row["memSize"])   . "</td>";
-			echo "<td align='right'>" . round($row["memUsed"],0)   . " %</td>";
-			echo "<td align='right'>" . hmib_memory($row["swapSize"])  . "</td>";
-			echo "<td align='right'>" . round($row["swapUsed"],0)  . " %</td>";
+			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . $row["description"] . "</strong> [" . $row["hostname"] . "]" . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . get_colored_device_status(($row["disabled"] == "on" ? true : false), $row["host_status"]) . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . hmib_format_uptime($days, $hours, $minutes) . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $row["users"]              . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $row["cpuPercent"]         . " %</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $row["numCpus"]            . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $row["processes"]          . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . hmib_memory($row["memSize"])   . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . round($row["memUsed"],0)   . " %</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . hmib_memory($row["swapSize"])  . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . round($row["swapUsed"],0)  . " %</td>";
 		}
 		echo "</tr>";
 		print $nav;
@@ -1829,7 +1822,6 @@ function hmib_software() {
 
 	$display_text = array(
 		"description" => array("Name",       array("ASC",  "left")),
-		"hostname"    => array("Hostname",   array("ASC",  "left")),
 		"name"        => array("Package",    array("DESC", "left")),
 		"type"        => array("Type",       array("ASC",  "left")),
 		"date"        => array("Instaleld",  array("DESC", "right"))
@@ -1841,11 +1833,10 @@ function hmib_software() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
-			echo "<td align='left' width='80'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"]):$row["description"]) . "</td>";
-			echo "<td align='left' width='200'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hostname"]):$row["hostname"]) . "</td>";
-			echo "<td align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["name"]):$row["name"]) . "</td>";
-			echo "<td align='left'>"  . (isset($hmib_hrSWTypes[$row["type"]]) ? $hmib_hrSWTypes[$row["type"]]:"Unknown") . "</td>";
-			echo "<td align='right'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["date"]):$row["date"]) . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"] . "</strong> [" . $row["hostname"]):$row["description"] . "</strong> [" . $row["hostname"]) . "</td>";
+			echo "<td style='white-space:nowrap;' align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["name"]):$row["name"]) . "</td>";
+			echo "<td style='white-space:nowrap;' align='left'>"  . (isset($hmib_hrSWTypes[$row["type"]]) ? $hmib_hrSWTypes[$row["type"]]:"Unknown") . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["date"]):$row["date"]) . "</td>";
 		}
 		echo "</tr>";
 		print $nav;
