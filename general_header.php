@@ -60,6 +60,9 @@ $page_title = api_plugin_hook_function('page_title', 'Cacti');
 		print "<meta http-equiv=refresh content='" . $refresh . "'>\r\n";
 	}
 	?>
+	<script type="text/javascript" src="<?php echo $config['url_path'];?>include/jscalendar/calendar.js"></script>
+	<script type="text/javascript" src="<?php echo $config['url_path'];?>include/jscalendar/lang/calendar-en.js"></script>
+	<script type="text/javascript" src="<?php echo $config['url_path'];?>include/jscalendar/calendar-setup.js"></script>
 	<link href="<?php echo $config['url_path']; ?>include/main.css" rel="stylesheet">
 	<link href="<?php echo $config['url_path']; ?>images/favicon.ico" rel="shortcut icon"/>
 	<?php api_plugin_hook('page_head'); ?>

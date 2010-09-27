@@ -1310,7 +1310,7 @@ function hmib_devices() {
 					</td>
 					<td nowrap>
 						&nbsp;<input type="button" onClick="applyHostFilter(document.host_summary)" value="Go" border="0">
-						<input type="button" onClick="clearHosts()" value="Clear" name="clear_x" border="0">
+						<input type="button" onClick="clearHosts()" value="Clear" name="clear" border="0">
 					</td>
 				</tr>
 			</table>
@@ -1439,6 +1439,11 @@ function hmib_devices() {
 	$graphs    = $config["url_path"] . "plugins/hmib/images/view_graphs.gif";
 	$nographs  = $config["url_path"] . "plugins/hmib/images/view_graphs_disabled.gif";
 
+	$htdq    = read_config_option("hmib_dq_host_type");
+	$hcpudq  = read_config_option("hmib_dq_host_cpu");
+	$hugt    = read_config_option("hmib_gt_users");
+	$hpgt    = read_config_option("hmib_gt_processes");
+
 	$i = 0;
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
@@ -1462,14 +1467,20 @@ function hmib_devices() {
 			}else{
 				echo "<img src='$nographs' title='No Graphs Defined' align='absmiddle' border='0'>";
 			}
+
+//			$graph_acpu  = hmib_get_graph_url($hcpudq, $row["id"], round($row["avgCpuPercent"],2), false);
+//			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row["id"], round($row["maxCpuPercent"],2), false);
+			$graph_users = hmib_get_graph_template_url($hugt, $row["host_type"], $row["host_id"], $row["users"], false);
+			$graph_aproc = hmib_get_graph_template_url($hpgt, $row["host_type"], $row["host_id"], $row["processes"], false);
+
 			echo "</td>";
 			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . $row["description"] . "</strong> [" . $row["hostname"] . "]" . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . get_colored_device_status(($row["disabled"] == "on" ? true : false), $row["host_status"]) . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . hmib_format_uptime($days, $hours, $minutes) . "</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . $row["users"]              . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $graph_users              . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $row["cpuPercent"]         . " %</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $row["numCpus"]            . "</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . $row["processes"]          . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $graph_aproc                   . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . hmib_memory($row["memSize"])   . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . round($row["memUsed"],0)   . " %</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . hmib_memory($row["swapSize"])  . "</td>";
@@ -2362,9 +2373,9 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
 
 		if (sizeof($graphs)) {
 			if ($image) {
-				return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
+				return "<a href='" . $url . "?action=graphs&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
 			}else{
-				return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
+				return "<a href='" . $url . "?action=graphs&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
 			}
 		}
 	}
@@ -2400,9 +2411,9 @@ function hmib_get_graph_url($data_query, $index, $title = "", $image = true) {
 
 		if (sizeof($graphs)) {
 			if ($image) {
-				return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
+				return "<a href='" . $url . "?action=graphs&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
 			}else{
-				return "<a href='" . $url . "?action=graphs&style=selective&&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
+				return "<a href='" . $url . "?action=graphs&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
 			}
 		}
 	}
@@ -2495,6 +2506,12 @@ function hmib_header_sort($header_items, $sort_column, $sort_direction, $jsprefi
 function hmib_view_graphs() {
 	global $current_user, $colors, $config;
 
+	if (file_exists("./lib/timespan_settings.php")) {
+		include("./lib/timespan_settings.php");
+	}else{
+		include("./include/html/inc_timespan_settings.php");
+	}
+
 	/* ================= input validation ================= */
 	input_validate_input_number(get_request_var("rra_id"));
 	input_validate_input_number(get_request_var("host"));
@@ -2515,13 +2532,27 @@ function hmib_view_graphs() {
 		$_REQUEST["filter"] = sanitize_search_string(get_request_var_request("filter"));
 	}
 
+	/* clean up styl string */
+	if (isset($_REQUEST["style"])) {
+		$_REQUEST["style"] = sanitize_search_string(get_request_var_request("style"));
+	}
+
 	$sql_or = ""; $sql_where = ""; $sql_join = "";
 
 	/* if the user pushed the 'clear' button */
-	if (isset($_REQUEST["clear_x"])) {
+	if (isset($_REQUEST["reset"])) {
 		kill_session_var("sess_hmib_graph_current_page");
 		kill_session_var("sess_hmib_graph_filter");
 		kill_session_var("sess_hmib_graph_host");
+		kill_session_var("sess_hmib_graph_add");
+		kill_session_var("sess_hmib_graph_style");
+		kill_session_var("sess_hmib_graph_graph_template");
+	}elseif (isset($_REQUEST["clear"])) {
+		kill_session_var("sess_hmib_graph_current_page");
+		kill_session_var("sess_hmib_graph_filter");
+		kill_session_var("sess_hmib_graph_host");
+		kill_session_var("sess_hmib_graph_add");
+		kill_session_var("sess_hmib_graph_style");
 		kill_session_var("sess_hmib_graph_graph_template");
 
 		unset($_REQUEST["page"]);
@@ -2530,18 +2561,35 @@ function hmib_view_graphs() {
 		unset($_REQUEST["graph_template_id"]);
 		unset($_REQUEST["graph_list"]);
 		unset($_REQUEST["graph_add"]);
+		unset($_REQUEST["style"]);
 		unset($_REQUEST["graph_remove"]);
-	}
+	}else{
+		/* if any of the settings changed, reset the page number */
+		$changed = false;
+		$changed += hmib_check_changed("fitler",            "sess_hmib_graph_filter");
+		$changed += hmib_check_changed("host",              "sess_hmib_graph_host");
+		$changed += hmib_check_changed("style",             "sess_hmib_graph_style");
+		$changed += hmib_check_changed("graph_add",         "sess_hmib_graph_add");
+		$changed += hmib_check_changed("graph_template_id", "sess_hmib_graph_graph_template");
 
-	/* reset the page counter to '1' if a search in initiated */
-	if (isset($_REQUEST["filter"])) {
-		$_REQUEST["page"] = "1";
+		if ($changed) {
+			$_REQUEST["page"]      = "1";
+			$_REQUEST["style"]     = "";
+			$_REQUEST["graph_add"] = "";
+		}
+
 	}
 
 	load_current_session_value("graph_template_id", "sess_hmib_graph_graph_template", "0");
-	load_current_session_value("host", "sess_hmib_graph_host", "0");
-	load_current_session_value("filter", "sess_hmib_graph_filter", "");
-	load_current_session_value("page", "sess_hmib_graph_current_page", "1");
+	load_current_session_value("host",              "sess_hmib_graph_host", "0");
+	load_current_session_value("graph_add",         "sess_hmib_graph_add", "");
+	load_current_session_value("style",             "sess_hmib_graph_style", "");
+	load_current_session_value("filter",            "sess_hmib_graph_filter", "");
+	load_current_session_value("page",              "sess_hmib_graph_current_page", "1");
+
+	if ($_REQUEST["graph_add"] != "") {
+		$_REQUEST["style"] = "selective";
+	}
 
 	/* graph permissions */
 	if (read_config_option("auth_method") != 0) {
@@ -2634,7 +2682,7 @@ function hmib_view_graphs() {
 	<script type="text/javascript">
 	<!--
 	function applyGraphPreviewFilterChange(objForm) {
-		strURL = '?report=graphs&graph_template_id=' + objForm.graph_template_id.value;
+		strURL = '?action=graphs&graph_template_id=' + objForm.graph_template_id.value;
 		strURL = strURL + '&host=' + objForm.host.value;
 		strURL = strURL + '&filter=' + objForm.filter.value;
 		document.location = strURL;
@@ -2794,13 +2842,12 @@ function hmib_graph_view_filter() {
 					</td>
 					<td>
 						&nbsp;<input type="submit" name="go" value="Go">
-						<input type="submit" name="clear_x" value="Clear">
-						<input type="button" name="save" value="Save" onclick='saveGraphSettings()'>
-						<input type="submit" name="defaults" value="Defaults">
+						<input type="submit" name="clear" value="Clear">
 					</td>
 				</tr>
 			</table>
 		</td>
+		<input type='hidden' name='action' value='graphs'>
 		</form>
 	</tr>
 	<?php
@@ -2849,7 +2896,7 @@ function hmib_timespan_selector() {
 	<script type="text/javascript">
 	<!--
 	function applyTimespanFilterChange(objForm) {
-		strURL = '?predefined_timespan=' + objForm.predefined_timespan.value;
+		strURL = '?action=graphs&predefined_timespan=' + objForm.predefined_timespan.value;
 		strURL = strURL + '&predefined_timeshift=' + objForm.predefined_timeshift.value;
 		document.location = strURL;
 	}
@@ -2917,8 +2964,8 @@ function hmib_timespan_selector() {
 						<input style='padding-bottom: 4px;' type='image' name='move_right' src='<?php print $config['url_path'];?>images/move_right.gif' alt='Right' border='0' align='absmiddle' title='Shift Right'>
 					</td>
 					<td nowrap style='white-space: nowrap;'>
-						&nbsp;&nbsp;<input type='submit' name='button_refresh' value='Refresh'>
-						<input type='submit' name='button_clear_x' value='Clear'>
+						&nbsp;&nbsp;<input type='submit' name='refresh' value='Refresh'>
+						<input type='submit' name='clear' value='Clear'>
 					</td>
 				</tr>
 			</table>
