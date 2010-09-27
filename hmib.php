@@ -1463,7 +1463,7 @@ function hmib_devices() {
 			echo "<a style='padding:1px;' href='$url?action=running&reset=1&device=" . $row["host_id"] . "'><img src='$proc' title='View Processes' align='absmiddle' border='0'></a>";
 			echo "<a style='padding:1px;' href='$url?action=software&reset=1&device=" . $row["host_id"] . "'><img src='$inven' title='View Software Inventory' align='absmiddle' border='0'></a>";
 			if ($found) {
-				echo "<a style='padding:1px;' href='$url?action=graphs&host=" . $row["host_id"] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter='><img  src='$graphs' title='View Graphs' align='absmiddle' border='0'></a>";
+				echo "<a style='padding:1px;' href='$url?action=graphs&reset=1&host=" . $row["host_id"] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter='><img  src='$graphs' title='View Graphs' align='absmiddle' border='0'></a>";
 			}else{
 				echo "<img src='$nographs' title='No Graphs Defined' align='absmiddle' border='0'>";
 			}
@@ -2373,9 +2373,9 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
 
 		if (sizeof($graphs)) {
 			if ($image) {
-				return "<a href='" . $url . "?action=graphs&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
+				return "<a href='" . $url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
 			}else{
-				return "<a href='" . $url . "?action=graphs&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
+				return "<a href='" . $url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
 			}
 		}
 	}
@@ -2411,9 +2411,9 @@ function hmib_get_graph_url($data_query, $index, $title = "", $image = true) {
 
 		if (sizeof($graphs)) {
 			if ($image) {
-				return "<a href='" . $url . "?action=graphs&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
+				return "<a href='" . $url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
 			}else{
-				return "<a href='" . $url . "?action=graphs&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
+				return "<a href='" . $url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
 			}
 		}
 	}
@@ -2682,7 +2682,7 @@ function hmib_view_graphs() {
 	<script type="text/javascript">
 	<!--
 	function applyGraphPreviewFilterChange(objForm) {
-		strURL = '?action=graphs&graph_template_id=' + objForm.graph_template_id.value;
+		strURL = '?action=graphs&reset=1&graph_template_id=' + objForm.graph_template_id.value;
 		strURL = strURL + '&host=' + objForm.host.value;
 		strURL = strURL + '&filter=' + objForm.filter.value;
 		document.location = strURL;
