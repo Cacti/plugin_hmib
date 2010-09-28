@@ -568,7 +568,7 @@ function hmib_hardware() {
 						&nbsp;Template:&nbsp;
 					</td>
 					<td width="1">
-						<select name="template" onChange="applySWFilter(document.hardware)">
+						<select name="template" onChange="applyHWFilter(document.hardware)">
 							<option value="-1"<?php if (get_request_var_request("template") == "-1") {?> selected<?php }?>>All</option>
 							<?php
 							$templates = db_fetch_assoc("SELECT DISTINCT ht.id, ht.name
@@ -591,7 +591,7 @@ function hmib_hardware() {
 						&nbsp;Rows:&nbsp;
 					</td>
 					<td width="1">
-						<select name="rows" onChange="applySWFilter(document.hardware)">
+						<select name="rows" onChange="applyHWFilter(document.hardware)">
 							<option value="-1"<?php if (get_request_var_request("rows") == "-1") {?> selected<?php }?>>Default</option>
 							<?php
 							if (sizeof($item_rows)) {
@@ -2029,6 +2029,7 @@ function hmib_summary() {
 		hrst.id AS id,
 		hrst.name AS name,
 		hrst.version AS version,
+		hrs.host_type AS host_type,
 		SUM(CASE WHEN host_status=3 THEN 1 ELSE 0 END) AS upHosts,
 		SUM(CASE WHEN host_status=2 THEN 1 ELSE 0 END) AS recHosts,
 		SUM(CASE WHEN host_status=1 THEN 1 ELSE 0 END) AS downHosts,
@@ -2097,19 +2098,25 @@ function hmib_summary() {
 
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
 			echo "<td style='white-space:nowrap;' width='120'>";
-			echo "<a style='padding:1px;' href='$url?reset=1&action=devices&reset=1&type=" . $row["id"] . "'><img src='$host' title='View Devices' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='$url?reset=1&action=storage&reset=1&type=" . $row["id"] . "'><img src='$storage' title='View Storage' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='$url?reset=1&action=hardware&reset=1&type=" . $row["id"] . "'><img src='$hardw' title='View Hardware' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='$url?reset=1&action=running&reset=1&type=" . $row["id"] . "'><img src='$proc' title='View Processes' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='$url?reset=1&action=software&reset=1&type=" . $row["id"] . "'><img src='$inven' title='View Software Inventory' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='$url?reset=1&action=devices&type=" . $row["id"] . "'><img src='$host' title='View Devices' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='$url?reset=1&action=storage&type=" . $row["id"] . "'><img src='$storage' title='View Storage' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='$url?reset=1&action=hardware&type=" . $row["id"] . "'><img src='$hardw' title='View Hardware' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='$url?reset=1&action=running&type=" . $row["id"] . "'><img src='$proc' title='View Processes' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='$url?reset=1&action=software&type=" . $row["id"] . "'><img src='$inven' title='View Software Inventory' align='absmiddle' border='0'></a>";
 			echo $graph_url;
 			echo "</td>";
+
+			$upHosts   = hmib_get_device_status_url($row["upHosts"], $row["host_type"], 3);
+			$recHosts  = hmib_get_device_status_url($row["recHosts"], $row["host_type"], 2);
+			$downHosts = hmib_get_device_status_url($row["downHosts"], $row["host_type"], 1);
+			$disaHosts = hmib_get_device_status_url($row["disabledHosts"], $row["host_type"], 0);
+
 			echo "<td style='white-space:nowrap;' align='left' width='100'>" . $row["name"] . "</td>";
 			echo "<td style='white-space:nowrap;' align='right' width='100'>" . $row["version"] . "</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . $row["upHosts"] . "</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . $row["recHosts"] . "</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . $row["downHosts"] . "</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . $row["disabledHosts"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $upHosts . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $recHosts . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $downHosts . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $disaHosts . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $graph_users . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $row["cpus"] . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $graph_acpu . " %</td>";
@@ -2334,6 +2341,16 @@ function hmib_summary() {
 	html_end_box();
 
 	html_end_box();
+}
+
+function hmib_get_device_status_url($count, $host_type, $status) {
+	global $config;
+
+	if ($count > 0) {
+		return "<a href='" . $config["url_path"] . "plugins/hmib/hmib.php?action=devices&reset=1&type=$host_type&status=$status' title='View Hosts'>$count</a>";
+	}else{
+		return $count;
+	}
 }
 
 function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id = 0, $title = "", $image = true) {
