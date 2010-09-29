@@ -53,7 +53,7 @@ foreach($parms as $parameter) {
 	case "--debug":
 		$debug = TRUE;
 		break;
-	case "--host_id":
+	case "--host-id":
 		$host_id = $value;
 		break;
 	case "--seed":
@@ -89,7 +89,7 @@ foreach($parms as $parameter) {
 
 /* Check for mandatory parameters */
 if (!$mainrun && $host_id == "") {
-	echo "FATAL: You must specify a Cacti host_id run\n";
+	echo "FATAL: You must specify a Cacti host-id run\n";
 	exit;
 }
 
@@ -412,6 +412,11 @@ function process_hosts() {
 	}
 	}
 
+	/* for hosts that are down, clear information */
+	db_execute("UPDATE plugin_hmib_hrSystem 
+		SET users=0, cpuPercent=0, processes=0, memUsed=0, swapUsed=0, uptime=0, sysUptime=0
+		WHERE host_status IN (0,1)");
+
 	$end = time();
 
 	echo "NOTE: Host Mib Polling Completed, Total Time:" . ($end-$start) . " Seconds\n";
@@ -426,7 +431,7 @@ function process_host($host_id, $seed) {
 
 	exec_background(read_config_option("path_php_binary")," -q " .
 		$config["base_path"] . "/plugins/hmib/poller_hmib.php" .
-		" --host_id=" . $host_id .
+		" --host-id=" . $host_id .
 		" --start=" . $start .
 		" --seed=" . $seed .
 		($forcerun ? " --force":"") .
@@ -541,11 +546,11 @@ function collect_hrSystem(&$host) {
 function hmib_dateParse($value) {
 	$value = explode(",", $value);
 
-	if (strpos($value[1], ".")) {
+	if (isset($value[1]) && strpos($value[1], ".")) {
 		$value[1] = substr($value[1], 0, strpos($value[1], "."));
 	}
 
-	$date1 = $value[0] . " " . $value[1];
+	$date1 = trim($value[0] . " " . (isset($value[1]) ? $value[1]:""));
 	if (strtotime($date1) === false) {
 		$value = date("Y-m-d H:i:s");
 	}else{
@@ -768,5 +773,7 @@ function collect_hrDevices(&$host) {
 function display_help() {
 	echo "Host MIB Poller Process 1.0, Copyright 2004-2010 - The Cacti Group\n\n";
 	echo "The main Host MIB poller process script for Cacti.\n\n";
-	echo "usage: poller_hmib.php [--debug|-d]\n\n";
+	echo "usage: \n";
+	echo "master process: poller_hmib.php [-M] [-f] [-fd] [-d]\n";
+	echo "child  process: poller_hmib.php --host-id=N [--seed=N] [-f] [-d]\n\n";
 }

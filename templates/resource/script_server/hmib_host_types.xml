@@ -1,0 +1,102 @@
+<interface>
+	<name>Host MIB Host Type Graphs</name>
+	<script_path>|path_cacti|/scripts/ss_hmib_htypes.php</script_path>
+	<script_function>ss_hmib_htypes</script_function>
+	<script_server>php</script_server>
+	<arg_prepend></arg_prepend>
+	<arg_index>index</arg_index>
+	<arg_query>query</arg_query>
+	<arg_get>get</arg_get>
+	<output_delimeter>!</output_delimeter>
+	<index_order>hostTypeID</index_order>
+	<index_order_type>numeric</index_order_type>
+	<index_title_format>|chosen_order_field|</index_title_format>
+
+	<fields>
+		<hostTypeID>
+			<name>Index</name>
+			<direction>input</direction>
+			<query_name>index</query_name>
+		</hostTypeID>
+		<hostType>
+			<name>Host Type</name>
+			<direction>input</direction>
+			<query_name>name</query_name>
+		</hostType>
+		<hostVersion>
+			<name>Operating System Version</name>
+			<direction>input</direction>
+			<query_name>version</query_name>
+		</hostVersion>
+		<upHosts>
+			<name>Up Hosts</name>
+			<direction>output</direction>
+			<query_name>up</query_name>
+		</upHosts>
+		<downHosts>
+			<name>Down Hosts</name>
+			<direction>output</direction>
+			<query_name>down</query_name>
+		</downHosts>
+		<recoveringHosts>
+			<name>Recovering Hosts</name>
+			<direction>output</direction>
+			<query_name>recovering</query_name>
+		</recoveringHosts>
+		<disabledHosts>
+			<name>Disabled Hosts</name>
+			<direction>output</direction>
+			<query_name>disabled</query_name>
+		</disabledHosts>
+		<hostLogins>
+			<name>Total Logins</name>
+			<direction>output</direction>
+			<query_name>users</query_name>
+		</hostLogins>
+		<hostCpus>
+			<name>Total CPUs</name>
+			<direction>output</direction>
+			<query_name>num_cpus</query_name>
+		</hostCpus>
+		<avgCpu>
+			<name>Average CPU</name>
+			<direction>output</direction>
+			<query_name>avgCpu</query_name>
+		</avgCpu>
+		<maxCpu>
+			<name>Maximum CPU</name>
+			<direction>output</direction>
+			<query_name>maxCpu</query_name>
+		</maxCpu>
+		<avgMem>
+			<name>Average Mem</name>
+			<direction>output</direction>
+			<query_name>avgMem</query_name>
+		</avgMem>
+		<maxMem>
+			<name>Maximum Mem</name>
+			<direction>output</direction>
+			<query_name>maxMem</query_name>
+		</maxMem>
+		<avgSwap>
+			<name>Average Swap</name>
+			<direction>output</direction>
+			<query_name>avgSwap</query_name>
+		</avgSwap>
+		<maxSwap>
+			<name>Maximum Swap</name>
+			<direction>output</direction>
+			<query_name>maxSwap</query_name>
+		</maxSwap>
+		<avgProc>
+			<name>Average Processes</name>
+			<direction>output</direction>
+			<query_name>avgProc</query_name>
+		</avgProc>
+		<maxProc>
+			<name>Maximum Processes</name>
+			<direction>output</direction>
+			<query_name>maxProc</query_name>
+		</maxProc>
+	</fields>
+</interface>

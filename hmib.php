@@ -96,6 +96,11 @@ function hmib_running() {
 		$_REQUEST["filter"] = sanitize_search_string(get_request_var("filter"));
 	}
 
+	/* clean up filter string */
+	if (isset($_REQUEST["process"])) {
+		$_REQUEST["process"] = sanitize_search_string(get_request_var("process"));
+	}
+
 	if (isset($_REQUEST["reset"])) {
 		kill_session_var("sess_hmib_run_sort_column");
 		kill_session_var("sess_hmib_run_sort_direction");
@@ -103,6 +108,7 @@ function hmib_running() {
 		kill_session_var("sess_hmib_run_filter");
 		kill_session_var("sess_hmib_run_rows");
 		kill_session_var("sess_hmib_run_device");
+		kill_session_var("sess_hmib_run_process");
 		kill_session_var("sess_hmib_run_type");
 		kill_session_var("sess_hmib_run_current_page");
 	}elseif (isset($_REQUEST["clear"])) {
@@ -112,6 +118,7 @@ function hmib_running() {
 		kill_session_var("sess_hmib_run_filter");
 		kill_session_var("sess_hmib_run_rows");
 		kill_session_var("sess_hmib_run_device");
+		kill_session_var("sess_hmib_run_process");
 		kill_session_var("sess_hmib_run_type");
 		kill_session_var("sess_hmib_run_current_page");
 
@@ -121,6 +128,7 @@ function hmib_running() {
 		unset($_REQUEST["filter"]);
 		unset($_REQUEST["rows"]);
 		unset($_REQUEST["device"]);
+		unset($_REQUEST["process"]);
 		unset($_REQUEST["type"]);
 		unset($_REQUEST["page"]);
 	}else{
@@ -130,6 +138,7 @@ function hmib_running() {
 		$changed += hmib_check_changed("fitler",   "sess_hmib_run_filter");
 		$changed += hmib_check_changed("rows",     "sess_hmib_run_rows");
 		$changed += hmib_check_changed("device",   "sess_hmib_run_device");
+		$changed += hmib_check_changed("process",  "sess_hmib_run_process");
 
 		if (hmib_check_changed("type",     "sess_hmib_run_type")) {
 			$_REQUEST["device"] = -1;
@@ -145,6 +154,7 @@ function hmib_running() {
 	load_current_session_value("page",           "sess_hmib_run_current_page", "1");
 	load_current_session_value("rows",           "sess_hmib_run_rows", "-1");
 	load_current_session_value("device",         "sess_hmib_run_device", "-1");
+	load_current_session_value("process",        "sess_hmib_run_process", "-1");
 	load_current_session_value("type",           "sess_hmib_run_type", "-1");
 	load_current_session_value("sort_column",    "sess_hmib_run_sort_column", "name");
 	load_current_session_value("sort_direction", "sess_hmib_run_sort_direction", "ASC");
@@ -160,6 +170,7 @@ function hmib_running() {
 		strURL = strURL + '&filter='   + objForm.filter.value;
 		strURL = strURL + '&rows='     + objForm.rows.value;
 		strURL = strURL + '&device='   + objForm.device.value;
+		strURL = strURL + '&process='  + objForm.process.value;
 		strURL = strURL + '&type='     + objForm.type.value;
 		document.location = strURL;
 	}
@@ -265,6 +276,25 @@ function hmib_running() {
 			<table cellpadding="0" cellspacing="0">
 				<tr>
 					<td nowrap style='white-space: nowrap;' width="50">
+						&nbsp;Process:&nbsp;
+					</td>
+					<td width="1">
+						<select name="process" onChange="applyRunFilter(document.running)">
+							<option value="-1"<?php if (get_request_var_request("process") == "-1") {?> selected<?php }?>>All</option>
+							<?php
+							$procs = db_fetch_assoc("SELECT DISTINCT name 
+								FROM plugin_hmib_hrSWRun_last_seen AS hrswr
+								WHERE name!='System Idle Time' AND name NOT LIKE '128%' AND (name IS NOT NULL AND name!='')
+								ORDER BY name");
+							if (sizeof($procs)) {
+							foreach($procs AS $p) {
+								echo "<option value='" . $p["name"] . "' " . (get_request_var_request("process") == $p["name"] ? "selected":"") . ">" . $p["name"] . "</option>";
+							}
+							}
+							?>
+						</select>
+					</td>
+					<td nowrap style='white-space: nowrap;' width="50">
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
@@ -307,10 +337,13 @@ function hmib_running() {
 		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " hrs.host_type=" . $_REQUEST["type"];
 	}
 
+	if ($_REQUEST["process"] != "-1") {
+		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " hrswr.name='" . $_REQUEST["process"] . "'";
+	}
+
 	if ($_REQUEST["filter"] != "") {
 		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " (host.description LIKE '%" . $_REQUEST["filter"] . "%' OR
 			hrswr.name LIKE '%" . $_REQUEST["filter"] . "%' OR
-			hrswr.date LIKE '%" . $_REQUEST["filter"] . "%' OR
 			host.hostname LIKE '%" . $_REQUEST["filter"] . "%')";
 	}
 
@@ -1470,21 +1503,21 @@ function hmib_devices() {
 
 //			$graph_acpu  = hmib_get_graph_url($hcpudq, $row["id"], round($row["avgCpuPercent"],2), false);
 //			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row["id"], round($row["maxCpuPercent"],2), false);
-			$graph_users = hmib_get_graph_template_url($hugt, $row["host_type"], $row["host_id"], $row["users"], false);
-			$graph_aproc = hmib_get_graph_template_url($hpgt, $row["host_type"], $row["host_id"], $row["processes"], false);
+			$graph_users = hmib_get_graph_template_url($hugt, $row["host_type"], $row["host_id"], ($row["host_status"] < 2 ? "N/A":$row["users"]), false);
+			$graph_aproc = hmib_get_graph_template_url($hpgt, $row["host_type"], $row["host_id"], ($row["host_status"] < 2 ? "N/A":$row["processes"]), false);
 
 			echo "</td>";
 			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . $row["description"] . "</strong> [" . $row["hostname"] . "]" . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . get_colored_device_status(($row["disabled"] == "on" ? true : false), $row["host_status"]) . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . hmib_format_uptime($days, $hours, $minutes) . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $graph_users              . "</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . $row["cpuPercent"]         . " %</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . $row["numCpus"]            . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . ($row["host_status"] < 2 ? "N/A":$row["cpuPercent"])         . " %</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . ($row["host_status"] < 2 ? "N/A":$row["numCpus"])            . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $graph_aproc                   . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . hmib_memory($row["memSize"])   . "</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . round($row["memUsed"],0)   . " %</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . ($row["host_status"] < 2 ? "N/A":round($row["memUsed"],0))   . " %</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . hmib_memory($row["swapSize"])  . "</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . round($row["swapUsed"],0)  . " %</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . ($row["host_status"] < 2 ? "N/A":round($row["swapUsed"],0))  . " %</td>";
 		}
 		echo "</tr>";
 		print $nav;
@@ -2410,25 +2443,28 @@ function hmib_get_graph_url($data_query, $index, $title = "", $image = true) {
 	$url     = $config["url_path"] . "plugins/hmib/hmib.php";
 	$nograph = $config["url_path"] . "plugins/hmib/images/view_graphs_disabled.gif";
 	$graph   = $config["url_path"] . "plugins/hmib/images/view_graphs.gif";
-
 	if (!empty($data_query)) {
-		$sql    = "SELECT gl.* FROM graph_local AS gl
-                        INNER JOIN snmp_query_graph AS sqg
-                        ON gl.graph_template_id=sqg.graph_template_id
-                        WHERE sqg.snmp_query_id=$data_query";
+		$sql    = "SELECT DISTINCT gl.id
+			FROM graph_local AS gl
+			INNER JOIN snmp_query_graph AS sqg ON gl.graph_template_id=sqg.graph_template_id
+			INNER JOIN graph_templates_item AS gti ON gl.id=gti.local_graph_id
+			INNER JOIN data_template_rrd AS dtr ON gti.task_item_id=dtr.id
+			INNER JOIN data_template_data AS dtd ON dtd.local_data_id=dtr.local_data_id
+			INNER JOIN data_input_data AS did ON did.data_template_data_id=dtd.id
+			WHERE sqg.snmp_query_id=$data_query AND did.value='$index'";
 
 		$graphs = db_fetch_assoc($sql);
 
 		$graph_add = "";
 		if (sizeof($graphs)) {
-		foreach($graphs as $graph) {
-			$graph_add .= (strlen($graph_add) ? ",":"") . $graph["id"];
+		foreach($graphs as $g) {
+			$graph_add .= (strlen($graph_add) ? ",":"") . $g["id"];
 		}
 		}
 
 		if (sizeof($graphs)) {
 			if ($image) {
-				return "<a href='" . $url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
+				return "<a href='" . $url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' align='absmiddle' src='" . $graph . "'></a>";
 			}else{
 				return "<a href='" . $url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
 			}
