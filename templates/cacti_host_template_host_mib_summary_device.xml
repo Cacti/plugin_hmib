@@ -26,7 +26,7 @@
 				</sv_data_source>
 			</hash_11001627b7d1de3cd275e6a60fa738b0c078dc>
 			<hash_110016f52b40073cee11006d32d60e73f8d999>
-				<name>Host MIB - Tatal App Memory</name>
+				<name>Host MIB - Total App Memory</name>
 				<graph_template_id>hash_0000164a2a772f8cbec29ea1ab953def982390</graph_template_id>
 				<rrd>
 					<item_000>
