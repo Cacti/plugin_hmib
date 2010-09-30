@@ -35,6 +35,10 @@ include_once("./plugins/hmib/general_header.php");
 
 $hmib_hrSWTypes = array(1 => "Unknown", 2 => "Operating System", 3 => "Device Driver", 4 => "Application");
 
+$hmib_types = array_rekey(db_fetch_assoc("SELECT * 
+	FROM plugin_hmib_types 
+	ORDER BY description"), "id", "description");
+
 hmib_tabs();
 
 switch($_REQUEST["action"]) {
@@ -444,7 +448,7 @@ function hmib_running() {
 }
 
 function hmib_hardware() {
-	global $config, $colors, $item_rows, $hmib_hrSWTypes;
+	global $config, $colors, $item_rows, $hmib_hrSWTypes, $hmib_types;
 
 	/* ================= input validation ================= */
 	input_validate_input_number(get_request_var_request("template"));
@@ -757,7 +761,7 @@ function hmib_hardware() {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
 			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hd"] . "</strong> [" . $row["hostname"] . "]"):$row["hd"] . "</strong> [" . $row["hostname"] . "]") . "</td>";
 			echo "<td style='white-space:nowrap;' align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"]):$row["description"]) . "</td>";
-			echo "<td style='white-space:nowrap;' align='left'>"  . (isset($hmib_hrSWTypes[$row["type"]]) ? $hmib_hrSWTypes[$row["type"]]:"Unknown") . "</td>";
+			echo "<td style='white-space:nowrap;' align='left'>"  . (isset($hmib_types[$row["type"]]) ? $hmib_types[$row["type"]]:"Unknown") . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $row["status"] . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $row["errors"] . "</td>";
 		}
@@ -771,7 +775,7 @@ function hmib_hardware() {
 }
 
 function hmib_storage() {
-	global $config, $colors, $item_rows, $hmib_hrSWTypes;
+	global $config, $colors, $item_rows, $hmib_hrSWTypes, $hmib_types;
 
 	/* ================= input validation ================= */
 	input_validate_input_number(get_request_var_request("template"));
@@ -1087,7 +1091,7 @@ function hmib_storage() {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
 			echo "<td style='white-space:nowrap;' align='left' width='120'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hd"] . "</strong> [" . $row["hostname"] . "]"):$row["hd"] . "<strong> [" . $row["hostname"] . "]") . "</td>";
 			echo "<td style='white-space:nowrap;' align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"]):$row["description"]) . "</td>";
-			echo "<td style='white-space:nowrap;' align='left'>"  . (isset($hmib_hrSWTypes[$row["type"]]) ? $hmib_hrSWTypes[$row["type"]]:"Unknown") . "</td>";
+			echo "<td style='white-space:nowrap;' align='left'>"  . (isset($hmib_types[$row["type"]]) ? $hmib_types[$row["type"]]:"Unknown") . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $row["failures"] . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . round($row["percent"]*100,2) . " %</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . number_format($row["used"]/1024,0) . "</td>";
@@ -1324,7 +1328,7 @@ function hmib_devices() {
 						&nbsp;Rows:&nbsp;
 					</td>
 					<td width="1">
-						<select name="rows" onChange="applyHostFilter(document.host_summary)">
+						<select name="rows" onChange="applyHostFilter(document.devices)">
 							<option value="-1"<?php if (get_request_var_request("rows") == "-1") {?> selected<?php }?>>Default</option>
 							<?php
 							if (sizeof($item_rows)) {
@@ -1342,7 +1346,7 @@ function hmib_devices() {
 						<input type='textbox' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
 					</td>
 					<td nowrap>
-						&nbsp;<input type="button" onClick="applyHostFilter(document.host_summary)" value="Go" border="0">
+						&nbsp;<input type="button" onClick="applyHostFilter(document.devices)" value="Go" border="0">
 						<input type="button" onClick="clearHosts()" value="Clear" name="clear" border="0">
 					</td>
 				</tr>
@@ -1968,7 +1972,7 @@ function hmib_summary() {
 		$_REQUEST["sort_direction"] = "DESC";
 		load_current_session_value("sort_column", "sess_hmib_host_sort_column", "downHosts");
 		load_current_session_value("sort_direction", "sess_hmib_host_sort_direction", "ASC");
-		load_current_session_value("htop", "sess_hmib_host_top", "5");
+		load_current_session_value("htop", "sess_hmib_host_top", read_config_option("hmib_top_types"));
 	}elseif ($_REQUEST["sect"] == "hosts") {
 		/* if the user pushed the 'clear' button */
 		if (isset($_REQUEST["clearh"])) {
@@ -1982,9 +1986,9 @@ function hmib_summary() {
 		}
 		load_current_session_value("sort_column", "sess_hmib_host_sort_column", "downHosts");
 		load_current_session_value("sort_direction", "sess_hmib_host_sort_direction", "ASC");
-		load_current_session_value("htop", "sess_hmib_host_top", "5");
+		load_current_session_value("htop", "sess_hmib_host_top", read_config_option("hmib_top_types"));
 	}else{
-		load_current_session_value("htop", "sess_hmib_host_top", "5");
+		load_current_session_value("htop", "sess_hmib_host_top", read_config_option("hmib_top_types"));
 		load_current_session_value("my_sort_column", "sess_hmib_host_sort_column", "downHosts");
 		load_current_session_value("my_sort_direction", "sess_hmib_host_sort_direction", "ASC");
 	}
@@ -2144,7 +2148,7 @@ function hmib_summary() {
 			$downHosts = hmib_get_device_status_url($row["downHosts"], $row["host_type"], 1);
 			$disaHosts = hmib_get_device_status_url($row["disabledHosts"], $row["host_type"], 0);
 
-			echo "<td style='white-space:nowrap;' align='left' width='100'>" . $row["name"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' width='100'>" . ($row["name"] != "" ? $row["name"]:"Unknown") . "</td>";
 			echo "<td style='white-space:nowrap;' align='right' width='100'>" . $row["version"] . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $upHosts . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $recHosts . "</td>";
@@ -2175,7 +2179,7 @@ function hmib_summary() {
 		load_current_session_value("process", "sess_hmib_proc_process", "-1");
 		load_current_session_value("sort_column", "sess_hmib_proc_sort_column", "maxCpu");
 		load_current_session_value("sort_direction", "sess_hmib_proc_sort_direction", "DESC");
-		load_current_session_value("ptop", "sess_hmib_proc_top", "5");
+		load_current_session_value("ptop", "sess_hmib_proc_top", read_config_option("hmib_top_processes"));
 	}elseif ($_REQUEST["sect"] == "processes") {
 		/* if the user pushed the 'clear' button */
 		if (isset($_REQUEST["clearp"])) {
@@ -2195,11 +2199,11 @@ function hmib_summary() {
 		load_current_session_value("process", "sess_hmib_proc_process", "-1");
 		load_current_session_value("sort_column", "sess_hmib_proc_sort_column", "maxCpu");
 		load_current_session_value("sort_direction", "sess_hmib_proc_sort_direction", "DESC");
-		load_current_session_value("ptop", "sess_hmib_proc_top", "5");
+		load_current_session_value("ptop", "sess_hmib_proc_top", read_config_option("hmib_top_processes"));
 	}else{
 		load_current_session_value("filter", "sess_hmib_proc_filter", "");
 		load_current_session_value("process", "sess_hmib_proc_process", "-1");
-		load_current_session_value("ptop", "sess_hmib_proc_top", "5");
+		load_current_session_value("ptop", "sess_hmib_proc_top", read_config_option("hmib_top_processes"));
 		load_current_session_value("my_sort_column", "sess_hmib_proc_sort_column", "maxCpu");
 		load_current_session_value("my_sort_direction", "sess_hmib_proc_sort_direction", "DESC");
 	}

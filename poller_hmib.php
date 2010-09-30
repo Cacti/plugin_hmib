@@ -164,10 +164,6 @@ function autoDiscoverHosts() {
 
 		if (sizeof($hostMib)) {
 			$add = true;
-			if (substr_count($system, " AIX ")) {
-				debug("Host '" . $host["description"] . "[" . $host["hostname"] . "]' Supports Host MIB Resources, but the implementation is flawed due to being AIX");
-				$add = false;
-			}
 
 			if ($add) {
 				debug("Host '" . $host["description"] . "[" . $host["hostname"] . "]' Supports Host MIB Resources");
@@ -179,6 +175,7 @@ function autoDiscoverHosts() {
 
 	/* remove the process lock */
 	db_execute("DELETE FROM plugin_hmib_processes WHERE pid=" . getmypid());
+	db_execute("REPLACE INTO settings (name,value) VALUES ('hmib_autodiscovery_lastrun', '" . time() . "')");
 
 	return true;
 }
@@ -589,10 +586,12 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 
 		debug("Polling $name from '" . $host["description"] . "[" . $host["hostname"] . "]'");
 		$hostMib   = array();
-		foreach($tree AS $name => $oid) {
-			if ($name == "date") {
+		foreach($tree AS $mname => $oid) {
+			if ($name == "hrProcessor") {
+				$retrieval = SNMP_VALUE_PLAIN;
+			}elseif ($mname == "date") {
 				$retrieval = SNMP_VALUE_LIBRARY;
-			}elseif ($name != "baseOID") {
+			}elseif ($mname != "baseOID") {
 				$retrieval = SNMP_VALUE_PLAIN;
 			}else{
 				continue;
@@ -716,9 +715,9 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 			foreach($new_array as $index => $item) {
 				$sql_insert .= (strlen($sql_insert) ? "), (":"(") . $host["id"] . ", " . $index . ", ";
 				$i = 0;
-				foreach($tree as $name => $oid) {
-					if ($name != "baseOID" && $name != "index") {
-						$sql_insert .= ($i >  0 ? ", ":"") . (isset($item[$name]) && strlen(strlen($item[$name])) ? $cnn_id->qstr($item[$name]):"''");
+				foreach($tree as $mname => $oid) {
+					if ($mname != "baseOID" && $mname != "index") {
+						$sql_insert .= ($i >  0 ? ", ":"") . (isset($item[$mname]) && strlen(strlen($item[$mname])) ? $cnn_id->qstr($item[$mname]):"''");
 						$i++;
 					}
 				}

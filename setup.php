@@ -366,6 +366,28 @@ function hmib_config_settings () {
 			"method" => "checkbox",
 			"default" => "on"
 			),
+		"hmib_top_types" => array(
+			"friendly_name" => "Default Top Host Types",
+			"description" => "How many processes do you wish to see on the HMIB Dashboard by default?",
+			"method" => "drop_array",
+			"default" => "10",
+			"array" => array(
+				5  => "5 Types",
+				8  => "8 Types",
+				10 => "10 Types",
+				15 => "15 Types")
+			),
+		"hmib_top_processes" => array(
+			"friendly_name" => "Default Top Processes",
+			"description" => "How many processes do you wish to see on the HMIB Dashboard by default?",
+			"method" => "drop_array",
+			"default" => "10",
+			"array" => array(
+				5  => "5 Processes",
+				10 => "10 Processes",
+				20 => "20 Processes",
+				30 => "30 Processes")
+			),
 		"hmib_concurrent_processes" => array(
 			"friendly_name" => "Maximum Concurrent Collectors",
 			"description" => "What is the maximum number of concurrent collector process that you want to run at one time?",
@@ -382,6 +404,20 @@ function hmib_config_settings () {
 				30 => "30 Processes",
 				40 => "40 Processes",
 				50 => "50 Processes")
+			),
+		"hmib_host_templates" => array(
+			"friendly_name" => "Host Template Association",
+			"method" => "spacer",
+			),
+		"hmib_summary_host_template" => array(
+			"friendly_name" => "Host MIB Summary Device Template",
+			"description" => "Select the Host Template associated with the Host MIB
+			summary device.  This device will contain graphs for all summary 
+			process and host type metrics.",
+			"method" => "drop_sql",
+			"default" => "",
+			"none_value" => "N/A",
+			"sql" => "SELECT id, name FROM host_template ORDER BY name",
 			),
 		"hmib_graphs" => array(
 			"friendly_name" => "Data Query Associations",
@@ -423,6 +459,10 @@ function hmib_config_settings () {
 			"none_value" => "N/A",
 			"sql" => "SELECT id, name FROM snmp_query ORDER BY name",
 			),
+		"hmib_templates" => array(
+			"friendly_name" => "Graph Template Associations",
+			"method" => "spacer",
+			),
 		"hmib_gt_processes" => array(
 			"friendly_name" => "Host MIB Processes Template",
 			"description" => "Select the Graph Template associated with the Host Process Graphs.  This will be used for action
@@ -461,6 +501,22 @@ function hmib_config_settings () {
 			"method" => "drop_array",
 			"default" => "300",
 			"array" => $hmib_frequencies
+			),
+		"hmib_automation_header" => array(
+			"friendly_name" => "Host Graph Automation",
+			"method" => "spacer",
+			),
+		"hmib_automation_frequency" => array(
+			"friendly_name" => "Automatically Add New Graphs",
+			"description" => "How often do you want to check for new objects to graph?",
+			"method" => "drop_array",
+			"default" => "0",
+			"array" => array(
+				0  => "Never",
+				1  => "1 Hour",
+				12 => "12 Hours",
+				24 => "1 Day",
+				48 => "2 Days")
 			),
 		"hmib_frequencies" => array(
 			"friendly_name" => "Host Mib Table Collection Frequencies",

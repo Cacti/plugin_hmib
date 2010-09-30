@@ -5,13 +5,13 @@
 		<data_queries>hash_0400166b0ef0fe7f1d85bbb6812801ca15a7c5|hash_040016137aeab842986a76cf5bdef41b96c9a3</data_queries>
 	</hash_0200167c13344910097cc599f0d0485305361d>
 	<hash_0400166b0ef0fe7f1d85bbb6812801ca15a7c5>
-		<name>HMIB - Summary Application Stats</name>
+		<name>Host MIB - Summary Application Stats</name>
 		<description>Shows Global Application Utilization</description>
 		<xml_path>&lt;path_cacti&gt;/resource/script_server/hmib_sum_apps.xml</xml_path>
 		<data_input_id>hash_030016332111d8b54ac8ce939af87a7eac0c06</data_input_id>
 		<graphs>
 			<hash_11001627b7d1de3cd275e6a60fa738b0c078dc>
-				<name>HMIB - Total App CPU</name>
+				<name>Host MIB - Total App CPU</name>
 				<graph_template_id>hash_000016962920ce4af8ad940cf36f5521858729</graph_template_id>
 				<rrd>
 					<item_000>
@@ -26,7 +26,7 @@
 				</sv_data_source>
 			</hash_11001627b7d1de3cd275e6a60fa738b0c078dc>
 			<hash_110016f52b40073cee11006d32d60e73f8d999>
-				<name>HMIB - Tatal App Memory</name>
+				<name>Host MIB - Tatal App Memory</name>
 				<graph_template_id>hash_0000164a2a772f8cbec29ea1ab953def982390</graph_template_id>
 				<rrd>
 					<item_000>
@@ -41,7 +41,7 @@
 				</sv_data_source>
 			</hash_110016f52b40073cee11006d32d60e73f8d999>
 			<hash_110016c71e321079e44411ad4e4bdcd3055eb9>
-				<name>HMIB - Total App Running</name>
+				<name>Host MIB - Total App Running</name>
 				<graph_template_id>hash_0000168f94a1142ff3e956d79b11c24bc0c274</graph_template_id>
 				<rrd>
 					<item_000>
@@ -58,13 +58,13 @@
 		</graphs>
 	</hash_0400166b0ef0fe7f1d85bbb6812801ca15a7c5>
 	<hash_040016137aeab842986a76cf5bdef41b96c9a3>
-		<name>HMIB - Host Type Graphs</name>
+		<name>Host MIB - Host Type Graphs</name>
 		<description>Graphs at the Host Type Level</description>
 		<xml_path>&lt;path_cacti&gt;/resource/script_server/hmib_host_types.xml</xml_path>
 		<data_input_id>hash_030016332111d8b54ac8ce939af87a7eac0c06</data_input_id>
 		<graphs>
 			<hash_110016f305db67bbd809d95a459d143f9d9dca>
-				<name>HMIB - Host Type - By Status</name>
+				<name>Host MIB - Host Type - By Status</name>
 				<graph_template_id>hash_000016d5375112e583c026c1806654495b651e</graph_template_id>
 				<rrd>
 					<item_000>
@@ -94,7 +94,7 @@
 				</sv_data_source>
 			</hash_110016f305db67bbd809d95a459d143f9d9dca>
 			<hash_110016cada9aee1a501c2c2df6f15e13945b45>
-				<name>HMIB - Host Type - Memory Status</name>
+				<name>Host MIB - Host Type - Memory Status</name>
 				<graph_template_id>hash_000016cffe8a85c85433cec11a0b62297d29fb</graph_template_id>
 				<rrd>
 					<item_000>
@@ -124,7 +124,7 @@
 				</sv_data_source>
 			</hash_110016cada9aee1a501c2c2df6f15e13945b45>
 			<hash_11001678d7885096681393dcc8dca3fecafd74>
-				<name>HMIB - Host Type - User Logins</name>
+				<name>Host MIB - Host Type - User Logins</name>
 				<graph_template_id>hash_0000167ae954a08b97658d902df91d8dc6b0d9</graph_template_id>
 				<rrd>
 					<item_000>
@@ -139,7 +139,7 @@
 				</sv_data_source>
 			</hash_11001678d7885096681393dcc8dca3fecafd74>
 			<hash_110016b964c9f6b7c402b09b442958722d9e65>
-				<name>HMIB - Host Type - Process Counts</name>
+				<name>Host MIB - Host Type - Process Counts</name>
 				<graph_template_id>hash_000016656df020e5c1e27b0b5d98c919edf3a6</graph_template_id>
 				<rrd>
 					<item_000>
@@ -204,7 +204,7 @@
 		</fields>
 	</hash_030016332111d8b54ac8ce939af87a7eac0c06>
 	<hash_000016962920ce4af8ad940cf36f5521858729>
-		<name>HMIB - Total App CPU</name>
+		<name>Host MIB - Total App CPU</name>
 		<graph>
 			<t_title></t_title>
 			<title>|host_description| - |query_appName| - Total CPU</title>
@@ -307,7 +307,7 @@
 		</inputs>
 	</hash_000016962920ce4af8ad940cf36f5521858729>
 	<hash_0000164a2a772f8cbec29ea1ab953def982390>
-		<name>HMIB - Total App Memory</name>
+		<name>Host MIB - Total App Memory</name>
 		<graph>
 			<t_title></t_title>
 			<title>|host_description| - |query_appName| - Total Memory</title>
@@ -410,7 +410,7 @@
 		</inputs>
 	</hash_0000164a2a772f8cbec29ea1ab953def982390>
 	<hash_0000168f94a1142ff3e956d79b11c24bc0c274>
-		<name>HMIB - Total App Running</name>
+		<name>Host MIB - Total App Running</name>
 		<graph>
 			<t_title></t_title>
 			<title>|host_description| - |query_appName| - Total Running</title>
@@ -513,7 +513,7 @@
 		</inputs>
 	</hash_0000168f94a1142ff3e956d79b11c24bc0c274>
 	<hash_000016d5375112e583c026c1806654495b651e>
-		<name>HMIB - Host Type - By Status</name>
+		<name>Host MIB - Host Type - By Status</name>
 		<graph>
 			<t_title></t_title>
 			<title>|host_description| - |query_hostType| - |query_hostVersion| - Host Status</title>
@@ -790,7 +790,7 @@
 		</inputs>
 	</hash_000016d5375112e583c026c1806654495b651e>
 	<hash_000016cffe8a85c85433cec11a0b62297d29fb>
-		<name>HMIB - Host Type - Memory Status</name>
+		<name>Host MIB - Host Type - Memory Status</name>
 		<graph>
 			<t_title></t_title>
 			<title>|host_description| - |query_hostType| - |query_hostVersion| - Memory Status</title>
@@ -1067,7 +1067,7 @@
 		</inputs>
 	</hash_000016cffe8a85c85433cec11a0b62297d29fb>
 	<hash_0000167ae954a08b97658d902df91d8dc6b0d9>
-		<name>HMIB - Host Type - User Logins</name>
+		<name>Host MIB - Host Type - User Logins</name>
 		<graph>
 			<t_title></t_title>
 			<title>|host_description| - |query_hostType| - |query_hostVersion| - Logins</title>
@@ -1170,7 +1170,7 @@
 		</inputs>
 	</hash_0000167ae954a08b97658d902df91d8dc6b0d9>
 	<hash_000016656df020e5c1e27b0b5d98c919edf3a6>
-		<name>HMIB - Host Type - Process Counts</name>
+		<name>Host MIB - Host Type - Process Counts</name>
 		<graph>
 			<t_title></t_title>
 			<title>|host_description| - |query_hostType| - |query_hostVersion| - Processes</title>
@@ -1350,7 +1350,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>1000000000</rrd_maximum>
+				<rrd_maximum>0</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -1360,6 +1360,21 @@
 			</hash_080016944228a9348327fbb8e771f28e40404f>
 		</items>
 		<data>
+			<item_000>
+				<data_input_field_id>hash_070016172b4b0eacee4948c6479f587b62e512</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_000>
+			<item_001>
+				<data_input_field_id>hash_07001630fb5d5bcf3d66bb5abe88596f357c26</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_001>
+			<item_002>
+				<data_input_field_id>hash_07001631112c85ae4ff821d3b288336288818c</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_002>
 		</data>
 	</hash_010016a8e7f95827d0303cc8778f231ec9b606>
 	<hash_01001608e6fccdf948604624fc24c29ed136cf>
@@ -1382,7 +1397,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>1000000000000</rrd_maximum>
+				<rrd_maximum>0</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -1392,6 +1407,21 @@
 			</hash_0800168efb8cf911e2252730b2122762bd0ff2>
 		</items>
 		<data>
+			<item_000>
+				<data_input_field_id>hash_070016172b4b0eacee4948c6479f587b62e512</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_000>
+			<item_001>
+				<data_input_field_id>hash_07001630fb5d5bcf3d66bb5abe88596f357c26</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_001>
+			<item_002>
+				<data_input_field_id>hash_07001631112c85ae4ff821d3b288336288818c</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_002>
 		</data>
 	</hash_01001608e6fccdf948604624fc24c29ed136cf>
 	<hash_010016be1e5f45e2a43048e4fe4c8ebab257cb>
@@ -1442,7 +1472,7 @@
 		</data>
 	</hash_010016be1e5f45e2a43048e4fe4c8ebab257cb>
 	<hash_01001693c495059bf9c1ea2e7c7c947af6cb99>
-		<name>HMIB - Host Type - By Status</name>
+		<name>Host MIB - Host Type - By Status</name>
 		<ds>
 			<t_name></t_name>
 			<name>|host_description| - |query_hostType| - |query_hostVersion| - Host Status</name>
@@ -1531,7 +1561,7 @@
 		</data>
 	</hash_01001693c495059bf9c1ea2e7c7c947af6cb99>
 	<hash_010016ef57684455ebf9e879c1008803542a78>
-		<name>HMIB - Host Type - Memory Status</name>
+		<name>Host MIB - Host Type - Memory Status</name>
 		<ds>
 			<t_name></t_name>
 			<name>|host_description| - |query_hostType| - |query_hostVersion| - Memory Stats</name>
@@ -1620,7 +1650,7 @@
 		</data>
 	</hash_010016ef57684455ebf9e879c1008803542a78>
 	<hash_010016a1f3a21124ac1cc539415b813c1c23e3>
-		<name>HMIB - Host Type - User Logins</name>
+		<name>Host MIB - Host Type - User Logins</name>
 		<ds>
 			<t_name></t_name>
 			<name>|host_description| - |query_hostType| - |query_hostVersion| - User Logins</name>
@@ -1649,10 +1679,25 @@
 			</hash_0800169e7b637ab3c159a9dc70bdf1966e43a9>
 		</items>
 		<data>
+			<item_000>
+				<data_input_field_id>hash_070016172b4b0eacee4948c6479f587b62e512</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_000>
+			<item_001>
+				<data_input_field_id>hash_07001630fb5d5bcf3d66bb5abe88596f357c26</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_001>
+			<item_002>
+				<data_input_field_id>hash_07001631112c85ae4ff821d3b288336288818c</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_002>
 		</data>
 	</hash_010016a1f3a21124ac1cc539415b813c1c23e3>
 	<hash_010016c2565dd8455805ad8063aa62a3c5dd87>
-		<name>HMIB - Host Type - Process Counts</name>
+		<name>Host MIB - Host Type - Process Counts</name>
 		<ds>
 			<t_name></t_name>
 			<name>|host_description| - |query_hostType| - |query_hostVersion| - Processes</name>
@@ -1696,7 +1741,7 @@
 		</items>
 		<data>
 			<item_000>
-				<data_input_field_id>hash_070016172b4b0eacee4948c6479f587b62e512</data_input_field_id>
+				<data_input_field_id>hash_07001631112c85ae4ff821d3b288336288818c</data_input_field_id>
 				<t_value></t_value>
 				<value></value>
 			</item_000>
@@ -1706,7 +1751,7 @@
 				<value></value>
 			</item_001>
 			<item_002>
-				<data_input_field_id>hash_07001631112c85ae4ff821d3b288336288818c</data_input_field_id>
+				<data_input_field_id>hash_070016172b4b0eacee4948c6479f587b62e512</data_input_field_id>
 				<t_value></t_value>
 				<value></value>
 			</item_002>
