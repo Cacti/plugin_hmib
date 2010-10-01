@@ -688,7 +688,7 @@ function hmib_hardware() {
 
 	if ($_REQUEST["filter"] != "") {
 		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " (host.description LIKE '%" . $_REQUEST["filter"] . "%' OR
-			hrd.name LIKE '%" . $_REQUEST["filter"] . "%' OR
+			hrd.description LIKE '%" . $_REQUEST["filter"] . "%' OR
 			host.hostname LIKE '%" . $_REQUEST["filter"] . "%')";
 	}
 
