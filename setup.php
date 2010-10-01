@@ -251,13 +251,13 @@ function hmib_setup_table () {
 		COMMENT='The process names that we have not interest in by default';");
 
 	db_execute("INSERT INTO `plugin_hmib_hrSystemTypes` VALUES
-		(1,'.1.3.6.1.4.1.311.1.1.3.1.1',  'Version 6.1','Win7','7'),
-		(2,'.1.3.6.1.4.1.311.1.1.3.1.2',  'Version 6.1','Win2008 Server','2008'),
-		(3,'.1.3.6.1.4.1.311.1.1.3.1.3',  'Version 6.1','Win2008 Domain Contr','2008'),
+		(1,'.1.3.6.1.4.1.311.1.1.3.1.1',  'Version 6.1','Windows 7','7'),
+		(2,'.1.3.6.1.4.1.311.1.1.3.1.2',  'Version 6.1','Windows 2008 Server','2008'),
+		(3,'.1.3.6.1.4.1.311.1.1.3.1.3',  'Version 6.1','Windows 2008 Domain Contr','2008'),
 		(4,'.1.3',                        'Linux NAS%armv5tejl','DNS-321',''),
 		(5,'.1.3.6.1.4.1.2.3.1.2.1.1.3',  'IBM%AIX%05.03','AIX','5.3'),
 		(6,'.1.3.6.1.4.1.8072.3.2.10',    'Linux%2.6.16.21-0.8%','SUSE','10.2'),
-		(7,'.1.3.6.1.4.1.311.1.1.3.1.1',  'EM64T%Windows Version 5.2','WindowXP x64','5.2'),
+		(7,'.1.3.6.1.4.1.311.1.1.3.1.1',  'EM64T%Windows Version 5.2','Windows XP x64','5.2'),
 		(8,'.1.3.6.1.4.1.311.1.1.3.1.1',  'Windows 2000 Version 5.0','Windows 2000','5.0'),
 		(9,'.1.3.6.1.4.1.311.1.1.3.1.1',  'Windows 2000 Version 5.1','Windows 2000','5.1'),
 		(10,'.1.3.6.1.4.1.8072.3.2.10',   'Linux%2.6.16.60','SUSE','9.0'),
