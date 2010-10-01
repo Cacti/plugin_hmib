@@ -768,7 +768,7 @@ function hmib_hardware() {
 		echo "</tr>";
 		print $nav;
 	}else{
-		print "<tr><td><em>No Software Packages Found</em></td></tr>";
+		print "<tr><td><em>No Hardware Found</em></td></tr>";
 	}
 
 	html_end_box();
