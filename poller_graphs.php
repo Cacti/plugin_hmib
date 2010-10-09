@@ -157,7 +157,7 @@ function add_host_based_graphs() {
 			if ($host_disk_dq) {	
 				/* only numeric > 0 */
 				$regex = "^[1-9][0-9]*";
-				$field = "sau";
+				$field = "hrStorageSizeInput";
 				add_host_dq_graphs($h["host_id"], $host_disk_dq, $field, $regex);
 			}
 

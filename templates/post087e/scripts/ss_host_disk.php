@@ -52,6 +52,7 @@ function ss_host_disk($hostname, $host_id, $snmp_auth, $cmd, $arg1 = "", $arg2 =
 
 	$oids = array(
 		"total" 		=> ".1.3.6.1.2.1.25.2.3.1.5",
+		"totalin" 		=> ".1.3.6.1.2.1.25.2.3.1.5",
 		"used" 			=> ".1.3.6.1.2.1.25.2.3.1.6",
 		"failures" 		=> ".1.3.6.1.2.1.25.2.3.1.7",
 		"index" 		=> ".1.3.6.1.2.1.25.2.3.1.1",
@@ -98,6 +99,8 @@ function ss_host_disk($hostname, $host_id, $snmp_auth, $cmd, $arg1 = "", $arg2 =
 			}else{
 				return cacti_snmp_get($hostname, $snmp_community, $oids[$arg] . ".$index", $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol,$snmp_priv_passphrase,$snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, $ping_retries, SNMP_POLLER);
 			}
+		}else{
+			return $value;
 		}
 	}
 }

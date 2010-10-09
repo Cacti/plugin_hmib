@@ -95,7 +95,7 @@ function ss_host_cpu($hostname, $host_id, $snmp_auth, $cmd, $arg1 = "", $arg2 = 
 				return "ERROR: Invalid Return Value";
 			}
 		}else{
-			return  $value;
+			return $value;
 		}
 	}
 }
