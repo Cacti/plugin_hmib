@@ -2726,20 +2726,20 @@ function hmib_view_graphs() {
 		if ($_REQUEST["style"] == "selective") {
 
 			/* process selected graphs */
-			if (! empty($_REQUEST["graph_list"])) {
+			if (!empty($_REQUEST["graph_list"])) {
 				foreach (explode(",",$_REQUEST["graph_list"]) as $item) {
 					$graph_list[$item] = 1;
 				}
 			}else{
 				$graph_list = array();
 			}
-			if (! empty($_REQUEST["graph_add"])) {
+			if (!empty($_REQUEST["graph_add"])) {
 				foreach (explode(",",$_REQUEST["graph_add"]) as $item) {
 					$graph_list[$item] = 1;
 				}
 			}
 			/* remove items */
-			if (! empty($_REQUEST["graph_remove"])) {
+			if (!empty($_REQUEST["graph_remove"])) {
 				foreach (explode(",",$_REQUEST["graph_remove"]) as $item) {
 					unset($graph_list[$item]);
 				}
@@ -2793,8 +2793,16 @@ function hmib_view_graphs() {
 	?>
 	<script type="text/javascript">
 	<!--
-	function applyGraphPreviewFilterChange(objForm) {
+	function applyGraphWReset(objForm) {
 		strURL = '?action=graphs&reset=1&graph_template_id=' + objForm.graph_template_id.value;
+		strURL = strURL + '&host=' + objForm.host.value;
+		strURL = strURL + '&cols=' + objForm.cols.value;
+		strURL = strURL + '&thumb=' + objForm.thumb.checked;
+		strURL = strURL + '&filter=' + objForm.filter.value;
+		document.location = strURL;
+	}
+	function applyGraphWOReset(objForm) {
+		strURL = '?action=graphs&graph_template_id=' + objForm.graph_template_id.value;
 		strURL = strURL + '&host=' + objForm.host.value;
 		strURL = strURL + '&cols=' + objForm.cols.value;
 		strURL = strURL + '&thumb=' + objForm.thumb.checked;
@@ -2805,7 +2813,7 @@ function hmib_view_graphs() {
 	</script>
 	<?php
 
-	html_start_box("<strong>Host MIB Graphs</strong>", "100%", $colors["header"], "1", "center", "");
+	html_start_box("<strong>Host MIB Graphs" . ($_REQUEST["style"] == "selective" ? " (Custom Selective Filter)":"") . "</strong>", "100%", $colors["header"], "1", "center", "");
 	hmib_graph_view_filter();
 
 	/* include time span selector */
@@ -2894,8 +2902,12 @@ function hmib_graph_view_filter() {
 						&nbsp;Host:&nbsp;
 					</td>
 					<td width="1">
-						<select name="host" onChange="applyGraphPreviewFilterChange(document.form_graph_view)">
+						<select name="host" onChange="applyGraphWReset(document.form_graph_view)">
+							<?php if ($_REQUEST["style"] == "selective") {?>
+							<option value="0"<?php if ($_REQUEST["host"] == "0") {?> selected<?php }?>>Custom</option>
+							<?php }else{?>
 							<option value="0"<?php if ($_REQUEST["host"] == "0") {?> selected<?php }?>>Any</option>
+							<?php }?>
 
 							<?php
 							$hosts = db_fetch_assoc("SELECT host_id, host.description
@@ -2916,8 +2928,12 @@ function hmib_graph_view_filter() {
 						&nbsp;Template:&nbsp;
 					</td>
 					<td width="1">
-						<select name="graph_template_id" onChange="applyGraphPreviewFilterChange(document.form_graph_view)">
+						<select name="graph_template_id" onChange="applyGraphWReset(document.form_graph_view)">
+							<?php if ($_REQUEST["style"] == "selective") {?>
+							<option value="0"<?php if ($_REQUEST["graph_template_id"] == "0") {?> selected<?php }?>>Custom</option>
+							<?php }else{?>
 							<option value="0"<?php if ($_REQUEST["graph_template_id"] == "0") {?> selected<?php }?>>Any</option>
+							<?php }?>
 
 							<?php
 							if (read_config_option("auth_method") != 0) {
@@ -2948,7 +2964,7 @@ function hmib_graph_view_filter() {
 						&nbsp;Columns:&nbsp;
 					</td>
 					<td width="1">
-						<select name="cols" onChange="applyGraphPreviewFilterChange(document.form_graph_view)">
+						<select name="cols" onChange="applyGraphWOReset(document.form_graph_view)">
 							<?php
 							print "<option value='1'"; if ($_REQUEST["cols"] == 1) { print " selected"; } print ">1</option>\n";
 							print "<option value='2'"; if ($_REQUEST["cols"] == 2) { print " selected"; } print ">2</option>\n";
@@ -2962,7 +2978,7 @@ function hmib_graph_view_filter() {
 						&nbsp;<label for='thumb'>Thumbnails:</label>&nbsp;
 					</td>
 					<td width='1'> 
-						<input name='thumb' id='thumb' type='checkbox' onChange="applyGraphPreviewFilterChange(document.form_graph_view)" <?php print ($_REQUEST["thumb"] == "on" || $_REQUEST["thumb"] == "true" ? " checked":""); ?>>
+						<input name='thumb' id='thumb' type='checkbox' onChange="applyGraphWOReset(document.form_graph_view)" <?php print ($_REQUEST["thumb"] == "on" || $_REQUEST["thumb"] == "true" ? " checked":""); ?>>
 					</td>
 					<td nowrap style='white-space: nowrap;' width="50">
 						&nbsp;Search:&nbsp;
