@@ -31,6 +31,8 @@ function plugin_hmib_install () {
 	api_plugin_register_hook('hmib', 'poller_bottom',         'hmib_poller_bottom',         'setup.php');
 	api_plugin_register_hook('hmib', 'top_header_tabs',       'hmib_show_tab',              'setup.php');
 	api_plugin_register_hook('hmib', 'top_graph_header_tabs', 'hmib_show_tab',              'setup.php');
+	api_plugin_register_hook('hmib', 'hmib_get_cpu',          'hmib_get_cpu',               'setup.php');
+	api_plugin_register_hook('hmib', 'hmib_get_disk',         'hmib_get_disk',              'setup.php');
 
 	api_plugin_register_realm('hmib', 'hmib.php', 'Plugin -> Host Mib Viewer', 1);
 
@@ -678,6 +680,49 @@ function hmib_show_tab() {
 			print '<a href="' . $config['url_path'] . 'plugins/hmib/hmib.php"><img src="' . $config['url_path'] . 'plugins/hmib/images/tab_hmib_down.gif" alt="hmib" align="absmiddle" border="0"></a>';
 		}else{
 			print '<a href="' . $config['url_path'] . 'plugins/hmib/hmib.php"><img src="' . $config['url_path'] . 'plugins/hmib/images/tab_hmib.gif" alt="hmib" align="absmiddle" border="0"></a>';
+		}
+	}
+}
+
+function hmib_get_cpu($host_index) {
+	global $called_by_script_server;
+
+	$host_id = $host_index["host_id"];
+	$index   = $host_index["index"];
+
+	if (!$called_by_script_server) {
+		return $host_index;
+	}else{
+		$value = db_fetch_cell("SELECT `load` FROM plugin_hmib_hrProcessor WHERE host_id=$host_id AND `index`=$index");
+
+		if (empty($value)) {
+			return "0";
+		}else{
+			return $value;
+		}
+	}
+}
+
+function hmib_get_disk($host_index) {
+	global $called_by_script_server;
+
+	$host_id = $host_index["host_id"];
+	$index   = $host_index["index"];
+	$arg     = $host_index["arg"];
+
+	if (!$called_by_script_server) {
+		return $host_index;
+	}else{
+		if ($arg == "total") {
+			$value = db_fetch_cell("SELECT IF(size > 0, allocationUnits*size, allocationUnits*(ABS(size)+2147483647)) AS size FROM plugin_hmib_hrStorage WHERE host_id=$host_id AND `index`=$index");
+		}else{
+			$value = db_fetch_cell("SELECT IF(used > 0, allocationUnits*used, allocationUnits*(ABS(used)+2147483647)) AS used FROM plugin_hmib_hrStorage WHERE host_id=$host_id AND `index`=$index");
+		}
+
+		if (empty($value)) {
+			return "0";
+		}else{
+			return $value;
 		}
 	}
 }
