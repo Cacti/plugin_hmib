@@ -259,7 +259,7 @@ function hmib_setup_table () {
 		(6,'.1.3.6.1.4.1.8072.3.2.10',    'Linux%2.6.16.21-0.8%','SUSE','10.2'),
 		(7,'.1.3.6.1.4.1.311.1.1.3.1.1',  'EM64T%Windows Version 5.2','Windows XP x64','5.2'),
 		(8,'.1.3.6.1.4.1.311.1.1.3.1.1',  'Windows 2000 Version 5.0','Windows 2000','5.0'),
-		(9,'.1.3.6.1.4.1.311.1.1.3.1.1',  'Windows 2000 Version 5.1','Windows 2000','5.1'),
+		(9,'.1.3.6.1.4.1.311.1.1.3.1.1',  'Windows 2000 Version 5.1','Windows XP','5.1'),
 		(10,'.1.3.6.1.4.1.8072.3.2.10',   'Linux%2.6.16.60','SUSE','9.0'),
 		(11,'.1.3.6.1.4.1.311.1.1.3.1.2', 'Windows 2000 Version 5.0','Windows 2000 Server','2000'),
 		(12,'.1.3.6.1.4.1.311.1.1.3.1.2', 'Windows 2000 Version 5.1','Windows 2000 Server','2000'),
@@ -412,7 +412,7 @@ function hmib_config_settings () {
 		"hmib_summary_host_template" => array(
 			"friendly_name" => "Host MIB Summary Device Template",
 			"description" => "Select the Host Template associated with the Host MIB
-			summary device.  This device will contain graphs for all summary 
+			summary device.  This device will contain graphs for all summary
 			process and host type metrics.",
 			"method" => "drop_sql",
 			"default" => "",
