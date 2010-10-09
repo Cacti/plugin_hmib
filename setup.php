@@ -714,9 +714,9 @@ function hmib_get_disk($host_index) {
 		return $host_index;
 	}else{
 		if ($arg == "total") {
-			$value = db_fetch_cell("SELECT IF(size > 0, allocationUnits*size, allocationUnits*(ABS(size)+2147483647)) AS size FROM plugin_hmib_hrStorage WHERE host_id=$host_id AND `index`=$index");
+			$value = db_fetch_cell("SELECT IF(size >= 0, allocationUnits*size, allocationUnits*(ABS(size)+2147483647)) AS size FROM plugin_hmib_hrStorage WHERE host_id=$host_id AND `index`=$index");
 		}else{
-			$value = db_fetch_cell("SELECT IF(used > 0, allocationUnits*used, allocationUnits*(ABS(used)+2147483647)) AS used FROM plugin_hmib_hrStorage WHERE host_id=$host_id AND `index`=$index");
+			$value = db_fetch_cell("SELECT IF(used >= 0, allocationUnits*used, allocationUnits*(ABS(used)+2147483647)) AS used FROM plugin_hmib_hrStorage WHERE host_id=$host_id AND `index`=$index");
 		}
 
 		if (empty($value)) {
