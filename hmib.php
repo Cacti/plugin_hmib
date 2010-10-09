@@ -2572,6 +2572,7 @@ function hmib_view_graphs() {
 	/* ================= input validation ================= */
 	input_validate_input_number(get_request_var("rra_id"));
 	input_validate_input_number(get_request_var("host"));
+	input_validate_input_number(get_request_var("cols"));
 	input_validate_input_regex(get_request_var_request('graph_list'), "^([\,0-9]+)$");
 	input_validate_input_regex(get_request_var_request('graph_add'), "^([\,0-9]+)$");
 	input_validate_input_regex(get_request_var_request('graph_remove'), "^([\,0-9]+)$");
@@ -2594,6 +2595,11 @@ function hmib_view_graphs() {
 		$_REQUEST["style"] = sanitize_search_string(get_request_var_request("style"));
 	}
 
+	/* clean up styl string */
+	if (isset($_REQUEST["thumb"])) {
+		$_REQUEST["thumb"] = sanitize_search_string(get_request_var_request("thumb"));
+	}
+
 	$sql_or = ""; $sql_where = ""; $sql_join = "";
 
 	/* if the user pushed the 'clear' button */
@@ -2601,6 +2607,8 @@ function hmib_view_graphs() {
 		kill_session_var("sess_hmib_graph_current_page");
 		kill_session_var("sess_hmib_graph_filter");
 		kill_session_var("sess_hmib_graph_host");
+		kill_session_var("sess_hmib_graph_cols");
+		kill_session_var("sess_hmib_graph_thumb");
 		kill_session_var("sess_hmib_graph_add");
 		kill_session_var("sess_hmib_graph_style");
 		kill_session_var("sess_hmib_graph_graph_template");
@@ -2608,6 +2616,8 @@ function hmib_view_graphs() {
 		kill_session_var("sess_hmib_graph_current_page");
 		kill_session_var("sess_hmib_graph_filter");
 		kill_session_var("sess_hmib_graph_host");
+		kill_session_var("sess_hmib_graph_cols");
+		kill_session_var("sess_hmib_graph_thumb");
 		kill_session_var("sess_hmib_graph_add");
 		kill_session_var("sess_hmib_graph_style");
 		kill_session_var("sess_hmib_graph_graph_template");
@@ -2615,6 +2625,8 @@ function hmib_view_graphs() {
 		unset($_REQUEST["page"]);
 		unset($_REQUEST["filter"]);
 		unset($_REQUEST["host"]);
+		unset($_REQUEST["cols"]);
+		unset($_REQUEST["thumb"]);
 		unset($_REQUEST["graph_template_id"]);
 		unset($_REQUEST["graph_list"]);
 		unset($_REQUEST["graph_add"]);
@@ -2639,6 +2651,8 @@ function hmib_view_graphs() {
 
 	load_current_session_value("graph_template_id", "sess_hmib_graph_graph_template", "0");
 	load_current_session_value("host",              "sess_hmib_graph_host", "0");
+	load_current_session_value("cols",              "sess_hmib_graph_cols", "2");
+	load_current_session_value("thumb",             "sess_hmib_graph_thumb", "true");
 	load_current_session_value("graph_add",         "sess_hmib_graph_add", "");
 	load_current_session_value("style",             "sess_hmib_graph_style", "");
 	load_current_session_value("filter",            "sess_hmib_graph_filter", "");
@@ -2741,6 +2755,8 @@ function hmib_view_graphs() {
 	function applyGraphPreviewFilterChange(objForm) {
 		strURL = '?action=graphs&reset=1&graph_template_id=' + objForm.graph_template_id.value;
 		strURL = strURL + '&host=' + objForm.host.value;
+		strURL = strURL + '&cols=' + objForm.cols.value;
+		strURL = strURL + '&thumb=' + objForm.thumb.checked;
 		strURL = strURL + '&filter=' + objForm.filter.value;
 		document.location = strURL;
 	}
@@ -2768,11 +2784,7 @@ function hmib_view_graphs() {
 
 	html_start_box("", "100%", $colors["header"], "3", "center", "");
 	hmib_nav_bar($_REQUEST["page"], ROWS_PER_PAGE, $total_rows, $nav_url);
-	if (read_graph_config_option("thumbnail_section_preview") == "on") {
-		html_graph_thumbnail_area($graphs, "","graph_start=" . get_current_graph_start() . "&graph_end=" . get_current_graph_end());
-	}else{
-		html_graph_area($graphs, "", "graph_start=" . get_current_graph_start() . "&graph_end=" . get_current_graph_end());
-	}
+	hmib_graph_area($graphs, "", "graph_start=" . get_current_graph_start() . "&graph_end=" . get_current_graph_end(), "", $_REQUEST["cols"], $_REQUEST["thumb"]);
 
 	if ($total_rows) {
 		hmib_nav_bar($_REQUEST["page"], ROWS_PER_PAGE, $total_rows, $nav_url);
@@ -2891,11 +2903,31 @@ function hmib_graph_view_filter() {
 							?>
 						</select>
 					</td>
+					<td nowrap style='white-space: nowrap;' width="55">
+						&nbsp;Columns:&nbsp;
+					</td>
+					<td width="1">
+						<select name="cols" onChange="applyGraphPreviewFilterChange(document.form_graph_view)">
+							<?php
+							print "<option value='1'"; if ($_REQUEST["cols"] == 1) { print " selected"; } print ">1</option>\n";
+							print "<option value='2'"; if ($_REQUEST["cols"] == 2) { print " selected"; } print ">2</option>\n";
+							print "<option value='3'"; if ($_REQUEST["cols"] == 3) { print " selected"; } print ">3</option>\n";
+							print "<option value='4'"; if ($_REQUEST["cols"] == 4) { print " selected"; } print ">4</option>\n";
+							print "<option value='5'"; if ($_REQUEST["cols"] == 5) { print " selected"; } print ">5</option>\n";
+							?>
+						</select>
+					</td>
+					<td nowrap style='white-space: nowrap;' width="55">
+						&nbsp;<label for='thumb'>Thumbnails:</label>&nbsp;
+					</td>
+					<td width='1'> 
+						<input name='thumb' id='thumb' type='checkbox' onChange="applyGraphPreviewFilterChange(document.form_graph_view)" <?php print ($_REQUEST["thumb"] == "on" || $_REQUEST["thumb"] == "true" ? " checked":""); ?>>
+					</td>
 					<td nowrap style='white-space: nowrap;' width="50">
 						&nbsp;Search:&nbsp;
 					</td>
 					<td width="1">
-						<input type="text" name="filter" size="40" value="<?php print $_REQUEST["filter"];?>">
+						<input type="text" name="filter" size="20" value="<?php print $_REQUEST["filter"];?>">
 					</td>
 					<td>
 						&nbsp;<input type="submit" name="go" value="Go">
@@ -3032,4 +3064,66 @@ function hmib_timespan_selector() {
 	<?php
 }
 
+/* hmib_graph_area - draws an area the contains graphs
+   @arg $graph_array - the array to contains graph information. for each graph in the
+     array, the following two keys must exist
+     $arr[0]["local_graph_id"] // graph id
+     $arr[0]["title_cache"] // graph title
+   @arg $no_graphs_message - display this message if no graphs are found in $graph_array
+   @arg $extra_url_args - extra arguments to append to the url
+   @arg $header - html to use as a header
+   @arg $columns - number of columns per row
+   @arg $thumbnails - thumbnail graphs */
+function hmib_graph_area(&$graph_array, $no_graphs_message = "", $extra_url_args = "", $header = "", $columns = 2, $thumbnails = "true") {
+	global $config;
+
+	if ($thumbnails == "true" || $thumbnails == "on") {
+		$th_option = "&graph_nolegend=true&graph_height=" . read_graph_config_option("default_height") . "&graph_width=" . read_graph_config_option("default_width");
+	}else{
+		$th_option = "";
+	}
+
+	$i = 0; $k = 0;
+	if (sizeof($graph_array) > 0) {
+		if ($header != "") {
+			print $header;
+		}
+
+		print "<tr>";
+
+		foreach ($graph_array as $graph) {
+			?>
+			<td align='center' width='<?php print (98 / $columns);?>%'>
+				<table width='1' cellpadding='0'>
+					<tr>
+						<td>
+							<a href='<?php print $config['url_path']; ?>graph.php?action=view&rra_id=all&local_graph_id=<?php print $graph["local_graph_id"];?>'><img class='graphimage' id='graph_<?php print $graph["local_graph_id"] ?>' src='<?php print $config['url_path']; ?>graph_image.php?local_graph_id=<?php print $graph["local_graph_id"] . "&rra_id=0" . $th_option . (($extra_url_args == "") ? "" : "&$extra_url_args");?>' border='0' alt='<?php print $graph["title_cache"];?>'></a>
+						</td>
+						<td valign='top' style='padding: 3px;'>
+							<a href='<?php print $config['url_path']; ?>graph.php?action=zoom&local_graph_id=<?php print $graph["local_graph_id"];?>&rra_id=0&<?php print $extra_url_args;?>'><img src='<?php print $config['url_path']; ?>images/graph_zoom.gif' border='0' alt='Zoom Graph' title='Zoom Graph' style='padding: 3px;'></a><br>
+							<a href='<?php print $config['url_path']; ?>graph_xport.php?local_graph_id=<?php print $graph["local_graph_id"];?>&rra_id=0&<?php print $extra_url_args;?>'><img src='<?php print $config['url_path']; ?>images/graph_query.png' border='0' alt='CSV Export' title='CSV Export' style='padding: 3px;'></a><br>
+							<a href='#page_top'><img src='<?php print $config['url_path']; ?>images/graph_page_top.gif' border='0' alt='Page Top' title='Page Top' style='padding: 3px;'></a><br>
+							<?php api_plugin_hook('graph_buttons', array('hook' => 'thumbnails', 'local_graph_id' => $graph["local_graph_id"], 'rra' =>  0, 'view_type' => '')); ?>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<?php
+
+			$i++;
+			$k++;
+
+			if (($i == $columns) && ($k < count($graph_array))) {
+				$i = 0;
+				print "</tr><tr>";
+			}
+		}
+
+		print "</tr>";
+	}else{
+		if ($no_graphs_message != "") {
+			print "<td><em>$no_graphs_message</em></td>";
+		}
+	}
+}
 ?>
