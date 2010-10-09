@@ -318,6 +318,12 @@ function hmib_setup_table () {
 		(49,'.1.3.6.1.2.1.25.3.9.23','Ext2'),
 		(50,'.1.3.6.1.2.1.25.3.9.5','FAT'),
 		(51,'.1.3.6.1.2.1.25.3.9.9','NTFS')");
+
+	/* optimizations */
+	db_execute("ALTER TABLE data_input_data ADD INDEX data_template_data_id(data_template_data_id)");
+	db_execute("ALTER TABLE data_input_data ADD INDEX data_input_field_id(data_input_field_id)");
+	db_execute("ALTER TABLE snmp_query_graph ADD INDEX graph_template_id(graph_template_id)");
+	db_execute("ALTER TABLE snmp_query_graph ADD INDEX snmp_query_id(snmp_query_id)");
 }
 
 function hmib_version () {

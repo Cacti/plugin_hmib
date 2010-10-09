@@ -1527,18 +1527,18 @@ function hmib_devices() {
 				echo "<img src='$nographs' title='No Graphs Defined' align='absmiddle' border='0'>";
 			}
 
-//			$graph_acpu  = hmib_get_graph_url($hcpudq, $row["id"], round($row["avgCpuPercent"],2), false);
-//			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row["id"], round($row["maxCpuPercent"],2), false);
-			$graph_users = hmib_get_graph_template_url($hugt, $row["host_type"], $row["host_id"], ($row["host_status"] < 2 ? "N/A":$row["users"]), false);
-			$graph_aproc = hmib_get_graph_template_url($hpgt, $row["host_type"], $row["host_id"], ($row["host_status"] < 2 ? "N/A":$row["processes"]), false);
+			$graph_cpu   = hmib_get_graph_url($hcpudq, 0, $row["host_id"], "", $row["numCpus"], false);
+			$graph_cpup  = hmib_get_graph_url($hcpudq, 0, $row["host_id"], "", round($row["cpuPercent"],2). " %", false);
+			$graph_users = hmib_get_graph_template_url($hugt, 0, $row["host_id"], ($row["host_status"] < 2 ? "N/A":$row["users"]), false);
+			$graph_aproc = hmib_get_graph_template_url($hpgt, 0, $row["host_id"], ($row["host_status"] < 2 ? "N/A":$row["processes"]), false);
 
 			echo "</td>";
 			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . $row["description"] . "</strong> [" . $row["hostname"] . "]" . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . get_colored_device_status(($row["disabled"] == "on" ? true : false), $row["host_status"]) . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . hmib_format_uptime($days, $hours, $minutes) . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $graph_users              . "</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . ($row["host_status"] < 2 ? "N/A":$row["cpuPercent"])         . " %</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . ($row["host_status"] < 2 ? "N/A":$row["numCpus"])            . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . ($row["host_status"] < 2 ? "N/A":$graph_cpup)         . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . ($row["host_status"] < 2 ? "N/A":$graph_cpu)            . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $graph_aproc                   . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . hmib_memory($row["memSize"])   . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . ($row["host_status"] < 2 ? "N/A":round($row["memUsed"],0))   . " %</td>";
@@ -2144,13 +2144,16 @@ function hmib_summary() {
 	$hcpudq  = read_config_option("hmib_dq_host_cpu");
 	$hugt    = read_config_option("hmib_gt_users");
 	$hpgt    = read_config_option("hmib_gt_processes");
+	$htsd    = read_config_option("hmib_summary_host_template");
 
 	$i = 0;
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
-			$graph_url   = hmib_get_graph_url($htdq, $row["id"]);
-			$graph_acpu  = hmib_get_graph_url($hcpudq, $row["id"], round($row["avgCpuPercent"],2), false);
-			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row["id"], round($row["maxCpuPercent"],2), false);
+			$host_id     = db_fetch_cell("SELECT id FROM host WHERE host_template_id=$htsd");
+			$graph_url   = hmib_get_graph_url($htdq, 0, $host_id);
+			$graph_ncpu  = hmib_get_graph_url($hcpudq, $row["id"], 0, "", $row["cpus"], false);
+			$graph_acpu  = hmib_get_graph_url($hcpudq, $row["id"], 0, "", round($row["avgCpuPercent"],2), false);
+			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row["id"], 0, "", round($row["maxCpuPercent"],2), false);
 			$graph_users = hmib_get_graph_template_url($hugt, $row["id"], 0, $row["users"], false);
 			$graph_aproc = hmib_get_graph_template_url($hpgt, $row["id"], 0, round($row["avgProcesses"],0), false);
 			$graph_mproc = hmib_get_graph_template_url($hpgt, $row["id"], 0, round($row["maxProcesses"],0), false);
@@ -2177,7 +2180,7 @@ function hmib_summary() {
 			echo "<td style='white-space:nowrap;' align='right'>" . $downHosts . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $disaHosts . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $graph_users . "</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . $row["cpus"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . $graph_ncpu . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $graph_acpu . " %</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $graph_mcpu . " %</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . round($row["avgMem"],2) . " %</td>";
@@ -2375,7 +2378,7 @@ function hmib_summary() {
 	$i = 0;
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
-			$graph_url = hmib_get_graph_url($adq, $row["name"]);
+			$graph_url = hmib_get_graph_url($adq, 0, 0, $row["name"]);
 
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
 			echo "<td width='70'>";
@@ -2463,12 +2466,25 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
 	}
 }
 
-function hmib_get_graph_url($data_query, $index, $title = "", $image = true) {
+function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = "", $image = true) {
 	global $config;
 
 	$url     = $config["url_path"] . "plugins/hmib/hmib.php";
 	$nograph = $config["url_path"] . "plugins/hmib/images/view_graphs_disabled.gif";
 	$graph   = $config["url_path"] . "plugins/hmib/images/view_graphs.gif";
+
+	$hsql = "";
+	if ($host_type > 0) {
+		$hosts = db_fetch_assoc("SELECT host_id FROM plugin_hmib_hrSystem WHERE host_type=$host_type");
+		if (sizeof($hosts)) {
+			$hstr = "";
+			foreach($hosts as $host) {
+				$hstr .= (strlen($hstr) ? ",":"(") . $host["host_id"];
+			}
+			$hstr .= ")";
+		}
+	}
+
 	if (!empty($data_query)) {
 		$sql    = "SELECT DISTINCT gl.id
 			FROM graph_local AS gl
@@ -2477,7 +2493,10 @@ function hmib_get_graph_url($data_query, $index, $title = "", $image = true) {
 			INNER JOIN data_template_rrd AS dtr ON gti.task_item_id=dtr.id
 			INNER JOIN data_template_data AS dtd ON dtd.local_data_id=dtr.local_data_id
 			INNER JOIN data_input_data AS did ON did.data_template_data_id=dtd.id
-			WHERE sqg.snmp_query_id=$data_query AND did.value='$index'";
+			WHERE sqg.snmp_query_id=$data_query " . 
+			($index!='' ? " AND did.value IN ('$index')":"") . 
+			($host_id!="" ? " AND gl.host_id=$host_id":"") .
+			($hstr!="" ? " AND gl.host_id IN $hstr":"");
 
 		$graphs = db_fetch_assoc($sql);
 
