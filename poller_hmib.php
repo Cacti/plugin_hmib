@@ -688,9 +688,17 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 						$value = explode("(", $mib["value"]);
 						if (sizeof($value) > 1) {
 							$value = trim($value[1], " \n\r)");
-							$new_array[$index][$key] = (isset($types[$value]) ? $types[$value]["id"]:0);
+							if ($table != "plugin_hmib_hrSWInstalled" && $table != "plugin_hmib_hrSWRun") {
+								$new_array[$index][$key] = (isset($types[$value]) ? $types[$value]["id"]:0);
+							}else{
+								$new_array[$index][$key] = $value;
+							}
 						}else{
-							$new_array[$index][$key] = (isset($types[$value[0]]) ? $types[$value[0]]["id"]:0);
+							if ($table != "plugin_hmib_hrSWInstalled" && $table != "plugin_hmib_hrSWRun") {
+								$new_array[$index][$key] = (isset($types[$value[0]]) ? $types[$value[0]]["id"]:0);
+							}else{
+								$new_array[$index][$key] = $value[0];
+							}
 						}
 					}elseif ($key == "date") {
 						$new_array[$index][$key] = hmib_dateParse($mib["value"]);
