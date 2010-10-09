@@ -73,12 +73,16 @@ if (read_config_option("hmib_enabled") == "" || db_fetch_cell("SELECT status FRO
 
 /* see if its time to run */
 $last_run  = read_config_option("hmib_automation_lastrun");
-$frequency = read_config_option("hmib_automation_frequency");
-if ($frequency > 0 || ($start - $last_run) > $frequency) {
-	debug("Starting Automation Process");
+$frequency = read_config_option("hmib_automation_frequency") * 86400;
+debug("Last Run Was '" . date("Y-m-d H:i:s", $last_run) . "', Frequency is '" . ($frequency/86400) . "' Hours");
+if ($frequency == 0 && !$forcerun) {
+	echo "NOTE:  Graph Automation is Disabled\n";
+}elseif (($frequency > 0 && ($start - $last_run) > $frequency) || $forcerun) {
+	echo "NOTE:  Starting Automation Process\n";
+	db_execute("REPLACE INTO settings (name,value) VALUES ('hmib_automation_lastrun', '$start')");
 	add_graphs();
 }else{
-	debug("Its Not Time to Run Automation");
+	echo "NOTE:  Its Not Time to Run Automation\n";
 }
 
 exit(0);
@@ -134,7 +138,7 @@ function add_host_based_graphs() {
 
 	if (sizeof($hosts)) {
 		foreach($hosts as $h) {
-			debug("Processing Host '" . $h["description"] . "[" . $h["host_id"] . "]");
+			debug("Processing Host '" . $h["description"] . "[" . $h["host_id"] . "]'");
 			if ($host_users_gt) {
 				debug("Processing Users");
 				hmib_gt_graph($h["host_id"], $host_users_gt);

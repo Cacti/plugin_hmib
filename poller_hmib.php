@@ -243,6 +243,7 @@ function process_hosts() {
 			if ($processes < $concurrent_processes) {
 				echo "NOTE: Launching Host Collector For: '" . $host["description"] . "[" . $host["hostname"] . "]'\n";
 				process_host($host["host_id"], $seed);
+				usleep(10000);
 
 				break;
 			}else{
@@ -421,6 +422,9 @@ function process_hosts() {
 	/* log the statics */
 	cacti_log("SYSTEM HMIB STATS: Time:" . ($end-$start) . ", Processes:$concurrent_processes, Hosts:" . sizeof($hosts), false, "SYSTEM");
 	db_execute("REPLACE INTO settings (name,value) VALUES ('hmib_stats', UNIX_TIMESTAMP())");
+
+	/* launch the graph creation process */
+	process_graphs();
 }
 
 function process_host($host_id, $seed) {
@@ -431,6 +435,15 @@ function process_host($host_id, $seed) {
 		" --host-id=" . $host_id .
 		" --start=" . $start .
 		" --seed=" . $seed .
+		($forcerun ? " --force":"") .
+		($debug ? " --debug":""));
+}
+
+function process_graphs() {
+	global $config, $debug, $start, $forcerun;
+
+	exec_background(read_config_option("path_php_binary")," -q " .
+		$config["base_path"] . "/plugins/hmib/poller_graphs.php" .
 		($forcerun ? " --force":"") .
 		($debug ? " --debug":""));
 }
