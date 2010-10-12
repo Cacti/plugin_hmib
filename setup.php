@@ -34,7 +34,8 @@ function plugin_hmib_install () {
 	api_plugin_register_hook('hmib', 'hmib_get_cpu',          'hmib_get_cpu',               'setup.php');
 	api_plugin_register_hook('hmib', 'hmib_get_disk',         'hmib_get_disk',              'setup.php');
 
-	api_plugin_register_realm('hmib', 'hmib.php', 'Plugin -> Host Mib Viewer', 1);
+	api_plugin_register_realm('hmib', 'hmib.php', 'Plugin -> Host MIB Viewer', 1);
+	api_plugin_register_realm('hmib', 'hmib_types.php', 'Plugin -> Host MIB Admin', 1);
 
 	hmib_setup_table ();
 }
@@ -658,17 +659,27 @@ function hmib_config_arrays() {
 		"baseOID" => ".1.3.6.1.2.1.25.3.3.1",
 		"load"    => ".1.3.6.1.2.1.25.3.3.1.2"
 	);
+
+	if (isset($_SESSION['hmib_message']) && $_SESSION['hmib_message'] != '') {
+		$messages['hmib_message'] = array('message' => $_SESSION['hmib_message'], 'type' => 'info');
+	}
+
+	$menu["Management"]['plugins/hmib/hmib_types.php'] = "Host MIB OS Types";
 }
 
 function hmib_draw_navigation_text ($nav) {
-	$nav["hmib.php:"] = array("title" => "Host MIB Inventory Summary", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:summary"]  = array("title" => "Host MIB Inventory Summary", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:devices"]  = array("title" => "Host MIB Details", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:storage"]  = array("title" => "Host MIB Storage", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:hardware"] = array("title" => "Host MIB Hardware", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:running"]  = array("title" => "Host MIB Running Processes", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:software"] = array("title" => "Host MIB Software Inventory", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:graphs"]   = array("title" => "Host MIB Graphs", "mapping" => "", "url" => "hmib.php", "level" => "0");
+	$nav["hmib.php:"]          = array("title" => "Host MIB Inventory Summary", "mapping" => "", "url" => "hmib.php", "level" => "0");
+	$nav["hmib.php:summary"]   = array("title" => "Host MIB Inventory Summary", "mapping" => "", "url" => "hmib.php", "level" => "0");
+	$nav["hmib.php:devices"]   = array("title" => "Host MIB Details", "mapping" => "", "url" => "hmib.php", "level" => "0");
+	$nav["hmib.php:storage"]   = array("title" => "Host MIB Storage", "mapping" => "", "url" => "hmib.php", "level" => "0");
+	$nav["hmib.php:hardware"]  = array("title" => "Host MIB Hardware", "mapping" => "", "url" => "hmib.php", "level" => "0");
+	$nav["hmib.php:running"]   = array("title" => "Host MIB Running Processes", "mapping" => "", "url" => "hmib.php", "level" => "0");
+	$nav["hmib.php:software"]  = array("title" => "Host MIB Software Inventory", "mapping" => "", "url" => "hmib.php", "level" => "0");
+	$nav["hmib.php:graphs"]    = array("title" => "Host MIB Graphs", "mapping" => "", "url" => "hmib.php", "level" => "0");
+
+	$nav["hmib_types.php:"]       = array("title" => "Host MIB OS Types", "mapping" => "index.php:", "url" => "hmib_types.php", "level" => "1");
+	$nav["hmib_types.php:edit"]   = array("title" => "(Edit)", "mapping" => "index.php:,hmib_types.php:", "url" => "hmib_types.php", "level" => "2");
+	$nav["hmib_types.php:import"] = array("title" => "Import", "mapping" => "index.php:,hmib_types.php:", "url" => "hmib_types.php", "level" => "2");
 	return $nav;
 }
 
