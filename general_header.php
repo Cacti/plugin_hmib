@@ -74,7 +74,7 @@ $page_title = api_plugin_hook_function('page_title', 'Cacti');
 <body leftmargin="15" topmargin="15" marginwidth="15" marginheight="15" <?php print api_plugin_hook_function("body_style", "");?>>
 <?php }?>
 
-<table width="100%" height="100%" cellspacing="0" cellpadding="0">
+<table width="100%" cellspacing="0" cellpadding="0">
 <?php if ($oper_mode == OPER_MODE_NATIVE) { ;?>
 	<tr height="37" bgcolor="#a9a9a9" class="noprint">
 		<td colspan="2" valign="bottom" nowrap>
