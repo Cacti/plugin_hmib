@@ -287,7 +287,7 @@ function hmib_host_type_export() {
 
 	/* remember these search fields in session vars so we don't have to keep passing them around */
 	load_current_session_value("page", "sess_hmib_host_type_current_page", "1");
-   	load_current_session_value("sort_column", "sess_hmib_host_type_sort_column", "description");
+   	load_current_session_value("sort_column", "sess_hmib_host_type_sort_column", "name");
 	load_current_session_value("sort_direction", "sess_hmib_host_type_sort_direction", "ASC");
 
 	$sql_where = "";
