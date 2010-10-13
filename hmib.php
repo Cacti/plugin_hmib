@@ -34,31 +34,31 @@ if (!isset($_REQUEST["action"])) {
 include_once("./plugins/hmib/general_header.php");
 
 $hmib_hrSWTypes = array(
-	0 => "Error", 
-	1 => "Unknown", 
-	2 => "Operating System", 
-	3 => "Device Driver", 
+	0 => "Error",
+	1 => "Unknown",
+	2 => "Operating System",
+	3 => "Device Driver",
 	4 => "Application"
 );
 
 $hmib_hrSWRunStatus = array(
-	1 => "Running", 
-	2 => "Runnable", 
-	3 => "Not Runnable", 
+	1 => "Running",
+	2 => "Runnable",
+	3 => "Not Runnable",
 	4 => "Invalid"
 );
 
 $hmib_hrDeviceStatus = array(
 	0 => "Present",
-	1 => "Unknown", 
-	2 => "Running", 
-	3 => "Warning", 
-	4 => "Testing", 
+	1 => "Unknown",
+	2 => "Running",
+	3 => "Warning",
+	4 => "Testing",
 	5 => "Down"
 );
 
-$hmib_types = array_rekey(db_fetch_assoc("SELECT * 
-	FROM plugin_hmib_types 
+$hmib_types = array_rekey(db_fetch_assoc("SELECT *
+	FROM plugin_hmib_types
 	ORDER BY description"), "id", "description");
 
 hmib_tabs();
@@ -308,7 +308,7 @@ function hmib_running() {
 						<select name="process" onChange="applyRunFilter(document.running)">
 							<option value="-1"<?php if (get_request_var_request("process") == "-1") {?> selected<?php }?>>All</option>
 							<?php
-							$procs = db_fetch_assoc("SELECT DISTINCT name 
+							$procs = db_fetch_assoc("SELECT DISTINCT name
 								FROM plugin_hmib_hrSWRun_last_seen AS hrswr
 								WHERE name!='System Idle Time' AND name NOT LIKE '128%' AND (name IS NOT NULL AND name!='')
 								ORDER BY name");
@@ -2150,7 +2150,7 @@ function hmib_summary() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			$host_id     = db_fetch_cell("SELECT id FROM host WHERE host_template_id=$htsd");
-			$graph_url   = hmib_get_graph_url($htdq, 0, $host_id);
+			$graph_url   = hmib_get_graph_url($htdq, 0, $host_id, "");
 			$graph_ncpu  = hmib_get_graph_url($hcpudq, $row["id"], 0, "", $row["cpus"], false);
 			$graph_acpu  = hmib_get_graph_url($hcpudq, $row["id"], 0, "", round($row["avgCpuPercent"],2), false);
 			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row["id"], 0, "", round($row["maxCpuPercent"],2), false);
@@ -2493,8 +2493,8 @@ function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = 
 			INNER JOIN data_template_rrd AS dtr ON gti.task_item_id=dtr.id
 			INNER JOIN data_template_data AS dtd ON dtd.local_data_id=dtr.local_data_id
 			INNER JOIN data_input_data AS did ON did.data_template_data_id=dtd.id
-			WHERE sqg.snmp_query_id=$data_query " . 
-			($index!='' ? " AND did.value IN ('$index')":"") . 
+			WHERE sqg.snmp_query_id=$data_query " .
+			($index!='' ? " AND did.value IN ('$index')":"") .
 			($host_id!="" ? " AND gl.host_id=$host_id":"") .
 			($hstr!="" ? " AND gl.host_id IN $hstr":"");
 
@@ -2977,7 +2977,7 @@ function hmib_graph_view_filter() {
 					<td nowrap style='white-space: nowrap;' width="55">
 						&nbsp;<label for='thumb'>Thumbnails:</label>&nbsp;
 					</td>
-					<td width='1'> 
+					<td width='1'>
 						<input name='thumb' id='thumb' type='checkbox' onChange="applyGraphWOReset(document.form_graph_view)" <?php print ($_REQUEST["thumb"] == "on" || $_REQUEST["thumb"] == "true" ? " checked":""); ?>>
 					</td>
 					<td nowrap style='white-space: nowrap;' width="50">
