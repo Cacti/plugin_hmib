@@ -2474,10 +2474,10 @@ function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = 
 	$graph   = $config["url_path"] . "plugins/hmib/images/view_graphs.gif";
 
 	$hsql = "";
+	$hstr = "";
 	if ($host_type > 0) {
 		$hosts = db_fetch_assoc("SELECT host_id FROM plugin_hmib_hrSystem WHERE host_type=$host_type");
 		if (sizeof($hosts)) {
-			$hstr = "";
 			foreach($hosts as $host) {
 				$hstr .= (strlen($hstr) ? ",":"(") . $host["host_id"];
 			}

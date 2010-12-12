@@ -144,8 +144,9 @@ function hmib_duplicate_host_type($host_type_id, $dup_id, $host_type_title) {
 		/* create new entry: graph_local */
 		$save["id"] = 0;
 
-		if (substr_count($host_type_title, "<name>")) {
-			$save["name"] = $host_type["name"] . "(1)";
+		if (substr_count($host_type_title, "<description>")) {
+			/* substitute the title variable */
+			$save["name"] = str_replace("<description>", $host_type["name"], $host_type_title);
 		}else{
 			$save["name"] = $host_type_title . "(" . $dup_id . ")";
 		}
@@ -260,7 +261,7 @@ function form_actions() {
 }
 
 /* ---------------------
-    Mactrack Device Type Functions
+    HMIB Device Type Functions
    --------------------- */
 
 function hmib_host_type_export() {
@@ -366,11 +367,11 @@ function rescan_types() {
 					$item["sysObjectID"]          . "')");
 		}
 
-		$_SESSION['mactrack_message'] = "There were " . sizeof($insert_array) . " Host Types Added!";
-		raise_message('mactrack_message');
+		$_SESSION['hmib_message'] = "There were " . sizeof($insert_array) . " Host Types Added!";
+		raise_message('hmib_message');
 	}else{
-		$_SESSION['mactrack_message'] = "No New Host Types Found!";
-		raise_message('mactrack_message');
+		$_SESSION['hmib_message'] = "No New Host Types Found!";
+		raise_message('hmib_message');
 	}
 }
 
@@ -445,6 +446,15 @@ function hmib_host_type_import() {
 
 function hmib_host_type_import_processor(&$host_types) {
 	$i = 0;
+	$sysDescrMatch_id		= -1;
+	$sysObjectID_id			= -1;
+	$host_type_id			= -1;
+	$save_vendor_id			= -1;
+	$save_description_id	= -1;
+	$save_version_id		= -1;
+	$save_name_id			= -1;
+	$save_order				= '';
+	$update_suffix			= '';
 	$return_array   = array();
 	$insert_columns = array();
 
@@ -459,11 +469,6 @@ function hmib_host_type_import_processor(&$host_types) {
 			$first_column     = TRUE;
 			$update_suffix    = "";
 			$required         = 0;
-			$sysDescrMatch_id = -1;
-			$sysObjectID_id   = -1;
-			$host_type_id     = -1;
-			$save_version_id  = -1;
-			$save_name_id     = -1;
 
 			foreach($line_array as $line_item) {
 				$line_item = trim(str_replace("'", "", $line_item));
@@ -495,7 +500,7 @@ function hmib_host_type_import_processor(&$host_types) {
 							$save_order .= ", ";
 						}
 
-						$sysDescr_match_id = $j;
+						$sysDescrMatch_id = $j;
 						$required++;
 
 						$save_order .= $line_item;
@@ -515,7 +520,7 @@ function hmib_host_type_import_processor(&$host_types) {
 							$save_order .= ", ";
 						}
 
-						$sysObjectID_match_id = $j;
+						$sysObjectID_id = $j;
 						$required++;
 
 						$save_order .= $line_item;
@@ -595,16 +600,16 @@ function hmib_host_type_import_processor(&$host_types) {
 						$first_column = FALSE;
 					}
 
-					if ($j == $host_type_id || $j == $sysDescr_match_id || $j == $sysObjectID_match_id ) {
+					if ($j == $host_type_id || $j == $sysDescrMatch_id || $j == $sysObjectID_id ) {
 						if (strlen($sql_where)) {
 							switch($j) {
 							case $host_type_id:
 								$sql_where .= " AND id='$line_item'";
 								break;
-							case $sysDescr_match_id:
+							case $sysDescrMatch_id:
 								$sql_where .= " AND sysDescr_match='$line_item'";
 								break;
-							case $sysObjectID_match_id:
+							case $sysObjectID_id:
 								$sql_where .= " AND sysObjectID_match='$line_item'";
 								break;
 							default:
@@ -615,10 +620,10 @@ function hmib_host_type_import_processor(&$host_types) {
 							case $host_type_id:
 								$sql_where .= "WHERE id='$line_item'";
 								break;
-							case $sysDescr_match_id:
+							case $sysDescrMatch_id:
 								$sql_where .= "WHERE sysDescr_match='$line_item'";
 								break;
-							case $sysObjectID_match_id:
+							case $sysObjectID_id:
 								$sql_where .= "WHERE sysObjectID_match='$line_item'";
 								break;
 							default:
@@ -627,11 +632,11 @@ function hmib_host_type_import_processor(&$host_types) {
 						}
 					}
 
-					if ($j == $sysDescr_match_id) {
+					if ($j == $sysDescrMatch_id) {
 						$sysDescr_match = $line_item;
 					}
 
-					if ($j == $sysObjectID_match_id) {
+					if ($j == $sysObjectID_id) {
 						$sysObjectID_match = $line_item;
 					}
 
@@ -858,7 +863,7 @@ function hmib_host_type() {
 	load_current_session_value("sort_direction", "sess_hmib_host_type_sort_direction", "ASC");
 
 	if ($_REQUEST["rows"] == -1) {
-		$row_limit = read_config_option("num_rows_mactrack");
+		$row_limit = read_config_option("hmib_os_type_rows");
 	}elseif ($_REQUEST["rows"] == -2) {
 		$row_limit = 999999;
 	}else{

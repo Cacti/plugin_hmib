@@ -349,7 +349,7 @@ function hmib_poller_bottom() {
 }
 
 function hmib_config_settings () {
-	global $tabs, $settings, $hmib_frequencies;
+	global $tabs, $settings, $hmib_frequencies, $item_rows;
 
 	$tabs['hmib'] = 'Host Mib';
 	$settings['hmib'] = array(
@@ -374,6 +374,13 @@ function hmib_config_settings () {
 			"description" => "Do you wish to automatically purge devices that are removed from the Cacti system?",
 			"method" => "checkbox",
 			"default" => "on"
+			),
+		"hmib_os_type_rows" => array(
+			"friendly_name" => "Default Row Count",
+			"description" => "How many rows do you wish to see on the HMIB OS Type by default?",
+			"method" => "drop_array",
+			"default" => "10",
+			"array" => $item_rows
 			),
 		"hmib_top_types" => array(
 			"friendly_name" => "Default Top Host Types",
@@ -577,7 +584,7 @@ function hmib_config_settings () {
 }
 
 function hmib_config_arrays() {
-	global $menu, $hmib_frequencies;
+	global $menu, $messages, $hmib_frequencies;
 	global $hrSystem, $hrSWRun, $hrSWRunPerf, $hrSWInstalled, $hrStorage, $hrDevices, $hrProcessor;
 
 	$hmib_frequencies = array(
@@ -678,6 +685,7 @@ function hmib_draw_navigation_text ($nav) {
 	$nav["hmib.php:graphs"]    = array("title" => "Host MIB Graphs", "mapping" => "", "url" => "hmib.php", "level" => "0");
 
 	$nav["hmib_types.php:"]       = array("title" => "Host MIB OS Types", "mapping" => "index.php:", "url" => "hmib_types.php", "level" => "1");
+	$nav["hmib_types.php:actions"]= array("title" => "Actions", "mapping" => "index.php:,hmib_types.php:", "url" => "hmib_types.php", "level" => "2");
 	$nav["hmib_types.php:edit"]   = array("title" => "(Edit)", "mapping" => "index.php:,hmib_types.php:", "url" => "hmib_types.php", "level" => "2");
 	$nav["hmib_types.php:import"] = array("title" => "Import", "mapping" => "index.php:,hmib_types.php:", "url" => "hmib_types.php", "level" => "2");
 	return $nav;

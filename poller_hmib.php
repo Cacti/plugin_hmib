@@ -641,6 +641,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 		$new_array    = array();
 		$wonky        = false;
 		$hrProcValid  = false;
+		$effective    = 0;
 
 		if (sizeof($hostMib)) {
 		foreach($hostMib as $mib) {
