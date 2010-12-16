@@ -408,7 +408,7 @@ function process_hosts() {
 	if (sizeof($types)) {
 	foreach($types as $t) {
 		db_execute("UPDATE plugin_hmib_hrSystem AS hrs SET host_type=". $t["id"] . "
-			WHERE hrs.sysDescr LIKE '%%" . $t["sysDescrMatch"] . "%%'
+			WHERE hrs.sysDescr REGEXP '" . $t["sysDescrMatch"] . "'
 			AND hrs.sysObjectID='" . $t["sysObjectID"] . "'");
 	}
 	}

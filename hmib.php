@@ -217,8 +217,8 @@ function hmib_running() {
 		<td>
 			<table cellpadding="0" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="50">
-						&nbsp;Type:&nbsp;
+					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;OS Type:&nbsp;
 					</td>
 					<td width="1">
 						<select name="type" onChange="applyRunFilter(document.running)">
@@ -237,7 +237,7 @@ function hmib_running() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Device:&nbsp;
 					</td>
 					<td width="1">
@@ -259,7 +259,7 @@ function hmib_running() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Template:&nbsp;
 					</td>
 					<td width="1">
@@ -282,7 +282,7 @@ function hmib_running() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Rows:&nbsp;
 					</td>
 					<td width="1">
@@ -301,7 +301,7 @@ function hmib_running() {
 			</table>
 			<table cellpadding="0" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Process:&nbsp;
 					</td>
 					<td width="1">
@@ -320,7 +320,7 @@ function hmib_running() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
@@ -451,7 +451,9 @@ function hmib_running() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
-			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>",  $row["description"] . "</strong> [" . $row["hostname"] . "]"):$row["description"] . "</strong> [" . $row["hostname"] . "]") . "</td>";
+			$host_url    = "<a href='" . $config["url_path"] . "host.php?action=edit&id=" . $row["host_id"] . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+			
+			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>",  $row["description"] . "</strong> [" . $host_url . "]"):$row["description"] . "</strong> [" . $host_url . "]") . "</td>";
 			echo "<td style='white-space:nowrap;' align='left' style='white-space:nowrap;' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["name"]):$row["name"]) . "</td>";
 			echo "<td style='white-space:nowrap;' align='left' title='" . $row["path"] . "' style='white-space:nowrap;' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", title_trim($row["path"],40)):title_trim($row["path"],40)) . "</td>";
 			echo "<td style='white-space:nowrap;' align='left' title='" . $row["parameters"] . "' style='white-space:nowrap;' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", title_trim($row["parameters"], 40)):title_trim($row["parameters"],40)) . "</td>";
@@ -581,8 +583,8 @@ function hmib_hardware() {
 		<td>
 			<table cellpadding="0" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="50">
-						&nbsp;Type:&nbsp;
+					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;OS Type:&nbsp;
 					</td>
 					<td width="1">
 						<select name="type" onChange="applyHWFilter(document.hardware)">
@@ -601,7 +603,7 @@ function hmib_hardware() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Device:&nbsp;
 					</td>
 					<td width="1">
@@ -623,7 +625,7 @@ function hmib_hardware() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Template:&nbsp;
 					</td>
 					<td width="1">
@@ -646,7 +648,7 @@ function hmib_hardware() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Rows:&nbsp;
 					</td>
 					<td width="1">
@@ -665,7 +667,7 @@ function hmib_hardware() {
 			</table>
 			<table cellpadding="0" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
@@ -781,7 +783,9 @@ function hmib_hardware() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
-			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hd"] . "</strong> [" . $row["hostname"] . "]"):$row["hd"] . "</strong> [" . $row["hostname"] . "]") . "</td>";
+			$host_url    = "<a href='" . $config["url_path"] . "host.php?action=edit&id=" . $row["host_id"] . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+
+			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hd"] . "</strong> [" . $host_url . "]"):$row["hd"] . "</strong> [" . $host_url . "]") . "</td>";
 			echo "<td style='white-space:nowrap;' align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"]):$row["description"]) . "</td>";
 			echo "<td style='white-space:nowrap;' align='left'>"  . (isset($hmib_types[$row["type"]]) ? $hmib_types[$row["type"]]:"Unknown") . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $hmib_hrDeviceStatus[$row["status"]] . "</td>";
@@ -908,8 +912,8 @@ function hmib_storage() {
 		<td>
 			<table cellpadding="0" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="50">
-						&nbsp;Type:&nbsp;
+					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;OS Type:&nbsp;
 					</td>
 					<td width="1">
 						<select name="type" onChange="applyStoFilter(document.storage)">
@@ -928,7 +932,7 @@ function hmib_storage() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Device:&nbsp;
 					</td>
 					<td width="1">
@@ -950,7 +954,7 @@ function hmib_storage() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Template:&nbsp;
 					</td>
 					<td width="1">
@@ -973,7 +977,7 @@ function hmib_storage() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Rows:&nbsp;
 					</td>
 					<td width="1">
@@ -992,7 +996,7 @@ function hmib_storage() {
 			</table>
 			<table cellpadding="0" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
@@ -1096,7 +1100,7 @@ function hmib_storage() {
 
 	$display_text = array(
 		"host.description"  => array("Name",     array("ASC",  "left")),
-		"hrsto.description" => array("Hardware", array("DESC", "left")),
+		"hrsto.description" => array("Storage Description", array("DESC", "left")),
 		"type"              => array("Type",     array("ASC",  "left")),
 		"failures"          => array("Errors",   array("DESC", "right")),
 		"percent"           => array("Percent Used",  array("DESC", "right")),
@@ -1111,7 +1115,9 @@ function hmib_storage() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
-			echo "<td style='white-space:nowrap;' align='left' width='120'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hd"] . "</strong> [" . $row["hostname"] . "]"):$row["hd"] . "</strong> [" . $row["hostname"] . "]") . "</td>";
+			$host_url    = "<a href='" . $config["url_path"] . "host.php?action=edit&id=" . $row["host_id"] . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+
+			echo "<td style='white-space:nowrap;' align='left' width='120'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hd"] . "</strong> [" . $host_url . "]"):$row["hd"] . "</strong> [" . $host_url . "]") . "</td>";
 			echo "<td style='white-space:nowrap;' align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"]):$row["description"]) . "</td>";
 			echo "<td style='white-space:nowrap;' align='left'>"  . (isset($hmib_types[$row["type"]]) ? $hmib_types[$row["type"]]:"Unknown") . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $row["failures"] . "</td>";
@@ -1245,8 +1251,8 @@ function hmib_devices() {
 		<td>
 			<table cellpadding="0" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="50">
-						&nbsp;Type:&nbsp;
+					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;OS Type:&nbsp;
 					</td>
 					<td width="1">
 						<select name="type" onChange="applyHostFilter(document.devices)">
@@ -1265,7 +1271,7 @@ function hmib_devices() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Template:&nbsp;
 					</td>
 					<td width="1">
@@ -1288,7 +1294,7 @@ function hmib_devices() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Process:&nbsp;
 					</td>
 					<td width="1">
@@ -1308,7 +1314,7 @@ function hmib_devices() {
 			</table>
 			<table cellpadding="0" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Status:&nbsp;
 					</td>
 					<td width="1">
@@ -1346,7 +1352,7 @@ function hmib_devices() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Rows:&nbsp;
 					</td>
 					<td width="1">
@@ -1361,7 +1367,7 @@ function hmib_devices() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
@@ -1531,9 +1537,10 @@ function hmib_devices() {
 			$graph_cpup  = hmib_get_graph_url($hcpudq, 0, $row["host_id"], "", round($row["cpuPercent"],2). " %", false);
 			$graph_users = hmib_get_graph_template_url($hugt, 0, $row["host_id"], ($row["host_status"] < 2 ? "N/A":$row["users"]), false);
 			$graph_aproc = hmib_get_graph_template_url($hpgt, 0, $row["host_id"], ($row["host_status"] < 2 ? "N/A":$row["processes"]), false);
+			$host_url    = "<a href='" . $config["url_path"] . "host.php?action=edit&id=" . $row["host_id"] . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
 
 			echo "</td>";
-			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . $row["description"] . "</strong> [" . $row["hostname"] . "]" . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . $row["description"] . "</strong> [" . $host_url . "]" . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . get_colored_device_status(($row["disabled"] == "on" ? true : false), $row["host_status"]) . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . hmib_format_uptime($days, $hours, $minutes) . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $graph_users              . "</td>";
@@ -1599,6 +1606,7 @@ function hmib_software() {
 	input_validate_input_number(get_request_var_request("page"));
 	input_validate_input_number(get_request_var_request("rows"));
 	input_validate_input_number(get_request_var_request("device"));
+	input_validate_input_number(get_request_var_request("ostype"));
 	input_validate_input_number(get_request_var_request("type"));
 	/* ==================================================== */
 
@@ -1624,6 +1632,7 @@ function hmib_software() {
 		kill_session_var("sess_hmib_sw_filter");
 		kill_session_var("sess_hmib_sw_rows");
 		kill_session_var("sess_hmib_sw_device");
+		kill_session_var("sess_hmib_sw_ostype");
 		kill_session_var("sess_hmib_sw_type");
 		kill_session_var("sess_hmib_sw_current_page");
 	}elseif (isset($_REQUEST["clear"])) {
@@ -1633,6 +1642,7 @@ function hmib_software() {
 		kill_session_var("sess_hmib_sw_filter");
 		kill_session_var("sess_hmib_sw_rows");
 		kill_session_var("sess_hmib_sw_device");
+		kill_session_var("sess_hmib_sw_ostype");
 		kill_session_var("sess_hmib_sw_type");
 		kill_session_var("sess_hmib_sw_current_page");
 
@@ -1642,19 +1652,21 @@ function hmib_software() {
 		unset($_REQUEST["filter"]);
 		unset($_REQUEST["rows"]);
 		unset($_REQUEST["device"]);
+		unset($_REQUEST["ostype"]);
 		unset($_REQUEST["type"]);
 		unset($_REQUEST["page"]);
 	}else{
 		/* if any of the settings changed, reset the page number */
 		$changed = false;
+		$changed += hmib_check_changed("ostype",   "sess_hmib_sw_ostype");
 		$changed += hmib_check_changed("type",     "sess_hmib_sw_type");
 		$changed += hmib_check_changed("status",   "sess_hmib_sw_status");
 		$changed += hmib_check_changed("template", "sess_hmib_sw_template");
-		$changed += hmib_check_changed("fitler",   "sess_hmib_sw_filter");
+		$changed += hmib_check_changed("filter",   "sess_hmib_sw_filter");
 		$changed += hmib_check_changed("device",   "sess_hmib_sw_device");
 		$changed += hmib_check_changed("rows",     "sess_hmib_sw_rows");
 
-		if (hmib_check_changed("type", "sess_hmib_sw_type")) {
+		if (hmib_check_changed("type", "sess_hmib_sw_ostype")) {
 			$_REQUEST["device"] = -1;
 			$changed = true;;
 		}
@@ -1667,6 +1679,7 @@ function hmib_software() {
 
 	load_current_session_value("page",           "sess_hmib_sw_current_page", "1");
 	load_current_session_value("rows",           "sess_hmib_sw_rows", "-1");
+	load_current_session_value("ostype",         "sess_hmib_sw_ostype", "-1");
 	load_current_session_value("type",           "sess_hmib_sw_type", "-1");
 	load_current_session_value("device",         "sess_hmib_sw_device", "-1");
 	load_current_session_value("sort_column",    "sess_hmib_sw_sort_column", "name");
@@ -1683,6 +1696,7 @@ function hmib_software() {
 		strURL = strURL + '&filter='   + objForm.filter.value;
 		strURL = strURL + '&rows='     + objForm.rows.value;
 		strURL = strURL + '&device='   + objForm.device.value;
+		strURL = strURL + '&ostype='   + objForm.ostype.value;
 		strURL = strURL + '&type='     + objForm.type.value;
 		document.location = strURL;
 	}
@@ -1703,27 +1717,27 @@ function hmib_software() {
 		<td>
 			<table cellpadding="0" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="50">
-						&nbsp;Type:&nbsp;
+					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;OS Type:&nbsp;
 					</td>
 					<td width="1">
-						<select name="type" onChange="applySWFilter(document.software)">
-							<option value="-1"<?php if (get_request_var_request("type") == "-1") {?> selected<?php }?>>All</option>
+						<select name="ostype" onChange="applySWFilter(document.software)">
+							<option value="-1"<?php if (get_request_var_request("ostype") == "-1") {?> selected<?php }?>>All</option>
 							<?php
-							$types = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
+							$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
 								FROM plugin_hmib_hrSystemTypes AS hrst
 								INNER JOIN plugin_hmib_hrSystem AS hrs
 								ON hrst.id=hrs.host_type
 								WHERE name!='' ORDER BY name");
-							if (sizeof($types)) {
-							foreach($types AS $t) {
-								echo "<option value='" . $t["id"] . "' " . (get_request_var_request("type") == $t["id"] ? "selected":"") . ">" . $t["name"] . "</option>";
+							if (sizeof($ostypes)) {
+							foreach($ostypes AS $t) {
+								echo "<option value='" . $t["id"] . "' " . (get_request_var_request("ostype") == $t["id"] ? "selected":"") . ">" . $t["name"] . "</option>";
 							}
 							}
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Device:&nbsp;
 					</td>
 					<td width="1">
@@ -1734,7 +1748,7 @@ function hmib_software() {
 								FROM plugin_hmib_hrSystem AS hrs
 								INNER JOIN host
 								ON hrs.host_id=host.id " .
-								(get_request_var_request("type") > 0 ? "WHERE hrs.host_type=" . get_request_var_request("type"):"") .
+								(get_request_var_request("ostype") > 0 ? "WHERE hrs.host_type=" . get_request_var_request("ostype"):"") .
 								" ORDER BY description");
 
 							if (sizeof($hosts)) {
@@ -1745,8 +1759,8 @@ function hmib_software() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
-						&nbsp;Template:&nbsp;
+					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;Device Template:&nbsp;
 					</td>
 					<td width="1">
 						<select name="template" onChange="applySWFilter(document.software)">
@@ -1768,7 +1782,7 @@ function hmib_software() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Rows:&nbsp;
 					</td>
 					<td width="1">
@@ -1787,7 +1801,25 @@ function hmib_software() {
 			</table>
 			<table cellpadding="0" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;Type:&nbsp;
+					</td>
+					<td width="1">
+						<select name="type" onChange="applySWFilter(document.software)">
+							<option value="-1"<?php if (get_request_var_request("type") == "-1") {?> selected<?php }?>>All</option>
+							<?php
+							$types = db_fetch_assoc("SELECT DISTINCT type
+								FROM plugin_hmib_hrSWInstalled
+								ORDER BY type");
+							if (sizeof($types)) {
+							foreach($types AS $t) {
+								echo "<option value='" . $t["type"] . "' " . (get_request_var_request("type") == $t["type"] ? "selected":"") . ">" . $hmib_hrSWTypes[$t["type"]] . "</option>";
+							}
+							}
+							?>
+						</select>
+					</td>
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
@@ -1826,8 +1858,12 @@ function hmib_software() {
 		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " host.id=" . $_REQUEST["device"];
 	}
 
+	if ($_REQUEST["ostype"] != "-1") {
+		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " hrs.host_type=" . $_REQUEST["ostype"];
+	}
+
 	if ($_REQUEST["type"] != "-1") {
-		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " hrs.host_type=" . $_REQUEST["type"];
+		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " hrswi.type=" . $_REQUEST["type"];
 	}
 
 	if ($_REQUEST["filter"] != "") {
@@ -1903,7 +1939,9 @@ function hmib_software() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
-			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"] . "</strong> [" . $row["hostname"]):$row["description"] . "</strong> [" . $row["hostname"]) . "]</td>";
+			$host_url    = "<a href='" . $config["url_path"] . "host.php?action=edit&id=" . $row["host_id"] . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+			
+			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"] . "</strong> [" . $host_url):$row["description"] . "</strong> [" . $host_url) . "]</td>";
 			echo "<td style='white-space:nowrap;' align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["name"]):$row["name"]) . "</td>";
 			echo "<td style='white-space:nowrap;' align='left'>"  . (isset($hmib_hrSWTypes[$row["type"]]) ? $hmib_hrSWTypes[$row["type"]]:"Unknown") . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["date"]):$row["date"]) . "</td>";
@@ -2051,7 +2089,7 @@ function hmib_summary() {
 		<td>
 			<table width="100%" cellpadding="0" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Top:&nbsp;
 					</td>
 					<td width="1">
@@ -2260,7 +2298,7 @@ function hmib_summary() {
 		<td>
 			<table cellpadding="0" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Top:&nbsp;
 					</td>
 					<td width="1">
@@ -2272,7 +2310,7 @@ function hmib_summary() {
 							<option value="20"<?php if (get_request_var_request("ptop") == "20") {?> selected<?php }?>>20 Records</option>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Process:&nbsp;
 					</td>
 					<td width="1">
@@ -2288,7 +2326,7 @@ function hmib_summary() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
@@ -2980,7 +3018,7 @@ function hmib_graph_view_filter() {
 					<td width='1'>
 						<input name='thumb' id='thumb' type='checkbox' onChange="applyGraphWOReset(document.form_graph_view)" <?php print ($_REQUEST["thumb"] == "on" || $_REQUEST["thumb"] == "true" ? " checked":""); ?>>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="50">
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Search:&nbsp;
 					</td>
 					<td width="1">

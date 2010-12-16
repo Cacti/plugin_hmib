@@ -322,12 +322,16 @@ function rescan_types() {
 
 	/* let's allocate an array for results */
 	$insert_array = array();
+	$new_name     = 'New Type';
+	$new_version  = 'Unknown';
 
 	/* get all the various device types from the database */
 	$host_types = db_fetch_assoc("SELECT DISTINCT sysObjectID, sysDescr, host_type
 		FROM plugin_hmib_hrSystem
 		WHERE sysObjectID!='' AND sysDescr!=''");
 
+	/* delete all unknown entries */
+	db_execute("DELETE FROM plugin_hmib_hrSystemTypes WHERE name='" . $new_name . "' AND version= '" . $new_version . "'");
 	/* get all known devices types from the device type database */
 	$known_types = db_fetch_assoc("SELECT sysDescrMatch, sysObjectID FROM plugin_hmib_hrSystemTypes");
 
@@ -337,7 +341,7 @@ function rescan_types() {
 		$found = FALSE;
 		if (sizeof($known_types)) {
 		foreach($known_types as $known) {
-			if ((substr_count($type["sysDescr"], $known["sysDescrMatch"])) &&
+			if ((preg_match("/" . $known["sysDescrMatch"] . "/i", $type["sysDescr"])) &&
 				(substr_count($type["sysObjectID"], $known["sysObjectID"]))) {
 				$found = TRUE;
 				break;
@@ -354,15 +358,13 @@ function rescan_types() {
 	if (sizeof($insert_array)) {
 		foreach($insert_array as $item) {
 			$sysDescrMatch = trim($item["sysDescr"]);
-			$name          = 'New Type';
-			$version       = "Unknown";
 
 			db_execute("REPLACE INTO plugin_hmib_hrSystemTypes
 				(id, name, version, sysDescrMatch, sysObjectID)
 				VALUES ('" .
-					$item["host_type"]            . "',"  .
-					$name                         . "','" .
-					$version                      . "','" .
+					$item["host_type"]            . "','"  .
+					$new_name                     . "','" .
+					$new_version                  . "'," .
 					$cnn_id->qstr($sysDescrMatch) . ",'"  .
 					$item["sysObjectID"]          . "')");
 		}
