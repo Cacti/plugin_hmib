@@ -47,7 +47,7 @@ $mainrun        = FALSE;
 $host_id        = "";
 $start          = "";
 $seed           = "";
-$key            = ""
+$key            = "";
 
 foreach($parms as $parameter) {
 	@list($arg, $value) = @explode("=", $parameter);
@@ -481,7 +481,8 @@ function checkHost($host_id) {
 	$hrProcessor_freq      = read_config_option("hmib_hrProcessor_freq");
 
 	/* remove the key process and insert the set a process lock */
-	db_execute("DELETE FROM plugin_hmib_processes WHERE pid=$key;REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (" . getmypid() . ", $seed)");
+	db_execute("DELETE FROM plugin_hmib_processes WHERE pid=$key");
+	db_execute("REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (" . getmypid() . ", $seed)");
 
 	/* obtain host information */
 	$host = db_fetch_row("SELECT * FROM host WHERE id=$host_id");
