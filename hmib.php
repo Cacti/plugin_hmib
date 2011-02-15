@@ -479,6 +479,7 @@ function hmib_hardware() {
 	input_validate_input_number(get_request_var_request("page"));
 	input_validate_input_number(get_request_var_request("rows"));
 	input_validate_input_number(get_request_var_request("device"));
+	input_validate_input_number(get_request_var_request("ostype"));
 	input_validate_input_number(get_request_var_request("type"));
 	/* ==================================================== */
 
@@ -504,6 +505,7 @@ function hmib_hardware() {
 		kill_session_var("sess_hmib_hw_filter");
 		kill_session_var("sess_hmib_hw_rows");
 		kill_session_var("sess_hmib_hw_device");
+		kill_session_var("sess_hmib_hw_ostype");
 		kill_session_var("sess_hmib_hw_type");
 		kill_session_var("sess_hmib_hw_current_page");
 	}elseif (isset($_REQUEST["clear"])) {
@@ -513,6 +515,7 @@ function hmib_hardware() {
 		kill_session_var("sess_hmib_hw_filter");
 		kill_session_var("sess_hmib_hw_rows");
 		kill_session_var("sess_hmib_hw_device");
+		kill_session_var("sess_hmib_hw_ostype");
 		kill_session_var("sess_hmib_hw_type");
 		kill_session_var("sess_hmib_hw_current_page");
 
@@ -522,11 +525,13 @@ function hmib_hardware() {
 		unset($_REQUEST["filter"]);
 		unset($_REQUEST["rows"]);
 		unset($_REQUEST["device"]);
+		unset($_REQUEST["ostype"]);
 		unset($_REQUEST["type"]);
 		unset($_REQUEST["page"]);
 	}else{
 		/* if any of the settings changed, reset the page number */
 		$changed = false;
+		$changed += hmib_check_changed("ostype",   "sess_hmib_hw_ostype");
 		$changed += hmib_check_changed("type",     "sess_hmib_hw_type");
 		$changed += hmib_check_changed("status",   "sess_hmib_hw_status");
 		$changed += hmib_check_changed("template", "sess_hmib_hw_template");
@@ -534,7 +539,7 @@ function hmib_hardware() {
 		$changed += hmib_check_changed("device",   "sess_hmib_hw_device");
 		$changed += hmib_check_changed("rows",     "sess_hmib_hw_rows");
 
-		if (hmib_check_changed("type", "sess_hmib_hw_type")) {
+		if (hmib_check_changed("ostype", "sess_hmib_hw_ostype")) {
 			$_REQUEST["device"] = -1;
 			$changed = true;;
 		}
@@ -547,6 +552,7 @@ function hmib_hardware() {
 
 	load_current_session_value("page",           "sess_hmib_hw_current_page", "1");
 	load_current_session_value("rows",           "sess_hmib_hw_rows", "-1");
+	load_current_session_value("ostype",         "sess_hmib_hw_ostype", "-1");
 	load_current_session_value("type",           "sess_hmib_hw_type", "-1");
 	load_current_session_value("device",         "sess_hmib_hw_device", "-1");
 	load_current_session_value("sort_column",    "sess_hmib_hw_sort_column", "hrd.description");
@@ -563,6 +569,7 @@ function hmib_hardware() {
 		strURL = strURL + '&filter='   + objForm.filter.value;
 		strURL = strURL + '&rows='     + objForm.rows.value;
 		strURL = strURL + '&device='   + objForm.device.value;
+		strURL = strURL + '&ostype='   + objForm.ostype.value;
 		strURL = strURL + '&type='     + objForm.type.value;
 		document.location = strURL;
 	}
@@ -587,17 +594,17 @@ function hmib_hardware() {
 						&nbsp;OS Type:&nbsp;
 					</td>
 					<td width="1">
-						<select name="type" onChange="applyHWFilter(document.hardware)">
-							<option value="-1"<?php if (get_request_var_request("type") == "-1") {?> selected<?php }?>>All</option>
+						<select name="ostype" onChange="applyHWFilter(document.hardware)">
+							<option value="-1"<?php if (get_request_var_request("ostype") == "-1") {?> selected<?php }?>>All</option>
 							<?php
-							$types = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
+							$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
 								FROM plugin_hmib_hrSystemTypes AS hrst
 								INNER JOIN plugin_hmib_hrSystem AS hrs
 								ON hrst.id=hrs.host_type
 								WHERE name!='' ORDER BY name");
-							if (sizeof($types)) {
-							foreach($types AS $t) {
-								echo "<option value='" . $t["id"] . "' " . (get_request_var_request("type") == $t["id"] ? "selected":"") . ">" . $t["name"] . "</option>";
+							if (sizeof($ostypes)) {
+							foreach($ostypes AS $t) {
+								echo "<option value='" . $t["id"] . "' " . (get_request_var_request("ostype") == $t["id"] ? "selected":"") . ">" . $t["name"] . "</option>";
 							}
 							}
 							?>
@@ -668,6 +675,25 @@ function hmib_hardware() {
 			<table cellpadding="0" cellspacing="0">
 				<tr>
 					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;Type:&nbsp;
+					</td>
+					<td width="1">
+						<select name="type" onChange="applyHWFilter(document.hardware)">
+						<option value="-1"<?php if (get_request_var_request("type") == "-1") {?> selected<?php }?>>All</option>
+						<?php
+							$types = db_fetch_assoc("SELECT DISTINCT hrd.type as type, ht.id as id, ht.description as description
+							FROM plugin_hmib_hrDevices as hrd
+							LEFT JOIN plugin_hmib_types as ht ON (hrd.type = ht.id)
+							ORDER BY description");
+							if (sizeof($types)) {
+								foreach($types AS $t) {
+									echo "<option value='" . $t["id"] . "' " . (get_request_var_request("type") == $t["id"] ? "selected":"") . ">" . $t["description"] . "</option>";
+								}
+							}
+						?>
+						</select>
+					</td>
+					<td nowrap style='white-space: nowrap;' width="60">					
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
@@ -706,8 +732,12 @@ function hmib_hardware() {
 		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " host.id=" . $_REQUEST["device"];
 	}
 
+	if ($_REQUEST["ostype"] != "-1") {
+		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " hrs.host_type=" . $_REQUEST["ostype"];
+	}
+
 	if ($_REQUEST["type"] != "-1") {
-		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " hrs.host_type=" . $_REQUEST["type"];
+		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " hrd.type=" . $_REQUEST["type"];
 	}
 
 	if ($_REQUEST["filter"] != "") {
@@ -808,6 +838,7 @@ function hmib_storage() {
 	input_validate_input_number(get_request_var_request("page"));
 	input_validate_input_number(get_request_var_request("rows"));
 	input_validate_input_number(get_request_var_request("device"));
+	input_validate_input_number(get_request_var_request("ostype"));
 	input_validate_input_number(get_request_var_request("type"));
 	/* ==================================================== */
 
@@ -833,6 +864,7 @@ function hmib_storage() {
 		kill_session_var("sess_hmib_sto_filter");
 		kill_session_var("sess_hmib_sto_rows");
 		kill_session_var("sess_hmib_sto_device");
+		kill_session_var("sess_hmib_sto_ostype");
 		kill_session_var("sess_hmib_sto_type");
 		kill_session_var("sess_hmib_sto_current_page");
 	}elseif (isset($_REQUEST["clear"])) {
@@ -842,6 +874,7 @@ function hmib_storage() {
 		kill_session_var("sess_hmib_sto_filter");
 		kill_session_var("sess_hmib_sto_rows");
 		kill_session_var("sess_hmib_sto_device");
+		kill_session_var("sess_hmib_sto_ostype");
 		kill_session_var("sess_hmib_sto_type");
 		kill_session_var("sess_hmib_sto_current_page");
 
@@ -851,11 +884,13 @@ function hmib_storage() {
 		unset($_REQUEST["filter"]);
 		unset($_REQUEST["rows"]);
 		unset($_REQUEST["device"]);
+		unset($_REQUEST["ostype"]);
 		unset($_REQUEST["type"]);
 		unset($_REQUEST["page"]);
 	}else{
 		/* if any of the settings changed, reset the page number */
 		$changed = false;
+		$changed += hmib_check_changed("ostype",   "sess_hmib_sto_ostype");
 		$changed += hmib_check_changed("type",     "sess_hmib_sto_type");
 		$changed += hmib_check_changed("status",   "sess_hmib_sto_status");
 		$changed += hmib_check_changed("template", "sess_hmib_sto_template");
@@ -863,7 +898,7 @@ function hmib_storage() {
 		$changed += hmib_check_changed("device",   "sess_hmib_sto_device");
 		$changed += hmib_check_changed("rows",     "sess_hmib_sto_rows");
 
-		if (hmib_check_changed("type", "sess_hmib_sto_type")) {
+		if (hmib_check_changed("type", "sess_hmib_sto_ostype")) {
 			$_REQUEST["device"] = -1;
 			$changed = true;;
 		}
@@ -876,6 +911,7 @@ function hmib_storage() {
 
 	load_current_session_value("page",           "sess_hmib_sto_current_page", "1");
 	load_current_session_value("rows",           "sess_hmib_sto_rows", "-1");
+	load_current_session_value("ostype",         "sess_hmib_sto_ostype", "-1");
 	load_current_session_value("type",           "sess_hmib_sto_type", "-1");
 	load_current_session_value("device",         "sess_hmib_sto_device", "-1");
 	load_current_session_value("sort_column",    "sess_hmib_sto_sort_column", "hrsto.description");
@@ -892,6 +928,7 @@ function hmib_storage() {
 		strURL = strURL + '&filter='   + objForm.filter.value;
 		strURL = strURL + '&rows='     + objForm.rows.value;
 		strURL = strURL + '&device='   + objForm.device.value;
+		strURL = strURL + '&ostype='   + objForm.ostype.value;
 		strURL = strURL + '&type='     + objForm.type.value;
 		document.location = strURL;
 	}
@@ -916,17 +953,17 @@ function hmib_storage() {
 						&nbsp;OS Type:&nbsp;
 					</td>
 					<td width="1">
-						<select name="type" onChange="applyStoFilter(document.storage)">
-							<option value="-1"<?php if (get_request_var_request("type") == "-1") {?> selected<?php }?>>All</option>
+						<select name="ostype" onChange="applyStoFilter(document.storage)">
+							<option value="-1"<?php if (get_request_var_request("ostype") == "-1") {?> selected<?php }?>>All</option>
 							<?php
-							$types = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
+							$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
 								FROM plugin_hmib_hrSystemTypes AS hrst
 								INNER JOIN plugin_hmib_hrSystem AS hrs
 								ON hrst.id=hrs.host_type
 								WHERE name!='' ORDER BY name");
-							if (sizeof($types)) {
-							foreach($types AS $t) {
-								echo "<option value='" . $t["id"] . "' " . (get_request_var_request("type") == $t["id"] ? "selected":"") . ">" . $t["name"] . "</option>";
+							if (sizeof($ostypes)) {
+							foreach($ostypes AS $t) {
+								echo "<option value='" . $t["id"] . "' " . (get_request_var_request("ostype") == $t["id"] ? "selected":"") . ">" . $t["name"] . "</option>";
 							}
 							}
 							?>
@@ -997,6 +1034,25 @@ function hmib_storage() {
 			<table cellpadding="0" cellspacing="0">
 				<tr>
 					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;Type:&nbsp;
+					</td>
+					<td width="1">
+						<select name="type" onChange="applyStoFilter(document.storage)">
+						<option value="-1"<?php if (get_request_var_request("type") == "-1") {?> selected<?php }?>>All</option>
+						<?php
+							$types = db_fetch_assoc("SELECT DISTINCT hrsto.type as type, ht.id as id, ht.description as description
+							FROM plugin_hmib_hrStorage AS hrsto
+							LEFT JOIN plugin_hmib_types as ht ON (hrsto.type = ht.id)
+							ORDER BY description");
+							if (sizeof($types)) {
+								foreach($types AS $t) {
+									echo "<option value='" . $t["id"] . "' " . (get_request_var_request("type") == $t["id"] ? "selected":"") . ">" . $t["description"] . "</option>";
+								}
+							}
+						?>
+						</select>
+					</td>
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
@@ -1035,8 +1091,12 @@ function hmib_storage() {
 		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " host.id=" . $_REQUEST["device"];
 	}
 
+	if ($_REQUEST["ostype"] != "-1") {
+		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " hrs.host_type=" . $_REQUEST["ostype"];
+	}
+
 	if ($_REQUEST["type"] != "-1") {
-		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " hrs.host_type=" . $_REQUEST["type"];
+		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " hrsto.type=" . $_REQUEST["type"];
 	}
 
 	if ($_REQUEST["filter"] != "") {
