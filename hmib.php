@@ -375,7 +375,7 @@ function hmib_running() {
 
 	$sql = "SELECT hrswr.*, host.hostname, host.description, host.disabled
 		FROM plugin_hmib_hrSWRun AS hrswr
-		INNER JOIN host
+		INNER JOIN host 
 		ON host.id=hrswr.host_id
 		INNER JOIN plugin_hmib_hrSystem AS hrs
 		ON hrs.host_id=host.id
@@ -396,6 +396,15 @@ function hmib_running() {
 		INNER JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrst.id=hrs.host_type
 		$sql_where");
+
+	$totals = db_fetch_row("SELECT	" .
+			"ROUND(SUM(perfCPU),2) as cpu, " .
+			"ROUND(SUM(perfMemory),2) as memory " .
+			"FROM plugin_hmib_hrSWRun AS hrswr " .
+			"INNER JOIN host ON host.id=hrswr.host_id " .
+			"INNER JOIN plugin_hmib_hrSystem AS hrs ON hrs.host_id=host.id " .
+			"INNER JOIN plugin_hmib_hrSystemTypes AS hrst ON hrst.id=hrs.host_type " .
+			$sql_where);
 
 	if ($total_rows > 0) {
 		/* generate page list */
@@ -469,7 +478,25 @@ function hmib_running() {
 	}
 
 	html_end_box();
+
+	running_legend($totals, $total_rows);
 }
+
+function running_legend($totals, $total_rows) {
+	global $colors;
+cacti_log(__FUNCTION__ . " totals: " . serialize($totals), false, "TEST");
+	html_start_box("", "100%", $colors["header"], "3", "center", "");
+	print "<tr>";
+	print "<td><b>Total CPU [h]:</b> " . round($totals["cpu"]/3600,0) . "</td>";
+	print "<td><b>Total Size [MB]:</b> " . round($totals["memory"]/1024,2) . "</td>";
+	print "</tr>";
+	print "<tr>";
+	print "<td><b>Avg. CPU [h]:</b> " . round($totals["cpu"]/(3600*$total_rows),0) . "</td>";
+	print "<td><b>Avg. Size [MB]:</b> " . round($totals["memory"]/(1024*$total_rows),2) . "</td>";
+	print "</tr>";
+	html_end_box(false);
+}
+
 
 function hmib_hardware() {
 	global $config, $colors, $item_rows, $hmib_hrSWTypes, $hmib_hrDeviceStatus, $hmib_types;
