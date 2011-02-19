@@ -554,7 +554,7 @@ function collect_hrSystem(&$host) {
 			}
 
 			if (!empty($key)) {
-				$set_string .= (strlen($set_string) ? ",":"") . $key . "='" . trim($mib["value"]) . "'";
+				$set_string .= (strlen($set_string) ? ",":"") . $key . "='" . sql_sanitize(trim($mib["value"], ' "')) . "'";
 			}
 		}
 		}
