@@ -111,7 +111,8 @@ if ($seed == "") {
 }
 
 if ($start == "") {
-	$start = time();
+	list($micro,$seconds) = explode(" ", microtime());
+	$start = $seconds + $micro;
 }
 
 if ($mainrun) {
@@ -326,21 +327,21 @@ function process_hosts() {
 	if (read_config_option("hmib_autopurge") == "on") {
 		echo "NOTE: Auto Purging Hosts\n";
 
-		$dead_hosts = db_fetch_assoc("SELECT id FROM plugin_hmib_hrSystem AS hr
+		$dead_hosts = db_fetch_assoc("SELECT host_id FROM plugin_hmib_hrSystem AS hr
 			LEFT JOIN host
 			ON host.id=hr.host_id
 			WHERE host.id IS NULL");
 
 		if (sizeof($dead_hosts)) {
 		foreach($dead_hosts as $host) {
-			db_execute("DELETE FROM plugin_hmib_hrSystem WHERE host_id=". $host["id"]);
-			db_execute("DELETE FROM plugin_hmib_hrSWRun WHERE host_id=". $host["id"]);
-			db_execute("DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE host_id=". $host["id"]);
-			db_execute("DELETE FROM plugin_hmib_hrDevices WHERE host_id=". $host["id"]);
-			db_execute("DELETE FROM plugin_hmib_hrStorage WHERE host_id=". $host["id"]);
-			db_execute("DELETE FROM plugin_hmib_hrProcessor WHERE host_id=". $host["id"]);
-			db_execute("DELETE FROM plugin_hmib_hrSWInstalled WHERE host_id=". $host["id"]);
-			echo "Purging Host with ID '" . $host["id"] . "'\n";
+			db_execute("DELETE FROM plugin_hmib_hrSystem WHERE host_id=". $host["host_id"]);
+			db_execute("DELETE FROM plugin_hmib_hrSWRun WHERE host_id=". $host["host_id"]);
+			db_execute("DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE host_id=". $host["host_id"]);
+			db_execute("DELETE FROM plugin_hmib_hrDevices WHERE host_id=". $host["host_id"]);
+			db_execute("DELETE FROM plugin_hmib_hrStorage WHERE host_id=". $host["host_id"]);
+			db_execute("DELETE FROM plugin_hmib_hrProcessor WHERE host_id=". $host["host_id"]);
+			db_execute("DELETE FROM plugin_hmib_hrSWInstalled WHERE host_id=". $host["host_id"]);
+			echo "Purging Host with ID '" . $host["host_id"] . "'\n";
 		}
 		}
 	}
@@ -426,13 +427,25 @@ function process_hosts() {
 		SET users=0, cpuPercent=0, processes=0, memUsed=0, swapUsed=0, uptime=0, sysUptime=0
 		WHERE host_status IN (0,1)");
 
-	$end = time();
 
-	echo "NOTE: Host Mib Polling Completed, Total Time:" . ($end-$start) . " Seconds\n";
+	/* take time and log performance data */
+	list($micro,$seconds) = explode(" ", microtime());
+	$end = $seconds + $micro;
 
-	/* log the statics */
-	cacti_log("SYSTEM HMIB STATS: Time:" . ($end-$start) . ", Processes:$concurrent_processes, Hosts:" . sizeof($hosts), false, "SYSTEM");
-	db_execute("REPLACE INTO settings (name,value) VALUES ('hmib_stats', UNIX_TIMESTAMP())");
+	$cacti_stats = sprintf(
+		"time:%01.4f " .
+		"processes:%s " .
+		"hosts:%s",
+		round($end-$start,2),
+		$concurrent_processes,
+		sizeof($hosts));
+
+	/* log to the database */
+	db_execute("REPLACE INTO settings (name,value) VALUES ('stats_hmib', '" . $cacti_stats . "')");
+
+	/* log to the logfile */
+	cacti_log("HMIB STATS: " . $cacti_stats , TRUE, "SYSTEM");
+	echo "NOTE: Host Mib Polling Completed, $cacti_stats\n";
 
 	/* launch the graph creation process */
 	process_graphs();

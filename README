@@ -45,6 +45,10 @@
 
 ----[ Changelog
 
+	--- SVN ---
+    fix: issue when deleting dead hosts
+    feature: provide statistics for visualization of hmib runtime
+
 	--- 1.0 ---
 	Initial release
      
