@@ -2701,20 +2701,22 @@ function hmib_header_sort($header_items, $sort_column, $sort_direction, $jsprefi
 			$display_text = $display_array[0];
 			if (is_array($display_array[1])) {
 				$align     = "align='" . $display_array[1][1] . "'";
+				$talign    =  $display_array[1][1];
 				$direction = $display_array[1][0];
 			}else{
 				$align     = " align='left'";
+				$talign    = "left";
 				$direction = $display_array[1];
 			}
 		}
 
 		if (($db_column == "") || (substr_count($db_column, "nosort"))) {
 			print "<th $align " . ((($i) == count($header_items)) ? "colspan='$last_item_colspan'>" : ">");
-			print "<span style='cursor:pointer;display:block;' class='textSubHeaderDark'>" . $display_text . "</span>";
+			print "<span style='cursor:pointer;display:block;text-align:$talign;' class='textSubHeaderDark'>" . $display_text . "</span>";
 			print "</th>\n";
 		}else{
 			print "<th $align " . ((($i) == count($header_items)) ? "colspan='$last_item_colspan'>" : ">");
-			print "<span style='cursor:pointer;display:block;' class='textSubHeaderDark' onClick='sortMe_" . $count . "(\"" . $db_column . "\", \"" . $direction . "\")'>" . $display_text . "</span>";
+			print "<span style='cursor:pointer;display:block;text-align:$talign;' class='textSubHeaderDark' onClick='sortMe_" . $count . "(\"" . $db_column . "\", \"" . $direction . "\")'>" . $display_text . "</span>";
 			print "</th>\n";
 		}
 
