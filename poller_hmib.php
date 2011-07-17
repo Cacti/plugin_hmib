@@ -530,6 +530,9 @@ function checkHost($host_id) {
 
 	/* remove the process lock */
 	db_execute("DELETE FROM plugin_hmib_processes WHERE pid=" . getmypid());
+
+	/* remove odd entries */
+	db_execute("DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE name=''");
 }
 
 function collect_hrSystem(&$host) {

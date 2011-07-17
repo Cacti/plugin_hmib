@@ -2053,6 +2053,7 @@ function hmib_tabs() {
 		"hardware" => "Hardware",
 		"running"  => "Processes",
 		"software" => "Inventory",
+		"lastused" => "Use History",
 		"graphs"   => "Graphs");
 
 	if (isset($_REQUEST["host_id"])) {
@@ -2691,10 +2692,12 @@ function hmib_header_sort($header_items, $sort_column, $sort_direction, $jsprefi
 		if ($sort_column == $db_column) {
 			$direction = $new_sort_direction;
 			if (is_array($display_array[1])) {
-				$align = " align='" . $display_array[1][1] . "'";
+				$align        = " align='" . $display_array[1][1] . "'";
+				$talign       =  $display_array[1][1];
 				$display_text = "**" . $display_array[0];
 			}else{
-				$align = " align='left'";
+				$align        = " align='left'";
+				$talign    = "left";
 				$display_text = $display_array[0] . "**";
 			}
 		}else{
