@@ -1753,7 +1753,7 @@ function hmib_software() {
 		$changed += hmib_check_changed("device",   "sess_hmib_sw_device");
 		$changed += hmib_check_changed("rows",     "sess_hmib_sw_rows");
 
-		if (hmib_check_changed("type", "sess_hmib_sw_ostype")) {
+		if (hmib_check_changed("ostype", "sess_hmib_sw_ostype")) {
 			$_REQUEST["device"] = -1;
 			$changed = true;;
 		}
