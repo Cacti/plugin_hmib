@@ -332,7 +332,7 @@ function hmib_setup_table () {
 function hmib_version () {
 	return array(
 		'name' 		=> 'hmib',
-		'version' 	=> '1.0',
+		'version' 	=> '1.1',
 		'longname'	=> 'Host MIB Tool',
 		'author'	=> 'The Cacti Group',
 		'homepage'	=> 'http://www.cacti.net',
