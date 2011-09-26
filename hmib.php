@@ -2382,25 +2382,6 @@ function hmib_summary() {
 	html_start_box("<strong>Host Process Summary Filter</strong>", "100%", $colors["header"], "3", "center", "");
 
 	?>
-	<script type="text/javascript">
-	<!--
-	function applyProcFilter(objForm) {
-		strURL = '?action=summary&sect=processes';
-		strURL = strURL + '&filter='   + objForm.filter.value;
-		strURL = strURL + '&process='   + objForm.process.value;
-		strURL = strURL + '&ptop='   + objForm.ptop.value;
-		document.location = strURL;
-	}
-
-	function clearProc() {
-		strURL = '?action=summary&sect=processes&clearp';
-		document.location = strURL;
-	}
-	-->
-	</script>
-	<?php
-
-	?>
 	<tr bgcolor="#<?php print $colors["panel"];?>">
 		<td>
 			<form name="proc_summary" action="hmib.php?action=summary">
@@ -2449,6 +2430,24 @@ function hmib_summary() {
 			</form>
 		</td>
 	</tr>
+	<tr style='display:none;'><td>
+	<script type="text/javascript">
+	<!--
+	function applyProcFilter(objForm) {
+		strURL = '?action=summary&sect=processes';
+		strURL = strURL + '&filter='   + objForm.filter.value;
+		strURL = strURL + '&process='   + objForm.process.value;
+		strURL = strURL + '&ptop='   + objForm.ptop.value;
+		document.location = strURL;
+	}
+
+	function clearProc() {
+		strURL = '?action=summary&sect=processes&clearp';
+		document.location = strURL;
+	}
+	-->
+	</script>
+	</td></tr>
 	<?php
 
 	html_end_box(false);
@@ -2545,8 +2544,6 @@ function hmib_summary() {
 	}else{
 		print "<tr><td><em>No Processes</em></td></tr>";
 	}
-
-	html_end_box();
 
 	html_end_box();
 }
