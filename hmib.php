@@ -79,6 +79,9 @@ case "storage":
 case "devices":
 	hmib_devices();
 	break;
+case "history":
+	hmib_history();
+	break;
 case "software":
 	hmib_software();
 	break;
@@ -94,6 +97,398 @@ function hmib_check_changed($request, $session) {
 			return true;
 		}
 	}
+}
+
+function hmib_history() {
+	global $config, $colors, $item_rows, $hmib_hrSWTypes, $hmib_hrSWRunStatus;
+
+	/* ================= input validation ================= */
+	input_validate_input_number(get_request_var_request("template"));
+	input_validate_input_number(get_request_var_request("page"));
+	input_validate_input_number(get_request_var_request("rows"));
+	input_validate_input_number(get_request_var_request("device"));
+	input_validate_input_number(get_request_var_request("type"));
+	/* ==================================================== */
+
+	/* clean up sort_column */
+	if (isset($_REQUEST["sort_column"])) {
+		$_REQUEST["sort_column"] = sanitize_search_string(get_request_var("sort_column"));
+	}
+
+	/* clean up sort_direction */
+	if (isset($_REQUEST["sort_direction"])) {
+		$_REQUEST["sort_direction"] = sanitize_search_string(get_request_var("sort_direction"));
+	}
+
+	/* clean up filter string */
+	if (isset($_REQUEST["filter"])) {
+		$_REQUEST["filter"] = sanitize_search_string(get_request_var("filter"));
+	}
+
+	/* clean up filter string */
+	if (isset($_REQUEST["process"])) {
+		$_REQUEST["process"] = sanitize_search_string(get_request_var("process"));
+	}
+
+	if (isset($_REQUEST["reset"])) {
+		kill_session_var("sess_hmib_hist_sort_column");
+		kill_session_var("sess_hmib_hist_sort_direction");
+		kill_session_var("sess_hmib_hist_template");
+		kill_session_var("sess_hmib_hist_filter");
+		kill_session_var("sess_hmib_hist_rows");
+		kill_session_var("sess_hmib_hist_device");
+		kill_session_var("sess_hmib_hist_process");
+		kill_session_var("sess_hmib_hist_type");
+		kill_session_var("sess_hmib_hist_current_page");
+	}elseif (isset($_REQUEST["clear"])) {
+		kill_session_var("sess_hmib_hist_sort_column");
+		kill_session_var("sess_hmib_hist_sort_direction");
+		kill_session_var("sess_hmib_hist_template");
+		kill_session_var("sess_hmib_hist_filter");
+		kill_session_var("sess_hmib_hist_rows");
+		kill_session_var("sess_hmib_hist_device");
+		kill_session_var("sess_hmib_hist_process");
+		kill_session_var("sess_hmib_hist_type");
+		kill_session_var("sess_hmib_hist_current_page");
+
+		unset($_REQUEST["sort_column"]);
+		unset($_REQUEST["sort_direction"]);
+		unset($_REQUEST["template"]);
+		unset($_REQUEST["filter"]);
+		unset($_REQUEST["rows"]);
+		unset($_REQUEST["device"]);
+		unset($_REQUEST["process"]);
+		unset($_REQUEST["type"]);
+		unset($_REQUEST["page"]);
+	}else{
+		/* if any of the settings changed, reset the page number */
+		$changed = false;
+		$changed += hmib_check_changed("template", "sess_hmib_hist_template");
+		$changed += hmib_check_changed("fitler",   "sess_hmib_hist_filter");
+		$changed += hmib_check_changed("rows",     "sess_hmib_hist_rows");
+		$changed += hmib_check_changed("device",   "sess_hmib_hist_device");
+		$changed += hmib_check_changed("process",  "sess_hmib_hist_process");
+
+		if (hmib_check_changed("type",     "sess_hmib_hist_type")) {
+			$_REQUEST["device"] = -1;
+			$changed = true;;
+		}
+
+		if ($changed) {
+			$_REQUEST["page"] = "1";
+		}
+
+	}
+
+	load_current_session_value("page",           "sess_hmib_hist_current_page", "1");
+	load_current_session_value("rows",           "sess_hmib_hist_rows", "-1");
+	load_current_session_value("device",         "sess_hmib_hist_device", "-1");
+	load_current_session_value("process",        "sess_hmib_hist_process", "-1");
+	load_current_session_value("type",           "sess_hmib_hist_type", "-1");
+	load_current_session_value("sort_column",    "sess_hmib_hist_sort_column", "name");
+	load_current_session_value("sort_direction", "sess_hmib_hist_sort_direction", "ASC");
+	load_current_session_value("template",       "sess_hmib_hist_template", "-1");
+	load_current_session_value("filter",         "sess_hmib_hist_filter", "");
+
+	?>
+	<script type="text/javascript">
+	<!--
+	function applyRunFilter(objForm) {
+		strURL = '?action=running';
+		strURL = strURL + '&template=' + objForm.template.value;
+		strURL = strURL + '&filter='   + objForm.filter.value;
+		strURL = strURL + '&rows='     + objForm.rows.value;
+		strURL = strURL + '&device='   + objForm.device.value;
+		strURL = strURL + '&process='  + objForm.process.value;
+		strURL = strURL + '&type='     + objForm.type.value;
+		document.location = strURL;
+	}
+
+	function clearRun() {
+		strURL = '?action=running&clear=';
+		document.location = strURL;
+	}
+	-->
+	</script>
+	<?php
+
+	html_start_box("<strong>Running Process History</strong>", "100%", $colors["header"], "3", "center", "");
+
+	?>
+	<tr bgcolor="#<?php print $colors["panel"];?>">
+		<td>
+			<form name="history" method="get" action="hmib.php?action=running">
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;OS Type:&nbsp;
+					</td>
+					<td width="1">
+						<select name="type" onChange="applyRunFilter(document.history)">
+							<option value="-1"<?php if (get_request_var_request("type") == "-1") {?> selected<?php }?>>All</option>
+							<?php
+							$types = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
+								FROM plugin_hmib_hrSystemTypes AS hrst
+								INNER JOIN plugin_hmib_hrSystem AS hrs
+								ON hrst.id=hrs.host_type
+								WHERE name!='' ORDER BY name");
+							if (sizeof($types)) {
+							foreach($types AS $t) {
+								echo "<option value='" . $t["id"] . "' " . (get_request_var_request("type") == $t["id"] ? "selected":"") . ">" . $t["name"] . "</option>";
+							}
+							}
+							?>
+						</select>
+					</td>
+					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;Device:&nbsp;
+					</td>
+					<td width="1">
+						<select name="device" onChange="applyRunFilter(document.history)">
+							<option value="-1"<?php if (get_request_var_request("device") == "-1") {?> selected<?php }?>>All</option>
+							<?php
+							$hosts = db_fetch_assoc("SELECT DISTINCT host.id, host.description
+								FROM plugin_hmib_hrSystem AS hrs
+								INNER JOIN host
+								ON hrs.host_id=host.id " .
+								(get_request_var_request("type") > 0 ? "WHERE hrs.host_type=" . get_request_var_request("type"):"") .
+								" ORDER BY description");
+
+							if (sizeof($hosts)) {
+							foreach($hosts AS $h) {
+								echo "<option value='" . $h["id"] . "' " . (get_request_var_request("device") == $h["id"] ? "selected":"") . ">" . $h["description"] . "</option>";
+							}
+							}
+							?>
+						</select>
+					</td>
+					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;Template:&nbsp;
+					</td>
+					<td width="1">
+						<select name="template" onChange="applyRunFilter(document.history)">
+							<option value="-1"<?php if (get_request_var_request("template") == "-1") {?> selected<?php }?>>All</option>
+							<?php
+							$templates = db_fetch_assoc("SELECT DISTINCT ht.id, ht.name
+								FROM host_template AS ht
+								INNER JOIN host
+								ON ht.id=host.host_template_id
+								INNER JOIN plugin_hmib_hrSystem AS hrs
+								ON host.id=hrs.host_id
+								ORDER BY name");
+
+							if (sizeof($templates)) {
+							foreach($templates AS $t) {
+								echo "<option value='" . $t["id"] . "' " . (get_request_var_request("template") == $t["id"] ? "selected":"") . ">" . $t["name"] . "</option>";
+							}
+							}
+							?>
+						</select>
+					</td>
+					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;Rows:&nbsp;
+					</td>
+					<td width="1">
+						<select name="rows" onChange="applyRunFilter(document.history)">
+							<option value="-1"<?php if (get_request_var_request("rows") == "-1") {?> selected<?php }?>>Default</option>
+							<?php
+							if (sizeof($item_rows)) {
+							foreach($item_rows AS $key => $name) {
+								echo "<option value='" . $key . "' " . (get_request_var_request("rows") == $key ? "selected":"") . ">" . $name . "</option>";
+							}
+							}
+							?>
+						</select>
+					</td>
+				</tr>
+			</table>
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;Process:&nbsp;
+					</td>
+					<td width="1">
+						<select name="process" onChange="applyRunFilter(document.history)">
+							<option value="-1"<?php if (get_request_var_request("process") == "-1") {?> selected<?php }?>>All</option>
+							<?php
+							$procs = db_fetch_assoc("SELECT DISTINCT name
+								FROM plugin_hmib_hrSWRun_last_seen AS hrswr
+								WHERE name!='System Idle Time' AND name NOT LIKE '128%' AND (name IS NOT NULL AND name!='')
+								ORDER BY name");
+							if (sizeof($procs)) {
+							foreach($procs AS $p) {
+								echo "<option value='" . $p["name"] . "' " . (get_request_var_request("process") == $p["name"] ? "selected":"") . ">" . $p["name"] . "</option>";
+							}
+							}
+							?>
+						</select>
+					</td>
+					<td nowrap style='white-space: nowrap;' width="60">
+						&nbsp;Search:&nbsp;
+					</td>
+					<td>
+						<input type='text' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
+					</td>
+					<td nowrap>
+						&nbsp;<input type="button" onClick="applyRunFilter(document.history)" value="Go" border="0">
+						<input type="button" onClick="clearRun()" value="Clear" name="clear" border="0">
+					</td>
+				</tr>
+			</table>
+			<input type='hidden' name='action' value='running'>
+			</form>
+		</td>
+	</tr>
+	<?php
+
+	html_end_box();
+
+	html_start_box("", "100%", $colors["header"], "3", "center", "");
+
+	if ($_REQUEST["rows"] == "-1") {
+		$num_rows = read_config_option("num_rows_device");
+	}else{
+		$num_rows = get_request_var_request("rows");
+	}
+
+	$limit     = " LIMIT " . ($num_rows*(get_request_var_request("page")-1)) . "," . $num_rows;
+	$sql_where = "WHERE hrswls.name!='' AND hrswls.name!='System Idle Process'";
+
+	if ($_REQUEST["template"] != "-1") {
+		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " host.host_template_id=" . $_REQUEST["template"];
+	}
+
+	if ($_REQUEST["device"] != "-1") {
+		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " host.id=" . $_REQUEST["device"];
+	}
+
+	if ($_REQUEST["type"] != "-1") {
+		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " hrs.host_type=" . $_REQUEST["type"];
+	}
+
+	if ($_REQUEST["process"] != "-1") {
+		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " hrswls.name='" . $_REQUEST["process"] . "'";
+	}
+
+	if ($_REQUEST["filter"] != "") {
+		$sql_where .= (strlen($sql_where) ? " AND":"WHERE") . " (host.description LIKE '%" . $_REQUEST["filter"] . "%' OR
+			hrswls.name LIKE '%" . $_REQUEST["filter"] . "%' OR
+			host.hostname LIKE '%" . $_REQUEST["filter"] . "%')";
+	}
+
+	$sql = "SELECT hrswls.*, host.hostname, host.description, host.disabled
+		FROM plugin_hmib_hrSWRun_last_seen AS hrswls
+		INNER JOIN host 
+		ON host.id=hrswls.host_id
+		INNER JOIN plugin_hmib_hrSystem AS hrs
+		ON hrs.host_id=host.id
+		INNER JOIN plugin_hmib_hrSystemTypes AS hrst
+		ON hrst.id=hrs.host_type
+		$sql_where
+		ORDER BY " . get_request_var_request("sort_column") . " " . get_request_var_request("sort_direction") . " " . $limit;
+
+	//echo $sql;
+
+	$rows       = db_fetch_assoc($sql);
+	$total_rows = db_fetch_cell("SELECT COUNT(*)
+		FROM plugin_hmib_hrSWRun_last_seen AS hrswls
+		INNER JOIN host
+		ON host.id=hrswls.host_id
+		INNER JOIN plugin_hmib_hrSystem AS hrs
+		ON hrs.host_id=host.id
+		INNER JOIN plugin_hmib_hrSystemTypes AS hrst
+		ON hrst.id=hrs.host_type
+		$sql_where");
+
+	if ($total_rows > 0) {
+		/* generate page list */
+		$url_page_select = get_page_list(get_request_var_request("page"), MAX_DISPLAY_PAGES, $num_rows, $total_rows, "hmib.php" . "?action=running");
+
+		$nav = "<tr bgcolor='#" . $colors["header"] . "'>
+			<td colspan='16'>
+				<table width='100%' cellspacing='0' cellpadding='0' border='0'>
+					<tr>
+						<td align='left' class='textHeaderDark'>
+							<strong>&lt;&lt; "; if (get_request_var_request("page") > 1) { $nav .= "<a class='linkOverDark' href='" . htmlspecialchars("hmib.php" . "?action=running&page=" . (get_request_var_request("page")-1)) . "'>"; } $nav .= "Previous"; if (get_request_var_request("page") > 1) { $nav .= "</a>"; } $nav .= "</strong>
+						</td>\n
+						<td align='center' class='textHeaderDark'>
+							Showing Rows " . (($num_rows*(get_request_var_request("page")-1))+1) . " to " . ((($total_rows < $num_rows) || ($total_rows < ($num_rows*get_request_var_request("page")))) ? $total_rows : ($num_rows*get_request_var_request("page"))) . " of $total_rows [$url_page_select]
+						</td>\n
+						<td align='right' class='textHeaderDark'>
+							<strong>"; if ((get_request_var_request("page") * $num_rows) < $total_rows) { $nav .= "<a class='linkOverDark' href='" . htmlspecialchars("hmib.php" . "?action=running&page=" . (get_request_var_request("page")+1)) . "'>"; } $nav .= "Next"; if ((get_request_var_request("page") * $num_rows) < $total_rows) { $nav .= "</a>"; } $nav .= " &gt;&gt;</strong>
+						</td>\n
+					</tr>
+				</table>
+			</td>
+		</tr>\n";
+	}else{
+		$nav = "<tr bgcolor='#" . $colors["header"] . "'>
+			<td colspan='16'>
+				<table width='100%' cellspacing='0' cellpadding='0' border='0'>
+					<tr>
+						<td align='center' class='textHeaderDark'>
+							No Rows Found
+						</td>\n
+					</tr>
+				</table>
+			</td>
+		</tr>\n";
+	}
+
+	print $nav;
+
+	$display_text = array(
+		"description" => array("Name",        array("ASC",  "left")),
+		"hrswls.name" => array("Process",     array("DESC", "left")),
+		"last_seen"   => array("Last Seen",   array("ASC",  "right")),
+		"total_time"  => array("Time (D:H:M)",  array("DESC", "right"))
+	);
+
+	hmib_header_sort($display_text, get_request_var_request("sort_column"), get_request_var_request("sort_direction"), "action=history");
+
+	$i = 0;
+	if (sizeof($rows)) {
+		foreach ($rows as $row) {
+			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
+			if (api_plugin_user_realm_auth('host.php')) {
+				$host_url    = "<a href='" . htmlspecialchars($config["url_path"] . "host.php?action=edit&id=" . $row["host_id"]) . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+			}else{
+				$host_url    = $row["hostname"];
+			}
+			
+			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>",  $row["description"] . "</strong> [" . $host_url . "]"):$row["description"] . "</strong> [" . $host_url . "]") . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["name"]):$row["name"]) . "</td>";
+			echo "<td style='white-space:nowrap;' align='right' title='Time when last seen running' width='120'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["last_seen"]):$row["last_seen"]) . "</td>";
+			echo "<td style='white-space:nowrap;' align='right' width='100'>" . hmib_get_runtime($row["total_time"]) . "</td>";
+		}
+		echo "</tr>";
+		print $nav;
+	}else{
+		print "<tr><td><em>No Process History Found</em></td></tr>";
+	}
+
+	html_end_box();
+}
+
+function hmib_get_runtime($time) {
+
+	if ($time > 86400) {
+		$days  = floor($time/86400);
+		$time %= 86400;
+	}else{
+		$days  = 0;
+	}
+
+	if ($time > 3600) {
+		$hours = floor($time/3600);
+		$time  %= 3600;
+	}else{
+		$hours = 0;
+	}
+
+	$minutes = floor($time/60);
+
+	return $days . ":" . $hours . ":" . $minutes;
 }
 
 function hmib_running() {
@@ -500,7 +895,6 @@ cacti_log(__FUNCTION__ . " totals: " . serialize($totals), false, "TEST");
 	print "</tr>";
 	html_end_box(false);
 }
-
 
 function hmib_hardware() {
 	global $config, $colors, $item_rows, $hmib_hrSWTypes, $hmib_hrDeviceStatus, $hmib_types;
@@ -1817,7 +2211,7 @@ function hmib_software() {
 	?>
 	<tr bgcolor="#<?php print $colors["panel"];?>">
 		<td>
-			<form name="software" method="get" action="software">
+			<form name="software" method="get" action="hmib.php?action=software">
 			<table cellpadding="0" cellspacing="0">
 				<tr>
 					<td nowrap style='white-space: nowrap;' width="60">
@@ -2073,7 +2467,7 @@ function hmib_tabs() {
 		"hardware" => "Hardware",
 		"running"  => "Processes",
 		"software" => "Inventory",
-		"lastused" => "Use History",
+		"history"  => "Use History",
 		"graphs"   => "Graphs");
 
 	if (isset($_REQUEST["host_id"])) {

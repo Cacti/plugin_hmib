@@ -522,11 +522,11 @@ function checkHost($host_id) {
 	}
 
 	/* update the most recent table */
-	db_execute("INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name)
-		SELECT DISTINCT host_id, name
+	db_execute("INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name, total_time)
+		SELECT DISTINCT host_id, name, " . read_config_option("hmib_hrSWRunPerf_freq") . " AS `total_time`
 		FROM plugin_hmib_hrSWRun
 		WHERE host_id=" . $host["id"] . "
-		ON DUPLICATE KEY UPDATE last_seen=NOW()");
+		ON DUPLICATE KEY UPDATE last_seen=NOW(),total_time=total_time+VALUES(total_time)");
 
 	/* remove the process lock */
 	db_execute("DELETE FROM plugin_hmib_processes WHERE pid=" . getmypid());

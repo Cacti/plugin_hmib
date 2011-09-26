@@ -97,6 +97,15 @@ function hmib_check_upgrade () {
 				"author='" . $version["author"] . "', " .
 				"webpage='" . $version["url"] . "' " .
 				"WHERE directory='" . $version["name"] . "' ");
+
+		$columns = db_fetch_assoc("SHOW columns FROM plugin_hmib_hrSWRun_last_seen");
+		foreach($columns as $c) {
+			$cols[] = $c[0];
+		}
+
+		if (!array_search("total_time",$cols)) {
+			db_execute("ALTER TABLE plugin_hmib_hrSWRun_last_seen ADD COLUMN `total_time` BIGINT unsigned not null default '0' AFTER `name`");
+		}
 	}
 }
 
@@ -332,7 +341,7 @@ function hmib_setup_table () {
 function hmib_version () {
 	return array(
 		'name' 		=> 'hmib',
-		'version' 	=> '1.1',
+		'version' 	=> '1.2',
 		'longname'	=> 'Host MIB Tool',
 		'author'	=> 'The Cacti Group',
 		'homepage'	=> 'http://www.cacti.net',

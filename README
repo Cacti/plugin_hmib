@@ -4,7 +4,7 @@
     Contact ........ 
     Home Site ...... http://www.cacti.net
     Program ........ Host MIB Audit Tool
-    Version ........ 1.0
+    Version ........ 1.2
     Purpose ........ Collect Host MIB Table Information for Reporting
 
 *******************************************************************************/
@@ -44,6 +44,13 @@
     Got any ideas or complaints, please use Mantis!
 
 ----[ Changelog
+
+    --- 1.2 ---
+    feature: provide use history interface
+    fix: make UI W3C compliant
+    fix: respect Host edit permissions
+    fix: general UI inconsistencies
+    fix: rescan desice was broken
 
     --- 1.1 ---
     fix: issue when deleting dead hosts
