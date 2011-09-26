@@ -345,8 +345,10 @@ function rescan_types() {
 		if (sizeof($known_types)) {
 		foreach($known_types as $known) {
 			db_execute("UPDATE plugin_hmib_hrSystem SET host_type=" . $known["id"] . "
-				WHERE sysObjectID LIKE '%" . $known['sysObjectID'] . "%' AND
-				sysDescr LIKE '%" . $known['sysDescrMatch'] . "%'");
+				WHERE (sysObjectID LIKE '%" . $known['sysObjectID'] . "%' AND
+				sysDescr LIKE '%" . $known['sysDescrMatch'] . "%') 
+				OR (sysObjectID RLIKE '" . $known['sysObjectID'] . "' AND
+                sysDescr RLIKE '" . $known['sysDescrMatch'] . "')");
 
 			if ($cnn_id->Affected_Rows() > 0) {
 				$found = TRUE;
@@ -752,14 +754,14 @@ function hmib_host_type_edit() {
 	"sysDescrMatch" => array(
 		"method" => "textbox",
 		"friendly_name" => "System Description Match",
-		"description" => "Provide key information to help HMIB detect the type of device.  The wildcard character is the '%' sign.",
+		"description" => "Provide key information to help HMIB detect the type of Host.  Both SQL Where and Perl Regex are supported.  SQL Where wildcard character is the '%' sign.",
 		"value" => "|arg1:sysDescrMatch|",
 		"max_length" => "250"
 		),
 	"sysObjectID" => array(
 		"method" => "textbox",
 		"friendly_name" => "Vendor snmp Object ID",
-		"description" => "Provide key information to help HMIB detect the type of Host.",
+		"description" => "Provide key information to help HMIB detect the type of Host.  Both SQL Where and Perl Regex are supported.  SQL Where wildcard character is the '%' sign.",
 		"value" => "|arg1:sysObjectID|",
 		"max_length" => "250"
 		),
