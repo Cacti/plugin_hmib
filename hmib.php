@@ -212,9 +212,9 @@ function hmib_running() {
 	html_start_box("<strong>Running Processes</strong>", "100%", $colors["header"], "3", "center", "");
 
 	?>
-	<tr bgcolor="<?php print $colors["panel"];?>">
-		<form name="running" method="get">
+	<tr bgcolor="#<?php print $colors["panel"];?>">
 		<td>
+			<form name="running" method="get" action="hmib.php?action=running">
 			<table cellpadding="0" cellspacing="0">
 				<tr>
 					<td nowrap style='white-space: nowrap;' width="60">
@@ -324,7 +324,7 @@ function hmib_running() {
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
-						<input type='textbox' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
+						<input type='text' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
 					</td>
 					<td nowrap>
 						&nbsp;<input type="button" onClick="applyRunFilter(document.running)" value="Go" border="0">
@@ -332,9 +332,9 @@ function hmib_running() {
 					</td>
 				</tr>
 			</table>
+			<input type='hidden' name='action' value='running'>
+			</form>
 		</td>
-		<input type='hidden' name='action' value='running'>
-		</form>
 	</tr>
 	<?php
 
@@ -460,12 +460,16 @@ function hmib_running() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
-			$host_url    = "<a href='" . $config["url_path"] . "host.php?action=edit&id=" . $row["host_id"] . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+			if (api_plugin_user_realm_auth('host.php')) {
+				$host_url    = "<a href='" . htmlspecialchars($config["url_path"] . "host.php?action=edit&id=" . $row["host_id"]) . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+			}else{
+				$host_url    = $row["hostname"];
+			}
 			
 			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>",  $row["description"] . "</strong> [" . $host_url . "]"):$row["description"] . "</strong> [" . $host_url . "]") . "</td>";
-			echo "<td style='white-space:nowrap;' align='left' style='white-space:nowrap;' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["name"]):$row["name"]) . "</td>";
-			echo "<td style='white-space:nowrap;' align='left' title='" . $row["path"] . "' style='white-space:nowrap;' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", title_trim($row["path"],40)):title_trim($row["path"],40)) . "</td>";
-			echo "<td style='white-space:nowrap;' align='left' title='" . $row["parameters"] . "' style='white-space:nowrap;' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", title_trim($row["parameters"], 40)):title_trim($row["parameters"],40)) . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["name"]):$row["name"]) . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' title='" . $row["path"] . "' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", title_trim($row["path"],40)):title_trim($row["path"],40)) . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' title='" . $row["parameters"] . "' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", title_trim($row["parameters"], 40)):title_trim($row["parameters"],40)) . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . round($row["perfCPU"]/3600,0) . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . round($row["perfMemory"]/1024,2) . "</td>";
 			echo "<td width='20' style='white-space:nowrap;' align='left'>"  . (isset($hmib_hrSWTypes[$row["type"]]) ? $hmib_hrSWTypes[$row["type"]]:"Unknown") . "</td>";
@@ -612,9 +616,9 @@ function hmib_hardware() {
 	html_start_box("<strong>Hardware Inventory</strong>", "100%", $colors["header"], "3", "center", "");
 
 	?>
-	<tr bgcolor="<?php print $colors["panel"];?>">
-		<form name="hardware" method="get">
+	<tr bgcolor="#<?php print $colors["panel"];?>">
 		<td>
+			<form name="hardware" method="get" action="hmib.php?action=hardware">
 			<table cellpadding="0" cellspacing="0">
 				<tr>
 					<td nowrap style='white-space: nowrap;' width="60">
@@ -724,7 +728,7 @@ function hmib_hardware() {
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
-						<input type='textbox' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
+						<input type='text' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
 					</td>
 					<td nowrap>
 						&nbsp;<input type="button" onClick="applyHWFilter(document.hardware)" value="Go" border="0">
@@ -732,9 +736,9 @@ function hmib_hardware() {
 					</td>
 				</tr>
 			</table>
+			<input type='hidden' name='action' value='hardware'>
+			</form>
 		</td>
-		<input type='hidden' name='action' value='hardware'>
-		</form>
 	</tr>
 	<?php
 
@@ -840,7 +844,11 @@ function hmib_hardware() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
-			$host_url    = "<a href='" . $config["url_path"] . "host.php?action=edit&id=" . $row["host_id"] . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+			if (api_plugin_user_realm_auth('host.php')) {
+				$host_url    = "<a href='" . htmlspecialchars($config["url_path"] . "host.php?action=edit&id=" . $row["host_id"]) . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+			}else{
+				$host_url    = $row["hostname"];
+			}
 
 			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hd"] . "</strong> [" . $host_url . "]"):$row["hd"] . "</strong> [" . $host_url . "]") . "</td>";
 			echo "<td style='white-space:nowrap;' align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"]):$row["description"]) . "</td>";
@@ -971,9 +979,9 @@ function hmib_storage() {
 	html_start_box("<strong>Storage Inventory</strong>", "100%", $colors["header"], "3", "center", "");
 
 	?>
-	<tr bgcolor="<?php print $colors["panel"];?>">
-		<form name="storage" method="get">
+	<tr bgcolor="#<?php print $colors["panel"];?>">
 		<td>
+			<form name="storage" method="get" action="hmib.php?action=storage">
 			<table cellpadding="0" cellspacing="0">
 				<tr>
 					<td nowrap style='white-space: nowrap;' width="60">
@@ -1083,7 +1091,7 @@ function hmib_storage() {
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
-						<input type='textbox' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
+						<input type='text' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
 					</td>
 					<td nowrap>
 						&nbsp;<input type="button" onClick="applyStoFilter(document.storage)" value="Go" border="0">
@@ -1091,9 +1099,9 @@ function hmib_storage() {
 					</td>
 				</tr>
 			</table>
+			<input type='hidden' name='action' value='storage'>
+			</form>
 		</td>
-		<input type='hidden' name='action' value='storage'>
-		</form>
 	</tr>
 	<?php
 
@@ -1202,7 +1210,11 @@ function hmib_storage() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
-			$host_url    = "<a href='" . $config["url_path"] . "host.php?action=edit&id=" . $row["host_id"] . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+			if (api_plugin_user_realm_auth('host.php')) {
+				$host_url    = "<a href='" . htmlspecialchars($config["url_path"] . "host.php?action=edit&id=" . $row["host_id"]) . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+			}else{
+				$host_url    = $row["hostname"];
+			}
 
 			echo "<td style='white-space:nowrap;' align='left' width='120'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["hd"] . "</strong> [" . $host_url . "]"):$row["hd"] . "</strong> [" . $host_url . "]") . "</td>";
 			echo "<td style='white-space:nowrap;' align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"]):$row["description"]) . "</td>";
@@ -1333,9 +1345,9 @@ function hmib_devices() {
 	html_start_box("<strong>Device Filter</strong>", "100%", $colors["header"], "3", "center", "");
 
 	?>
-	<tr bgcolor="<?php print $colors["panel"];?>">
-		<form name="devices" action="hmib.php?action=devices">
+	<tr bgcolor="#<?php print $colors["panel"];?>">
 		<td>
+			<form name="devices" action="hmib.php?action=devices">
 			<table cellpadding="0" cellspacing="0">
 				<tr>
 					<td nowrap style='white-space: nowrap;' width="60">
@@ -1458,7 +1470,7 @@ function hmib_devices() {
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
-						<input type='textbox' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
+						<input type='text' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
 					</td>
 					<td nowrap>
 						&nbsp;<input type="button" onClick="applyHostFilter(document.devices)" value="Go" border="0">
@@ -1466,9 +1478,9 @@ function hmib_devices() {
 					</td>
 				</tr>
 			</table>
+			<input type='hidden' name='action' value='devices'>
+			</form>
 		</td>
-		<input type='hidden' name='action' value='devices'>
-		</form>
 	</tr>
 	<?php
 
@@ -1609,13 +1621,13 @@ function hmib_devices() {
 
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
 			echo "<td width='120'>";
-			echo "<a style='padding:1px;' href='$url?action=dashboard&reset=1&device=" . $row["host_id"] . "'><img src='$dashboard' title='View Dashboard' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='$url?action=storage&reset=1&device=" . $row["host_id"] . "'><img src='$storage' title='View Storage' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='$url?action=hardware&reset=1&device=" . $row["host_id"] . "'><img src='$hardw' title='View Hardware' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='$url?action=running&reset=1&device=" . $row["host_id"] . "'><img src='$proc' title='View Processes' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='$url?action=software&reset=1&device=" . $row["host_id"] . "'><img src='$inven' title='View Software Inventory' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=dashboard&reset=1&device=" . $row["host_id"]) . "'><img src='$dashboard' title='View Dashboard' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=storage&reset=1&device=" . $row["host_id"]) . "'><img src='$storage' title='View Storage' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=hardware&reset=1&device=" . $row["host_id"]) . "'><img src='$hardw' title='View Hardware' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=running&reset=1&device=" . $row["host_id"]) . "'><img src='$proc' title='View Processes' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=software&reset=1&device=" . $row["host_id"]) . "'><img src='$inven' title='View Software Inventory' align='absmiddle' border='0'></a>";
 			if ($found) {
-				echo "<a style='padding:1px;' href='$url?action=graphs&reset=1&host=" . $row["host_id"] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter='><img  src='$graphs' title='View Graphs' align='absmiddle' border='0'></a>";
+				echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=graphs&reset=1&host=" . $row["host_id"] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=") . "'><img  src='$graphs' title='View Graphs' align='absmiddle' border='0'></a>";
 			}else{
 				echo "<img src='$nographs' title='No Graphs Defined' align='absmiddle' border='0'>";
 			}
@@ -1624,7 +1636,11 @@ function hmib_devices() {
 			$graph_cpup  = hmib_get_graph_url($hcpudq, 0, $row["host_id"], "", round($row["cpuPercent"],2). " %", false);
 			$graph_users = hmib_get_graph_template_url($hugt, 0, $row["host_id"], ($row["host_status"] < 2 ? "N/A":$row["users"]), false);
 			$graph_aproc = hmib_get_graph_template_url($hpgt, 0, $row["host_id"], ($row["host_status"] < 2 ? "N/A":$row["processes"]), false);
-			$host_url    = "<a href='" . $config["url_path"] . "host.php?action=edit&id=" . $row["host_id"] . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+			if (api_plugin_user_realm_auth('host.php')) {
+				$host_url    = "<a href='" . htmlspecialchars($config["url_path"] . "host.php?action=edit&id=" . $row["host_id"]) . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+			}else{
+				$host_url    = $row["hostname"];
+			}
 
 			echo "</td>";
 			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . $row["description"] . "</strong> [" . $host_url . "]" . "</td>";
@@ -1799,9 +1815,9 @@ function hmib_software() {
 	html_start_box("<strong>Software Inventory</strong>", "100%", $colors["header"], "3", "center", "");
 
 	?>
-	<tr bgcolor="<?php print $colors["panel"];?>">
-		<form name="software" method="get">
+	<tr bgcolor="#<?php print $colors["panel"];?>">
 		<td>
+			<form name="software" method="get" action="software">
 			<table cellpadding="0" cellspacing="0">
 				<tr>
 					<td nowrap style='white-space: nowrap;' width="60">
@@ -1910,7 +1926,7 @@ function hmib_software() {
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
-						<input type='textbox' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
+						<input type='text' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
 					</td>
 					<td nowrap>
 						&nbsp;<input type="button" onClick="applySWFilter(document.software)" value="Go" border="0">
@@ -1918,9 +1934,9 @@ function hmib_software() {
 					</td>
 				</tr>
 			</table>
+			<input type='hidden' name='action' value='software'>
+			</form>
 		</td>
-		<input type='hidden' name='action' value='software'>
-		</form>
 	</tr>
 	<?php
 
@@ -2026,7 +2042,11 @@ function hmib_software() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
-			$host_url    = "<a href='" . $config["url_path"] . "host.php?action=edit&id=" . $row["host_id"] . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+			if (api_plugin_user_realm_auth('host.php')) {
+				$host_url    = "<a href='" . htmlspecialchars($config["url_path"] . "host.php?action=edit&id=" . $row["host_id"]) . "' title='Edit Hosts'>" . $row["hostname"] . "</a>";
+			}else{
+				$host_url    = $row["hostname"];
+			}
 			
 			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"] . "</strong> [" . $host_url):$row["description"] . "</strong> [" . $host_url) . "]</td>";
 			echo "<td style='white-space:nowrap;' align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["name"]):$row["name"]) . "</td>";
@@ -2072,10 +2092,10 @@ function hmib_tabs() {
 				"white-space:nowrap;'" .
 				" nowrap width='1%'" .
 				" align='center' class='tab'>
-				<span class='textHeader'><a href='" . $config['url_path'] .
+				<span class='textHeader'><a href='" . htmlspecialchars($config['url_path'] .
 				"plugins/hmib/hmib.php?" .
 				"action=" . $tab_short_name .
-				(isset($_REQUEST["host_id"]) ? "&host_id=" . $_REQUEST["host_id"]:"") .
+				(isset($_REQUEST["host_id"]) ? "&host_id=" . $_REQUEST["host_id"]:"")) .
 				"'>$tabs[$tab_short_name]</a></span>
 			</td>\n
 			<td width='1'></td>\n";
@@ -2172,9 +2192,9 @@ function hmib_summary() {
 	html_start_box("<strong>Summary Filter</strong>", "100%", $colors["header"], "3", "center", "");
 
 	?>
-	<tr bgcolor="<?php print $colors["panel"];?>">
-		<form name="host_summary">
+	<tr bgcolor="#<?php print $colors["panel"];?>">
 		<td>
+			<form name="host_summary" action="hmib.php?action=summary">
 			<table width="100%" cellpadding="0" cellspacing="0">
 				<tr>
 					<td nowrap style='white-space: nowrap;' width="60">
@@ -2195,8 +2215,8 @@ function hmib_summary() {
 					</td>
 				</tr>
 			</table>
+			</form>
 		</td>
-		</form>
 	</tr>
 	<?php
 
@@ -2286,11 +2306,11 @@ function hmib_summary() {
 
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
 			echo "<td style='white-space:nowrap;' width='120'>";
-			echo "<a style='padding:1px;' href='$url?reset=1&action=devices&type=" . $row["id"] . "'><img src='$host' title='View Devices' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='$url?reset=1&action=storage&type=" . $row["id"] . "'><img src='$storage' title='View Storage' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='$url?reset=1&action=hardware&type=" . $row["id"] . "'><img src='$hardw' title='View Hardware' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='$url?reset=1&action=running&type=" . $row["id"] . "'><img src='$proc' title='View Processes' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='$url?reset=1&action=software&type=" . $row["id"] . "'><img src='$inven' title='View Software Inventory' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=devices&type=" . $row["id"]) . "'><img src='$host' title='View Devices' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=storage&type=" . $row["id"]) . "'><img src='$storage' title='View Storage' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=hardware&type=" . $row["id"]) . "'><img src='$hardw' title='View Hardware' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=running&type=" . $row["id"]) . "'><img src='$proc' title='View Processes' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=software&type=" . $row["id"]) . "'><img src='$inven' title='View Software Inventory' align='absmiddle' border='0'></a>";
 			echo $graph_url;
 			echo "</td>";
 
@@ -2381,9 +2401,9 @@ function hmib_summary() {
 	<?php
 
 	?>
-	<tr bgcolor="<?php print $colors["panel"];?>">
-		<form name="proc_summary">
+	<tr bgcolor="#<?php print $colors["panel"];?>">
 		<td>
+			<form name="proc_summary" action="hmib.php?action=summary">
 			<table cellpadding="0" cellspacing="0">
 				<tr>
 					<td nowrap style='white-space: nowrap;' width="60">
@@ -2418,7 +2438,7 @@ function hmib_summary() {
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
-						<input type='textbox' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
+						<input type='text' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
 					</td>
 					<td nowrap>
 						&nbsp;<input type="button" onClick="applyProcFilter(document.proc_summary)" value="Go" border="0">
@@ -2426,8 +2446,8 @@ function hmib_summary() {
 					</td>
 				</tr>
 			</table>
+			</form>
 		</td>
-		</form>
 	</tr>
 	<?php
 
@@ -2508,8 +2528,8 @@ function hmib_summary() {
 
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
 			echo "<td width='70'>";
-			echo "<a style='padding:1px;' href='$url?reset=1&action=devices&process=" . $row["name"] . "'><img src='$host' title='View Devices' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='$url?reset=1&action=running&process=" . $row["name"] . "'><img src='$proc' title='View Processes' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=devices&process=" . $row["name"]) . "'><img src='$host' title='View Devices' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=running&process=" . $row["name"]) . "'><img src='$proc' title='View Processes' align='absmiddle' border='0'></a>";
 			echo $graph_url;
 			echo "</td>";
 			echo "<td align='left' width='100'>" . $row["name"] . "</td>";
@@ -2535,7 +2555,7 @@ function hmib_get_device_status_url($count, $host_type, $status) {
 	global $config;
 
 	if ($count > 0) {
-		return "<a href='" . $config["url_path"] . "plugins/hmib/hmib.php?action=devices&reset=1&type=$host_type&status=$status' title='View Hosts'>$count</a>";
+		return "<a href='" . htmlspecialchars($config["url_path"] . "plugins/hmib/hmib.php?action=devices&reset=1&type=$host_type&status=$status") . "' title='View Hosts'>$count</a>";
 	}else{
 		return $count;
 	}
@@ -2578,9 +2598,9 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
 
 		if (sizeof($graphs)) {
 			if ($image) {
-				return "<a href='" . $url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
+				return "<a href='" . htmlspecialchars($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='View Graphs'><img border='0' src='" . $graph . "'></a>";
 			}else{
-				return "<a href='" . $url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
+				return "<a href='" . htmlspecialchars($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='View Graphs'>$title</a>";
 			}
 		}
 	}
@@ -2635,9 +2655,9 @@ function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = 
 
 		if (sizeof($graphs)) {
 			if ($image) {
-				return "<a href='" . $url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'><img border='0' align='absmiddle' src='" . $graph . "'></a>";
+				return "<a href='" . htmlspecialchars($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='View Graphs'><img border='0' align='absmiddle' src='" . $graph . "'></a>";
 			}else{
-				return "<a href='" . $url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=' title='View Graphs'>$title</a>";
+				return "<a href='" . htmlspecialchars($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='View Graphs'>$title</a>";
 			}
 		}
 	}
@@ -2672,6 +2692,7 @@ function hmib_header_sort($header_items, $sort_column, $sort_direction, $jsprefi
 	}
 
 	?>
+	<tr style='display:none;'><td>
 	<script type="text/javascript">
 	<!--
 	function sortMe<?php print "_$count";?>(sort_column, sort_direction) {
@@ -2682,6 +2703,7 @@ function hmib_header_sort($header_items, $sort_column, $sort_direction, $jsprefi
 	}
 	-->
 	</script>
+	</td></tr>
 	<?php
 
 	print "<tr bgcolor='#" . $colors["header_panel"] . "'>\n";
@@ -2989,13 +3011,13 @@ function hmib_nav_bar($current_page, $rows_per_page, $total_rows, $nav_url) {
 				<table width='100%' cellspacing='0' cellpadding='1' border='0'>
 					<tr>
 						<td align='left' class='textHeaderDark'>
-							<strong>&lt;&lt; <?php if ($current_page > 1) { print "<a class='linkOverDark' href='" . str_replace("<PAGE>", ($current_page-1), $nav_url) . "'>"; } print "Previous"; if ($current_page > 1) { print "</a>"; } ?></strong>
+							<strong>&lt;&lt; <?php if ($current_page > 1) { print "<a class='linkOverDark' href='" . htmlspecialchars(str_replace("<PAGE>", ($current_page-1), $nav_url)) . "'>"; } print "Previous"; if ($current_page > 1) { print "</a>"; } ?></strong>
 						</td>
 						<td align='center' class='textHeaderDark'>
 							Showing Graphs <?php print (($rows_per_page*($current_page-1))+1);?> to <?php print ((($total_rows < $rows_per_page) || ($total_rows < ($rows_per_page*$current_page))) ? $total_rows : ($rows_per_page*$current_page));?> of <?php print $total_rows;?>
 						</td>
 						<td align='right' class='textHeaderDark'>
-							<strong><?php if (($current_page * $rows_per_page) < $total_rows) { print "<a class='linkOverDark' href='" . str_replace("<PAGE>", ($current_page+1), $nav_url) . "'>"; } print "Next"; if (($current_page * $rows_per_page) < $total_rows) { print "</a>"; } ?> &gt;&gt;</strong>
+							<strong><?php if (($current_page * $rows_per_page) < $total_rows) { print "<a class='linkOverDark' href='" . htmlspecialchars(str_replace("<PAGE>", ($current_page+1), $nav_url)) . "'>"; } print "Next"; if (($current_page * $rows_per_page) < $total_rows) { print "</a>"; } ?> &gt;&gt;</strong>
 						</td>
 					</tr>
 				</table>
@@ -3023,9 +3045,9 @@ function hmib_graph_view_filter() {
 	global $config, $colors;
 
 	?>
-	<tr bgcolor="<?php print $colors["panel"];?>" class="noprint">
-		<form name="form_graph_view" method="post">
+	<tr bgcolor="#<?php print $colors["panel"];?>" class="noprint">
 		<td class="noprint">
+			<form name="form_graph_view" method="post" action="hmib.php?action=graphs">
 			<table width="100%" cellpadding="0" cellspacing="0">
 				<tr class="noprint">
 					<td nowrap style='white-space: nowrap;' width="55">
@@ -3122,9 +3144,9 @@ function hmib_graph_view_filter() {
 					</td>
 				</tr>
 			</table>
+			<input type='hidden' name='action' value='graphs'>
+			</form>
 		</td>
-		<input type='hidden' name='action' value='graphs'>
-		</form>
 	</tr>
 	<?php
 }
@@ -3178,9 +3200,9 @@ function hmib_timespan_selector() {
 	}
 	-->
 	</script>
-	<tr bgcolor="<?php print $colors["panel"];?>" class="noprint">
-		<form name="form_timespan_selector" method="post">
+	<tr bgcolor="#<?php print $colors["panel"];?>" class="noprint">
 		<td class="noprint">
+			<form name="form_timespan_selector" method="post" action="hmib.php?action=graphs">
 			<table width="100%" cellpadding="0" cellspacing="0">
 				<tr>
 					<td nowrap style='white-space: nowrap;' width='55'>
@@ -3245,8 +3267,8 @@ function hmib_timespan_selector() {
 					</td>
 				</tr>
 			</table>
+			</form>
 		</td>
-		</form>
 	</tr>
 	<?php
 }
@@ -3284,11 +3306,11 @@ function hmib_graph_area(&$graph_array, $no_graphs_message = "", $extra_url_args
 				<table width='1' cellpadding='0'>
 					<tr>
 						<td>
-							<a href='<?php print $config['url_path']; ?>graph.php?action=view&rra_id=all&local_graph_id=<?php print $graph["local_graph_id"];?>'><img class='graphimage' id='graph_<?php print $graph["local_graph_id"] ?>' src='<?php print $config['url_path']; ?>graph_image.php?local_graph_id=<?php print $graph["local_graph_id"] . "&rra_id=0" . $th_option . (($extra_url_args == "") ? "" : "&$extra_url_args");?>' border='0' alt='<?php print $graph["title_cache"];?>'></a>
+							<a href='<?php print htmlspecialchars($config['url_path'] . "graph.php?action=view&rra_id=all&local_graph_id=" . $graph["local_graph_id"]);?>'><img class='graphimage' id='graph_<?php print $graph["local_graph_id"] ?>' src='<?php print $config['url_path']; ?>graph_image.php?local_graph_id=<?php print $graph["local_graph_id"] . "&rra_id=0" . $th_option . (($extra_url_args == "") ? "" : "&$extra_url_args");?>' border='0' alt='<?php print $graph["title_cache"];?>'></a>
 						</td>
 						<td valign='top' style='padding: 3px;'>
-							<a href='<?php print $config['url_path']; ?>graph.php?action=zoom&local_graph_id=<?php print $graph["local_graph_id"];?>&rra_id=0&<?php print $extra_url_args;?>'><img src='<?php print $config['url_path']; ?>images/graph_zoom.gif' border='0' alt='Zoom Graph' title='Zoom Graph' style='padding: 3px;'></a><br>
-							<a href='<?php print $config['url_path']; ?>graph_xport.php?local_graph_id=<?php print $graph["local_graph_id"];?>&rra_id=0&<?php print $extra_url_args;?>'><img src='<?php print $config['url_path']; ?>images/graph_query.png' border='0' alt='CSV Export' title='CSV Export' style='padding: 3px;'></a><br>
+							<a href='<?php print htmlspecialchars($config['url_path'] . "graph.php?action=zoom&local_graph_id=" . $graph["local_graph_id"] . "&rra_id=0&" . $extra_url_args);?>'><img src='<?php print $config['url_path']; ?>images/graph_zoom.gif' border='0' alt='Zoom Graph' title='Zoom Graph' style='padding: 3px;'></a><br>
+							<a href='<?php print htmlspecialchars($config['url_path'] . "graph_xport.php?local_graph_id=" . $graph["local_graph_id"] . "&rra_id=0&" . $extra_url_args);?>'><img src='<?php print $config['url_path']; ?>images/graph_query.png' border='0' alt='CSV Export' title='CSV Export' style='padding: 3px;'></a><br>
 							<a href='#page_top'><img src='<?php print $config['url_path']; ?>images/graph_page_top.gif' border='0' alt='Page Top' title='Page Top' style='padding: 3px;'></a><br>
 							<?php api_plugin_hook('graph_buttons', array('hook' => 'thumbnails', 'local_graph_id' => $graph["local_graph_id"], 'rra' =>  0, 'view_type' => '')); ?>
 						</td>

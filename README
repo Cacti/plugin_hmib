@@ -47,8 +47,6 @@
 
     --- 1.1 ---
     fix: issue when deleting dead hosts
-    fix: rescan feature not functional
-    fix: searching from host types excludes sysObjectID and sysDesc
     feature: provide statistics for visualization of hmib runtime
 
     --- 1.0 ---

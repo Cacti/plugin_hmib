@@ -47,6 +47,7 @@ if (read_config_option("auth_method") != 0) {
 $page_title = api_plugin_hook_function('page_title', 'Cacti');
 
 ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,8 +63,8 @@ $page_title = api_plugin_hook_function('page_title', 'Cacti');
 	<script type="text/javascript" src="<?php echo $config['url_path'];?>include/jscalendar/calendar.js"></script>
 	<script type="text/javascript" src="<?php echo $config['url_path'];?>include/jscalendar/lang/calendar-en.js"></script>
 	<script type="text/javascript" src="<?php echo $config['url_path'];?>include/jscalendar/calendar-setup.js"></script>
-	<link href="<?php echo $config['url_path']; ?>include/main.css" rel="stylesheet">
-	<link href="<?php echo $config['url_path']; ?>images/favicon.ico" rel="shortcut icon"/>
+	<link type="text/css" href="<?php echo $config['url_path']; ?>include/main.css" rel="stylesheet">
+	<link href="<?php echo $config['url_path']; ?>images/favicon.ico" rel="shortcut icon">
 	<?php api_plugin_hook('page_head'); ?>
 </head>
 <?php if ($oper_mode == OPER_MODE_NATIVE) {?>
@@ -119,5 +120,5 @@ $page_title = api_plugin_hook_function('page_title', 'Cacti');
 	</tr>
 <?php } ?>
 	<tr>
-		<td valign="top" style="padding: 5px; border-right: #aaaaaa 1px solid;">
+		<td valign="top" style="padding: 5px; border-right: #aaaaaa 1px solid;"><div style='position:relative;' id='main'>
 <?php } ?>
