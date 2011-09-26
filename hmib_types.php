@@ -31,7 +31,7 @@ define("MAX_DISPLAY_PAGES", 21);
 $host_types_actions = array(
 	1 => "Delete",
 	2 => "Duplicate"
-	);
+);
 
 /* set default action */
 if (!isset($_REQUEST["action"])) { $_REQUEST["action"] = ""; }
@@ -40,45 +40,44 @@ if (!isset($_REQUEST["action"])) { $_REQUEST["action"] = ""; }
 if (isset($_REQUEST["cancel"])) { $_REQUEST["action"] = ""; }
 
 switch ($_REQUEST["action"]) {
-	case 'save':
-		form_save();
+case 'save':
+	form_save();
 
-		break;
-	case 'actions':
-		form_actions();
+	break;
+case 'actions':
+	form_actions();
 
-		break;
-	case 'edit':
+	break;
+case 'edit':
+	include_once("./include/top_header.php");
+	hmib_host_type_edit();
+	include_once("./include/bottom_footer.php");
+
+	break;
+case 'import':
+	include_once("./include/top_header.php");
+	hmib_host_type_import();
+	include_once("./include/bottom_footer.php");
+
+	break;
+default:
+	if (isset($_REQUEST["scan"])) {
+		rescan_types();
+		header("Location: hmib_types.php");
+		exit;
+	}elseif (isset($_REQUEST["import"])) {
+		header("Location: hmib_types.php?action=import");
+		exit;
+	}elseif (isset($_REQUEST["export"])) {
+		hmib_host_type_export();
+		exit;
+	}else{
 		include_once("./include/top_header.php");
-
-		hmib_host_type_edit();
-
+		hmib_host_type();
 		include_once("./include/bottom_footer.php");
-		break;
-	case 'import':
-		include_once("./include/top_header.php");
+	}
 
-		hmib_host_type_import();
-
-		include_once("./include/bottom_footer.php");
-		break;
-	default:
-		if (isset($_REQUEST["scan"])) {
-			rescan_types();
-			header("Location: hmib_types.php");
-			exit;
-		}elseif (isset($_REQUEST["import"])) {
-			header("Location: hmib_types.php?action=import");
-			exit;
-		}elseif (isset($_REQUEST["export"])) {
-			hmib_host_type_export();
-			exit;
-		}else{
-			include_once("./include/top_header.php");
-			hmib_host_type();
-			include_once("./include/bottom_footer.php");
-		}
-		break;
+	break;
 }
 
 /* --------------------------
@@ -116,7 +115,6 @@ function api_hmib_host_type_remove($host_type_id){
 }
 
 function hmib_host_type_save($host_type_id, $name, $version, $sysDescrMatch, $sysObjectID) {
-
 	$save["id"]            = $host_type_id;
 	$save["name"]          = form_input_validate($name, "name", "", false, 3);
 	$save["version"]       = $version;
@@ -139,7 +137,9 @@ function hmib_host_type_save($host_type_id, $name, $version, $sysDescrMatch, $sy
 
 function hmib_duplicate_host_type($host_type_id, $dup_id, $host_type_title) {
 	if (!empty($host_type_id)) {
-		$host_type = db_fetch_row("SELECT * FROM plugin_hmib_hrSystemTypes WHERE id=$host_type_id");
+		$host_type = db_fetch_row("SELECT * 
+			FROM plugin_hmib_hrSystemTypes 
+			WHERE id=$host_type_id");
 
 		/* create new entry: graph_local */
 		$save["id"] = 0;
@@ -328,12 +328,13 @@ function rescan_types() {
 	/* get all the various device types from the database */
 	$host_types = db_fetch_assoc("SELECT DISTINCT sysObjectID, sysDescr, host_type
 		FROM plugin_hmib_hrSystem
-		WHERE sysObjectID!='' AND sysDescr!=''");
+		WHERE sysObjectID!='' AND sysDescr!='' AND host_type=0");
 
 	/* delete all unknown entries */
 	db_execute("DELETE FROM plugin_hmib_hrSystemTypes WHERE name='" . $new_name . "' AND version= '" . $new_version . "'");
+
 	/* get all known devices types from the device type database */
-	$known_types = db_fetch_assoc("SELECT sysDescrMatch, sysObjectID FROM plugin_hmib_hrSystemTypes");
+	$known_types = db_fetch_assoc("SELECT id, sysDescrMatch, sysObjectID FROM plugin_hmib_hrSystemTypes");
 
 	/* loop through all device rows and look for a matching type */
 	if (sizeof($host_types)) {
@@ -341,8 +342,11 @@ function rescan_types() {
 		$found = FALSE;
 		if (sizeof($known_types)) {
 		foreach($known_types as $known) {
-			if ((preg_match("/" . $known["sysDescrMatch"] . "/i", $type["sysDescr"])) &&
-				(substr_count($type["sysObjectID"], $known["sysObjectID"]))) {
+			db_execute("UPDATE plugin_hmib_hrSystem SET host_type=" . $known["id"] . "
+				WHERE sysObjectID LIKE '%" . $known['sysObjectID'] . "%' AND
+				sysDescrMatch LIKE '%" . $known['sysDescrMatch'] . "%'");
+
+			if ($cnn_id->Affected_Rows()) {
 				$found = TRUE;
 				break;
 			}
@@ -797,7 +801,9 @@ function hmib_host_type_edit() {
 function hmib_get_host_types(&$sql_where, $row_limit, $apply_limits = TRUE) {
 	if ($_REQUEST["filter"] != "") {
 		$sql_where = " WHERE (plugin_hmib_hrSystemTypes.name LIKE '%%" . $_REQUEST["filter"] . "%%' OR
-			plugin_hmib_hrSystemTypes.version LIKE '%%" . $_REQUEST["filter"] . "%%')";
+			plugin_hmib_hrSystemTypes.version LIKE '%%" . $_REQUEST["filter"] . "%%' OR
+			plugin_hmib_hrSystemTypes.sysObjectID LIKE '%%" . $_REQUEST["filter"] . "%%' OR
+			plugin_hmib_hrSystemTypes.sysDescrMatch LIKE '%%" . $_REQUEST["filter"] . "%%')";
 	}
 
 	$query_string = "SELECT *
@@ -1053,11 +1059,10 @@ function hmib_host_type_filter() {
 	<script type="text/javascript">
 	<!--
 	function applyFilterChange(objForm) {
-		strURL = strURL + '&rows=' + objForm.rows.value;
+		strURL = '?rows=' + objForm.rows.value;
 		strURL = strURL + '&filter=' + objForm.filter.value;
 		document.location = strURL;
 	}
-
 	-->
 	</script>
 	<tr>
@@ -1065,6 +1070,13 @@ function hmib_host_type_filter() {
 		<td>
 			<table cellpadding="1" cellspacing="0">
 				<tr>
+					</td>
+					<td width="40">
+						&nbsp;Search:&nbsp;
+					</td>
+					<td width="1">
+						<input type="text" name="filter" size="20" value="<?php print $_REQUEST["filter"];?>">
+					</td>
 					<td nowrap style='white-space: nowrap;' width="40">
 						&nbsp;Rows:&nbsp;
 					</td>
@@ -1079,13 +1091,6 @@ function hmib_host_type_filter() {
 							}
 							?>
 						</select>
-					</td>
-					<td width="40">
-						&nbsp;Search:&nbsp;
-					</td>
-					<td width="1">
-						<input type="text" name="filter" size="20" value="<?php print $_REQUEST["filter"];?>">
-					</td>
 					<td>
 						&nbsp;<input type="submit" name="go" title="Submit Query" value="Go">
 					</td>

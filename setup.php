@@ -671,7 +671,7 @@ function hmib_config_arrays() {
 		$messages['hmib_message'] = array('message' => $_SESSION['hmib_message'], 'type' => 'info');
 	}
 
-	$menu["Management"]['plugins/hmib/hmib_types.php'] = "Host MIB OS Types";
+	$menu["Management"]['plugins/hmib/hmib_types.php'] = "OS Types";
 }
 
 function hmib_draw_navigation_text ($nav) {
