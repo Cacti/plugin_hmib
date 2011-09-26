@@ -331,7 +331,9 @@ function rescan_types() {
 		WHERE sysObjectID!='' AND sysDescr!='' AND host_type=0");
 
 	/* delete all unknown entries */
-	db_execute("DELETE FROM plugin_hmib_hrSystemTypes WHERE name='" . $new_name . "' AND version= '" . $new_version . "'");
+	db_execute("DELETE FROM plugin_hmib_hrSystemTypes 
+		WHERE name='" . $new_name . "' 
+		AND version='" . $new_version . "'");
 
 	/* get all known devices types from the device type database */
 	$known_types = db_fetch_assoc("SELECT id, sysDescrMatch, sysObjectID FROM plugin_hmib_hrSystemTypes");
@@ -344,9 +346,9 @@ function rescan_types() {
 		foreach($known_types as $known) {
 			db_execute("UPDATE plugin_hmib_hrSystem SET host_type=" . $known["id"] . "
 				WHERE sysObjectID LIKE '%" . $known['sysObjectID'] . "%' AND
-				sysDescrMatch LIKE '%" . $known['sysDescrMatch'] . "%'");
+				sysDescr LIKE '%" . $known['sysDescrMatch'] . "%'");
 
-			if ($cnn_id->Affected_Rows()) {
+			if ($cnn_id->Affected_Rows() > 0) {
 				$found = TRUE;
 				break;
 			}
@@ -806,9 +808,12 @@ function hmib_get_host_types(&$sql_where, $row_limit, $apply_limits = TRUE) {
 			plugin_hmib_hrSystemTypes.sysDescrMatch LIKE '%%" . $_REQUEST["filter"] . "%%')";
 	}
 
-	$query_string = "SELECT *
+	$query_string = "SELECT plugin_hmib_hrSystemTypes.*, count(host_type) AS totals
 		FROM plugin_hmib_hrSystemTypes
+		LEFT JOIN plugin_hmib_hrSystem
+		ON plugin_hmib_hrSystemTypes.id=plugin_hmib_hrSystem.host_type
 		$sql_where
+		GROUP BY plugin_hmib_hrSystemTypes.id
 		ORDER BY " . $_REQUEST["sort_column"] . " " . $_REQUEST["sort_direction"];
 
 	if ($apply_limits) {
@@ -937,6 +942,7 @@ function hmib_host_type() {
 	$display_text = array(
 		"name" => array("Host Type Name", "ASC"),
 		"version" => array("OS Version", "DESC"),
+		"totals" => array("Hosts", "DESC"),
 		"sysObjectID" => array("SNMP ObjectID", "DESC"),
 		"sysDescrMatch" => array("SNMP Sys Description Match", "ASC"));
 
@@ -948,6 +954,7 @@ function hmib_host_type() {
 			form_alternate_row_color($colors["alternate"],$colors["light"],$i, 'line' . $host_type["id"]); $i++;
 			form_selectable_cell('<a class="linkEditMain" href="hmib_types.php?action=edit&id=' . $host_type["id"] . '">' . $host_type["name"] . '</a>', $host_type["id"]);
 			form_selectable_cell($host_type["version"], $host_type["id"]);
+			form_selectable_cell($host_type["totals"], $host_type["id"]);
 			form_selectable_cell($host_type["sysObjectID"], $host_type["id"]);
 			form_selectable_cell($host_type["sysDescrMatch"], $host_type["id"]);
 			form_checkbox_cell($host_type["name"], $host_type["id"]);
