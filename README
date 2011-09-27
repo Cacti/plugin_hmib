@@ -51,6 +51,7 @@
     fix: respect Host edit permissions
     fix: general UI inconsistencies
     fix: rescan desice was broken
+    fix: fix various drill downs from summary page
     feature: allow sysDescMatch and sysObjectIDMatch use regex
 
     --- 1.1 ---

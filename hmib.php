@@ -2690,7 +2690,7 @@ function hmib_summary() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			$host_id     = db_fetch_cell("SELECT id FROM host WHERE host_template_id=$htsd");
-			$graph_url   = hmib_get_graph_url($htdq, 0, $host_id, "");
+			$graph_url   = hmib_get_graph_url($htdq, 0, $host_id, $row["id"]);
 			$graph_ncpu  = hmib_get_graph_url($hcpudq, $row["id"], 0, "", $row["cpus"], false);
 			$graph_acpu  = hmib_get_graph_url($hcpudq, $row["id"], 0, "", round($row["avgCpuPercent"],2), false);
 			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row["id"], 0, "", round($row["maxCpuPercent"],2), false);
@@ -2701,10 +2701,10 @@ function hmib_summary() {
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
 			echo "<td style='white-space:nowrap;' width='120'>";
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=devices&type=" . $row["id"]) . "'><img src='$host' title='View Devices' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=storage&type=" . $row["id"]) . "'><img src='$storage' title='View Storage' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=hardware&type=" . $row["id"]) . "'><img src='$hardw' title='View Hardware' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=storage&ostype=" . $row["id"]) . "'><img src='$storage' title='View Storage' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=hardware&ostype=" . $row["id"]) . "'><img src='$hardw' title='View Hardware' align='absmiddle' border='0'></a>";
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=running&type=" . $row["id"]) . "'><img src='$proc' title='View Processes' align='absmiddle' border='0'></a>";
-			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=software&type=" . $row["id"]) . "'><img src='$inven' title='View Software Inventory' align='absmiddle' border='0'></a>";
+			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=software&ostype=" . $row["id"]) . "'><img src='$inven' title='View Software Inventory' align='absmiddle' border='0'></a>";
 			echo $graph_url;
 			echo "</td>";
 
