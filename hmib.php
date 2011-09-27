@@ -194,7 +194,7 @@ function hmib_history() {
 	<script type="text/javascript">
 	<!--
 	function applyRunFilter(objForm) {
-		strURL = '?action=running';
+		strURL = '?action=history';
 		strURL = strURL + '&template=' + objForm.template.value;
 		strURL = strURL + '&filter='   + objForm.filter.value;
 		strURL = strURL + '&rows='     + objForm.rows.value;
@@ -217,7 +217,7 @@ function hmib_history() {
 	?>
 	<tr bgcolor="#<?php print $colors["panel"];?>">
 		<td>
-			<form name="history" method="get" action="hmib.php?action=running">
+			<form name="history" method="get" action="hmib.php?action=history">
 			<table cellpadding="0" cellspacing="0">
 				<tr>
 					<td nowrap style='white-space: nowrap;' width="60">
@@ -335,7 +335,7 @@ function hmib_history() {
 					</td>
 				</tr>
 			</table>
-			<input type='hidden' name='action' value='running'>
+			<input type='hidden' name='action' value='history'>
 			</form>
 		</td>
 	</tr>
@@ -441,7 +441,7 @@ function hmib_history() {
 		"description" => array("Name",        array("ASC",  "left")),
 		"hrswls.name" => array("Process",     array("DESC", "left")),
 		"last_seen"   => array("Last Seen",   array("ASC",  "right")),
-		"total_time"  => array("Time (D:H:M)",  array("DESC", "right"))
+		"total_time"  => array("Use Time (D:H:M)",  array("DESC", "right"))
 	);
 
 	hmib_header_sort($display_text, get_request_var_request("sort_column"), get_request_var_request("sort_direction"), "action=history");
@@ -3127,11 +3127,11 @@ function hmib_header_sort($header_items, $sort_column, $sort_direction, $jsprefi
 		}
 
 		if (($db_column == "") || (substr_count($db_column, "nosort"))) {
-			print "<th $align " . ((($i) == count($header_items)) ? "colspan='$last_item_colspan'>" : ">");
+			print "<th style='vertical-align:bottom;' $align " . ((($i) == count($header_items)) ? "colspan='$last_item_colspan'>" : ">");
 			print "<span style='cursor:pointer;display:block;text-align:$talign;' class='textSubHeaderDark'>" . $display_text . "</span>";
 			print "</th>\n";
 		}else{
-			print "<th $align " . ((($i) == count($header_items)) ? "colspan='$last_item_colspan'>" : ">");
+			print "<th style='vertical-align:bottom;' $align " . ((($i) == count($header_items)) ? "colspan='$last_item_colspan'>" : ">");
 			print "<span style='cursor:pointer;display:block;text-align:$talign;' class='textSubHeaderDark' onClick='sortMe_" . $count . "(\"" . $db_column . "\", \"" . $direction . "\")'>" . $display_text . "</span>";
 			print "</th>\n";
 		}
