@@ -441,7 +441,7 @@ function hmib_history() {
 		"description" => array("Name",        array("ASC",  "left")),
 		"hrswls.name" => array("Process",     array("DESC", "left")),
 		"last_seen"   => array("Last Seen",   array("ASC",  "right")),
-		"total_time"  => array("Use Time (D:H:M)",  array("DESC", "right"))
+		"total_time"  => array("Use Time (d:h:m)",  array("DESC", "right"))
 	);
 
 	hmib_header_sort($display_text, get_request_var_request("sort_column"), get_request_var_request("sort_direction"), "action=history");
@@ -2466,8 +2466,8 @@ function hmib_tabs() {
 		"storage"  => "Storage",
 		"hardware" => "Hardware",
 		"running"  => "Processes",
-		"software" => "Inventory",
 		"history"  => "Use History",
+		"software" => "Inventory",
 		"graphs"   => "Graphs");
 
 	if (isset($_REQUEST["host_id"])) {

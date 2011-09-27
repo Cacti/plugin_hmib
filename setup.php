@@ -190,6 +190,7 @@ function hmib_setup_table () {
 	db_execute("CREATE TABLE IF NOT EXISTS `plugin_hmib_hrSWRun_last_seen` (
 		`host_id` int(10) unsigned NOT NULL,
 		`name` varchar(64) NOT NULL,
+		`total_time` bigint(20) unsigned NOT NULL default '0',
 		`last_seen` timestamp NOT NULL default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 		PRIMARY KEY  (`host_id`, `name`),
 		INDEX `name` (`name`))
@@ -260,7 +261,7 @@ function hmib_setup_table () {
 		`notes` varchar(255) NOT NULL default '',
 		PRIMARY KEY  (`name`))
 		ENGINE=MyISAM
-		COMMENT='The process names that we have not interest in by default';");
+		COMMENT='The process names that we are interested in tracking at the host level';");
 
 	db_execute("INSERT INTO `plugin_hmib_hrSystemTypes` VALUES
 		(1,'.1.3.6.1.4.1.311.1.1.3.1.1',  'Version 6.1','Windows 7','7'),
