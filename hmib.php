@@ -205,7 +205,7 @@ function hmib_history() {
 	}
 
 	function clearRun() {
-		strURL = '?action=running&clear=';
+		strURL = '?action=history&clear=';
 		document.location = strURL;
 	}
 	-->
@@ -2713,8 +2713,8 @@ function hmib_summary() {
 			$downHosts = hmib_get_device_status_url($row["downHosts"], $row["host_type"], 1);
 			$disaHosts = hmib_get_device_status_url($row["disabledHosts"], $row["host_type"], 0);
 
-			echo "<td style='white-space:nowrap;' align='left' width='100'>" . ($row["name"] != "" ? $row["name"]:"Unknown") . "</td>";
-			echo "<td style='white-space:nowrap;' align='right' width='100'>" . $row["version"] . "</td>";
+			echo "<td style='white-space:nowrap;' align='left' width='80'>" . ($row["name"] != "" ? $row["name"]:"Unknown") . "</td>";
+			echo "<td style='white-space:nowrap;' align='right' width='20'>" . $row["version"] . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $upHosts . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $recHosts . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $downHosts . "</td>";
@@ -2925,7 +2925,7 @@ function hmib_summary() {
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=running&process=" . $row["name"]) . "'><img src='$proc' title='View Processes' align='absmiddle' border='0'></a>";
 			echo $graph_url;
 			echo "</td>";
-			echo "<td align='left' width='100'>" . $row["name"] . "</td>";
+			echo "<td align='left' width='80'>" . $row["name"] . "</td>";
 			echo "<td align='right'>" . $row["paths"] . "</td>";
 			echo "<td align='right'>" . $row["numHosts"] . "</td>";
 			echo "<td align='right'>" . $row["numProcesses"] . "</td>";
