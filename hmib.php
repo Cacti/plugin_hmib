@@ -3127,11 +3127,11 @@ function hmib_header_sort($header_items, $sort_column, $sort_direction, $jsprefi
 		}
 
 		if (($db_column == "") || (substr_count($db_column, "nosort"))) {
-			print "<th style='vertical-align:bottom;' $align " . ((($i) == count($header_items)) ? "colspan='$last_item_colspan'>" : ">");
+			print "<th class='tableSubHeaderColumn' style='vertical-align:bottom;' $align " . ((($i) == count($header_items)) ? "colspan='$last_item_colspan'>" : ">");
 			print "<span style='cursor:pointer;display:block;text-align:$talign;' class='textSubHeaderDark'>" . $display_text . "</span>";
 			print "</th>\n";
 		}else{
-			print "<th style='vertical-align:bottom;' $align " . ((($i) == count($header_items)) ? "colspan='$last_item_colspan'>" : ">");
+			print "<th class='tableSubHeaderColumn' style='vertical-align:bottom;' $align " . ((($i) == count($header_items)) ? "colspan='$last_item_colspan'>" : ">");
 			print "<span style='cursor:pointer;display:block;text-align:$talign;' class='textSubHeaderDark' onClick='sortMe_" . $count . "(\"" . $db_column . "\", \"" . $direction . "\")'>" . $display_text . "</span>";
 			print "</th>\n";
 		}
