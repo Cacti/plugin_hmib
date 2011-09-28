@@ -2478,7 +2478,7 @@ function hmib_tabs() {
 	$current_tab = $_REQUEST["action"];
 
 	/* draw the tabs */
-	print "<table class='report' width='100%' cellspacing='0' cellpadding='3' align='center'><tr>\n";
+	print "<table class='tabs' width='100%' cellspacing='0' cellpadding='3' align='center'><tr>\n";
 
 	if (sizeof($tabs)) {
 		foreach (array_keys($tabs) as $tab_short_name) {
