@@ -2015,7 +2015,7 @@ function hmib_devices() {
 
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
 			echo "<td width='120'>";
-			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=dashboard&reset=1&device=" . $row["host_id"]) . "'><img src='$dashboard' title='View Dashboard' align='absmiddle' border='0'></a>";
+			//echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=dashboard&reset=1&device=" . $row["host_id"]) . "'><img src='$dashboard' title='View Dashboard' align='absmiddle' border='0'></a>";
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=storage&reset=1&device=" . $row["host_id"]) . "'><img src='$storage' title='View Storage' align='absmiddle' border='0'></a>";
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=hardware&reset=1&device=" . $row["host_id"]) . "'><img src='$hardw' title='View Hardware' align='absmiddle' border='0'></a>";
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=running&reset=1&device=" . $row["host_id"]) . "'><img src='$proc' title='View Processes' align='absmiddle' border='0'></a>";
