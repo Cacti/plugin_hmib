@@ -2529,13 +2529,13 @@ function hmib_summary() {
 	/* remember these search fields in session vars so we don't have
 	 * to keep passing them around
 	 */
-	if (!isset($_REQUEST["sect"])) {
+	if (!isset($_REQUEST["area"])) {
 		$_REQUEST["sort_column"] = "downHosts";
 		$_REQUEST["sort_direction"] = "DESC";
 		load_current_session_value("sort_column", "sess_hmib_host_sort_column", "downHosts");
 		load_current_session_value("sort_direction", "sess_hmib_host_sort_direction", "ASC");
 		load_current_session_value("htop", "sess_hmib_host_top", read_config_option("hmib_top_types"));
-	}elseif ($_REQUEST["sect"] == "hosts") {
+	}elseif ($_REQUEST["area"] == "hosts") {
 		/* if the user pushed the 'clear' button */
 		if (isset($_REQUEST["clearh"])) {
 			kill_session_var("sess_hmib_host_top");
@@ -2570,13 +2570,13 @@ function hmib_summary() {
 	<script type="text/javascript">
 	<!--
 	function applyHostFilter(objForm) {
-		strURL = '?action=summary&sect=hosts';
+		strURL = '?action=summary&area=hosts';
 		strURL = strURL + '&htop=' + objForm.htop.value;
 		document.location = strURL;
 	}
 
 	function clearHosts() {
-		strURL = '?sect=hosts&clearh=';
+		strURL = '?area=hosts&clearh=';
 		document.location = strURL;
 	}
 	-->
@@ -2670,7 +2670,7 @@ function hmib_summary() {
 		"avgProcesses"  => array("Avg Proc",    array("DESC", "right")),
 		"maxProcesses"  => array("Max Proc",    array("DESC", "right")));
 
-	hmib_header_sort($display_text, get_request_var_request("sort_column"), get_request_var_request("sort_direction"), "action=summary&sect=hosts");
+	hmib_header_sort($display_text, get_request_var_request("sort_column"), get_request_var_request("sort_direction"), "action=summary&area=hosts");
 
 	/* set some defaults */
 	$url     = $config["url_path"] . "plugins/hmib/hmib.php";
@@ -2737,7 +2737,7 @@ function hmib_summary() {
 
 	html_end_box();
 
-	if (!isset($_REQUEST["sect"])) {
+	if (!isset($_REQUEST["area"])) {
 		$_REQUEST["sort_column"] = "maxCpu";
 		$_REQUEST["sort_direction"] = "DESC";
 		load_current_session_value("filter", "sess_hmib_proc_filter", "");
@@ -2745,7 +2745,7 @@ function hmib_summary() {
 		load_current_session_value("sort_column", "sess_hmib_proc_sort_column", "maxCpu");
 		load_current_session_value("sort_direction", "sess_hmib_proc_sort_direction", "DESC");
 		load_current_session_value("ptop", "sess_hmib_proc_top", read_config_option("hmib_top_processes"));
-	}elseif ($_REQUEST["sect"] == "processes") {
+	}elseif ($_REQUEST["area"] == "processes") {
 		/* if the user pushed the 'clear' button */
 		if (isset($_REQUEST["clearp"])) {
 			kill_session_var("sess_hmib_proc_top");
@@ -2828,7 +2828,7 @@ function hmib_summary() {
 	<script type="text/javascript">
 	<!--
 	function applyProcFilter(objForm) {
-		strURL = '?action=summary&sect=processes';
+		strURL = '?action=summary&area=processes';
 		strURL = strURL + '&filter='   + objForm.filter.value;
 		strURL = strURL + '&process='   + objForm.process.value;
 		strURL = strURL + '&ptop='   + objForm.ptop.value;
@@ -2836,7 +2836,7 @@ function hmib_summary() {
 	}
 
 	function clearProc() {
-		strURL = '?action=summary&sect=processes&clearp';
+		strURL = '?action=summary&area=processes&clearp';
 		document.location = strURL;
 	}
 	-->
@@ -2904,7 +2904,7 @@ function hmib_summary() {
 		"avgMemory"     => array("Avg Memory",   array("DESC", "right")),
 		"maxMemory"     => array("Max Memory",   array("DESC", "right")));
 
-	hmib_header_sort($display_text, get_request_var_request("sort_column"), get_request_var_request("sort_direction"), "action=summary&sect=processes");
+	hmib_header_sort($display_text, get_request_var_request("sort_column"), get_request_var_request("sort_direction"), "action=summary&area=processes");
 
 	/* set some defaults */
 	$url  = $config["url_path"] . "plugins/hmib/hmib.php";
