@@ -45,6 +45,9 @@
 
 ----[ Changelog
 
+    --- SVN ---
+    fix: Workaround bug in IE6
+
     --- 1.2 ---
     feature: provide use history interface
     fix: make UI W3C compliant
