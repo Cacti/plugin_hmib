@@ -691,6 +691,7 @@ function hmib_draw_navigation_text ($nav) {
 	$nav["hmib.php:storage"]   = array("title" => "Host MIB Storage", "mapping" => "", "url" => "hmib.php", "level" => "0");
 	$nav["hmib.php:hardware"]  = array("title" => "Host MIB Hardware", "mapping" => "", "url" => "hmib.php", "level" => "0");
 	$nav["hmib.php:running"]   = array("title" => "Host MIB Running Processes", "mapping" => "", "url" => "hmib.php", "level" => "0");
+	$nav["hmib.php:history"]   = array("title" => "Host MIB Process Use History", "mapping" => "", "url" => "hmib.php", "level" => "0");
 	$nav["hmib.php:software"]  = array("title" => "Host MIB Software Inventory", "mapping" => "", "url" => "hmib.php", "level" => "0");
 	$nav["hmib.php:graphs"]    = array("title" => "Host MIB Graphs", "mapping" => "", "url" => "hmib.php", "level" => "0");
 

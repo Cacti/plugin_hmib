@@ -47,6 +47,7 @@
 
     --- SVN ---
     fix: Workaround bug in IE6
+    fix: Don't throw warning when using 'Use History'
 
     --- 1.2 ---
     feature: provide use history interface
