@@ -4,7 +4,7 @@
     Contact ........ 
     Home Site ...... http://www.cacti.net
     Program ........ Host MIB Audit Tool
-    Version ........ 1.2
+    Version ........ 1.3
     Purpose ........ Collect Host MIB Table Information for Reporting
 
 *******************************************************************************/
@@ -45,9 +45,10 @@
 
 ----[ Changelog
 
-    --- SVN ---
+    --- 1.3 ---
     fix: Workaround bug in IE6
     fix: Don't throw warning when using 'Use History'
+    feature: Support Ugroup Plugin
 
     --- 1.2 ---
     feature: provide use history interface
