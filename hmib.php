@@ -378,7 +378,7 @@ function hmib_history() {
 
 	$sql = "SELECT hrswls.*, host.hostname, host.description, host.disabled
 		FROM plugin_hmib_hrSWRun_last_seen AS hrswls
-		INNER JOIN host 
+		INNER JOIN host
 		ON host.id=hrswls.host_id
 		INNER JOIN plugin_hmib_hrSystem AS hrs
 		ON hrs.host_id=host.id
@@ -455,7 +455,7 @@ function hmib_history() {
 			}else{
 				$host_url    = $row["hostname"];
 			}
-			
+
 			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>",  $row["description"] . "</strong> [" . $host_url . "]"):$row["description"] . "</strong> [" . $host_url . "]") . "</td>";
 			echo "<td style='white-space:nowrap;' align='left' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["name"]):$row["name"]) . "</td>";
 			echo "<td style='white-space:nowrap;' align='right' title='Time when last seen running' width='120'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["last_seen"]):$row["last_seen"]) . "</td>";
@@ -770,7 +770,7 @@ function hmib_running() {
 
 	$sql = "SELECT hrswr.*, host.hostname, host.description, host.disabled
 		FROM plugin_hmib_hrSWRun AS hrswr
-		INNER JOIN host 
+		INNER JOIN host
 		ON host.id=hrswr.host_id
 		INNER JOIN plugin_hmib_hrSystem AS hrs
 		ON hrs.host_id=host.id
@@ -860,7 +860,7 @@ function hmib_running() {
 			}else{
 				$host_url    = $row["hostname"];
 			}
-			
+
 			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>",  $row["description"] . "</strong> [" . $host_url . "]"):$row["description"] . "</strong> [" . $host_url . "]") . "</td>";
 			echo "<td style='white-space:nowrap;' align='left' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["name"]):$row["name"]) . "</td>";
 			echo "<td style='white-space:nowrap;' align='left' title='" . $row["path"] . "' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", title_trim($row["path"],40)):title_trim($row["path"],40)) . "</td>";
@@ -1118,7 +1118,7 @@ function hmib_hardware() {
 						?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">					
+					<td nowrap style='white-space: nowrap;' width="60">
 						&nbsp;Search:&nbsp;
 					</td>
 					<td>
@@ -2441,7 +2441,7 @@ function hmib_software() {
 			}else{
 				$host_url    = $row["hostname"];
 			}
-			
+
 			echo "<td style='white-space:nowrap;' align='left' width='200'><strong>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["description"] . "</strong> [" . $host_url):$row["description"] . "</strong> [" . $host_url) . "]</td>";
 			echo "<td style='white-space:nowrap;' align='left'>"  . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["name"]):$row["name"]) . "</td>";
 			echo "<td style='white-space:nowrap;' align='left'>"  . (isset($hmib_hrSWTypes[$row["type"]]) ? $hmib_hrSWTypes[$row["type"]]:"Unknown") . "</td>";
@@ -3025,13 +3025,8 @@ function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = 
 	if (!empty($data_query)) {
 		$sql    = "SELECT DISTINCT gl.id
 			FROM graph_local AS gl
-			INNER JOIN snmp_query_graph AS sqg ON gl.graph_template_id=sqg.graph_template_id
-			INNER JOIN graph_templates_item AS gti ON gl.id=gti.local_graph_id
-			INNER JOIN data_template_rrd AS dtr ON gti.task_item_id=dtr.id
-			INNER JOIN data_template_data AS dtd ON dtd.local_data_id=dtr.local_data_id
-			INNER JOIN data_input_data AS did ON did.data_template_data_id=dtd.id
-			WHERE sqg.snmp_query_id=$data_query " .
-			($index!='' ? " AND did.value IN ('$index')":"") .
+			WHERE gl.snmp_query_id=$data_query " .
+			($index!='' ? " AND gl.snmp_index IN ('$index')":"") .
 			($host_id!="" ? " AND gl.host_id=$host_id":"") .
 			($hstr!="" ? " AND gl.host_id IN $hstr":"");
 

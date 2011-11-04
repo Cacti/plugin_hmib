@@ -45,6 +45,9 @@
 
 ----[ Changelog
 
+    --- 1.4 ---
+    fix: Performance issues when viewing pages
+
     --- 1.3 ---
     fix: Workaround bug in IE6
     fix: Don't throw warning when using 'Use History'
