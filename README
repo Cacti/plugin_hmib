@@ -45,6 +45,9 @@
 
 ----[ Changelog
 
+    --- SVN ---
+    bug#0002123: hmib does not handle sysContact or other field that contains an apostrophe
+
     --- 1.4 ---
     fix: Performance issues when viewing pages
     fix: Pagination issues with Use History

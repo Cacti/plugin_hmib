@@ -536,7 +536,7 @@ function checkHost($host_id) {
 }
 
 function collect_hrSystem(&$host) {
-	global $hrSystem;
+	global $hrSystem, $cnn_id;
 
 	if (sizeof($host)) {
 		debug("Polling hrSystem from '" . $host["description"] . "[" . $host["hostname"] . "]'");
@@ -570,7 +570,7 @@ function collect_hrSystem(&$host) {
 			}
 
 			if (!empty($key)) {
-				$set_string .= (strlen($set_string) ? ",":"") . $key . "='" . sql_sanitize(trim($mib["value"], ' "')) . "'";
+				$set_string .= (strlen($set_string) ? ", ":"") . $key . "=" . $cnn_id->qstr(trim($mib["value"]));
 			}
 		}
 		}
