@@ -754,14 +754,14 @@ function hmib_host_type_edit() {
 	"sysDescrMatch" => array(
 		"method" => "textbox",
 		"friendly_name" => "System Description Match",
-		"description" => "Provide key information to help HMIB detect the type of Host.  Both SQL Where and Perl Regex are supported.  SQL Where wildcard character is the '%' sign.",
+		"description" => "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues.",
 		"value" => "|arg1:sysDescrMatch|",
 		"max_length" => "250"
 		),
 	"sysObjectID" => array(
 		"method" => "textbox",
 		"friendly_name" => "Vendor snmp Object ID",
-		"description" => "Provide key information to help HMIB detect the type of Host.  Both SQL Where and Perl Regex are supported.  SQL Where wildcard character is the '%' sign.",
+		"description" => "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues.",
 		"value" => "|arg1:sysObjectID|",
 		"max_length" => "250"
 		),

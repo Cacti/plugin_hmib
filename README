@@ -4,7 +4,7 @@
     Contact ........ 
     Home Site ...... http://www.cacti.net
     Program ........ Host MIB Audit Tool
-    Version ........ 1.4
+    Version ........ 1.5
     Purpose ........ Collect Host MIB Table Information for Reporting
 
 *******************************************************************************/
@@ -45,8 +45,9 @@
 
 ----[ Changelog
 
-    --- SVN ---
+    --- 1.5 ---
     bug#0002123: hmib does not handle sysContact or other field that contains an apostrophe
+    fix: Remove regex support for SysDesc as it is breaking discovery
 
     --- 1.4 ---
     fix: Performance issues when viewing pages
