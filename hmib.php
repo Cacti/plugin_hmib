@@ -890,8 +890,8 @@ cacti_log(__FUNCTION__ . " totals: " . serialize($totals), false, "TEST");
 	print "<td><b>Total Size [MB]:</b> " . round($totals["memory"]/1024,2) . "</td>";
 	print "</tr>";
 	print "<tr>";
-	print "<td><b>Avg. CPU [h]:</b> " . round($totals["cpu"]/(3600*$total_rows),0) . "</td>";
-	print "<td><b>Avg. Size [MB]:</b> " . round($totals["memory"]/(1024*$total_rows),2) . "</td>";
+	print "<td><b>Avg. CPU [h]:</b> " . ($total_rows ? round($totals["cpu"]/(3600*$total_rows),0) : 0) . "</td>";
+	print "<td><b>Avg. Size [MB]:</b> " . ($total_rows ? round($totals["memory"]/(1024*$total_rows),2) : 0) . "</td>";
 	print "</tr>";
 	html_end_box(false);
 }
