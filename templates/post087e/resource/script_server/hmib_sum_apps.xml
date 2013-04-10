@@ -28,6 +28,16 @@
 			<direction>output</direction>
 			<query_name>perfMemory</query_name>
 		</appMemory>
+		<appAvgMemory>
+			<name>Average Running Memory</name>
+			<direction>output</direction>
+			<query_name>perfAvgMemory</query_name>
+		</appAvgMemory>
+		<appMaxMemory>
+			<name>Maximum Running Memory</name>
+			<direction>output</direction>
+			<query_name>perfMaxMemory</query_name>
+		</appMaxMemory>
 		<appCpu>
 			<name>Total CPU</name>
 			<direction>output</direction>

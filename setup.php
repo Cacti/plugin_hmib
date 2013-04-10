@@ -343,7 +343,7 @@ function hmib_setup_table () {
 function hmib_version () {
 	return array(
 		'name' 		=> 'hmib',
-		'version' 	=> '1.5',
+		'version' 	=> '2.0',
 		'longname'	=> 'Host MIB Tool',
 		'author'	=> 'The Cacti Group',
 		'homepage'	=> 'http://www.cacti.net',
@@ -431,92 +431,6 @@ function hmib_config_settings () {
 				30 => "30 Processes",
 				40 => "40 Processes",
 				50 => "50 Processes")
-			),
-		"hmib_host_templates" => array(
-			"friendly_name" => "Host Template Association",
-			"method" => "spacer",
-			),
-		"hmib_summary_host_template" => array(
-			"friendly_name" => "Host MIB Summary Device Template",
-			"description" => "Select the Host Template associated with the Host MIB
-			summary device.  This device will contain graphs for all summary
-			process and host type metrics.",
-			"method" => "drop_sql",
-			"default" => "",
-			"none_value" => "N/A",
-			"sql" => "SELECT id, name FROM host_template ORDER BY name",
-			),
-		"hmib_graphs" => array(
-			"friendly_name" => "Data Query Associations",
-			"method" => "spacer",
-			),
-		"hmib_dq_host_type" => array(
-			"friendly_name" => "Host Type Data Query",
-			"description" => "Select the Data Query associated with the Host MIB Host Type aggregation.  This will be
-			used for action icon placement.",
-			"method" => "drop_sql",
-			"default" => "",
-			"none_value" => "N/A",
-			"sql" => "SELECT id, name FROM snmp_query ORDER BY name",
-			),
-		"hmib_dq_host_cpu" => array(
-			"friendly_name" => "Host MIB CPU Data Query",
-			"description" => "Select the Data Query associated with the Host CPU Graphs.  This will be used for action
-			icon placement.",
-			"method" => "drop_sql",
-			"default" => "",
-			"none_value" => "N/A",
-			"sql" => "SELECT id, name FROM snmp_query ORDER BY name",
-			),
-		"hmib_dq_host_disk" => array(
-			"friendly_name" => "Host MIB Disk Data Query",
-			"description" => "Select the Data Query associated with the Host Disk Graphs.  This will be used for action
-			icon placement.",
-			"method" => "drop_sql",
-			"default" => "",
-			"none_value" => "N/A",
-			"sql" => "SELECT id, name FROM snmp_query ORDER BY name",
-			),
-		"hmib_dq_applications" => array(
-			"friendly_name" => "Host Mib Application Data Query",
-			"description" => "Select the Data Query associated with the Host MIB Running Applications.  This will be
-			used for action icon placement.",
-			"method" => "drop_sql",
-			"default" => "",
-			"none_value" => "N/A",
-			"sql" => "SELECT id, name FROM snmp_query ORDER BY name",
-			),
-		"hmib_templates" => array(
-			"friendly_name" => "Graph Template Associations",
-			"method" => "spacer",
-			),
-		"hmib_gt_processes" => array(
-			"friendly_name" => "Host MIB Processes Template",
-			"description" => "Select the Graph Template associated with the Host Process Graphs.  This will be used for action
-			icon placement.",
-			"method" => "drop_sql",
-			"default" => "",
-			"none_value" => "N/A",
-			"sql" => "SELECT gt.id, gt.name
-				FROM graph_templates AS gt
-				LEFT JOIN snmp_query_graph AS sqg
-				ON gt.id=sqg.graph_template_id
-				WHERE sqg.id IS NULL
-				ORDER BY name",
-			),
-		"hmib_gt_users" => array(
-			"friendly_name" => "Host MIB Users Template",
-			"description" => "Select the Graph Template associated with the Host Logged on User Graphs.  This will be used
-			for action icon placement.",
-			"method" => "drop_sql",
-			"default" => "",
-			"none_value" => "N/A",
-			"sql" => "SELECT gt.id, gt.name
-				FROM graph_templates AS gt
-				LEFT JOIN snmp_query_graph AS sqg
-				ON gt.id=sqg.graph_template_id
-				WHERE sqg.id IS NULL
-				ORDER BY name",
 			),
 		"hmib_autodiscovery_header" => array(
 			"friendly_name" => "Host Auto Discovery Frequency",

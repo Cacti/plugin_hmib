@@ -1997,10 +1997,21 @@ function hmib_devices() {
 	$graphs    = $config["url_path"] . "plugins/hmib/images/view_graphs.gif";
 	$nographs  = $config["url_path"] . "plugins/hmib/images/view_graphs_disabled.gif";
 
-	$htdq    = read_config_option("hmib_dq_host_type");
-	$hcpudq  = read_config_option("hmib_dq_host_cpu");
-	$hugt    = read_config_option("hmib_gt_users");
-	$hpgt    = read_config_option("hmib_gt_processes");
+	$htdq = db_fetch_cell("SELECT id 
+		FROM snmp_query 
+		WHERE hash='137aeab842986a76cf5bdef41b96c9a3'");
+
+	$hcpudq = db_fetch_cell("SELECT id 
+		FROM snmp_query 
+		WHERE hash='0d1ab53fe37487a5d0b9e1d3ee8c1d0d'");
+
+	$hugt    = db_fetch_cell("SELECT id 
+		FROM graph_templates 
+		WHERE hash='e8462bbe094e4e9e814d4e681671ea82'");
+
+	$hpgt    = db_fetch_cell("SELECT id 
+		FROM graph_templates 
+		WHERE hash='62205afbd4066e5c4700338841e3901e'");
 
 	$i = 0;
 	if (sizeof($rows)) {
@@ -2680,11 +2691,25 @@ function hmib_summary() {
 	$inven   = $config["url_path"] . "plugins/hmib/images/view_inventory.gif";
 	$storage = $config["url_path"] . "plugins/hmib/images/view_storage.gif";
 
-	$htdq    = read_config_option("hmib_dq_host_type");
-	$hcpudq  = read_config_option("hmib_dq_host_cpu");
-	$hugt    = read_config_option("hmib_gt_users");
-	$hpgt    = read_config_option("hmib_gt_processes");
-	$htsd    = read_config_option("hmib_summary_host_template");
+	$htdq = db_fetch_cell("SELECT id 
+		FROM snmp_query
+		WHERE hash='137aeab842986a76cf5bdef41b96c9a3'");
+
+	$hcpudq = db_fetch_cell("SELECT id 
+		FROM snmp_query
+		WHERE hash='0d1ab53fe37487a5d0b9e1d3ee8c1d0d'");
+
+	$hugt = db_fetch_cell("SELECT id 
+		FROM graph_templates 
+		WHERE hash='e8462bbe094e4e9e814d4e681671ea82'");
+
+	$hpgt = db_fetch_cell("SELECT id 
+		FROM graph_templates 
+		WHERE hash='62205afbd4066e5c4700338841e3901e'");
+
+	$htsd = db_fetch_cell("SELECT id
+		FROM host_template
+		WHERE hash='7c13344910097cc599f0d0485305361d'");
 
 	$i = 0;
 	if (sizeof($rows)) {
@@ -2912,7 +2937,9 @@ function hmib_summary() {
 	$host = $config["url_path"] . "plugins/hmib/images/view_hosts.gif";
 
 	/* get the data query for the application use */
-	$adq = read_config_option("hmib_dq_applications");
+	$adq = db_fetch_cell("SELECT id
+		FROM snmp_query
+		WHERE hash='6b0ef0fe7f1d85bbb6812801ca15a7c5'");
 
 	$i = 0;
 	if (sizeof($rows)) {

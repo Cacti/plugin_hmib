@@ -745,6 +745,9 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 						}
 					}elseif ($key == "date") {
 						$new_array[$index][$key] = hmib_dateParse($mib["value"]);
+					}elseif ($key == "name" && $table == "plugin_hmib_hrSWRun") {
+						$parts = explode("/", $mib["value"]);
+						$new_array[$index][$key] = $parts[0];
 					}elseif ($key != "index") {
 						$new_array[$index][$key] = $mib["value"];
 					}

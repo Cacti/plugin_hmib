@@ -49,6 +49,18 @@ function ss_hmib_sum_apps_getvalue($index, $column) {
 				WHERE name='$index'");
 
 			break;
+		case "perfMaxMemory":
+			$value = db_fetch_cell("SELECT MAX(perfMemory)
+				FROM plugin_hmib_hrSWRun
+				WHERE name='$index'");
+
+			break;
+		case "perfAvgMemory":
+			$value = db_fetch_cell("SELECT AVG(perfMemory)
+				FROM plugin_hmib_hrSWRun
+				WHERE name='$index'");
+
+			break;
 		case "perfMemory":
 			$value = db_fetch_cell("SELECT SUM(perfMemory)
 				FROM plugin_hmib_hrSWRun

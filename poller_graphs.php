@@ -91,9 +91,18 @@ function add_graphs() {
 	global $config;
 
 	/* check for summary changes first */
-	$host_template = read_config_option("hmib_summary_host_template");
-	$host_app_dq   = read_config_option("hmib_dq_applications");
-	$host_type_dq  = read_config_option("hmib_dq_host_type");
+	$host_template = db_fetch_cell("SELECT id 
+		FROM host_template 
+		WHERE hash='7c13344910097cc599f0d0485305361d'");
+
+	$host_app_dq   = db_fetch_cell("SELECT id 
+		FROM snmp_query
+		WHERE hash='6b0ef0fe7f1d85bbb6812801ca15a7c5'");
+
+	$host_type_dq  = db_fetch_cell("SELECT id 
+		FROM snmp_query 
+		WHERE hash='137aeab842986a76cf5bdef41b96c9a3'");
+
 	if (!empty($host_template)) {
 		/* check to see if the template exists */
 		debug("Host Template Set");
@@ -126,10 +135,21 @@ function add_host_based_graphs() {
 	debug("Adding Host Based Graphs");
 
 	/* check for host level graphs next data queries */
-	$host_cpu_dq   = read_config_option("hmib_dq_host_cpu");
-	$host_disk_dq  = read_config_option("hmib_dq_host_disk");
-	$host_users_gt = read_config_option("hmib_gt_users");
-	$host_procs_gt = read_config_option("hmib_gt_processes");
+	$host_cpu_dq   = db_fetch_cell("SELECT id 
+		FROM snmp_query 
+		WHERE hash='0d1ab53fe37487a5d0b9e1d3ee8c1d0d'");
+
+	$host_disk_dq  = db_fetch_cell("SELECT id 
+		FROM snmp_query 
+		WHERE hash='9343eab1f4d88b0e61ffc9d020f35414'");
+
+	$host_users_gt = db_fetch_cell("SELECT id
+		FROM graph_templates
+		WHERE hash='e8462bbe094e4e9e814d4e681671ea82'");
+
+	$host_procs_gt = db_fetch_cell("SELECT id
+		FROM graph_templates
+		WHERE hash='62205afbd4066e5c4700338841e3901e'");
 
 	$hosts = db_fetch_assoc("SELECT host_id, host.description FROM plugin_hmib_hrSystem
 		INNER JOIN host
