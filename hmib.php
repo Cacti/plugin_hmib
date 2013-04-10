@@ -865,8 +865,8 @@ function hmib_running() {
 			echo "<td style='white-space:nowrap;' align='left' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", $row["name"]):$row["name"]) . "</td>";
 			echo "<td style='white-space:nowrap;' align='left' title='" . $row["path"] . "' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", title_trim($row["path"],40)):title_trim($row["path"],40)) . "</td>";
 			echo "<td style='white-space:nowrap;' align='left' title='" . $row["parameters"] . "' width='100'>" . (strlen($_REQUEST["filter"]) ? eregi_replace("(" . preg_quote($_REQUEST["filter"]) . ")", "<span style='background-color: #F8D93D;'>\\1</span>", title_trim($row["parameters"], 40)):title_trim($row["parameters"],40)) . "</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . round($row["perfCPU"]/3600,0) . "</td>";
-			echo "<td style='white-space:nowrap;' align='right'>" . round($row["perfMemory"]/1024,2) . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . number_format($row["perfCPU"]/3600,0) . "</td>";
+			echo "<td style='white-space:nowrap;' align='right'>" . number_format($row["perfMemory"]/1024,2) . "</td>";
 			echo "<td width='20' style='white-space:nowrap;' align='left'>"  . (isset($hmib_hrSWTypes[$row["type"]]) ? $hmib_hrSWTypes[$row["type"]]:"Unknown") . "</td>";
 			echo "<td style='white-space:nowrap;' align='right'>" . $hmib_hrSWRunStatus[$row["status"]] . "</td>";
 		}
@@ -886,12 +886,12 @@ function running_legend($totals, $total_rows) {
 cacti_log(__FUNCTION__ . " totals: " . serialize($totals), false, "TEST");
 	html_start_box("", "100%", $colors["header"], "3", "center", "");
 	print "<tr>";
-	print "<td><b>Total CPU [h]:</b> " . round($totals["cpu"]/3600,0) . "</td>";
-	print "<td><b>Total Size [MB]:</b> " . round($totals["memory"]/1024,2) . "</td>";
+	print "<td><b>Total CPU [h]:</b> " . number_format($totals["cpu"]/3600,0) . "</td>";
+	print "<td><b>Total Size [MB]:</b> " . number_format($totals["memory"]/1024,2) . "</td>";
 	print "</tr>";
 	print "<tr>";
-	print "<td><b>Avg. CPU [h]:</b> " . ($total_rows ? round($totals["cpu"]/(3600*$total_rows),0) : 0) . "</td>";
-	print "<td><b>Avg. Size [MB]:</b> " . ($total_rows ? round($totals["memory"]/(1024*$total_rows),2) : 0) . "</td>";
+	print "<td><b>Avg. CPU [h]:</b> " . ($total_rows ? number_format($totals["cpu"]/(3600*$total_rows),0) : 0) . "</td>";
+	print "<td><b>Avg. Size [MB]:</b> " . ($total_rows ? number_format($totals["memory"]/(1024*$total_rows),2) : 0) . "</td>";
 	print "</tr>";
 	html_end_box(false);
 }
@@ -2073,26 +2073,26 @@ function hmib_memory($mem) {
 	$mem /= 1024;
 
 	if ($mem < 1024) {
-		return round($mem,2) . "K";
+		return number_format($mem,2) . "K";
 	}
 	$mem /= 1024;
 
 	if ($mem < 1024) {
-		return round($mem,2) . "M";
+		return number_format($mem,2) . "M";
 	}
 	$mem /= 1024;
 
 	if ($mem < 1024) {
-		return round($mem,2) . "G";
+		return number_format($mem,2) . "G";
 	}
 	$mem /= 1024;
 
 	if ($mem < 1024) {
-		return round($mem,2) . "T";
+		return number_format($mem,2) . "T";
 	}
 	$mem /= 1024;
 
-	return round($mem,2) . "P";
+	return number_format($mem,2) . "P";
 }
 
 function hmib_software() {
@@ -2695,8 +2695,8 @@ function hmib_summary() {
 			$graph_acpu  = hmib_get_graph_url($hcpudq, $row["id"], 0, "", round($row["avgCpuPercent"],2), false);
 			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row["id"], 0, "", round($row["maxCpuPercent"],2), false);
 			$graph_users = hmib_get_graph_template_url($hugt, $row["id"], 0, $row["users"], false);
-			$graph_aproc = hmib_get_graph_template_url($hpgt, $row["id"], 0, round($row["avgProcesses"],0), false);
-			$graph_mproc = hmib_get_graph_template_url($hpgt, $row["id"], 0, round($row["maxProcesses"],0), false);
+			$graph_aproc = hmib_get_graph_template_url($hpgt, $row["id"], 0, number_format($row["avgProcesses"],0), false);
+			$graph_mproc = hmib_get_graph_template_url($hpgt, $row["id"], 0, number_format($row["maxProcesses"],0), false);
 
 			form_alternate_row_color($colors["alternate"], $colors["light"], $i); $i++;
 			echo "<td style='white-space:nowrap;' width='120'>";
@@ -2925,14 +2925,14 @@ function hmib_summary() {
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=running&process=" . $row["name"]) . "'><img src='$proc' title='View Processes' align='absmiddle' border='0'></a>";
 			echo $graph_url;
 			echo "</td>";
-			echo "<td align='left' width='80'>" . $row["name"] . "</td>";
+			echo "<td align='left' width='140'>" . $row["name"] . "</td>";
 			echo "<td align='right'>" . $row["paths"] . "</td>";
 			echo "<td align='right'>" . $row["numHosts"] . "</td>";
 			echo "<td align='right'>" . $row["numProcesses"] . "</td>";
-			echo "<td align='right'>" . round($row["avgCpu"]/3600,0) . " Hrs</td>";
-			echo "<td align='right'>" . round($row["maxCpu"]/3600,0) . " Hrs</td>";
-			echo "<td align='right'>" . round($row["avgMemory"]/1024,2) . " MB</td>";
-			echo "<td align='right'>" . round($row["maxMemory"]/1024,2) . " MB</td>";
+			echo "<td align='right'>" . number_format($row["avgCpu"]/3600,0) . " Hrs</td>";
+			echo "<td align='right'>" . number_format($row["maxCpu"]/3600,0) . " Hrs</td>";
+			echo "<td align='right'>" . number_format($row["avgMemory"]/1024,2) . " MB</td>";
+			echo "<td align='right'>" . number_format($row["maxMemory"]/1024,2) . " MB</td>";
 		}
 		echo "</tr>";
 	}else{
@@ -3393,7 +3393,7 @@ function hmib_nav_bar($current_page, $rows_per_page, $total_rows, $nav_url) {
 	if ($total_rows) {
 		?>
 		<tr bgcolor='#<?php print $colors["header"];?>' class='noprint'>
-			<td colspan='<?php print read_graph_config_option("num_columns");?>'>
+			<td colspan='<?php print $_REQUEST['cols'];?>'>
 				<table width='100%' cellspacing='0' cellpadding='1' border='0'>
 					<tr>
 						<td align='left' class='textHeaderDark'>
@@ -3413,7 +3413,7 @@ function hmib_nav_bar($current_page, $rows_per_page, $total_rows, $nav_url) {
 	}else{
 		?>
 		<tr bgcolor='#<?php print $colors["header"];?>' class='noprint'>
-			<td colspan='<?php print read_graph_config_option("num_columns");?>'>
+			<td colspan='<?php print $_REQUEST['cols'];?>'>
 				<table width='100%' cellspacing='0' cellpadding='1' border='0'>
 					<tr>
 						<td align='center' class='textHeaderDark'>

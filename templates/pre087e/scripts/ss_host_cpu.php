@@ -93,16 +93,22 @@ function ss_host_cpu($hostname, $host_id, $snmp_auth, $cmd, $arg1 = "", $arg2 = 
 }
 
 function ss_host_cpu_get_cpu_usage($hostname, $snmp_community, $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout) {
-	$arr = ss_host_cpu_reindex(cacti_snmp_walk($hostname, $snmp_community, ".1.3.6.1.2.1.25.3.3.1", $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, read_config_option("snmp_retries"), SNMP_POLLER));
-	$return_arr = array();
+	$indexes = api_plugin_hook_function('hmib_get_cpu_indexes', array("host_id" => $host_id, "arg" => $arg, "index" => $index));
 
-	$j = 0;
+	if (isset($indexes[0]) && sizeof($indexes[0]) > 1) {
+		$arr = ss_host_cpu_reindex(cacti_snmp_walk($hostname, $snmp_community, ".1.3.6.1.2.1.25.3.3.1", $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, read_config_option("snmp_retries"), SNMP_POLLER));
+		$return_arr = array();
 
-	for ($i=0;($i<sizeof($arr));$i++) {
-		if (is_numeric($arr[$i])) {
-			$return_arr[$j] = $arr[$i];
-			$j++;
+		$j = 0;
+
+		for ($i=0;($i<sizeof($arr));$i++) {
+			if (is_numeric($arr[$i])) {
+				$return_arr[$j] = $arr[$i];
+				$j++;
+			}
 		}
+	}else{
+		$return_arr = $indexes;
 	}
 
 	return $return_arr;

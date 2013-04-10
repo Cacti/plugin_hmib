@@ -32,6 +32,7 @@ function plugin_hmib_install () {
 	api_plugin_register_hook('hmib', 'top_header_tabs',       'hmib_show_tab',              'setup.php');
 	api_plugin_register_hook('hmib', 'top_graph_header_tabs', 'hmib_show_tab',              'setup.php');
 	api_plugin_register_hook('hmib', 'hmib_get_cpu',          'hmib_get_cpu',               'setup.php');
+	api_plugin_register_hook('hmib', 'hmib_get_cpu_indexes',  'hmib_get_cpu_indexes',       'setup.php');
 	api_plugin_register_hook('hmib', 'hmib_get_disk',         'hmib_get_disk',              'setup.php');
 
 	api_plugin_register_realm('hmib', 'hmib.php', 'Plugin -> Host MIB Viewer', 1);
@@ -731,6 +732,23 @@ function hmib_get_cpu($host_index) {
 			return $value;
 		}
 	}
+}
+
+function hmib_get_cpu_indexes($host_index) {
+	global $called_by_script_server;
+
+	$host_id = $host_index["host_id"];
+	$command = $host_index["arg"];
+	$rarray  = array();
+
+	$indexes = db_fetch_assoc("SELECT `index` FROM plugin_hmib_hrProcessor WHERE host_id=$host_id ORDER BY `index`");
+	if (sizeof($indexes)) {
+	foreach($indexes as $i) {
+		$rarray[] = $i['index'];
+	}
+	}
+
+	return $rarray;
 }
 
 function hmib_get_disk($host_index) {
