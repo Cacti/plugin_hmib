@@ -1,7 +1,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2010 The Cacti Group                                 |
+ | Copyright (C) 2004-2014 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -31,7 +31,7 @@ if (!isset($_REQUEST["action"])) {
 	$_REQUEST["action"] = "summary";
 }
 
-include_once("./plugins/hmib/general_header.php");
+general_header();
 
 $hmib_hrSWTypes = array(
 	0 => "Error",
@@ -89,7 +89,7 @@ case "graphs":
 	hmib_view_graphs();
 	break;
 }
-include_once("./include/bottom_footer.php");
+bottom_footer();
 
 function hmib_check_changed($request, $session) {
 	if ((isset($_REQUEST[$request])) && (isset($_SESSION[$session]))) {
@@ -218,12 +218,12 @@ function hmib_history() {
 	<tr bgcolor="#<?php print $colors["panel"];?>">
 		<td>
 			<form name="history" method="get" action="hmib.php?action=history">
-			<table cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;OS Type:&nbsp;
+					<td style='white-space: nowrap;' width="55">
+						OS Type:
 					</td>
-					<td width="1">
+					<td>
 						<select name="type" onChange="applyRunFilter(document.history)">
 							<option value="-1"<?php if (get_request_var_request("type") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -240,10 +240,10 @@ function hmib_history() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Device:&nbsp;
+					<td>
+						Device:
 					</td>
-					<td width="1">
+					<td>
 						<select name="device" onChange="applyRunFilter(document.history)">
 							<option value="-1"<?php if (get_request_var_request("device") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -262,10 +262,10 @@ function hmib_history() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Template:&nbsp;
+					<td>
+						Template:
 					</td>
-					<td width="1">
+					<td>
 						<select name="template" onChange="applyRunFilter(document.history)">
 							<option value="-1"<?php if (get_request_var_request("template") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -285,10 +285,10 @@ function hmib_history() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Rows:&nbsp;
+					<td>
+						Rows:
 					</td>
-					<td width="1">
+					<td>
 						<select name="rows" onChange="applyRunFilter(document.history)">
 							<option value="-1"<?php if (get_request_var_request("rows") == "-1") {?> selected<?php }?>>Default</option>
 							<?php
@@ -302,12 +302,12 @@ function hmib_history() {
 					</td>
 				</tr>
 			</table>
-			<table cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Process:&nbsp;
+					<td width="55">
+						Process:
 					</td>
-					<td width="1">
+					<td>
 						<select name="process" onChange="applyRunFilter(document.history)">
 							<option value="-1"<?php if (get_request_var_request("process") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -323,14 +323,16 @@ function hmib_history() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Search:&nbsp;
+					<td>
+						Search:
 					</td>
 					<td>
 						<input type='text' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
 					</td>
-					<td nowrap>
-						&nbsp;<input type="button" onClick="applyRunFilter(document.history)" value="Go" border="0">
+					<td>
+						<input type="button" onClick="applyRunFilter(document.history)" value="Go" border="0">
+					</td>
+					<td>
 						<input type="button" onClick="clearRun()" value="Clear" name="clear" border="0">
 					</td>
 				</tr>
@@ -400,45 +402,12 @@ function hmib_history() {
 		ON hrst.id=hrs.host_type
 		$sql_where");
 
-	if ($total_rows > 0) {
-		/* generate page list */
-		$url_page_select = get_page_list(get_request_var_request("page"), MAX_DISPLAY_PAGES, $num_rows, $total_rows, "hmib.php" . "?action=running");
-
-		$nav = "<tr bgcolor='#" . $colors["header"] . "'>
-			<td colspan='16'>
-				<table width='100%' cellspacing='0' cellpadding='0' border='0'>
-					<tr>
-						<td align='left' class='textHeaderDark'>
-							<strong>&lt;&lt; "; if (get_request_var_request("page") > 1) { $nav .= "<a class='linkOverDark' href='" . htmlspecialchars("hmib.php" . "?action=history&page=" . (get_request_var_request("page")-1)) . "'>"; } $nav .= "Previous"; if (get_request_var_request("page") > 1) { $nav .= "</a>"; } $nav .= "</strong>
-						</td>\n
-						<td align='center' class='textHeaderDark'>
-							Showing Rows " . (($num_rows*(get_request_var_request("page")-1))+1) . " to " . ((($total_rows < $num_rows) || ($total_rows < ($num_rows*get_request_var_request("page")))) ? $total_rows : ($num_rows*get_request_var_request("page"))) . " of $total_rows [$url_page_select]
-						</td>\n
-						<td align='right' class='textHeaderDark'>
-							<strong>"; if ((get_request_var_request("page") * $num_rows) < $total_rows) { $nav .= "<a class='linkOverDark' href='" . htmlspecialchars("hmib.php" . "?action=history&page=" . (get_request_var_request("page")+1)) . "'>"; } $nav .= "Next"; if ((get_request_var_request("page") * $num_rows) < $total_rows) { $nav .= "</a>"; } $nav .= " &gt;&gt;</strong>
-						</td>\n
-					</tr>
-				</table>
-			</td>
-		</tr>\n";
-	}else{
-		$nav = "<tr bgcolor='#" . $colors["header"] . "'>
-			<td colspan='16'>
-				<table width='100%' cellspacing='0' cellpadding='0' border='0'>
-					<tr>
-						<td align='center' class='textHeaderDark'>
-							No Rows Found
-						</td>\n
-					</tr>
-				</table>
-			</td>
-		</tr>\n";
-	}
+	$nav = html_nav_bar("hmib.php?action=history", MAX_DISPLAY_PAGES, get_request_var_request("page"), $num_rows, $total_rows, 5, 'History');
 
 	print $nav;
 
 	$display_text = array(
-		"description" => array("Name",        array("ASC",  "left")),
+		"description" => array("Hostname",    array("ASC",  "left")),
 		"hrswls.name" => array("Process",     array("DESC", "left")),
 		"last_seen"   => array("Last Seen",   array("ASC",  "right")),
 		"total_time"  => array("Use Time (d:h:m)",  array("DESC", "right"))
@@ -607,15 +576,15 @@ function hmib_running() {
 	html_start_box("<strong>Running Processes</strong>", "100%", $colors["header"], "3", "center", "");
 
 	?>
-	<tr bgcolor="#<?php print $colors["panel"];?>">
+	<tr bgcolor="<?php print $colors["panel"];?>">
+		<form name="running" method="get">
 		<td>
-			<form name="running" method="get" action="hmib.php?action=running">
-			<table cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;OS Type:&nbsp;
+					<td style='white-space: nowrap;' width="55">
+						OS Type:
 					</td>
-					<td width="1">
+					<td>
 						<select name="type" onChange="applyRunFilter(document.running)">
 							<option value="-1"<?php if (get_request_var_request("type") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -632,10 +601,10 @@ function hmib_running() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Device:&nbsp;
+					<td>
+						Device:
 					</td>
-					<td width="1">
+					<td>
 						<select name="device" onChange="applyRunFilter(document.running)">
 							<option value="-1"<?php if (get_request_var_request("device") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -654,10 +623,10 @@ function hmib_running() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Template:&nbsp;
+					<td>
+						Template:
 					</td>
-					<td width="1">
+					<td>
 						<select name="template" onChange="applyRunFilter(document.running)">
 							<option value="-1"<?php if (get_request_var_request("template") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -677,10 +646,10 @@ function hmib_running() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Rows:&nbsp;
+					<td>
+						Rows:
 					</td>
-					<td width="1">
+					<td>
 						<select name="rows" onChange="applyRunFilter(document.running)">
 							<option value="-1"<?php if (get_request_var_request("rows") == "-1") {?> selected<?php }?>>Default</option>
 							<?php
@@ -694,12 +663,12 @@ function hmib_running() {
 					</td>
 				</tr>
 			</table>
-			<table cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Process:&nbsp;
+					<td width="55">
+						Process:
 					</td>
-					<td width="1">
+					<td>
 						<select name="process" onChange="applyRunFilter(document.running)">
 							<option value="-1"<?php if (get_request_var_request("process") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -715,21 +684,23 @@ function hmib_running() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Search:&nbsp;
+					<td>
+						Search:
 					</td>
 					<td>
-						<input type='text' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
+						<input type='textbox' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
 					</td>
-					<td nowrap>
-						&nbsp;<input type="button" onClick="applyRunFilter(document.running)" value="Go" border="0">
+					<td>
+						<input type="button" onClick="applyRunFilter(document.running)" value="Go" border="0">
+					</td>
+					<td>
 						<input type="button" onClick="clearRun()" value="Clear" name="clear" border="0">
 					</td>
 				</tr>
 			</table>
-			<input type='hidden' name='action' value='running'>
-			</form>
 		</td>
+		<input type='hidden' name='action' value='running'>
+		</form>
 	</tr>
 	<?php
 
@@ -801,45 +772,12 @@ function hmib_running() {
 			"INNER JOIN plugin_hmib_hrSystemTypes AS hrst ON hrst.id=hrs.host_type " .
 			$sql_where);
 
-	if ($total_rows > 0) {
-		/* generate page list */
-		$url_page_select = get_page_list(get_request_var_request("page"), MAX_DISPLAY_PAGES, $num_rows, $total_rows, "hmib.php" . "?action=running");
-
-		$nav = "<tr bgcolor='#" . $colors["header"] . "'>
-			<td colspan='16'>
-				<table width='100%' cellspacing='0' cellpadding='0' border='0'>
-					<tr>
-						<td align='left' class='textHeaderDark'>
-							<strong>&lt;&lt; "; if (get_request_var_request("page") > 1) { $nav .= "<a class='linkOverDark' href='" . htmlspecialchars("hmib.php" . "?action=running&page=" . (get_request_var_request("page")-1)) . "'>"; } $nav .= "Previous"; if (get_request_var_request("page") > 1) { $nav .= "</a>"; } $nav .= "</strong>
-						</td>\n
-						<td align='center' class='textHeaderDark'>
-							Showing Rows " . (($num_rows*(get_request_var_request("page")-1))+1) . " to " . ((($total_rows < $num_rows) || ($total_rows < ($num_rows*get_request_var_request("page")))) ? $total_rows : ($num_rows*get_request_var_request("page"))) . " of $total_rows [$url_page_select]
-						</td>\n
-						<td align='right' class='textHeaderDark'>
-							<strong>"; if ((get_request_var_request("page") * $num_rows) < $total_rows) { $nav .= "<a class='linkOverDark' href='" . htmlspecialchars("hmib.php" . "?action=running&page=" . (get_request_var_request("page")+1)) . "'>"; } $nav .= "Next"; if ((get_request_var_request("page") * $num_rows) < $total_rows) { $nav .= "</a>"; } $nav .= " &gt;&gt;</strong>
-						</td>\n
-					</tr>
-				</table>
-			</td>
-		</tr>\n";
-	}else{
-		$nav = "<tr bgcolor='#" . $colors["header"] . "'>
-			<td colspan='16'>
-				<table width='100%' cellspacing='0' cellpadding='0' border='0'>
-					<tr>
-						<td align='center' class='textHeaderDark'>
-							No Rows Found
-						</td>\n
-					</tr>
-				</table>
-			</td>
-		</tr>\n";
-	}
+	$nav = html_nav_bar("hmib.php?action=running", MAX_DISPLAY_PAGES, get_request_var_request("page"), $num_rows, $total_rows, 16, 'Processes');
 
 	print $nav;
 
 	$display_text = array(
-		"description" => array("Name",        array("ASC",  "left")),
+		"description" => array("Hostname",    array("ASC",  "left")),
 		"hrswr.name"  => array("Process",     array("DESC", "left")),
 		"path"        => array("Path",        array("ASC",  "left")),
 		"parameters"  => array("Parameters",  array("ASC",  "left")),
@@ -1010,15 +948,15 @@ function hmib_hardware() {
 	html_start_box("<strong>Hardware Inventory</strong>", "100%", $colors["header"], "3", "center", "");
 
 	?>
-	<tr bgcolor="#<?php print $colors["panel"];?>">
+	<tr bgcolor="<?php print $colors["panel"];?>">
+		<form name="hardware" method="get">
 		<td>
-			<form name="hardware" method="get" action="hmib.php?action=hardware">
-			<table cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;OS Type:&nbsp;
+					<td style='white-space: nowrap;' width="55">
+						OS Type:
 					</td>
-					<td width="1">
+					<td>
 						<select name="ostype" onChange="applyHWFilter(document.hardware)">
 							<option value="-1"<?php if (get_request_var_request("ostype") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -1035,10 +973,10 @@ function hmib_hardware() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Device:&nbsp;
+					<td>
+						Device:
 					</td>
-					<td width="1">
+					<td>
 						<select name="device" onChange="applyHWFilter(document.hardware)">
 							<option value="-1"<?php if (get_request_var_request("device") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -1057,10 +995,10 @@ function hmib_hardware() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Template:&nbsp;
+					<td>
+						Template:
 					</td>
-					<td width="1">
+					<td>
 						<select name="template" onChange="applyHWFilter(document.hardware)">
 							<option value="-1"<?php if (get_request_var_request("template") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -1080,10 +1018,10 @@ function hmib_hardware() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Rows:&nbsp;
+					<td>
+						Rows:
 					</td>
-					<td width="1">
+					<td>
 						<select name="rows" onChange="applyHWFilter(document.hardware)">
 							<option value="-1"<?php if (get_request_var_request("rows") == "-1") {?> selected<?php }?>>Default</option>
 							<?php
@@ -1097,12 +1035,12 @@ function hmib_hardware() {
 					</td>
 				</tr>
 			</table>
-			<table cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Type:&nbsp;
+					<td width="55">
+						Type:
 					</td>
-					<td width="1">
+					<td>
 						<select name="type" onChange="applyHWFilter(document.hardware)">
 						<option value="-1"<?php if (get_request_var_request("type") == "-1") {?> selected<?php }?>>All</option>
 						<?php
@@ -1118,21 +1056,23 @@ function hmib_hardware() {
 						?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Search:&nbsp;
+					<td>
+						Search:
 					</td>
 					<td>
-						<input type='text' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
+						<input type='textbox' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
 					</td>
-					<td nowrap>
-						&nbsp;<input type="button" onClick="applyHWFilter(document.hardware)" value="Go" border="0">
+					<td>
+						<input type="button" onClick="applyHWFilter(document.hardware)" value="Go" border="0">
+					</td>
+					<td>
 						<input type="button" onClick="clearHW()" value="Clear" name="clear" border="0">
 					</td>
 				</tr>
 			</table>
-			<input type='hidden' name='action' value='hardware'>
-			</form>
 		</td>
+		<input type='hidden' name='action' value='hardware'>
+		</form>
 	</tr>
 	<?php
 
@@ -1187,47 +1127,14 @@ function hmib_hardware() {
 		INNER JOIN plugin_hmib_hrSystem AS hrs ON host.id=hrs.host_id
 		$sql_where");
 
-	if ($total_rows > 0) {
-		/* generate page list */
-		$url_page_select = get_page_list(get_request_var_request("page"), MAX_DISPLAY_PAGES, $num_rows, $total_rows, "hmib.php" . "?action=hardware");
-
-		$nav = "<tr bgcolor='#" . $colors["header"] . "'>
-			<td colspan='16'>
-				<table width='100%' cellspacing='0' cellpadding='0' border='0'>
-					<tr>
-						<td align='left' class='textHeaderDark'>
-							<strong>&lt;&lt; "; if (get_request_var_request("page") > 1) { $nav .= "<a class='linkOverDark' href='" . htmlspecialchars("hmib.php" . "?action=hardware&page=" . (get_request_var_request("page")-1)) . "'>"; } $nav .= "Previous"; if (get_request_var_request("page") > 1) { $nav .= "</a>"; } $nav .= "</strong>
-						</td>\n
-						<td align='center' class='textHeaderDark'>
-							Showing Rows " . (($num_rows*(get_request_var_request("page")-1))+1) . " to " . ((($total_rows < $num_rows) || ($total_rows < ($num_rows*get_request_var_request("page")))) ? $total_rows : ($num_rows*get_request_var_request("page"))) . " of $total_rows [$url_page_select]
-						</td>\n
-						<td align='right' class='textHeaderDark'>
-							<strong>"; if ((get_request_var_request("page") * $num_rows) < $total_rows) { $nav .= "<a class='linkOverDark' href='" . htmlspecialchars("hmib.php" . "?action=hardware&page=" . (get_request_var_request("page")+1)) . "'>"; } $nav .= "Next"; if ((get_request_var_request("page") * $num_rows) < $total_rows) { $nav .= "</a>"; } $nav .= " &gt;&gt;</strong>
-						</td>\n
-					</tr>
-				</table>
-			</td>
-		</tr>\n";
-	}else{
-		$nav = "<tr bgcolor='#" . $colors["header"] . "'>
-			<td colspan='16'>
-				<table width='100%' cellspacing='0' cellpadding='0' border='0'>
-					<tr>
-						<td align='center' class='textHeaderDark'>
-							No Rows Found
-						</td>\n
-					</tr>
-				</table>
-			</td>
-		</tr>\n";
-	}
+	$nav = html_nav_bar("hmib.php?action=hardware", MAX_DISPLAY_PAGES, get_request_var_request("page"), $num_rows, $total_rows, 16, 'Devices');
 
 	print $nav;
 
 	$display_text = array(
-		"host.description" => array("Name",     array("ASC",  "left")),
-		"hrd.description"  => array("Hardware", array("DESC", "left")),
-		"type"             => array("Type",     array("ASC",  "left")),
+		"host.description" => array("Hostname",     array("ASC",  "left")),
+		"hrd.description"  => array("Hardware Description", array("DESC", "left")),
+		"type"             => array("Hardware Type",     array("ASC",  "left")),
 		"status"           => array("Status",   array("DESC", "right")),
 		"errors"           => array("Errors",   array("DESC", "right"))
 	);
@@ -1373,13 +1280,13 @@ function hmib_storage() {
 	html_start_box("<strong>Storage Inventory</strong>", "100%", $colors["header"], "3", "center", "");
 
 	?>
-	<tr bgcolor="#<?php print $colors["panel"];?>">
+	<tr bgcolor="<?php print $colors["panel"];?>">
+		<form name="storage" method="get">
 		<td>
-			<form name="storage" method="get" action="hmib.php?action=storage">
-			<table cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;OS Type:&nbsp;
+					<td style='white-space: nowrap;' width="55">
+						OS Type:
 					</td>
 					<td width="1">
 						<select name="ostype" onChange="applyStoFilter(document.storage)">
@@ -1398,8 +1305,8 @@ function hmib_storage() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Device:&nbsp;
+					<td>
+						Device:
 					</td>
 					<td width="1">
 						<select name="device" onChange="applyStoFilter(document.storage)">
@@ -1420,8 +1327,8 @@ function hmib_storage() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Template:&nbsp;
+					<td>
+						Template:
 					</td>
 					<td width="1">
 						<select name="template" onChange="applyStoFilter(document.storage)">
@@ -1443,8 +1350,8 @@ function hmib_storage() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Rows:&nbsp;
+					<td>
+						Rows:
 					</td>
 					<td width="1">
 						<select name="rows" onChange="applyStoFilter(document.storage)">
@@ -1460,10 +1367,10 @@ function hmib_storage() {
 					</td>
 				</tr>
 			</table>
-			<table cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Type:&nbsp;
+					<td width="55">
+						Type:
 					</td>
 					<td width="1">
 						<select name="type" onChange="applyStoFilter(document.storage)">
@@ -1481,21 +1388,21 @@ function hmib_storage() {
 						?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Search:&nbsp;
+					<td>
+						Search:
 					</td>
 					<td>
-						<input type='text' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
+						<input type='textbox' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
 					</td>
 					<td nowrap>
-						&nbsp;<input type="button" onClick="applyStoFilter(document.storage)" value="Go" border="0">
+						<input type="button" onClick="applyStoFilter(document.storage)" value="Go" border="0">
 						<input type="button" onClick="clearSto()" value="Clear" name="clear" border="0">
 					</td>
 				</tr>
 			</table>
-			<input type='hidden' name='action' value='storage'>
-			</form>
 		</td>
+		<input type='hidden' name='action' value='storage'>
+		</form>
 	</tr>
 	<?php
 
@@ -1550,47 +1457,14 @@ function hmib_storage() {
 		INNER JOIN plugin_hmib_hrSystem AS hrs ON host.id=hrs.host_id
 		$sql_where");
 
-	if ($total_rows > 0) {
-		/* generate page list */
-		$url_page_select = get_page_list(get_request_var_request("page"), MAX_DISPLAY_PAGES, $num_rows, $total_rows, "hmib.php" . "?action=storage");
-
-		$nav = "<tr bgcolor='#" . $colors["header"] . "'>
-			<td colspan='16'>
-				<table width='100%' cellspacing='0' cellpadding='0' border='0'>
-					<tr>
-						<td align='left' class='textHeaderDark'>
-							<strong>&lt;&lt; "; if (get_request_var_request("page") > 1) { $nav .= "<a class='linkOverDark' href='" . htmlspecialchars("hmib.php" . "?action=storage&page=" . (get_request_var_request("page")-1)) . "'>"; } $nav .= "Previous"; if (get_request_var_request("page") > 1) { $nav .= "</a>"; } $nav .= "</strong>
-						</td>\n
-						<td align='center' class='textHeaderDark'>
-							Showing Rows " . (($num_rows*(get_request_var_request("page")-1))+1) . " to " . ((($total_rows < $num_rows) || ($total_rows < ($num_rows*get_request_var_request("page")))) ? $total_rows : ($num_rows*get_request_var_request("page"))) . " of $total_rows [$url_page_select]
-						</td>\n
-						<td align='right' class='textHeaderDark'>
-							<strong>"; if ((get_request_var_request("page") * $num_rows) < $total_rows) { $nav .= "<a class='linkOverDark' href='" . htmlspecialchars("hmib.php" . "?action=storage&page=" . (get_request_var_request("page")+1)) . "'>"; } $nav .= "Next"; if ((get_request_var_request("page") * $num_rows) < $total_rows) { $nav .= "</a>"; } $nav .= " &gt;&gt;</strong>
-						</td>\n
-					</tr>
-				</table>
-			</td>
-		</tr>\n";
-	}else{
-		$nav = "<tr bgcolor='#" . $colors["header"] . "'>
-			<td colspan='16'>
-				<table width='100%' cellspacing='0' cellpadding='0' border='0'>
-					<tr>
-						<td align='center' class='textHeaderDark'>
-							No Rows Found
-						</td>\n
-					</tr>
-				</table>
-			</td>
-		</tr>\n";
-	}
+	$nav = html_nav_bar("hmib.php?action=storage", MAX_DISPLAY_PAGES, get_request_var_request("page"), $num_rows, $total_rows, 16, 'Volumes');
 
 	print $nav;
 
 	$display_text = array(
-		"host.description"  => array("Name",     array("ASC",  "left")),
+		"host.description"  => array("Hostname",     array("ASC",  "left")),
 		"hrsto.description" => array("Storage Description", array("DESC", "left")),
-		"type"              => array("Type",     array("ASC",  "left")),
+		"type"              => array("Storage Type",     array("ASC",  "left")),
 		"failures"          => array("Errors",   array("DESC", "right")),
 		"percent"           => array("Percent Used",  array("DESC", "right")),
 		"used"              => array("Used (MB)",     array("DESC", "right")),
@@ -1739,15 +1613,15 @@ function hmib_devices() {
 	html_start_box("<strong>Device Filter</strong>", "100%", $colors["header"], "3", "center", "");
 
 	?>
-	<tr bgcolor="#<?php print $colors["panel"];?>">
+	<tr bgcolor="<?php print $colors["panel"];?>">
+		<form name="devices" action="hmib.php?action=devices">
 		<td>
-			<form name="devices" action="hmib.php?action=devices">
-			<table cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;OS Type:&nbsp;
+					<td style='white-space: nowrap;' width="55">
+						OS Type:
 					</td>
-					<td width="1">
+					<td>
 						<select name="type" onChange="applyHostFilter(document.devices)">
 							<option value="-1"<?php if (get_request_var_request("type") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -1764,10 +1638,10 @@ function hmib_devices() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Template:&nbsp;
+					<td>
+						Template:
 					</td>
-					<td width="1">
+					<td>
 						<select name="template" onChange="applyHostFilter(document.devices)">
 							<option value="-1"<?php if (get_request_var_request("template") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -1787,10 +1661,10 @@ function hmib_devices() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Process:&nbsp;
+					<td>
+						Process:
 					</td>
-					<td width="1">
+					<td>
 						<select name="process" onChange="applyHostFilter(document.devices)">
 							<option value="-1"<?php if (get_request_var_request("process") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -1805,12 +1679,12 @@ function hmib_devices() {
 					</td>
 				</tr>
 			</table>
-			<table cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Status:&nbsp;
+					<td width='55'>
+						Status:
 					</td>
-					<td width="1">
+					<td>
 						<select name="status" onChange="applyHostFilter(document.devices)">
 							<option value="-1"<?php if (get_request_var_request("type") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -1845,10 +1719,10 @@ function hmib_devices() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Rows:&nbsp;
+					<td>
+						Rows:
 					</td>
-					<td width="1">
+					<td>
 						<select name="rows" onChange="applyHostFilter(document.devices)">
 							<option value="-1"<?php if (get_request_var_request("rows") == "-1") {?> selected<?php }?>>Default</option>
 							<?php
@@ -1860,21 +1734,23 @@ function hmib_devices() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Search:&nbsp;
+					<td>
+						Search:
 					</td>
 					<td>
-						<input type='text' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
+						<input type='textbox' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
 					</td>
-					<td nowrap>
-						&nbsp;<input type="button" onClick="applyHostFilter(document.devices)" value="Go" border="0">
+					<td>
+						<input type="button" onClick="applyHostFilter(document.devices)" value="Go" border="0">
+					</td>
+					<td>
 						<input type="button" onClick="clearHosts()" value="Clear" name="clear" border="0">
 					</td>
 				</tr>
 			</table>
-			<input type='hidden' name='action' value='devices'>
-			</form>
 		</td>
+		<input type='hidden' name='action' value='devices'>
+		</form>
 	</tr>
 	<?php
 
@@ -1931,46 +1807,13 @@ function hmib_devices() {
 		$sql_join
 		$sql_where");
 
-	if ($total_rows > 0) {
-		/* generate page list */
-		$url_page_select = get_page_list(get_request_var_request("page"), MAX_DISPLAY_PAGES, $num_rows, $total_rows, "hmib.php" . "?action=devices");
-
-		$nav = "<tr bgcolor='#" . $colors["header"] . "'>
-			<td colspan='16'>
-				<table width='100%' cellspacing='0' cellpadding='0' border='0'>
-					<tr>
-						<td align='left' class='textHeaderDark'>
-							<strong>&lt;&lt; "; if (get_request_var_request("page") > 1) { $nav .= "<a class='linkOverDark' href='" . htmlspecialchars("hmib.php" . "?action=devices&page=" . (get_request_var_request("page")-1)) . "'>"; } $nav .= "Previous"; if (get_request_var_request("page") > 1) { $nav .= "</a>"; } $nav .= "</strong>
-						</td>\n
-						<td align='center' class='textHeaderDark'>
-							Showing Rows " . (($num_rows*(get_request_var_request("page")-1))+1) . " to " . ((($total_rows < $num_rows) || ($total_rows < ($num_rows*get_request_var_request("page")))) ? $total_rows : ($num_rows*get_request_var_request("page"))) . " of $total_rows [$url_page_select]
-						</td>\n
-						<td align='right' class='textHeaderDark'>
-							<strong>"; if ((get_request_var_request("page") * $num_rows) < $total_rows) { $nav .= "<a class='linkOverDark' href='" . htmlspecialchars("hmib.php" . "?action=devices&page=" . (get_request_var_request("page")+1)) . "'>"; } $nav .= "Next"; if ((get_request_var_request("page") * $num_rows) < $total_rows) { $nav .= "</a>"; } $nav .= " &gt;&gt;</strong>
-						</td>\n
-					</tr>
-				</table>
-			</td>
-		</tr>\n";
-	}else{
-		$nav = "<tr bgcolor='#" . $colors["header"] . "'>
-			<td colspan='16'>
-				<table width='100%' cellspacing='0' cellpadding='0' border='0'>
-					<tr>
-						<td align='center' class='textHeaderDark'>
-							No Rows Found
-						</td>\n
-					</tr>
-				</table>
-			</td>
-		</tr>\n";
-	}
+	$nav = html_nav_bar("hmib.php?action=devices", MAX_DISPLAY_PAGES, get_request_var_request("page"), $num_rows, $total_rows, 16, 'Devices');
 
 	print $nav;
 
 	$display_text = array(
 		"nosort"      => array("Actions",    array("ASC",  "left")),
-		"description" => array("Name",       array("ASC",  "left")),
+		"description" => array("Hostname",   array("ASC",  "left")),
 		"host_status" => array("Status",     array("DESC", "right")),
 		"uptime"      => array("Uptime(d:h:m)",     array("DESC", "right")),
 		"users"       => array("Users",      array("DESC", "right")),
@@ -2220,15 +2063,15 @@ function hmib_software() {
 	html_start_box("<strong>Software Inventory</strong>", "100%", $colors["header"], "3", "center", "");
 
 	?>
-	<tr bgcolor="#<?php print $colors["panel"];?>">
+	<tr bgcolor="<?php print $colors["panel"];?>">
+		<form name="software" method="get">
 		<td>
-			<form name="software" method="get" action="hmib.php?action=software">
-			<table cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;OS Type:&nbsp;
+					<td style='white-space: nowrap;' width="55">
+						OS Type:
 					</td>
-					<td width="1">
+					<td>
 						<select name="ostype" onChange="applySWFilter(document.software)">
 							<option value="-1"<?php if (get_request_var_request("ostype") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -2245,10 +2088,10 @@ function hmib_software() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Device:&nbsp;
+					<td>
+						Device:
 					</td>
-					<td width="1">
+					<td>
 						<select name="device" onChange="applySWFilter(document.software)">
 							<option value="-1"<?php if (get_request_var_request("device") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -2267,10 +2110,10 @@ function hmib_software() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Device Template:&nbsp;
+					<td>
+						Template:
 					</td>
-					<td width="1">
+					<td>
 						<select name="template" onChange="applySWFilter(document.software)">
 							<option value="-1"<?php if (get_request_var_request("template") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -2290,8 +2133,8 @@ function hmib_software() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Rows:&nbsp;
+					<td>
+						Rows:
 					</td>
 					<td width="1">
 						<select name="rows" onChange="applySWFilter(document.software)">
@@ -2307,12 +2150,12 @@ function hmib_software() {
 					</td>
 				</tr>
 			</table>
-			<table cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Type:&nbsp;
+					<td width="55">
+						Type:
 					</td>
-					<td width="1">
+					<td>
 						<select name="type" onChange="applySWFilter(document.software)">
 							<option value="-1"<?php if (get_request_var_request("type") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -2327,21 +2170,23 @@ function hmib_software() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Search:&nbsp;
+					<td>
+						Search:
 					</td>
 					<td>
-						<input type='text' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
+						<input type='textbox' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
 					</td>
-					<td nowrap>
-						&nbsp;<input type="button" onClick="applySWFilter(document.software)" value="Go" border="0">
+					<td>
+						<input type="button" onClick="applySWFilter(document.software)" value="Go" border="0">
+					</td>
+					<td>
 						<input type="button" onClick="clearSW()" value="Clear" name="clear" border="0">
 					</td>
 				</tr>
 			</table>
-			<input type='hidden' name='action' value='software'>
-			</form>
 		</td>
+		<input type='hidden' name='action' value='software'>
+		</form>
 	</tr>
 	<?php
 
@@ -2397,45 +2242,12 @@ function hmib_software() {
 		INNER JOIN plugin_hmib_hrSystem AS hrs ON host.id=hrs.host_id
 		$sql_where");
 
-	if ($total_rows > 0) {
-		/* generate page list */
-		$url_page_select = get_page_list(get_request_var_request("page"), MAX_DISPLAY_PAGES, $num_rows, $total_rows, "hmib.php" . "?action=software");
-
-		$nav = "<tr bgcolor='#" . $colors["header"] . "'>
-			<td colspan='16'>
-				<table width='100%' cellspacing='0' cellpadding='0' border='0'>
-					<tr>
-						<td align='left' class='textHeaderDark'>
-							<strong>&lt;&lt; "; if (get_request_var_request("page") > 1) { $nav .= "<a class='linkOverDark' href='" . htmlspecialchars("hmib.php" . "?action=software&page=" . (get_request_var_request("page")-1)) . "'>"; } $nav .= "Previous"; if (get_request_var_request("page") > 1) { $nav .= "</a>"; } $nav .= "</strong>
-						</td>\n
-						<td align='center' class='textHeaderDark'>
-							Showing Rows " . (($num_rows*(get_request_var_request("page")-1))+1) . " to " . ((($total_rows < $num_rows) || ($total_rows < ($num_rows*get_request_var_request("page")))) ? $total_rows : ($num_rows*get_request_var_request("page"))) . " of $total_rows [$url_page_select]
-						</td>\n
-						<td align='right' class='textHeaderDark'>
-							<strong>"; if ((get_request_var_request("page") * $num_rows) < $total_rows) { $nav .= "<a class='linkOverDark' href='" . htmlspecialchars("hmib.php" . "?action=software&page=" . (get_request_var_request("page")+1)) . "'>"; } $nav .= "Next"; if ((get_request_var_request("page") * $num_rows) < $total_rows) { $nav .= "</a>"; } $nav .= " &gt;&gt;</strong>
-						</td>\n
-					</tr>
-				</table>
-			</td>
-		</tr>\n";
-	}else{
-		$nav = "<tr bgcolor='#" . $colors["header"] . "'>
-			<td colspan='16'>
-				<table width='100%' cellspacing='0' cellpadding='0' border='0'>
-					<tr>
-						<td align='center' class='textHeaderDark'>
-							No Rows Found
-						</td>\n
-					</tr>
-				</table>
-			</td>
-		</tr>\n";
-	}
+	$nav = html_nav_bar("hmib.php?action=software", MAX_DISPLAY_PAGES, get_request_var_request("page"), $num_rows, $total_rows, 16, 'Packages');
 
 	print $nav;
 
 	$display_text = array(
-		"description" => array("Name",       array("ASC",  "left")),
+		"description" => array("Hostname",   array("ASC",  "left")),
 		"name"        => array("Package",    array("DESC", "left")),
 		"type"        => array("Type",       array("ASC",  "left")),
 		"date"        => array("Installed",  array("DESC", "right"))
@@ -2489,24 +2301,19 @@ function hmib_tabs() {
 	$current_tab = $_REQUEST["action"];
 
 	/* draw the tabs */
-	print "<table class='tabs' width='100%' cellspacing='0' cellpadding='3' align='center'><tr>\n";
+	#print "<table class='report' width='100%' cellspacing='0' cellpadding='3' align='center'><tr>\n";
+	print "<div class='tabs'><nav><ul>\n";
 
 	if (sizeof($tabs)) {
 		foreach (array_keys($tabs) as $tab_short_name) {
-			print "<td style='padding:3px 10px 2px 5px;background-color:" . (($tab_short_name == $current_tab) ? "silver;" : "#DFDFDF;") .
-				"white-space:nowrap;'" .
-				" nowrap width='1%'" .
-				" align='center' class='tab'>
-				<span class='textHeader'><a href='" . htmlspecialchars($config['url_path'] .
+			print "<li><a " . (($tab_short_name == $current_tab) ? "class='selected'" : "") .  "href='" . $config['url_path'] .
 				"plugins/hmib/hmib.php?" .
 				"action=" . $tab_short_name .
-				(isset($_REQUEST["host_id"]) ? "&host_id=" . $_REQUEST["host_id"]:"")) .
-				"'>$tabs[$tab_short_name]</a></span>
-			</td>\n
-			<td width='1'></td>\n";
+				(isset($_REQUEST["host_id"]) ? "&host_id=" . $_REQUEST["host_id"]:"") .
+				"'>$tabs[$tab_short_name]</a></li>\n";
 		}
 	}
-	print "<td></td><td></td>\n</tr></table>\n";
+	print "</ul></nav></div>\n";
 }
 
 function hmib_summary() {
@@ -2597,9 +2404,9 @@ function hmib_summary() {
 	html_start_box("<strong>Summary Filter</strong>", "100%", $colors["header"], "3", "center", "");
 
 	?>
-	<tr bgcolor="#<?php print $colors["panel"];?>">
+	<tr bgcolor="<?php print $colors["panel"];?>">
+		<form name="host_summary">
 		<td>
-			<form name="host_summary" action="hmib.php?action=summary">
 			<table width="100%" cellpadding="0" cellspacing="0">
 				<tr>
 					<td nowrap style='white-space: nowrap;' width="60">
@@ -2620,8 +2427,8 @@ function hmib_summary() {
 					</td>
 				</tr>
 			</table>
-			</form>
 		</td>
+		</form>
 	</tr>
 	<?php
 
@@ -2801,15 +2608,34 @@ function hmib_summary() {
 	html_start_box("<strong>Host Process Summary Filter</strong>", "100%", $colors["header"], "3", "center", "");
 
 	?>
-	<tr bgcolor="#<?php print $colors["panel"];?>">
+	<script type="text/javascript">
+	<!--
+	function applyProcFilter(objForm) {
+		strURL = '?action=summary&sect=processes';
+		strURL = strURL + '&filter='   + objForm.filter.value;
+		strURL = strURL + '&process='   + objForm.process.value;
+		strURL = strURL + '&ptop='   + objForm.ptop.value;
+		document.location = strURL;
+	}
+
+	function clearProc() {
+		strURL = '?action=summary&sect=processes&clearp';
+		document.location = strURL;
+	}
+	-->
+	</script>
+	<?php
+
+	?>
+	<tr class='even'>
+		<form name="proc_summary">
 		<td>
-			<form name="proc_summary" action="hmib.php?action=summary">
-			<table cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Top:&nbsp;
+					<td width="55">
+						Top:
 					</td>
-					<td width="1">
+					<td>
 						<select name="ptop" onChange="applyProcFilter(document.proc_summary)">
 							<option value="-1"<?php if (get_request_var_request("ptop") == "-1") {?> selected<?php }?>>All Records</option>
 							<option value="5"<?php if (get_request_var_request("ptop") == "5") {?> selected<?php }?>>5 Records</option>
@@ -2818,10 +2644,10 @@ function hmib_summary() {
 							<option value="20"<?php if (get_request_var_request("ptop") == "20") {?> selected<?php }?>>20 Records</option>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Process:&nbsp;
+					<td>
+						Process:
 					</td>
-					<td width="1">
+					<td>
 						<select name="process" onChange="applyProcFilter(document.proc_summary)">
 							<option value="-1"<?php if (get_request_var_request("process") == "-1") {?> selected<?php }?>>All</option>
 							<?php
@@ -2834,39 +2660,23 @@ function hmib_summary() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Search:&nbsp;
+					<td>
+						Search:
 					</td>
 					<td>
-						<input type='text' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
+						<input type='textbox' size='40' name='filter' value='<?php print get_request_var_request("filter");?>'>
 					</td>
-					<td nowrap>
-						&nbsp;<input type="button" onClick="applyProcFilter(document.proc_summary)" value="Go" border="0">
+					<td>
+						<input type="button" onClick="applyProcFilter(document.proc_summary)" value="Go" border="0">
+					</td>
+					<td>
 						<input type="button" onClick="clearProc()" value="Clear" name="clearp" border="0">
 					</td>
 				</tr>
 			</table>
-			</form>
 		</td>
+		</form>
 	</tr>
-	<tr style='display:none;'><td>
-	<script type="text/javascript">
-	<!--
-	function applyProcFilter(objForm) {
-		strURL = '?action=summary&area=processes';
-		strURL = strURL + '&filter='   + objForm.filter.value;
-		strURL = strURL + '&process='   + objForm.process.value;
-		strURL = strURL + '&ptop='   + objForm.ptop.value;
-		document.location = strURL;
-	}
-
-	function clearProc() {
-		strURL = '?action=summary&area=processes&clearp';
-		document.location = strURL;
-	}
-	-->
-	</script>
-	</td></tr>
 	<?php
 
 	html_end_box(false);
@@ -3119,7 +2929,7 @@ function hmib_header_sort($header_items, $sort_column, $sort_direction, $jsprefi
 	</td></tr>
 	<?php
 
-	print "<tr bgcolor='#" . $colors["header_panel"] . "'>\n";
+	print "<tr class='tableHeader'>\n";
 
 	$i = 1;
 	foreach ($header_items as $db_column => $display_array) {
@@ -3331,7 +3141,7 @@ function hmib_view_graphs() {
 	$sql_base = "FROM (graph_templates_graph,graph_local)
 		$sql_join
 		$sql_where
-		" . (empty($sql_where) ? "WHERE" : "AND") . "   graph_templates_graph.local_graph_id > 0
+		" . (trim($sql_where) != "WHERE" ? "AND":"") . "   graph_templates_graph.local_graph_id > 0
 		AND graph_templates_graph.local_graph_id=graph_local.id
 		" . (strlen($_REQUEST["filter"]) ? "AND graph_templates_graph.title_cache like '%%" . $_REQUEST["filter"] . "%%'":"") . "
 		" . (empty($_REQUEST["graph_template_id"]) ? "" : " and graph_local.graph_template_id=" . $_REQUEST["graph_template_id"]) . "
@@ -3378,7 +3188,7 @@ function hmib_view_graphs() {
 	</script>
 	<?php
 
-	html_start_box("<strong>Host MIB Graphs" . ($_REQUEST["style"] == "selective" ? " (Custom Selective Filter)":"") . "</strong>", "100%", $colors["header"], "1", "center", "");
+	html_start_box("<strong>Host MIB Graphs" . ($_REQUEST["style"] == "selective" ? " (Custom Selective Filter)":"") . "</strong>", "100%", $colors["header"], "3", "center", "");
 	hmib_graph_view_filter();
 
 	/* include time span selector */
@@ -3397,11 +3207,15 @@ function hmib_view_graphs() {
 	$nav_url = ereg_replace("((\?|&)filter=[a-zA-Z0-9]*)", "", $nav_url);
 
 	html_start_box("", "100%", $colors["header"], "3", "center", "");
-	hmib_nav_bar($_REQUEST["page"], ROWS_PER_PAGE, $total_rows, $nav_url);
+
+	$nav = html_nav_bar($nav_url, MAX_DISPLAY_PAGES, get_request_var_request("page"), ROWS_PER_PAGE, $total_rows, 11, 'Graphs');
+
+	print $nav;
+
 	hmib_graph_area($graphs, "", "graph_start=" . get_current_graph_start() . "&graph_end=" . get_current_graph_end(), "", $_REQUEST["cols"], $_REQUEST["thumb"]);
 
 	if ($total_rows) {
-		hmib_nav_bar($_REQUEST["page"], ROWS_PER_PAGE, $total_rows, $nav_url);
+		print $nav;
 	}
 	html_end_box();
 }
@@ -3414,57 +3228,17 @@ function hmib_graph_end_box() {
 	print "</table>";
 }
 
-function hmib_nav_bar($current_page, $rows_per_page, $total_rows, $nav_url) {
-	global $config, $colors;
-
-	if ($total_rows) {
-		?>
-		<tr bgcolor='#<?php print $colors["header"];?>' class='noprint'>
-			<td colspan='<?php print $_REQUEST['cols'];?>'>
-				<table width='100%' cellspacing='0' cellpadding='1' border='0'>
-					<tr>
-						<td align='left' class='textHeaderDark'>
-							<strong>&lt;&lt; <?php if ($current_page > 1) { print "<a class='linkOverDark' href='" . htmlspecialchars(str_replace("<PAGE>", ($current_page-1), $nav_url)) . "'>"; } print "Previous"; if ($current_page > 1) { print "</a>"; } ?></strong>
-						</td>
-						<td align='center' class='textHeaderDark'>
-							Showing Graphs <?php print (($rows_per_page*($current_page-1))+1);?> to <?php print ((($total_rows < $rows_per_page) || ($total_rows < ($rows_per_page*$current_page))) ? $total_rows : ($rows_per_page*$current_page));?> of <?php print $total_rows;?>
-						</td>
-						<td align='right' class='textHeaderDark'>
-							<strong><?php if (($current_page * $rows_per_page) < $total_rows) { print "<a class='linkOverDark' href='" . htmlspecialchars(str_replace("<PAGE>", ($current_page+1), $nav_url)) . "'>"; } print "Next"; if (($current_page * $rows_per_page) < $total_rows) { print "</a>"; } ?> &gt;&gt;</strong>
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<?php
-	}else{
-		?>
-		<tr bgcolor='#<?php print $colors["header"];?>' class='noprint'>
-			<td colspan='<?php print $_REQUEST['cols'];?>'>
-				<table width='100%' cellspacing='0' cellpadding='1' border='0'>
-					<tr>
-						<td align='center' class='textHeaderDark'>
-							No Graphs Found
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<?php
-	}
-}
-
 function hmib_graph_view_filter() {
 	global $config, $colors;
 
 	?>
-	<tr bgcolor="#<?php print $colors["panel"];?>" class="noprint">
+	<tr bgcolor="<?php print $colors["panel"];?>" class="noprint">
+		<form name="form_graph_view" method="post">
 		<td class="noprint">
-			<form name="form_graph_view" method="post" action="hmib.php?action=graphs">
-			<table width="100%" cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr class="noprint">
-					<td nowrap style='white-space: nowrap;' width="55">
-						&nbsp;Host:&nbsp;
+					<td width="55">
+						Host:
 					</td>
 					<td width="1">
 						<select name="host" onChange="applyGraphWReset(document.form_graph_view)">
@@ -3489,8 +3263,8 @@ function hmib_graph_view_filter() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="70">
-						&nbsp;Template:&nbsp;
+					<td>
+						Template:
 					</td>
 					<td width="1">
 						<select name="graph_template_id" onChange="applyGraphWReset(document.form_graph_view)">
@@ -3525,8 +3299,8 @@ function hmib_graph_view_filter() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="55">
-						&nbsp;Columns:&nbsp;
+					<td>
+						Columns:
 					</td>
 					<td width="1">
 						<select name="cols" onChange="applyGraphWOReset(document.form_graph_view)">
@@ -3539,27 +3313,29 @@ function hmib_graph_view_filter() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="55">
-						&nbsp;<label for='thumb'>Thumbnails:</label>&nbsp;
+					<td>
+						<label for='thumb'>Thumbnails:</label>
 					</td>
 					<td width='1'>
 						<input name='thumb' id='thumb' type='checkbox' onChange="applyGraphWOReset(document.form_graph_view)" <?php print ($_REQUEST["thumb"] == "on" || $_REQUEST["thumb"] == "true" ? " checked":""); ?>>
 					</td>
-					<td nowrap style='white-space: nowrap;' width="60">
-						&nbsp;Search:&nbsp;
+					<td>
+						Search:
 					</td>
 					<td width="1">
 						<input type="text" name="filter" size="20" value="<?php print $_REQUEST["filter"];?>">
 					</td>
 					<td>
-						&nbsp;<input type="submit" name="go" value="Go">
+						<input type="submit" name="go" value="Go">
+					</td>
+					<td>
 						<input type="submit" name="clear" value="Clear">
 					</td>
 				</tr>
 			</table>
-			<input type='hidden' name='action' value='graphs'>
-			</form>
 		</td>
+		<input type='hidden' name='action' value='graphs'>
+		</form>
 	</tr>
 	<?php
 }
@@ -3613,15 +3389,15 @@ function hmib_timespan_selector() {
 	}
 	-->
 	</script>
-	<tr bgcolor="#<?php print $colors["panel"];?>" class="noprint">
+	<tr class='even'>
+		<form name="form_timespan_selector" method="post">
 		<td class="noprint">
-			<form name="form_timespan_selector" method="post" action="hmib.php?action=graphs">
-			<table width="100%" cellpadding="0" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
-					<td nowrap style='white-space: nowrap;' width='55'>
-						&nbsp;Presets:&nbsp;
+					<td width='55'>
+						Presets:
 					</td>
-					<td nowrap style='white-space: nowrap;' width='130'>
+					<td>
 						<select name='predefined_timespan' onChange="applyTimespanFilterChange(document.form_timespan_selector)">
 							<?php
 							if ($_SESSION["custom"]) {
@@ -3645,23 +3421,29 @@ function hmib_timespan_selector() {
 							?>
 						</select>
 					</td>
-					<td nowrap style='white-space: nowrap;' width='30'>
-						&nbsp;From:&nbsp;
+					<td>
+						From:
 					</td>
-					<td width='155' nowrap style='white-space: nowrap;'>
+					<td>
 						<input type='text' name='date1' id='date1' title='Graph Begin Timestamp' size='14' value='<?php print (isset($_SESSION["sess_current_date1"]) ? $_SESSION["sess_current_date1"] : "");?>'>
-						&nbsp;<input style='padding-bottom: 4px;' type='image' src='<?php print $config["url_path"];?>images/calendar.gif' alt='Start date selector' title='Start date selector' border='0' align='absmiddle' onclick="return showCalendar('date1');">&nbsp;
 					</td>
-					<td nowrap style='white-space: nowrap;' width='20'>
-						&nbsp;To:&nbsp;
+					<td>
+						<input type='image' src='<?php print $config["url_path"];?>images/calendar.gif' alt='Start date selector' title='Start date selector' border='0' align='absmiddle' onclick="return showCalendar('date1');">&nbsp;
 					</td>
-					<td width='155' nowrap style='white-space: nowrap;'>
+					<td>
+						To:
+					</td>
+					<td>
 						<input type='text' name='date2' id='date2' title='Graph End Timestamp' size='14' value='<?php print (isset($_SESSION["sess_current_date2"]) ? $_SESSION["sess_current_date2"] : "");?>'>
-						&nbsp;<input style='padding-bottom: 4px;' type='image' src='<?php print $config["url_path"];?>images/calendar.gif' alt='End date selector' title='End date selector' border='0' align='absmiddle' onclick="return showCalendar('date2');">
 					</td>
-					<td width='130' nowrap style='white-space: nowrap;'>
-						&nbsp;&nbsp;<input style='padding-bottom: 4px;' type='image' name='move_left' src='<?php print $config['url_path'];?>images/move_left.gif' alt='Left' border='0' align='absmiddle' title='Shift Left'>
-						<select name='predefined_timeshift' title='Define Shifting Interval' onChange="applyTimespanFilterChange(document.form_timespan_selector)">
+					<td>
+						<input type='image' src='<?php print $config["url_path"];?>images/calendar.gif' alt='End date selector' title='End date selector' border='0' align='absmiddle' onclick="return showCalendar('date2');">
+					</td>
+					<td>
+						<input type='image' name='move_left' src='<?php print $config['url_path'];?>images/move_left.gif' alt='Left' border='0' align='absmiddle' title='Shift Left'>
+					</td>
+					<td>
+						<select name='predefined_timeshift' title='Define Shifting Interval'>
 							<?php
 							$start_val = 1;
 							$end_val = sizeof($graph_timeshifts)+1;
@@ -3672,16 +3454,20 @@ function hmib_timespan_selector() {
 							}
 							?>
 						</select>
-						<input style='padding-bottom: 4px;' type='image' name='move_right' src='<?php print $config['url_path'];?>images/move_right.gif' alt='Right' border='0' align='absmiddle' title='Shift Right'>
 					</td>
-					<td nowrap style='white-space: nowrap;'>
-						&nbsp;&nbsp;<input type='submit' name='refresh' value='Refresh'>
+					<td>
+						<input type='image' name='move_right' src='<?php print $config['url_path'];?>images/move_right.gif' alt='Right' border='0' align='absmiddle' title='Shift Right'>
+					</td>
+					<td>
+						<input type='submit' name='refresh' value='Refresh'>
+					</td>
+					<td>
 						<input type='submit' name='clear' value='Clear'>
 					</td>
 				</tr>
 			</table>
-			</form>
 		</td>
+		</form>
 	</tr>
 	<?php
 }

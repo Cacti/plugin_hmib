@@ -1,7 +1,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2010 The Cacti Group                                 |
+ | Copyright (C) 2004-2014 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -343,7 +343,7 @@ function hmib_setup_table () {
 function hmib_version () {
 	return array(
 		'name' 		=> 'hmib',
-		'version' 	=> '2.0',
+		'version' 	=> '2.1',
 		'longname'	=> 'Host MIB Tool',
 		'author'	=> 'The Cacti Group',
 		'homepage'	=> 'http://www.cacti.net',
@@ -383,6 +383,12 @@ function hmib_config_settings () {
 		"hmib_autopurge" => array(
 			"friendly_name" => "Automatically Purge Devices",
 			"description" => "Do you wish to automatically purge devices that are removed from the Cacti system?",
+			"method" => "checkbox",
+			"default" => "on"
+			),
+		"hmib_batch_scheduler" => array(
+			"friendly_name" => "Batch Scheduler Tweak",
+			"description" => "If selected, transient parent task from batch jobs will be removed from the database.  These processes cause clutter and are generally irrelevant.",
 			"method" => "checkbox",
 			"default" => "on"
 			),

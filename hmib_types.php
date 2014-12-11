@@ -1,7 +1,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2010 The Cacti Group                                 |
+ | Copyright (C) 2004-2014 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -214,7 +214,7 @@ function form_actions() {
 		$i++;
 	}
 
-	include_once("./include/top_header.php");
+	top_header();
 
 	html_start_box("<strong>" . $host_types_actions{$_POST["drp_action"]} . "</strong>", "60%", $colors["header_panel"], "3", "center", "");
 
@@ -261,7 +261,7 @@ function form_actions() {
 
 	html_end_box();
 
-	include_once("./include/bottom_footer.php");
+	bottom_footer();
 }
 
 /* ---------------------
@@ -352,7 +352,7 @@ function rescan_types() {
 				WHERE (sysObjectID LIKE '%" . $known['sysObjectID'] . "%' AND
 				sysDescr LIKE '%" . $known['sysDescrMatch'] . "%') 
 				OR (sysObjectID RLIKE '" . $known['sysObjectID'] . "' AND
-                sysDescr RLIKE '" . $known['sysDescrMatch'] . "')");
+				sysDescr RLIKE '" . $known['sysDescrMatch'] . "')");
 
 			if ($cnn_id->Affected_Rows() > 0) {
 				$found = TRUE;
@@ -714,9 +714,9 @@ function hmib_host_type_remove() {
 	/* ==================================================== */
 
 	if ((read_config_option("remove_verification") == "on") && (!isset($_GET["confirm"]))) {
-		include("./include/top_header.php");
+		top_header();
 		form_confirm("Are You Sure?", "Are you sure you want to delete the Host Type<strong>'" . db_fetch_cell("SELECT description FROM host WHERE id=" . $_GET["host_id"]) . "'</strong>?", "hmib_types.php", "hmib_types.php?action=remove&id=" . $_GET["id"]);
-		include("./include/bottom_footer.php");
+		bottom_footer();
 		exit;
 	}
 
@@ -903,45 +903,7 @@ function hmib_host_type() {
 		COUNT(*)
 		FROM plugin_hmib_hrSystemTypes" . $sql_where);
 
-	/* generate page list */
-	$url_page_select = get_page_list($_REQUEST["page"], MAX_DISPLAY_PAGES, $row_limit, $total_rows, "hmib_types.php?");
-
-	if (defined("CACTI_VERSION")) {
-		/* generate page list navigation */
-		$nav = html_create_nav($_REQUEST["page"], MAX_DISPLAY_PAGES, $row_limit, $total_rows, 9, "hmib_types.php?filter=" . $_REQUEST["filter"]);
-	}else{
-		if ($total_rows > 0) {
-			$nav = "<tr bgcolor='#" . $colors["header"] . "'>
-					<td colspan='9'>
-						<table width='100%' cellspacing='0' cellpadding='0' border='0'>
-							<tr>
-								<td align='left' class='textHeaderDark'>
-									<strong>&lt;&lt; "; if ($_REQUEST["page"] > 1) { $nav .= "<a class='linkOverDark' href='hmib_types.php?page=" . ($_REQUEST["page"]-1) . "'>"; } $nav .= "Previous"; if ($_REQUEST["page"] > 1) { $nav .= "</a>"; } $nav .= "</strong>
-								</td>\n
-								<td align='center' class='textHeaderDark'>
-									Showing Rows " . (($row_limit*($_REQUEST["page"]-1))+1) . " to " . ((($total_rows < $row_limit) || ($total_rows < ($row_limit*$_REQUEST["page"]))) ? $total_rows : ($row_limit*$_REQUEST["page"])) . " of $total_rows [$url_page_select]
-								</td>\n
-								<td align='right' class='textHeaderDark'>
-									<strong>"; if (($_REQUEST["page"] * $row_limit) < $total_rows) { $nav .= "<a class='linkOverDark' href='hmib_types.php?page=" . ($_REQUEST["page"]+1) . "'>"; } $nav .= "Next"; if (($_REQUEST["page"] * $row_limit) < $total_rows) { $nav .= "</a>"; } $nav .= " &gt;&gt;</strong>
-								</td>\n
-							</tr>
-						</table>
-					</td>
-				</tr>\n";
-		}else{
-			$nav = "<tr bgcolor='#" . $colors["header"] . "'>
-					<td colspan='9'>
-						<table width='100%' cellspacing='0' cellpadding='0' border='0'>
-							<tr>
-								<td align='center' class='textHeaderDark'>
-									No Rows Found
-								</td>\n
-							</tr>
-						</table>
-					</td>
-				</tr>\n";
-		}
-	}
+	$nav = html_nav_bar("hmib_types.php", MAX_DISPLAY_PAGES, get_request_var_request("page"), $row_limit, $total_rows, 9, 'OS Types');
 
 	print $nav;
 
@@ -1078,22 +1040,22 @@ function hmib_host_type_filter() {
 	}
 	-->
 	</script>
-	<tr>
+	<tr class='even'>
 		<form name="form_host_types">
 		<td>
-			<table cellpadding="1" cellspacing="0">
+			<table cellpadding="2" cellspacing="0">
 				<tr>
 					</td>
-					<td width="40">
-						&nbsp;Search:&nbsp;
+					<td width="55">
+						Search:
 					</td>
-					<td width="1">
+					<td>
 						<input type="text" name="filter" size="20" value="<?php print $_REQUEST["filter"];?>">
 					</td>
-					<td nowrap style='white-space: nowrap;' width="40">
-						&nbsp;Rows:&nbsp;
+					<td>
+						Rows:
 					</td>
-					<td width="1">
+					<td>
 						<select name="rows" onChange="applyFilterChange(document.form_host_types)">
 							<option value="-1"<?php if (get_request_var_request("rows") == "-1") {?> selected<?php }?>>Default</option>
 							<?php
@@ -1104,6 +1066,7 @@ function hmib_host_type_filter() {
 							}
 							?>
 						</select>
+					</td>
 					<td>
 						&nbsp;<input type="submit" name="go" title="Submit Query" value="Go">
 					</td>

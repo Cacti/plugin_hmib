@@ -521,6 +521,12 @@ function checkHost($host_id) {
 		collect_hrProcessor($host);
 	}
 
+	/* remove batch scheduler transient processes */
+	if (read_config_option('hmib_batch_scheduler') == 'on') {
+		db_execute('DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE name regexp "^[0-9].[0-9]?"');
+		db_execute('DELETE FROM plugin_hmib_hrSWRun WHERE name regexp "^[0-9].[0-9]?"');
+	}
+
 	/* update the most recent table */
 	db_execute("INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name, total_time)
 		SELECT DISTINCT host_id, name, " . read_config_option("hmib_hrSWRunPerf_freq") . " AS `total_time`
