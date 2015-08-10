@@ -24,14 +24,13 @@
 */
 
 chdir(dirname(__FILE__));
-chdir("../..");
-include("./include/global.php");
-include_once("./lib/poller.php");
-include_once("./lib/data_query.php");
-ini_set("memory_limit", "128M");
+chdir('../..');
+include('./include/global.php');
+include_once('./lib/poller.php');
+include_once('./lib/data_query.php');
 
 /* process calling arguments */
-$parms = $_SERVER["argv"];
+$parms = $_SERVER['argv'];
 array_shift($parms);
 
 global $debug, $start, $seed, $forcerun;
@@ -41,40 +40,40 @@ $forcerun = FALSE;
 $start    = time();
 
 foreach($parms as $parameter) {
-	@list($arg, $value) = @explode("=", $parameter);
+	@list($arg, $value) = @explode('=', $parameter);
 
 	switch ($arg) {
-	case "-d":
-	case "--debug":
+	case '-d':
+	case '--debug':
 		$debug = TRUE;
 		break;
-	case "-f":
-	case "--force":
+	case '-f':
+	case '--force':
 		$forcerun = TRUE;
 		break;
-	case "-v":
-	case "--help":
-	case "-V":
-	case "--version":
+	case '-v':
+	case '--help':
+	case '-V':
+	case '--version':
 		display_help();
 		exit;
 	default:
-		print "ERROR: Invalid Parameter " . $parameter . "\n\n";
+		print 'ERROR: Invalid Parameter ' . $parameter . "\n\n";
 		display_help();
 		exit;
 	}
 }
 
 /* Do not process if not enabled */
-if (read_config_option("hmib_enabled") == "" || db_fetch_cell("SELECT status FROM plugin_config WHERE directory='hmib'") != 1) {
+if (read_config_option('hmib_enabled') == '' || db_fetch_cell("SELECT status FROM plugin_config WHERE directory='hmib'") != 1) {
 	echo "WARNING: The Host Mib Collection is Down!  Exiting\n";
 	exit(0);
 }
 
 /* see if its time to run */
-$last_run  = read_config_option("hmib_automation_lastrun");
-$frequency = read_config_option("hmib_automation_frequency") * 86400;
-debug("Last Run Was '" . date("Y-m-d H:i:s", $last_run) . "', Frequency is '" . ($frequency/86400) . "' Hours");
+$last_run  = read_config_option('hmib_automation_lastrun');
+$frequency = read_config_option('hmib_automation_frequency') * 86400;
+debug("Last Run Was '" . date('Y-m-d H:i:s', $last_run) . "', Frequency is '" . ($frequency/86400) . "' Hours");
 if ($frequency == 0 && !$forcerun) {
 	echo "NOTE:  Graph Automation is Disabled\n";
 }elseif (($frequency > 0 && ($start - $last_run) > $frequency) || $forcerun) {
@@ -105,14 +104,14 @@ function add_graphs() {
 
 	if (!empty($host_template)) {
 		/* check to see if the template exists */
-		debug("Host Template Set");
+		debug('Host Template Set');
 
 		if (db_fetch_cell("SELECT count(*) FROM host_template WHERE id=$host_template")) {
-			debug("Host Template Exists");
+			debug('Host Template Exists');
 
 			$host_id = db_fetch_cell("SELECT id FROM host WHERE host_template_id=$host_template");
 			if (empty($host_id)) {
-				debug("Host MIB Summary Device Not Found, Adding");
+				debug('Host MIB Summary Device Not Found, Adding');
 			}else{
 				debug("Host Exists Hostname is '" . db_fetch_cell("SELECT description FROM host WHERE id=$host_id"). "'");
 			}
@@ -120,10 +119,10 @@ function add_graphs() {
 
 			add_summary_graphs($host_id, $host_template);
 		}else{
-			cacti_log("WARNING: Unable to find Host MIB Summary Host Template", true, "HMIB");
+			cacti_log('WARNING: Unable to find Host MIB Summary Host Template', true, 'HMIB');
 		}
 	}else{
-		cacti_log("NOTE: Host MIB Summary Host Template Not Specified", true, "HMIB");
+		cacti_log('NOTE: Host MIB Summary Host Template Not Specified', true, 'HMIB');
 	}
 
 	add_host_based_graphs();
@@ -132,7 +131,7 @@ function add_graphs() {
 function add_host_based_graphs() {
 	global $config;
 
-	debug("Adding Host Based Graphs");
+	debug('Adding Host Based Graphs');
 
 	/* check for host level graphs next data queries */
 	$host_cpu_dq   = db_fetch_cell("SELECT id 
@@ -158,40 +157,40 @@ function add_host_based_graphs() {
 
 	if (sizeof($hosts)) {
 		foreach($hosts as $h) {
-			debug("Processing Host '" . $h["description"] . "[" . $h["host_id"] . "]'");
+			debug("Processing Host '" . $h['description'] . '[' . $h['host_id'] . "]'");
 			if ($host_users_gt) {
-				debug("Processing Users");
-				hmib_gt_graph($h["host_id"], $host_users_gt);
+				debug('Processing Users');
+				hmib_gt_graph($h['host_id'], $host_users_gt);
 			}else{
-				debug("Users Graph Template Not Set");
+				debug('Users Graph Template Not Set');
 			}
 			
 			if ($host_users_gt) {
-				debug("Processing Processes");
-				hmib_gt_graph($h["host_id"], $host_procs_gt);
+				debug('Processing Processes');
+				hmib_gt_graph($h['host_id'], $host_procs_gt);
 			}else{
-				debug("Processes Graph Template Not Set");
+				debug('Processes Graph Template Not Set');
 			}
 
-			debug("Processing Disks");
+			debug('Processing Disks');
 			if ($host_disk_dq) {	
 				/* only numeric > 0 */
-				$regex = "^[1-9][0-9]*";
-				$field = "hrStorageSizeInput";
-				add_host_dq_graphs($h["host_id"], $host_disk_dq, $field, $regex);
+				$regex = '^[1-9][0-9]*';
+				$field = 'hrStorageSizeInput';
+				add_host_dq_graphs($h['host_id'], $host_disk_dq, $field, $regex);
 			}
 
 			if ($host_cpu_dq) {
-				add_host_dq_graphs($h["host_id"], $host_cpu_dq);
+				add_host_dq_graphs($h['host_id'], $host_cpu_dq);
 			}
-			debug("Processing CPU");
+			debug('Processing CPU');
 		}
 	}else{
-		debug("No Hosts Found");
+		debug('No Hosts Found');
 	}
 }
 
-function add_host_dq_graphs($host_id, $dq, $field = "", $regex = "", $include = TRUE) {
+function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = TRUE) {
 	global $config;
 
 	/* add entry if it does not exist */
@@ -201,17 +200,17 @@ function add_host_dq_graphs($host_id, $dq, $field = "", $regex = "", $include = 
 	}
 
 	/* recache snmp data */
-	debug("Reindexing Host");
+	debug('Reindexing Host');
 	run_data_query($host_id, $dq);
 
-	$graph_templates = db_fetch_assoc("SELECT * 
+	$graph_templates = db_fetch_assoc('SELECT * 
 		FROM snmp_query_graph 
-		WHERE snmp_query_id=" . $dq);
+		WHERE snmp_query_id=' . $dq);
 
-	debug("Adding Graphs");
+	debug('Adding Graphs');
 	if (sizeof($graph_templates)) {
 	foreach($graph_templates as $gt) {
-		hmib_dq_graphs($host_id, $dq, $gt["graph_template_id"], $gt["id"], $field, $regex, $include);
+		hmib_dq_graphs($host_id, $dq, $gt['graph_template_id'], $gt['id'], $field, $regex, $include);
 	}
 	}
 }
@@ -219,8 +218,8 @@ function add_host_dq_graphs($host_id, $dq, $field = "", $regex = "", $include = 
 function hmib_gt_graph($host_id, $graph_template_id) {
 	global $config;
 
-	$php_bin = read_config_option("path_php_binary");
-	$base    = $config["base_path"];
+	$php_bin = read_config_option('path_php_binary');
+	$base    = $config['base_path'];
 	$name    = db_fetch_cell("SELECT name FROM graph_templates WHERE id=$graph_template_id");
 	$assoc   = db_fetch_cell("SELECT count(*) 
 		FROM host_graph 
@@ -240,51 +239,51 @@ function hmib_gt_graph($host_id, $graph_template_id) {
 		echo "NOTE: Adding Graph: '$name' for Host: " . $host_id;
 	
 		$command = "$php_bin -q $base/cli/add_graphs.php" .
-			" --graph-template-id=$graph_template_id" .
-			" --graph-type=cg" .
-			" --host-id=" . $host_id;
+			' --graph-template-id=' . $graph_template_id .
+			' --graph-type=cg' .
+			' --host-id=' . $host_id;
 	
-		echo str_replace("\n", " ", passthru($command)) . "\n";
+		echo str_replace("\n", ' ', passthru($command)) . "\n";
 	}
 }
 
 function add_summary_graphs($host_id, $host_template) {
 	global $config;
 
-	$php_bin = read_config_option("path_php_binary");
-	$base    = $config["base_path"];
+	$php_bin = read_config_option('path_php_binary');
+	$base    = $config['base_path'];
 
 	$return_code = 0;
 	if (empty($host_id)) {
 		/* add the host */
-		debug("Adding Host");
+		debug('Adding Host');
 		$result = exec("$php_bin -q $base/cli/add_device.php --description='Summary Device' --ip=summary --template=$host_template --version=0 --avail=none", $return_code);
 	}else{
-		debug("Reindexing Host");
+		debug('Reindexing Host');
 		$result = exec("$php_bin -q $base/cli/poller_reindex_hosts.php -id=$host_id -qid=All", $return_code);
 	}
 
 	/* data query graphs first */
-	debug("Processing Data Queries");
+	debug('Processing Data Queries');
 	$data_queries = db_fetch_assoc("SELECT * 
 		FROM host_snmp_query 
 		WHERE host_id=$host_id");
 
 	if (sizeof($data_queries)) {
 	foreach($data_queries as $dq) {
-		$graph_templates = db_fetch_assoc("SELECT * 
+		$graph_templates = db_fetch_assoc('SELECT * 
 			FROM snmp_query_graph 
-			WHERE snmp_query_id=" . $dq["snmp_query_id"]);
+			WHERE snmp_query_id=' . $dq['snmp_query_id']);
 
 		if (sizeof($graph_templates)) {
 		foreach($graph_templates as $gt) {
-			hmib_dq_graphs($host_id, $dq["snmp_query_id"], $gt["graph_template_id"], $gt["id"]);
+			hmib_dq_graphs($host_id, $dq['snmp_query_id'], $gt['graph_template_id'], $gt['id']);
 		}
 		}
 	}
 	}
 
-	debug("Processing Graph Templates");
+	debug('Processing Graph Templates');
 	$graph_templates = db_fetch_assoc("SELECT *
 		FROM host_graph
 		WHERE host_id=$host_id");
@@ -295,31 +294,31 @@ function add_summary_graphs($host_id, $host_template) {
 		$exists = db_fetch_cell("SELECT count(*) 
 			FROM graph_local 
 			WHERE host_id=$host_id 
-			AND graph_template_id=" . $gt["graph_template_id"]);
+			AND graph_template_id=" . $gt['graph_template_id']);
 
 		if (!$exists) {
 			echo "NOTE: Adding item: '$field_value' for Host: " . $host_id;
 	
 			$command = "$php_bin -q $base/cli/add_graphs.php" .
-				" --graph-template-id=" . $gt["graph_template_id"] . 
-				" --graph-type=cg" .
-				" --host-id=" . $host_id;
+				' --graph-template-id=' . $gt['graph_template_id'] . 
+				' --graph-type=cg' .
+				' --host-id=' . $host_id;
 	
-			echo str_replace("\n", " ", passthru($command)) . "\n";
+			echo str_replace("\n", ' ', passthru($command)) . "\n";
 		}
 	}
 	}
 }
 
 function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id, 
-	$field = "", $regex = "", $include = TRUE) {
+	$field = '', $regex = '', $include = TRUE) {
 
 	global $config, $php_bin, $path_grid;
 
-	$php_bin = read_config_option("path_php_binary");
-	$base    = $config["base_path"];
+	$php_bin = read_config_option('path_php_binary');
+	$base    = $config['base_path'];
 
-	if ($field == "") {
+	if ($field == '') {
 		$field = db_fetch_cell("SELECT sort_field 
 			FROM host_snmp_query 
 			WHERE host_id=$host_id AND snmp_query_id=" . $query_id);
@@ -336,7 +335,7 @@ function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
 			$field_value = $item['field_value'];
 			$index       = $item['snmp_index'];
 	
-			if ($regex == "") {
+			if ($regex == '') {
 				/* add graph below */
 			}else if ((($include == TRUE) && (ereg($regex, $field_value))) ||
 				(($include != TRUE) && (!ereg($regex, $field_value)))) {
@@ -356,12 +355,15 @@ function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
 	 
 			if (!$exists) {
 				$command = "$php_bin -q $base/cli/add_graphs.php" .
-					" --graph-template-id=$graph_template_id --graph-type=ds"     .
-					" --snmp-query-type-id=$query_type_id --host-id=" . $host_id .
-					" --snmp-query-id=$query_id --snmp-field=$field" .
-					" --snmp-value=" . escapeshellarg($field_value);
+					' --graph-template-id=' . $graph_template_id . 
+					' --graph-type=ds'     .
+					' --snmp-query-type-id=' . $query_type_id . 
+					' --host-id=' . $host_id .
+					' --snmp-query-id=' . $query_id . 
+					' --snmp-field=' . $field .
+					' --snmp-value=' . escapeshellarg($field_value);
 	
-				echo "NOTE: Adding item: '$field_value' " . str_replace("\n", " ", passthru($command)) . "\n";
+				echo "NOTE: Adding item: '$field_value' " . str_replace("\n", ' ', passthru($command)) . "\n";
 			}
 		}
 	}
@@ -371,7 +373,7 @@ function debug($message) {
 	global $debug;
 
 	if ($debug) {
-		echo "DEBUG: " . trim($message) . "\n";
+		echo 'DEBUG: ' . trim($message) . "\n";
 	}
 }
 

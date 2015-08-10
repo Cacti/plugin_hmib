@@ -24,12 +24,11 @@
 */
 
 chdir(dirname(__FILE__));
-chdir("../..");
-include("./include/global.php");
-ini_set("memory_limit", "128M");
+chdir('../..');
+include('./include/global.php');
 
 /* process calling arguments */
-$parms = $_SERVER["argv"];
+$parms = $_SERVER['argv'];
 array_shift($parms);
 
 global $debug, $start, $seed, $forcerun;
@@ -37,21 +36,21 @@ global $debug, $start, $seed, $forcerun;
 $debug          = FALSE;
 
 foreach($parms as $parameter) {
-	@list($arg, $value) = @explode("=", $parameter);
+	@list($arg, $value) = @explode('=', $parameter);
 
 	switch ($arg) {
-	case "-d":
-	case "--debug":
+	case '-d':
+	case '--debug':
 		$debug = TRUE;
 		break;
-	case "-v":
-	case "--help":
-	case "-V":
-	case "--version":
+	case '-v':
+	case '--help':
+	case '-V':
+	case '--version':
 		display_help();
 		exit;
 	default:
-		print "ERROR: Invalid Parameter " . $parameter . "\n\n";
+		print 'ERROR: Invalid Parameter ' . $parameter . "\n\n";
 		display_help();
 		exit;
 	}
@@ -65,7 +64,7 @@ function debug($message) {
 	global $debug;
 
 	if ($debug) {
-		echo "DEBUG: " . trim($message) . "\n";
+		echo 'DEBUG: ' . trim($message) . "\n";
 	}
 }
 
@@ -74,13 +73,13 @@ function process_hosts() {
 
 	echo "NOTE: Processing OS Types Begins\n";
 
-	$types = db_fetch_assoc("SELECT * FROM plugin_hmib_hrSystemTypes");
+	$types = db_fetch_assoc('SELECT * FROM plugin_hmib_hrSystemTypes');
 
 	if (sizeof($types)) {
 	foreach($types as $t) {
-		db_execute("UPDATE plugin_hmib_hrSystem AS hrs SET host_type=". $t["id"] . "
-			WHERE hrs.sysDescr LIKE '%" . $t["sysDescrMatch"] . "%'
-			AND hrs.sysObjectID LIKE '" . $t["sysObjectID"] . "%'");
+		db_execute('UPDATE plugin_hmib_hrSystem AS hrs SET host_type='. $t['id'] . "
+			WHERE hrs.sysDescr LIKE '%" . $t['sysDescrMatch'] . "%'
+			AND hrs.sysObjectID LIKE '" . $t['sysObjectID'] . "%'");
 	}
 	}
 

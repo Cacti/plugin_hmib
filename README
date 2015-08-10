@@ -4,7 +4,7 @@
     Contact ........ 
     Home Site ...... http://www.cacti.net
     Program ........ Host MIB Audit Tool
-    Version ........ 2.1
+    Version ........ 2.0
     Purpose ........ Collect Host MIB Table Information for Reporting
 
 *******************************************************************************/
@@ -45,18 +45,13 @@
 
 ----[ Changelog
 
-    --- 2.1 ---
-    feature: Add batch scheduler tweak to keep batch scheduler processes
-    from polluting the database.
-    feature: Support new Theme engine
-
     --- 2.0 ---
     fix: Template detection is automatic now based upon Hash
     feature: Add new Summary Graph Template for average and peak memory use by process
     fix: trim core# off of processes that include that variable in the name of the binary
     fix: cpu graphs were still using snmp and not the hmib information, migrate to hmib.
     note: this may cause existing cpu graphs to break.
-
+    feature: Support new Theme engine
 
     --- 1.5 ---
     bug#0002123: hmib does not handle sysContact or other field that contains an apostrophe

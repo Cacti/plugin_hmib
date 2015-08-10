@@ -43,17 +43,17 @@ function plugin_hmib_install () {
 
 function plugin_hmib_uninstall () {
 	// Do any extra Uninstall stuff here
-	db_execute("DROP TABLE IF EXISTS `plugin_hmib_hrDevices`");
-	db_execute("DROP TABLE IF EXISTS `plugin_hmib_hrSWInstalled`");
-	db_execute("DROP TABLE IF EXISTS `plugin_hmib_hrProcessor`");
-	db_execute("DROP TABLE IF EXISTS `plugin_hmib_hrStorage`");
-	db_execute("DROP TABLE IF EXISTS `plugin_hmib_hrSWRun`");
-	db_execute("DROP TABLE IF EXISTS `plugin_hmib_hrSWRun_ignore`");
-	db_execute("DROP TABLE IF EXISTS `plugin_hmib_hrSWRun_last_seen`");
-	db_execute("DROP TABLE IF EXISTS `plugin_hmib_hrSystem`");
-	db_execute("DROP TABLE IF EXISTS `plugin_hmib_hrSystemTypes`");
-	db_execute("DROP TABLE IF EXISTS `plugin_hmib_processes`");
-	db_execute("DROP TABLE IF EXISTS `plugin_hmib_types`");
+	db_execute('DROP TABLE IF EXISTS `plugin_hmib_hrDevices`');
+	db_execute('DROP TABLE IF EXISTS `plugin_hmib_hrSWInstalled`');
+	db_execute('DROP TABLE IF EXISTS `plugin_hmib_hrProcessor`');
+	db_execute('DROP TABLE IF EXISTS `plugin_hmib_hrStorage`');
+	db_execute('DROP TABLE IF EXISTS `plugin_hmib_hrSWRun`');
+	db_execute('DROP TABLE IF EXISTS `plugin_hmib_hrSWRun_ignore`');
+	db_execute('DROP TABLE IF EXISTS `plugin_hmib_hrSWRun_last_seen`');
+	db_execute('DROP TABLE IF EXISTS `plugin_hmib_hrSystem`');
+	db_execute('DROP TABLE IF EXISTS `plugin_hmib_hrSystemTypes`');
+	db_execute('DROP TABLE IF EXISTS `plugin_hmib_processes`');
+	db_execute('DROP TABLE IF EXISTS `plugin_hmib_types`');
 }
 
 function plugin_hmib_check_config () {
@@ -74,8 +74,8 @@ function plugin_hmib_version () {
 
 function hmib_check_upgrade () {
 	global $config, $database_default;
-	include_once($config["library_path"] . "/database.php");
-	include_once($config["library_path"] . "/functions.php");
+	include_once($config['library_path'] . '/database.php');
+	include_once($config['library_path'] . '/functions.php');
 
 	// Let's only run this check if we are on a page that actually needs the data
 	$files = array('plugins.php', 'hmib.php');
@@ -92,19 +92,19 @@ function hmib_check_upgrade () {
 			api_plugin_enable_hooks('hmib');
 		}
 		db_execute("UPDATE plugin_config SET version='$current' WHERE directory='hmib'");
-		db_execute("UPDATE plugin_config SET " .
-				"version='" . $version["version"] . "', " .
-				"name='" . $version["longname"] . "', " .
-				"author='" . $version["author"] . "', " .
-				"webpage='" . $version["url"] . "' " .
-				"WHERE directory='" . $version["name"] . "' ");
+		db_execute('UPDATE plugin_config SET ' .
+				"version='" . $version['version'] . "', " .
+				"name='" . $version['longname'] . "', " .
+				"author='" . $version['author'] . "', " .
+				"webpage='" . $version['url'] . "' " .
+				"WHERE directory='" . $version['name'] . "' ");
 
-		$columns = db_fetch_assoc("SHOW columns FROM plugin_hmib_hrSWRun_last_seen");
+		$columns = db_fetch_assoc('SHOW columns FROM plugin_hmib_hrSWRun_last_seen');
 		foreach($columns as $c) {
 			$cols[] = $c[0];
 		}
 
-		if (!array_search("total_time",$cols)) {
+		if (!array_search('total_time',$cols)) {
 			db_execute("ALTER TABLE plugin_hmib_hrSWRun_last_seen ADD COLUMN `total_time` BIGINT unsigned not null default '0' AFTER `name`");
 		}
 	}
@@ -116,7 +116,7 @@ function hmib_check_dependencies() {
 
 function hmib_setup_table () {
 	global $config, $database_default;
-	include_once($config["library_path"] . "/database.php");
+	include_once($config['library_path'] . '/database.php');
 
 	db_execute("CREATE TABLE `plugin_hmib_hrDevices` (
 		`host_id` int(10) unsigned NOT NULL,
@@ -334,16 +334,16 @@ function hmib_setup_table () {
 		(51,'.1.3.6.1.2.1.25.3.9.9','NTFS')");
 
 	/* optimizations */
-	db_execute("ALTER TABLE data_input_data ADD INDEX data_template_data_id(data_template_data_id)");
-	db_execute("ALTER TABLE data_input_data ADD INDEX data_input_field_id(data_input_field_id)");
-	db_execute("ALTER TABLE snmp_query_graph ADD INDEX graph_template_id(graph_template_id)");
-	db_execute("ALTER TABLE snmp_query_graph ADD INDEX snmp_query_id(snmp_query_id)");
+	db_execute('ALTER TABLE data_input_data ADD INDEX data_template_data_id(data_template_data_id)');
+	db_execute('ALTER TABLE data_input_data ADD INDEX data_input_field_id(data_input_field_id)');
+	db_execute('ALTER TABLE snmp_query_graph ADD INDEX graph_template_id(graph_template_id)');
+	db_execute('ALTER TABLE snmp_query_graph ADD INDEX snmp_query_id(snmp_query_id)');
 }
 
 function hmib_version () {
 	return array(
 		'name' 		=> 'hmib',
-		'version' 	=> '2.1',
+		'version' 	=> '2.0',
 		'longname'	=> 'Host MIB Tool',
 		'author'	=> 'The Cacti Group',
 		'homepage'	=> 'http://www.cacti.net',
@@ -354,9 +354,9 @@ function hmib_version () {
 
 function hmib_poller_bottom() {
 	global $config;
-	include_once($config["base_path"] . "/lib/poller.php");
+	include_once($config['base_path'] . '/lib/poller.php');
 
-	exec_background(read_config_option("path_php_binary"), " -q " . $config["base_path"] . "/plugins/hmib/poller_hmib.php -M");
+	exec_background(read_config_option('path_php_binary'), ' -q ' . $config['base_path'] . '/plugins/hmib/poller_hmib.php -M');
 }
 
 function hmib_config_settings () {
@@ -364,152 +364,146 @@ function hmib_config_settings () {
 
 	$tabs['hmib'] = 'Host Mib';
 	$settings['hmib'] = array(
-		"hmib_header" => array(
-			"friendly_name" => "Host Mib General Settings",
-			"method" => "spacer",
+		'hmib_header' => array(
+			'friendly_name' => 'Host Mib General Settings',
+			'method' => 'spacer',
 			),
-		"hmib_enabled" => array(
-			"friendly_name" => "Host Mib Poller Enabled",
-			"description" => "Check this box, if you want Host Mib polling to be enabled.  Otherwise, the poller will not function.",
-			"method" => "checkbox",
-			"default" => ""
+		'hmib_enabled' => array(
+			'friendly_name' => 'Host Mib Poller Enabled',
+			'description' => 'Check this box, if you want Host Mib polling to be enabled.  Otherwise, the poller will not function.',
+			'method' => 'checkbox',
+			'default' => ''
 			),
-		"hmib_autodiscovery" => array(
-			"friendly_name" => "Automatically Discover Cacti Devices",
-			"description" => "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?",
-			"method" => "checkbox",
-			"default" => "on"
+		'hmib_autodiscovery' => array(
+			'friendly_name' => 'Automatically Discover Cacti Devices',
+			'description' => 'Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?',
+			'method' => 'checkbox',
+			'default' => 'on'
 			),
-		"hmib_autopurge" => array(
-			"friendly_name" => "Automatically Purge Devices",
-			"description" => "Do you wish to automatically purge devices that are removed from the Cacti system?",
-			"method" => "checkbox",
-			"default" => "on"
+		'hmib_autopurge' => array(
+			'friendly_name' => 'Automatically Purge Devices',
+			'description' => 'Do you wish to automatically purge devices that are removed from the Cacti system?',
+			'method' => 'checkbox',
+			'default' => 'on'
 			),
-		"hmib_batch_scheduler" => array(
-			"friendly_name" => "Batch Scheduler Tweak",
-			"description" => "If selected, transient parent task from batch jobs will be removed from the database.  These processes cause clutter and are generally irrelevant.",
-			"method" => "checkbox",
-			"default" => "on"
+		'hmib_os_type_rows' => array(
+			'friendly_name' => 'Default Row Count',
+			'description' => 'How many rows do you wish to see on the HMIB OS Type by default?',
+			'method' => 'drop_array',
+			'default' => '10',
+			'array' => $item_rows
 			),
-		"hmib_os_type_rows" => array(
-			"friendly_name" => "Default Row Count",
-			"description" => "How many rows do you wish to see on the HMIB OS Type by default?",
-			"method" => "drop_array",
-			"default" => "10",
-			"array" => $item_rows
+		'hmib_top_types' => array(
+			'friendly_name' => 'Default Top Host Types',
+			'description' => 'How many processes do you wish to see on the HMIB Dashboard by default?',
+			'method' => 'drop_array',
+			'default' => '10',
+			'array' => array(
+				5  => '5 Types',
+				8  => '8 Types',
+				10 => '10 Types',
+				15 => '15 Types')
 			),
-		"hmib_top_types" => array(
-			"friendly_name" => "Default Top Host Types",
-			"description" => "How many processes do you wish to see on the HMIB Dashboard by default?",
-			"method" => "drop_array",
-			"default" => "10",
-			"array" => array(
-				5  => "5 Types",
-				8  => "8 Types",
-				10 => "10 Types",
-				15 => "15 Types")
+		'hmib_top_processes' => array(
+			'friendly_name' => 'Default Top Processes',
+			'description' => 'How many processes do you wish to see on the HMIB Dashboard by default?',
+			'method' => 'drop_array',
+			'default' => '10',
+			'array' => array(
+				5  => '5 Processes',
+				10 => '10 Processes',
+				20 => '20 Processes',
+				30 => '30 Processes')
 			),
-		"hmib_top_processes" => array(
-			"friendly_name" => "Default Top Processes",
-			"description" => "How many processes do you wish to see on the HMIB Dashboard by default?",
-			"method" => "drop_array",
-			"default" => "10",
-			"array" => array(
-				5  => "5 Processes",
-				10 => "10 Processes",
-				20 => "20 Processes",
-				30 => "30 Processes")
+		'hmib_concurrent_processes' => array(
+			'friendly_name' => 'Maximum Concurrent Collectors',
+			'description' => 'What is the maximum number of concurrent collector process that you want to run at one time?',
+			'method' => 'drop_array',
+			'default' => '10',
+			'array' => array(
+				1  => '1 Process',
+				2  => '2 Processes',
+				3  => '3 Processes',
+				4  => '4 Processes',
+				5  => '5 Processes',
+				10 => '10 Processes',
+				20 => '20 Processes',
+				30 => '30 Processes',
+				40 => '40 Processes',
+				50 => '50 Processes')
 			),
-		"hmib_concurrent_processes" => array(
-			"friendly_name" => "Maximum Concurrent Collectors",
-			"description" => "What is the maximum number of concurrent collector process that you want to run at one time?",
-			"method" => "drop_array",
-			"default" => "10",
-			"array" => array(
-				1  => "1 Process",
-				2  => "2 Processes",
-				3  => "3 Processes",
-				4  => "4 Processes",
-				5  => "5 Processes",
-				10 => "10 Processes",
-				20 => "20 Processes",
-				30 => "30 Processes",
-				40 => "40 Processes",
-				50 => "50 Processes")
+		'hmib_autodiscovery_header' => array(
+			'friendly_name' => 'Host Auto Discovery Frequency',
+			'method' => 'spacer',
 			),
-		"hmib_autodiscovery_header" => array(
-			"friendly_name" => "Host Auto Discovery Frequency",
-			"method" => "spacer",
+		'hmib_autodiscovery_freq' => array(
+			'friendly_name' => 'Auto Discovery Frequency',
+			'description' => 'How often do you want to look for new Cacti Devices?',
+			'method' => 'drop_array',
+			'default' => '300',
+			'array' => $hmib_frequencies
 			),
-		"hmib_autodiscovery_freq" => array(
-			"friendly_name" => "Auto Discovery Frequency",
-			"description" => "How often do you want to look for new Cacti Devices?",
-			"method" => "drop_array",
-			"default" => "300",
-			"array" => $hmib_frequencies
+		'hmib_automation_header' => array(
+			'friendly_name' => 'Host Graph Automation',
+			'method' => 'spacer',
 			),
-		"hmib_automation_header" => array(
-			"friendly_name" => "Host Graph Automation",
-			"method" => "spacer",
+		'hmib_automation_frequency' => array(
+			'friendly_name' => 'Automatically Add New Graphs',
+			'description' => 'How often do you want to check for new objects to graph?',
+			'method' => 'drop_array',
+			'default' => '0',
+			'array' => array(
+				0  => 'Never',
+				1  => '1 Hour',
+				12 => '12 Hours',
+				24 => '1 Day',
+				48 => '2 Days')
 			),
-		"hmib_automation_frequency" => array(
-			"friendly_name" => "Automatically Add New Graphs",
-			"description" => "How often do you want to check for new objects to graph?",
-			"method" => "drop_array",
-			"default" => "0",
-			"array" => array(
-				0  => "Never",
-				1  => "1 Hour",
-				12 => "12 Hours",
-				24 => "1 Day",
-				48 => "2 Days")
+		'hmib_frequencies' => array(
+			'friendly_name' => 'Host Mib Table Collection Frequencies',
+			'method' => 'spacer',
 			),
-		"hmib_frequencies" => array(
-			"friendly_name" => "Host Mib Table Collection Frequencies",
-			"method" => "spacer",
+		'hmib_hrSWRun_freq' => array(
+			'friendly_name' => 'Running Programs Frequency',
+			'description' => 'How often do you want to scan running software?',
+			'method' => 'drop_array',
+			'default' => '300',
+			'array' => $hmib_frequencies
 			),
-		"hmib_hrSWRun_freq" => array(
-			"friendly_name" => "Running Programs Frequency",
-			"description" => "How often do you want to scan running software?",
-			"method" => "drop_array",
-			"default" => "300",
-			"array" => $hmib_frequencies
+		'hmib_hrSWRunPerf_freq' => array(
+			'friendly_name' => 'Running Programs CPU/Memory Frequency',
+			'description' => 'How often do you want to scan running software for performance data?',
+			'method' => 'drop_array',
+			'default' => '300',
+			'array' => $hmib_frequencies
 			),
-		"hmib_hrSWRunPerf_freq" => array(
-			"friendly_name" => "Running Programs CPU/Memory Frequency",
-			"description" => "How often do you want to scan running software for performance data?",
-			"method" => "drop_array",
-			"default" => "300",
-			"array" => $hmib_frequencies
+		'hmib_hrSWInstalled_freq' => array(
+			'friendly_name' => 'Installed Software Frequency',
+			'description' => 'How often do you want to scan for installed software?',
+			'method' => 'drop_array',
+			'default' => '86400',
+			'array' => $hmib_frequencies
 			),
-		"hmib_hrSWInstalled_freq" => array(
-			"friendly_name" => "Installed Software Frequency",
-			"description" => "How often do you want to scan for installed software?",
-			"method" => "drop_array",
-			"default" => "86400",
-			"array" => $hmib_frequencies
+		'hmib_hrStorage_freq' => array(
+			'friendly_name' => 'Storage Frequency',
+			'description' => 'How often do you want to scan for Storage performance data?',
+			'method' => 'drop_array',
+			'default' => '3600',
+			'array' => $hmib_frequencies
 			),
-		"hmib_hrStorage_freq" => array(
-			"friendly_name" => "Storage Frequency",
-			"description" => "How often do you want to scan for Storage performance data?",
-			"method" => "drop_array",
-			"default" => "3600",
-			"array" => $hmib_frequencies
+		'hmib_hrDevices_freq' => array(
+			'friendly_name' => 'Device Frequency',
+			'description' => 'How often do you want to scan for Device performance data?',
+			'method' => 'drop_array',
+			'default' => '3600',
+			'array' => $hmib_frequencies
 			),
-		"hmib_hrDevices_freq" => array(
-			"friendly_name" => "Device Frequency",
-			"description" => "How often do you want to scan for Device performance data?",
-			"method" => "drop_array",
-			"default" => "3600",
-			"array" => $hmib_frequencies
-			),
-		"hmib_hrProcessor_freq" => array(
-			"friendly_name" => "Processor Frequency",
-			"description" => "How often do you want to scan for Processor performance data?",
-			"method" => "drop_array",
-			"default" => "300",
-			"array" => $hmib_frequencies
+		'hmib_hrProcessor_freq' => array(
+			'friendly_name' => 'Processor Frequency',
+			'description' => 'How often do you want to scan for Processor performance data?',
+			'method' => 'drop_array',
+			'default' => '300',
+			'array' => $hmib_frequencies
 			)
 		);
 }
@@ -519,107 +513,107 @@ function hmib_config_arrays() {
 	global $hrSystem, $hrSWRun, $hrSWRunPerf, $hrSWInstalled, $hrStorage, $hrDevices, $hrProcessor;
 
 	$hmib_frequencies = array(
-		-1    => "Disabled",
-		60    => "1 Minute",
-		300   => "5 Minutes",
-		600   => "10 Minutes",
-		1200  => "20 Minutes",
-		3600  => "1 Hour",
-		7200  => "2 Hours",
-		14400 => "4 Hours",
-		43200 => "12 Hours",
-		86400 => "1 Day"
+		-1    => 'Disabled',
+		60    => '1 Minute',
+		300   => '5 Minutes',
+		600   => '10 Minutes',
+		1200  => '20 Minutes',
+		3600  => '1 Hour',
+		7200  => '2 Hours',
+		14400 => '4 Hours',
+		43200 => '12 Hours',
+		86400 => '1 Day'
 	);
 
 	$hrSystem = array(
-		"baseOID"        => ".1.3.6.1.2.1.25.1.",
-		"uptime"         => ".1.3.6.1.2.1.25.1.1.0",
-		"date"           => ".1.3.6.1.2.1.25.1.2.0",
-		"initLoadDevice" => ".1.3.6.1.2.1.25.1.3.0",
-		"initLoadParams" => ".1.3.6.1.2.1.25.1.4.0",
-		"users"          => ".1.3.6.1.2.1.25.1.5.0",
-		"processes"      => ".1.3.6.1.2.1.25.1.6.0",
-		"maxProcesses"   => ".1.3.6.1.2.1.25.1.7.0",
-		"memory"         => ".1.3.6.1.2.1.25.2.2.0",
-		"sysDescr"       => ".1.3.6.1.2.1.1.1.0",
-		"sysObjectID"    => ".1.3.6.1.2.1.1.2.0",
-		"sysUptime"      => ".1.3.6.1.2.1.1.3.0",
-		"sysContact"     => ".1.3.6.1.2.1.1.4.0",
-		"sysName"        => ".1.3.6.1.2.1.1.5.0",
-		"sysLocation"    => ".1.3.6.1.2.1.1.6.0"
+		'baseOID'        => '.1.3.6.1.2.1.25.1.',
+		'uptime'         => '.1.3.6.1.2.1.25.1.1.0',
+		'date'           => '.1.3.6.1.2.1.25.1.2.0',
+		'initLoadDevice' => '.1.3.6.1.2.1.25.1.3.0',
+		'initLoadParams' => '.1.3.6.1.2.1.25.1.4.0',
+		'users'          => '.1.3.6.1.2.1.25.1.5.0',
+		'processes'      => '.1.3.6.1.2.1.25.1.6.0',
+		'maxProcesses'   => '.1.3.6.1.2.1.25.1.7.0',
+		'memory'         => '.1.3.6.1.2.1.25.2.2.0',
+		'sysDescr'       => '.1.3.6.1.2.1.1.1.0',
+		'sysObjectID'    => '.1.3.6.1.2.1.1.2.0',
+		'sysUptime'      => '.1.3.6.1.2.1.1.3.0',
+		'sysContact'     => '.1.3.6.1.2.1.1.4.0',
+		'sysName'        => '.1.3.6.1.2.1.1.5.0',
+		'sysLocation'    => '.1.3.6.1.2.1.1.6.0'
 	);
 
 	$hrSWRun = array(
-		"baseOID"    => ".1.3.6.1.2.1.25.4.2.1",
-		"index"      => ".1.3.6.1.2.1.25.4.2.1.1",
-		"name"       => ".1.3.6.1.2.1.25.4.2.1.2",
-		"path"       => ".1.3.6.1.2.1.25.4.2.1.4",
-		"parameters" => ".1.3.6.1.2.1.25.4.2.1.5",
-		"type"       => ".1.3.6.1.2.1.25.4.2.1.6",
-		"status"     => ".1.3.6.1.2.1.25.4.2.1.7"
+		'baseOID'    => '.1.3.6.1.2.1.25.4.2.1',
+		'index'      => '.1.3.6.1.2.1.25.4.2.1.1',
+		'name'       => '.1.3.6.1.2.1.25.4.2.1.2',
+		'path'       => '.1.3.6.1.2.1.25.4.2.1.4',
+		'parameters' => '.1.3.6.1.2.1.25.4.2.1.5',
+		'type'       => '.1.3.6.1.2.1.25.4.2.1.6',
+		'status'     => '.1.3.6.1.2.1.25.4.2.1.7'
 	);
 
 	$hrSWRunPerf = array(
-		"baseOID"    => ".1.3.6.1.2.1.25.5.1.1",
-		"perfCPU"    => ".1.3.6.1.2.1.25.5.1.1.1",
-		"perfMemory" => ".1.3.6.1.2.1.25.5.1.1.2"
+		'baseOID'    => '.1.3.6.1.2.1.25.5.1.1',
+		'perfCPU'    => '.1.3.6.1.2.1.25.5.1.1.1',
+		'perfMemory' => '.1.3.6.1.2.1.25.5.1.1.2'
 	);
 
 	$hrSWInstalled = array(
-		"baseOID" => ".1.3.6.1.2.1.25.6.3.1",
-		"index"   => ".1.3.6.1.2.1.25.6.3.1.1",
-		"name"    => ".1.3.6.1.2.1.25.6.3.1.2",
-		"type"    => ".1.3.6.1.2.1.25.6.3.1.4",
-		"date"    => ".1.3.6.1.2.1.25.6.3.1.5"
+		'baseOID' => '.1.3.6.1.2.1.25.6.3.1',
+		'index'   => '.1.3.6.1.2.1.25.6.3.1.1',
+		'name'    => '.1.3.6.1.2.1.25.6.3.1.2',
+		'type'    => '.1.3.6.1.2.1.25.6.3.1.4',
+		'date'    => '.1.3.6.1.2.1.25.6.3.1.5'
 	);
 
 	$hrStorage = array(
-		"baseOID"         => ".1.3.6.1.2.1.25.2.3",
-		"index"           => ".1.3.6.1.2.1.25.2.3.1.1",
-		"type"            => ".1.3.6.1.2.1.25.2.3.1.2",
-		"description"     => ".1.3.6.1.2.1.25.2.3.1.3",
-		"allocationUnits" => ".1.3.6.1.2.1.25.2.3.1.4",
-		"size"            => ".1.3.6.1.2.1.25.2.3.1.5",
-		"used"            => ".1.3.6.1.2.1.25.2.3.1.6",
-		"failures"        => ".1.3.6.1.2.1.25.2.3.1.7"
+		'baseOID'         => '.1.3.6.1.2.1.25.2.3',
+		'index'           => '.1.3.6.1.2.1.25.2.3.1.1',
+		'type'            => '.1.3.6.1.2.1.25.2.3.1.2',
+		'description'     => '.1.3.6.1.2.1.25.2.3.1.3',
+		'allocationUnits' => '.1.3.6.1.2.1.25.2.3.1.4',
+		'size'            => '.1.3.6.1.2.1.25.2.3.1.5',
+		'used'            => '.1.3.6.1.2.1.25.2.3.1.6',
+		'failures'        => '.1.3.6.1.2.1.25.2.3.1.7'
 	);
 
 	$hrDevices = array(
-		"baseOID"         => ".1.3.6.1.2.1.25.3.2.1",
-		"index"           => ".1.3.6.1.2.1.25.3.2.1.1",
-		"type"            => ".1.3.6.1.2.1.25.3.2.1.2",
-		"description"     => ".1.3.6.1.2.1.25.3.2.1.3",
-		"status"          => ".1.3.6.1.2.1.25.3.2.1.5",
-		"errors"          => ".1.3.6.1.2.1.25.3.2.1.6",
+		'baseOID'         => '.1.3.6.1.2.1.25.3.2.1',
+		'index'           => '.1.3.6.1.2.1.25.3.2.1.1',
+		'type'            => '.1.3.6.1.2.1.25.3.2.1.2',
+		'description'     => '.1.3.6.1.2.1.25.3.2.1.3',
+		'status'          => '.1.3.6.1.2.1.25.3.2.1.5',
+		'errors'          => '.1.3.6.1.2.1.25.3.2.1.6',
 	);
 
 	$hrProcessor = array(
-		"baseOID" => ".1.3.6.1.2.1.25.3.3.1",
-		"load"    => ".1.3.6.1.2.1.25.3.3.1.2"
+		'baseOID' => '.1.3.6.1.2.1.25.3.3.1',
+		'load'    => '.1.3.6.1.2.1.25.3.3.1.2'
 	);
 
 	if (isset($_SESSION['hmib_message']) && $_SESSION['hmib_message'] != '') {
 		$messages['hmib_message'] = array('message' => $_SESSION['hmib_message'], 'type' => 'info');
 	}
 
-	$menu["Management"]['plugins/hmib/hmib_types.php'] = "OS Types";
+	$menu['Management']['plugins/hmib/hmib_types.php'] = 'OS Types';
 }
 
 function hmib_draw_navigation_text ($nav) {
-	$nav["hmib.php:"]          = array("title" => "Host MIB Inventory Summary", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:summary"]   = array("title" => "Host MIB Inventory Summary", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:devices"]   = array("title" => "Host MIB Details", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:storage"]   = array("title" => "Host MIB Storage", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:hardware"]  = array("title" => "Host MIB Hardware", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:running"]   = array("title" => "Host MIB Running Processes", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:history"]   = array("title" => "Host MIB Process Use History", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:software"]  = array("title" => "Host MIB Software Inventory", "mapping" => "", "url" => "hmib.php", "level" => "0");
-	$nav["hmib.php:graphs"]    = array("title" => "Host MIB Graphs", "mapping" => "", "url" => "hmib.php", "level" => "0");
+	$nav['hmib.php:']          = array('title' => 'Host MIB Inventory Summary', 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
+	$nav['hmib.php:summary']   = array('title' => 'Host MIB Inventory Summary', 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
+	$nav['hmib.php:devices']   = array('title' => 'Host MIB Details', 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
+	$nav['hmib.php:storage']   = array('title' => 'Host MIB Storage', 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
+	$nav['hmib.php:hardware']  = array('title' => 'Host MIB Hardware', 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
+	$nav['hmib.php:running']   = array('title' => 'Host MIB Running Processes', 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
+	$nav['hmib.php:history']   = array('title' => 'Host MIB Process Use History', 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
+	$nav['hmib.php:software']  = array('title' => 'Host MIB Software Inventory', 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
+	$nav['hmib.php:graphs']    = array('title' => 'Host MIB Graphs', 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
 
-	$nav["hmib_types.php:"]       = array("title" => "Host MIB OS Types", "mapping" => "index.php:", "url" => "hmib_types.php", "level" => "1");
-	$nav["hmib_types.php:actions"]= array("title" => "Actions", "mapping" => "index.php:,hmib_types.php:", "url" => "hmib_types.php", "level" => "2");
-	$nav["hmib_types.php:edit"]   = array("title" => "(Edit)", "mapping" => "index.php:,hmib_types.php:", "url" => "hmib_types.php", "level" => "2");
-	$nav["hmib_types.php:import"] = array("title" => "Import", "mapping" => "index.php:,hmib_types.php:", "url" => "hmib_types.php", "level" => "2");
+	$nav['hmib_types.php:']       = array('title' => 'Host MIB OS Types', 'mapping' => 'index.php:', 'url' => 'hmib_types.php', 'level' => '1');
+	$nav['hmib_types.php:actions']= array('title' => 'Actions', 'mapping' => 'index.php:,hmib_types.php:', 'url' => 'hmib_types.php', 'level' => '2');
+	$nav['hmib_types.php:edit']   = array('title' => '(Edit)', 'mapping' => 'index.php:,hmib_types.php:', 'url' => 'hmib_types.php', 'level' => '2');
+	$nav['hmib_types.php:import'] = array('title' => 'Import', 'mapping' => 'index.php:,hmib_types.php:', 'url' => 'hmib_types.php', 'level' => '2');
 	return $nav;
 }
 
@@ -627,7 +621,7 @@ function hmib_show_tab() {
 	global $config;
 
 	if (api_user_realm_auth('hmib.php')) {
-		if (substr_count($_SERVER["REQUEST_URI"], "hmib.php")) {
+		if (substr_count($_SERVER['REQUEST_URI'], 'hmib.php')) {
 			print '<a href="' . $config['url_path'] . 'plugins/hmib/hmib.php"><img src="' . $config['url_path'] . 'plugins/hmib/images/tab_hmib_down.gif" alt="hmib" align="absmiddle" border="0"></a>';
 		}else{
 			print '<a href="' . $config['url_path'] . 'plugins/hmib/hmib.php"><img src="' . $config['url_path'] . 'plugins/hmib/images/tab_hmib.gif" alt="hmib" align="absmiddle" border="0"></a>';
@@ -638,8 +632,8 @@ function hmib_show_tab() {
 function hmib_get_cpu($host_index) {
 	global $called_by_script_server;
 
-	$host_id = $host_index["host_id"];
-	$index   = $host_index["index"];
+	$host_id = $host_index['host_id'];
+	$index   = $host_index['index'];
 
 	if (!$called_by_script_server) {
 		return $host_index;
@@ -647,7 +641,7 @@ function hmib_get_cpu($host_index) {
 		$value = db_fetch_cell("SELECT `load` FROM plugin_hmib_hrProcessor WHERE host_id=$host_id AND `index`=$index");
 
 		if (empty($value)) {
-			return "0";
+			return '0';
 		}else{
 			return $value;
 		}
@@ -657,8 +651,8 @@ function hmib_get_cpu($host_index) {
 function hmib_get_cpu_indexes($host_index) {
 	global $called_by_script_server;
 
-	$host_id = $host_index["host_id"];
-	$command = $host_index["arg"];
+	$host_id = $host_index['host_id'];
+	$command = $host_index['arg'];
 	$rarray  = array();
 
 	$indexes = db_fetch_assoc("SELECT `index` FROM plugin_hmib_hrProcessor WHERE host_id=$host_id ORDER BY `index`");
@@ -674,21 +668,21 @@ function hmib_get_cpu_indexes($host_index) {
 function hmib_get_disk($host_index) {
 	global $called_by_script_server;
 
-	$host_id = $host_index["host_id"];
-	$index   = $host_index["index"];
-	$arg     = $host_index["arg"];
+	$host_id = $host_index['host_id'];
+	$index   = $host_index['index'];
+	$arg     = $host_index['arg'];
 
 	if (!$called_by_script_server) {
 		return $host_index;
 	}else{
-		if ($arg == "total") {
+		if ($arg == 'total') {
 			$value = db_fetch_cell("SELECT IF(size >= 0, allocationUnits*size, allocationUnits*(ABS(size)+2147483647)) AS size FROM plugin_hmib_hrStorage WHERE host_id=$host_id AND `index`=$index");
 		}else{
 			$value = db_fetch_cell("SELECT IF(used >= 0, allocationUnits*used, allocationUnits*(ABS(used)+2147483647)) AS used FROM plugin_hmib_hrStorage WHERE host_id=$host_id AND `index`=$index");
 		}
 
 		if (empty($value)) {
-			return "0";
+			return '0';
 		}else{
 			return $value;
 		}
