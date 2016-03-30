@@ -23,6 +23,9 @@
  +-------------------------------------------------------------------------+
 */
 
+/* we are not talking to the browser */
+$no_http_headers = true;
+
 chdir(dirname(__FILE__));
 chdir('../..');
 include('./include/global.php');

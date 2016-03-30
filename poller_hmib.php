@@ -23,13 +23,19 @@
  +-------------------------------------------------------------------------+
 */
 
+/* we are not talking to the browser */
+$no_http_headers = true;
+
 chdir(dirname(__FILE__));
 chdir('../..');
+
 include('./include/global.php');
 include_once('./lib/poller.php');
+
 if (!function_exists('cacti_escapeshellcmd')) {
     include_once('./plugins/hmib/snmp_functions.php');
 }
+
 include_once('./plugins/hmib/snmp.php');
 include_once('./lib/ping.php');
 

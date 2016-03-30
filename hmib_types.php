@@ -26,20 +26,15 @@ chdir('../../');
 include('./include/auth.php');
 include_once('./lib/snmp.php');
 
-define('MAX_DISPLAY_PAGES', 21);
-
 $host_types_actions = array(
 	1 => 'Delete',
 	2 => 'Duplicate'
 );
 
 /* set default action */
-if (!isset($_REQUEST['action'])) { $_REQUEST['action'] = ''; }
+set_default_action('');
 
-/* correct for a cancel button */
-if (isset($_REQUEST['cancel'])) { $_REQUEST['action'] = ''; }
-
-switch ($_REQUEST['action']) {
+switch (get_nfilter_request_var('action')) {
 case 'save':
 	form_save();
 
@@ -61,14 +56,14 @@ case 'import':
 
 	break;
 default:
-	if (isset($_REQUEST['scan'])) {
+	if (isset_request_var('scan')) {
 		rescan_types();
 		header('Location: hmib_types.php?header=false');
 		exit;
-	}elseif (isset($_REQUEST['import'])) {
+	}elseif (isset_request_var('import')) {
 		header('Location: hmib_types.php?action=import');
 		exit;
-	}elseif (isset($_REQUEST['export'])) {
+	}elseif (isset_request_var('export')) {
 		hmib_host_type_export();
 		exit;
 	}else{
@@ -85,11 +80,11 @@ default:
    -------------------------- */
 
 function form_save() {
-	if ((isset($_POST['save_component_host_type'])) && (empty($_POST['add_dq_y']))) {
-		$host_type_id = hmib_host_type_save($_POST['id'], $_POST['name'],
-			$_POST['version'], $_POST['sysDescrMatch'], $_POST['sysObjectID']);
+	if ((isset_request_var('save_component_host_type')) && (isempty_request_var('add_dq_y'))) {
+		$host_type_id = hmib_host_type_save(get_filter_request_var('id'), get_nfilter_request_var('name'),
+			get_nfilter_request_var('version'), get_nfilter_request_var('sysDescrMatch'), get_nfilter_request_var('sysObjectID'));
 
-		header('Location: hmib_types.php?action=edit&id=' . (empty($host_type_id) ? $_POST['id'] : $host_type_id));
+		header('Location: hmib_types.php?header=false&action=edit&id=' . (empty($host_type_id) ? get_request_var('id') : $host_type_id));
 	}
 
 	if (isset($_POST['save_component_import'])) {
@@ -112,6 +107,7 @@ function form_save() {
 
 function api_hmib_host_type_remove($host_type_id){
 	db_execute_prepared('DELETE FROM plugin_hmib_hrSystemTypes WHERE id = ?', array($host_type_id));
+	db_execute_prepared('UPDATE plugin_hmib_hrSystem SET host_type=0 WHERE host_type = ?', array($host_type_id));
 }
 
 function hmib_host_type_save($host_type_id, $name, $version, $sysDescrMatch, $sysObjectID) {
@@ -134,8 +130,9 @@ function hmib_host_type_save($host_type_id, $name, $version, $sysDescrMatch, $sy
 			}
 		}
 	}else{
-		db_execute('UPDATE plugin_hmib_hrSystemTypes SET
-			name = ' . db_qstr($name) . ', version = ' . db_qstr($version) . ', sysDescrMatch = ' . db_qstr($sysDescrMatch) . ', sysObjectID = ' . db_qstr($sysObjectID) . ' WHERE id = $host_type_id');
+		db_execute_prepared('UPDATE plugin_hmib_hrSystemTypes SET
+			name = ?, version = ?, sysDescrMatch = ?, sysObjectID = ? WHERE id = ?', array($name, $version, $sysDescrMatch, $sysObjectID, $host_type_id));
+
 		raise_message(1);
 	}
 
@@ -199,7 +196,7 @@ function form_actions() {
 			}
 		}
 
-		header('Location: hmib_types.php');
+		header('Location: hmib_types.php?heder=false');
 		exit;
 	}
 
@@ -223,47 +220,51 @@ function form_actions() {
 
 	top_header();
 
+	form_start('hmib_types.php');
+
 	html_start_box('<strong>' . $host_types_actions{$_POST['drp_action']} . '</strong>', '60%', $colors['header_panel'], '3', 'center', '');
 
-	print "<form action='hmib_types.php' method='post'>\n";
-
-	if ($_POST['drp_action'] == '1') { /* delete */
+	if (get_filter_request_var('drp_action') == '1') { /* delete */
 		print "	<tr>
 				<td class='textArea'>
-					<p>Are you sure you want to delete the following Host Type(s)?</p>
+					<p>Click 'Continue' to Delete the following Host Type(s)?</p>
 					<p><ul>$host_types_list</ul></p>
 				</td>
 			</tr>\n";
-	}elseif ($_POST['drp_action'] == '2') { /* duplicate */
+
+		$save_html = "<input type='button' value='Cancel' onClick='cactiReturnTo()'>&nbsp;<input type='submit' value='Continue' title='Delete Host Type(s)'>";
+	}elseif (get_filter_request_var('drp_action') == '2') { /* duplicate */
 		print "	<tr>
 				<td class='textArea'>
-					<p>When you click save, the following Host Type(s) will be duplicated. You may optionally
-					change the description for the new Host Types.  Otherwise, do not change value below and the
+					<p>Click 'Continue' to Duplicate the following Host Type(s). You may optionally
+					change the description for the new Host Type(s).  Otherwise, do not change value below and the
 					original name will be replicated with a new suffix.</p>
 					<p><ul>$host_types_list</ul></p>
 					<p><strong>Host Type Prefix:</strong><br>"; form_text_box('title_format', '<description> (1)', '', '255', '30', 'text'); print "</p>
 				</td>
 			</tr>\n";
+
+		$save_html = "<input type='button' value='Cancel' onClick='cactiReturnTo()'>&nbsp;<input type='submit' value='Continue' title='Duplicate Host Type(s)'>";
 	}
 
 	if (!isset($host_types_array)) {
 		print "<tr><td class='odd'><span class='textError'>You must select at least one Host Type.</span></td></tr>\n";
-		$save_html = '';
+		$save_html = "<input type='button' value='Cancel' onClick='cactiReturnTo()'>";
 	}else{
-		$save_html = "<input type='submit' value='Yes' name='save'>";
 	}
 
-	print "	<tr>
-			<td colspan='2' align='right' class='saveRow'>
-				<input type='hidden' name='action' value='actions'>
-				<input type='hidden' name='selected_items' value='" . (isset($host_types_array) ? serialize($host_types_array) : '') . "'>
-				<input type='hidden' name='drp_action' value='" . $_POST['drp_action'] . "'>" . (strlen($save_html) ? "
-				<input type='submit' name='cancel' value='No'>
-				$save_html" : "<input type='submit' name='cancel' value='Return'>") . "
-			</td>
-		</tr>\n";
+	print "<tr class='even'>
+		<td colspan='2' class='saveRow'>
+			<input type='hidden' name='action' value='actions'>
+			<input type='hidden' name='selected_items' value='" . (isset($host_types_array) ? serialize($host_types_array) : '') . "'>
+			<input type='hidden' name='drp_action' value='" . $_POST['drp_action'] . "'>
+			$save_html
+		</td>
+	</tr>\n";
 
 	html_end_box();
+
+	form_end();
 
 	bottom_footer();
 }
@@ -272,44 +273,56 @@ function form_actions() {
     HMIB Device Type Functions
    --------------------- */
 
+function hmib_validate_request_vars() {
+    /* ================= input validation and session storage ================= */
+    $filters = array(
+		'rows' => array(
+			'filter' => FILTER_VALIDATE_INT,
+			'pageset' => true,
+			'default' => read_config_option('num_rows_table')
+			),
+		'page' => array(
+			'filter' => FILTER_VALIDATE_INT,
+			'default' => '1'
+			),
+		'filter' => array(
+			'filter' => FILTER_CALLBACK,
+			'pageset' => true,
+			'default' => '',
+			'options' => array('options' => 'sanitize_search_string')
+			),
+		'version' => array(
+			'filter' => FILTER_CALLBACK,
+			'pageset' => true,
+			'default' => 'All',
+			'options' => array('options' => 'sanitize_search_string')
+			),
+		'vendor' => array(
+			'filter' => FILTER_CALLBACK,
+			'pageset' => true,
+			'default' => '',
+			'options' => array('options' => 'sanitize_search_string')
+			),
+		'sort_column' => array(
+			'filter' => FILTER_CALLBACK,
+			'default' => 'name',
+			'options' => array('options' => 'sanitize_search_string')
+			),
+		'sort_direction' => array(
+			'filter' => FILTER_CALLBACK,
+			'default' => 'ASC',
+			'options' => array('options' => 'sanitize_search_string')
+			)
+	);
+
+	validate_store_request_vars($filters, 'sess_hmib_ht');
+	/* ================= input validation ================= */
+}
+
 function hmib_host_type_export() {
 	global $colors, $device_actions, $hmib_host_types, $config;
 
-	/* ================= input validation ================= */
-	input_validate_input_number(get_request_var_request('page'));
-	/* ==================================================== */
-
-	/* clean up the vendor string */
-	if (isset($_REQUEST['version'])) {
-		$_REQUEST['version'] = sanitize_search_string(get_request_var_request('version'));
-	}
-
-	if (isset($_REQUEST['filter'])) {
-		$_REQUEST['filter'] = sanitize_search_string(get_request_var_request('filter'));
-	}
-
-	/* clean up the vendor string */
-	if (isset($_REQUEST['vendor'])) {
-		$_REQUEST['vendor'] = sanitize_search_string(get_request_var_request('vendor'));
-	}
-
-	/* clean up sort_column */
-	if (isset($_REQUEST['sort_column'])) {
-		$_REQUEST['sort_column'] = sanitize_search_string(get_request_var_request('sort_column'));
-	}
-
-	/* clean up search string */
-	if (isset($_REQUEST['sort_direction'])) {
-		$_REQUEST['sort_direction'] = sanitize_search_string(get_request_var_request('sort_direction'));
-	}
-
-	/* remember these search fields in session vars so we don't have to keep passing them around */
-	load_current_session_value('page', 'sess_hmib_host_type_current_page', '1');
-	load_current_session_value('version', 'sess_hmib_host_type_version', 'All');
-	load_current_session_value('filter', 'sess_hmib_host_type_filter', '');
-	load_current_session_value('rows', 'sess_hmib_host_type_rows', '-1');
-	load_current_session_value('sort_column', 'sess_hmib_host_type_sort_column', 'name');
-	load_current_session_value('sort_direction', 'sess_hmib_host_type_sort_direction', 'ASC');
+	hmib_validate_request_vars();
 
 	$sql_where = '';
 
@@ -712,18 +725,19 @@ function hmib_host_type_remove() {
 	global $config;
 
 	/* ================= input validation ================= */
-	input_validate_input_number(get_request_var_request('id'));
+	get_filter_request_var('id');
+	get_filter_request_var('host_id');
 	/* ==================================================== */
 
-	if ((read_config_option('remove_verification') == 'on') && (!isset($_REQUEST['confirm']))) {
+	if ((read_config_option('remove_verification') == 'on') && (!isset_request_var('confirm'))) {
 		top_header();
-		form_confirm('Are You Sure?', "Are you sure you want to delete the Host Type<strong>'" . db_fetch_cell('SELECT description FROM host WHERE id=' . $_REQUEST['host_id']) . "'</strong>?", 'hmib_types.php', 'hmib_types.php?action=remove&id=' . $_REQUEST['id']);
+		form_confirm('Are You Sure?', "Are you sure you want to delete the Host Type<strong>'" . db_fetch_cell('SELECT description FROM host WHERE id=' . get_request_var('host_id')) . "'</strong>?", 'hmib_types.php', 'hmib_types.php?action=remove&id=' . get_request_var('id'));
 		bottom_footer();
 		exit;
 	}
 
-	if ((read_config_option('remove_verification') == '') || (isset($_REQUEST['confirm']))) {
-		hmib_host_type_remove($_REQUEST['id']);
+	if ((read_config_option('remove_verification') == '') || (isset_request_var('confirm'))) {
+		hmib_host_type_remove(get_request_var('id'));
 	}
 }
 
@@ -785,12 +799,14 @@ function hmib_host_type_edit() {
 		)
 	);
 
-	if (!empty($_REQUEST['id'])) {
-		$host_type = db_fetch_row('SELECT * FROM plugin_hmib_hrSystemTypes WHERE id=' . $_REQUEST['id']);
+	if (!isempty_request_var('id')) {
+		$host_type = db_fetch_row('SELECT * FROM plugin_hmib_hrSystemTypes WHERE id=' . get_filter_request_var('id'));
 		$header_label = '[edit: ' . $host_type['name'] . ']';
 	}else{
 		$header_label = '[new]';
 	}
+
+	form_start('hmib_types.php');
 
 	html_start_box("<strong>Host MIB OS Types</strong> $header_label", '100%', $colors['header'], '3', 'center', '');
 
@@ -809,11 +825,11 @@ function hmib_host_type_edit() {
 }
 
 function hmib_get_host_types(&$sql_where, $row_limit, $apply_limits = TRUE) {
-	if ($_REQUEST['filter'] != '') {
-		$sql_where = " WHERE (plugin_hmib_hrSystemTypes.name LIKE '%%" . $_REQUEST['filter'] . "%%' OR
-			plugin_hmib_hrSystemTypes.version LIKE '%%" . $_REQUEST['filter'] . "%%' OR
-			plugin_hmib_hrSystemTypes.sysObjectID LIKE '%%" . $_REQUEST['filter'] . "%%' OR
-			plugin_hmib_hrSystemTypes.sysDescrMatch LIKE '%%" . $_REQUEST['filter'] . "%%')";
+	if (get_request_var('filter') != '') {
+		$sql_where = " WHERE (plugin_hmib_hrSystemTypes.name LIKE '%" . get_request_var('filter') . "%' OR
+			plugin_hmib_hrSystemTypes.version LIKE '%" . get_request_var('filter') . "%' OR
+			plugin_hmib_hrSystemTypes.sysObjectID LIKE '%" . get_request_var('filter') . "%' OR
+			plugin_hmib_hrSystemTypes.sysDescrMatch LIKE '%" . get_request_var('filter') . "%')";
 	}
 
 	$query_string = "SELECT plugin_hmib_hrSystemTypes.*, count(host_type) AS totals
@@ -822,76 +838,31 @@ function hmib_get_host_types(&$sql_where, $row_limit, $apply_limits = TRUE) {
 		ON plugin_hmib_hrSystemTypes.id=plugin_hmib_hrSystem.host_type
 		$sql_where
 		GROUP BY plugin_hmib_hrSystemTypes.id
-		ORDER BY " . $_REQUEST['sort_column'] . ' ' . $_REQUEST['sort_direction'];
+		ORDER BY " . get_request_var('sort_column') . ' ' . get_request_var('sort_direction');
 
 	if ($apply_limits) {
-		$query_string .= ' LIMIT ' . ($row_limit*($_REQUEST['page']-1)) . ',' . $row_limit;
+		$query_string .= ' LIMIT ' . ($row_limit*(get_request_var('page')-1)) . ',' . $row_limit;
 	}
+
+	//print $query_string;
 
 	return db_fetch_assoc($query_string);
 }
 
 function hmib_host_type() {
-	global $colors, $host_types_actions, $hmib_host_types, $config, $item_rows;
+	global $host_types_actions, $hmib_host_types, $config, $item_rows;
 
-	/* ================= input validation ================= */
-	input_validate_input_number(get_request_var_request('page'));
-	input_validate_input_number(get_request_var_request('rows'));
-	/* ==================================================== */
+	hmib_validate_request_vars();
 
-	/* clean up the vendor string */
-	if (isset($_REQUEST['version'])) {
-		$_REQUEST['version'] = sanitize_search_string(get_request_var_request('version'));
-	}
-
-	if (isset($_REQUEST['filter'])) {
-		$_REQUEST['filter'] = sanitize_search_string(get_request_var_request('filter'));
-	}
-
-	/* clean up sort_column */
-	if (isset($_REQUEST['sort_column'])) {
-		$_REQUEST['sort_column'] = sanitize_search_string(get_request_var_request('sort_column'));
-	}
-
-	/* clean up search string */
-	if (isset($_REQUEST['sort_direction'])) {
-		$_REQUEST['sort_direction'] = sanitize_search_string(get_request_var_request('sort_direction'));
-	}
-
-	/* if the user pushed the 'clear' button */
-	if (isset($_REQUEST['clear'])) {
-		kill_session_var('sess_hmib_host_type_current_page');
-		kill_session_var('sess_hmib_host_type_filter');
-		kill_session_var('sess_hmib_host_type_rows');
-		kill_session_var('sess_hmib_host_type_version');
-		kill_session_var('sess_hmib_host_type_sort_column');
-		kill_session_var('sess_hmib_host_type_sort_direction');
-
-		unset($_REQUEST['page']);
-		unset($_REQUEST['version']);
-		unset($_REQUEST['filter']);
-		unset($_REQUEST['rows']);
-		unset($_REQUEST['sort_column']);
-		unset($_REQUEST['sort_direction']);
-	}
-
-	/* remember these search fields in session vars so we don't have to keep passing them around */
-	load_current_session_value('page', 'sess_hmib_host_type_current_page', '1');
-	load_current_session_value('version', 'sess_hmib_host_type_version', 'All');
-	load_current_session_value('filter', 'sess_hmib_host_type_filter', '');
-	load_current_session_value('rows', 'sess_hmib_host_type_rows', '-1');
-	load_current_session_value('sort_column', 'sess_hmib_host_type_sort_column', 'name');
-	load_current_session_value('sort_direction', 'sess_hmib_host_type_sort_direction', 'ASC');
-
-	if ($_REQUEST['rows'] == -1) {
-		$row_limit = read_config_option('hmib_os_type_rows');
-	}elseif ($_REQUEST['rows'] == -2) {
+	if (get_request_var('rows') == -1) {
+		$row_limit = read_config_option('num_rows_table');
+	}elseif (get_request_var('rows') == -2) {
 		$row_limit = 999999;
 	}else{
-		$row_limit = $_REQUEST['rows'];
+		$row_limit = get_request_var('rows');
 	}
 
-	html_start_box('<strong>Host MIB OS Type Filters</strong>', '100%', $colors['header'], '3', 'center', 'hmib_types.php?action=edit');
+	html_start_box('<strong>Host MIB OS Type Filters</strong>', '100%', '', '3', 'center', 'hmib_types.php?action=edit');
 	hmib_host_type_filter();
 	html_end_box();
 
@@ -899,13 +870,15 @@ function hmib_host_type() {
 
 	$host_types = hmib_get_host_types($sql_where, $row_limit);
 
-	html_start_box('', '100%', $colors['header'], '3', 'center', '');
+	form_start('hmib_types.php');
+
+	html_start_box('', '100%', '', '3', 'center', '');
 
 	$total_rows = db_fetch_cell('SELECT
 		COUNT(*)
 		FROM plugin_hmib_hrSystemTypes' . $sql_where);
 
-	$nav = html_nav_bar('hmib_types.php', MAX_DISPLAY_PAGES, get_request_var_request('page'), $row_limit, $total_rows, 9, 'OS Types');
+	$nav = html_nav_bar('hmib_types.php', MAX_DISPLAY_PAGES, get_request_var('page'), $row_limit, $total_rows, 9, 'OS Types', 'page', 'main');
 
 	print $nav;
 
@@ -916,13 +889,12 @@ function hmib_host_type() {
 		'sysObjectID' => array('SNMP ObjectID', 'DESC'),
 		'sysDescrMatch' => array('SNMP Sys Description Match', 'ASC'));
 
-	html_header_sort_checkbox($display_text, $_REQUEST['sort_column'], $_REQUEST['sort_direction']);
+	html_header_sort_checkbox($display_text, get_request_var('sort_column'), get_request_var('sort_direction'));
 
-	$i = 0;
 	if (sizeof($host_types) > 0) {
 		foreach ($host_types as $host_type) {
-			form_alternate_row_color($colors['alternate'],$colors['light'],$i, 'line' . $host_type['id']); $i++;
-			form_selectable_cell('<a class="linkEditMain" href="hmib_types.php?action=edit&id=' . $host_type['id'] . '">' . $host_type['name'] . '</a>', $host_type['id']);
+			form_alternate_row('line' . $host_type['id'], true);
+			form_selectable_cell('<a class="linkEditMain" href="' . htmlspecialchars('hmib_types.php?action=edit&id=' . $host_type['id']) . '">' . $host_type['name'] . '</a>', $host_type['id']);
 			form_selectable_cell($host_type['version'], $host_type['id']);
 			form_selectable_cell($host_type['totals'], $host_type['id']);
 			form_selectable_cell($host_type['sysObjectID'], $host_type['id']);
@@ -938,8 +910,10 @@ function hmib_host_type() {
 	}
 	html_end_box(false);
 
-	/* draw the dropdown containing a list of available actions for this form */
-	hmib_draw_actions_dropdown($host_types_actions);
+    /* draw the dropdown containing a list of available actions for this form */
+    draw_actions_dropdown($host_types_actions);
+
+    form_end();
 }
 
 /* hmib_draw_actions_dropdown - draws a table the allows the user to select an action to perform
@@ -1009,7 +983,7 @@ function hmib_host_type_filter() {
 						Search
 					</td>
 					<td>
-						<input type='text' id='filter' size='25' value='<?php print $_REQUEST['filter'];?>'>
+						<input type='text' id='filter' size='25' value='<?php print get_request_var('filter');?>'>
 					</td>
 					<td style='white-space:nowrap;'>
 						OS Type
