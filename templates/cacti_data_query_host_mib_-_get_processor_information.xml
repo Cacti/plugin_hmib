@@ -2,7 +2,7 @@
 	<hash_0400160d1ab53fe37487a5d0b9e1d3ee8c1d0d>
 		<name>Host MIB - Get Processor Information</name>
 		<description>Gets usage for each processor in the system using the host MIB.</description>
-		<xml_path>&lt;path_cacti&gt;/resource/script_server/host_cpu.xml</xml_path>
+		<xml_path>&lt;path_cacti&gt;/plugins/hmib/templates/resource/script_server/host_cpu.xml</xml_path>
 		<data_input_id>hash_030016332111d8b54ac8ce939af87a7eac0c06</data_input_id>
 		<graphs>
 			<hash_1100164a515b61441ea5f27ab7dee6c3cb7818>

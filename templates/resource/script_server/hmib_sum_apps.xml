@@ -1,6 +1,6 @@
 <interface>
 	<name>Host MIB Application Graphs</name>
-	<script_path>|path_cacti|/scripts/ss_hmib_sum_apps.php</script_path>
+	<script_path>|path_cacti|/plugins/hmib/templates/scripts/ss_hmib_sum_apps.php</script_path>
 	<script_function>ss_hmib_sum_apps</script_function>
 	<script_server>php</script_server>
 	<arg_prepend></arg_prepend>
@@ -28,16 +28,6 @@
 			<direction>output</direction>
 			<query_name>perfMemory</query_name>
 		</appMemory>
-		<appAvgMemory>
-			<name>Average Running Memory</name>
-			<direction>output</direction>
-			<query_name>perfAvgMemory</query_name>
-		</appAvgMemory>
-		<appMaxMemory>
-			<name>Maximum Running Memory</name>
-			<direction>output</direction>
-			<query_name>perfMaxMemory</query_name>
-		</appMaxMemory>
 		<appCpu>
 			<name>Total CPU</name>
 			<direction>output</direction>

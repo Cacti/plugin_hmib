@@ -7,7 +7,7 @@
 	<hash_0400166b0ef0fe7f1d85bbb6812801ca15a7c5>
 		<name>Host MIB - Summary Application Stats</name>
 		<description>Shows Global Application Utilization</description>
-		<xml_path>&lt;path_cacti&gt;/resource/script_server/hmib_sum_apps.xml</xml_path>
+		<xml_path>&lt;path_cacti&gt;/plugins/hmib/templates/resource/script_server/hmib_sum_apps.xml</xml_path>
 		<data_input_id>hash_030016332111d8b54ac8ce939af87a7eac0c06</data_input_id>
 		<graphs>
 			<hash_11001627b7d1de3cd275e6a60fa738b0c078dc>
@@ -60,7 +60,7 @@
 	<hash_040016137aeab842986a76cf5bdef41b96c9a3>
 		<name>Host MIB - Host Type Graphs</name>
 		<description>Graphs at the Host Type Level</description>
-		<xml_path>&lt;path_cacti&gt;/resource/script_server/hmib_host_types.xml</xml_path>
+		<xml_path>&lt;path_cacti&gt;/plugins/hmib/templates/resource/script_server/hmib_host_types.xml</xml_path>
 		<data_input_id>hash_030016332111d8b54ac8ce939af87a7eac0c06</data_input_id>
 		<graphs>
 			<hash_110016f305db67bbd809d95a459d143f9d9dca>

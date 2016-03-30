@@ -56,28 +56,51 @@ function ss_host_cpu($hostname, $host_id, $snmp_auth, $cmd, $arg1 = '', $arg2 = 
 		);
 
 	if (($cmd == 'index')) {
-		$arr_index = ss_host_cpu_get_indexes($hostname, $snmp_community, $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, $ping_retries, $max_oids);
+		$value = api_plugin_hook_function('hmib_get_cpu_indexes', array('host_id' => $host_id));
 
-		for ($i=0;($i<sizeof($arr_index));$i++) {
-			print $arr_index[$i] . "\n";
+		if (is_array($value)) {
+			$arr_index = ss_host_cpu_get_indexes($hostname, $snmp_community, $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, $ping_retries, $max_oids);
+
+			for ($i=0;($i<sizeof($arr_index));$i++) {
+				print $arr_index[$i] . "\n";
+			}
+		}else{
+			$indexes = explode(',', $value);
+			foreach($indexes as $index) {
+				print $index . "\n";
+			}
 		}
-
 	}elseif (($cmd == 'num_indexes')) {
-		$arr_index = ss_host_cpu_get_indexes($hostname, $snmp_community, $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, $ping_retries, $max_oids);
+		$value = api_plugin_hook_function('hmib_get_cpu_indexes', array('host_id' => $host_id));
 
-		print sizeof($arr_index) . "\n";
+		if (is_array($value)) {
+			$arr_index = ss_host_cpu_get_indexes($hostname, $snmp_community, $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, $ping_retries, $max_oids);
 
+			print sizeof($arr_index) . "\n";
+		}else{
+			$indexes = explode(',', $value);
+			print sizeof($indexes) . "\n";
+		}
 	} elseif ($cmd == 'query') {
-		$arg = $arg1;
+		$value = api_plugin_hook_function('hmib_get_cpu_indexes', array('host_id' => $host_id));
 
-		$arr_index = ss_host_cpu_get_indexes($hostname, $snmp_community, $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, $ping_retries, $max_oids);
-		$arr = ss_host_cpu_get_cpu_usage($hostname, $snmp_community, $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, $ping_retries, $max_oids);
+		if (is_array($value)) {
+			$arg = $arg1;
 
-		for ($i=0;($i<sizeof($arr_index));$i++) {
-			if ($arg == 'usage') {
-				print $arr_index[$i] . '!' . $arr[$i] . "\n";
-			}elseif ($arg == 'index') {
-				print $arr_index[$i] . '!' . $arr_index[$i] . "\n";
+			$arr_index = ss_host_cpu_get_indexes($hostname, $snmp_community, $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, $ping_retries, $max_oids);
+			$arr = ss_host_cpu_get_cpu_usage($hostname, $snmp_community, $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, $ping_retries, $max_oids);
+
+			for ($i=0;($i<sizeof($arr_index));$i++) {
+				if ($arg == 'usage') {
+					print $arr_index[$i] . '!' . $arr[$i] . "\n";
+				}elseif ($arg == 'index') {
+					print $arr_index[$i] . '!' . $arr_index[$i] . "\n";
+				}
+			}
+		}else{
+			$indexes = explode(',', $value);
+			foreach($indexes as $index) {
+				print $index . '!' . $index . "\n";
 			}
 		}
 	} elseif ($cmd == 'get') {

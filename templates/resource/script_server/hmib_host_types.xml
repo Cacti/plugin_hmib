@@ -1,6 +1,6 @@
 <interface>
 	<name>Host MIB Host Type Graphs</name>
-	<script_path>|path_cacti|/scripts/ss_hmib_htypes.php</script_path>
+	<script_path>|path_cacti|/plugins/hmib/templates/scripts/ss_hmib_htypes.php</script_path>
 	<script_function>ss_hmib_htypes</script_function>
 	<script_server>php</script_server>
 	<arg_prepend></arg_prepend>
