@@ -87,7 +87,7 @@ function form_save() {
 		header('Location: hmib_types.php?header=false&action=edit&id=' . (empty($host_type_id) ? get_request_var('id') : $host_type_id));
 	}
 
-	if (isset($_POST['save_component_import'])) {
+	if (isset_request_var('save_component_import')) {
 		if (($_FILES['import_file']['tmp_name'] != 'none') && ($_FILES['import_file']['tmp_name'] != '')) {
 			/* file upload */
 			$csv_data = file($_FILES['import_file']['tmp_name']);
@@ -171,14 +171,14 @@ function form_actions() {
 	global $colors, $config, $host_types_actions, $fields_hmib_host_types_edit;
 
 	/* ================= input validation ================= */
-	input_validate_input_number(get_request_var_post('drp_action'));
+	get_filter_request_var('drp_action');
 	/* ==================================================== */
 
 	/* if we are to save this form, instead of display it */
-	if (isset($_POST['selected_items'])) {
-		$selected_items = unserialize(stripslashes($_POST['selected_items']));
+	if (isset_request_var('selected_items')) {
+		$selected_items = unserialize(stripslashes(get_nfilter_request_var('selected_items')));
 
-		if ($_POST['drp_action'] == '1') { /* delete */
+		if (get_request_var('drp_action') == '1') { /* delete */
 			foreach($selected_items as $item) {
 				/* ================= input validation ================= */
 				input_validate_input_number($item);
@@ -186,13 +186,13 @@ function form_actions() {
 
 				api_hmib_host_type_remove($item);
 			}
-		}elseif ($_POST['drp_action'] == '2') { /* duplicate */
+		}elseif (get_request_var('drp_action') == '2') { /* duplicate */
 			foreach($selected_items as $item) {
 				/* ================= input validation ================= */
 				input_validate_input_number($item);
 				/* ==================================================== */
 
-				hmib_duplicate_host_type($item, $i, $_POST['title_format']);
+				hmib_duplicate_host_type($item, $i, get_request_var('title_format'));
 			}
 		}
 
@@ -222,7 +222,7 @@ function form_actions() {
 
 	form_start('hmib_types.php');
 
-	html_start_box('<strong>' . $host_types_actions{$_POST['drp_action']} . '</strong>', '60%', $colors['header_panel'], '3', 'center', '');
+	html_start_box('<strong>' . $host_types_actions{get_request_var('drp_action')} . '</strong>', '60%', $colors['header_panel'], '3', 'center', '');
 
 	if (get_filter_request_var('drp_action') == '1') { /* delete */
 		print "	<tr>
@@ -257,7 +257,7 @@ function form_actions() {
 		<td colspan='2' class='saveRow'>
 			<input type='hidden' name='action' value='actions'>
 			<input type='hidden' name='selected_items' value='" . (isset($host_types_array) ? serialize($host_types_array) : '') . "'>
-			<input type='hidden' name='drp_action' value='" . $_POST['drp_action'] . "'>
+			<input type='hidden' name='drp_action' value='" . get_request_var('drp_action') . "'>
 			$save_html
 		</td>
 	</tr>\n";
@@ -686,7 +686,7 @@ function hmib_host_type_import_processor(&$host_types) {
 			$save_value .= ')';
 
 			if ($j > 0) {
-				if (isset($_POST['allow_update'])) {
+				if (isset_request_var('allow_update')) {
 					$sql_execute = 'INSERT INTO mac_track_device_types ' . $save_order .
 						' VALUES' . $save_value . $update_suffix;
 
