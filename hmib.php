@@ -124,7 +124,7 @@ function hmib_history() {
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
-			'default' => '=1',
+			'default' => '-1',
 			'options' => array('options' => 'sanitize_search_string')
 			),
 		'sort_column' => array(
