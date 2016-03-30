@@ -124,7 +124,7 @@ function hmib_history() {
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
-			'default' => '',
+			'default' => '=1',
 			'options' => array('options' => 'sanitize_search_string')
 			),
 		'sort_column' => array(
@@ -351,6 +351,7 @@ function hmib_history() {
 	//echo $sql;
 
 	$rows       = db_fetch_assoc($sql);
+
 	$total_rows = db_fetch_cell("SELECT COUNT(*)
 		FROM plugin_hmib_hrSWRun_last_seen AS hrswls
 		INNER JOIN host
@@ -450,7 +451,7 @@ function hmib_running() {
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
-			'default' => '',
+			'default' => '-1',
 			'options' => array('options' => 'sanitize_search_string')
 			),
 		'sort_column' => array(
@@ -676,6 +677,7 @@ function hmib_running() {
 	//echo $sql;
 
 	$rows       = db_fetch_assoc($sql);
+
 	$total_rows = db_fetch_cell("SELECT COUNT(*)
 		FROM plugin_hmib_hrSWRun AS hrswr
 		INNER JOIN host
@@ -793,7 +795,7 @@ function hmib_hardware() {
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
-			'default' => '',
+			'default' => '-1',
 			'options' => array('options' => 'sanitize_search_string')
 			),
 		'sort_column' => array(
@@ -1097,7 +1099,7 @@ function hmib_storage() {
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
-			'default' => '',
+			'default' => '-1',
 			'options' => array('options' => 'sanitize_search_string')
 			),
 		'sort_column' => array(
@@ -2690,10 +2692,30 @@ function hmib_view_graphs() {
 
 	html_graph_validate_preview_request_vars();
 
+	if (!isset($_SESSION['sess_hmib_gt'])) {
+		$_SESSION['sess_hmib_gt'] = implode(',', array_rekey(db_fetch_assoc('SELECT DISTINCT gl.graph_template_id 
+			FROM graph_local AS gl 
+			WHERE gl.host_id IN(
+				SELECT host_id 
+				FROM plugin_hmib_hrSystem
+			)'), 'graph_template_id', 'graph_template_id'));
+	}
+	$gt = $_SESSION['sess_hmib_gt'];
+
+	if (!isset($_SESSION['sess_hmib_ht'])) {
+		$_SESSION['sess_hmib_ht'] = implode(',', array_rekey(db_fetch_assoc('SELECT host_template_id 
+			FROM host AS h 
+			WHERE h.id IN (
+				SELECT host_id 
+				FROM plugin_hmib_hrSystem
+			)'), 'host_template_id', 'host_template_id'));
+	}
+	$ht = $_SESSION['sess_hmib_ht'];
+
 	/* include graph view filter selector */
 	html_start_box('<strong>Graph Preview Filters</strong>' . (isset_request_var('style') && strlen(get_request_var('style')) ? ' [ Custom Graph List Applied - Filtering from List ]':''), '100%', '', '3', 'center', '');
 
-	html_graph_preview_filter('hmib.php', 'graphs', 'ht.id IN (SELECT host_template_id FROM host AS h WHERE h.id IN (SELECT host_id FROM plugin_hmib_hrSystem))', 'gt.id IN (SELECT DISTINCT gl.graph_template_id FROM graph_local AS gl WHERE gl.host_id IN(SELECT host_id FROM plugin_hmib_hrSystem))');
+	html_graph_preview_filter('hmib.php', 'graphs', "ht.id IN ($ht)", "gt.id IN ($gt)");
 
 	html_end_box();
 
