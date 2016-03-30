@@ -127,6 +127,12 @@ function hmib_history() {
 			'default' => '-1',
 			'options' => array('options' => 'sanitize_search_string')
 			),
+		'filter' => array(
+			'filter' => FILTER_CALLBACK,
+			'pageset' => true,
+			'default' => '',
+			'options' => array('options' => 'sanitize_search_string')
+			),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'name',
@@ -2702,20 +2708,26 @@ function hmib_view_graphs() {
 	}
 	$gt = $_SESSION['sess_hmib_gt'];
 
-	if (!isset($_SESSION['sess_hmib_ht'])) {
-		$_SESSION['sess_hmib_ht'] = implode(',', array_rekey(db_fetch_assoc('SELECT host_template_id 
+	if (!isset($_SESSION['sess_hmib_hosts'])) {
+		$_SESSION['sess_hmib_hosts'] = implode(',', array_rekey(db_fetch_assoc('SELECT h.id 
 			FROM host AS h 
 			WHERE h.id IN (
 				SELECT host_id 
 				FROM plugin_hmib_hrSystem
-			)'), 'host_template_id', 'host_template_id'));
+			) 
+			UNION 
+			SELECT h.id 
+			FROM host AS h
+			INNER JOIN host_template AS ht
+			ON h.host_template_id=ht.id
+			WHERE hash="7c13344910097cc599f0d0485305361d" ORDER BY id DESC'), 'id', 'id'));
 	}
-	$ht = $_SESSION['sess_hmib_ht'];
+	$hosts = $_SESSION['sess_hmib_hosts'];
 
 	/* include graph view filter selector */
 	html_start_box('<strong>Graph Preview Filters</strong>' . (isset_request_var('style') && strlen(get_request_var('style')) ? ' [ Custom Graph List Applied - Filtering from List ]':''), '100%', '', '3', 'center', '');
 
-	html_graph_preview_filter('hmib.php', 'graphs', "ht.id IN ($ht)", "gt.id IN ($gt)");
+	html_graph_preview_filter('hmib.php', 'graphs', "h.id IN ($hosts)", "gt.id IN ($gt)");
 
 	html_end_box();
 
@@ -2744,17 +2756,10 @@ function hmib_view_graphs() {
 				}
 			}
 
-			$i = 0;
-			foreach ($graph_list as $item => $value) {
-				$graph_array[$i] = $item;
-				$i++;
-			}
+			$graph_array = array_keys($graph_list);
 
-			if ((isset($graph_array)) && (sizeof($graph_array) > 0)) {
-				/* build sql string including each graph the user checked */
-				$sql_or = array_to_sql_or($graph_array, 'gtg.local_graph_id');
-
-				$set_rra_id = empty($rra_id) ? read_user_setting('default_rra_id') : get_request_var('rra_id');
+			if (sizeof($graph_array)) {
+				$sql_or = array_to_sql_or($graph_array, 'gl.id');
 			}
 		}
 	}
@@ -2768,25 +2773,11 @@ function hmib_view_graphs() {
 	// Host Id sql_where
 	if (get_request_var('host_id') > 0) {
 		$sql_where .= (strlen($sql_where) ? ' AND':'') . ' gl.host_id=' . get_request_var('host_id');
-	}else{
-		$host_ids = array_rekey(db_fetch_assoc('SELECT host_id FROM plugin_hmib_hrSystem'), 'host_id', 'host_id');
-		if (sizeof($host_ids)) {
-			$sql_where .= (strlen($sql_where) ? ' AND':'') . ' gl.host_id IN (' . implode(',', $host_ids) . ')';
-		}else{
-			$sql_where .= (strlen($sql_where) ? ' AND':'') . ' 1=0';
-		}
 	}
 
 	// Graph Template Id sql_where
 	if (get_request_var('graph_template_id') > 0) {
 		$sql_where .= (strlen($sql_where) ? ' AND':'') . ' gl.graph_template_id=' . get_request_var('graph_template_id');
-	}else{
-		$graph_template_ids = array_rekey(db_fetch_assoc('SELECT DISTINCT gl.graph_template_id AS id FROM graph_local AS gl WHERE host_id IN (SELECT host_id FROM plugin_hmib_hrSystem)'), 'id', 'id');
-		if (sizeof($graph_template_ids)) {
-			$sql_where .= (strlen($sql_where) ? ' AND':'') . ' gl.graph_template_id IN (' . implode(',', $graph_template_ids) . ')';
-		}else{
-			$sql_where .= (strlen($sql_where) ? ' AND':'') . ' 1=0';
-		}
 	}
 
 	$limit  = (get_request_var('graphs')*(get_request_var('page')-1)) . ',' . get_request_var('graphs');
