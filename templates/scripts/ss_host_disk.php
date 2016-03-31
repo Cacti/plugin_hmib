@@ -25,6 +25,8 @@ if (!isset($called_by_script_server)) {
 }
 
 function ss_host_disk($hostname, $host_id, $snmp_auth, $cmd, $arg1 = '', $arg2 = '') {
+	global $environ;
+
 	$snmp = explode(':', $snmp_auth);
 	$snmp_version 	= $snmp[0];
 	$snmp_port    	= $snmp[1];
@@ -84,7 +86,11 @@ function ss_host_disk($hostname, $host_id, $snmp_auth, $cmd, $arg1 = '', $arg2 =
 		$arg = $arg1;
 		$index = $arg2;
 
-		$value = api_plugin_hook_function('hmib_get_disk', array('host_id' => $host_id, 'arg' => $arg, 'index' => $index));
+		if ($environ != 'realtime') {
+			$value = api_plugin_hook_function('hmib_get_disk', array('host_id' => $host_id, 'arg' => $arg, 'index' => $index));
+		}else{
+			$value = array();
+		}
 
 		if (is_array($value)) {
 			if (($arg == 'total') || ($arg == 'used')) {

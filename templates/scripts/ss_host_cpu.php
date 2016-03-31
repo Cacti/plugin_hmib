@@ -25,6 +25,8 @@ if (!isset($called_by_script_server)) {
 }
 
 function ss_host_cpu($hostname, $host_id, $snmp_auth, $cmd, $arg1 = '', $arg2 = '') {
+	global $environ;
+
 	$snmp = explode(':', $snmp_auth);
 	$snmp_version 	= $snmp[0];
 	$snmp_port    	= $snmp[1];
@@ -108,7 +110,11 @@ function ss_host_cpu($hostname, $host_id, $snmp_auth, $cmd, $arg1 = '', $arg2 = 
 		$arg = $arg1;
 		$index = rtrim($arg2);
 
-		$value = api_plugin_hook_function('hmib_get_cpu', array('host_id' => $host_id, 'arg' => $arg, 'index' => $index));
+		if ($environ != 'realtime') {
+			$value = api_plugin_hook_function('hmib_get_cpu', array('host_id' => $host_id, 'arg' => $arg, 'index' => $index));
+		}else{
+			$value = array();
+		}
 
 		if (is_array($value)) {
 			$arr_index = ss_host_cpu_get_indexes($hostname, $snmp_community, $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, $ping_retries, $max_oids);
