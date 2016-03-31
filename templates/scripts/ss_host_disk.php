@@ -11,12 +11,13 @@ $no_http_headers = true;
 error_reporting(0);
 
 if (isset($config)) {
-	include_once(dirname(__FILE__) . '/../lib/snmp.php');
+	include_once(dirname(__FILE__) . '/../../../../lib/snmp.php');
 }
 
 if (!isset($called_by_script_server)) {
-	include_once(dirname(__FILE__) . '/../include/global.php');
-	include_once(dirname(__FILE__) . '/../lib/snmp.php');
+	include_once(dirname(__FILE__) . '/../../../../include/global.php');
+	include_once(dirname(__FILE__) . '/../../../../lib/snmp.php');
+	include_once(dirname(__FILE__) . '/../../../../lib/plugins.php');
 
 	array_shift($_SERVER['argv']);
 
@@ -58,7 +59,7 @@ function ss_host_disk($hostname, $host_id, $snmp_auth, $cmd, $arg1 = '', $arg2 =
 		'index' 		=> '.1.3.6.1.2.1.25.2.3.1.1',
 		'description' 	=> '.1.3.6.1.2.1.25.2.3.1.3',
 		'sau' 			=> '.1.3.6.1.2.1.25.2.3.1.4'
-		);
+	);
 
 	if ($cmd == 'index') {
 		$return_arr = ss_host_disk_reindex(cacti_snmp_walk($hostname, $snmp_community, $oids['index'], $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, $ping_retries, $max_oids, SNMP_POLLER));
@@ -66,12 +67,10 @@ function ss_host_disk($hostname, $host_id, $snmp_auth, $cmd, $arg1 = '', $arg2 =
 		for ($i=0;($i<sizeof($return_arr));$i++) {
 			print $return_arr[$i] . "\n";
 		}
-
 	}elseif ($cmd == 'num_indexes') {
 		$return_arr = ss_host_disk_reindex(cacti_snmp_walk($hostname, $snmp_community, $oids['index'], $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol, $snmp_priv_passphrase, $snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, $ping_retries, $max_oids, SNMP_POLLER));
 
 		print sizeof($return_arr) . "\n";
-
 	}elseif ($cmd == 'query') {
 		$arg = $arg1;
 

@@ -11,12 +11,13 @@ $no_http_headers = true;
 error_reporting(0);
 
 if (isset($config)) {
-	include_once(dirname(__FILE__) . '/../lib/snmp.php');
+	include_once(dirname(__FILE__) . '/../../../../lib/snmp.php');
 }
 
 if (!isset($called_by_script_server)) {
-	include_once(dirname(__FILE__) . '/../include/global.php');
-	include_once(dirname(__FILE__) . '/../lib/snmp.php');
+	include_once(dirname(__FILE__) . '/../../../../include/global.php');
+	include_once(dirname(__FILE__) . '/../../../../lib/snmp.php');
+	include_once(dirname(__FILE__) . '/../../../../lib/plugins.php');
 
 	array_shift($_SERVER['argv']);
 
@@ -67,7 +68,7 @@ function ss_host_cpu($hostname, $host_id, $snmp_auth, $cmd, $arg1 = '', $arg2 = 
 		}else{
 			$indexes = explode(',', $value);
 			foreach($indexes as $index) {
-				print $index . "\n";
+				print trim($index) . "\n";
 			}
 		}
 	}elseif (($cmd == 'num_indexes')) {
@@ -100,7 +101,7 @@ function ss_host_cpu($hostname, $host_id, $snmp_auth, $cmd, $arg1 = '', $arg2 = 
 		}else{
 			$indexes = explode(',', $value);
 			foreach($indexes as $index) {
-				print $index . '!' . $index . "\n";
+				print trim($index) . '!' . trim($index) . "\n";
 			}
 		}
 	} elseif ($cmd == 'get') {
