@@ -1,7 +1,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2014 The Cacti Group                                 |
+ | Copyright (C) 2004-2016 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -1716,7 +1716,7 @@ function hmib_devices() {
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=running&reset=1&device=" . $row['host_id']) . "'><img src='$proc' title='View Processes' align='absmiddle' alt=''></a>";
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=software&reset=1&device=" . $row['host_id']) . "'><img src='$inven' title='View Software Inventory' align='absmiddle' alt=''></a>";
 			if ($found) {
-				echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=graphs&reset=1&host=" . $row['host_id'] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=") . "'><img  src='$graphs' title='View Graphs' align='absmiddle' alt=''></a>";
+				echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=graphs&reset=1&host_id=" . $row['host_id'] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=") . "'><img  src='$graphs' title='View Graphs' align='absmiddle' alt=''></a>";
 			}else{
 				echo "<img src='$nographs' title='No Graphs Defined' align='absmiddle' alt=''>";
 			}

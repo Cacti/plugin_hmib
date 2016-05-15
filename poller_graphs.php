@@ -2,7 +2,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2010 The Cacti Group                                 |
+ | Copyright (C) 2004-2016 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -25,6 +25,11 @@
 
 /* we are not talking to the browser */
 $no_http_headers = true;
+
+/* do NOT run this script through a web browser */
+if (!isset($_SERVER['argv'][0]) || isset($_SERVER['REQUEST_METHOD'])  || isset($_SERVER['REMOTE_ADDR'])) {
+	die('<br>This script is only meant to run at the command line.');
+}
 
 chdir(dirname(__FILE__));
 chdir('../..');

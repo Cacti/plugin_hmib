@@ -3,13 +3,13 @@
 function cacti_escapeshellcmd($string) {
 	global $config;
 
-	if ($config["cacti_server_os"] == "unix") {
+	if ($config['cacti_server_os'] == 'unix') {
 		return escapeshellcmd($string);
 	}else{
 		$replacements = "#&;`|*?<>^()[]{}$\\";
 
 		for ($i=0; $i < strlen($replacements); $i++) {
-			$string = str_replace($replacements[$i], " ", $string);
+			$string = str_replace($replacements[$i], ' ', $string);
 		}
 		return $string;
 	}
@@ -27,7 +27,7 @@ function cacti_escapeshellarg($string, $quote=true) {
 	/* we must use an apostrophe to escape community names under Unix in case the user uses
 	characters that the shell might interpret. the ucd-snmp binaries on Windows flip out when
 	you do this, but are perfectly happy with a quotation mark. */
-	if ($config["cacti_server_os"] == "unix") {
+	if ($config['cacti_server_os'] == 'unix') {
 		$string = escapeshellarg($string);
 		if ( $quote ) {
 			return $string;

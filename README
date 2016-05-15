@@ -4,7 +4,7 @@
     Contact ........ 
     Home Site ...... http://www.cacti.net
     Program ........ Host MIB Audit Tool
-    Version ........ 2.0
+    Version ........ 3.0
     Purpose ........ Collect Host MIB Table Information for Reporting
 
 *******************************************************************************/
@@ -45,6 +45,9 @@
 
 ----[ Changelog
 
+	--- 3.0 ---
+	Cacti 1.0 Compatibility 
+
     --- 2.0 ---
     fix: Template detection is automatic now based upon Hash
     feature: Add new Summary Graph Template for average and peak memory use by process
@@ -81,5 +84,3 @@
 
     --- 1.0 ---
     Initial release
-     
-

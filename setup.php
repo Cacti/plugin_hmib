@@ -1,7 +1,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2014 The Cacti Group                                 |
+ | Copyright (C) 2004-2016 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -343,7 +343,7 @@ function hmib_setup_table () {
 function hmib_version () {
 	return array(
 		'name' 		=> 'hmib',
-		'version' 	=> '2.0',
+		'version' 	=> '3.0',
 		'longname'	=> 'Host MIB Tool',
 		'author'	=> 'The Cacti Group',
 		'homepage'	=> 'http://www.cacti.net',
@@ -638,7 +638,7 @@ function hmib_get_cpu($host_index) {
 	if (!$called_by_script_server) {
 		return $host_index;
 	}else{
-		$value = db_fetch_cell("SELECT `load` FROM plugin_hmib_hrProcessor WHERE host_id=$host_id AND `index`=$index");
+		$value = db_fetch_cell("SELECT `load` FROM plugin_hmib_hrProcessor WHERE host_id=$host_id ORDER BY `index` LIMIT $index,1");
 
 		if (empty($value)) {
 			return '0';
@@ -652,7 +652,6 @@ function hmib_get_cpu_indexes($host_index) {
 	global $called_by_script_server;
 
 	$host_id = $host_index['host_id'];
-	$command = $host_index['arg'];
 	$rarray  = array();
 
 	$indexes = db_fetch_assoc("SELECT `index` FROM plugin_hmib_hrProcessor WHERE host_id=$host_id ORDER BY `index`");

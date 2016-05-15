@@ -2,7 +2,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2014 The Cacti Group                                 |
+ | Copyright (C) 2004-2016 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -33,7 +33,7 @@ array_shift($parms);
 
 global $debug, $start, $seed, $forcerun;
 
-$debug          = FALSE;
+$debug = FALSE;
 
 foreach($parms as $parameter) {
 	@list($arg, $value) = @explode('=', $parameter);
@@ -88,6 +88,6 @@ function process_hosts() {
 
 
 function display_help() {
-	echo "Host MIB associate OS Type 1.0, Copyright 2004-2010 - The Cacti Group\n\n";
+	echo "Host MIB associate OS Type 1.0, Copyright 2004-2016 - The Cacti Group\n\n";
 	echo "usage: call without any parameter\n";
 }
