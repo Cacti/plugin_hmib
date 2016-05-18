@@ -1677,7 +1677,7 @@ function hmib_devices() {
 	$host      = $config['url_path'] . 'plugins/hmib/images/server.png';
 	$hardw     = $config['url_path'] . 'plugins/hmib/images/view_hardware.gif';
 	$inven     = $config['url_path'] . 'plugins/hmib/images/view_inventory.gif';
-	$storage   = $config['url_path'] . 'plugins/hmib/images/storage.png';
+	$storage   = $config['url_path'] . 'plugins/hmib/images/drive.png';
 	$dashboard = $config['url_path'] . 'plugins/hmib/images/view_dashboard.gif';
 	$graphs    = $config['url_path'] . 'plugins/hmib/images/view_graphs.gif';
 	$nographs  = $config['url_path'] . 'plugins/hmib/images/view_graphs_disabled.gif';
