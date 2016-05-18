@@ -5,7 +5,7 @@ $no_http_headers = true;
 error_reporting(0);
 
 if (!isset($called_by_script_server)) {
-	include(dirname(__FILE__) . '/../include/global.php');
+	include(dirname(__FILE__) . './../../../../include/global.php');
 
 	array_shift($_SERVER['argv']);
 

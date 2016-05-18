@@ -834,7 +834,9 @@ function collect_hrDevices(&$host) {
 }
 
 function display_help() {
-	echo "Host MIB Poller Process 1.0, Copyright 2004-2010 - The Cacti Group\n\n";
+	$version = plugin_hmib_version();
+
+	echo "Host MIB Poller Process, Version " . $version['version'] . ", " . COPYRIGHT_YEARS . "\n\n";
 	echo "The main Host MIB poller process script for Cacti.\n\n";
 	echo "usage: \n";
 	echo "master process: poller_hmib.php [-M] [-f] [-fd] [-d]\n";

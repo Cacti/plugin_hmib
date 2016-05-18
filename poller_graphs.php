@@ -386,7 +386,9 @@ function debug($message) {
 }
 
 function display_help() {
-	echo "Host MIB Graph Automator 1.0, Copyright 2004-2010 - The Cacti Group\n\n";
+	$version = plugin_hmib_version();
+
+	echo "Host MIB Graph Automator, Version " . $version['version'] . ", " . COPYRIGHT_YEARS . "\n\n";
 	echo "The Host MIB process that creates graphs for Cacti.\n\n";
 	echo "usage: poller_graphs.php [-f] [-d]\n";
 }

@@ -88,6 +88,8 @@ function process_hosts() {
 
 
 function display_help() {
-	echo "Host MIB associate OS Type 1.0, Copyright 2004-2016 - The Cacti Group\n\n";
+	$version = plugin_hmib_version();
+
+	echo "Host MIB Associate OS Type, Version " . $version['version'] . ", " . COPYRIGHT_YEARS . "\n\n";
 	echo "usage: call without any parameter\n";
 }
