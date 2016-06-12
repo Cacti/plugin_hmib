@@ -632,6 +632,14 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 		$types = array_rekey(db_fetch_assoc('SELECT id, oid, description FROM plugin_hmib_types'), 'oid', array('id', 'description'));
 	}
 
+	$columns = db_fetch_assoc("SHOW COLUMNS FROM $table");
+	$cols    = array();
+	if (sizeof($columns)) {
+		foreach($columns as $col) {
+			$cols[$col['Field']] = $col['Type'];
+		}
+	}
+
 	if (sizeof($host)) {
 		/* mark for deletion */
 		db_execute("UPDATE $table SET present=0 WHERE host_id=" . $host['id']);
@@ -759,7 +767,19 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 						$parts = explode('/', $mib['value']);
 						$new_array[$index][$key] = $parts[0];
 					}elseif ($key != 'index') {
-						$new_array[$index][$key] = $mib['value'];
+						if (isset($cols[$key])) {
+							if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false) {
+								if ($mib['value'] == '') {
+									$new_array[$index][$key] = 0;
+								}else{
+									$new_array[$index][$key] = $mib['value'];
+								}
+							}else{
+								$new_array[$index][$key] = $mib['value'];
+							}
+						}else{
+							$new_array[$index][$key] = $mib['value'];
+						}
 					}
 				}
 
