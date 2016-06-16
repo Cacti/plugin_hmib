@@ -691,105 +691,105 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 		$effective    = 0;
 
 		if (sizeof($hostMib)) {
-		foreach($hostMib as $mib) {
-			/* do some cleanup */
-			if (substr($mib['oid'], 0, 1) != '.') $mib['oid'] = '.' . $mib['oid'];
-			if (substr($mib['value'], 0, 4) == 'OID:') {
-				$mib['value'] = trim(str_replace('OID:', '', $mib['value']));
-			}
-
-			$splitIndex = hmib_splitBaseIndex($mib['oid']);
-
-			if (sizeof($splitIndex)) {
-				$index = $splitIndex[1];
-				$oid   = $splitIndex[0];
-				$key   = array_search($oid, $tree);
-
-				/* issue workaround for snmp issues */
-				if ($name == 'hrProcessor' && $mib['value'] == '.0.0') {
-					if ($wonky) {
-						$key          = 'load';
-						$mib['value'] = $effective;
-					}elseif (!$hrProcValid) {
-						if (db_fetch_cell("SELECT count(*) FROM plugin_hmib_hrSystem WHERE sysDescr LIKE '%Linux%' AND host_id=" . $host['id'])) {
-							/* look for the hrProcessorLoad value */
-							$temp_mib = $hostMib;
-							foreach($temp_mib AS $kk => $vv) {
-								if (substr_count($kk, '.1.3.6.1.2.1.25.3.3.1.2')) {
-									$hrProcValid = true;
-								}
-							}
-
-							if (!$hrProcValid) {
-								$user   = cacti_snmp_get($host['hostname'], $host['snmp_community'], '.1.3.6.1.4.1.2021.11.9.0', $host['snmp_version'],
-									$host['snmp_username'], $host['snmp_password'],
-									$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
-									$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
-									read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
-
-								$system = cacti_snmp_get($host['hostname'], $host['snmp_community'], '.1.3.6.1.4.1.2021.11.10.0', $host['snmp_version'],
-									$host['snmp_username'], $host['snmp_password'],
-									$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
-									$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
-									read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
-
-								$effective    = (($user + $system) * 2) / (sizeof($mib));
-								$key          = 'load';
-								$mib['value'] = $effective;
-								$wonky        = true;
-							}
-						}else{
-							$effective = 0;
-						}
-					}
+			foreach($hostMib as $mib) {
+				/* do some cleanup */
+				if (substr($mib['oid'], 0, 1) != '.') $mib['oid'] = '.' . $mib['oid'];
+				if (substr($mib['value'], 0, 4) == 'OID:') {
+					$mib['value'] = trim(str_replace('OID:', '', $mib['value']));
 				}
 
-				if (!empty($key)) {
-					if ($key == 'type') {
-						$value = explode('(', $mib['value']);
-						if (sizeof($value) > 1) {
-							$value = trim($value[1], " \n\r)");
-							if ($table != 'plugin_hmib_hrSWInstalled' && $table != 'plugin_hmib_hrSWRun') {
-								$new_array[$index][$key] = (isset($types[$value]) ? $types[$value]['id']:0);
+				$splitIndex = hmib_splitBaseIndex($mib['oid']);
+
+				if (sizeof($splitIndex)) {
+					$index = $splitIndex[1];
+					$oid   = $splitIndex[0];
+					$key   = array_search($oid, $tree);
+
+					/* issue workaround for snmp issues */
+					if ($name == 'hrProcessor' && $mib['value'] == '.0.0') {
+						if ($wonky) {
+							$key          = 'load';
+							$mib['value'] = $effective;
+						}elseif (!$hrProcValid) {
+							if (db_fetch_cell("SELECT count(*) FROM plugin_hmib_hrSystem WHERE sysDescr LIKE '%Linux%' AND host_id=" . $host['id'])) {
+								/* look for the hrProcessorLoad value */
+								$temp_mib = $hostMib;
+								foreach($temp_mib AS $kk => $vv) {
+									if (substr_count($kk, '.1.3.6.1.2.1.25.3.3.1.2')) {
+										$hrProcValid = true;
+									}
+								}
+
+								if (!$hrProcValid) {
+									$user   = cacti_snmp_get($host['hostname'], $host['snmp_community'], '.1.3.6.1.4.1.2021.11.9.0', $host['snmp_version'],
+										$host['snmp_username'], $host['snmp_password'],
+										$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
+										$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
+										read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
+
+									$system = cacti_snmp_get($host['hostname'], $host['snmp_community'], '.1.3.6.1.4.1.2021.11.10.0', $host['snmp_version'],
+										$host['snmp_username'], $host['snmp_password'],
+										$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
+										$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
+										read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
+
+									$effective    = (($user + $system) * 2) / (sizeof($mib));
+									$key          = 'load';
+									$mib['value'] = $effective;
+									$wonky        = true;
+								}
 							}else{
-								$new_array[$index][$key] = $value;
-							}
-						}else{
-							if ($table != 'plugin_hmib_hrSWInstalled' && $table != 'plugin_hmib_hrSWRun') {
-								$new_array[$index][$key] = (isset($types[$value[0]]) ? $types[$value[0]]['id']:0);
-							}else{
-								$new_array[$index][$key] = $value[0];
+								$effective = 0;
 							}
 						}
-					}elseif ($key == 'date') {
-						$new_array[$index][$key] = hmib_dateParse($mib['value']);
-					}elseif ($key == 'name' && $table == 'plugin_hmib_hrSWRun') {
-						$parts = explode('/', $mib['value']);
-						$new_array[$index][$key] = $parts[0];
-					}elseif ($key != 'index') {
-						if (isset($cols[$key])) {
-							if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false) {
-								if ($mib['value'] == '') {
-									$new_array[$index][$key] = 0;
+					}
+
+					if (!empty($key)) {
+						if ($key == 'type') {
+							$value = explode('(', $mib['value']);
+							if (sizeof($value) > 1) {
+								$value = trim($value[1], " \n\r)");
+								if ($table != 'plugin_hmib_hrSWInstalled' && $table != 'plugin_hmib_hrSWRun') {
+									$new_array[$index][$key] = (isset($types[$value]) ? $types[$value]['id']:0);
+								}else{
+									$new_array[$index][$key] = $value;
+								}
+							}else{
+								if ($table != 'plugin_hmib_hrSWInstalled' && $table != 'plugin_hmib_hrSWRun') {
+									$new_array[$index][$key] = (isset($types[$value[0]]) ? $types[$value[0]]['id']:0);
+								}else{
+									$new_array[$index][$key] = $value[0];
+								}
+							}
+						}elseif ($key == 'date') {
+							$new_array[$index][$key] = hmib_dateParse($mib['value']);
+						}elseif ($key == 'name' && $table == 'plugin_hmib_hrSWRun') {
+							$parts = explode('/', $mib['value']);
+							$new_array[$index][$key] = $parts[0];
+						}elseif ($key != 'index') {
+							if (isset($cols[$key])) {
+								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false) {
+									if (empty($mib['value']) {
+										$new_array[$index][$key] = 0;
+									}else{
+										$new_array[$index][$key] = $mib['value'];
+									}
 								}else{
 									$new_array[$index][$key] = $mib['value'];
 								}
 							}else{
 								$new_array[$index][$key] = $mib['value'];
 							}
-						}else{
-							$new_array[$index][$key] = $mib['value'];
 						}
 					}
+	
+					if (!empty($key) && $key != 'index') {
+						debug("Key:'" . $key . "', Orig:'" . $mib['oid'] . "', Val:'" . $new_array[$index][$key] . "', Index:'" . $index . "', Base:'" . $oid . "'");
+					}
+				}else{
+					echo "WARNING: Error parsing OID value\n";
 				}
-
-				if (!empty($key) && $key != 'index') {
-					debug("Key:'" . $key . "', Orig:'" . $mib['oid'] . "', Val:'" . $new_array[$index][$key] . "', Index:'" . $index . "', Base:'" . $oid . "'");
-				}
-			}else{
-				echo "WARNING: Error parsing OID value\n";
 			}
-		}
 		}
 
 		/* dump the output to the database */
