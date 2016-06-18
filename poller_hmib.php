@@ -408,9 +408,9 @@ function process_hosts() {
 		(host_id, memSize, memUsed, swapSize, swapUsed)
 		SELECT host_id,
 		SUM(CASE WHEN type=12 THEN size * allocationUnits ELSE 0 END) AS memSize,
-		SUM(CASE WHEN type=12 THEN (used / size) * 100 ELSE 0 END) AS memUsed,
+		SUM(CASE WHEN type=12 AND size > 0 THEN (used / size) * 100 ELSE 0 END) AS memUsed,
 		SUM(CASE WHEN type=13 THEN size * allocationUnits ELSE 0 END) AS swapSize,
-		SUM(CASE WHEN type=13 THEN (used / size) * 100 ELSE 0 END) AS swapUsed
+		SUM(CASE WHEN type=13 AND size > 0 THEN (used / size) * 100 ELSE 0 END) AS swapUsed
 		FROM plugin_hmib_hrStorage
 		WHERE type IN(12,13)
 		GROUP BY host_id
@@ -632,13 +632,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 		$types = array_rekey(db_fetch_assoc('SELECT id, oid, description FROM plugin_hmib_types'), 'oid', array('id', 'description'));
 	}
 
-	$columns = db_fetch_assoc("SHOW COLUMNS FROM $table");
-	$cols    = array();
-	if (sizeof($columns)) {
-		foreach($columns as $col) {
-			$cols[$col['Field']] = $col['Type'];
-		}
-	}
+	$cols = db_get_table_column_types($table);
 
 	if (sizeof($host)) {
 		/* mark for deletion */
@@ -694,6 +688,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 			foreach($hostMib as $mib) {
 				/* do some cleanup */
 				if (substr($mib['oid'], 0, 1) != '.') $mib['oid'] = '.' . $mib['oid'];
+
 				if (substr($mib['value'], 0, 4) == 'OID:') {
 					$mib['value'] = trim(str_replace('OID:', '', $mib['value']));
 				}
@@ -764,12 +759,28 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 						}elseif ($key == 'date') {
 							$new_array[$index][$key] = hmib_dateParse($mib['value']);
 						}elseif ($key == 'name' && $table == 'plugin_hmib_hrSWRun') {
-							$parts = explode('/', $mib['value']);
-							$new_array[$index][$key] = $parts[0];
+							if (!empty($mib['value']) && $mib['value'] != 'NULL') {
+								$parts = explode('/', $mib['value']);
+								$new_array[$index][$key] = $parts[0];
+							}else{
+								$new_array[$index][$key] = '';
+							}
+						}elseif ($key == 'path' && $table == 'plugin_hmib_hrSWRun') {
+							if (!empty($mib['value']) && $mib['value'] != 'NULL') {
+								$new_array[$index][$key] = $mib['value'];
+							}else{
+								$new_array[$index][$key] = '';
+							}
+						}elseif ($key == 'parameters' && $table == 'plugin_hmib_hrSWRun') {
+							if (!empty($mib['value']) && $mib['value'] != 'NULL') {
+								$new_array[$index][$key] = $mib['value'];
+							}else{
+								$new_array[$index][$key] = '';
+							}
 						}elseif ($key != 'index') {
 							if (isset($cols[$key])) {
 								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false) {
-									if (empty($mib['value']) {
+									if (empty($mib['value'])) {
 										$new_array[$index][$key] = 0;
 									}else{
 										$new_array[$index][$key] = $mib['value'];
@@ -799,13 +810,33 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 			foreach($new_array as $index => $item) {
 				$sql_insert .= (strlen($sql_insert) ? '), (':'(') . $host['id'] . ', ' . $index . ', ';
 				$i = 0;
-				foreach($tree as $mname => $oid) {
-					if ($mname != 'baseOID' && $mname != 'index') {
-						$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$mname]) && strlen(strlen($item[$mname])) ? db_qstr($item[$mname]):"''");
-						$i++;
+				foreach($tree as $key => $oid) {
+					if ($key != 'baseOID' && $key != 'index') {
+						if (isset($item[$key]) && strlen(strlen($item[$key]))) {
+							if (isset($cols[$key])) {
+								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false) {
+									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:0);
+								}else{
+									$sql_insert .= ($i >  0 ? ', ':'') . db_qstr($item[$key]);
+								}
+
+								$i++;
+							}
+						}else{
+							if (isset($cols[$key])) {
+								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false) {
+									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:0);
+								}else{
+									$sql_insert .= ($i >  0 ? ', ':'') . db_qstr($item[$key]);
+								}
+
+								$i++;
+							}
+						}
 					}
 				}
 			}
+
 			$sql_insert .= ')';
 			$count++;
 			if (($count % 200) == 0) {
