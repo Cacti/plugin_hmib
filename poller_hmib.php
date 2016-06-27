@@ -817,7 +817,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false) {
 									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:0);
 								}else{
-									$sql_insert .= ($i >  0 ? ', ':'') . db_qstr($item[$key]);
+									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? db_qstr($item[$key]):'');
 								}
 
 								$i++;
@@ -827,7 +827,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false) {
 									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:0);
 								}else{
-									$sql_insert .= ($i >  0 ? ', ':'') . db_qstr($item[$key]);
+									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? db_qstr($item[$key]):'');
 								}
 
 								$i++;
