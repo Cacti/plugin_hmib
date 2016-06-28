@@ -438,7 +438,7 @@ function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $pass
 function format_snmp_string($string, $snmp_oid_included) {
 	global $banned_snmp_strings;
 
-	$string = preg_replace(/REGEXP_SNMP_TRIM/i, '', trim($string));
+	$string = preg_replace('/REGEXP_SNMP_TRIM/i', '', trim($string));
 
 	if (substr($string, 0, 7) == 'No Such') {
 		return '';
