@@ -92,19 +92,19 @@ function hmib_check_upgrade () {
 			api_plugin_enable_hooks('hmib');
 		}
 		db_execute("UPDATE plugin_config SET version='$current' WHERE directory='hmib'");
-		db_execute('UPDATE plugin_config SET ' .
-				"version='" . $version['version'] . "', " .
-				"name='" . $version['longname'] . "', " .
-				"author='" . $version['author'] . "', " .
-				"webpage='" . $version['url'] . "' " .
-				"WHERE directory='" . $version['name'] . "' ");
+		db_execute("UPDATE plugin_config SET 
+			version='" . $version['version'] . "', 
+			name='" . $version['longname'] . "', 
+			author='" . $version['author'] . "', 
+			webpage='" . $version['url'] . "' 
+			WHERE directory='" . $version['name'] . "' ");
 
 		$columns = db_fetch_assoc('SHOW columns FROM plugin_hmib_hrSWRun_last_seen');
 		foreach($columns as $c) {
 			$cols[] = $c[0];
 		}
 
-		if (!array_search('total_time',$cols)) {
+		if (!db_column_exists('plugin_hmib_hrSWRun_last_seen', 'total_time')) {
 			db_execute("ALTER TABLE plugin_hmib_hrSWRun_last_seen ADD COLUMN `total_time` BIGINT unsigned not null default '0' AFTER `name`");
 		}
 	}

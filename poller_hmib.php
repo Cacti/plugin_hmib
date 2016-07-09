@@ -779,7 +779,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 							}
 						}elseif ($key != 'index') {
 							if (isset($cols[$key])) {
-								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false) {
+								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false || strstr($cols[$key], 'double') !== false) {
 									if (empty($mib['value'])) {
 										$new_array[$index][$key] = 0;
 									}else{
@@ -814,20 +814,20 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 					if ($key != 'baseOID' && $key != 'index') {
 						if (isset($item[$key]) && strlen(strlen($item[$key]))) {
 							if (isset($cols[$key])) {
-								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false) {
+								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false || strstr($cols[$key], 'double') !== false) {
 									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:0);
 								}else{
-									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? db_qstr($item[$key]):'');
+									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? db_qstr($item[$key]):'""');
 								}
 
 								$i++;
 							}
 						}else{
 							if (isset($cols[$key])) {
-								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false) {
+								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false || strstr($cols[$key], 'double') !== false) {
 									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:0);
 								}else{
-									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? db_qstr($item[$key]):'');
+									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? db_qstr($item[$key]):'""');
 								}
 
 								$i++;

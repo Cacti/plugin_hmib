@@ -310,8 +310,6 @@ function hmib_history() {
 
 	html_end_box();
 
-	html_start_box('', '100%', '', '3', 'center', '');
-
 	if (get_request_var('rows') == '-1') {
 		$num_rows = read_config_option('num_rows_table');
 	}else{
@@ -372,6 +370,8 @@ function hmib_history() {
 
 	print $nav;
 
+	html_start_box('', '100%', '', '3', 'center', '');
+
 	$display_text = array(
 		'description' => array('display' => __('Hostname'),         'sort' => 'ASC',  'align' => 'left'),
 		'hrswls.name' => array('display' => __('Process'),          'sort' => 'DESC', 'align' => 'left'),
@@ -396,12 +396,15 @@ function hmib_history() {
 			echo "<td style='white-space:nowrap;' align='right' width='100'>" . hmib_get_runtime($row['total_time']) . '</td>';
 		}
 		echo '</tr>';
-		print $nav;
 	}else{
 		print '<tr><td><em>' . __('No Process History Found') . '</em></td></tr>';
 	}
 
-	html_end_box();
+	html_end_box(false);
+
+	if (sizeof($rows)) {
+		print $nav;
+	}
 }
 
 function hmib_get_runtime($time) {
@@ -636,8 +639,6 @@ function hmib_running() {
 
 	html_end_box();
 
-	html_start_box('', '100%', '', '3', 'center', '');
-
 	if (get_request_var('rows') == '-1') {
 		$num_rows = read_config_option('num_rows_table');
 	}else{
@@ -709,6 +710,8 @@ function hmib_running() {
 
 	print $nav;
 
+	html_start_box('', '100%', '', '3', 'center', '');
+
 	$display_text = array(
 		'description' => array('display' => __('Hostname'),    'sort' => 'ASC',  'align' => 'left'),
 		'hrswr.name'  => array('display' => __('Process'),     'sort' => 'DESC', 'align' => 'left'),
@@ -741,12 +744,15 @@ function hmib_running() {
 			echo "<td style='white-space:nowrap;' align='right'>" . $hmib_hrSWRunStatus[$row['status']] . '</td>';
 		}
 		echo '</tr>';
-		print $nav;
 	}else{
 		print '<tr><td><em>' . __('No Running Software Found') . '</em></td></tr>';
 	}
 
-	html_end_box();
+	html_end_box(false);
+
+	if (sizeof($rows)) {
+		print $nav;
+	}
 
 	running_legend($totals, $total_rows);
 }
@@ -981,8 +987,6 @@ function hmib_hardware() {
 
 	html_end_box();
 
-	html_start_box('', '100%', '', '3', 'center', '');
-
 	if (get_request_var('rows') == '-1') {
 		$num_rows = read_config_option('num_rows_table');
 	}else{
@@ -1021,8 +1025,6 @@ function hmib_hardware() {
 		$sql_where
 		ORDER BY " . get_request_var('sort_column') . ' ' . get_request_var('sort_direction') . ' ' . $limit;
 
-	//echo $sql;
-
 	$rows       = db_fetch_assoc($sql);
 	$total_rows = db_fetch_cell("SELECT COUNT(*)
 		FROM plugin_hmib_hrDevices AS hrd
@@ -1033,6 +1035,8 @@ function hmib_hardware() {
 	$nav = html_nav_bar('hmib.php?action=hardware', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, 16, __('Devices'), 'page', 'main');
 
 	print $nav;
+
+	html_start_box('', '100%', '', '3', 'center', '');
 
 	$display_text = array(
 		'host.description' => array('display' => __('Hostname'),             'sort' => 'ASC',  'align' => 'left'),
@@ -1060,12 +1064,15 @@ function hmib_hardware() {
 			echo "<td style='text-align:right;'>" . $row['errors'] . '</td>';
 		}
 		echo '</tr>';
-		print $nav;
 	}else{
 		print '<tr><td><em>' . __('No Hardware Found') . '</em></td></tr>';
 	}
 
-	html_end_box();
+	html_end_box(false);
+
+	if (sizeof($rows)) {
+		print $nav;
+	}
 }
 
 function hmib_storage() {
@@ -1285,8 +1292,6 @@ function hmib_storage() {
 
 	html_end_box();
 
-	html_start_box('', '100%', '', '3', 'center', '');
-
 	if (get_request_var('rows') == '-1') {
 		$num_rows = read_config_option('num_rows_table');
 	}else{
@@ -1325,8 +1330,6 @@ function hmib_storage() {
 		$sql_where
 		ORDER BY " . get_request_var('sort_column') . ' ' . get_request_var('sort_direction') . ' ' . $limit;
 
-	//echo $sql;
-
 	$rows       = db_fetch_assoc($sql);
 	$total_rows = db_fetch_cell("SELECT COUNT(*)
 		FROM plugin_hmib_hrStorage AS hrsto
@@ -1337,6 +1340,8 @@ function hmib_storage() {
 	$nav = html_nav_bar('hmib.php?action=storage', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, 16, __('Volumes'), 'page', 'main');
 
 	print $nav;
+
+	html_start_box('', '100%', '', '3', 'center', '');
 
 	$display_text = array(
 		'host.description'  => array('display' => __('Hostname'),            'sort' => 'ASC',  'align' => 'left'),
@@ -1370,12 +1375,15 @@ function hmib_storage() {
 			echo "<td style='text-align:right;'>" . number_format($row['allocationUnits']) . '</td>';
 		}
 		echo '</tr>';
-		print $nav;
 	}else{
 		print '<tr><td><em>' . __('No Storage Devices Found') . '</em></td></tr>';
 	}
 
-	html_end_box();
+	html_end_box(false);
+
+	if (sizeof($rows)) {
+		print $nav;
+	}
 }
 
 function hmib_devices() {
@@ -1602,8 +1610,6 @@ function hmib_devices() {
 
 	html_end_box();
 
-	html_start_box('', '100%', '', '3', 'center', '');
-
 	if (get_request_var('rows') == '-1') {
 		$num_rows = read_config_option('num_rows_table');
 	}else{
@@ -1644,8 +1650,6 @@ function hmib_devices() {
 		$sql_where
 		ORDER BY " . get_request_var('sort_column') . ' ' . get_request_var('sort_direction') . ' ' . $limit;
 
-	//echo $sql;
-
 	$rows       = db_fetch_assoc($sql);
 	$total_rows = db_fetch_cell("SELECT COUNT(*)
 		FROM plugin_hmib_hrSystem AS hrs
@@ -1656,6 +1660,8 @@ function hmib_devices() {
 	$nav = html_nav_bar('hmib.php?action=devices', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, 16, __('Devices'), 'page', 'main');
 
 	print $nav;
+
+	html_start_box('', '100%', '', '3', 'center', '');
 
 	$display_text = array(
 		'nosort'      => array('display' => __('Actions'),       'sort' => 'ASC',  'align' => 'left'),
@@ -1749,12 +1755,15 @@ function hmib_devices() {
 			echo "<td class='nowrap right'>" . ($row['host_status'] < 2 ? 'N/A':round($row['swapUsed'],0)) . ' %</td>';
 		}
 		echo '</tr>';
-		print $nav;
 	}else{
 		print '<tr><td><em>' . __('No Devices Found') . '</em></td></tr>';
 	}
 
-	html_end_box();
+	html_end_box(false);
+
+	if (sizeof($rows)) {
+		print $nav;
+	}
 }
 
 function hmib_format_uptime($d, $h, $m) {
@@ -2012,8 +2021,6 @@ function hmib_software() {
 
 	html_end_box();
 
-	html_start_box('', '100%', '', '3', 'center', '');
-
 	if (get_request_var('rows') == '-1') {
 		$num_rows = read_config_option('num_rows_table');
 	}else{
@@ -2053,8 +2060,6 @@ function hmib_software() {
 		$sql_where
 		ORDER BY " . get_request_var('sort_column') . ' ' . get_request_var('sort_direction') . ' ' . $limit;
 
-	//echo $sql;
-
 	$rows       = db_fetch_assoc($sql);
 	$total_rows = db_fetch_cell("SELECT COUNT(*)
 		FROM plugin_hmib_hrSWInstalled AS hrswi
@@ -2065,6 +2070,8 @@ function hmib_software() {
 	$nav = html_nav_bar('hmib.php?action=software', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, 16, __('Applications'), 'page', 'main');
 
 	print $nav;
+
+	html_start_box('', '100%', '', '3', 'center', '');
 
 	$display_text = array(
 		'description' => array('display' => __('Hostname'),   'sort' => 'ASC',  'align' => 'left'),
@@ -2090,12 +2097,15 @@ function hmib_software() {
 			echo "<td class='right'>" . (strlen(get_request_var('filter')) ? preg_replace('/(' . preg_quote(get_request_var('filter')) . ')/i', "<span class='filteredValue'>\\1</span>", $row['date']):$row['date']) . '</td>';
 		}
 		echo '</tr>';
-		print $nav;
 	}else{
 		print '<tr><td><em>' . __('No Software Packages Found') . '</em></td></tr>';
 	}
 
-	html_end_box();
+	html_end_box(false);
+
+	if (sizeof($rows)) {
+		print $nav;
+	}
 }
 
 function hmib_tabs() {
@@ -2799,11 +2809,11 @@ function hmib_view_graphs() {
 
 	$nav_url = preg_replace('/((\?|&)host_id=[0-9]+|(\?|&)filter=[a-zA-Z0-9]*)/', '', $nav_url);
 
-	html_start_box('', '100%', '', '3', 'center', '');
-
 	$nav = html_nav_bar($nav_url, MAX_DISPLAY_PAGES, get_request_var('page'), get_request_var('graphs'), $total_graphs, get_request_var('columns'), 'Graphs', 'page', 'main');
 
 	print $nav;
+
+	html_start_box('', '100%', '', '3', 'center', '');
 
 	if (get_request_var('thumbnails') == 'true') {
 		html_graph_thumbnail_area($graphs, '', 'graph_start=' . get_current_graph_start() . '&graph_end=' . get_current_graph_end(), '', get_request_var('columns'));
@@ -2811,11 +2821,11 @@ function hmib_view_graphs() {
 		html_graph_area($graphs, '', 'graph_start=' . get_current_graph_start() . '&graph_end=' . get_current_graph_end(), '', get_request_var('columns'));
 	}
 
+	html_end_box();
+
 	if ($total_graphs > 0) {
 		print $nav;
 	}
-
-	html_end_box();
 
 	bottom_footer();
 }
