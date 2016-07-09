@@ -868,17 +868,17 @@ function hmib_host_type() {
 
 	$host_types = hmib_get_host_types($sql_where, $row_limit);
 
-	form_start('hmib_types.php');
-
-	html_start_box('', '100%', '', '3', 'center', '');
-
 	$total_rows = db_fetch_cell('SELECT
 		COUNT(*)
 		FROM plugin_hmib_hrSystemTypes' . $sql_where);
 
 	$nav = html_nav_bar('hmib_types.php', MAX_DISPLAY_PAGES, get_request_var('page'), $row_limit, $total_rows, 9, __('OS Types'), 'page', 'main');
 
+	form_start('hmib_types.php');
+
 	print $nav;
+
+	html_start_box('', '100%', '', '3', 'center', '');
 
 	$display_text = array(
 		'name'          => array(__('Host Type Name'), 'ASC'),
@@ -889,7 +889,7 @@ function hmib_host_type() {
 
 	html_header_sort_checkbox($display_text, get_request_var('sort_column'), get_request_var('sort_direction'));
 
-	if (sizeof($host_types) > 0) {
+	if (sizeof($host_types)) {
 		foreach ($host_types as $host_type) {
 			form_alternate_row('line' . $host_type['id'], true);
 			form_selectable_cell('<a class="linkEditMain" href="' . htmlspecialchars('hmib_types.php?action=edit&id=' . $host_type['id']) . '">' . $host_type['name'] . '</a>', $host_type['id']);
@@ -900,13 +900,15 @@ function hmib_host_type() {
 			form_checkbox_cell($host_type['name'], $host_type['id']);
 			form_end_row();
 		}
-
-		/* put the nav bar on the bottom as well */
-		print $nav;
 	}else{
 		print "<tr><td colspan='10'><em>" . __('No Host Types Found') . "</em></td></tr>";
 	}
+
 	html_end_box(false);
+
+	if (sizeof($host_types)) {
+		print $nav;
+	}
 
     /* draw the dropdown containing a list of available actions for this form */
     draw_actions_dropdown($host_types_actions);
