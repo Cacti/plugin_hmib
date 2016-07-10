@@ -738,8 +738,8 @@ function hmib_running() {
 			echo "<td style='white-space:nowrap;' align='left' width='100'>" . (strlen(get_request_var('filter')) ? preg_replace('/(' . preg_quote(get_request_var('filter')) . ')/i', "<span class='filteredValue'>\\1</span>", $row['name']):$row['name']) . '</td>';
 			echo "<td style='white-space:nowrap;' align='left' title='" . $row['path'] . "' width='100'>" . (strlen(get_request_var('filter')) ? preg_replace('/(' . preg_quote(get_request_var('filter')) . ')/i', "<span class='filteredValue'>\\1</span>", title_trim($row['path'],40)):title_trim($row['path'],40)) . '</td>';
 			echo "<td style='white-space:nowrap;' align='left' title='" . $row['parameters'] . "' width='100'>" . (strlen(get_request_var('filter')) ? preg_replace('/(' . preg_quote(get_request_var('filter')) . ')/i', "<span class='filteredValue'>\\1</span>", title_trim($row['parameters'], 40)):title_trim($row['parameters'],40)) . '</td>';
-			echo "<td style='white-space:nowrap;' align='right'>" . number_format($row['perfCPU']/3600,0) . '</td>';
-			echo "<td style='white-space:nowrap;' align='right'>" . number_format($row['perfMemory']/1024,2) . '</td>';
+			echo "<td style='white-space:nowrap;' align='right'>" . number_format_i18n($row['perfCPU']/3600,0) . '</td>';
+			echo "<td style='white-space:nowrap;' align='right'>" . number_format_i18n($row['perfMemory']/1024,2) . '</td>';
 			echo "<td width='20' style='white-space:nowrap;' align='left'>"  . (isset($hmib_hrSWTypes[$row['type']]) ? $hmib_hrSWTypes[$row['type']]:'Unknown') . '</td>';
 			echo "<td style='white-space:nowrap;' align='right'>" . $hmib_hrSWRunStatus[$row['status']] . '</td>';
 		}
@@ -760,12 +760,12 @@ function hmib_running() {
 function running_legend($totals, $total_rows) {
 	html_start_box('', '100%', '', '3', 'center', '');
 	print '<tr>';
-	print '<td><b>' . __('Total CPU [h]:') . '</b> ' . number_format($totals['cpu']/3600,0) . '</td>';
-	print '<td><b>' . __('Total Size [MB]:') . '</b> ' . number_format($totals['memory']/1024,2) . '</td>';
+	print '<td><b>' . __('Total CPU [h]:') . '</b> ' . number_format_i18n($totals['cpu']/3600,0) . '</td>';
+	print '<td><b>' . __('Total Size [MB]:') . '</b> ' . number_format_i18n($totals['memory']/1024,2) . '</td>';
 	print '</tr>';
 	print '<tr>';
-	print '<td><b>' . __('Avg. CPU [h]:') . '</b> ' . ($total_rows ? number_format($totals['cpu']/(3600*$total_rows),0) : 0) . '</td>';
-	print '<td><b>' . __('Avg. Size [MB]:') . '</b> ' . ($total_rows ? number_format($totals['memory']/(1024*$total_rows),2) : 0) . '</td>';
+	print '<td><b>' . __('Avg. CPU [h]:') . '</b> ' . ($total_rows ? number_format_i18n($totals['cpu']/(3600*$total_rows),0) : 0) . '</td>';
+	print '<td><b>' . __('Avg. Size [MB]:') . '</b> ' . ($total_rows ? number_format_i18n($totals['memory']/(1024*$total_rows),2) : 0) . '</td>';
 	print '</tr>';
 	html_end_box(false);
 }
@@ -1370,9 +1370,9 @@ function hmib_storage() {
 			echo "<td>"  . (isset($hmib_types[$row['type']]) ? $hmib_types[$row['type']]:'Unknown') . '</td>';
 			echo "<td style='text-align:right;'>" . $row['failures'] . '</td>';
 			echo "<td style='text-align:right;'>" . round($row['percent']*100,2) . ' %</td>';
-			echo "<td style='text-align:right;'>" . number_format($row['used']/1024,0) . '</td>';
-			echo "<td style='text-align:right;'>" . number_format($row['size']/1024,0) . '</td>';
-			echo "<td style='text-align:right;'>" . number_format($row['allocationUnits']) . '</td>';
+			echo "<td style='text-align:right;'>" . number_format_i18n($row['used']/1024,0) . '</td>';
+			echo "<td style='text-align:right;'>" . number_format_i18n($row['size']/1024,0) . '</td>';
+			echo "<td style='text-align:right;'>" . number_format_i18n($row['allocationUnits']) . '</td>';
 		}
 		echo '</tr>';
 	}else{
@@ -1781,26 +1781,26 @@ function hmib_memory($mem) {
 	$mem /= 1024;
 
 	if ($mem < 1024) {
-		return number_format($mem,2) . 'K';
+		return number_format_i18n($mem,2) . 'K';
 	}
 	$mem /= 1024;
 
 	if ($mem < 1024) {
-		return number_format($mem,2) . 'M';
+		return number_format_i18n($mem,2) . 'M';
 	}
 	$mem /= 1024;
 
 	if ($mem < 1024) {
-		return number_format($mem,2) . 'G';
+		return number_format_i18n($mem,2) . 'G';
 	}
 	$mem /= 1024;
 
 	if ($mem < 1024) {
-		return number_format($mem,2) . 'T';
+		return number_format_i18n($mem,2) . 'T';
 	}
 	$mem /= 1024;
 
-	return number_format($mem,2) . 'P';
+	return number_format_i18n($mem,2) . 'P';
 }
 
 function hmib_software() {
@@ -2385,8 +2385,8 @@ function hmib_summary() {
 				$graph_acpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', round($row['avgCpuPercent'],2), false);
 				$graph_mcpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', round($row['maxCpuPercent'],2), false);
 				$graph_users = hmib_get_graph_template_url($hugt, $row['id'], 0, $row['users'], false);
-				$graph_aproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format($row['avgProcesses'],0), false);
-				$graph_mproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format($row['maxProcesses'],0), false);
+				$graph_aproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['avgProcesses'],0), false);
+				$graph_mproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['maxProcesses'],0), false);
 			}else{
 				$graph_url   = '';
 				$graph_ncpu  = '';
@@ -2579,10 +2579,10 @@ function hmib_summary() {
 			echo "<td class='right'>" . $row['paths'] . '</td>';
 			echo "<td class='right'>" . $row['numHosts'] . '</td>';
 			echo "<td class='right'>" . $row['numProcesses'] . '</td>';
-			echo "<td class='right'>" . number_format($row['avgCpu']/3600,0) . ' Hrs</td>';
-			echo "<td class='right'>" . number_format($row['maxCpu']/3600,0) . ' Hrs</td>';
-			echo "<td class='right'>" . number_format($row['avgMemory']/1024,2) . ' MB</td>';
-			echo "<td class='right'>" . number_format($row['maxMemory']/1024,2) . ' MB</td>';
+			echo "<td class='right'>" . number_format_i18n($row['avgCpu']/3600,0) . ' Hrs</td>';
+			echo "<td class='right'>" . number_format_i18n($row['maxCpu']/3600,0) . ' Hrs</td>';
+			echo "<td class='right'>" . number_format_i18n($row['avgMemory']/1024,2) . ' MB</td>';
+			echo "<td class='right'>" . number_format_i18n($row['maxMemory']/1024,2) . ' MB</td>';
 		}
 		echo '</tr>';
 	}else{
