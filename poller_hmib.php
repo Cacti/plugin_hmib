@@ -603,7 +603,7 @@ function hmib_dateParse($value) {
 	if (strtotime($date1) === false) {
 		$value = date('Y-m-d H:i:s');
 	}else{
-		$value = $date1;
+		$value = date('Y-m-d H:i:s', strtotime($date1));
 	}
 
 	return $value;
