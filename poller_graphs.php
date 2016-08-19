@@ -345,8 +345,8 @@ function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
 	
 			if ($regex == '') {
 				/* add graph below */
-			}else if ((($include == TRUE) && (ereg($regex, $field_value))) ||
-				(($include != TRUE) && (!ereg($regex, $field_value)))) {
+			}else if ((($include == TRUE) && (preg_match('/' . $regex . '/', $field_value))) ||
+				(($include != TRUE) && (!preg_match('/' . $regex . '/', $field_value)))) {
 				/* add graph below */
 			}else{
 				echo "NOTE: Bypassig item due to Regex rule: '" . $field_value . "' for Host: " . $host_id . "\n";
