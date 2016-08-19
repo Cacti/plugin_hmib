@@ -276,7 +276,7 @@ function cacti_snmp_getnext($hostname, $community, $oid, $version, $username, $p
 function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $password, $auth_proto, $priv_pass, $priv_proto, $context, $port = 161, $timeout = 500, $retries = 0, $max_oids = 10, $method = SNMP_VALUE_LIBRARY, $environ = SNMP_POLLER) {
 	global $config, $banned_snmp_strings;
 
-	$snmp_oid_included = false;
+	$snmp_oid_included = true;
 	$snmp_auth	       = '';
 	$snmp_array        = array();
 	$temp_array        = array();
@@ -309,10 +309,7 @@ function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $pass
 		we are getting back */
 
 		/* force php to return numeric oid's */
-		if (function_exists('snmp_set_oid_numeric_print')) {
-			snmp_set_oid_numeric_print(TRUE);
-			$snmp_oid_included = true;
-		}
+		cacti_oid_numeric_format();
 
 		snmp_set_quick_print(0);
 
