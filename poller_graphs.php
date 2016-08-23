@@ -47,28 +47,35 @@ $debug    = FALSE;
 $forcerun = FALSE;
 $start    = time();
 
-foreach($parms as $parameter) {
-	@list($arg, $value) = @explode('=', $parameter);
+if (sizeof($parms)) {
+	foreach($parms as $parameter) {
+		if (strpos($parameter, '=')) {
+			list($arg, $value) = explode('=', $parameter);
+		} else {
+			$arg = $parameter;
+			$value = '';
+		}
 
-	switch ($arg) {
-	case '-d':
-	case '--debug':
-		$debug = TRUE;
-		break;
-	case '-f':
-	case '--force':
-		$forcerun = TRUE;
-		break;
-	case '-v':
-	case '--help':
-	case '-V':
-	case '--version':
-		display_help();
-		exit;
-	default:
-		print 'ERROR: Invalid Parameter ' . $parameter . "\n\n";
-		display_help();
-		exit;
+		switch ($arg) {
+			case '-d':
+			case '--debug':
+				$debug = TRUE;
+				break;
+			case '-f':
+			case '--force':
+				$forcerun = TRUE;
+				break;
+			case '-v':
+			case '--help':
+			case '-V':
+			case '--version':
+				display_help();
+				exit;
+			default:
+				print 'ERROR: Invalid Parameter ' . $parameter . "\n\n";
+				display_help();
+				exit;
+		}
 	}
 }
 
