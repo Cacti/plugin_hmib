@@ -101,7 +101,7 @@ function ss_hmib_sum_apps_getinfo($info_requested) {
 	}
 
 	for ($i=0;($i<sizeof($arr));$i++) {
-		$return_arr[$arr[$i]['index']] = addslashes($arr[$i]['value']);
+		$return_arr[$arr[$i]['index']] = $arr[$i]['value'];
 	}
 
 	return $return_arr;
