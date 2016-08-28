@@ -42,7 +42,9 @@ if ($config['cacti_server_os'] == 'unix') {
 	define('SNMP_ESCAPE_CHARACTER', '"');
 }
 
-function cacti_snmp_get($hostname, $community, $oid, $version, $username, $password, $auth_proto, $priv_pass, $priv_proto, $context, $port = 161, $timeout = 500, $retries = 0, $method = SNMP_VALUE_LIBRARY, $environ = SNMP_POLLER) {
+function cacti_snmp_get($hostname, $community, $oid, $version, $username, $password, $auth_proto, $priv_pass, 
+	$priv_proto, $context, $port = 161, $timeout = 500, $retries = 0, $max_oids = 10, $method = SNMP_VALUE_LIBRARY, $environ = SNMP_POLLER) {
+
 	global $config;
 
 	/* determine default retries */
