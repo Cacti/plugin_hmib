@@ -183,7 +183,7 @@ function hmib_history() {
 	<tr class='even'>
 		<td>
 			<form id='history' method='get' action='hmib.php?action=history'>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					<td style='width:55px;white-space: nowrap;'>
 						<?php print __('OS Type');?>
@@ -258,7 +258,7 @@ function hmib_history() {
 					</td>
 				</tr>
 			</table>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					<td style='width:55px;'>
 						<?php print __('Search');?>
@@ -512,7 +512,7 @@ function hmib_running() {
 	<tr class='even'>
 		<td>
 			<form id='running' method='get' action='hmib.php?action=running'>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					<td style='width:55px;white-space: nowrap;'>
 						<?php print __('OS Type');?>
@@ -587,7 +587,7 @@ function hmib_running() {
 					</td>
 				</tr>
 			</table>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					<td style='width:55px;'>
 						<?php print __('Search');?>
@@ -860,7 +860,7 @@ function hmib_hardware() {
 	<tr class='even'>
 		<td>
 			<form id='hardware' method='get'>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					<td style='width:55px;white-space:nowrap;'>
 						<?php print __('OS Type');?>
@@ -935,7 +935,7 @@ function hmib_hardware() {
 					</td>
 				</tr>
 			</table>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					<td style='width:55px;'>
 						<?php print __('Search');?>
@@ -1165,7 +1165,7 @@ function hmib_storage() {
 	<tr class='even'>
 		<td>
 			<form id='storage' method='get'>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					<td style='width:55px;white-space:nowrap;'>
 						<?php print __('OS Type');?>
@@ -1240,7 +1240,7 @@ function hmib_storage() {
 					</td>
 				</tr>
 			</table>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					<td style='width:55px;'>
 						<?php print __('Search');?>
@@ -1470,7 +1470,7 @@ function hmib_devices() {
 	<tr class='even'>
 		<td>
 			<form id='devices' action='hmib.php?action=devices'>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					<td style='white-space:nowrap;width:55px;'>
 						<?php print __('OS Type');?>
@@ -1539,7 +1539,7 @@ function hmib_devices() {
 					</td>
 				</tr>
 			</table>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					<td style='width:55px;'>
 						<?php print __('Search');?>
@@ -1895,7 +1895,7 @@ function hmib_software() {
 	<tr class='even'>
 		<td>
 			<form id='software' method='get'>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					<td style='width:55px;white-space:nowrap;'>
 						<?php print __('OS Type');?>
@@ -1970,7 +1970,7 @@ function hmib_software() {
 					</td>
 				</tr>
 			</table>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					<td style='width:55px;'>
 						<?php print __('Search');?>
@@ -2131,7 +2131,7 @@ function hmib_tabs() {
 
 	if (sizeof($tabs)) {
 		foreach (array_keys($tabs) as $tab_short_name) {
-			print "<li><a class='pic" . (($tab_short_name == $current_tab) ? " selected'" : "'") .  "href='" . $config['url_path'] .
+			print "<li><a class='pic" . (($tab_short_name == $current_tab) ? " selected'" : "'") .  " href='" . $config['url_path'] .
 				'plugins/hmib/hmib.php?' .
 				'action=' . $tab_short_name .
 				"'> " . $tabs[$tab_short_name] . "</a></li>\n";
@@ -2285,7 +2285,7 @@ function hmib_summary() {
 	<tr class='even'>
 		<td>
 			<form name='host_summary'>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					<td>
 						<?php print __('Top');?>
@@ -2466,7 +2466,7 @@ function hmib_summary() {
 	<tr class='even'>
 		<td>
 			<form id='proc_summary'>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					<td style='width:55px;'>
 						<?php print __('Search');?>
@@ -2829,5 +2829,3 @@ function hmib_view_graphs() {
 
 	bottom_footer();
 }
-
-?>
