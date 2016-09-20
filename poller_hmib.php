@@ -31,6 +31,12 @@ if (!isset($_SERVER['argv'][0]) || isset($_SERVER['REQUEST_METHOD'])  || isset($
 	die('<br>This script is only meant to run at the command line.');
 }
 
+if (!defined('SNMP_VALUE_LIBRARY')) {
+	define('SNMP_VALUE_LIBRARY', 0);
+	define('SNMP_VALUE_PLAIN', 1);
+	define('SNMP_VALUE_OBJECT', 2);
+}
+
 chdir(dirname(__FILE__));
 chdir('../..');
 
@@ -785,8 +791,8 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 								$new_array[$index][$key] = '';
 							}
 						}elseif ($key != 'index') {
-							if (isset($cols[$key])) {
-								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false || strstr($cols[$key], 'double') !== false) {
+							if (isset($cols[$key]['type'])) {
+								if (strstr($cols[$key]['type'], 'int') !== false || strstr($cols[$key]['type'], 'float') !== false || strstr($cols[$key]['type'], 'double') !== false) {
 									if (empty($mib['value'])) {
 										$new_array[$index][$key] = 0;
 									}else{
@@ -820,8 +826,8 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 				foreach($tree as $key => $oid) {
 					if ($key != 'baseOID' && $key != 'index') {
 						if (isset($item[$key]) && strlen(strlen($item[$key]))) {
-							if (isset($cols[$key])) {
-								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false || strstr($cols[$key], 'double') !== false) {
+							if (isset($cols[$key]['type'])) {
+								if (strstr($cols[$key]['type'], 'int') !== false || strstr($cols[$key]['type'], 'float') !== false || strstr($cols[$key]['type'], 'double') !== false) {
 									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:0);
 								}else{
 									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? db_qstr($item[$key]):'""');
@@ -831,7 +837,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 							}
 						}else{
 							if (isset($cols[$key])) {
-								if (strstr($cols[$key], 'int') !== false || strstr($cols[$key], 'float') !== false || strstr($cols[$key], 'double') !== false) {
+								if (strstr($cols[$key]['type'], 'int') !== false || strstr($cols[$key]['type'], 'float') !== false || strstr($cols[$key]['type'], 'double') !== false) {
 									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:0);
 								}else{
 									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? db_qstr($item[$key]):'""');
