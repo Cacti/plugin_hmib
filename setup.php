@@ -69,8 +69,10 @@ function plugin_hmib_upgrade () {
 }
 
 function plugin_hmib_version () {
-	return hmib_version();
-}
+	global $config;
+	$info = parse_ini_file($config['base_path'] . '/plugins/hmib/INFO', true);
+	return $info['info'];
+	}
 
 function hmib_check_upgrade () {
 	global $config, $database_default;
@@ -83,7 +85,7 @@ function hmib_check_upgrade () {
 		return;
 	}
 
-	$version = hmib_version ();
+	$version = plugin_hmib_version ();
 	$current = $version['version'];
 	$old     = db_fetch_cell("SELECT version FROM plugin_config WHERE directory='hmib'");
 	if ($current != $old) {
@@ -338,18 +340,6 @@ function hmib_setup_table () {
 	db_execute('ALTER TABLE data_input_data ADD INDEX data_input_field_id(data_input_field_id)');
 	db_execute('ALTER TABLE snmp_query_graph ADD INDEX graph_template_id(graph_template_id)');
 	db_execute('ALTER TABLE snmp_query_graph ADD INDEX snmp_query_id(snmp_query_id)');
-}
-
-function hmib_version () {
-	return array(
-		'name' 		=> 'hmib',
-		'version' 	=> '3.0',
-		'longname'	=> 'Host MIB Tool',
-		'author'	=> 'The Cacti Group',
-		'homepage'	=> 'http://www.cacti.net',
-		'email'		=> '',
-		'url'		=> ''
-	);
 }
 
 function hmib_poller_bottom() {

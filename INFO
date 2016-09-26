@@ -1,0 +1,8 @@
+[info]
+name = hmib
+version = 3.0
+longname = Host MIB Tool
+author = The Cacti Group
+email = 
+homepage = http://www.cacti.net
+compat = 1.0.0
