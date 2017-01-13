@@ -244,7 +244,7 @@ function hmib_setup_table () {
 		PRIMARY KEY (`oid`),
 		INDEX `id`(`id`))
 		ENGINE=MyISAM
-		COMMENT='OID Types for the Host Mib Resources';");
+		COMMENT='OID Types for the Host MIB Resources';");
 
 	db_execute("CREATE TABLE `plugin_hmib_hrSystemTypes` (
 		`id` INT(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -352,15 +352,15 @@ function hmib_poller_bottom() {
 function hmib_config_settings () {
 	global $tabs, $settings, $hmib_frequencies, $item_rows;
 
-	$tabs['hmib'] = 'Host Mib';
+	$tabs['hmib'] = 'Host MIB';
 	$settings['hmib'] = array(
 		'hmib_header' => array(
-			'friendly_name' => __('Host Mib General Settings'),
+			'friendly_name' => __('Host MIB General Settings'),
 			'method' => 'spacer',
 			),
 		'hmib_enabled' => array(
-			'friendly_name' => __('Host Mib Poller Enabled'),
-			'description' => __('Check this box, if you want Host Mib polling to be enabled.  Otherwise, the poller will not function.'),
+			'friendly_name' => __('Host MIB Poller Enabled'),
+			'description' => __('Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function.'),
 			'method' => 'checkbox',
 			'default' => ''
 			),
@@ -450,7 +450,7 @@ function hmib_config_settings () {
 				48 => __('%d Days', 2))
 			),
 		'hmib_frequencies' => array(
-			'friendly_name' => __('Host Mib Table Collection Frequencies'),
+			'friendly_name' => __('Host MIB Table Collection Frequencies'),
 			'method' => 'spacer',
 			),
 		'hmib_hrSWRun_freq' => array(

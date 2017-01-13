@@ -445,7 +445,7 @@ function hmib_host_type_import() {
 	form_alternate_row();?>
 		<td><strong><?php print __('The file must contain a header row with the following column headings.');?></strong>
 			<br><br>
-			<strong>name</strong> - <?php print __('A common name for the Host Type.  For example Windows 7');?><br>
+			<strong>name</strong> - <?php print __('A common name for the Host Type.  For example, Windows 7');?><br>
 			<strong>version</strong> - <?php print __('The OS version for the Host Type');?><br>
 			<strong>sysDescrMatch</strong> - <?php print __('A unique set of characters from the snmp sysDescr that uniquely identify this device');?><br>
 			<strong>sysObjectID</strong> - <?php print __('The vendor specific snmp sysObjectID that distinguishes this device from the next');?><br>
