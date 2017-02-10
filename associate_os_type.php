@@ -23,6 +23,14 @@
  +-------------------------------------------------------------------------+
 */
 
+/* We are not talking to the browser */
+$no_http_headers = TRUE;
+
+/* do NOT run this script through a web browser */
+if (!isset($_SERVER['argv'][0]) || isset($_SERVER['REQUEST_METHOD'])  || isset($_SERVER['REMOTE_ADDR'])) {
+	die('<br><strong>This script is only meant to run at the command line.</strong>');
+}
+
 chdir(dirname(__FILE__));
 chdir('../..');
 include('./include/global.php');
@@ -49,10 +57,14 @@ if (sizeof($parms)) {
 			case '--debug':
 				$debug = TRUE;
 				break;
-			case '-v':
-			case '--help':
-			case '-V':
 			case '--version':
+			case '-V':
+			case '-v':
+				display_version();
+				exit;
+			case '--help':
+			case '-H':
+			case '-h':
 				display_help();
 				exit;
 			default:
@@ -93,10 +105,19 @@ function process_hosts() {
 	echo "NOTE: Processing OS Types Ended\n";
 }
 
+function display_version() {
+	global $config;
+
+	if (!function_exists('plugin_hmib_version')) {
+		include_once($config['base_path'] . '/plugins/hmib/setup.php');
+	}
+
+	$version = plugin_hmib_version();
+	echo "Host MIB Associate OS Type, Version " . $version['version'] . ", " . COPYRIGHT_YEARS . "\n";
+}
 
 function display_help() {
-	$version = plugin_hmib_version();
+	display_version();
 
-	echo "Host MIB Associate OS Type, Version " . $version['version'] . ", " . COPYRIGHT_YEARS . "\n\n";
-	echo "usage: call without any parameter\n";
+	echo "\nusage: call without any parameter\n";
 }

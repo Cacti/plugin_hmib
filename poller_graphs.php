@@ -65,10 +65,14 @@ if (sizeof($parms)) {
 			case '--force':
 				$forcerun = TRUE;
 				break;
-			case '-v':
-			case '--help':
-			case '-V':
 			case '--version':
+			case '-V':
+			case '-v':
+				display_version();
+				exit;
+			case '--help':
+			case '-H':
+			case '-h':
 				display_help();
 				exit;
 			default:
@@ -392,10 +396,20 @@ function debug($message) {
 	}
 }
 
-function display_help() {
-	$version = plugin_hmib_version();
+function display_version() {
+	global $config;
 
-	echo "Host MIB Graph Automator, Version " . $version['version'] . ", " . COPYRIGHT_YEARS . "\n\n";
-	echo "The Host MIB process that creates graphs for Cacti.\n\n";
+	if (!function_exists('plugin_hmib_version')) {
+		include_once($config['base_path'] . '/plugins/hmib/setup.php');
+	}
+
+	$info = plugin_hmib_version();
+	echo "Host MIB Graph Automator, Version " . $info['version'] . ", " . COPYRIGHT_YEARS . "\n";
+}
+
+function display_help() {
+	display_version();
+
+	echo "\nThe Host MIB process that creates graphs for Cacti.\n\n";
 	echo "usage: poller_graphs.php [-f] [-d]\n";
 }

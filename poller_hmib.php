@@ -103,10 +103,14 @@ if (sizeof($parms)) {
 			case '--start':
 				$start = $value;
 				break;
-			case '-v':
-			case '--help':
-			case '-V':
 			case '--version':
+			case '-V':
+			case '-v':
+				display_version();
+				exit;
+			case '--help':
+			case '-H':
+			case '-h':
 				display_help();
 				exit;
 			default:
@@ -897,11 +901,21 @@ function collect_hrDevices(&$host) {
 	collectHostIndexedOid($host, $hrDevices, 'plugin_hmib_hrDevices', 'hrDevices');
 }
 
-function display_help() {
-	$version = plugin_hmib_version();
+function display_version() {
+	global $config;
 
-	echo "Host MIB Poller Process, Version " . $version['version'] . ", " . COPYRIGHT_YEARS . "\n\n";
-	echo "The main Host MIB poller process script for Cacti.\n\n";
+	if (!function_exists('plugin_hmib_version')) {
+		include_once($config['base_path'] . '/plugins/hmib/setup.php');
+	}
+
+	$info = plugin_hmib_version();
+	echo "Host MIB Poller Process, Version " . $info['version'] . ", " . COPYRIGHT_YEARS . "\n";
+}
+
+function display_help() {
+	display_version();
+
+	echo "\nThe main Host MIB poller process script for Cacti.\n\n";
 	echo "usage: \n";
 	echo "master process: poller_hmib.php [-M] [-f] [-fd] [-d]\n";
 	echo "child  process: poller_hmib.php --host-id=N [--seed=N] [-f] [-d]\n\n";
