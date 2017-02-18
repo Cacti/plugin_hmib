@@ -129,7 +129,7 @@ function cacti_snmp_get($hostname, $community, $oid, $version, $username, $passw
 		/* no valid snmp version has been set, get out */
 		if (empty($snmp_auth)) { return; }
 
-		exec(cacti_escapeshellcmd(read_config_option('path_snmpget')) . ' -O fntev ' . $snmp_auth . " -v $version -t $timeout -r $retries " . cacti_escapeshellarg($hostname) . ":$port " . cacti_escapeshellarg($oid), $snmp_value);
+		exec(cacti_escapeshellcmd(read_config_option('path_snmpget')) . ' -O fntevU ' . $snmp_auth . " -v $version -t $timeout -r $retries " . cacti_escapeshellarg($hostname) . ":$port " . cacti_escapeshellarg($oid), $snmp_value);
 
 		/* fix for multi-line snmp output */
 		if (is_array($snmp_value)) {
@@ -240,7 +240,7 @@ function cacti_snmp_getnext($hostname, $community, $oid, $version, $username, $p
 		/* no valid snmp version has been set, get out */
 		if (empty($snmp_auth)) { return; }
 
-		exec(cacti_escapeshellcmd(read_config_option('path_snmpgetnext')) . " -O fntev $snmp_auth -v $version -t $timeout -r $retries " . cacti_escapeshellarg($hostname) . ":$port " . cacti_escapeshellarg($oid), $snmp_value);
+		exec(cacti_escapeshellcmd(read_config_option('path_snmpgetnext')) . " -O fntevU $snmp_auth -v $version -t $timeout -r $retries " . cacti_escapeshellarg($hostname) . ":$port " . cacti_escapeshellarg($oid), $snmp_value);
 	}
 
 	if (isset($snmp_value)) {
@@ -380,9 +380,9 @@ function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $pass
 		}
 
 		if (file_exists($path_snmpbulkwalk) && ($version > 1) && ($max_oids > 1)) {
-			$temp_array = exec_into_array(cacti_escapeshellcmd($path_snmpbulkwalk) . " -O Qn $snmp_auth -v $version -t $timeout -r $retries -Cr$max_oids " . cacti_escapeshellarg($hostname) . ":$port " . cacti_escapeshellarg($oid));
+			$temp_array = exec_into_array(cacti_escapeshellcmd($path_snmpbulkwalk) . " -O eQnU $snmp_auth -v $version -t $timeout -r $retries -Cr$max_oids " . cacti_escapeshellarg($hostname) . ":$port " . cacti_escapeshellarg($oid));
 		}else{
-			$temp_array = exec_into_array(cacti_escapeshellcmd(read_config_option('path_snmpwalk')) . " -O Qn $snmp_auth -v $version -t $timeout -r $retries " . cacti_escapeshellarg($hostname) . ":$port " . cacti_escapeshellarg($oid));
+			$temp_array = exec_into_array(cacti_escapeshellcmd(read_config_option('path_snmpwalk')) . " -O eQnU $snmp_auth -v $version -t $timeout -r $retries " . cacti_escapeshellarg($hostname) . ":$port " . cacti_escapeshellarg($oid));
 		}
 
 		if (substr_count(implode(' ', $temp_array), 'Timeout:')) {
