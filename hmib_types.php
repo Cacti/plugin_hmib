@@ -85,6 +85,7 @@ function form_save() {
 			get_nfilter_request_var('version'), get_nfilter_request_var('sysDescrMatch'), get_nfilter_request_var('sysObjectID'));
 
 		header('Location: hmib_types.php?header=false&action=edit&id=' . (empty($host_type_id) ? get_request_var('id') : $host_type_id));
+		exit;
 	}
 
 	if (isset_request_var('save_component_import')) {
@@ -98,7 +99,8 @@ function form_save() {
 				$_SESSION['import_debug_info'] = $debug_data;
 			}
 		}else{
-			header('Location: hmib_types.php?action=import'); exit;
+			header('Location: hmib_types.php?action=import'); 
+			exit;
 		}
 
 		header('Location: hmib_types.php?action=import');
@@ -190,7 +192,7 @@ function form_actions() {
 			}
 		}
 
-		header('Location: hmib_types.php?heder=false');
+		header('Location: hmib_types.php?header=false');
 		exit;
 	}
 
@@ -737,8 +739,6 @@ function hmib_host_type_edit() {
 	/* ================= input validation ================= */
 	input_validate_input_number(get_request_var_request('id'));
 	/* ==================================================== */
-
-	display_output_messages();
 
 	/* file: mactrack_device_types.php, action: edit */
 	$fields_host_type_edit = array(
