@@ -816,12 +816,19 @@ function hmib_host_type_edit() {
 	}
 }
 
-function hmib_get_host_types(&$sql_where, $row_limit, $apply_limits = TRUE) {
+function hmib_get_host_types(&$sql_where, $rows, $apply_limits = TRUE) {
 	if (get_request_var('filter') != '') {
 		$sql_where = " WHERE (plugin_hmib_hrSystemTypes.name LIKE '%" . get_request_var('filter') . "%' OR
 			plugin_hmib_hrSystemTypes.version LIKE '%" . get_request_var('filter') . "%' OR
 			plugin_hmib_hrSystemTypes.sysObjectID LIKE '%" . get_request_var('filter') . "%' OR
 			plugin_hmib_hrSystemTypes.sysDescrMatch LIKE '%" . get_request_var('filter') . "%')";
+	}
+
+	$sql_order = get_order_string();
+	if ($apply_limits) {
+		$sql_limit = ' LIMIT ' . ($rows*(get_request_var('page')-1)) . ',' . $rows;
+	}else{
+		$sql_limit = '';
 	}
 
 	$query_string = "SELECT plugin_hmib_hrSystemTypes.*, count(host_type) AS totals
@@ -830,11 +837,8 @@ function hmib_get_host_types(&$sql_where, $row_limit, $apply_limits = TRUE) {
 		ON plugin_hmib_hrSystemTypes.id=plugin_hmib_hrSystem.host_type
 		$sql_where
 		GROUP BY plugin_hmib_hrSystemTypes.id
-		ORDER BY " . get_request_var('sort_column') . ' ' . get_request_var('sort_direction');
-
-	if ($apply_limits) {
-		$query_string .= ' LIMIT ' . ($row_limit*(get_request_var('page')-1)) . ',' . $row_limit;
-	}
+		$sql_order
+		$sql_limit";
 
 	//print $query_string;
 
