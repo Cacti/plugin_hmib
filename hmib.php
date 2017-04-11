@@ -251,10 +251,10 @@ function hmib_history() {
 						</select>
 					</td>
 					<td>
-						<input type='button' onClick='applyFilter(document.history)' value='<?php print __('Go');?>'>
+						<input id='refresh' type='button' onClick='applyFilter(document.history)' value='<?php print __('Go');?>'>
 					</td>
 					<td>
-						<input type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
+						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
 					</td>
 				</tr>
 			</table>
@@ -580,10 +580,10 @@ function hmib_running() {
 						</select>
 					</td>
 					<td>
-						<input type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
+						<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
 					</td>
 					<td>
-						<input type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
+						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
 					</td>
 				</tr>
 			</table>
@@ -928,10 +928,10 @@ function hmib_hardware() {
 						</select>
 					</td>
 					<td>
-						<input type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
+						<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
 					</td>
 					<td>
-						<input type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
+						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
 					</td>
 				</tr>
 			</table>
@@ -1233,10 +1233,10 @@ function hmib_storage() {
 						</select>
 					</td>
 					<td>
-						<input type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
+						<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
 					</td>
 					<td>
-						<input type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
+						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
 					</td>
 				</tr>
 			</table>
@@ -1532,10 +1532,10 @@ function hmib_devices() {
 						</select>
 					</td>
 					<td>
-						<input type='button' onClick='applyFilter(document.devices)' value='<?php print __('Go');?>'>
+						<input id='refresh' type='button' onClick='applyFilter(document.devices)' value='<?php print __('Go');?>'>
 					</td>
 					<td>
-						<input type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
+						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
 					</td>
 				</tr>
 			</table>
@@ -1719,7 +1719,7 @@ function hmib_devices() {
 			$found = db_fetch_cell('SELECT COUNT(*) FROM graph_local WHERE host_id=' . $row['host_id']);
 
 			form_alternate_row();
-			echo "<td width='120'>";
+			echo "<td class='nowrap'>";
 			//echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=dashboard&reset=1&device=" . $row["host_id"]) . "'><img src='$dashboard' title='View Dashboard' align='absmiddle'></a>";
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=storage&reset=1&device=" . $row['host_id']) . "'><img src='$storage' title='" . __('View Storage') . "' align='absmiddle' alt=''></a>";
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=hardware&reset=1&device=" . $row['host_id']) . "'><img src='$hardw' title='" . __('View Hardware') . "' align='absmiddle' alt=''></a>";
@@ -1963,10 +1963,10 @@ function hmib_software() {
 						</select>
 					</td>
 					<td>
-						<input type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
+						<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
 					</td>
 					<td>
-						<input type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
+						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
 					</td>
 				</tr>
 			</table>
@@ -2300,10 +2300,10 @@ function hmib_summary() {
 						</select>
 					</td>
 					<td>
-						<input type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
+						<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
 					</td>
 					<td>
-						<input type='button' onClick='clearFilter()' value='<?php print __('Clear');?>' name='clear'>
+						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>' name='clear'>
 					</td>
 					<td>
 						&nbsp;&nbsp;<?php print $templates_missing ? '<strong>' . __('WARNING: You need to import your Host MIB Host Template to view Graphs.  See the README for more information.') . '</strong>':'';?>
@@ -2398,7 +2398,7 @@ function hmib_summary() {
 			}
 
 			form_alternate_row();
-			echo "<td style='white-space:nowrap;' width='120'>";
+			echo "<td class='nowrap'>";
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=devices&type=" . $row['id']) . "'><img src='$host' title='" . __('View Devices') . "' align='absmiddle' alt=''></a>";
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=storage&ostype=" . $row['id']) . "'><img src='$storage' title='" . __('View Storage') . "' align='absmiddle' alt=''></a>";
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=hardware&ostype=" . $row['id']) . "'><img src='$hardw' title='" . __('View Hardware') . "' align='absmiddle' alt=''></a>";
@@ -2487,10 +2487,10 @@ function hmib_summary() {
 						</select>
 					</td>
 					<td>
-						<input type='button' onClick='applyProcFilter(document.proc_summary)' value='<?php print __('Go');?>'>
+						<input id='refresh' type='button' onClick='applyProcFilter(document.proc_summary)' value='<?php print __('Go');?>'>
 					</td>
 					<td>
-						<input type='button' onClick='clearProc()' value='<?php print __('Clear');?>'>
+						<input id='clear' type='button' onClick='clearProc()' value='<?php print __('Clear');?>'>
 					</td>
 					<td>
 						&nbsp;&nbsp;<?php print $templates_missing ? '<strong>' . __('WARNING: You need to import your Host MIB Host Template to view Graphs.  See the README for more information.') . '</strong>':'';?>
@@ -2570,7 +2570,7 @@ function hmib_summary() {
 			$graph_url = hmib_get_graph_url($adq, 0, 0, $row['name']);
 
 			form_alternate_row();
-			echo "<td width='70'>";
+			echo "<td class='nowrap'>";
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=devices&process=" . $row['name']) . "'><img src='$host' title='" . __('View Devices') . "' align='absmiddle' alt=''></a>";
 			echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?reset=1&action=running&process=" . $row['name']) . "'><img src='$proc' title='" . __('View Processes') . "' align='absmiddle' alt=''></a>";
 			echo $graph_url;
