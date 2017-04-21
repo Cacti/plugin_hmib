@@ -999,10 +999,10 @@ function hmib_host_type_filter() {
 						</select>
 					</td>
 					<td>
-						<input type='button' value='<?php print __('Go');?>' onClick='applyFilter()'>
+						<input id='refresh' type='button' value='<?php print __('Go');?>' onClick='applyFilter()'>
 					</td>
 					<td>
-						<input type='button' value='<?php print __('Clear');?>' onClick='clearFilter()'>
+						<input id='clear' type='button' value='<?php print __('Clear');?>' onClick='clearFilter()'>
 					</td>
 					<td>
 						<input type='button' title='<?php print __('Scan for New or Unknown Device Types');?>' value='<?php print __('Rescan');?>' onClick='rescanTypes()'>
