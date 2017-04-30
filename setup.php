@@ -81,7 +81,7 @@ function hmib_check_upgrade () {
 
 	// Let's only run this check if we are on a page that actually needs the data
 	$files = array('plugins.php', 'hmib.php');
-	if (isset($_SERVER['PHP_SELF']) && !in_array(basename($_SERVER['PHP_SELF']), $files)) {
+	if (!in_array(get_current_page(), $files)) {
 		return;
 	}
 
@@ -612,9 +612,9 @@ function hmib_show_tab() {
 
 	if (api_user_realm_auth('hmib.php')) {
 		if (substr_count($_SERVER['REQUEST_URI'], 'hmib.php')) {
-			print '<a href="' . $config['url_path'] . 'plugins/hmib/hmib.php"><img src="' . $config['url_path'] . 'plugins/hmib/images/tab_hmib_down.gif" alt="hmib" align="absmiddle" border="0"></a>';
+			print '<a href="' . $config['url_path'] . 'plugins/hmib/hmib.php"><img src="' . $config['url_path'] . 'plugins/hmib/images/tab_hmib_down.gif" alt="hmib"></a>';
 		}else{
-			print '<a href="' . $config['url_path'] . 'plugins/hmib/hmib.php"><img src="' . $config['url_path'] . 'plugins/hmib/images/tab_hmib.gif" alt="hmib" align="absmiddle" border="0"></a>';
+			print '<a href="' . $config['url_path'] . 'plugins/hmib/hmib.php"><img src="' . $config['url_path'] . 'plugins/hmib/images/tab_hmib.gif" alt="hmib"></a>';
 		}
 	}
 }
