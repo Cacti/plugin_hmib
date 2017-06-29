@@ -97,7 +97,7 @@ function ss_host_disk($hostname, $host_id, $snmp_auth, $cmd, $arg1 = '', $arg2 =
 				$sau = preg_replace('/[^0-9]/i', '', db_fetch_cell("select field_value from host_snmp_cache where host_id=$host_id and field_name='hrStorageAllocationUnits' and snmp_index='$index'"));
 				$snmp_data = cacti_snmp_get($hostname, $snmp_community, $oids[$arg] . ".$index", $snmp_version, $snmp_auth_username, $snmp_auth_password, $snmp_auth_protocol,$snmp_priv_passphrase,$snmp_priv_protocol, $snmp_context, $snmp_port, $snmp_timeout, $ping_retries, SNMP_POLLER);
 				if($snmp_data<0){
-						return (abs($snmp_data) + 2147483647) * $sau;
+						return (abs($snmp_data) + 4294967296) * $sau;
 				} else {
 						return $snmp_data * $sau;
 				}
