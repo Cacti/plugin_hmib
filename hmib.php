@@ -1619,15 +1619,15 @@ function hmib_devices() {
 	$limit     = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
 	$sql_where = '';
 
-	if (get_request_var('template') != '-1') {
+	if (get_request_var('template') != '-1' && !isempty_request_var('template')) {
 		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . ' host.host_template_id=' . get_request_var('template');
 	}
 
-	if (get_request_var('status') != '-1') {
+	if (get_request_var('status') != '-1' && !isempty_request_var('status')) {
 		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . ' hrs.host_status=' . get_request_var('status');
 	}
 
-	if (get_request_var('type') != '-1') {
+	if (get_request_var('type') != '-1' && !isempty_request_var('type')) {
 		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . ' hrs.host_type=' . get_request_var('type');
 	}
 
