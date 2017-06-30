@@ -31,6 +31,10 @@ Bug and feature enhancements for the hmib plugin are handled in GitHub.  If you 
 
 ## ChangeLog
 
+--- 3.1 ---
+* feature: More of the user interface using ajax callbacks
+* issue#8: Correct sql errors in hmib.php page
+
 --- 3.0 ---
 * Cacti 1.0 Compatibility 
 
