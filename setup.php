@@ -638,8 +638,7 @@ function hmib_get_cpu($host_index) {
 			$value = db_fetch_cell("SELECT AVG(`load`)
 				FROM plugin_hmib_hrProcessor
 				WHERE host_id=$host_id
-				ORDER BY `index`
-				LIMIT $index,1");
+				ORDER BY `index`");
 		}
 
 		if (empty($value)) {
