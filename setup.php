@@ -85,29 +85,27 @@ function hmib_check_upgrade () {
 		return;
 	}
 
-	$version = plugin_hmib_version ();
-	$current = $version['version'];
+	$info    = plugin_hmib_version ();
+	$current = $info['version'];
 	$old     = db_fetch_cell("SELECT version FROM plugin_config WHERE directory='hmib'");
+
 	if ($current != $old) {
 		if (api_plugin_is_enabled('hmib')) {
 			# may sound ridiculous, but enables new hooks
 			api_plugin_enable_hooks('hmib');
 		}
-		db_execute("UPDATE plugin_config SET version='$current' WHERE directory='hmib'");
-		db_execute("UPDATE plugin_config SET 
-			version='" . $version['version'] . "', 
-			name='" . $version['longname'] . "', 
-			author='" . $version['author'] . "', 
-			webpage='" . $version['url'] . "' 
-			WHERE directory='" . $version['name'] . "' ");
 
-		$columns = db_fetch_assoc('SHOW columns FROM plugin_hmib_hrSWRun_last_seen');
-		foreach($columns as $c) {
-			$cols[] = $c[0];
-		}
+		db_execute("UPDATE plugin_config SET version='$current' WHERE directory='hmib'");
+		db_execute("UPDATE plugin_config SET
+			version='" . $info['version']  . "',
+			name='"    . $info['longname'] . "',
+			author='"  . $info['author']   . "',
+			webpage='" . $info['homepage'] . "'
+			WHERE directory='" . $info['name'] . "' ");
 
 		if (!db_column_exists('plugin_hmib_hrSWRun_last_seen', 'total_time')) {
-			db_execute("ALTER TABLE plugin_hmib_hrSWRun_last_seen ADD COLUMN `total_time` BIGINT unsigned not null default '0' AFTER `name`");
+			db_execute("ALTER TABLE plugin_hmib_hrSWRun_last_seen
+				ADD COLUMN `total_time` BIGINT unsigned not null default '0' AFTER `name`");
 		}
 	}
 }
@@ -587,6 +585,8 @@ function hmib_config_arrays() {
 	}
 
 	$menu[__('Management')]['plugins/hmib/hmib_types.php'] = __('OS Types');
+
+	hmib_check_upgrade();
 }
 
 function hmib_draw_navigation_text ($nav) {
@@ -628,7 +628,19 @@ function hmib_get_cpu($host_index) {
 	if (!$called_by_script_server) {
 		return $host_index;
 	}else{
-		$value = db_fetch_cell("SELECT `load` FROM plugin_hmib_hrProcessor WHERE host_id=$host_id ORDER BY `index` LIMIT $index,1");
+		if ($index != 4000) {
+			$value = db_fetch_cell("SELECT `load`
+				FROM plugin_hmib_hrProcessor
+				WHERE host_id=$host_id
+				ORDER BY `index`
+				LIMIT $index,1");
+		} else {
+			$value = db_fetch_cell("SELECT AVG(`load`)
+				FROM plugin_hmib_hrProcessor
+				WHERE host_id=$host_id
+				ORDER BY `index`
+				LIMIT $index,1");
+		}
 
 		if (empty($value)) {
 			return '0';
@@ -644,12 +656,20 @@ function hmib_get_cpu_indexes($host_index) {
 	$host_id = $host_index['host_id'];
 	$rarray  = array();
 
-	$indexes = db_fetch_assoc("SELECT `index` FROM plugin_hmib_hrProcessor WHERE host_id=$host_id ORDER BY `index`");
+	$indexes = db_fetch_assoc("SELECT `index`
+		FROM plugin_hmib_hrProcessor
+		WHERE host_id=$host_id
+		ORDER BY `index`");
+
 	if (sizeof($indexes)) {
-	foreach($indexes as $i) {
-		$rarray[] = $i['index'];
+		$i = 0;
+		foreach($indexes as $i) {
+			$rarray[] = $i;
+			$i++;
+		}
 	}
-	}
+
+	$rarray[4000] = 'Total';
 
 	return $rarray;
 }
@@ -665,9 +685,15 @@ function hmib_get_disk($host_index) {
 		return $host_index;
 	}else{
 		if ($arg == 'total') {
-			$value = db_fetch_cell("SELECT IF(size >= 0, allocationUnits*size, allocationUnits*(ABS(size)+2147483647)) AS size FROM plugin_hmib_hrStorage WHERE host_id=$host_id AND `index`=$index");
+			$value = db_fetch_cell("SELECT IF(size >= 0, allocationUnits*size, allocationUnits*(ABS(size)+2147483647)) AS size
+				FROM plugin_hmib_hrStorage
+				WHERE host_id=$host_id
+				AND `index`=$index");
 		}else{
-			$value = db_fetch_cell("SELECT IF(used >= 0, allocationUnits*used, allocationUnits*(ABS(used)+2147483647)) AS used FROM plugin_hmib_hrStorage WHERE host_id=$host_id AND `index`=$index");
+			$value = db_fetch_cell("SELECT IF(used >= 0, allocationUnits*used, allocationUnits*(ABS(used)+2147483647)) AS used
+				FROM plugin_hmib_hrStorage
+				WHERE host_id=$host_id
+				AND `index`=$index");
 		}
 
 		if (empty($value)) {
@@ -678,4 +704,3 @@ function hmib_get_disk($host_index) {
 	}
 }
 
-?>
