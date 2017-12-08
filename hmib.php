@@ -394,7 +394,7 @@ function hmib_history() {
 
 			echo "<td class='nowrap left'>" . filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
 			echo "<td class='nowrap left'>" . filter_value($row['name'], get_request_var('filter')) . '</td>';
-			echo "<td class='nowrap left' title='" . __('Time when last seen running') . "'>" . filter_value($row['last_seen'], get_request_var('filter')) . '</td>';
+			echo "<td class='nowrap right'>" . filter_value($row['last_seen'], get_request_var('filter')) . '</td>';
 			echo "<td class='nowrap right'>" . hmib_get_runtime($row['total_time']) . '</td>';
 		}
 		echo '</tr>';
