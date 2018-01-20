@@ -838,7 +838,8 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 									strstr($cols[$key]['type'], 'float') !== false ||
 									strstr($cols[$key]['type'], 'double') !== false ||
 									strstr($cols[$key]['type'], 'decimal') !== false) {
-									if (is_numeric($item[$key])) {
+
+									if (isset($item[$key]) && is_numeric($item[$key])) {
 										$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:'0');
 									} else {
 										$sql_insert .= ($i >  0 ? ', ':'') . '0';
@@ -855,13 +856,18 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 									strstr($cols[$key]['type'], 'float') !== false ||
 									strstr($cols[$key]['type'], 'double') !== false ||
 									strstr($cols[$key]['type'], 'decimal') !== false) {
-									if (is_numeric($item[$key])) {
-										$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:0);
+
+									if (isset($item[$key]) && is_numeric($item[$key])) {
+										$sql_insert .= ($i >  0 ? ', ':'') . $item[$key];
 									} else {
 										$sql_insert .= ($i >  0 ? ', ':'') . '0';
 									}
 								} else {
-									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? db_qstr($item[$key]):'""');
+									if (isset($item[$key])) {
+										$sql_insert .= ($i >  0 ? ', ':'') . db_qstr($item[$key]);
+									} else {
+										$sql_insert .= ($i >  0 ? ', ':'') . '';
+									}
 								}
 
 								$i++;
