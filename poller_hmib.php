@@ -123,13 +123,13 @@ if (sizeof($parms)) {
 
 /* Check for mandatory parameters */
 if (!$mainrun && $host_id == '') {
-	echo "FATAL: You must specify a Cacti host-id run\n";
+	print "FATAL: You must specify a Cacti host-id run\n";
 	exit;
 }
 
 /* Do not process if not enabled */
 if (read_config_option('hmib_enabled') == '' || db_fetch_cell("SELECT status FROM plugin_config WHERE directory='hmib'") != 1) {
-	echo "WARNING: The Host Mib Collection is Down!  Exiting\n";
+	print "WARNING: The Host Mib Collection is Down!  Exiting\n";
 	exit(0);
 }
 
@@ -144,7 +144,7 @@ if ($start == '') {
 
 if ($mainrun) {
 	process_hosts();
-}else{
+} else {
 	checkHost($host_id);
 }
 
@@ -155,7 +155,7 @@ function runCollector($start, $lastrun, $frequency) {
 
 	if ((empty($lastrun) || ($start - $lastrun) > $frequency) && $frequency > 0 || $forcerun) {
 		return true;
-	}else{
+	} else {
 		return false;
 	}
 }
@@ -164,7 +164,7 @@ function debug($message) {
 	global $debug;
 
 	if ($debug) {
-		echo 'DEBUG: ' . trim($message) . "\n";
+		print 'DEBUG: ' . trim($message) . "\n";
 	}
 }
 
@@ -183,29 +183,29 @@ function autoDiscoverHosts() {
 	db_execute('REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (' . getmypid() . ', 0)');
 
 	if (sizeof($hosts)) {
-	foreach($hosts as $host) {
-		debug("AutoDiscovery Check for Host '" . $host['description'] . '[' . $host['hostname'] . "]'");
-		$hostMib   = cacti_snmp_walk($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.25.1', $host['snmp_version'],
-			$host['snmp_username'], $host['snmp_password'],
-			$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
-			$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
-			read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
+		foreach($hosts as $host) {
+			debug("AutoDiscovery Check for Host '" . $host['description'] . '[' . $host['hostname'] . "]'");
+			$hostMib   = cacti_snmp_walk($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.25.1', $host['snmp_version'],
+				$host['snmp_username'], $host['snmp_password'],
+				$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
+				$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
+				read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
 
-		$system   = cacti_snmp_get($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.1.1.0', $host['snmp_version'],
-			$host['snmp_username'], $host['snmp_password'],
-			$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
-			$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
-			read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
+			$system   = cacti_snmp_get($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.1.1.0', $host['snmp_version'],
+				$host['snmp_username'], $host['snmp_password'],
+				$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
+				$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
+				read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
 
-		if (sizeof($hostMib)) {
-			$add = true;
+			if (sizeof($hostMib)) {
+				$add = true;
 
-			if ($add) {
-				debug("Host '" . $host['description'] . '[' . $host['hostname'] . "]' Supports Host MIB Resources");
-				db_execute('INSERT INTO plugin_hmib_hrSystem (host_id) VALUES (' . $host['id'] . ') ON DUPLICATE KEY UPDATE host_id=VALUES(host_id)');
+				if ($add) {
+					debug("Host '" . $host['description'] . '[' . $host['hostname'] . "]' Supports Host MIB Resources");
+					db_execute('INSERT INTO plugin_hmib_hrSystem (host_id) VALUES (' . $host['id'] . ') ON DUPLICATE KEY UPDATE host_id=VALUES(host_id)');
+				}
 			}
 		}
-	}
 	}
 
 	/* remove the process lock */
@@ -218,7 +218,7 @@ function autoDiscoverHosts() {
 function process_hosts() {
 	global $start, $seed;
 
-	echo "NOTE: Processing Hosts Begins\n";
+	print "NOTE: Processing Hosts Begins\n";
 
 	/* All time/dates will be stored in timestamps
 	 * Get Autodiscovery Lastrun Information
@@ -230,13 +230,13 @@ function process_hosts() {
 
 	/* Set the booleans based upon current times */
 	if (read_config_option('hmib_autodiscovery') == 'on') {
-		echo "NOTE: Auto Discovery Starting\n";
+		print "NOTE: Auto Discovery Starting\n";
 
 		if (runCollector($start, $auto_discovery_lastrun, $auto_discovery_freq)) {
 			autoDiscoverHosts();
 		}
 
-		echo "NOTE: Auto Discovery Complete\n";
+		print "NOTE: Auto Discovery Complete\n";
 	}
 
 	/* Purge collectors that run longer than 10 minutes */
@@ -244,7 +244,7 @@ function process_hosts() {
 
 	/* Do not process collectors are still running */
 	if (db_fetch_cell('SELECT count(*) FROM plugin_hmib_processes') > 0) {
-		echo "WARNING: Another Host Mib Collector is still running!  Exiting\n";
+		print "WARNING: Another Host Mib Collector is still running!  Exiting\n";
 		exit(0);
 	}
 
@@ -267,51 +267,51 @@ function process_hosts() {
 
 	$concurrent_processes = read_config_option('hmib_concurrent_processes');
 
-	echo "NOTE: Launching Collectors Starting\n";
+	print "NOTE: Launching Collectors Starting\n";
 
 	$i = 0;
 	if (sizeof($hosts)) {
-	foreach ($hosts as $host) {
-		while ( true ) {
-			$processes = db_fetch_cell('SELECT COUNT(*) FROM plugin_hmib_processes');
+		foreach ($hosts as $host) {
+			while (true) {
+				$processes = db_fetch_cell('SELECT COUNT(*) FROM plugin_hmib_processes');
 
-			if ($processes < $concurrent_processes) {
-				/* put a placeholder in place to prevent overloads on slow systems */
-				$key = rand();
-				db_execute("INSERT INTO plugin_hmib_processes (pid, taskid, started) VALUES ($key, $seed, NOW())");
+				if ($processes < $concurrent_processes) {
+					/* put a placeholder in place to prevent overloads on slow systems */
+					$key = rand();
+					db_execute("INSERT INTO plugin_hmib_processes (pid, taskid, started) VALUES ($key, $seed, NOW())");
 
-				echo "NOTE: Launching Host Collector For: '" . $host['description'] . '[' . $host['hostname'] . "]'\n";
-				process_host($host['host_id'], $seed, $key);
-				usleep(10000);
+					print "NOTE: Launching Host Collector For: '" . $host['description'] . '[' . $host['hostname'] . "]'\n";
+					process_host($host['host_id'], $seed, $key);
+					usleep(10000);
 
-				break;
-			}else{
-				sleep(1);
+					break;
+				} else {
+					sleep(1);
+				}
 			}
 		}
-	}
 	}
 
 	/* taking a break cause for slow systems slow */
 	sleep(5);
 
-	echo "NOTE: All Hosts Launched, proceeding to wait for completion\n";
+	print "NOTE: All Hosts Launched, proceeding to wait for completion\n";
 
 	/* wait for all processes to end or max run time */
-	while ( true ) {
+	while (true) {
 		$processes_left = db_fetch_cell("SELECT count(*) FROM plugin_hmib_processes WHERE taskid=$seed");
 		$pl = db_fetch_cell('SELECT count(*) FROM plugin_hmib_processes');
 
 		if ($processes_left == 0) {
-			echo "NOTE: All Processees Complete, Exiting\n";
+			print "NOTE: All Processees Complete, Exiting\n";
 			break;
-		}else{
-			echo "NOTE: Waiting on '$processes_left' Processes\n";
+		} else {
+			print "NOTE: Waiting on '$processes_left' Processes\n";
 			sleep(2);
 		}
 	}
 
-	echo "NOTE: Updating Last Run Statistics\n";
+	print "NOTE: Updating Last Run Statistics\n";
 
 	// Update the last runtimes
 	// All time/dates will be stored in timestamps;
@@ -352,7 +352,7 @@ function process_hosts() {
 	}
 
 	if (read_config_option('hmib_autopurge') == 'on') {
-		echo "NOTE: Auto Purging Hosts\n";
+		print "NOTE: Auto Purging Hosts\n";
 
 		$dead_hosts = db_fetch_assoc('SELECT host_id FROM plugin_hmib_hrSystem AS hr
 			LEFT JOIN host
@@ -360,20 +360,20 @@ function process_hosts() {
 			WHERE host.id IS NULL');
 
 		if (sizeof($dead_hosts)) {
-		foreach($dead_hosts as $host) {
-			db_execute('DELETE FROM plugin_hmib_hrSystem WHERE host_id='. $host['host_id']);
-			db_execute('DELETE FROM plugin_hmib_hrSWRun WHERE host_id='. $host['host_id']);
-			db_execute('DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE host_id='. $host['host_id']);
-			db_execute('DELETE FROM plugin_hmib_hrDevices WHERE host_id='. $host['host_id']);
-			db_execute('DELETE FROM plugin_hmib_hrStorage WHERE host_id='. $host['host_id']);
-			db_execute('DELETE FROM plugin_hmib_hrProcessor WHERE host_id='. $host['host_id']);
-			db_execute('DELETE FROM plugin_hmib_hrSWInstalled WHERE host_id='. $host['host_id']);
-			echo "Purging Host with ID '" . $host['host_id'] . "'\n";
-		}
+			foreach($dead_hosts as $host) {
+				db_execute('DELETE FROM plugin_hmib_hrSystem WHERE host_id='. $host['host_id']);
+				db_execute('DELETE FROM plugin_hmib_hrSWRun WHERE host_id='. $host['host_id']);
+				db_execute('DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE host_id='. $host['host_id']);
+				db_execute('DELETE FROM plugin_hmib_hrDevices WHERE host_id='. $host['host_id']);
+				db_execute('DELETE FROM plugin_hmib_hrStorage WHERE host_id='. $host['host_id']);
+				db_execute('DELETE FROM plugin_hmib_hrProcessor WHERE host_id='. $host['host_id']);
+				db_execute('DELETE FROM plugin_hmib_hrSWInstalled WHERE host_id='. $host['host_id']);
+				print "Purging Host with ID '" . $host['host_id'] . "'\n";
+			}
 		}
 	}
 
-	echo "NOTE: Updating Summary Statistics for Each Host\n";
+	print "NOTE: Updating Summary Statistics for Each Host\n";
 
 	/* update some statistics in hrSystem */
 	$stats = db_fetch_assoc('SELECT
@@ -437,16 +437,16 @@ function process_hosts() {
 			swapSize=VALUES(swapSize),
 			swapUsed=VALUES(swapUsed)');
 
-	echo "NOTE: Detecting Host Types Based Upon Host Types Table\n";
+	print "NOTE: Detecting Host Types Based Upon Host Types Table\n";
 
 	$types = db_fetch_assoc('SELECT * FROM plugin_hmib_hrSystemTypes');
 
 	if (sizeof($types)) {
-	foreach($types as $t) {
-		db_execute('UPDATE plugin_hmib_hrSystem AS hrs SET host_type='. $t['id'] . "
-			WHERE hrs.sysDescr LIKE '%" . $t['sysDescrMatch'] . "%'
-			AND hrs.sysObjectID LIKE '" . $t['sysObjectID'] . "%'");
-	}
+		foreach($types as $t) {
+			db_execute('UPDATE plugin_hmib_hrSystem AS hrs SET host_type='. $t['id'] . "
+				WHERE hrs.sysDescr LIKE '%" . $t['sysDescrMatch'] . "%'
+				AND hrs.sysObjectID LIKE '" . $t['sysObjectID'] . "%'");
+		}
 	}
 
 	/* for hosts that are down, clear information */
@@ -472,7 +472,7 @@ function process_hosts() {
 
 	/* log to the logfile */
 	cacti_log('HMIB STATS: ' . $cacti_stats , TRUE, 'SYSTEM');
-	echo "NOTE: Host Mib Polling Completed, $cacti_stats\n";
+	print "NOTE: Host Mib Polling Completed, $cacti_stats\n";
 
 	/* launch the graph creation process */
 	process_graphs();
@@ -585,21 +585,21 @@ function collect_hrSystem(&$host) {
 
 		// Locate the values names
 		if (sizeof($hostMib)) {
-		foreach($hostMib as $mib) {
-			/* do some cleanup */
-			if (substr($mib['oid'], 0, 1) != '.') $mib['oid'] = '.' . trim($mib['oid']);
-			if (substr($mib['value'], 0, 4) == 'OID:') $mib['value'] = str_replace('OID:', '', $mib['value']);
+			foreach($hostMib as $mib) {
+				/* do some cleanup */
+				if (substr($mib['oid'], 0, 1) != '.') $mib['oid'] = '.' . trim($mib['oid']);
+				if (substr($mib['value'], 0, 4) == 'OID:') $mib['value'] = str_replace('OID:', '', $mib['value']);
 
-			$key = array_search($mib['oid'], $hrSystem);
+				$key = array_search($mib['oid'], $hrSystem);
 
-			if ($key == 'date') {
-				$mib['value'] = hmib_dateParse($mib['value']);
+				if ($key == 'date') {
+					$mib['value'] = hmib_dateParse($mib['value']);
+				}
+
+				if (!empty($key)) {
+					$set_string .= (strlen($set_string) ? ', ':'') . $key . '=' . db_qstr(trim($mib['value']));
+				}
 			}
-
-			if (!empty($key)) {
-				$set_string .= (strlen($set_string) ? ', ':'') . $key . '=' . db_qstr(trim($mib['value']));
-			}
-		}
 		}
 
 		/* Update the values */
@@ -619,7 +619,7 @@ function hmib_dateParse($value) {
 	$date1 = trim($value[0] . ' ' . (isset($value[1]) ? $value[1]:''));
 	if (strtotime($date1) === false) {
 		$value = date('Y-m-d H:i:s');
-	}else{
+	} else {
 		$value = date('Y-m-d H:i:s', strtotime($date1));
 	}
 
@@ -634,7 +634,7 @@ function hmib_splitBaseIndex($oid) {
 		$index = strrev(substr($oid, 0, $pos));
 		$base  = strrev(substr($oid, $pos+1));
 		return array($base, $index);
-	}else{
+	} else {
 		return $splitIndex;
 	}
 }
@@ -660,11 +660,11 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 		foreach($tree AS $mname => $oid) {
 			if ($name == 'hrProcessor') {
 				$retrieval = SNMP_VALUE_PLAIN;
-			}elseif ($mname == 'date') {
+			} elseif ($mname == 'date') {
 				$retrieval = SNMP_VALUE_LIBRARY;
-			}elseif ($mname != 'baseOID') {
+			} elseif ($mname != 'baseOID') {
 				$retrieval = SNMP_VALUE_PLAIN;
-			}else{
+			} else {
 				continue;
 			}
 
@@ -683,12 +683,12 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 		$sql_prefix = "INSERT INTO $table";
 
 		if (sizeof($tree)) {
-		foreach($tree as $bname => $oid) {
-			if ($bname != 'baseOID' && $bname != 'index') {
-				$values     .= (strlen($values) ? '`, `':'`') . $bname;
-				$sql_suffix .= (!strlen($sql_suffix) ? ' ON DUPLICATE KEY UPDATE `index`=VALUES(`index`), `':', `') . $bname . '`=VALUES(`' . $bname . '`)';
+			foreach($tree as $bname => $oid) {
+				if ($bname != 'baseOID' && $bname != 'index') {
+					$values     .= (strlen($values) ? '`, `':'`') . $bname;
+					$sql_suffix .= (!strlen($sql_suffix) ? ' ON DUPLICATE KEY UPDATE `index`=VALUES(`index`), `':', `') . $bname . '`=VALUES(`' . $bname . '`)';
+				}
 			}
-		}
 		}
 
 		$sql_prefix .= ' (`host_id`, `index`, ' . $values . '`) VALUES ';
@@ -722,7 +722,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 						if ($wonky) {
 							$key          = 'load';
 							$mib['value'] = $effective;
-						}elseif (!$hrProcValid) {
+						} elseif (!$hrProcValid) {
 							if (db_fetch_cell("SELECT count(*) FROM plugin_hmib_hrSystem WHERE sysDescr LIKE '%Linux%' AND host_id=" . $host['id'])) {
 								/* look for the hrProcessorLoad value */
 								$temp_mib = $hostMib;
@@ -750,7 +750,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 									$mib['value'] = $effective;
 									$wonky        = true;
 								}
-							}else{
+							} else {
 								$effective = 0;
 							}
 						}
@@ -763,59 +763,62 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 								$value = trim($value[1], " \n\r)");
 								if ($table != 'plugin_hmib_hrSWInstalled' && $table != 'plugin_hmib_hrSWRun') {
 									$new_array[$index][$key] = (isset($types[$value]) ? $types[$value]['id']:0);
-								}else{
+								} else {
 									$new_array[$index][$key] = $value;
 								}
-							}else{
+							} else {
 								if ($table != 'plugin_hmib_hrSWInstalled' && $table != 'plugin_hmib_hrSWRun') {
 									$new_array[$index][$key] = (isset($types[$value[0]]) ? $types[$value[0]]['id']:0);
-								}else{
+								} else {
 									$new_array[$index][$key] = $value[0];
 								}
 							}
-						}elseif ($key == 'date') {
+						} elseif ($key == 'date') {
 							$new_array[$index][$key] = hmib_dateParse($mib['value']);
-						}elseif ($key == 'name' && $table == 'plugin_hmib_hrSWRun') {
+						} elseif ($key == 'name' && $table == 'plugin_hmib_hrSWRun') {
 							if (!empty($mib['value']) && $mib['value'] != 'NULL') {
 								$parts = explode('/', $mib['value']);
 								$new_array[$index][$key] = $parts[0];
-							}else{
+							} else {
 								$new_array[$index][$key] = '';
 							}
-						}elseif ($key == 'path' && $table == 'plugin_hmib_hrSWRun') {
+						} elseif ($key == 'path' && $table == 'plugin_hmib_hrSWRun') {
 							if (!empty($mib['value']) && $mib['value'] != 'NULL') {
 								$new_array[$index][$key] = $mib['value'];
-							}else{
+							} else {
 								$new_array[$index][$key] = '';
 							}
-						}elseif ($key == 'parameters' && $table == 'plugin_hmib_hrSWRun') {
+						} elseif ($key == 'parameters' && $table == 'plugin_hmib_hrSWRun') {
 							if (!empty($mib['value']) && $mib['value'] != 'NULL') {
 								$new_array[$index][$key] = $mib['value'];
-							}else{
+							} else {
 								$new_array[$index][$key] = '';
 							}
-						}elseif ($key != 'index') {
+						} elseif ($key != 'index') {
 							if (isset($cols[$key]['type'])) {
-								if (strstr($cols[$key]['type'], 'int') !== false || strstr($cols[$key]['type'], 'float') !== false || strstr($cols[$key]['type'], 'double') !== false) {
+								if (strstr($cols[$key]['type'], 'int') !== false ||
+									strstr($cols[$key]['type'], 'float') !== false ||
+									strstr($cols[$key]['type'], 'double') !== false ||
+									strstr($cols[$key]['type'], 'decimal') !== false) {
 									if (empty($mib['value'])) {
 										$new_array[$index][$key] = 0;
-									}else{
+									} else {
 										$new_array[$index][$key] = $mib['value'];
 									}
-								}else{
+								} else {
 									$new_array[$index][$key] = $mib['value'];
 								}
-							}else{
+							} else {
 								$new_array[$index][$key] = $mib['value'];
 							}
 						}
 					}
-	
+
 					if (!empty($key) && $key != 'index') {
 						debug("Key:'" . $key . "', Orig:'" . $mib['oid'] . "', Val:'" . $new_array[$index][$key] . "', Index:'" . $index . "', Base:'" . $oid . "'");
 					}
-				}else{
-					echo "WARNING: Error parsing OID value\n";
+				} else {
+					print "WARNING: Error parsing OID value\n";
 				}
 			}
 		}
@@ -831,19 +834,33 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 					if ($key != 'baseOID' && $key != 'index') {
 						if (isset($item[$key]) && strlen(strlen($item[$key]))) {
 							if (isset($cols[$key]['type'])) {
-								if (strstr($cols[$key]['type'], 'int') !== false || strstr($cols[$key]['type'], 'float') !== false || strstr($cols[$key]['type'], 'double') !== false) {
-									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:0);
-								}else{
+								if (strstr($cols[$key]['type'], 'int') !== false ||
+									strstr($cols[$key]['type'], 'float') !== false ||
+									strstr($cols[$key]['type'], 'double') !== false ||
+									strstr($cols[$key]['type'], 'decimal') !== false) {
+									if (is_numeric($item[$key])) {
+										$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:'0');
+									} else {
+										$sql_insert .= ($i >  0 ? ', ':'') . '0';
+									}
+								} else {
 									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? db_qstr($item[$key]):'""');
 								}
 
 								$i++;
 							}
-						}else{
+						} else {
 							if (isset($cols[$key])) {
-								if (strstr($cols[$key]['type'], 'int') !== false || strstr($cols[$key]['type'], 'float') !== false || strstr($cols[$key]['type'], 'double') !== false) {
-									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:0);
-								}else{
+								if (strstr($cols[$key]['type'], 'int') !== false ||
+									strstr($cols[$key]['type'], 'float') !== false ||
+									strstr($cols[$key]['type'], 'double') !== false ||
+									strstr($cols[$key]['type'], 'decimal') !== false) {
+									if (is_numeric($item[$key])) {
+										$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:0);
+									} else {
+										$sql_insert .= ($i >  0 ? ', ':'') . '0';
+									}
+								} else {
 									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? db_qstr($item[$key]):'""');
 								}
 
@@ -909,14 +926,14 @@ function display_version() {
 	}
 
 	$info = plugin_hmib_version();
-	echo "Host MIB Poller Process, Version " . $info['version'] . ", " . COPYRIGHT_YEARS . "\n";
+	print "Host MIB Poller Process, Version " . $info['version'] . ", " . COPYRIGHT_YEARS . "\n";
 }
 
 function display_help() {
 	display_version();
 
-	echo "\nThe main Host MIB poller process script for Cacti.\n\n";
-	echo "usage: \n";
-	echo "master process: poller_hmib.php [-M] [-f] [-fd] [-d]\n";
-	echo "child  process: poller_hmib.php --host-id=N [--seed=N] [-f] [-d]\n\n";
+	print "\nThe main Host MIB poller process script for Cacti.\n\n";
+	print "usage: \n";
+	print "master process: poller_hmib.php [-M] [-f] [-fd] [-d]\n";
+	print "child  process: poller_hmib.php --host-id=N [--seed=N] [-f] [-d]\n\n";
 }
