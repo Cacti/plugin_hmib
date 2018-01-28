@@ -2,7 +2,7 @@
 	<hash_0400169343eab1f4d88b0e61ffc9d020f35414>
 		<name>Host MIB - Get Mounted Partitions</name>
 		<description>Gets a list of partitions using SNMP</description>
-		<xml_path>&lt;path_cacti&gt;/plugins/hmib/templates/resource/script_server/host_disk.xml</xml_path>
+		<xml_path>&lt;path_cacti&gt;/resource/script_server/host_disk.xml</xml_path>
 		<data_input_id>hash_030016332111d8b54ac8ce939af87a7eac0c06</data_input_id>
 		<graphs>
 			<hash_11001646c4ee688932cf6370459527eceb8ef3>
