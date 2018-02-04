@@ -832,20 +832,20 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 				$i = 0;
 				foreach($tree as $key => $oid) {
 					if ($key != 'baseOID' && $key != 'index') {
-						if (isset($item[$key]) && strlen(strlen($item[$key]))) {
+						if (isset($item[$key]) && $item[$key] != '') {
 							if (isset($cols[$key]['type'])) {
 								if (strstr($cols[$key]['type'], 'int') !== false ||
 									strstr($cols[$key]['type'], 'float') !== false ||
 									strstr($cols[$key]['type'], 'double') !== false ||
 									strstr($cols[$key]['type'], 'decimal') !== false) {
 
-									if (isset($item[$key]) && is_numeric($item[$key])) {
-										$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? $item[$key]:'0');
+									if (is_numeric($item[$key])) {
+										$sql_insert .= ($i > 0 ? ', ':'') . $item[$key];
 									} else {
-										$sql_insert .= ($i >  0 ? ', ':'') . '0';
+										$sql_insert .= ($i > 0 ? ', ':'') . '0';
 									}
 								} else {
-									$sql_insert .= ($i >  0 ? ', ':'') . (isset($item[$key]) ? db_qstr($item[$key]):'""');
+									$sql_insert .= ($i >  0 ? ', ':'') . db_qstr($item[$key]);
 								}
 
 								$i++;
@@ -866,7 +866,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 									if (isset($item[$key])) {
 										$sql_insert .= ($i >  0 ? ', ':'') . db_qstr($item[$key]);
 									} else {
-										$sql_insert .= ($i >  0 ? ', ':'') . '';
+										$sql_insert .= ($i >  0 ? ', ':'') . '""';
 									}
 								}
 
