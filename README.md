@@ -17,7 +17,7 @@ The hmib plugin also includes several Graph Templates that allow you to track ap
 
 A few of these Cacti Graph Templates include script files that will allow Cacti to leverage the HMIB data for graphing instead of directly accessing the Cacti Devices for that information.  This appoach leads to reduce Cacti polling times due to the elimination of latency obtaining the information.
 
-##Installation
+## Installation
 
 Just like any other Cacti plugin, untar the package to the Cacti plugins directory, rename the directory to 'hmib', and then from Cacti's Plugin Management interface, Install and Enable the pluign.
 
