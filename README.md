@@ -25,6 +25,8 @@ Once you have installed the hmib plugin, you need to install it's Device Templat
 
 Once everything is in place, you need to goto Cacti's Settings page and locate the 'Host MIB' tab and complete the hmib's setup.  From there, you can set collections frequencies and levels of parallelism.  You can also turn on the automation of Cacti Devices and Graphs as well.  The hmib plugin also monitors application usage over time.
 
+Once you have installed and enabled the Plugin, ensure that you import the Device Package Host_Mib_Summary_Device.xml.gz that is located in the hmib/templates directory.
+
 ## Bugs and Feature Enhancements
    
 Bug and feature enhancements for the hmib plugin are handled in GitHub.  If you find a first search the Cacti forums for a solution before creating an issue in GitHub.
