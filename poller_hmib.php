@@ -745,7 +745,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 										$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 										read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
 
-									if (is_numeric($user) && $is_numeric($system) && sizeof($mib)) {
+									if (is_numeric($user) && is_numeric($system) && sizeof($mib)) {
 										$effective = (($user + $system) * 2) / (sizeof($mib));
 									} else {
 										$effective = 0;
