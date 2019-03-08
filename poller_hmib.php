@@ -733,7 +733,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 								}
 
 								if (!$hrProcValid) {
-									$user   = cacti_snmp_get($host['hostname'], $host['snmp_community'], '.1.3.6.1.4.1.2021.11.9.0', $host['snmp_version'],
+									$user = cacti_snmp_get($host['hostname'], $host['snmp_community'], '.1.3.6.1.4.1.2021.11.9.0', $host['snmp_version'],
 										$host['snmp_username'], $host['snmp_password'],
 										$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
 										$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
@@ -745,7 +745,12 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 										$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 										read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
 
-									$effective    = (($user + $system) * 2) / (sizeof($mib));
+									if (is_numeric($user) && $is_numeric($system) && sizeof($mib)) {
+										$effective = (($user + $system) * 2) / (sizeof($mib));
+									} else {
+										$effective = 0;
+									}
+
 									$key          = 'load';
 									$mib['value'] = $effective;
 									$wonky        = true;
