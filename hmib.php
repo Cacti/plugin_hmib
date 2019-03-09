@@ -314,7 +314,7 @@ function hmib_history() {
 
 	if (get_request_var('rows') == '-1') {
 		$num_rows = read_config_option('num_rows_table');
-	}else{
+	} else {
 		$num_rows = get_request_var('rows');
 	}
 
@@ -388,7 +388,7 @@ function hmib_history() {
 			form_alternate_row();
 			if (api_plugin_user_realm_auth('host.php')) {
 				$host_url    = "<a href='" . htmlspecialchars($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device') . "'>" . $row['hostname'] . '</a>';
-			}else{
+			} else {
 				$host_url    = $row['hostname'];
 			}
 
@@ -398,7 +398,7 @@ function hmib_history() {
 			echo "<td class='nowrap right'>" . hmib_get_runtime($row['total_time']) . '</td>';
 		}
 		echo '</tr>';
-	}else{
+	} else {
 		print '<tr><td colspan="4"><em>' . __('No Process History Found') . '</em></td></tr>';
 	}
 
@@ -414,14 +414,14 @@ function hmib_get_runtime($time) {
 	if ($time > 86400) {
 		$days  = floor($time/86400);
 		$time %= 86400;
-	}else{
+	} else {
 		$days  = 0;
 	}
 
 	if ($time > 3600) {
 		$hours = floor($time/3600);
 		$time  %= 3600;
-	}else{
+	} else {
 		$hours = 0;
 	}
 
@@ -645,7 +645,7 @@ function hmib_running() {
 
 	if (get_request_var('rows') == '-1') {
 		$num_rows = read_config_option('num_rows_table');
-	}else{
+	} else {
 		$num_rows = get_request_var('rows');
 	}
 
@@ -734,7 +734,7 @@ function hmib_running() {
 			form_alternate_row();
 			if (api_plugin_user_realm_auth('host.php')) {
 				$host_url = "<a href='" . htmlspecialchars($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device') . "'>" . $row['hostname'] . '</a>';
-			}else{
+			} else {
 				$host_url = $row['hostname'];
 			}
 
@@ -748,7 +748,7 @@ function hmib_running() {
 			echo "<td class='nowrap right'>" . $hmib_hrSWRunStatus[$row['status']] . '</td>';
 		}
 		echo '</tr>';
-	}else{
+	} else {
 		print '<tr><td colspan="8"><em>' . __('No Running Software Found') . '</em></td></tr>';
 	}
 
@@ -993,7 +993,7 @@ function hmib_hardware() {
 
 	if (get_request_var('rows') == '-1') {
 		$num_rows = read_config_option('num_rows_table');
-	}else{
+	} else {
 		$num_rows = get_request_var('rows');
 	}
 
@@ -1057,7 +1057,7 @@ function hmib_hardware() {
 			form_alternate_row();
 			if (api_plugin_user_realm_auth('host.php')) {
 				$host_url = "<a href='" . htmlspecialchars($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device') . "'>" . $row['hostname'] . '</a>';
-			}else{
+			} else {
 				$host_url = $row['hostname'];
 			}
 
@@ -1068,7 +1068,7 @@ function hmib_hardware() {
 			echo "<td class='right'>" . $row['errors'] . '</td>';
 		}
 		echo '</tr>';
-	}else{
+	} else {
 		print '<tr><td><em>' . __('No Hardware Found') . '</em></td></tr>';
 	}
 
@@ -1298,7 +1298,7 @@ function hmib_storage() {
 
 	if (get_request_var('rows') == '-1') {
 		$num_rows = read_config_option('num_rows_table');
-	}else{
+	} else {
 		$num_rows = get_request_var('rows');
 	}
 
@@ -1365,7 +1365,7 @@ function hmib_storage() {
 			form_alternate_row();
 			if (api_plugin_user_realm_auth('host.php')) {
 				$host_url = "<a href='" . htmlspecialchars($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device') . "'>" . $row['hostname'] . '</a>';
-			}else{
+			} else {
 				$host_url = $row['hostname'];
 			}
 
@@ -1379,7 +1379,7 @@ function hmib_storage() {
 			echo "<td class='right'>" . number_format_i18n($row['allocationUnits']) . '</td>';
 		}
 		echo '</tr>';
-	}else{
+	} else {
 		print '<tr><td colspan="8"><em>' . __('No Storage Devices Found') . '</em></td></tr>';
 	}
 
@@ -1617,7 +1617,7 @@ function hmib_devices() {
 
 	if (get_request_var('rows') == '-1') {
 		$num_rows = read_config_option('num_rows_table');
-	}else{
+	} else {
 		$num_rows = get_request_var('rows');
 	}
 
@@ -1639,7 +1639,7 @@ function hmib_devices() {
 	if (get_request_var('process') != '' && get_request_var('process') != '-1') {
 		$sql_join = 'INNER JOIN plugin_hmib_hrSWRun AS hrswr ON host.id=hrswr.host_id';
 		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . " hrswr.name='" . get_request_var('process') . "'";
-	}else{
+	} else {
 		$sql_join = '';
 	}
 
@@ -1732,7 +1732,7 @@ function hmib_devices() {
 			echo "<a class='pic' href='" . htmlspecialchars("$url?action=software&reset=1&device=" . $row['host_id']) . "'><img src='$inven' title='" . __('View Software Inventory') . "' align='absmiddle' alt=''></a>";
 			if ($found) {
 				echo "<a class='pic' href='" . htmlspecialchars("$url?action=graphs&reset=1&host_id=" . $row['host_id'] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=") . "'><img  src='$graphs' title='" . __('View Graphs') . "' align='absmiddle' alt=''></a>";
-			}else{
+			} else {
 				echo "<img src='$nographs' title='" . __('No Graphs Defined') . "' align='absmiddle' alt=''>";
 			}
 
@@ -1742,7 +1742,7 @@ function hmib_devices() {
 			$graph_aproc = hmib_get_graph_template_url($hpgt, 0, $row['host_id'], ($row['host_status'] < 2 ? 'N/A':$row['processes']), false);
 			if (api_plugin_user_realm_auth('host.php')) {
 				$host_url = "<a href='" . htmlspecialchars($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device') . "'>" . $row['hostname'] . '</a>';
-			}else{
+			} else {
 				$host_url = $row['hostname'];
 			}
 
@@ -1760,7 +1760,7 @@ function hmib_devices() {
 			echo "<td class='nowrap right'>" . ($row['host_status'] < 2 ? 'N/A':round($row['swapUsed'],0)) . ' %</td>';
 		}
 		echo '</tr>';
-	}else{
+	} else {
 		print '<tr><td colspan="12"><em>' . __('No Devices Found') . '</em></td></tr>';
 	}
 
@@ -2030,7 +2030,7 @@ function hmib_software() {
 
 	if (get_request_var('rows') == '-1') {
 		$num_rows = read_config_option('num_rows_table');
-	}else{
+	} else {
 		$num_rows = get_request_var('rows');
 	}
 
@@ -2094,7 +2094,7 @@ function hmib_software() {
 			form_alternate_row();
 			if (api_plugin_user_realm_auth('host.php')) {
 				$host_url = "<a href='" . htmlspecialchars($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device') . "'>" . $row['hostname'] . '</a>';
-			}else{
+			} else {
 				$host_url = $row['hostname'];
 			}
 
@@ -2104,7 +2104,7 @@ function hmib_software() {
 			echo "<td class='right'>" . filter_value($row['date'], get_request_var('filter')) . '</td>';
 		}
 		echo '</tr>';
-	}else{
+	} else {
 		print '<tr><td colspan="4"><em>' . __('No Software Packages Found') . '</em></td></tr>';
 	}
 
@@ -2221,7 +2221,7 @@ function hmib_summary() {
 			$_SESSION['sess_hmib_proc_sort_column'] = 'maxCpu';
 			$_SESSION['sess_hmib_proc_sort_direction'] = 'DESC';
 		}
-	}else{
+	} else {
 		if (!isset($_SESSION['sess_hmib_host_sort_column'])) {
 			$_SESSION['sess_hmib_host_sort_column']    = 'downHosts';
 			$_SESSION['sess_hmib_host_sort_direction'] = 'DESC';
@@ -2266,9 +2266,9 @@ function hmib_summary() {
 		WHERE hash='7c13344910097cc599f0d0485305361d'");
 
 	if ($htdq == 0 || $hcpudq == 0 || $hugt == 0 || $hpgt == 0 || $htsd == 0) {
-		$templates_missing=true;
-	}else{
-		$templates_missing=false;
+		$templates_missing = true;
+	} else {
+		$templates_missing = false;
 	}
 
 	?>
@@ -2313,7 +2313,7 @@ function hmib_summary() {
 						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
 					</td>
 					<td>
-						<?php print $templates_missing ? '<strong>' . __('WARNING: You need to import your Host MIB Host Template to view Graphs.  See the README for more information.') . '</strong>':'';?>
+						<?php print $templates_missing ? '<strong>' . __('NOTE: Import the Host MIB Device Package to view Graphs.') . '</strong>':'';?>
 					</td>
 				</tr>
 			</table>
@@ -2330,7 +2330,7 @@ function hmib_summary() {
 		$limit = 'LIMIT ' . read_config_option('hmib_top_types');
 	}elseif ($_SESSION['sess_hmib_host_top'] == '-1') {
 		$limit = '';
-	}else{
+	} else {
 		$limit = 'LIMIT ' . $_SESSION['sess_hmib_host_top'];
 	}
 
@@ -2386,23 +2386,18 @@ function hmib_summary() {
 	if (sizeof($rows)) {
 		foreach ($rows as $row) {
 			if (!$templates_missing) {
-				$host_id     = db_fetch_cell("SELECT id FROM host WHERE host_template_id=$htsd");
-				$graph_url   = hmib_get_graph_url($htdq, 0, $host_id, $row['id']);
-				$graph_ncpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', $row['cpus'], false);
-				$graph_acpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', round($row['avgCpuPercent'],2), false);
-				$graph_mcpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', round($row['maxCpuPercent'],2), false);
-				$graph_users = hmib_get_graph_template_url($hugt, $row['id'], 0, $row['users'], false);
-				$graph_aproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['avgProcesses'],0), false);
-				$graph_mproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['maxProcesses'],0), false);
-			}else{
-				$graph_url   = '';
-				$graph_ncpu  = '';
-				$graph_acpu  = '';
-				$graph_mcpu  = '';
-				$graph_users = '';
-				$graph_aproc = '';
-				$graph_mproc = '';
+				$host_id = db_fetch_cell("SELECT id FROM host WHERE host_template_id=$htsd");
+			} else {
+				$host_id = '-1';
 			}
+
+			$graph_url   = hmib_get_graph_url($htdq, 0, $host_id, $row['id']);
+			$graph_ncpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', $row['cpus'], false);
+			$graph_acpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', round($row['avgCpuPercent'],2), false);
+			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', round($row['maxCpuPercent'],2), false);
+			$graph_users = hmib_get_graph_template_url($hugt, $row['id'], 0, $row['users'], false);
+			$graph_aproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['avgProcesses'],0), false);
+			$graph_mproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['maxProcesses'],0), false);
 
 			form_alternate_row();
 			echo "<td class='nowrap'>";
@@ -2438,7 +2433,7 @@ function hmib_summary() {
 		}
 
 		echo '</tr>';
-	}else{
+	} else {
 		print '<tr><td colspan="8"><em>' . __('No Device Types') . '</em></td></tr>';
 	}
 
@@ -2501,7 +2496,7 @@ function hmib_summary() {
 						<input id='clear' type='button' onClick='clearProc()' value='<?php print __('Clear');?>'>
 					</td>
 					<td>
-						&nbsp;&nbsp;<?php print $templates_missing ? '<strong>' . __('WARNING: You need to import your Host MIB Host Template to view Graphs.  See the README for more information.') . '</strong>':'';?>
+						&nbsp;&nbsp;<?php print $templates_missing ? '<strong>' . __('NOTE: Import the Host MIB Device Package to view Graphs.') . '</strong>':'';?>
 					</td>
 				</tr>
 			</table>
@@ -2518,7 +2513,7 @@ function hmib_summary() {
 		$limit = 'LIMIT ' . read_config_option('hmib_top_processes');
 	}elseif ($_SESSION['sess_hmib_proc_top'] == '-1') {
 		$limit = '';
-	}else{
+	} else {
 		$limit = 'LIMIT ' . $_SESSION['sess_hmib_proc_top'];
 	}
 
@@ -2526,7 +2521,7 @@ function hmib_summary() {
 		$sql_where = "AND (hrswr.name LIKE '%" . get_request_var('filter') . "%' OR
 			hrswr.path LIKE '%" . get_request_var('filter') . "%' OR
 			hrswr.parameters LIKE '%" . get_request_var('filter') . "%')";
-	}else{
+	} else {
 		$sql_where = '';
 	}
 
@@ -2594,7 +2589,7 @@ function hmib_summary() {
 		}
 
 		echo '</tr>';
-	}else{
+	} else {
 		print '<tr><td colspan="9"><em>' . __('No Processes') . '</em></td></tr>';
 	}
 
@@ -2606,7 +2601,7 @@ function hmib_get_device_status_url($count, $host_type, $status) {
 
 	if ($count > 0) {
 		return "<a class='pic' href='" . htmlspecialchars($config['url_path'] . "plugins/hmib/hmib.php?action=devices&reset=1&type=$host_type&status=$status") . "' title='" . __('View Devices') . "'>$count</a>";
-	}else{
+	} else {
 		return $count;
 	}
 }
@@ -2649,17 +2644,13 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
 		if (sizeof($graphs)) {
 			if ($image) {
 				return "<a class='pic' href='" . htmlspecialchars($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs') . "'><img alt='' src='" . $graph . "'></a>";
-			}else{
+			} else {
 				return "<a class='pic' href='" . htmlspecialchars($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs') . "'>$title</a>";
 			}
 		}
 	}
 
-	if ($image){
-		return "<img src='$nograph' title='" . __('Please Select Data Query First from Console->Settings->Host Mib First') . "' align='absmiddle' alt=''>";
-	}else{
-		return $title;
-	}
+	return $title;
 }
 
 function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = '', $image = true) {
@@ -2701,17 +2692,13 @@ function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = 
 		if (sizeof($graphs)) {
 			if ($image) {
 				return "<a class='pic' href='" . htmlspecialchars($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs') . "'><img alt='' align='absmiddle' src='" . $graph . "'></a>";
-			}else{
+			} else {
 				return "<a class='pic' href='" . htmlspecialchars($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs') . "'>$title</a>";
 			}
 		}
 	}
 
-	if ($image){
-		return "<img src='$nograph' title='" . __('Please Select Data Query First from Console->Settings->Host Mib First') . "' align='absmiddle' alt=''>";
-	}else{
-		return $title;
-	}
+	return $title;
 }
 
 function hmib_view_graphs() {
@@ -2765,7 +2752,7 @@ function hmib_view_graphs() {
 				foreach (explode(',',get_request_var('graph_list')) as $item) {
 					$graph_list[$item] = 1;
 				}
-			}else{
+			} else {
 				$graph_list = array();
 			}
 
@@ -2817,7 +2804,7 @@ function hmib_view_graphs() {
 	/* do some fancy navigation url construction so we don't have to try and rebuild the url string */
 	if (preg_match('/page=[0-9]+/',basename($_SERVER['QUERY_STRING']))) {
 		$nav_url = str_replace('&page=' . get_request_var('page'), '', get_browser_query_string());
-	}else{
+	} else {
 		$nav_url = get_browser_query_string() . '&host_id=' . get_request_var('host_id');
 	}
 
@@ -2831,7 +2818,7 @@ function hmib_view_graphs() {
 
 	if (get_request_var('thumbnails') == 'true') {
 		html_graph_thumbnail_area($graphs, '', 'graph_start=' . get_current_graph_start() . '&graph_end=' . get_current_graph_end(), '', get_request_var('columns'));
-	}else{
+	} else {
 		html_graph_area($graphs, '', 'graph_start=' . get_current_graph_start() . '&graph_end=' . get_current_graph_end(), '', get_request_var('columns'));
 	}
 
