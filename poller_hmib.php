@@ -23,28 +23,20 @@
  +-------------------------------------------------------------------------+
 */
 
-/* we are not talking to the browser */
-$no_http_headers = true;
+chdir(dirname(__FILE__));
+chdir('../..');
 
-/* do NOT run this script through a web browser */
-if (!isset($_SERVER['argv'][0]) || isset($_SERVER['REQUEST_METHOD'])  || isset($_SERVER['REMOTE_ADDR'])) {
-	die('<br>This script is only meant to run at the command line.');
+include('./include/cli_check.php');
+include_once('./lib/poller.php');
+
+if (!function_exists('cacti_escapeshellcmd')) {
+    include_once('./plugins/hmib/snmp_functions.php');
 }
 
 if (!defined('SNMP_VALUE_LIBRARY')) {
 	define('SNMP_VALUE_LIBRARY', 0);
 	define('SNMP_VALUE_PLAIN', 1);
 	define('SNMP_VALUE_OBJECT', 2);
-}
-
-chdir(dirname(__FILE__));
-chdir('../..');
-
-include('./include/global.php');
-include_once('./lib/poller.php');
-
-if (!function_exists('cacti_escapeshellcmd')) {
-    include_once('./plugins/hmib/snmp_functions.php');
 }
 
 include_once('./plugins/hmib/snmp.php');
@@ -128,8 +120,8 @@ if (!$mainrun && $host_id == '') {
 }
 
 /* Do not process if not enabled */
-if (read_config_option('hmib_enabled') == '' || db_fetch_cell("SELECT status FROM plugin_config WHERE directory='hmib'") != 1) {
-	print "WARNING: The Host Mib Collection is Down!  Exiting\n";
+if (read_config_option('hmib_enabled') == '' || !api_plugin_is_enabled('hmib')) {
+	print 'WARNING: The Host Mib Collection is Down!  Exiting' . PHP_EOL;
 	exit(0);
 }
 
@@ -138,8 +130,7 @@ if ($seed == '') {
 }
 
 if ($start == '') {
-	list($micro,$seconds) = explode(' ', microtime());
-	$start = $seconds + $micro;
+	$start = microtime(true);
 }
 
 if ($mainrun) {
@@ -169,7 +160,7 @@ function debug($message) {
 }
 
 function autoDiscoverHosts() {
-	global $debug;
+	global $debug, $snmp_errors;
 
 	$hosts = db_fetch_assoc("SELECT *
 		FROM host
@@ -181,6 +172,8 @@ function autoDiscoverHosts() {
 
 	/* set a process lock */
 	db_execute('REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (' . getmypid() . ', 0)');
+
+	$snmp_errors = 0;
 
 	if (sizeof($hosts)) {
 		foreach($hosts as $host) {
@@ -202,10 +195,16 @@ function autoDiscoverHosts() {
 
 				if ($add) {
 					debug("Host '" . $host['description'] . '[' . $host['hostname'] . "]' Supports Host MIB Resources");
-					db_execute('INSERT INTO plugin_hmib_hrSystem (host_id) VALUES (' . $host['id'] . ') ON DUPLICATE KEY UPDATE host_id=VALUES(host_id)');
+					db_execute('INSERT INTO plugin_hmib_hrSystem
+						(host_id) VALUES (' . $host['id'] . ')
+						ON DUPLICATE KEY UPDATE host_id=VALUES(host_id)');
 				}
 			}
 		}
+	}
+
+	if ($snmp_errors > 0) {
+		cacti_log("WARNING: There were $snmp_errors SNMP errors while performing autoDiscover data", false, 'HMIB', POLLER_VERBOSITY_MEDIUM);
 	}
 
 	/* remove the process lock */
@@ -260,10 +259,37 @@ function process_hosts() {
 		AND host.status!=1");
 
 	/* Remove entries from  down and disabled hosts */
-	db_execute("DELETE FROM plugin_hmib_hrSWRun WHERE host_id IN(SELECT id FROM host WHERE disabled='on' OR host.status=1)");
-	db_execute("DELETE FROM plugin_hmib_hrDevices WHERE host_id IN(SELECT id FROM host WHERE disabled='on' OR host.status=1)");
-	db_execute("DELETE FROM plugin_hmib_hrStorage WHERE host_id IN(SELECT id FROM host WHERE disabled='on' OR host.status=1)");
-	db_execute("DELETE FROM plugin_hmib_hrProcessor WHERE host_id IN(SELECT id FROM host WHERE disabled='on' OR host.status=1)");
+	db_execute("DELETE FROM plugin_hmib_hrSWRun
+		WHERE host_id IN(
+			SELECT id
+			FROM host
+			WHERE disabled='on'
+			OR host.status=1
+		)");
+
+	db_execute("DELETE FROM plugin_hmib_hrDevices
+		WHERE host_id IN(
+			SELECT id
+			FROM host
+			WHERE disabled='on'
+			OR host.status=1
+		)");
+
+	db_execute("DELETE FROM plugin_hmib_hrStorage
+		WHERE host_id IN(
+			SELECT id
+			FROM host
+			WHERE disabled='on'
+			OR host.status=1
+		)");
+
+	db_execute("DELETE FROM plugin_hmib_hrProcessor
+		WHERE host_id IN(
+			SELECT id
+			FROM host
+			WHERE disabled='on'
+			OR host.status=1
+		)");
 
 	$concurrent_processes = read_config_option('hmib_concurrent_processes');
 
@@ -278,6 +304,7 @@ function process_hosts() {
 				if ($processes < $concurrent_processes) {
 					/* put a placeholder in place to prevent overloads on slow systems */
 					$key = rand();
+
 					db_execute("INSERT INTO plugin_hmib_processes (pid, taskid, started) VALUES ($key, $seed, NOW())");
 
 					print "NOTE: Launching Host Collector For: '" . $host['description'] . '[' . $host['hostname'] . "]'\n";
@@ -501,7 +528,9 @@ function process_graphs() {
 }
 
 function checkHost($host_id) {
-	global $config, $start, $seed, $key;
+	global $config, $start, $seed, $key, $snmp_errors;
+
+	$snmp_errors = 0;
 
 	// All time/dates will be stored in timestamps;
 	// Get Collector Lastrun Information
@@ -560,10 +589,14 @@ function checkHost($host_id) {
 
 	/* remove odd entries */
 	db_execute("DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE name=''");
+
+	if ($snmp_errors > 0) {
+		cacti_log("WARNING: Host[$host_id] experienced $snmp_errors SNMP Errors while performing data.  Increase logging to HIGH to see errors.", false, 'HMIB');
+	}
 }
 
 function collect_hrSystem(&$host) {
-	global $hrSystem, $cnn_id;
+	global $hrSystem, $cnn_id, $snmp_errors;
 
 	if (sizeof($host)) {
 		debug("Polling hrSystem from '" . $host['description'] . '[' . $host['hostname'] . "]'");

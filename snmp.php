@@ -30,7 +30,8 @@ define('SNMP_METHOD_BINARY', 2);
 if (!isset($banned_snmp_strings)) {
 	$banned_snmp_strings = array(
 		'End of MIB',
-		'No Such');
+		'No Such'
+	);
 }
 
 /* we must use an apostrophe to escape community names under Unix in case the user uses
@@ -44,7 +45,7 @@ if ($config['cacti_server_os'] == 'unix') {
 function cacti_snmp_get($hostname, $community, $oid, $version, $username, $password, $auth_proto, $priv_pass,
 	$priv_proto, $context, $port = 161, $timeout = 500, $retries = 0, $max_oids = 10, $method = SNMP_VALUE_LIBRARY, $environ = SNMP_POLLER) {
 
-	global $config;
+	global $config, $snmp_errors;
 
 	/* determine default retries */
 	if (($retries == 0) || (!is_numeric($retries))) {
@@ -87,7 +88,8 @@ function cacti_snmp_get($hostname, $community, $oid, $version, $username, $passw
 		}
 
 		if ($snmp_value === false) {
-			cacti_log("WARNING: SNMP Get Timeout for Host:'$hostname', and OID:'$oid'", false);
+			cacti_log("WARNING: SNMP Get Timeout for Host:'$hostname', and OID:'$oid'", false, 'HMIB', POLLER_VERBOSITY_HIGH);
+			$snmp_errors++;
 		}
 	} else {
 		/* ucd/net snmp want the timeout in seconds */
@@ -145,7 +147,8 @@ function cacti_snmp_get($hostname, $community, $oid, $version, $username, $passw
 	}
 
 	if (substr_count($snmp_value, 'Timeout:')) {
-		cacti_log("WARNING: SNMP Get Timeout for Host:'$hostname', and OID:'$oid'", false);
+		cacti_log("WARNING: SNMP Get Timeout for Host:'$hostname', and OID:'$oid'", false, 'HMIB', POLLER_VERBOSITY_HIGH);
+		$snmp_errors++;
 	}
 
 	/* strip out non-snmp data */
@@ -155,7 +158,7 @@ function cacti_snmp_get($hostname, $community, $oid, $version, $username, $passw
 }
 
 function cacti_snmp_getnext($hostname, $community, $oid, $version, $username, $password, $auth_proto, $priv_pass, $priv_proto, $context, $port = 161, $timeout = 500, $retries = 0, $method = SNMP_VALUE_LIBRARY, $environ = SNMP_POLLER) {
-	global $config;
+	global $config, $snmp_errors;
 
 	/* determine default retries */
 	if (($retries == 0) || (!is_numeric($retries))) {
@@ -198,7 +201,8 @@ function cacti_snmp_getnext($hostname, $community, $oid, $version, $username, $p
 		}
 
 		if ($snmp_value === false) {
-			cacti_log("WARNING: SNMP GetNext Timeout for Host:'$hostname', and OID:'$oid'", false);
+			cacti_log("WARNING: SNMP GetNext Timeout for Host:'$hostname', and OID:'$oid'", false, 'HMIB', POLLER_VERBOSITY_HIGH);
+			$snmp_errors++;
 		}
 	} else {
 		/* ucd/net snmp want the timeout in seconds */
@@ -251,7 +255,8 @@ function cacti_snmp_getnext($hostname, $community, $oid, $version, $username, $p
 	}
 
 	if (substr_count($snmp_value, 'Timeout:')) {
-		cacti_log("WARNING: SNMP GetNext Timeout for Host:'$hostname', and OID:'$oid'", false);
+		cacti_log("WARNING: SNMP GetNext Timeout for Host:'$hostname', and OID:'$oid'", false, 'HMIB', POLLER_VERBOSITY_HIGH);
+		$snmp_errors++;
 	}
 
 	/* strip out non-snmp data */
@@ -261,7 +266,7 @@ function cacti_snmp_getnext($hostname, $community, $oid, $version, $username, $p
 }
 
 function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $password, $auth_proto, $priv_pass, $priv_proto, $context, $port = 161, $timeout = 500, $retries = 0, $max_oids = 10, $method = SNMP_VALUE_LIBRARY, $environ = SNMP_POLLER) {
-	global $config, $banned_snmp_strings;
+	global $config, $banned_snmp_strings, $snmp_errors;
 
 	$snmp_oid_included = true;
 	$snmp_auth	       = '';
@@ -319,7 +324,8 @@ function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $pass
 		}
 
 		if ($temp_array === false) {
-			cacti_log("WARNING: SNMP Walk Timeout for Host:'$hostname', and OID:'$oid'", false, POLLER_VERBOSITY_MEDIUM);
+			cacti_log("WARNING: SNMP Walk Timeout for Host:'$hostname', and OID:'$oid'", false, 'HMIB', POLLER_VERBOSITY_HIGH);
+			$snmp_errors++;
 		}
 
 		/* check for bad entries */
@@ -386,7 +392,8 @@ function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $pass
 		}
 
 		if (substr_count(implode(' ', $temp_array), 'Timeout:')) {
-			cacti_log("WARNING: SNMP Walk Timeout for Host:'$hostname', and OID:'$oid'", false, POLLER_VERBOSITY_MEDIUM);
+			cacti_log("WARNING: SNMP Walk Timeout for Host:'$hostname', and OID:'$oid'", false, 'HMIB', POLLER_VERBOSITY_HIGH);
+			$snmp_errors++;
 		}
 
 		/* check for bad entries */
