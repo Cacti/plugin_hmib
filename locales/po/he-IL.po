@@ -5,155 +5,191 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-29 23:10-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: he-IL\n"
+"PO-Revision-Date: 2019-03-16 23:26-0400\n"
+"Language: he_IL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: ../hmib_types.php:30
+#, fuzzy
 msgid "Delete"
-msgstr ""
+msgstr "מחק"
 
 #: ../hmib_types.php:31
+#, fuzzy
 msgid "Duplicate"
-msgstr ""
+msgstr "שכפל"
 
 #: ../hmib_types.php:226
+#, fuzzy
 msgid "Click 'Continue' to Delete the following Host Type(s)"
-msgstr ""
+msgstr "לחץ על 'המשך' כדי למחוק את סוגי המארחים הבאים:"
 
 #: ../hmib_types.php:231 ../hmib_types.php:241 ../hmib_types.php:246
+#, fuzzy
 msgid "Cancel"
-msgstr ""
+msgstr "ביטול"
 
 #: ../hmib_types.php:231 ../hmib_types.php:241
+#, fuzzy
 msgid "Continue"
-msgstr ""
+msgstr "המשך"
 
 #: ../hmib_types.php:231
+#, fuzzy
 msgid "Delete Host Type(s)"
-msgstr ""
+msgstr "מחיקת סוגי מארחים"
 
 #: ../hmib_types.php:235
+#, fuzzy
 msgid ""
 "Click 'Continue' to Duplicate the following Host Type(s). You may optionally "
 "change the description for the new Host Type(s).  Otherwise, do not change "
 "value below and the original name will be replicated with a new suffix."
 msgstr ""
+"לחץ על 'המשך' לשכפל את סוגי המארחים הבאים. ניתן לשנות את התיאור עבור סוג "
+"המארח החדש (ים). אחרת, אל תשנה ערך למטה והשם המקורי ישוכפל עם סיומת חדשה."
 
 #: ../hmib_types.php:237
+#, fuzzy
 msgid "Host Type Prefix:"
-msgstr ""
+msgstr "קידומת סוג מארח:"
 
 #: ../hmib_types.php:241
+#, fuzzy
 msgid "Duplicate Host Type(s)"
-msgstr ""
+msgstr "שכפל סוג מארח (ים)"
 
 #: ../hmib_types.php:245
+#, fuzzy
 msgid "You must select at least one Host Type."
-msgstr ""
+msgstr "עליך לבחור לפחות סוג מארח אחד."
 
 #: ../hmib_types.php:352
+#, fuzzy
 msgid "New Type"
-msgstr ""
+msgstr "סוג חדש"
 
 #: ../hmib_types.php:353 ../hmib.php:37 ../hmib.php:52 ../hmib.php:747
 #: ../hmib.php:1066 ../hmib.php:1374 ../hmib.php:1572 ../hmib.php:2103
 #: ../hmib.php:2422
+#, fuzzy
 msgid "Unknown"
-msgstr ""
+msgstr "לא ידוע"
 
 #: ../hmib_types.php:397
-#, php-format
+#, fuzzy, php-format
 msgid "There were %d Device Types Added!"
-msgstr ""
+msgstr "היו% d סוגי התקנים שנוספו!"
 
 #: ../hmib_types.php:400
+#, fuzzy
 msgid "No New Host Types Found!"
-msgstr ""
+msgstr "לא נמצאו סוגי מארח חדשים!"
 
 #: ../hmib_types.php:411
+#, fuzzy
 msgid "Import Results"
-msgstr ""
+msgstr "תוצאות ייבוא"
 
 #: ../hmib_types.php:413
+#, fuzzy
 msgid "Cacti has imported the following items:"
-msgstr ""
+msgstr "Cacti ייבאה את הפריטים הבאים:"
 
 #: ../hmib_types.php:425
+#, fuzzy
 msgid "Import Host MIB OS Types"
-msgstr ""
+msgstr "ייבוא המארח MIB OS סוגי"
 
 #: ../hmib_types.php:428
+#, fuzzy
 msgid "Import Device Types from Local File"
-msgstr ""
+msgstr "ייבוא סוגי התקנים מקובץ מקומי"
 
 #: ../hmib_types.php:429
+#, fuzzy
 msgid ""
 "Please specify the location of the CSV file containing your device type "
 "information."
-msgstr ""
+msgstr "ציין את המיקום של קובץ ה- CSV שמכיל את פרטי סוג המכשיר שלך."
 
 #: ../hmib_types.php:436
+#, fuzzy
 msgid "Overwrite Existing Data?"
-msgstr ""
+msgstr "להחליף נתונים קיימים?"
 
 #: ../hmib_types.php:437
+#, fuzzy
 msgid ""
 "Should the import process be allowed to overwrite existing data?  Please "
 "note, this does not mean delete old row, only replace duplicate rows."
 msgstr ""
+"האם יש לאפשר לתהליך הייבוא להחליף נתונים קיימים? שים לב, זה לא אומר למחוק "
+"שורה ישנה, רק להחליף שורות כפולות."
 
 #: ../hmib_types.php:440
+#, fuzzy
 msgid "Allow Existing Rows to be Updated?"
-msgstr ""
+msgstr "האם לאפשר שורות קיימות להתעדכן?"
 
 #: ../hmib_types.php:445
+#, fuzzy
 msgid "Required File Format Notes"
-msgstr ""
+msgstr "פורמט קובץ חובה הערות"
 
 #: ../hmib_types.php:448
+#, fuzzy
 msgid "The file must contain a header row with the following column headings."
-msgstr ""
+msgstr "על הקובץ להכיל שורת כותרת עם כותרות העמודות הבאות."
 
 #: ../hmib_types.php:450
+#, fuzzy
 msgid "A common name for the Host Type.  For example, Windows 7"
-msgstr ""
+msgstr "שם נפוץ עבור סוג המארח. לדוגמה, Windows 7"
 
 #: ../hmib_types.php:451
+#, fuzzy
 msgid "The OS version for the Host Type"
-msgstr ""
+msgstr "גירסת מערכת ההפעלה עבור סוג המארח"
 
 #: ../hmib_types.php:452
+#, fuzzy
 msgid ""
 "A unique set of characters from the snmp sysDescr that uniquely identify "
 "this device"
-msgstr ""
+msgstr "קבוצה ייחודית של תווים מן snmp sysDescr כי ייחודי לזהות את המכשיר הזה"
 
 #: ../hmib_types.php:453
+#, fuzzy
 msgid ""
 "The vendor specific snmp sysObjectID that distinguishes this device from the "
 "next"
-msgstr ""
+msgstr "הספק הספציפי snmp sysObjectID שמבדיל את המכשיר הבא"
 
 #: ../hmib_types.php:455
+#, fuzzy
 msgid ""
 "The primary key for this table is a combination of the following two fields:"
-msgstr ""
+msgstr "המפתח הראשי לטבלה זו הוא שילוב של שני השדות הבאים:"
 
 #: ../hmib_types.php:459
+#, fuzzy
 msgid ""
 "Therefore, if you attempt to import duplicate device types, the existing "
 "data will be updated with the new information."
 msgstr ""
+"לכן, אם תנסה לייבא סוגי מכשירים כפולים, הנתונים הקיימים יעודכנו במידע החדש."
 
 #: ../hmib_types.php:461
+#, fuzzy
 msgid ""
 "The Host Type is determined by scanning its snmp agent for the sysObjectID "
 "and sysDescription and comparing it against values in the Host Types "
@@ -161,451 +197,552 @@ msgid ""
 "Host data.  Therefore, it is very important that you select valid "
 "sysObjectID, sysDescrMatch for your Hosts."
 msgstr ""
+"סוג המארח נקבע על ידי סריקת סוכן snmp שלו עבור sysObjectID ו- sysDescription "
+"ולהשוות אותו לערכים במאגר סוגי המארחים. ההתאמה הראשונה שנמצאת במסד הנתונים "
+"משמשת לנתוני המארח המצטברים. לכן, חשוב מאוד שתבחר sysObjectID חוקי, "
+"sysDescrMat עבור המארחים שלך."
 
 #: ../hmib_types.php:726
+#, fuzzy
 msgid "Are You Sure?"
-msgstr ""
+msgstr "האם אתה בטוח?"
 
 #: ../hmib_types.php:726
-#, php-format
+#, fuzzy, php-format
 msgid "Are you sure you want to delete the Host Type'%s'"
-msgstr ""
+msgstr "האם אתה בטוח שברצונך למחוק את סוג המארח ' %s'"
 
 #: ../hmib_types.php:747
+#, fuzzy
 msgid "Device Scanning Function Options"
-msgstr ""
+msgstr "אפשרויות פונקציית סריקה של ההתקן"
 
 #: ../hmib_types.php:751
+#, fuzzy
 msgid "Name"
-msgstr ""
+msgstr "שם"
 
 #: ../hmib_types.php:752
+#, fuzzy
 msgid "Give this Host Type a meaningful name."
-msgstr ""
+msgstr "תן זה מארח סוג שם משמעותי."
 
 #: ../hmib_types.php:758 ../hmib.php:2367
+#, fuzzy
 msgid "Version"
-msgstr ""
+msgstr "גרסה"
 
 #: ../hmib_types.php:759
+#, fuzzy
 msgid "Fill in the name for the version of this Host Type."
-msgstr ""
+msgstr "מלא את השם עבור הגירסה של סוג מארח זה."
 
 #: ../hmib_types.php:766
+#, fuzzy
 msgid "System Description Match"
-msgstr ""
+msgstr "תיאור המערכת התאמה"
 
 #: ../hmib_types.php:767 ../hmib_types.php:774
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "Provide key information to help HMIB detect the type of Host.  SQL Where "
 "expressions are supported.  SQL Where wildcard character is the '%' sign. "
 "Regular Expressions have been removed due to compatibility issues."
 msgstr ""
+"לספק מידע מפתח כדי לעזור HMIB לזהות את סוג המארח. SQL שבו נתמכים ביטויים. "
+"SQL כאשר תו כלליים הוא הסימן '%'. ביטויים רגילים הוסרו עקב בעיות תאימות."
 
 #: ../hmib_types.php:773
+#, fuzzy
 msgid "Vendor snmp Object ID"
-msgstr ""
+msgstr "מזהה אובייקט snmp של ספק"
 
 #: ../hmib_types.php:794
-#, php-format
+#, fuzzy, php-format
 msgid "Host MIB OS Types [edit: %s]"
-msgstr ""
+msgstr "מארח MIB OS סוגי [עריכה: %s]"
 
 #: ../hmib_types.php:796
+#, fuzzy
 msgid "Host MIB OS Types [new]"
-msgstr ""
+msgstr "מארח MIB OS סוגי [חדש]"
 
 #: ../hmib_types.php:861
+#, fuzzy
 msgid "Host MIB OS Type Filters"
-msgstr ""
+msgstr "מארח MIB OS סוג מסננים"
 
 #: ../hmib_types.php:873 ../setup.php:589
+#, fuzzy
 msgid "OS Types"
-msgstr ""
+msgstr "סוגי מערכת הפעלה"
 
 #: ../hmib_types.php:882
+#, fuzzy
 msgid "Host Type Name"
-msgstr ""
+msgstr "שם סוג מארח"
 
 #: ../hmib_types.php:883
+#, fuzzy
 msgid "OS Version"
-msgstr ""
+msgstr "גרסת מערכת ההפעלה"
 
 #: ../hmib_types.php:884 ../hmib.php:2556
+#, fuzzy
 msgid "Hosts"
-msgstr ""
+msgstr "מארחים"
 
 #: ../hmib_types.php:885
+#, fuzzy
 msgid "SNMP ObjectID"
-msgstr ""
+msgstr "אובייקט אובייקט SNMP"
 
 #: ../hmib_types.php:886
+#, fuzzy
 msgid "SNMP Sys Description Match"
-msgstr ""
+msgstr "SNMP Sys תיאור התאמה"
 
 #: ../hmib_types.php:902
+#, fuzzy
 msgid "No Host Types Found"
-msgstr ""
+msgstr "לא נמצאו סוגי מארחים"
 
 #: ../hmib_types.php:930
+#, fuzzy
 msgid "Choose an action:"
-msgstr ""
+msgstr "נא לבחור פעולה"
 
-#: ../hmib_types.php:934 ../hmib_types.php:1002 ../hmib.php:255
-#: ../hmib.php:586 ../hmib.php:935 ../hmib.php:1240 ../hmib.php:1540
-#: ../hmib.php:1972 ../hmib.php:2310 ../hmib.php:2498
+#: ../hmib_types.php:934 ../hmib_types.php:1002 ../hmib.php:255 ../hmib.php:586
+#: ../hmib.php:935 ../hmib.php:1240 ../hmib.php:1540 ../hmib.php:1972
+#: ../hmib.php:2310 ../hmib.php:2498
+#, fuzzy
 msgid "Go"
-msgstr ""
+msgstr "עבור"
 
 #: ../hmib_types.php:981 ../hmib.php:265 ../hmib.php:596 ../hmib.php:945
 #: ../hmib.php:1250 ../hmib.php:1550 ../hmib.php:1982 ../hmib.php:2480
+#, fuzzy
 msgid "Search"
-msgstr ""
+msgstr "חיפוש"
 
 #: ../hmib_types.php:987 ../hmib.php:189 ../hmib.php:520 ../hmib.php:870
 #: ../hmib.php:1175 ../hmib.php:1481 ../hmib.php:1906
+#, fuzzy
 msgid "OS Type"
-msgstr ""
+msgstr "סוג מערכת הפעלה"
 
 #: ../hmib_types.php:991 ../hmib.php:295 ../hmib.php:626 ../hmib.php:974
 #: ../hmib.php:1279 ../hmib.php:1598 ../hmib.php:2011
+#, fuzzy
 msgid "Default"
-msgstr ""
+msgstr "ברירת מחדל"
 
 #: ../hmib_types.php:1005 ../hmib.php:258 ../hmib.php:589 ../hmib.php:938
 #: ../hmib.php:1243 ../hmib.php:1543 ../hmib.php:1975 ../hmib.php:2313
 #: ../hmib.php:2501
+#, fuzzy
 msgid "Clear"
-msgstr ""
+msgstr "נקה"
 
 #: ../hmib_types.php:1008
+#, fuzzy
 msgid "Scan for New or Unknown Device Types"
-msgstr ""
+msgstr "סריקה עבור סוגי התקנים חדשים או לא ידועים"
 
 #: ../hmib_types.php:1008
+#, fuzzy
 msgid "Rescan"
-msgstr ""
+msgstr "סרוק מחדש"
 
 #: ../hmib_types.php:1011
+#, fuzzy
 msgid "Import Host Types from a CSV File"
-msgstr ""
+msgstr "ייבא סוגי מארח מקובץ CSV"
 
 #: ../hmib_types.php:1011 ../setup.php:606
+#, fuzzy
 msgid "Import"
-msgstr ""
+msgstr "ייבוא"
 
 #: ../hmib_types.php:1014
+#, fuzzy
 msgid "Export Host Types to Share with Others"
-msgstr ""
+msgstr "ייצוא סוגי מארח כדי לשתף עם אחרים"
 
 #: ../hmib_types.php:1014
+#, fuzzy
 msgid "Export"
-msgstr ""
+msgstr "ייצא"
 
 #: ../setup.php:38
+#, fuzzy
 msgid "Plugin -> Host MIB Viewer"
-msgstr ""
+msgstr "- מארח MIB Viewer"
 
 #: ../setup.php:39
+#, fuzzy
 msgid "Plugin -> Host MIB Admin"
-msgstr ""
+msgstr "- מארח MIB מנהל"
 
 #: ../setup.php:358
+#, fuzzy
 msgid "Host MIB General Settings"
-msgstr ""
+msgstr "הגדרות כלליות MIB מארח"
 
 #: ../setup.php:362
+#, fuzzy
 msgid "Host MIB Poller Enabled"
-msgstr ""
+msgstr "מארח MIB Poller זמין"
 
 #: ../setup.php:363
+#, fuzzy
 msgid ""
 "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the "
 "poller will not function."
 msgstr ""
+"סמן תיבה זו, אם ברצונך שהסקירה של MIB מאופשרת תהיה זמינה. אחרת, הסוקר לא "
+"יפעל."
 
 #: ../setup.php:368
+#, fuzzy
 msgid "Automatically Discover Cacti Devices"
-msgstr ""
+msgstr "אוטומטית לגלות התקנים קקטוסים"
 
 #: ../setup.php:369
+#, fuzzy
 msgid ""
 "Do you wish to automatically scan for and add devices which support the Host "
 "Resource MIB from the Cacti host table?"
 msgstr ""
+"האם אתה רוצה באופן אוטומטי לסרוק ולהוסיף התקנים התומכים משאבים מארח MIB "
+"מהטבלה מארח Cacti?"
 
 #: ../setup.php:374
+#, fuzzy
 msgid "Automatically Purge Devices"
-msgstr ""
+msgstr "באופן אוטומטי לטהר התקנים"
 
 #: ../setup.php:375
+#, fuzzy
 msgid ""
 "Do you wish to automatically purge devices that are removed from the Cacti "
 "system?"
-msgstr ""
+msgstr "האם אתה רוצה לטהר באופן אוטומטי התקנים מוסרים ממערכת Cacti?"
 
 #: ../setup.php:380
+#, fuzzy
 msgid "Default Row Count"
-msgstr ""
+msgstr "ספירת שורה ברירת מחדל"
 
 #: ../setup.php:381
+#, fuzzy
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
-msgstr ""
+msgstr "כמה שורות אתה רוצה לראות על סוג HMIB OS כברירת מחדל?"
 
 #: ../setup.php:387
+#, fuzzy
 msgid "Default Top Host Types"
-msgstr ""
+msgstr "ברירת המחדל של סוגי מארח מובילים"
 
 #: ../setup.php:388 ../setup.php:399
+#, fuzzy
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
-msgstr ""
+msgstr "כמה תהליכים אתה רוצה לראות על לוח המחוונים HMIB כברירת מחדל?"
 
 #: ../setup.php:392 ../setup.php:393 ../setup.php:394 ../setup.php:395
-#, php-format
+#, fuzzy, php-format
 msgid "%d Types"
-msgstr ""
+msgstr "% d סוגים"
 
 #: ../setup.php:398
+#, fuzzy
 msgid "Default Top Processes"
-msgstr ""
+msgstr "תהליכי ברירת מחדל מובילים"
 
 #: ../setup.php:403 ../setup.php:404 ../setup.php:405 ../setup.php:406
 #: ../setup.php:415 ../setup.php:416 ../setup.php:417 ../setup.php:418
 #: ../setup.php:419 ../setup.php:420 ../setup.php:421 ../setup.php:422
 #: ../setup.php:423
-#, php-format
+#, fuzzy, php-format
 msgid "%d Processes"
-msgstr ""
+msgstr "% d תהליכים"
 
 #: ../setup.php:409
+#, fuzzy
 msgid "Maximum Concurrent Collectors"
-msgstr ""
+msgstr "מקסימום מקביל אספנים"
 
 #: ../setup.php:410
+#, fuzzy
 msgid ""
 "What is the maximum number of concurrent collector process that you want to "
 "run at one time?"
-msgstr ""
+msgstr "מהו המספר המקסימלי של תהליך אספן בו זמנית שברצונך להפעיל בו-זמנית?"
 
 #: ../setup.php:414
-#, php-format
+#, fuzzy, php-format
 msgid "%d Process"
-msgstr ""
+msgstr "תהליך% d"
 
 #: ../setup.php:426
+#, fuzzy
 msgid "Host Auto Discovery Frequency"
-msgstr ""
+msgstr "מארח גילוי אוטומטי תדר"
 
 #: ../setup.php:430
+#, fuzzy
 msgid "Auto Discovery Frequency"
-msgstr ""
+msgstr "גילוי אוטומטי של תדר"
 
 #: ../setup.php:431
+#, fuzzy
 msgid "How often do you want to look for new Cacti Devices?"
-msgstr ""
+msgstr "כמה פעמים אתה רוצה לחפש חדש Cacti התקנים?"
 
 #: ../setup.php:437
+#, fuzzy
 msgid "Host Graph Automation"
-msgstr ""
+msgstr "גרף מארח אוטומציה"
 
 #: ../setup.php:441
+#, fuzzy
 msgid "Automatically Add New Graphs"
-msgstr ""
+msgstr "הוסף אוטומטית גרפים חדשים"
 
 #: ../setup.php:442
+#, fuzzy
 msgid "How often do you want to check for new objects to graph?"
-msgstr ""
+msgstr "באיזו תדירות אתה רוצה לבדוק אובייקטים חדשים גרף?"
 
 #: ../setup.php:446
+#, fuzzy
 msgid "Never"
-msgstr ""
+msgstr "לעולם לא"
 
 #: ../setup.php:447 ../setup.php:511
-#, php-format
+#, fuzzy, php-format
 msgid "%d Hour"
-msgstr ""
+msgstr "% d שעה"
 
 #: ../setup.php:448 ../setup.php:512 ../setup.php:513 ../setup.php:514
-#, php-format
+#, fuzzy, php-format
 msgid "%d Hours"
-msgstr ""
+msgstr "% d שעות"
 
 #: ../setup.php:449 ../setup.php:515
-#, php-format
+#, fuzzy, php-format
 msgid "%d Day"
-msgstr ""
+msgstr "% d יום"
 
 #: ../setup.php:450
-#, php-format
+#, fuzzy, php-format
 msgid "%d Days"
-msgstr ""
+msgstr "%d ימים"
 
 #: ../setup.php:453
+#, fuzzy
 msgid "Host MIB Table Collection Frequencies"
-msgstr ""
+msgstr "מארח MIB טבלה אוסף תדרים"
 
 #: ../setup.php:457
+#, fuzzy
 msgid "Running Programs Frequency"
-msgstr ""
+msgstr "תדירות הפעלת תוכניות"
 
 #: ../setup.php:458
+#, fuzzy
 msgid "How often do you want to scan running software?"
-msgstr ""
+msgstr "באיזו תדירות ברצונך לסרוק תוכנות ריצה?"
 
 #: ../setup.php:464
+#, fuzzy
 msgid "Running Programs CPU/Memory Frequency"
-msgstr ""
+msgstr "הפעלת תוכניות מעבד / תדר זיכרון"
 
 #: ../setup.php:465
+#, fuzzy
 msgid "How often do you want to scan running software for performance data?"
-msgstr ""
+msgstr "באיזו תדירות אתה רוצה לסרוק תוכנות פועלות עבור נתוני ביצועים?"
 
 #: ../setup.php:471
+#, fuzzy
 msgid "Installed Software Frequency"
-msgstr ""
+msgstr "תדירות תוכנה מותקנת"
 
 #: ../setup.php:472
+#, fuzzy
 msgid "How often do you want to scan for installed software?"
-msgstr ""
+msgstr "באיזו תדירות ברצונך לסרוק את התוכנה המותקנת?"
 
 #: ../setup.php:478
+#, fuzzy
 msgid "Storage Frequency"
-msgstr ""
+msgstr "תדר אחסון"
 
 #: ../setup.php:479
+#, fuzzy
 msgid "How often do you want to scan for Storage performance data?"
-msgstr ""
+msgstr "באיזו תדירות ברצונך לסרוק נתוני ביצועים של אחסון?"
 
 #: ../setup.php:485
+#, fuzzy
 msgid "Device Frequency"
-msgstr ""
+msgstr "תדירות מכשירים"
 
 #: ../setup.php:486
+#, fuzzy
 msgid "How often do you want to scan for Device performance data?"
-msgstr ""
+msgstr "באיזו תדירות ברצונך לסרוק את נתוני ביצועי המכשיר?"
 
 #: ../setup.php:492
+#, fuzzy
 msgid "Processor Frequency"
-msgstr ""
+msgstr "תדר המעבד"
 
 #: ../setup.php:493
+#, fuzzy
 msgid "How often do you want to scan for Processor performance data?"
-msgstr ""
+msgstr "באיזו תדירות ברצונך לסרוק את נתוני הביצועים של המעבד?"
 
 #: ../setup.php:506 ../hmib.php:1584 ../hmib.php:2371
+#, fuzzy
 msgid "Disabled"
-msgstr ""
+msgstr "לא זמין"
 
 #: ../setup.php:507
-#, php-format
+#, fuzzy, php-format
 msgid "%d Minute"
-msgstr ""
+msgstr "% d דקות"
 
 #: ../setup.php:508 ../setup.php:509 ../setup.php:510
-#, php-format
+#, fuzzy, php-format
 msgid "%d Minutes"
-msgstr ""
+msgstr "דקות %d"
 
 #: ../setup.php:589
+#, fuzzy
 msgid "Management"
-msgstr ""
+msgstr "ניהול"
 
 #: ../setup.php:593 ../setup.php:594
+#, fuzzy
 msgid "Host MIB Inventory Summary"
-msgstr ""
+msgstr "המארח סיכום מלאי MIB"
 
 #: ../setup.php:595
+#, fuzzy
 msgid "Host MIB Details"
-msgstr ""
+msgstr "MIB מארח פרטים"
 
 #: ../setup.php:596
+#, fuzzy
 msgid "Host MIB Storage"
-msgstr ""
+msgstr "אחסון MIB מארח"
 
 #: ../setup.php:597
+#, fuzzy
 msgid "Host MIB Hardware"
-msgstr ""
+msgstr "מארח חומרה MIB"
 
 #: ../setup.php:598
+#, fuzzy
 msgid "Host MIB Running Processes"
-msgstr ""
+msgstr "מארח MIB הפעלת תהליכים"
 
 #: ../setup.php:599
+#, fuzzy
 msgid "Host MIB Process Use History"
-msgstr ""
+msgstr "תהליך MIB מארח שימוש בהיסטוריה"
 
 #: ../setup.php:600
+#, fuzzy
 msgid "Host MIB Software Inventory"
-msgstr ""
+msgstr "מארח MIB מלאי תוכנה"
 
 #: ../setup.php:601
+#, fuzzy
 msgid "Host MIB Graphs"
-msgstr ""
+msgstr "מארח MIB גרפים"
 
 #: ../setup.php:603
+#, fuzzy
 msgid "Host MIB OS Types"
-msgstr ""
+msgstr "מארח MIB OS סוגי"
 
 #: ../setup.php:604 ../hmib.php:1672 ../hmib.php:2365 ../hmib.php:2553
+#, fuzzy
 msgid "Actions"
-msgstr ""
+msgstr "פעולות"
 
 #: ../setup.php:605
+#, fuzzy
 msgid "(Edit)"
-msgstr ""
+msgstr "(עריכה)"
 
 #: ../hmib.php:36
+#, fuzzy
 msgid "Error"
-msgstr ""
+msgstr "שגיאה"
 
 #: ../hmib.php:38
+#, fuzzy
 msgid "Operating System"
-msgstr ""
+msgstr "מערכת הפעלה"
 
 #: ../hmib.php:39
+#, fuzzy
 msgid "Device Driver"
-msgstr ""
+msgstr "מנהל התקן"
 
 #: ../hmib.php:40
+#, fuzzy
 msgid "Application"
-msgstr ""
+msgstr "תפריט"
 
 #: ../hmib.php:44 ../hmib.php:53
+#, fuzzy
 msgid "Running"
-msgstr ""
+msgstr "פועל"
 
 #: ../hmib.php:45
+#, fuzzy
 msgid "Runnable"
-msgstr ""
+msgstr "Runnable"
 
 #: ../hmib.php:46
+#, fuzzy
 msgid "Not Runnable"
-msgstr ""
+msgstr "לא Runnable"
 
 #: ../hmib.php:47
+#, fuzzy
 msgid "Invalid"
-msgstr ""
+msgstr "לא תקין"
 
 #: ../hmib.php:51
+#, fuzzy
 msgid "Present"
-msgstr ""
+msgstr "נוכח"
 
 #: ../hmib.php:54
+#, fuzzy
 msgid "Warning"
-msgstr ""
+msgstr "אזהרה"
 
 #: ../hmib.php:55
+#, fuzzy
 msgid "Testing"
-msgstr ""
+msgstr "בדיקה"
 
 #: ../hmib.php:56 ../hmib.php:1575 ../hmib.php:2370
+#, fuzzy
 msgid "Down"
-msgstr ""
+msgstr "למטה"
 
 #: ../hmib.php:180
+#, fuzzy
 msgid "Running Process History"
-msgstr ""
+msgstr "הפעלת היסטוריית תהליכים"
 
 #: ../hmib.php:193 ../hmib.php:214 ../hmib.php:236 ../hmib.php:275
 #: ../hmib.php:524 ../hmib.php:545 ../hmib.php:567 ../hmib.php:606
@@ -613,405 +750,505 @@ msgstr ""
 #: ../hmib.php:1179 ../hmib.php:1199 ../hmib.php:1221 ../hmib.php:1260
 #: ../hmib.php:1485 ../hmib.php:1505 ../hmib.php:1528 ../hmib.php:1560
 #: ../hmib.php:1910 ../hmib.php:1931 ../hmib.php:1953 ../hmib.php:1992
+#, fuzzy
 msgid "All"
-msgstr ""
+msgstr "הכל"
 
 #: ../hmib.php:210 ../hmib.php:541 ../hmib.php:890 ../hmib.php:1195
 #: ../hmib.php:1927
+#, fuzzy
 msgid "Device"
-msgstr ""
+msgstr "התקן"
 
 #: ../hmib.php:232 ../hmib.php:563 ../hmib.php:912 ../hmib.php:1217
 #: ../hmib.php:1501 ../hmib.php:1949
+#, fuzzy
 msgid "Template"
-msgstr ""
+msgstr "תבנית"
 
 #: ../hmib.php:271 ../hmib.php:379 ../hmib.php:602 ../hmib.php:721
 #: ../hmib.php:1524
+#, fuzzy
 msgid "Process"
-msgstr ""
+msgstr "תהליך"
 
 #: ../hmib.php:291 ../hmib.php:622 ../hmib.php:970
+#, fuzzy
 msgid "Entries"
-msgstr ""
+msgstr "רשומות"
 
 #: ../hmib.php:371
+#, fuzzy
 msgid "History"
-msgstr ""
+msgstr "היסטוריה"
 
 #: ../hmib.php:378 ../hmib.php:720 ../hmib.php:1046 ../hmib.php:1351
 #: ../hmib.php:1673 ../hmib.php:2084
+#, fuzzy
 msgid "Hostname"
-msgstr ""
+msgstr "שם מארח"
 
 #: ../hmib.php:380
+#, fuzzy
 msgid "Last Seen"
-msgstr ""
+msgstr "נראה לאחרונה"
 
 #: ../hmib.php:381
+#, fuzzy
 msgid "Use Time (d:h:m)"
-msgstr ""
+msgstr "השתמש בזמן (d: h: m)"
 
 #: ../hmib.php:390 ../hmib.php:736 ../hmib.php:1059 ../hmib.php:1367
 #: ../hmib.php:1744 ../hmib.php:2096
+#, fuzzy
 msgid "Edit Device"
-msgstr ""
+msgstr "ערוך את המכשיר"
 
 #: ../hmib.php:397
+#, fuzzy
 msgid "Time when last seen running"
-msgstr ""
+msgstr "הזמן שבו נראה לאחרונה רץ"
 
 #: ../hmib.php:402
+#, fuzzy
 msgid "No Process History Found"
-msgstr ""
+msgstr "לא נמצאה היסטוריה של תהליכים"
 
 #: ../hmib.php:511
+#, fuzzy
 msgid "Running Processes"
-msgstr ""
+msgstr "הפעלת תהליכים"
 
 #: ../hmib.php:713 ../hmib.php:1679 ../hmib.php:2127 ../hmib.php:2557
+#, fuzzy
 msgid "Processes"
-msgstr ""
+msgstr "לא הצלחנו לעבד את התרומה  שלך, אנא נסה שוב."
 
 #: ../hmib.php:722
+#, fuzzy
 msgid "Path"
-msgstr ""
+msgstr "נתיב"
 
 #: ../hmib.php:723
+#, fuzzy
 msgid "Parameters"
-msgstr ""
+msgstr "פרמטרים"
 
 #: ../hmib.php:724
+#, fuzzy
 msgid "CPU (Hrs)"
-msgstr ""
+msgstr "CPU (שעות)"
 
 #: ../hmib.php:725
+#, fuzzy
 msgid "Memory (MB)"
-msgstr ""
+msgstr "זיכרון (MB)"
 
 #: ../hmib.php:726 ../hmib.php:951 ../hmib.php:1256 ../hmib.php:1988
 #: ../hmib.php:2086 ../hmib.php:2366
+#, fuzzy
 msgid "Type"
-msgstr ""
+msgstr "סוג"
 
 #: ../hmib.php:727 ../hmib.php:1049 ../hmib.php:1556 ../hmib.php:1674
+#, fuzzy
 msgid "Status"
-msgstr ""
+msgstr "סטטוס"
 
 #: ../hmib.php:752
+#, fuzzy
 msgid "No Running Software Found"
-msgstr ""
+msgstr "לא נמצאה תוכנת הפעלה"
 
 #: ../hmib.php:767
+#, fuzzy
 msgid "Total CPU [h]:"
-msgstr ""
+msgstr "סה\"כ מעבד [h]:"
 
 #: ../hmib.php:768
+#, fuzzy
 msgid "Total Size [MB]:"
-msgstr ""
+msgstr "סה\"כ גודל [MB]:"
 
 #: ../hmib.php:771
+#, fuzzy
 msgid "Avg. CPU [h]:"
-msgstr ""
+msgstr "ממוצע CPU [h]:"
 
 #: ../hmib.php:772
+#, fuzzy
 msgid "Avg. Size [MB]:"
-msgstr ""
+msgstr "ממוצע גודל [MB]:"
 
 #: ../hmib.php:861
+#, fuzzy
 msgid "Hardware Inventory"
-msgstr ""
+msgstr "מלאי חומרה"
 
 #: ../hmib.php:1039 ../hmib.php:1594 ../hmib.php:1665 ../hmib.php:2124
+#, fuzzy
 msgid "Devices"
 msgstr ""
+"ניתן להתנתק מכל ההתקנים האחרים, כגון טלפון נייד או מחשב ציבורי, על ידי לחיצה "
+"על כפתור התנתקות מכל ההתקנים האחרים."
 
 #: ../hmib.php:1047
+#, fuzzy
 msgid "Hardware Description"
-msgstr ""
+msgstr "תיאור חומרה"
 
 #: ../hmib.php:1048
+#, fuzzy
 msgid "Hardware Type"
-msgstr ""
+msgstr "סוג חומרה"
 
 #: ../hmib.php:1050 ../hmib.php:1354
+#, fuzzy
 msgid "Errors"
-msgstr ""
+msgstr "שגיאות"
 
 #: ../hmib.php:1072
+#, fuzzy
 msgid "No Hardware Found"
-msgstr ""
+msgstr "לא נמצאה חומרה"
 
 #: ../hmib.php:1166
+#, fuzzy
 msgid "Storage Inventory"
-msgstr ""
+msgstr "מלאי אחסון"
 
 #: ../hmib.php:1275 ../hmib.php:1344
+#, fuzzy
 msgid "Volumes"
-msgstr ""
+msgstr "כרכים"
 
 #: ../hmib.php:1352
+#, fuzzy
 msgid "Storage Description"
-msgstr ""
+msgstr "תיאור אחסון"
 
 #: ../hmib.php:1353
+#, fuzzy
 msgid "Storage Type"
-msgstr ""
+msgstr "סוג אחסון"
 
 #: ../hmib.php:1355
+#, fuzzy
 msgid "Percent Used"
-msgstr ""
+msgstr "אחוז משומש"
 
 #: ../hmib.php:1356
+#, fuzzy
 msgid "Used (MB)"
-msgstr ""
+msgstr "משמש (MB)"
 
 #: ../hmib.php:1357
+#, fuzzy
 msgid "Total (MB)"
-msgstr ""
+msgstr "סה\"כ (MB)"
 
 #: ../hmib.php:1358
+#, fuzzy
 msgid "Alloc (KB)"
-msgstr ""
+msgstr "Alloc (KB)"
 
 #: ../hmib.php:1383
+#, fuzzy
 msgid "No Storage Devices Found"
-msgstr ""
+msgstr "לא נמצאו התקני אחסון"
 
 #: ../hmib.php:1472
+#, fuzzy
 msgid "Device Filter"
-msgstr ""
+msgstr "מסנן התקנים"
 
 #: ../hmib.php:1578 ../hmib.php:2369
+#, fuzzy
 msgid "Recovering"
-msgstr ""
+msgstr "שחזור"
 
 #: ../hmib.php:1581 ../hmib.php:2368
+#, fuzzy
 msgid "Up"
-msgstr ""
+msgstr "למעלה"
 
 #: ../hmib.php:1675
+#, fuzzy
 msgid "Uptime(d:h:m)"
-msgstr ""
+msgstr "Uptime (d: h: m)"
 
 #: ../hmib.php:1676
+#, fuzzy
 msgid "Users"
-msgstr ""
+msgstr "משתמשים"
 
 #: ../hmib.php:1677
+#, fuzzy
 msgid "CPU %"
-msgstr ""
+msgstr "מעבד %"
 
 #: ../hmib.php:1678
+#, fuzzy
 msgid "CPUs"
-msgstr ""
+msgstr "מעבדים"
 
 #: ../hmib.php:1680
+#, fuzzy
 msgid "Total Mem"
-msgstr ""
+msgstr "סך הכל"
 
 #: ../hmib.php:1681
+#, fuzzy
 msgid "Used Mem"
-msgstr ""
+msgstr "זיכרון משומש"
 
 #: ../hmib.php:1682
+#, fuzzy
 msgid "Total Swap"
-msgstr ""
+msgstr "סה\"כ החלפה"
 
 #: ../hmib.php:1683
+#, fuzzy
 msgid "Used Swap"
-msgstr ""
+msgstr "החלפה משומשת"
 
 #: ../hmib.php:1729 ../hmib.php:2410
+#, fuzzy
 msgid "View Storage"
-msgstr ""
+msgstr "הצג אחסון"
 
 #: ../hmib.php:1730 ../hmib.php:2411
+#, fuzzy
 msgid "View Hardware"
-msgstr ""
+msgstr "הצג חומרה"
 
 #: ../hmib.php:1731 ../hmib.php:2412 ../hmib.php:2583
+#, fuzzy
 msgid "View Processes"
-msgstr ""
+msgstr "הצג תהליכים"
 
 #: ../hmib.php:1732 ../hmib.php:2413
+#, fuzzy
 msgid "View Software Inventory"
-msgstr ""
+msgstr "הצג מלאי תוכנה"
 
 #: ../hmib.php:1734 ../hmib.php:2651 ../hmib.php:2653 ../hmib.php:2703
 #: ../hmib.php:2705
+#, fuzzy
 msgid "View Graphs"
-msgstr ""
+msgstr "הצג גרפים"
 
 #: ../hmib.php:1736
+#, fuzzy
 msgid "No Graphs Defined"
-msgstr ""
+msgstr "לא הוגדרו גרפים"
 
 #: ../hmib.php:1764
+#, fuzzy
 msgid "No Devices Found"
-msgstr ""
+msgstr "לא נמצאו מכשירים"
 
 #: ../hmib.php:1897
+#, fuzzy
 msgid "Software Inventory"
-msgstr ""
+msgstr "מלאי תוכנה"
 
 #: ../hmib.php:2007 ../hmib.php:2077
+#, fuzzy
 msgid "Applications"
-msgstr ""
+msgstr "יישומים"
 
 #: ../hmib.php:2085
+#, fuzzy
 msgid "Package"
-msgstr ""
+msgstr "חבילה"
 
 #: ../hmib.php:2087
+#, fuzzy
 msgid "Installed"
-msgstr ""
+msgstr "מותקן"
 
 #: ../hmib.php:2108
+#, fuzzy
 msgid "No Software Packages Found"
-msgstr ""
+msgstr "לא נמצאו חבילות תוכנה"
 
 #: ../hmib.php:2123
+#, fuzzy
 msgid "Summary"
-msgstr ""
+msgstr "סיכום"
 
 #: ../hmib.php:2125
+#, fuzzy
 msgid "Storage"
-msgstr ""
+msgstr "אחסון"
 
 #: ../hmib.php:2126
+#, fuzzy
 msgid "Hardware"
-msgstr ""
+msgstr "חומרה"
 
 #: ../hmib.php:2128
+#, fuzzy
 msgid "Use History"
-msgstr ""
+msgstr "השתמש בהיסטוריה"
 
 #: ../hmib.php:2129
+#, fuzzy
 msgid "Inventory"
-msgstr ""
+msgstr "מלאי"
 
 #: ../hmib.php:2130
+#, fuzzy
 msgid "Graphs"
-msgstr ""
+msgstr "גרפים"
 
 #: ../hmib.php:2289
+#, fuzzy
 msgid "Summary Filter"
-msgstr ""
+msgstr "מסנן סיכום"
 
 #: ../hmib.php:2298 ../hmib.php:2486
+#, fuzzy
 msgid "Top"
-msgstr ""
+msgstr "עליון"
 
 #: ../hmib.php:2302 ../hmib.php:2490
+#, fuzzy
 msgid "All Records"
-msgstr ""
+msgstr "כל הרשומות"
 
 #: ../hmib.php:2303 ../hmib.php:2491 ../hmib.php:2492 ../hmib.php:2493
 #: ../hmib.php:2494
-#, php-format
+#, fuzzy, php-format
 msgid "%d Records"
-msgstr ""
+msgstr "% d רשומות"
 
 #: ../hmib.php:2304 ../hmib.php:2305 ../hmib.php:2306
-#, php-format
+#, fuzzy, php-format
 msgid "%d Record"
-msgstr ""
+msgstr "% d רשומה"
 
 #: ../hmib.php:2316 ../hmib.php:2504
+#, fuzzy
 msgid ""
 "WARNING: You need to import your Host MIB Host Template to view Graphs.  See "
 "the README for more information."
 msgstr ""
+"אזהרה: אתה צריך לייבא מארח מארח MIB תבנית כדי להציג תרשימים. לקבלת מידע "
+"נוסף, עיין ב README."
 
 #: ../hmib.php:2327
+#, fuzzy
 msgid "Device Type Summary Statistics"
-msgstr ""
+msgstr "נתונים סטטיסטיים סיכום סוג התקן"
 
 #: ../hmib.php:2372
+#, fuzzy
 msgid "Logins"
-msgstr ""
+msgstr "התחברויות"
 
 #: ../hmib.php:2373
+#, fuzzy
 msgid "CPUS"
-msgstr ""
+msgstr "CPUS"
 
 #: ../hmib.php:2374 ../hmib.php:2558
+#, fuzzy
 msgid "Avg CPU"
-msgstr ""
+msgstr "מעבד ממוצע"
 
 #: ../hmib.php:2375 ../hmib.php:2559
+#, fuzzy
 msgid "Max CPU"
-msgstr ""
+msgstr "מעבד מקסימלי"
 
 #: ../hmib.php:2376
+#, fuzzy
 msgid "Avg Mem"
-msgstr ""
+msgstr "זיכרון ממוצע"
 
 #: ../hmib.php:2377
+#, fuzzy
 msgid "Max Mem"
-msgstr ""
+msgstr "מקס ממ"
 
 #: ../hmib.php:2378
+#, fuzzy
 msgid "Avg Swap"
-msgstr ""
+msgstr "החלפה ממוצעת"
 
 #: ../hmib.php:2379
+#, fuzzy
 msgid "Max Swap"
-msgstr ""
+msgstr "החלפה מקסימלית"
 
 #: ../hmib.php:2380
+#, fuzzy
 msgid "Avg Proc"
-msgstr ""
+msgstr "עיבוד ממוצע"
 
 #: ../hmib.php:2381
+#, fuzzy
 msgid "Max Proc"
-msgstr ""
+msgstr "מקס Proc"
 
 #: ../hmib.php:2409 ../hmib.php:2582 ../hmib.php:2608
+#, fuzzy
 msgid "View Devices"
-msgstr ""
+msgstr "הצג מכשירים"
 
 #: ../hmib.php:2442
+#, fuzzy
 msgid "No Device Types"
-msgstr ""
+msgstr "אין סוגי מכשירים"
 
 #: ../hmib.php:2447
+#, fuzzy
 msgid "Process Summary Filter"
-msgstr ""
+msgstr "מסנן סיכום התהליך"
 
 #: ../hmib.php:2515
+#, fuzzy
 msgid "Process Summary Statistics"
-msgstr ""
+msgstr "סיכום סיכום הסטטיסטיקה"
 
 #: ../hmib.php:2554
+#, fuzzy
 msgid "Process Name"
-msgstr ""
+msgstr "שם התהליך"
 
 #: ../hmib.php:2555
+#, fuzzy
 msgid "Num Paths"
-msgstr ""
+msgstr "נתיבים"
 
 #: ../hmib.php:2560
+#, fuzzy
 msgid "Avg Memory"
-msgstr ""
+msgstr "זיכרון ממוצע"
 
 #: ../hmib.php:2561
+#, fuzzy
 msgid "Max Memory"
-msgstr ""
+msgstr "זיכרון מרבי"
 
 #: ../hmib.php:2598
+#, fuzzy
 msgid "No Processes"
-msgstr ""
+msgstr "לא הצלחנו לעבד את התרומה  שלך, אנא נסה שוב."
 
 #: ../hmib.php:2659 ../hmib.php:2711
+#, fuzzy
 msgid "Please Select Data Query First from Console->Settings->Host Mib First"
-msgstr ""
+msgstr "נא בחר שאילתת נתונים תחילה מ- Console-> Settings-> Host Mib תחילה"
 
 #: ../hmib.php:2752
+#, fuzzy
 msgid "Graph Preview Filters"
-msgstr ""
+msgstr "מסננים תצוגה מקדימה של גרף"
 
 #: ../hmib.php:2752
+#, fuzzy
 msgid "Custom Graph List Applied - Filtering from List"
-msgstr ""
+msgstr "רשימת גרפים מותאמים אישית - מסננים מהרשימה"

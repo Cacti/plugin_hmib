@@ -5,155 +5,189 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-29 23:10-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: zh-TW\n"
+"PO-Revision-Date: 2019-03-16 23:49-0400\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: ../hmib_types.php:30
+#, fuzzy
 msgid "Delete"
-msgstr ""
+msgstr "刪除"
 
 #: ../hmib_types.php:31
+#, fuzzy
 msgid "Duplicate"
-msgstr ""
+msgstr "複製"
 
 #: ../hmib_types.php:226
+#, fuzzy
 msgid "Click 'Continue' to Delete the following Host Type(s)"
-msgstr ""
+msgstr "單擊“繼續”以刪除以下主機類型"
 
 #: ../hmib_types.php:231 ../hmib_types.php:241 ../hmib_types.php:246
+#, fuzzy
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: ../hmib_types.php:231 ../hmib_types.php:241
+#, fuzzy
 msgid "Continue"
-msgstr ""
+msgstr "繼續"
 
 #: ../hmib_types.php:231
+#, fuzzy
 msgid "Delete Host Type(s)"
-msgstr ""
+msgstr "刪除主機類型"
 
 #: ../hmib_types.php:235
+#, fuzzy
 msgid ""
 "Click 'Continue' to Duplicate the following Host Type(s). You may optionally "
 "change the description for the new Host Type(s).  Otherwise, do not change "
 "value below and the original name will be replicated with a new suffix."
 msgstr ""
+"單擊“繼續”以復制以下主機類型。您可以選擇更改新主機類型的描述。否則，請勿更改"
+"以下值，並使用新後綴複製原始名稱。"
 
 #: ../hmib_types.php:237
+#, fuzzy
 msgid "Host Type Prefix:"
-msgstr ""
+msgstr "主機類型前綴："
 
 #: ../hmib_types.php:241
+#, fuzzy
 msgid "Duplicate Host Type(s)"
-msgstr ""
+msgstr "重複的主機類型"
 
 #: ../hmib_types.php:245
+#, fuzzy
 msgid "You must select at least one Host Type."
-msgstr ""
+msgstr "您必須至少選擇一種主機類型。"
 
 #: ../hmib_types.php:352
+#, fuzzy
 msgid "New Type"
-msgstr ""
+msgstr "新增類型"
 
 #: ../hmib_types.php:353 ../hmib.php:37 ../hmib.php:52 ../hmib.php:747
 #: ../hmib.php:1066 ../hmib.php:1374 ../hmib.php:1572 ../hmib.php:2103
 #: ../hmib.php:2422
+#, fuzzy
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #: ../hmib_types.php:397
-#, php-format
+#, fuzzy, php-format
 msgid "There were %d Device Types Added!"
-msgstr ""
+msgstr "有％d個設備類型已添加！"
 
 #: ../hmib_types.php:400
+#, fuzzy
 msgid "No New Host Types Found!"
-msgstr ""
+msgstr "找不到新的主機類型！"
 
 #: ../hmib_types.php:411
+#, fuzzy
 msgid "Import Results"
-msgstr ""
+msgstr "匯入結果"
 
 #: ../hmib_types.php:413
+#, fuzzy
 msgid "Cacti has imported the following items:"
-msgstr ""
+msgstr "Cacti已導入以下物品："
 
 #: ../hmib_types.php:425
+#, fuzzy
 msgid "Import Host MIB OS Types"
-msgstr ""
+msgstr "導入主機MIB操作系統類型"
 
 #: ../hmib_types.php:428
+#, fuzzy
 msgid "Import Device Types from Local File"
-msgstr ""
+msgstr "從本地文件導入設備類型"
 
 #: ../hmib_types.php:429
+#, fuzzy
 msgid ""
 "Please specify the location of the CSV file containing your device type "
 "information."
-msgstr ""
+msgstr "請指定包含設備類型信息的CSV文件的位置。"
 
 #: ../hmib_types.php:436
+#, fuzzy
 msgid "Overwrite Existing Data?"
-msgstr ""
+msgstr "覆蓋現有數據？"
 
 #: ../hmib_types.php:437
+#, fuzzy
 msgid ""
 "Should the import process be allowed to overwrite existing data?  Please "
 "note, this does not mean delete old row, only replace duplicate rows."
 msgstr ""
+"是否允許導入過程覆蓋現有數據？請注意，這並不意味著刪除舊行，只替換重複行。"
 
 #: ../hmib_types.php:440
+#, fuzzy
 msgid "Allow Existing Rows to be Updated?"
-msgstr ""
+msgstr "允許更新現有行？"
 
 #: ../hmib_types.php:445
+#, fuzzy
 msgid "Required File Format Notes"
-msgstr ""
+msgstr "所需的文件格式說明"
 
 #: ../hmib_types.php:448
+#, fuzzy
 msgid "The file must contain a header row with the following column headings."
-msgstr ""
+msgstr "該文件必須包含帶有以下列標題的標題行。"
 
 #: ../hmib_types.php:450
+#, fuzzy
 msgid "A common name for the Host Type.  For example, Windows 7"
-msgstr ""
+msgstr "主機類型的通用名稱。例如，Windows 7"
 
 #: ../hmib_types.php:451
+#, fuzzy
 msgid "The OS version for the Host Type"
-msgstr ""
+msgstr "主機類型的操作系統版本"
 
 #: ../hmib_types.php:452
+#, fuzzy
 msgid ""
 "A unique set of characters from the snmp sysDescr that uniquely identify "
 "this device"
-msgstr ""
+msgstr "snmp sysDescr中唯一一組唯一標識此設備的字符"
 
 #: ../hmib_types.php:453
+#, fuzzy
 msgid ""
 "The vendor specific snmp sysObjectID that distinguishes this device from the "
 "next"
-msgstr ""
+msgstr "特定於供應商的snmp sysObjectID，用於區分此設備與下一個設備"
 
 #: ../hmib_types.php:455
+#, fuzzy
 msgid ""
 "The primary key for this table is a combination of the following two fields:"
-msgstr ""
+msgstr "此表的主鍵是以下兩個字段的組合："
 
 #: ../hmib_types.php:459
+#, fuzzy
 msgid ""
 "Therefore, if you attempt to import duplicate device types, the existing "
 "data will be updated with the new information."
-msgstr ""
+msgstr "因此，如果您嘗試導入重複的設備類型，將使用新信息更新現有數據。"
 
 #: ../hmib_types.php:461
+#, fuzzy
 msgid ""
 "The Host Type is determined by scanning its snmp agent for the sysObjectID "
 "and sysDescription and comparing it against values in the Host Types "
@@ -161,451 +195,547 @@ msgid ""
 "Host data.  Therefore, it is very important that you select valid "
 "sysObjectID, sysDescrMatch for your Hosts."
 msgstr ""
+"通過掃描其snmp代理程序以查找sysObjectID和sysDescription並將其與主機類型數據庫"
+"中的值進行比較來確定主機類型。在數據庫中找到的第一個匹配項使用聚合主機數據。"
+"因此，為主機選擇有效的sysObjectID，sysDescrMatch非常重要。"
 
 #: ../hmib_types.php:726
+#, fuzzy
 msgid "Are You Sure?"
-msgstr ""
+msgstr "你確定嗎？"
 
 #: ../hmib_types.php:726
-#, php-format
+#, fuzzy, php-format
 msgid "Are you sure you want to delete the Host Type'%s'"
-msgstr ""
+msgstr "您確定要刪除主機類型'％s'嗎？"
 
 #: ../hmib_types.php:747
+#, fuzzy
 msgid "Device Scanning Function Options"
-msgstr ""
+msgstr "設備掃描功能選項"
 
 #: ../hmib_types.php:751
+#, fuzzy
 msgid "Name"
-msgstr ""
+msgstr "名稱"
 
 #: ../hmib_types.php:752
+#, fuzzy
 msgid "Give this Host Type a meaningful name."
-msgstr ""
+msgstr "為此主機類型提供有意義的名稱。"
 
 #: ../hmib_types.php:758 ../hmib.php:2367
+#, fuzzy
 msgid "Version"
-msgstr ""
+msgstr "版本"
 
 #: ../hmib_types.php:759
+#, fuzzy
 msgid "Fill in the name for the version of this Host Type."
-msgstr ""
+msgstr "填寫此主機類型版本的名稱。"
 
 #: ../hmib_types.php:766
+#, fuzzy
 msgid "System Description Match"
-msgstr ""
+msgstr "系統描述匹配"
 
 #: ../hmib_types.php:767 ../hmib_types.php:774
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "Provide key information to help HMIB detect the type of Host.  SQL Where "
 "expressions are supported.  SQL Where wildcard character is the '%' sign. "
 "Regular Expressions have been removed due to compatibility issues."
 msgstr ""
+"提供關鍵信息以幫助HMIB檢測主機類型。 SQL支持表達式的位置。 SQL其中通配符"
+"是'％'符號。由於兼容性問題，已刪除正則表達式。"
 
 #: ../hmib_types.php:773
+#, fuzzy
 msgid "Vendor snmp Object ID"
-msgstr ""
+msgstr "供應商snmp對象ID"
 
 #: ../hmib_types.php:794
-#, php-format
+#, fuzzy, php-format
 msgid "Host MIB OS Types [edit: %s]"
-msgstr ""
+msgstr "主機MIB操作系統類型[編輯：％s]"
 
 #: ../hmib_types.php:796
+#, fuzzy
 msgid "Host MIB OS Types [new]"
-msgstr ""
+msgstr "主機MIB操作系統類型[新]"
 
 #: ../hmib_types.php:861
+#, fuzzy
 msgid "Host MIB OS Type Filters"
-msgstr ""
+msgstr "主機MIB OS類型過濾器"
 
 #: ../hmib_types.php:873 ../setup.php:589
+#, fuzzy
 msgid "OS Types"
-msgstr ""
+msgstr "操作系統類型"
 
 #: ../hmib_types.php:882
+#, fuzzy
 msgid "Host Type Name"
-msgstr ""
+msgstr "主機類型名稱"
 
 #: ../hmib_types.php:883
+#, fuzzy
 msgid "OS Version"
-msgstr ""
+msgstr "操作系統版本"
 
 #: ../hmib_types.php:884 ../hmib.php:2556
+#, fuzzy
 msgid "Hosts"
-msgstr ""
+msgstr "主機"
 
 #: ../hmib_types.php:885
+#, fuzzy
 msgid "SNMP ObjectID"
-msgstr ""
+msgstr "SNMP ObjectID"
 
 #: ../hmib_types.php:886
+#, fuzzy
 msgid "SNMP Sys Description Match"
-msgstr ""
+msgstr "SNMP Sys描述匹配"
 
 #: ../hmib_types.php:902
+#, fuzzy
 msgid "No Host Types Found"
-msgstr ""
+msgstr "找不到主機類型"
 
 #: ../hmib_types.php:930
+#, fuzzy
 msgid "Choose an action:"
-msgstr ""
+msgstr "選擇一個動作："
 
-#: ../hmib_types.php:934 ../hmib_types.php:1002 ../hmib.php:255
-#: ../hmib.php:586 ../hmib.php:935 ../hmib.php:1240 ../hmib.php:1540
-#: ../hmib.php:1972 ../hmib.php:2310 ../hmib.php:2498
+#: ../hmib_types.php:934 ../hmib_types.php:1002 ../hmib.php:255 ../hmib.php:586
+#: ../hmib.php:935 ../hmib.php:1240 ../hmib.php:1540 ../hmib.php:1972
+#: ../hmib.php:2310 ../hmib.php:2498
+#, fuzzy
 msgid "Go"
-msgstr ""
+msgstr "送出"
 
 #: ../hmib_types.php:981 ../hmib.php:265 ../hmib.php:596 ../hmib.php:945
 #: ../hmib.php:1250 ../hmib.php:1550 ../hmib.php:1982 ../hmib.php:2480
+#, fuzzy
 msgid "Search"
-msgstr ""
+msgstr "搜尋"
 
 #: ../hmib_types.php:987 ../hmib.php:189 ../hmib.php:520 ../hmib.php:870
 #: ../hmib.php:1175 ../hmib.php:1481 ../hmib.php:1906
+#, fuzzy
 msgid "OS Type"
-msgstr ""
+msgstr "OS 類型"
 
 #: ../hmib_types.php:991 ../hmib.php:295 ../hmib.php:626 ../hmib.php:974
 #: ../hmib.php:1279 ../hmib.php:1598 ../hmib.php:2011
+#, fuzzy
 msgid "Default"
-msgstr ""
+msgstr "預設"
 
 #: ../hmib_types.php:1005 ../hmib.php:258 ../hmib.php:589 ../hmib.php:938
 #: ../hmib.php:1243 ../hmib.php:1543 ../hmib.php:1975 ../hmib.php:2313
 #: ../hmib.php:2501
+#, fuzzy
 msgid "Clear"
-msgstr ""
+msgstr "清除"
 
 #: ../hmib_types.php:1008
+#, fuzzy
 msgid "Scan for New or Unknown Device Types"
-msgstr ""
+msgstr "掃描新的或未知的設備類型"
 
 #: ../hmib_types.php:1008
+#, fuzzy
 msgid "Rescan"
-msgstr ""
+msgstr "重新掃描"
 
 #: ../hmib_types.php:1011
+#, fuzzy
 msgid "Import Host Types from a CSV File"
-msgstr ""
+msgstr "從CSV文件導入主機類型"
 
 #: ../hmib_types.php:1011 ../setup.php:606
+#, fuzzy
 msgid "Import"
-msgstr ""
+msgstr "匯入"
 
 #: ../hmib_types.php:1014
+#, fuzzy
 msgid "Export Host Types to Share with Others"
-msgstr ""
+msgstr "導出主機類型以與他人共享"
 
 #: ../hmib_types.php:1014
+#, fuzzy
 msgid "Export"
-msgstr ""
+msgstr "匯出"
 
 #: ../setup.php:38
+#, fuzzy
 msgid "Plugin -> Host MIB Viewer"
-msgstr ""
+msgstr "插件 - >主機MIB查看器"
 
 #: ../setup.php:39
+#, fuzzy
 msgid "Plugin -> Host MIB Admin"
-msgstr ""
+msgstr "插件 - >主機MIB管理員"
 
 #: ../setup.php:358
+#, fuzzy
 msgid "Host MIB General Settings"
-msgstr ""
+msgstr "主機MIB常規設置"
 
 #: ../setup.php:362
+#, fuzzy
 msgid "Host MIB Poller Enabled"
-msgstr ""
+msgstr "主機MIB輪詢器已啟用"
 
 #: ../setup.php:363
+#, fuzzy
 msgid ""
 "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the "
 "poller will not function."
-msgstr ""
+msgstr "如果要啟用主機MIB輪詢，請選中此框。否則，輪詢器將無法運行。"
 
 #: ../setup.php:368
+#, fuzzy
 msgid "Automatically Discover Cacti Devices"
-msgstr ""
+msgstr "自動發現仙人掌設備"
 
 #: ../setup.php:369
+#, fuzzy
 msgid ""
 "Do you wish to automatically scan for and add devices which support the Host "
 "Resource MIB from the Cacti host table?"
-msgstr ""
+msgstr "您是否希望從Cacti主機表中自動掃描並添加支持Host Resource MIB的設備？"
 
 #: ../setup.php:374
+#, fuzzy
 msgid "Automatically Purge Devices"
-msgstr ""
+msgstr "自動清除設備"
 
 #: ../setup.php:375
+#, fuzzy
 msgid ""
 "Do you wish to automatically purge devices that are removed from the Cacti "
 "system?"
-msgstr ""
+msgstr "您是否希望自動清除從Cacti系統中移除的設備？"
 
 #: ../setup.php:380
+#, fuzzy
 msgid "Default Row Count"
-msgstr ""
+msgstr "默認行數"
 
 #: ../setup.php:381
+#, fuzzy
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
-msgstr ""
+msgstr "默認情況下，您希望在HMIB OS類型上看到多少行？"
 
 #: ../setup.php:387
+#, fuzzy
 msgid "Default Top Host Types"
-msgstr ""
+msgstr "默認主機類型"
 
 #: ../setup.php:388 ../setup.php:399
+#, fuzzy
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
-msgstr ""
+msgstr "默認情況下，您希望在HMIB儀表板上看到多少個進程？"
 
 #: ../setup.php:392 ../setup.php:393 ../setup.php:394 ../setup.php:395
-#, php-format
+#, fuzzy, php-format
 msgid "%d Types"
-msgstr ""
+msgstr "％d類型"
 
 #: ../setup.php:398
+#, fuzzy
 msgid "Default Top Processes"
-msgstr ""
+msgstr "默認頂級進程"
 
 #: ../setup.php:403 ../setup.php:404 ../setup.php:405 ../setup.php:406
 #: ../setup.php:415 ../setup.php:416 ../setup.php:417 ../setup.php:418
 #: ../setup.php:419 ../setup.php:420 ../setup.php:421 ../setup.php:422
 #: ../setup.php:423
-#, php-format
+#, fuzzy, php-format
 msgid "%d Processes"
-msgstr ""
+msgstr "％d進程"
 
 #: ../setup.php:409
+#, fuzzy
 msgid "Maximum Concurrent Collectors"
-msgstr ""
+msgstr "最大並發收集器"
 
 #: ../setup.php:410
+#, fuzzy
 msgid ""
 "What is the maximum number of concurrent collector process that you want to "
 "run at one time?"
-msgstr ""
+msgstr "您希望一次運行的最大並發收集器進程數是多少？"
 
 #: ../setup.php:414
-#, php-format
+#, fuzzy, php-format
 msgid "%d Process"
-msgstr ""
+msgstr "％d過程"
 
 #: ../setup.php:426
+#, fuzzy
 msgid "Host Auto Discovery Frequency"
-msgstr ""
+msgstr "主機自動發現頻率"
 
 #: ../setup.php:430
+#, fuzzy
 msgid "Auto Discovery Frequency"
-msgstr ""
+msgstr "自動發現頻率"
 
 #: ../setup.php:431
+#, fuzzy
 msgid "How often do you want to look for new Cacti Devices?"
-msgstr ""
+msgstr "您多久想尋找新的Cacti設備？"
 
 #: ../setup.php:437
+#, fuzzy
 msgid "Host Graph Automation"
-msgstr ""
+msgstr "主機圖自動化"
 
 #: ../setup.php:441
+#, fuzzy
 msgid "Automatically Add New Graphs"
-msgstr ""
+msgstr "自動添加新圖表"
 
 #: ../setup.php:442
+#, fuzzy
 msgid "How often do you want to check for new objects to graph?"
-msgstr ""
+msgstr "您想多久檢查一下要繪製的新對象？"
 
 #: ../setup.php:446
+#, fuzzy
 msgid "Never"
-msgstr ""
+msgstr "從不"
 
 #: ../setup.php:447 ../setup.php:511
-#, php-format
+#, fuzzy, php-format
 msgid "%d Hour"
-msgstr ""
+msgstr "%d 小時"
 
 #: ../setup.php:448 ../setup.php:512 ../setup.php:513 ../setup.php:514
-#, php-format
+#, fuzzy, php-format
 msgid "%d Hours"
-msgstr ""
+msgstr "%d 小時"
 
 #: ../setup.php:449 ../setup.php:515
-#, php-format
+#, fuzzy, php-format
 msgid "%d Day"
-msgstr ""
+msgstr "%d 天"
 
 #: ../setup.php:450
-#, php-format
+#, fuzzy, php-format
 msgid "%d Days"
-msgstr ""
+msgstr "%d 天"
 
 #: ../setup.php:453
+#, fuzzy
 msgid "Host MIB Table Collection Frequencies"
-msgstr ""
+msgstr "主機MIB表收集頻率"
 
 #: ../setup.php:457
+#, fuzzy
 msgid "Running Programs Frequency"
-msgstr ""
+msgstr "運行程序頻率"
 
 #: ../setup.php:458
+#, fuzzy
 msgid "How often do you want to scan running software?"
-msgstr ""
+msgstr "您經常要掃描正在運行的軟件嗎？"
 
 #: ../setup.php:464
+#, fuzzy
 msgid "Running Programs CPU/Memory Frequency"
-msgstr ""
+msgstr "運行程序CPU /內存頻率"
 
 #: ../setup.php:465
+#, fuzzy
 msgid "How often do you want to scan running software for performance data?"
-msgstr ""
+msgstr "您希望多久掃描運行的軟件以獲取性能數據？"
 
 #: ../setup.php:471
+#, fuzzy
 msgid "Installed Software Frequency"
-msgstr ""
+msgstr "已安裝的軟件頻率"
 
 #: ../setup.php:472
+#, fuzzy
 msgid "How often do you want to scan for installed software?"
-msgstr ""
+msgstr "您希望多久掃描一次已安裝的軟件？"
 
 #: ../setup.php:478
+#, fuzzy
 msgid "Storage Frequency"
-msgstr ""
+msgstr "存儲頻率"
 
 #: ../setup.php:479
+#, fuzzy
 msgid "How often do you want to scan for Storage performance data?"
-msgstr ""
+msgstr "您希望多久掃描一次存儲性能數據？"
 
 #: ../setup.php:485
+#, fuzzy
 msgid "Device Frequency"
-msgstr ""
+msgstr "設備頻率"
 
 #: ../setup.php:486
+#, fuzzy
 msgid "How often do you want to scan for Device performance data?"
-msgstr ""
+msgstr "您希望多久掃描一次設備性能數據？"
 
 #: ../setup.php:492
+#, fuzzy
 msgid "Processor Frequency"
-msgstr ""
+msgstr "處理器頻率"
 
 #: ../setup.php:493
+#, fuzzy
 msgid "How often do you want to scan for Processor performance data?"
-msgstr ""
+msgstr "您希望多久掃描一次處理器性能數據？"
 
 #: ../setup.php:506 ../hmib.php:1584 ../hmib.php:2371
+#, fuzzy
 msgid "Disabled"
-msgstr ""
+msgstr "停用"
 
 #: ../setup.php:507
-#, php-format
+#, fuzzy, php-format
 msgid "%d Minute"
-msgstr ""
+msgstr "％d分鐘"
 
 #: ../setup.php:508 ../setup.php:509 ../setup.php:510
-#, php-format
+#, fuzzy, php-format
 msgid "%d Minutes"
-msgstr ""
+msgstr "%d 分鐘"
 
 #: ../setup.php:589
+#, fuzzy
 msgid "Management"
-msgstr ""
+msgstr "管理"
 
 #: ../setup.php:593 ../setup.php:594
+#, fuzzy
 msgid "Host MIB Inventory Summary"
-msgstr ""
+msgstr "主機MIB庫存摘要"
 
 #: ../setup.php:595
+#, fuzzy
 msgid "Host MIB Details"
-msgstr ""
+msgstr "主機MIB詳細信息"
 
 #: ../setup.php:596
+#, fuzzy
 msgid "Host MIB Storage"
-msgstr ""
+msgstr "主機MIB存儲"
 
 #: ../setup.php:597
+#, fuzzy
 msgid "Host MIB Hardware"
-msgstr ""
+msgstr "主機MIB硬件"
 
 #: ../setup.php:598
+#, fuzzy
 msgid "Host MIB Running Processes"
-msgstr ""
+msgstr "主機MIB運行進程"
 
 #: ../setup.php:599
+#, fuzzy
 msgid "Host MIB Process Use History"
-msgstr ""
+msgstr "主機MIB進程使用歷史記錄"
 
 #: ../setup.php:600
+#, fuzzy
 msgid "Host MIB Software Inventory"
-msgstr ""
+msgstr "主機MIB軟件清單"
 
 #: ../setup.php:601
+#, fuzzy
 msgid "Host MIB Graphs"
-msgstr ""
+msgstr "主機MIB圖"
 
 #: ../setup.php:603
+#, fuzzy
 msgid "Host MIB OS Types"
-msgstr ""
+msgstr "主機MIB操作系統類型"
 
 #: ../setup.php:604 ../hmib.php:1672 ../hmib.php:2365 ../hmib.php:2553
+#, fuzzy
 msgid "Actions"
-msgstr ""
+msgstr "動作"
 
 #: ../setup.php:605
+#, fuzzy
 msgid "(Edit)"
-msgstr ""
+msgstr "(編輯)"
 
 #: ../hmib.php:36
+#, fuzzy
 msgid "Error"
-msgstr ""
+msgstr "錯誤"
 
 #: ../hmib.php:38
+#, fuzzy
 msgid "Operating System"
-msgstr ""
+msgstr "作業系統"
 
 #: ../hmib.php:39
+#, fuzzy
 msgid "Device Driver"
-msgstr ""
+msgstr "設備驅動"
 
 #: ../hmib.php:40
+#, fuzzy
 msgid "Application"
-msgstr ""
+msgstr "應用程式"
 
 #: ../hmib.php:44 ../hmib.php:53
+#, fuzzy
 msgid "Running"
-msgstr ""
+msgstr "運行"
 
 #: ../hmib.php:45
+#, fuzzy
 msgid "Runnable"
-msgstr ""
+msgstr "可運行"
 
 #: ../hmib.php:46
+#, fuzzy
 msgid "Not Runnable"
-msgstr ""
+msgstr "不可運行"
 
 #: ../hmib.php:47
+#, fuzzy
 msgid "Invalid"
-msgstr ""
+msgstr "無效"
 
 #: ../hmib.php:51
+#, fuzzy
 msgid "Present"
-msgstr ""
+msgstr "出席"
 
 #: ../hmib.php:54
+#, fuzzy
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #: ../hmib.php:55
+#, fuzzy
 msgid "Testing"
-msgstr ""
+msgstr "測試中"
 
 #: ../hmib.php:56 ../hmib.php:1575 ../hmib.php:2370
+#, fuzzy
 msgid "Down"
-msgstr ""
+msgstr "向下"
 
 #: ../hmib.php:180
+#, fuzzy
 msgid "Running Process History"
-msgstr ""
+msgstr "運行流程歷史"
 
 #: ../hmib.php:193 ../hmib.php:214 ../hmib.php:236 ../hmib.php:275
 #: ../hmib.php:524 ../hmib.php:545 ../hmib.php:567 ../hmib.php:606
@@ -613,405 +743,502 @@ msgstr ""
 #: ../hmib.php:1179 ../hmib.php:1199 ../hmib.php:1221 ../hmib.php:1260
 #: ../hmib.php:1485 ../hmib.php:1505 ../hmib.php:1528 ../hmib.php:1560
 #: ../hmib.php:1910 ../hmib.php:1931 ../hmib.php:1953 ../hmib.php:1992
+#, fuzzy
 msgid "All"
-msgstr ""
+msgstr "全部"
 
 #: ../hmib.php:210 ../hmib.php:541 ../hmib.php:890 ../hmib.php:1195
 #: ../hmib.php:1927
+#, fuzzy
 msgid "Device"
-msgstr ""
+msgstr "裝置"
 
 #: ../hmib.php:232 ../hmib.php:563 ../hmib.php:912 ../hmib.php:1217
 #: ../hmib.php:1501 ../hmib.php:1949
+#, fuzzy
 msgid "Template"
-msgstr ""
+msgstr "主題 ID"
 
 #: ../hmib.php:271 ../hmib.php:379 ../hmib.php:602 ../hmib.php:721
 #: ../hmib.php:1524
+#, fuzzy
 msgid "Process"
-msgstr ""
+msgstr "程序"
 
 #: ../hmib.php:291 ../hmib.php:622 ../hmib.php:970
+#, fuzzy
 msgid "Entries"
-msgstr ""
+msgstr "留言"
 
 #: ../hmib.php:371
+#, fuzzy
 msgid "History"
-msgstr ""
+msgstr "歷史"
 
 #: ../hmib.php:378 ../hmib.php:720 ../hmib.php:1046 ../hmib.php:1351
 #: ../hmib.php:1673 ../hmib.php:2084
+#, fuzzy
 msgid "Hostname"
-msgstr ""
+msgstr "主機名稱"
 
 #: ../hmib.php:380
+#, fuzzy
 msgid "Last Seen"
-msgstr ""
+msgstr "最後發生時間"
 
 #: ../hmib.php:381
+#, fuzzy
 msgid "Use Time (d:h:m)"
-msgstr ""
+msgstr "使用時間（d：h：m）"
 
 #: ../hmib.php:390 ../hmib.php:736 ../hmib.php:1059 ../hmib.php:1367
 #: ../hmib.php:1744 ../hmib.php:2096
+#, fuzzy
 msgid "Edit Device"
-msgstr ""
+msgstr "編輯設備"
 
 #: ../hmib.php:397
+#, fuzzy
 msgid "Time when last seen running"
-msgstr ""
+msgstr "上次看到跑步的時間"
 
 #: ../hmib.php:402
+#, fuzzy
 msgid "No Process History Found"
-msgstr ""
+msgstr "找不到過程歷史記錄"
 
 #: ../hmib.php:511
+#, fuzzy
 msgid "Running Processes"
-msgstr ""
+msgstr "運行進程"
 
 #: ../hmib.php:713 ../hmib.php:1679 ../hmib.php:2127 ../hmib.php:2557
+#, fuzzy
 msgid "Processes"
-msgstr ""
+msgstr "商品/物料的流動程序"
 
 #: ../hmib.php:722
+#, fuzzy
 msgid "Path"
-msgstr ""
+msgstr "路徑"
 
 #: ../hmib.php:723
+#, fuzzy
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../hmib.php:724
+#, fuzzy
 msgid "CPU (Hrs)"
-msgstr ""
+msgstr "CPU（小時）"
 
 #: ../hmib.php:725
+#, fuzzy
 msgid "Memory (MB)"
-msgstr ""
+msgstr "記憶（MB）"
 
 #: ../hmib.php:726 ../hmib.php:951 ../hmib.php:1256 ../hmib.php:1988
 #: ../hmib.php:2086 ../hmib.php:2366
+#, fuzzy
 msgid "Type"
-msgstr ""
+msgstr "類型"
 
 #: ../hmib.php:727 ../hmib.php:1049 ../hmib.php:1556 ../hmib.php:1674
+#, fuzzy
 msgid "Status"
-msgstr ""
+msgstr "狀態"
 
 #: ../hmib.php:752
+#, fuzzy
 msgid "No Running Software Found"
-msgstr ""
+msgstr "找不到運行的軟件"
 
 #: ../hmib.php:767
+#, fuzzy
 msgid "Total CPU [h]:"
-msgstr ""
+msgstr "總CPU [h]："
 
 #: ../hmib.php:768
+#, fuzzy
 msgid "Total Size [MB]:"
-msgstr ""
+msgstr "總大小[MB]："
 
 #: ../hmib.php:771
+#, fuzzy
 msgid "Avg. CPU [h]:"
-msgstr ""
+msgstr "平均。 CPU [h]："
 
 #: ../hmib.php:772
+#, fuzzy
 msgid "Avg. Size [MB]:"
-msgstr ""
+msgstr "平均。大小[MB]："
 
 #: ../hmib.php:861
+#, fuzzy
 msgid "Hardware Inventory"
-msgstr ""
+msgstr "硬件清單"
 
 #: ../hmib.php:1039 ../hmib.php:1594 ../hmib.php:1665 ../hmib.php:2124
+#, fuzzy
 msgid "Devices"
-msgstr ""
+msgstr "設備"
 
 #: ../hmib.php:1047
+#, fuzzy
 msgid "Hardware Description"
-msgstr ""
+msgstr "硬件描述"
 
 #: ../hmib.php:1048
+#, fuzzy
 msgid "Hardware Type"
-msgstr ""
+msgstr "硬件類型"
 
 #: ../hmib.php:1050 ../hmib.php:1354
+#, fuzzy
 msgid "Errors"
-msgstr ""
+msgstr "錯誤"
 
 #: ../hmib.php:1072
+#, fuzzy
 msgid "No Hardware Found"
-msgstr ""
+msgstr "找不到硬件"
 
 #: ../hmib.php:1166
+#, fuzzy
 msgid "Storage Inventory"
-msgstr ""
+msgstr "存儲庫存"
 
 #: ../hmib.php:1275 ../hmib.php:1344
+#, fuzzy
 msgid "Volumes"
-msgstr ""
+msgstr "卷"
 
 #: ../hmib.php:1352
+#, fuzzy
 msgid "Storage Description"
-msgstr ""
+msgstr "存儲說明"
 
 #: ../hmib.php:1353
+#, fuzzy
 msgid "Storage Type"
-msgstr ""
+msgstr "存儲類型"
 
 #: ../hmib.php:1355
+#, fuzzy
 msgid "Percent Used"
-msgstr ""
+msgstr "使用百分比"
 
 #: ../hmib.php:1356
+#, fuzzy
 msgid "Used (MB)"
-msgstr ""
+msgstr "二手（MB）"
 
 #: ../hmib.php:1357
+#, fuzzy
 msgid "Total (MB)"
-msgstr ""
+msgstr "總計（MB）"
 
 #: ../hmib.php:1358
+#, fuzzy
 msgid "Alloc (KB)"
-msgstr ""
+msgstr "Alloc（KB）"
 
 #: ../hmib.php:1383
+#, fuzzy
 msgid "No Storage Devices Found"
-msgstr ""
+msgstr "找不到存儲設備"
 
 #: ../hmib.php:1472
+#, fuzzy
 msgid "Device Filter"
-msgstr ""
+msgstr "設備過濾器"
 
 #: ../hmib.php:1578 ../hmib.php:2369
+#, fuzzy
 msgid "Recovering"
-msgstr ""
+msgstr "恢復"
 
 #: ../hmib.php:1581 ../hmib.php:2368
+#, fuzzy
 msgid "Up"
-msgstr ""
+msgstr "向上"
 
 #: ../hmib.php:1675
+#, fuzzy
 msgid "Uptime(d:h:m)"
-msgstr ""
+msgstr "的正常運行時間（d：H：M）"
 
 #: ../hmib.php:1676
+#, fuzzy
 msgid "Users"
-msgstr ""
+msgstr "使用者"
 
 #: ../hmib.php:1677
+#, fuzzy
 msgid "CPU %"
-msgstr ""
+msgstr "中央處理器 ％"
 
 #: ../hmib.php:1678
+#, fuzzy
 msgid "CPUs"
-msgstr ""
+msgstr "CPU的"
 
 #: ../hmib.php:1680
+#, fuzzy
 msgid "Total Mem"
-msgstr ""
+msgstr "總記憶"
 
 #: ../hmib.php:1681
+#, fuzzy
 msgid "Used Mem"
-msgstr ""
+msgstr "二手Mem"
 
 #: ../hmib.php:1682
+#, fuzzy
 msgid "Total Swap"
-msgstr ""
+msgstr "總掉期"
 
 #: ../hmib.php:1683
+#, fuzzy
 msgid "Used Swap"
-msgstr ""
+msgstr "使用交換"
 
 #: ../hmib.php:1729 ../hmib.php:2410
+#, fuzzy
 msgid "View Storage"
-msgstr ""
+msgstr "查看存儲"
 
 #: ../hmib.php:1730 ../hmib.php:2411
+#, fuzzy
 msgid "View Hardware"
-msgstr ""
+msgstr "查看硬件"
 
 #: ../hmib.php:1731 ../hmib.php:2412 ../hmib.php:2583
+#, fuzzy
 msgid "View Processes"
-msgstr ""
+msgstr "查看流程"
 
 #: ../hmib.php:1732 ../hmib.php:2413
+#, fuzzy
 msgid "View Software Inventory"
-msgstr ""
+msgstr "查看軟件清單"
 
 #: ../hmib.php:1734 ../hmib.php:2651 ../hmib.php:2653 ../hmib.php:2703
 #: ../hmib.php:2705
+#, fuzzy
 msgid "View Graphs"
-msgstr ""
+msgstr "查看圖表"
 
 #: ../hmib.php:1736
+#, fuzzy
 msgid "No Graphs Defined"
-msgstr ""
+msgstr "沒有圖表定義"
 
 #: ../hmib.php:1764
+#, fuzzy
 msgid "No Devices Found"
-msgstr ""
+msgstr "找不到設備"
 
 #: ../hmib.php:1897
+#, fuzzy
 msgid "Software Inventory"
-msgstr ""
+msgstr "軟件清單"
 
 #: ../hmib.php:2007 ../hmib.php:2077
+#, fuzzy
 msgid "Applications"
-msgstr ""
+msgstr "應用"
 
 #: ../hmib.php:2085
+#, fuzzy
 msgid "Package"
-msgstr ""
+msgstr "方案"
 
 #: ../hmib.php:2087
+#, fuzzy
 msgid "Installed"
-msgstr ""
+msgstr "已安裝"
 
 #: ../hmib.php:2108
+#, fuzzy
 msgid "No Software Packages Found"
-msgstr ""
+msgstr "找不到軟件包"
 
 #: ../hmib.php:2123
+#, fuzzy
 msgid "Summary"
-msgstr ""
+msgstr "摘要"
 
 #: ../hmib.php:2125
+#, fuzzy
 msgid "Storage"
-msgstr ""
+msgstr "儲存空間"
 
 #: ../hmib.php:2126
+#, fuzzy
 msgid "Hardware"
-msgstr ""
+msgstr "硬件"
 
 #: ../hmib.php:2128
+#, fuzzy
 msgid "Use History"
-msgstr ""
+msgstr "使用歷史"
 
 #: ../hmib.php:2129
+#, fuzzy
 msgid "Inventory"
-msgstr ""
+msgstr "庫存"
 
 #: ../hmib.php:2130
+#, fuzzy
 msgid "Graphs"
-msgstr ""
+msgstr "圖表"
 
 #: ../hmib.php:2289
+#, fuzzy
 msgid "Summary Filter"
-msgstr ""
+msgstr "摘要過濾器"
 
 #: ../hmib.php:2298 ../hmib.php:2486
+#, fuzzy
 msgid "Top"
-msgstr ""
+msgstr "頂部"
 
 #: ../hmib.php:2302 ../hmib.php:2490
+#, fuzzy
 msgid "All Records"
-msgstr ""
+msgstr "所有記錄"
 
 #: ../hmib.php:2303 ../hmib.php:2491 ../hmib.php:2492 ../hmib.php:2493
 #: ../hmib.php:2494
-#, php-format
+#, fuzzy, php-format
 msgid "%d Records"
-msgstr ""
+msgstr "％d記錄"
 
 #: ../hmib.php:2304 ../hmib.php:2305 ../hmib.php:2306
-#, php-format
+#, fuzzy, php-format
 msgid "%d Record"
-msgstr ""
+msgstr "％d記錄"
 
 #: ../hmib.php:2316 ../hmib.php:2504
+#, fuzzy
 msgid ""
 "WARNING: You need to import your Host MIB Host Template to view Graphs.  See "
 "the README for more information."
 msgstr ""
+"警告：您需要導入主機MIB主機模板才能查看圖形。有關更多信息，請參閱自述文件。"
 
 #: ../hmib.php:2327
+#, fuzzy
 msgid "Device Type Summary Statistics"
-msgstr ""
+msgstr "設備類型摘要統計"
 
 #: ../hmib.php:2372
+#, fuzzy
 msgid "Logins"
-msgstr ""
+msgstr "登入"
 
 #: ../hmib.php:2373
+#, fuzzy
 msgid "CPUS"
-msgstr ""
+msgstr "CPUS"
 
 #: ../hmib.php:2374 ../hmib.php:2558
+#, fuzzy
 msgid "Avg CPU"
-msgstr ""
+msgstr "平均CPU"
 
 #: ../hmib.php:2375 ../hmib.php:2559
+#, fuzzy
 msgid "Max CPU"
-msgstr ""
+msgstr "最大CPU"
 
 #: ../hmib.php:2376
+#, fuzzy
 msgid "Avg Mem"
-msgstr ""
+msgstr "平均記憶"
 
 #: ../hmib.php:2377
+#, fuzzy
 msgid "Max Mem"
-msgstr ""
+msgstr "Max Mem"
 
 #: ../hmib.php:2378
+#, fuzzy
 msgid "Avg Swap"
-msgstr ""
+msgstr "平均交換"
 
 #: ../hmib.php:2379
+#, fuzzy
 msgid "Max Swap"
-msgstr ""
+msgstr "Max Swap"
 
 #: ../hmib.php:2380
+#, fuzzy
 msgid "Avg Proc"
-msgstr ""
+msgstr "Avg Proc"
 
 #: ../hmib.php:2381
+#, fuzzy
 msgid "Max Proc"
-msgstr ""
+msgstr "Max Proc"
 
 #: ../hmib.php:2409 ../hmib.php:2582 ../hmib.php:2608
+#, fuzzy
 msgid "View Devices"
-msgstr ""
+msgstr "查看設備"
 
 #: ../hmib.php:2442
+#, fuzzy
 msgid "No Device Types"
-msgstr ""
+msgstr "沒有設備類型"
 
 #: ../hmib.php:2447
+#, fuzzy
 msgid "Process Summary Filter"
-msgstr ""
+msgstr "流程摘要過濾器"
 
 #: ../hmib.php:2515
+#, fuzzy
 msgid "Process Summary Statistics"
-msgstr ""
+msgstr "流程摘要統計"
 
 #: ../hmib.php:2554
+#, fuzzy
 msgid "Process Name"
-msgstr ""
+msgstr "進程名稱"
 
 #: ../hmib.php:2555
+#, fuzzy
 msgid "Num Paths"
-msgstr ""
+msgstr "Num Paths"
 
 #: ../hmib.php:2560
+#, fuzzy
 msgid "Avg Memory"
-msgstr ""
+msgstr "平均記憶"
 
 #: ../hmib.php:2561
+#, fuzzy
 msgid "Max Memory"
-msgstr ""
+msgstr "最大記憶"
 
 #: ../hmib.php:2598
+#, fuzzy
 msgid "No Processes"
-msgstr ""
+msgstr "商品/物料的流動程序"
 
 #: ../hmib.php:2659 ../hmib.php:2711
+#, fuzzy
 msgid "Please Select Data Query First from Console->Settings->Host Mib First"
-msgstr ""
+msgstr "請先從Console-> Settings-> Host Mib First選擇Data Query"
 
 #: ../hmib.php:2752
+#, fuzzy
 msgid "Graph Preview Filters"
-msgstr ""
+msgstr "圖形預覽過濾器"
 
 #: ../hmib.php:2752
+#, fuzzy
 msgid "Custom Graph List Applied - Filtering from List"
-msgstr ""
+msgstr "應用自定義圖表列表 - 從列表中過濾"
