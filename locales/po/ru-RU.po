@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-29 23:10-0400\n"
+"POT-Creation-Date: 2019-03-19 09:50+0000\n"
 "PO-Revision-Date: 2019-03-16 23:41-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,37 +17,646 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: ../hmib_types.php:30
+#: hmib.php:36
+#, fuzzy
+msgid "Error"
+msgstr "Ошибка"
+
+#: hmib.php:37 hmib.php:52 hmib.php:747 hmib.php:1066 hmib.php:1374
+#: hmib.php:1572 hmib.php:2103 hmib.php:2417 hmib_types.php:353
+#, fuzzy
+msgid "Unknown"
+msgstr "Неизвестно"
+
+#: hmib.php:38
+#, fuzzy
+msgid "Operating System"
+msgstr "Операционная система"
+
+#: hmib.php:39
+#, fuzzy
+msgid "Device Driver"
+msgstr "Драйвер устройства"
+
+#: hmib.php:40
+#, fuzzy
+msgid "Application"
+msgstr "Приложение"
+
+#: hmib.php:44 hmib.php:53
+#, fuzzy
+msgid "Running"
+msgstr "В процессе"
+
+#: hmib.php:45
+#, fuzzy
+msgid "Runnable"
+msgstr "Поддерживаемый"
+
+#: hmib.php:46
+#, fuzzy
+msgid "Not Runnable"
+msgstr "Невозможно запустить"
+
+#: hmib.php:47
+#, fuzzy
+msgid "Invalid"
+msgstr "Недействительный"
+
+#: hmib.php:51
+#, fuzzy
+msgid "Present"
+msgstr "Сейчас"
+
+#: hmib.php:54
+#, fuzzy
+msgid "Warning"
+msgstr "Предупреждение"
+
+#: hmib.php:55
+#, fuzzy
+msgid "Testing"
+msgstr "Тестирование"
+
+#: hmib.php:56 hmib.php:1575 hmib.php:2370
+#, fuzzy
+msgid "Down"
+msgstr "Вниз"
+
+#: hmib.php:180
+#, fuzzy
+msgid "Running Process History"
+msgstr "История выполняющихся процессов"
+
+#: hmib.php:189 hmib.php:520 hmib.php:870 hmib.php:1175 hmib.php:1481
+#: hmib.php:1906 hmib_types.php:987
+#, fuzzy
+msgid "OS Type"
+msgstr "Тип ОС"
+
+#: hmib.php:193 hmib.php:214 hmib.php:236 hmib.php:275 hmib.php:524
+#: hmib.php:545 hmib.php:567 hmib.php:606 hmib.php:874 hmib.php:894
+#: hmib.php:916 hmib.php:955 hmib.php:1179 hmib.php:1199 hmib.php:1221
+#: hmib.php:1260 hmib.php:1485 hmib.php:1505 hmib.php:1528 hmib.php:1560
+#: hmib.php:1910 hmib.php:1931 hmib.php:1953 hmib.php:1992
+#, fuzzy
+msgid "All"
+msgstr "Все"
+
+#: hmib.php:210 hmib.php:541 hmib.php:890 hmib.php:1195 hmib.php:1927
+#, fuzzy
+msgid "Device"
+msgstr "Устройство"
+
+#: hmib.php:232 hmib.php:563 hmib.php:912 hmib.php:1217 hmib.php:1501
+#: hmib.php:1949
+#, fuzzy
+msgid "Template"
+msgstr "Шаблон"
+
+#: hmib.php:255 hmib.php:586 hmib.php:935 hmib.php:1240 hmib.php:1540
+#: hmib.php:1972 hmib.php:2310 hmib.php:2493 hmib_types.php:934
+#: hmib_types.php:1002
+#, fuzzy
+msgid "Go"
+msgstr "Выполнить"
+
+#: hmib.php:258 hmib.php:589 hmib.php:938 hmib.php:1243 hmib.php:1543
+#: hmib.php:1975 hmib.php:2313 hmib.php:2496 hmib_types.php:1005
+#, fuzzy
+msgid "Clear"
+msgstr "Очистить"
+
+#: hmib.php:265 hmib.php:596 hmib.php:945 hmib.php:1250 hmib.php:1550
+#: hmib.php:1982 hmib.php:2475 hmib_types.php:981
+#, fuzzy
+msgid "Search"
+msgstr "Найти"
+
+#: hmib.php:271 hmib.php:379 hmib.php:602 hmib.php:721 hmib.php:1524
+#, fuzzy
+msgid "Process"
+msgstr "Процесс"
+
+#: hmib.php:291 hmib.php:622 hmib.php:970
+#, fuzzy
+msgid "Entries"
+msgstr "Записи"
+
+#: hmib.php:295 hmib.php:626 hmib.php:974 hmib.php:1279 hmib.php:1598
+#: hmib.php:2011 hmib_types.php:991
+#, fuzzy
+msgid "Default"
+msgstr "Стандартно"
+
+#: hmib.php:371
+#, fuzzy
+msgid "History"
+msgstr "История"
+
+#: hmib.php:378 hmib.php:720 hmib.php:1046 hmib.php:1351 hmib.php:1673
+#: hmib.php:2084
+#, fuzzy
+msgid "Hostname"
+msgstr "Имя хоста"
+
+#: hmib.php:380
+#, fuzzy
+msgid "Last Seen"
+msgstr "Последнее посещение"
+
+#: hmib.php:381
+#, fuzzy
+msgid "Use Time (d:h:m)"
+msgstr "Использовать время (d:h:m)"
+
+#: hmib.php:390 hmib.php:736 hmib.php:1059 hmib.php:1367 hmib.php:1744
+#: hmib.php:2096
+#, fuzzy
+msgid "Edit Device"
+msgstr "Редактировать устройство"
+
+#: hmib.php:402
+#, fuzzy
+msgid "No Process History Found"
+msgstr "История процесса не найдена"
+
+#: hmib.php:511
+#, fuzzy
+msgid "Running Processes"
+msgstr "Запущенные процессы"
+
+#: hmib.php:713 hmib.php:1679 hmib.php:2127 hmib.php:2552
+#, fuzzy
+msgid "Processes"
+msgstr "Процессы"
+
+#: hmib.php:722
+#, fuzzy
+msgid "Path"
+msgstr "Путь"
+
+#: hmib.php:723
+#, fuzzy
+msgid "Parameters"
+msgstr "Параметры"
+
+#: hmib.php:724
+#, fuzzy
+msgid "CPU (Hrs)"
+msgstr "CPU (Часы)"
+
+#: hmib.php:725
+#, fuzzy
+msgid "Memory (MB)"
+msgstr "Память (МБ)"
+
+#: hmib.php:726 hmib.php:951 hmib.php:1256 hmib.php:1988 hmib.php:2086
+#: hmib.php:2366
+#, fuzzy
+msgid "Type"
+msgstr "Тип"
+
+#: hmib.php:727 hmib.php:1049 hmib.php:1556 hmib.php:1674
+#, fuzzy
+msgid "Status"
+msgstr "Статус"
+
+#: hmib.php:752
+#, fuzzy
+msgid "No Running Software Found"
+msgstr "Не найдено работающего программного обеспечения"
+
+#: hmib.php:767
+#, fuzzy
+msgid "Total CPU [h]:"
+msgstr "Общий процессор [ч]:"
+
+#: hmib.php:768
+#, fuzzy
+msgid "Total Size [MB]:"
+msgstr "Общий размер [МБ]:"
+
+#: hmib.php:771
+#, fuzzy
+msgid "Avg. CPU [h]:"
+msgstr "Эйвг. CPU [h]:"
+
+#: hmib.php:772
+#, fuzzy
+msgid "Avg. Size [MB]:"
+msgstr "Эйвг. Размер [МБ]:"
+
+#: hmib.php:861
+#, fuzzy
+msgid "Hardware Inventory"
+msgstr "Инвентаризация оборудования"
+
+#: hmib.php:1039 hmib.php:1594 hmib.php:1665 hmib.php:2124
+#, fuzzy
+msgid "Devices"
+msgstr "Устройства"
+
+#: hmib.php:1047
+#, fuzzy
+msgid "Hardware Description"
+msgstr "Описание оборудования"
+
+#: hmib.php:1048
+#, fuzzy
+msgid "Hardware Type"
+msgstr "Тип оборудования"
+
+#: hmib.php:1050 hmib.php:1354
+#, fuzzy
+msgid "Errors"
+msgstr "Ошибки"
+
+#: hmib.php:1072
+#, fuzzy
+msgid "No Hardware Found"
+msgstr "Нет аппаратных средств не найдено"
+
+#: hmib.php:1166
+#, fuzzy
+msgid "Storage Inventory"
+msgstr "Хранение Инвентаризация"
+
+#: hmib.php:1275 hmib.php:1344
+#, fuzzy
+msgid "Volumes"
+msgstr "Шейдер объёма"
+
+#: hmib.php:1352
+#, fuzzy
+msgid "Storage Description"
+msgstr "Хранение Описание Хранения"
+
+#: hmib.php:1353
+#, fuzzy
+msgid "Storage Type"
+msgstr "Тип хранилища"
+
+#: hmib.php:1355
+#, fuzzy
+msgid "Percent Used"
+msgstr "Процент Использованный"
+
+#: hmib.php:1356
+#, fuzzy
+msgid "Used (MB)"
+msgstr "Использованные (МБ)"
+
+#: hmib.php:1357
+#, fuzzy
+msgid "Total (MB)"
+msgstr "Всего (МБ)"
+
+#: hmib.php:1358
+#, fuzzy
+msgid "Alloc (KB)"
+msgstr "Распределение (КБ)"
+
+#: hmib.php:1383
+#, fuzzy
+msgid "No Storage Devices Found"
+msgstr "Устройства хранения данных не найдены"
+
+#: hmib.php:1472
+#, fuzzy
+msgid "Device Filter"
+msgstr "Фильтр устройства"
+
+#: hmib.php:1578 hmib.php:2369
+#, fuzzy
+msgid "Recovering"
+msgstr "Восстановление"
+
+#: hmib.php:1581 hmib.php:2368
+#, fuzzy
+msgid "Up"
+msgstr "Вверх"
+
+#: hmib.php:1584 hmib.php:2371 setup.php:504
+#, fuzzy
+msgid "Disabled"
+msgstr "Выключен"
+
+#: hmib.php:1672 hmib.php:2365 hmib.php:2548 setup.php:604
+#, fuzzy
+msgid "Actions"
+msgstr "Действия"
+
+#: hmib.php:1675
+#, fuzzy
+msgid "Uptime(d:h:m)"
+msgstr "Время безотказной работы (d:h:m)"
+
+#: hmib.php:1676
+#, fuzzy
+msgid "Users"
+msgstr "Пользователи"
+
+#: hmib.php:1677
+#, fuzzy
+msgid "CPU %"
+msgstr "CPU %"
+
+#: hmib.php:1678
+#, fuzzy
+msgid "CPUs"
+msgstr "процессоры"
+
+#: hmib.php:1680
+#, fuzzy
+msgid "Total Mem"
+msgstr "Всего Мем"
+
+#: hmib.php:1681
+#, fuzzy
+msgid "Used Mem"
+msgstr "Бывшая в употреблении память"
+
+#: hmib.php:1682
+#, fuzzy
+msgid "Total Swap"
+msgstr "Всего своп"
+
+#: hmib.php:1683
+#, fuzzy
+msgid "Used Swap"
+msgstr "Использованный своп"
+
+#: hmib.php:1729 hmib.php:2405
+#, fuzzy
+msgid "View Storage"
+msgstr "Просмотр хранилища"
+
+#: hmib.php:1730 hmib.php:2406
+#, fuzzy
+msgid "View Hardware"
+msgstr "Просмотр оборудования"
+
+#: hmib.php:1731 hmib.php:2407 hmib.php:2578
+#, fuzzy
+msgid "View Processes"
+msgstr "Просмотр процессов"
+
+#: hmib.php:1732 hmib.php:2408
+#, fuzzy
+msgid "View Software Inventory"
+msgstr "Просмотреть список программного обеспечения"
+
+#: hmib.php:1734 hmib.php:2646 hmib.php:2648 hmib.php:2694 hmib.php:2696
+#, fuzzy
+msgid "View Graphs"
+msgstr "Просмотр графиков"
+
+#: hmib.php:1736
+#, fuzzy
+msgid "No Graphs Defined"
+msgstr "Нет Определенных графиков"
+
+#: hmib.php:1764
+#, fuzzy
+msgid "No Devices Found"
+msgstr "Устройства не найдены"
+
+#: hmib.php:1897
+#, fuzzy
+msgid "Software Inventory"
+msgstr "Инвентаризация программного обеспечения"
+
+#: hmib.php:2007 hmib.php:2077
+#, fuzzy
+msgid "Applications"
+msgstr "Приложения"
+
+#: hmib.php:2085
+#, fuzzy
+msgid "Package"
+msgstr "Пакет"
+
+#: hmib.php:2087
+#, fuzzy
+msgid "Installed"
+msgstr "Установленно"
+
+#: hmib.php:2108
+#, fuzzy
+msgid "No Software Packages Found"
+msgstr "Нет найденных пакетов программного обеспечения"
+
+#: hmib.php:2123
+#, fuzzy
+msgid "Summary"
+msgstr "Резюме"
+
+#: hmib.php:2125
+#, fuzzy
+msgid "Storage"
+msgstr "Хранилище"
+
+#: hmib.php:2126
+#, fuzzy
+msgid "Hardware"
+msgstr "Аппаратное оборудование"
+
+#: hmib.php:2128
+#, fuzzy
+msgid "Use History"
+msgstr "Использовать историю"
+
+#: hmib.php:2129
+#, fuzzy
+msgid "Inventory"
+msgstr "Инвентаризация"
+
+#: hmib.php:2130 hmib.php:2813
+#, fuzzy
+msgid "Graphs"
+msgstr "Графики"
+
+#: hmib.php:2289
+#, fuzzy
+msgid "Summary Filter"
+msgstr "Сводный фильтр"
+
+#: hmib.php:2298 hmib.php:2481
+#, fuzzy
+msgid "Top"
+msgstr "Верх"
+
+#: hmib.php:2302 hmib.php:2485
+#, fuzzy
+msgid "All Records"
+msgstr "Все записи"
+
+#: hmib.php:2303 hmib.php:2486 hmib.php:2487 hmib.php:2488 hmib.php:2489
+#, fuzzy, php-format
+msgid "%d Records"
+msgstr "d Записи"
+
+#: hmib.php:2304 hmib.php:2305 hmib.php:2306
+#, fuzzy, php-format
+msgid "%d Record"
+msgstr "d Запись"
+
+#: hmib.php:2316 hmib.php:2499
+msgid "NOTE: Import the Host MIB Device Package to view Graphs."
+msgstr ""
+
+#: hmib.php:2327
+#, fuzzy
+msgid "Device Type Summary Statistics"
+msgstr "Тип устройства Сводная статистика"
+
+#: hmib.php:2367 hmib_types.php:758
+#, fuzzy
+msgid "Version"
+msgstr "Версия"
+
+#: hmib.php:2372
+#, fuzzy
+msgid "Logins"
+msgstr "Логины"
+
+#: hmib.php:2373
+#, fuzzy
+msgid "CPUS"
+msgstr "ПРОЦЕССОР"
+
+#: hmib.php:2374 hmib.php:2553
+#, fuzzy
+msgid "Avg CPU"
+msgstr "Avg CPU"
+
+#: hmib.php:2375 hmib.php:2554
+#, fuzzy
+msgid "Max CPU"
+msgstr "Макс процессора"
+
+#: hmib.php:2376
+#, fuzzy
+msgid "Avg Mem"
+msgstr "Авг Мем"
+
+#: hmib.php:2377
+#, fuzzy
+msgid "Max Mem"
+msgstr "Макс Мем"
+
+#: hmib.php:2378
+#, fuzzy
+msgid "Avg Swap"
+msgstr "Авг Своп"
+
+#: hmib.php:2379
+#, fuzzy
+msgid "Max Swap"
+msgstr "Макс Своп"
+
+#: hmib.php:2380
+#, fuzzy
+msgid "Avg Proc"
+msgstr "Avg Proc."
+
+#: hmib.php:2381
+#, fuzzy
+msgid "Max Proc"
+msgstr "Макс Процессинг"
+
+#: hmib.php:2404 hmib.php:2577 hmib.php:2603
+#, fuzzy
+msgid "View Devices"
+msgstr "Просмотр устройств"
+
+#: hmib.php:2437
+#, fuzzy
+msgid "No Device Types"
+msgstr "Типы устройств отсутствуют"
+
+#: hmib.php:2442
+#, fuzzy
+msgid "Process Summary Filter"
+msgstr "Общий фильтр процессов"
+
+#: hmib.php:2510
+#, fuzzy
+msgid "Process Summary Statistics"
+msgstr "Сводная статистика процессов"
+
+#: hmib.php:2549
+#, fuzzy
+msgid "Process Name"
+msgstr "Имя процесса"
+
+#: hmib.php:2550
+#, fuzzy
+msgid "Num Paths"
+msgstr "Числа Пути"
+
+#: hmib.php:2551 hmib_types.php:884
+#, fuzzy
+msgid "Hosts"
+msgstr "Хосты"
+
+#: hmib.php:2555
+#, fuzzy
+msgid "Avg Memory"
+msgstr "Avg Memory"
+
+#: hmib.php:2556
+#, fuzzy
+msgid "Max Memory"
+msgstr "Макс Память"
+
+#: hmib.php:2593
+#, fuzzy
+msgid "No Processes"
+msgstr "Нет процессов"
+
+#: hmib.php:2739
+#, fuzzy
+msgid "Custom Graph List Applied - Filtering from List"
+msgstr "Пользовательский список применяемых графиков - Фильтрация из списка"
+
+#: hmib.php:2739
+#, fuzzy
+msgid "Graph Preview Filters"
+msgstr "Фильтры предварительного просмотра графиков"
+
+#: hmib_types.php:30
 #, fuzzy
 msgid "Delete"
 msgstr "Удалить"
 
-#: ../hmib_types.php:31
+#: hmib_types.php:31
 #, fuzzy
 msgid "Duplicate"
 msgstr "Дублировать"
 
-#: ../hmib_types.php:226
+#: hmib_types.php:226
 #, fuzzy
 msgid "Click 'Continue' to Delete the following Host Type(s)"
 msgstr "Нажмите кнопку \"Продолжить\", чтобы удалить следующие типы хостов"
 
-#: ../hmib_types.php:231 ../hmib_types.php:241 ../hmib_types.php:246
+#: hmib_types.php:231 hmib_types.php:241 hmib_types.php:246
 #, fuzzy
 msgid "Cancel"
 msgstr "Отмена"
 
-#: ../hmib_types.php:231 ../hmib_types.php:241
+#: hmib_types.php:231 hmib_types.php:241
 #, fuzzy
 msgid "Continue"
 msgstr "Продолжить"
 
-#: ../hmib_types.php:231
+#: hmib_types.php:231
 #, fuzzy
 msgid "Delete Host Type(s)"
 msgstr "Удалить тип(ы) хоста(ов)"
 
-#: ../hmib_types.php:235
+#: hmib_types.php:235
 #, fuzzy
 msgid ""
 "Click 'Continue' to Duplicate the following Host Type(s). You may optionally "
@@ -59,64 +668,57 @@ msgstr ""
 "не меняйте значение ниже, и первоначальное имя будет реплицироваться с новым "
 "суффиксом."
 
-#: ../hmib_types.php:237
+#: hmib_types.php:237
 #, fuzzy
 msgid "Host Type Prefix:"
 msgstr "Префикс типа хоста:"
 
-#: ../hmib_types.php:241
+#: hmib_types.php:241
 #, fuzzy
 msgid "Duplicate Host Type(s)"
 msgstr "Дублирование типа(ов) хоста(ов)"
 
-#: ../hmib_types.php:245
+#: hmib_types.php:245
 #, fuzzy
 msgid "You must select at least one Host Type."
 msgstr "Вы должны выбрать хотя бы один тип хоста."
 
-#: ../hmib_types.php:352
+#: hmib_types.php:352
 #, fuzzy
 msgid "New Type"
 msgstr "Новый тип"
 
-#: ../hmib_types.php:353 ../hmib.php:37 ../hmib.php:52 ../hmib.php:747
-#: ../hmib.php:1066 ../hmib.php:1374 ../hmib.php:1572 ../hmib.php:2103
-#: ../hmib.php:2422
-#, fuzzy
-msgid "Unknown"
-msgstr "Неизвестно"
-
-#: ../hmib_types.php:397
+#: hmib_types.php:397
 #, fuzzy, php-format
 msgid "There were %d Device Types Added!"
 msgstr "Были добавлены типы устройств %d!"
 
-#: ../hmib_types.php:400
+#: hmib_types.php:400
 #, fuzzy
 msgid "No New Host Types Found!"
 msgstr "Новых типов хостов не найдено!"
 
-#: ../hmib_types.php:411
+#: hmib_types.php:411
 #, fuzzy
 msgid "Import Results"
 msgstr "Импорт Результатов"
 
-#: ../hmib_types.php:413
+#: hmib_types.php:413
 #, fuzzy
 msgid "Cacti has imported the following items:"
 msgstr "Кактусы импортировали следующие товары:"
 
-#: ../hmib_types.php:425
+#: hmib_types.php:425
 #, fuzzy
 msgid "Import Host MIB OS Types"
 msgstr "Импорт хоста Типы ОС MIB операционной системы MIB"
 
-#: ../hmib_types.php:428
+#: hmib_types.php:428
 #, fuzzy
 msgid "Import Device Types from Local File"
 msgstr "Импорт типов устройств из локального файла"
 
-#: ../hmib_types.php:429
+#: hmib_types.php:429
 #, fuzzy
 msgid ""
 "Please specify the location of the CSV file containing your device type "
@@ -125,12 +727,12 @@ msgstr ""
 "Пожалуйста, укажите местоположение CSV-файла, содержащего информацию о типе "
 "устройства."
 
-#: ../hmib_types.php:436
+#: hmib_types.php:436
 #, fuzzy
 msgid "Overwrite Existing Data?"
 msgstr "Перезаписать существующие данные?"
 
-#: ../hmib_types.php:437
+#: hmib_types.php:437
 #, fuzzy
 msgid ""
 "Should the import process be allowed to overwrite existing data?  Please "
@@ -140,33 +742,33 @@ msgstr ""
 "Обратите внимание, что это не означает удаление старой строки, а только "
 "замена дубликатов строк."
 
-#: ../hmib_types.php:440
+#: hmib_types.php:440
 #, fuzzy
 msgid "Allow Existing Rows to be Updated?"
 msgstr "Разрешить обновление существующих строк?"
 
-#: ../hmib_types.php:445
+#: hmib_types.php:445
 #, fuzzy
 msgid "Required File Format Notes"
 msgstr "Примечания к требуемому формату файла"
 
-#: ../hmib_types.php:448
+#: hmib_types.php:448
 #, fuzzy
 msgid "The file must contain a header row with the following column headings."
 msgstr ""
 "Файл должен содержать строку заголовка со следующими заголовками столбцов."
 
-#: ../hmib_types.php:450
+#: hmib_types.php:450
 #, fuzzy
 msgid "A common name for the Host Type.  For example, Windows 7"
 msgstr "Общее имя для типа хоста.  Например, Windows 7"
 
-#: ../hmib_types.php:451
+#: hmib_types.php:451
 #, fuzzy
 msgid "The OS version for the Host Type"
 msgstr "Версия ОС для типа хоста"
 
-#: ../hmib_types.php:452
+#: hmib_types.php:452
 #, fuzzy
 msgid ""
 "A unique set of characters from the snmp sysDescr that uniquely identify "
@@ -175,7 +777,7 @@ msgstr ""
 "Уникальный набор символов из snmp sysDescr, которые однозначно "
 "идентифицируют это устройство."
 
-#: ../hmib_types.php:453
+#: hmib_types.php:453
 #, fuzzy
 msgid ""
 "The vendor specific snmp sysObjectID that distinguishes this device from the "
@@ -184,14 +786,14 @@ msgstr ""
 "Snmp sysObjectID для конкретного производителя, который отличает это "
 "устройство от следующего"
 
-#: ../hmib_types.php:455
+#: hmib_types.php:455
 #, fuzzy
 msgid ""
 "The primary key for this table is a combination of the following two fields:"
 msgstr ""
 "Первичным ключом для данной таблицы является комбинация следующих двух полей:"
 
-#: ../hmib_types.php:459
+#: hmib_types.php:459
 #, fuzzy
 msgid ""
 "Therefore, if you attempt to import duplicate device types, the existing "
@@ -200,7 +802,7 @@ msgstr ""
 "Поэтому, если вы попытаетесь импортировать дублирующие друг друга типы "
 "устройств, существующие данные будут обновлены новой информацией."
 
-#: ../hmib_types.php:461
+#: hmib_types.php:461
 #, fuzzy
 msgid ""
 "The Host Type is determined by scanning its snmp agent for the sysObjectID "
@@ -215,47 +817,42 @@ msgstr ""
 "агрегированные данные хоста.  Поэтому очень важно, чтобы вы выбрали "
 "действительный sysObjectID, sysDescrMatch для своих хостов."
 
-#: ../hmib_types.php:726
+#: hmib_types.php:726
 #, fuzzy
 msgid "Are You Sure?"
 msgstr "Вы уверены?"
 
-#: ../hmib_types.php:726
+#: hmib_types.php:726
 #, fuzzy, php-format
 msgid "Are you sure you want to delete the Host Type'%s'"
 msgstr "Вы уверены, что хотите удалить тип хоста '%s'?"
 
-#: ../hmib_types.php:747
+#: hmib_types.php:747
 #, fuzzy
 msgid "Device Scanning Function Options"
 msgstr "Параметры функции сканирования устройства"
 
-#: ../hmib_types.php:751
+#: hmib_types.php:751
 #, fuzzy
 msgid "Name"
 msgstr "Имя"
 
-#: ../hmib_types.php:752
+#: hmib_types.php:752
 #, fuzzy
 msgid "Give this Host Type a meaningful name."
 msgstr "Дайте этому типу хоста значимое имя."
 
-#: ../hmib_types.php:758 ../hmib.php:2367
-#, fuzzy
-msgid "Version"
-msgstr "Версия"
-
-#: ../hmib_types.php:759
+#: hmib_types.php:759
 #, fuzzy
 msgid "Fill in the name for the version of this Host Type."
 msgstr "Введите имя для версии данного типа хоста."
 
-#: ../hmib_types.php:766
+#: hmib_types.php:766
 #, fuzzy
 msgid "System Description Match"
 msgstr "Соответствие описания системы"
 
-#: ../hmib_types.php:767 ../hmib_types.php:774
+#: hmib_types.php:767 hmib_types.php:774
 #, fuzzy, php-format
 msgid ""
 "Provide key information to help HMIB detect the type of Host.  SQL Where "
@@ -266,150 +863,113 @@ msgstr ""
 "SQL Где поддерживаются выражения.  SQL Где спецсимволом является знак '%'. "
 "Регулярные выражения были удалены из-за проблем совместимости."
 
-#: ../hmib_types.php:773
+#: hmib_types.php:773
 #, fuzzy
 msgid "Vendor snmp Object ID"
 msgstr "Удостоверение предмета искусства поставщика"
 
-#: ../hmib_types.php:794
+#: hmib_types.php:794
 #, fuzzy, php-format
 msgid "Host MIB OS Types [edit: %s]"
 msgstr "Типы ОС MIB хоста [редактирование: %s]"
 
-#: ../hmib_types.php:796
+#: hmib_types.php:796
 #, fuzzy
 msgid "Host MIB OS Types [new]"
 msgstr "Хост MIB OS Типы ОС [новые]"
 
-#: ../hmib_types.php:861
+#: hmib_types.php:861
 #, fuzzy
 msgid "Host MIB OS Type Filters"
 msgstr "Фильтры типа ОС MIB хоста"
 
-#: ../hmib_types.php:873 ../setup.php:589
+#: hmib_types.php:873 setup.php:587
 #, fuzzy
 msgid "OS Types"
 msgstr "Типы ОС"
 
-#: ../hmib_types.php:882
+#: hmib_types.php:882
 #, fuzzy
 msgid "Host Type Name"
 msgstr "Имя типа хоста"
 
-#: ../hmib_types.php:883
+#: hmib_types.php:883
 #, fuzzy
 msgid "OS Version"
 msgstr "Версия операционной системы"
 
-#: ../hmib_types.php:884 ../hmib.php:2556
-#, fuzzy
-msgid "Hosts"
-msgstr "Хосты"
-
-#: ../hmib_types.php:885
+#: hmib_types.php:885
 #, fuzzy
 msgid "SNMP ObjectID"
 msgstr "SNMP ObjectID объекта"
 
-#: ../hmib_types.php:886
+#: hmib_types.php:886
 #, fuzzy
 msgid "SNMP Sys Description Match"
 msgstr "Совпадение описания SNMP-систем"
 
-#: ../hmib_types.php:902
+#: hmib_types.php:902
 #, fuzzy
 msgid "No Host Types Found"
 msgstr "Типы хостов не найдены"
 
-#: ../hmib_types.php:930
+#: hmib_types.php:930
 #, fuzzy
 msgid "Choose an action:"
 msgstr "Выберите действие"
 
-#: ../hmib_types.php:934 ../hmib_types.php:1002 ../hmib.php:255 ../hmib.php:586
-#: ../hmib.php:935 ../hmib.php:1240 ../hmib.php:1540 ../hmib.php:1972
-#: ../hmib.php:2310 ../hmib.php:2498
-#, fuzzy
-msgid "Go"
-msgstr "Выполнить"
-
-#: ../hmib_types.php:981 ../hmib.php:265 ../hmib.php:596 ../hmib.php:945
-#: ../hmib.php:1250 ../hmib.php:1550 ../hmib.php:1982 ../hmib.php:2480
-#, fuzzy
-msgid "Search"
-msgstr "Найти"
-
-#: ../hmib_types.php:987 ../hmib.php:189 ../hmib.php:520 ../hmib.php:870
-#: ../hmib.php:1175 ../hmib.php:1481 ../hmib.php:1906
-#, fuzzy
-msgid "OS Type"
-msgstr "Тип ОС"
-
-#: ../hmib_types.php:991 ../hmib.php:295 ../hmib.php:626 ../hmib.php:974
-#: ../hmib.php:1279 ../hmib.php:1598 ../hmib.php:2011
-#, fuzzy
-msgid "Default"
-msgstr "Стандартно"
-
-#: ../hmib_types.php:1005 ../hmib.php:258 ../hmib.php:589 ../hmib.php:938
-#: ../hmib.php:1243 ../hmib.php:1543 ../hmib.php:1975 ../hmib.php:2313
-#: ../hmib.php:2501
-#, fuzzy
-msgid "Clear"
-msgstr "Очистить"
-
-#: ../hmib_types.php:1008
-#, fuzzy
-msgid "Scan for New or Unknown Device Types"
-msgstr "Сканирование на предмет новых или неизвестных типов устройств"
-
-#: ../hmib_types.php:1008
+#: hmib_types.php:1008
 #, fuzzy
 msgid "Rescan"
 msgstr "Повторное сканирование"
 
-#: ../hmib_types.php:1011
+#: hmib_types.php:1008
 #, fuzzy
-msgid "Import Host Types from a CSV File"
-msgstr "Импорт типов хостов из файла CSV"
+msgid "Scan for New or Unknown Device Types"
+msgstr "Сканирование на предмет новых или неизвестных типов устройств"
 
-#: ../hmib_types.php:1011 ../setup.php:606
+#: hmib_types.php:1011 setup.php:606
 #, fuzzy
 msgid "Import"
 msgstr "Импорт"
 
-#: ../hmib_types.php:1014
+#: hmib_types.php:1011
+#, fuzzy
+msgid "Import Host Types from a CSV File"
+msgstr "Импорт типов хостов из файла CSV"
+
+#: hmib_types.php:1014
+#, fuzzy
+msgid "Export"
+msgstr "Экспорт"
+
+#: hmib_types.php:1014
 #, fuzzy
 msgid "Export Host Types to Share with Others"
 msgstr ""
 "Экспорт типов хостов для совместного использования с другими пользователями"
 
-#: ../hmib_types.php:1014
-#, fuzzy
-msgid "Export"
-msgstr "Экспорт"
-
-#: ../setup.php:38
+#: setup.php:38
 #, fuzzy
 msgid "Plugin -> Host MIB Viewer"
 msgstr "Плагин -> Host MIB Viewer"
 
-#: ../setup.php:39
+#: setup.php:39
 #, fuzzy
 msgid "Plugin -> Host MIB Admin"
 msgstr "Плагин -> Host MIB Админ хоста"
 
-#: ../setup.php:358
+#: setup.php:356
 #, fuzzy
 msgid "Host MIB General Settings"
 msgstr "Общие настройки хоста MIB Общие настройки"
 
-#: ../setup.php:362
+#: setup.php:360
 #, fuzzy
 msgid "Host MIB Poller Enabled"
 msgstr "Хост MIB Poller Включен"
 
-#: ../setup.php:363
+#: setup.php:361
 #, fuzzy
 msgid ""
 "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the "
@@ -418,12 +978,12 @@ msgstr ""
 "Отметьте это поле, если вы хотите, чтобы Host MIB опрос был включен.  В "
 "противном случае опросник не будет работать."
 
-#: ../setup.php:368
+#: setup.php:366
 #, fuzzy
 msgid "Automatically Discover Cacti Devices"
 msgstr "Автоматически открывать для себя кактусовые устройства"
 
-#: ../setup.php:369
+#: setup.php:367
 #, fuzzy
 msgid ""
 "Do you wish to automatically scan for and add devices which support the Host "
@@ -432,12 +992,12 @@ msgstr ""
 "Вы хотите автоматически сканировать и добавлять устройства, которые "
 "поддерживают Host Resource MIB из таблицы Cacti host?"
 
-#: ../setup.php:374
+#: setup.php:372
 #, fuzzy
 msgid "Automatically Purge Devices"
 msgstr "Автоматическая очистка устройств"
 
-#: ../setup.php:375
+#: setup.php:373
 #, fuzzy
 msgid ""
 "Do you wish to automatically purge devices that are removed from the Cacti "
@@ -445,51 +1005,50 @@ msgid ""
 msgstr ""
 "Вы хотите автоматически очищать устройства, извлекаемые из системы Cacti?"
 
-#: ../setup.php:380
+#: setup.php:378
 #, fuzzy
 msgid "Default Row Count"
 msgstr "Количество строк по умолчанию"
 
-#: ../setup.php:381
+#: setup.php:379
 #, fuzzy
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
 msgstr "Сколько строк вы хотите видеть в HMIB OS Type по умолчанию?"
 
-#: ../setup.php:387
+#: setup.php:385
 #, fuzzy
 msgid "Default Top Host Types"
 msgstr "Типы хостов по умолчанию Типы хостов по умолчанию"
 
-#: ../setup.php:388 ../setup.php:399
+#: setup.php:386 setup.php:397
 #, fuzzy
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
 msgstr ""
 "Сколько процессов вы хотите увидеть на панели управления HMIB по умолчанию?"
 
-#: ../setup.php:392 ../setup.php:393 ../setup.php:394 ../setup.php:395
+#: setup.php:390 setup.php:391 setup.php:392 setup.php:393
 #, fuzzy, php-format
 msgid "%d Types"
 msgstr "%d Типы"
 
-#: ../setup.php:398
+#: setup.php:396
 #, fuzzy
 msgid "Default Top Processes"
 msgstr "Верхние процессы по умолчанию"
 
-#: ../setup.php:403 ../setup.php:404 ../setup.php:405 ../setup.php:406
-#: ../setup.php:415 ../setup.php:416 ../setup.php:417 ../setup.php:418
-#: ../setup.php:419 ../setup.php:420 ../setup.php:421 ../setup.php:422
-#: ../setup.php:423
+#: setup.php:401 setup.php:402 setup.php:403 setup.php:404 setup.php:413
+#: setup.php:414 setup.php:415 setup.php:416 setup.php:417 setup.php:418
+#: setup.php:419 setup.php:420 setup.php:421
 #, fuzzy, php-format
 msgid "%d Processes"
 msgstr "d Процессы"
 
-#: ../setup.php:409
+#: setup.php:407
 #, fuzzy
 msgid "Maximum Concurrent Collectors"
 msgstr "Максимально допустимые токовые коллекторы"
 
-#: ../setup.php:410
+#: setup.php:408
 #, fuzzy
 msgid ""
 "What is the maximum number of concurrent collector process that you want to "
@@ -498,785 +1057,221 @@ msgstr ""
 "Какое максимальное количество одновременных процессов коллектора вы хотите "
 "запустить за один раз?"
 
-#: ../setup.php:414
+#: setup.php:412
 #, fuzzy, php-format
 msgid "%d Process"
 msgstr "d Процесс"
 
-#: ../setup.php:426
+#: setup.php:424
 #, fuzzy
 msgid "Host Auto Discovery Frequency"
 msgstr "Частота автоматического обнаружения хоста"
 
-#: ../setup.php:430
+#: setup.php:428
 #, fuzzy
 msgid "Auto Discovery Frequency"
 msgstr "Частота автоматического обнаружения"
 
-#: ../setup.php:431
+#: setup.php:429
 #, fuzzy
 msgid "How often do you want to look for new Cacti Devices?"
 msgstr "Как часто вы хотите искать новые устройства Cacti Devices?"
 
-#: ../setup.php:437
+#: setup.php:435
 #, fuzzy
 msgid "Host Graph Automation"
 msgstr "Автоматизация хост-графиков"
 
-#: ../setup.php:441
+#: setup.php:439
 #, fuzzy
 msgid "Automatically Add New Graphs"
 msgstr "Автоматически добавлять новые графики"
 
-#: ../setup.php:442
+#: setup.php:440
 #, fuzzy
 msgid "How often do you want to check for new objects to graph?"
 msgstr "Как часто вы хотите проверять новые объекты для графов?"
 
-#: ../setup.php:446
+#: setup.php:444
 #, fuzzy
 msgid "Never"
 msgstr "Никогда"
 
-#: ../setup.php:447 ../setup.php:511
+#: setup.php:445 setup.php:509
 #, fuzzy, php-format
 msgid "%d Hour"
 msgstr "%d Час"
 
-#: ../setup.php:448 ../setup.php:512 ../setup.php:513 ../setup.php:514
+#: setup.php:446 setup.php:510 setup.php:511 setup.php:512
 #, fuzzy, php-format
 msgid "%d Hours"
 msgstr "%d Часа(ов)"
 
-#: ../setup.php:449 ../setup.php:515
+#: setup.php:447 setup.php:513
 #, fuzzy, php-format
 msgid "%d Day"
 msgstr "День"
 
-#: ../setup.php:450
+#: setup.php:448
 #, fuzzy, php-format
 msgid "%d Days"
 msgstr "%d Дня(ей)"
 
-#: ../setup.php:453
+#: setup.php:451
 #, fuzzy
 msgid "Host MIB Table Collection Frequencies"
 msgstr "Частота сбора данных таблицы MIB хоста"
 
-#: ../setup.php:457
+#: setup.php:455
 #, fuzzy
 msgid "Running Programs Frequency"
 msgstr "Выполняемые программы Частота выполнения программ"
 
-#: ../setup.php:458
+#: setup.php:456
 #, fuzzy
 msgid "How often do you want to scan running software?"
 msgstr "Как часто вы хотите сканировать запущенное программное обеспечение?"
 
-#: ../setup.php:464
+#: setup.php:462
 #, fuzzy
 msgid "Running Programs CPU/Memory Frequency"
 msgstr "Выполняемые программы CPU/Memory Frequency (Частота процессора/памяти)"
 
-#: ../setup.php:465
+#: setup.php:463
 #, fuzzy
 msgid "How often do you want to scan running software for performance data?"
 msgstr ""
 "Как часто вы хотите сканировать запущенное программное обеспечение для "
 "получения данных о производительности?"
 
-#: ../setup.php:471
+#: setup.php:469
 #, fuzzy
 msgid "Installed Software Frequency"
 msgstr "Установленное программное обеспечение Частота"
 
-#: ../setup.php:472
+#: setup.php:470
 #, fuzzy
 msgid "How often do you want to scan for installed software?"
 msgstr ""
 "Как часто вы хотите сканировать на наличие установленного программного "
 "обеспечения?"
 
-#: ../setup.php:478
+#: setup.php:476
 #, fuzzy
 msgid "Storage Frequency"
 msgstr "Частота хранения Периодичность хранения"
 
-#: ../setup.php:479
+#: setup.php:477
 #, fuzzy
 msgid "How often do you want to scan for Storage performance data?"
 msgstr ""
 "Как часто требуется сканирование для поиска данных о производительности "
 "хранилища?"
 
-#: ../setup.php:485
+#: setup.php:483
 #, fuzzy
 msgid "Device Frequency"
 msgstr "Частота устройства Частота"
 
-#: ../setup.php:486
+#: setup.php:484
 #, fuzzy
 msgid "How often do you want to scan for Device performance data?"
 msgstr ""
 "Как часто требуется сканирование для поиска данных о производительности "
 "устройства?"
 
-#: ../setup.php:492
+#: setup.php:490
 #, fuzzy
 msgid "Processor Frequency"
 msgstr "Частота процессора Частота процессора"
 
-#: ../setup.php:493
+#: setup.php:491
 #, fuzzy
 msgid "How often do you want to scan for Processor performance data?"
 msgstr ""
 "Как часто вы хотите сканировать данные о производительности процессора?"
 
-#: ../setup.php:506 ../hmib.php:1584 ../hmib.php:2371
-#, fuzzy
-msgid "Disabled"
-msgstr "Выключен"
-
-#: ../setup.php:507
+#: setup.php:505
 #, fuzzy, php-format
 msgid "%d Minute"
 msgstr "%d Минута"
 
-#: ../setup.php:508 ../setup.php:509 ../setup.php:510
+#: setup.php:506 setup.php:507 setup.php:508
 #, fuzzy, php-format
 msgid "%d Minutes"
 msgstr "%d Минут"
 
-#: ../setup.php:589
+#: setup.php:587
 #, fuzzy
 msgid "Management"
 msgstr "Управление"
 
-#: ../setup.php:593 ../setup.php:594
+#: setup.php:593 setup.php:594
 #, fuzzy
 msgid "Host MIB Inventory Summary"
 msgstr "Принимающая сторона MIB Сводка инвентаризации MIB"
 
-#: ../setup.php:595
+#: setup.php:595
 #, fuzzy
 msgid "Host MIB Details"
 msgstr "Данные MIB хоста"
 
-#: ../setup.php:596
+#: setup.php:596
 #, fuzzy
 msgid "Host MIB Storage"
 msgstr "Хост MIB Хранилище хост-узла"
 
-#: ../setup.php:597
+#: setup.php:597
 #, fuzzy
 msgid "Host MIB Hardware"
 msgstr "Аппаратное обеспечение MIB хоста"
 
-#: ../setup.php:598
+#: setup.php:598
 #, fuzzy
 msgid "Host MIB Running Processes"
 msgstr "Ведущий MIB Запущенные процессы"
 
-#: ../setup.php:599
+#: setup.php:599
 #, fuzzy
 msgid "Host MIB Process Use History"
 msgstr "История использования хостового MIB-процесса"
 
-#: ../setup.php:600
+#: setup.php:600
 #, fuzzy
 msgid "Host MIB Software Inventory"
 msgstr "Инвентаризация программного обеспечения MIB хоста"
 
-#: ../setup.php:601
+#: setup.php:601
 #, fuzzy
 msgid "Host MIB Graphs"
 msgstr "Графики MIB хоста"
 
-#: ../setup.php:603
+#: setup.php:603
 #, fuzzy
 msgid "Host MIB OS Types"
 msgstr "Типы ОС MIB хоста"
 
-#: ../setup.php:604 ../hmib.php:1672 ../hmib.php:2365 ../hmib.php:2553
-#, fuzzy
-msgid "Actions"
-msgstr "Действия"
-
-#: ../setup.php:605
+#: setup.php:605
 #, fuzzy
 msgid "(Edit)"
 msgstr "(Редактировать)"
 
-#: ../hmib.php:36
 #, fuzzy
-msgid "Error"
-msgstr "Ошибка"
+#~ msgid "Time when last seen running"
+#~ msgstr "Время, когда последний раз видели бегущим"
 
-#: ../hmib.php:38
 #, fuzzy
-msgid "Operating System"
-msgstr "Операционная система"
+#~ msgid ""
+#~ "WARNING: You need to import your Host MIB Host Template to view Graphs.  "
+#~ "See the README for more information."
+#~ msgstr ""
+#~ "ПРЕДУПРЕЖДЕНИЕ: Для просмотра графиков необходимо импортировать шаблон "
+#~ "хоста Host MIB.  Для получения дополнительной информации см. раздел "
+#~ "README."
 
-#: ../hmib.php:39
 #, fuzzy
-msgid "Device Driver"
-msgstr "Драйвер устройства"
-
-#: ../hmib.php:40
-#, fuzzy
-msgid "Application"
-msgstr "Приложение"
-
-#: ../hmib.php:44 ../hmib.php:53
-#, fuzzy
-msgid "Running"
-msgstr "В процессе"
-
-#: ../hmib.php:45
-#, fuzzy
-msgid "Runnable"
-msgstr "Поддерживаемый"
-
-#: ../hmib.php:46
-#, fuzzy
-msgid "Not Runnable"
-msgstr "Невозможно запустить"
-
-#: ../hmib.php:47
-#, fuzzy
-msgid "Invalid"
-msgstr "Недействительный"
-
-#: ../hmib.php:51
-#, fuzzy
-msgid "Present"
-msgstr "Сейчас"
-
-#: ../hmib.php:54
-#, fuzzy
-msgid "Warning"
-msgstr "Предупреждение"
-
-#: ../hmib.php:55
-#, fuzzy
-msgid "Testing"
-msgstr "Тестирование"
-
-#: ../hmib.php:56 ../hmib.php:1575 ../hmib.php:2370
-#, fuzzy
-msgid "Down"
-msgstr "Вниз"
-
-#: ../hmib.php:180
-#, fuzzy
-msgid "Running Process History"
-msgstr "История выполняющихся процессов"
-
-#: ../hmib.php:193 ../hmib.php:214 ../hmib.php:236 ../hmib.php:275
-#: ../hmib.php:524 ../hmib.php:545 ../hmib.php:567 ../hmib.php:606
-#: ../hmib.php:874 ../hmib.php:894 ../hmib.php:916 ../hmib.php:955
-#: ../hmib.php:1179 ../hmib.php:1199 ../hmib.php:1221 ../hmib.php:1260
-#: ../hmib.php:1485 ../hmib.php:1505 ../hmib.php:1528 ../hmib.php:1560
-#: ../hmib.php:1910 ../hmib.php:1931 ../hmib.php:1953 ../hmib.php:1992
-#, fuzzy
-msgid "All"
-msgstr "Все"
-
-#: ../hmib.php:210 ../hmib.php:541 ../hmib.php:890 ../hmib.php:1195
-#: ../hmib.php:1927
-#, fuzzy
-msgid "Device"
-msgstr "Устройство"
-
-#: ../hmib.php:232 ../hmib.php:563 ../hmib.php:912 ../hmib.php:1217
-#: ../hmib.php:1501 ../hmib.php:1949
-#, fuzzy
-msgid "Template"
-msgstr "Шаблон"
-
-#: ../hmib.php:271 ../hmib.php:379 ../hmib.php:602 ../hmib.php:721
-#: ../hmib.php:1524
-#, fuzzy
-msgid "Process"
-msgstr "Процесс"
-
-#: ../hmib.php:291 ../hmib.php:622 ../hmib.php:970
-#, fuzzy
-msgid "Entries"
-msgstr "Записи"
-
-#: ../hmib.php:371
-#, fuzzy
-msgid "History"
-msgstr "История"
-
-#: ../hmib.php:378 ../hmib.php:720 ../hmib.php:1046 ../hmib.php:1351
-#: ../hmib.php:1673 ../hmib.php:2084
-#, fuzzy
-msgid "Hostname"
-msgstr "Имя хоста"
-
-#: ../hmib.php:380
-#, fuzzy
-msgid "Last Seen"
-msgstr "Последнее посещение"
-
-#: ../hmib.php:381
-#, fuzzy
-msgid "Use Time (d:h:m)"
-msgstr "Использовать время (d:h:m)"
-
-#: ../hmib.php:390 ../hmib.php:736 ../hmib.php:1059 ../hmib.php:1367
-#: ../hmib.php:1744 ../hmib.php:2096
-#, fuzzy
-msgid "Edit Device"
-msgstr "Редактировать устройство"
-
-#: ../hmib.php:397
-#, fuzzy
-msgid "Time when last seen running"
-msgstr "Время, когда последний раз видели бегущим"
-
-#: ../hmib.php:402
-#, fuzzy
-msgid "No Process History Found"
-msgstr "История процесса не найдена"
-
-#: ../hmib.php:511
-#, fuzzy
-msgid "Running Processes"
-msgstr "Запущенные процессы"
-
-#: ../hmib.php:713 ../hmib.php:1679 ../hmib.php:2127 ../hmib.php:2557
-#, fuzzy
-msgid "Processes"
-msgstr "Процессы"
-
-#: ../hmib.php:722
-#, fuzzy
-msgid "Path"
-msgstr "Путь"
-
-#: ../hmib.php:723
-#, fuzzy
-msgid "Parameters"
-msgstr "Параметры"
-
-#: ../hmib.php:724
-#, fuzzy
-msgid "CPU (Hrs)"
-msgstr "CPU (Часы)"
-
-#: ../hmib.php:725
-#, fuzzy
-msgid "Memory (MB)"
-msgstr "Память (МБ)"
-
-#: ../hmib.php:726 ../hmib.php:951 ../hmib.php:1256 ../hmib.php:1988
-#: ../hmib.php:2086 ../hmib.php:2366
-#, fuzzy
-msgid "Type"
-msgstr "Тип"
-
-#: ../hmib.php:727 ../hmib.php:1049 ../hmib.php:1556 ../hmib.php:1674
-#, fuzzy
-msgid "Status"
-msgstr "Статус"
-
-#: ../hmib.php:752
-#, fuzzy
-msgid "No Running Software Found"
-msgstr "Не найдено работающего программного обеспечения"
-
-#: ../hmib.php:767
-#, fuzzy
-msgid "Total CPU [h]:"
-msgstr "Общий процессор [ч]:"
-
-#: ../hmib.php:768
-#, fuzzy
-msgid "Total Size [MB]:"
-msgstr "Общий размер [МБ]:"
-
-#: ../hmib.php:771
-#, fuzzy
-msgid "Avg. CPU [h]:"
-msgstr "Эйвг. CPU [h]:"
-
-#: ../hmib.php:772
-#, fuzzy
-msgid "Avg. Size [MB]:"
-msgstr "Эйвг. Размер [МБ]:"
-
-#: ../hmib.php:861
-#, fuzzy
-msgid "Hardware Inventory"
-msgstr "Инвентаризация оборудования"
-
-#: ../hmib.php:1039 ../hmib.php:1594 ../hmib.php:1665 ../hmib.php:2124
-#, fuzzy
-msgid "Devices"
-msgstr "Устройства"
-
-#: ../hmib.php:1047
-#, fuzzy
-msgid "Hardware Description"
-msgstr "Описание оборудования"
-
-#: ../hmib.php:1048
-#, fuzzy
-msgid "Hardware Type"
-msgstr "Тип оборудования"
-
-#: ../hmib.php:1050 ../hmib.php:1354
-#, fuzzy
-msgid "Errors"
-msgstr "Ошибки"
-
-#: ../hmib.php:1072
-#, fuzzy
-msgid "No Hardware Found"
-msgstr "Нет аппаратных средств не найдено"
-
-#: ../hmib.php:1166
-#, fuzzy
-msgid "Storage Inventory"
-msgstr "Хранение Инвентаризация"
-
-#: ../hmib.php:1275 ../hmib.php:1344
-#, fuzzy
-msgid "Volumes"
-msgstr "Шейдер объёма"
-
-#: ../hmib.php:1352
-#, fuzzy
-msgid "Storage Description"
-msgstr "Хранение Описание Хранения"
-
-#: ../hmib.php:1353
-#, fuzzy
-msgid "Storage Type"
-msgstr "Тип хранилища"
-
-#: ../hmib.php:1355
-#, fuzzy
-msgid "Percent Used"
-msgstr "Процент Использованный"
-
-#: ../hmib.php:1356
-#, fuzzy
-msgid "Used (MB)"
-msgstr "Использованные (МБ)"
-
-#: ../hmib.php:1357
-#, fuzzy
-msgid "Total (MB)"
-msgstr "Всего (МБ)"
-
-#: ../hmib.php:1358
-#, fuzzy
-msgid "Alloc (KB)"
-msgstr "Распределение (КБ)"
-
-#: ../hmib.php:1383
-#, fuzzy
-msgid "No Storage Devices Found"
-msgstr "Устройства хранения данных не найдены"
-
-#: ../hmib.php:1472
-#, fuzzy
-msgid "Device Filter"
-msgstr "Фильтр устройства"
-
-#: ../hmib.php:1578 ../hmib.php:2369
-#, fuzzy
-msgid "Recovering"
-msgstr "Восстановление"
-
-#: ../hmib.php:1581 ../hmib.php:2368
-#, fuzzy
-msgid "Up"
-msgstr "Вверх"
-
-#: ../hmib.php:1675
-#, fuzzy
-msgid "Uptime(d:h:m)"
-msgstr "Время безотказной работы (d:h:m)"
-
-#: ../hmib.php:1676
-#, fuzzy
-msgid "Users"
-msgstr "Пользователи"
-
-#: ../hmib.php:1677
-#, fuzzy
-msgid "CPU %"
-msgstr "CPU %"
-
-#: ../hmib.php:1678
-#, fuzzy
-msgid "CPUs"
-msgstr "процессоры"
-
-#: ../hmib.php:1680
-#, fuzzy
-msgid "Total Mem"
-msgstr "Всего Мем"
-
-#: ../hmib.php:1681
-#, fuzzy
-msgid "Used Mem"
-msgstr "Бывшая в употреблении память"
-
-#: ../hmib.php:1682
-#, fuzzy
-msgid "Total Swap"
-msgstr "Всего своп"
-
-#: ../hmib.php:1683
-#, fuzzy
-msgid "Used Swap"
-msgstr "Использованный своп"
-
-#: ../hmib.php:1729 ../hmib.php:2410
-#, fuzzy
-msgid "View Storage"
-msgstr "Просмотр хранилища"
-
-#: ../hmib.php:1730 ../hmib.php:2411
-#, fuzzy
-msgid "View Hardware"
-msgstr "Просмотр оборудования"
-
-#: ../hmib.php:1731 ../hmib.php:2412 ../hmib.php:2583
-#, fuzzy
-msgid "View Processes"
-msgstr "Просмотр процессов"
-
-#: ../hmib.php:1732 ../hmib.php:2413
-#, fuzzy
-msgid "View Software Inventory"
-msgstr "Просмотреть список программного обеспечения"
-
-#: ../hmib.php:1734 ../hmib.php:2651 ../hmib.php:2653 ../hmib.php:2703
-#: ../hmib.php:2705
-#, fuzzy
-msgid "View Graphs"
-msgstr "Просмотр графиков"
-
-#: ../hmib.php:1736
-#, fuzzy
-msgid "No Graphs Defined"
-msgstr "Нет Определенных графиков"
-
-#: ../hmib.php:1764
-#, fuzzy
-msgid "No Devices Found"
-msgstr "Устройства не найдены"
-
-#: ../hmib.php:1897
-#, fuzzy
-msgid "Software Inventory"
-msgstr "Инвентаризация программного обеспечения"
-
-#: ../hmib.php:2007 ../hmib.php:2077
-#, fuzzy
-msgid "Applications"
-msgstr "Приложения"
-
-#: ../hmib.php:2085
-#, fuzzy
-msgid "Package"
-msgstr "Пакет"
-
-#: ../hmib.php:2087
-#, fuzzy
-msgid "Installed"
-msgstr "Установленно"
-
-#: ../hmib.php:2108
-#, fuzzy
-msgid "No Software Packages Found"
-msgstr "Нет найденных пакетов программного обеспечения"
-
-#: ../hmib.php:2123
-#, fuzzy
-msgid "Summary"
-msgstr "Резюме"
-
-#: ../hmib.php:2125
-#, fuzzy
-msgid "Storage"
-msgstr "Хранилище"
-
-#: ../hmib.php:2126
-#, fuzzy
-msgid "Hardware"
-msgstr "Аппаратное оборудование"
-
-#: ../hmib.php:2128
-#, fuzzy
-msgid "Use History"
-msgstr "Использовать историю"
-
-#: ../hmib.php:2129
-#, fuzzy
-msgid "Inventory"
-msgstr "Инвентаризация"
-
-#: ../hmib.php:2130
-#, fuzzy
-msgid "Graphs"
-msgstr "Графики"
-
-#: ../hmib.php:2289
-#, fuzzy
-msgid "Summary Filter"
-msgstr "Сводный фильтр"
-
-#: ../hmib.php:2298 ../hmib.php:2486
-#, fuzzy
-msgid "Top"
-msgstr "Верх"
-
-#: ../hmib.php:2302 ../hmib.php:2490
-#, fuzzy
-msgid "All Records"
-msgstr "Все записи"
-
-#: ../hmib.php:2303 ../hmib.php:2491 ../hmib.php:2492 ../hmib.php:2493
-#: ../hmib.php:2494
-#, fuzzy, php-format
-msgid "%d Records"
-msgstr "d Записи"
-
-#: ../hmib.php:2304 ../hmib.php:2305 ../hmib.php:2306
-#, fuzzy, php-format
-msgid "%d Record"
-msgstr "d Запись"
-
-#: ../hmib.php:2316 ../hmib.php:2504
-#, fuzzy
-msgid ""
-"WARNING: You need to import your Host MIB Host Template to view Graphs.  See "
-"the README for more information."
-msgstr ""
-"ПРЕДУПРЕЖДЕНИЕ: Для просмотра графиков необходимо импортировать шаблон хоста "
-"Host MIB.  Для получения дополнительной информации см. раздел README."
-
-#: ../hmib.php:2327
-#, fuzzy
-msgid "Device Type Summary Statistics"
-msgstr "Тип устройства Сводная статистика"
-
-#: ../hmib.php:2372
-#, fuzzy
-msgid "Logins"
-msgstr "Логины"
-
-#: ../hmib.php:2373
-#, fuzzy
-msgid "CPUS"
-msgstr "ПРОЦЕССОР"
-
-#: ../hmib.php:2374 ../hmib.php:2558
-#, fuzzy
-msgid "Avg CPU"
-msgstr "Avg CPU"
-
-#: ../hmib.php:2375 ../hmib.php:2559
-#, fuzzy
-msgid "Max CPU"
-msgstr "Макс процессора"
-
-#: ../hmib.php:2376
-#, fuzzy
-msgid "Avg Mem"
-msgstr "Авг Мем"
-
-#: ../hmib.php:2377
-#, fuzzy
-msgid "Max Mem"
-msgstr "Макс Мем"
-
-#: ../hmib.php:2378
-#, fuzzy
-msgid "Avg Swap"
-msgstr "Авг Своп"
-
-#: ../hmib.php:2379
-#, fuzzy
-msgid "Max Swap"
-msgstr "Макс Своп"
-
-#: ../hmib.php:2380
-#, fuzzy
-msgid "Avg Proc"
-msgstr "Avg Proc."
-
-#: ../hmib.php:2381
-#, fuzzy
-msgid "Max Proc"
-msgstr "Макс Процессинг"
-
-#: ../hmib.php:2409 ../hmib.php:2582 ../hmib.php:2608
-#, fuzzy
-msgid "View Devices"
-msgstr "Просмотр устройств"
-
-#: ../hmib.php:2442
-#, fuzzy
-msgid "No Device Types"
-msgstr "Типы устройств отсутствуют"
-
-#: ../hmib.php:2447
-#, fuzzy
-msgid "Process Summary Filter"
-msgstr "Общий фильтр процессов"
-
-#: ../hmib.php:2515
-#, fuzzy
-msgid "Process Summary Statistics"
-msgstr "Сводная статистика процессов"
-
-#: ../hmib.php:2554
-#, fuzzy
-msgid "Process Name"
-msgstr "Имя процесса"
-
-#: ../hmib.php:2555
-#, fuzzy
-msgid "Num Paths"
-msgstr "Числа Пути"
-
-#: ../hmib.php:2560
-#, fuzzy
-msgid "Avg Memory"
-msgstr "Avg Memory"
-
-#: ../hmib.php:2561
-#, fuzzy
-msgid "Max Memory"
-msgstr "Макс Память"
-
-#: ../hmib.php:2598
-#, fuzzy
-msgid "No Processes"
-msgstr "Нет процессов"
-
-#: ../hmib.php:2659 ../hmib.php:2711
-#, fuzzy
-msgid "Please Select Data Query First from Console->Settings->Host Mib First"
-msgstr ""
-"Выберите сначала запрос данных из меню Console->Settings->Host Mib First "
-"(Консоль->Настройки)."
-
-#: ../hmib.php:2752
-#, fuzzy
-msgid "Graph Preview Filters"
-msgstr "Фильтры предварительного просмотра графиков"
-
-#: ../hmib.php:2752
-#, fuzzy
-msgid "Custom Graph List Applied - Filtering from List"
-msgstr "Пользовательский список применяемых графиков - Фильтрация из списка"
+#~ msgid ""
+#~ "Please Select Data Query First from Console->Settings->Host Mib First"
+#~ msgstr ""
+#~ "Выберите сначала запрос данных из меню Console->Settings->Host Mib First "
+#~ "(Консоль->Настройки)."
