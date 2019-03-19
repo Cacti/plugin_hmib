@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-29 23:10-0400\n"
+"POT-Creation-Date: 2019-03-19 09:50+0000\n"
 "PO-Revision-Date: 2019-03-16 23:28-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,37 +17,646 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: ../hmib_types.php:30
+#: hmib.php:36
+#, fuzzy
+msgid "Error"
+msgstr "त्रुटि"
+
+#: hmib.php:37 hmib.php:52 hmib.php:747 hmib.php:1066 hmib.php:1374
+#: hmib.php:1572 hmib.php:2103 hmib.php:2417 hmib_types.php:353
+#, fuzzy
+msgid "Unknown"
+msgstr "अनजान"
+
+#: hmib.php:38
+#, fuzzy
+msgid "Operating System"
+msgstr "ऑपरेटिंग सिस्टम"
+
+#: hmib.php:39
+#, fuzzy
+msgid "Device Driver"
+msgstr "डिवाइस ड्राइवर"
+
+#: hmib.php:40
+#, fuzzy
+msgid "Application"
+msgstr "आवेदन"
+
+#: hmib.php:44 hmib.php:53
+#, fuzzy
+msgid "Running"
+msgstr "चल रहा है"
+
+#: hmib.php:45
+#, fuzzy
+msgid "Runnable"
+msgstr "runnable"
+
+#: hmib.php:46
+#, fuzzy
+msgid "Not Runnable"
+msgstr "न चलने योग्य"
+
+#: hmib.php:47
+#, fuzzy
+msgid "Invalid"
+msgstr "अमान्य"
+
+#: hmib.php:51
+#, fuzzy
+msgid "Present"
+msgstr "वर्तमान"
+
+#: hmib.php:54
+#, fuzzy
+msgid "Warning"
+msgstr "चेतावनी"
+
+#: hmib.php:55
+#, fuzzy
+msgid "Testing"
+msgstr "परिक्षण"
+
+#: hmib.php:56 hmib.php:1575 hmib.php:2370
+#, fuzzy
+msgid "Down"
+msgstr "नीचे"
+
+#: hmib.php:180
+#, fuzzy
+msgid "Running Process History"
+msgstr "रनिंग प्रोसेस हिस्ट्री"
+
+#: hmib.php:189 hmib.php:520 hmib.php:870 hmib.php:1175 hmib.php:1481
+#: hmib.php:1906 hmib_types.php:987
+#, fuzzy
+msgid "OS Type"
+msgstr "ओएस प्रकार"
+
+#: hmib.php:193 hmib.php:214 hmib.php:236 hmib.php:275 hmib.php:524
+#: hmib.php:545 hmib.php:567 hmib.php:606 hmib.php:874 hmib.php:894
+#: hmib.php:916 hmib.php:955 hmib.php:1179 hmib.php:1199 hmib.php:1221
+#: hmib.php:1260 hmib.php:1485 hmib.php:1505 hmib.php:1528 hmib.php:1560
+#: hmib.php:1910 hmib.php:1931 hmib.php:1953 hmib.php:1992
+#, fuzzy
+msgid "All"
+msgstr "所有"
+
+#: hmib.php:210 hmib.php:541 hmib.php:890 hmib.php:1195 hmib.php:1927
+#, fuzzy
+msgid "Device"
+msgstr "युक्ति"
+
+#: hmib.php:232 hmib.php:563 hmib.php:912 hmib.php:1217 hmib.php:1501
+#: hmib.php:1949
+#, fuzzy
+msgid "Template"
+msgstr "खाका"
+
+#: hmib.php:255 hmib.php:586 hmib.php:935 hmib.php:1240 hmib.php:1540
+#: hmib.php:1972 hmib.php:2310 hmib.php:2493 hmib_types.php:934
+#: hmib_types.php:1002
+#, fuzzy
+msgid "Go"
+msgstr "चले जाओ"
+
+#: hmib.php:258 hmib.php:589 hmib.php:938 hmib.php:1243 hmib.php:1543
+#: hmib.php:1975 hmib.php:2313 hmib.php:2496 hmib_types.php:1005
+#, fuzzy
+msgid "Clear"
+msgstr "明确"
+
+#: hmib.php:265 hmib.php:596 hmib.php:945 hmib.php:1250 hmib.php:1550
+#: hmib.php:1982 hmib.php:2475 hmib_types.php:981
+#, fuzzy
+msgid "Search"
+msgstr "खोज"
+
+#: hmib.php:271 hmib.php:379 hmib.php:602 hmib.php:721 hmib.php:1524
+#, fuzzy
+msgid "Process"
+msgstr "प्रक्रिया"
+
+#: hmib.php:291 hmib.php:622 hmib.php:970
+#, fuzzy
+msgid "Entries"
+msgstr "प्रविष्टियां"
+
+#: hmib.php:295 hmib.php:626 hmib.php:974 hmib.php:1279 hmib.php:1598
+#: hmib.php:2011 hmib_types.php:991
+#, fuzzy
+msgid "Default"
+msgstr "चूक"
+
+#: hmib.php:371
+#, fuzzy
+msgid "History"
+msgstr "इतिहास"
+
+#: hmib.php:378 hmib.php:720 hmib.php:1046 hmib.php:1351 hmib.php:1673
+#: hmib.php:2084
+#, fuzzy
+msgid "Hostname"
+msgstr "होस्ट का नाम"
+
+#: hmib.php:380
+#, fuzzy
+msgid "Last Seen"
+msgstr "अंतिम बार देखा गया"
+
+#: hmib.php:381
+#, fuzzy
+msgid "Use Time (d:h:m)"
+msgstr "समय का उपयोग करें (d: h: m)"
+
+#: hmib.php:390 hmib.php:736 hmib.php:1059 hmib.php:1367 hmib.php:1744
+#: hmib.php:2096
+#, fuzzy
+msgid "Edit Device"
+msgstr "उपकरण संपादित करें"
+
+#: hmib.php:402
+#, fuzzy
+msgid "No Process History Found"
+msgstr "कोई प्रक्रिया इतिहास नहीं मिला"
+
+#: hmib.php:511
+#, fuzzy
+msgid "Running Processes"
+msgstr "प्रक्रिया चल रही है"
+
+#: hmib.php:713 hmib.php:1679 hmib.php:2127 hmib.php:2552
+#, fuzzy
+msgid "Processes"
+msgstr "प्रक्रियाओं"
+
+#: hmib.php:722
+#, fuzzy
+msgid "Path"
+msgstr "पथ"
+
+#: hmib.php:723
+#, fuzzy
+msgid "Parameters"
+msgstr "पैरामीटर"
+
+#: hmib.php:724
+#, fuzzy
+msgid "CPU (Hrs)"
+msgstr "CPU (Hrs)"
+
+#: hmib.php:725
+#, fuzzy
+msgid "Memory (MB)"
+msgstr "मेमोरी (MB)"
+
+#: hmib.php:726 hmib.php:951 hmib.php:1256 hmib.php:1988 hmib.php:2086
+#: hmib.php:2366
+#, fuzzy
+msgid "Type"
+msgstr "प्रकार"
+
+#: hmib.php:727 hmib.php:1049 hmib.php:1556 hmib.php:1674
+#, fuzzy
+msgid "Status"
+msgstr "ऑर्डर स्थिति"
+
+#: hmib.php:752
+#, fuzzy
+msgid "No Running Software Found"
+msgstr "कोई रनिंग सॉफ्टवेयर नहीं मिला"
+
+#: hmib.php:767
+#, fuzzy
+msgid "Total CPU [h]:"
+msgstr "कुल CPU [h]:"
+
+#: hmib.php:768
+#, fuzzy
+msgid "Total Size [MB]:"
+msgstr "कुल आकार [एमबी]:"
+
+#: hmib.php:771
+#, fuzzy
+msgid "Avg. CPU [h]:"
+msgstr "औसत। CPU [h]:"
+
+#: hmib.php:772
+#, fuzzy
+msgid "Avg. Size [MB]:"
+msgstr "औसत। आकार [एमबी]:"
+
+#: hmib.php:861
+#, fuzzy
+msgid "Hardware Inventory"
+msgstr "हार्डवेयर इन्वेंटरी"
+
+#: hmib.php:1039 hmib.php:1594 hmib.php:1665 hmib.php:2124
+#, fuzzy
+msgid "Devices"
+msgstr "उपकरण"
+
+#: hmib.php:1047
+#, fuzzy
+msgid "Hardware Description"
+msgstr "हार्डवेयर विवरण"
+
+#: hmib.php:1048
+#, fuzzy
+msgid "Hardware Type"
+msgstr "हार्डवेयर प्रकार"
+
+#: hmib.php:1050 hmib.php:1354
+#, fuzzy
+msgid "Errors"
+msgstr "त्रुटियाँ"
+
+#: hmib.php:1072
+#, fuzzy
+msgid "No Hardware Found"
+msgstr "कोई हार्डवेयर नहीं मिला"
+
+#: hmib.php:1166
+#, fuzzy
+msgid "Storage Inventory"
+msgstr "भंडारण सूची"
+
+#: hmib.php:1275 hmib.php:1344
+#, fuzzy
+msgid "Volumes"
+msgstr "वॉल्यूम"
+
+#: hmib.php:1352
+#, fuzzy
+msgid "Storage Description"
+msgstr "भंडारण विवरण"
+
+#: hmib.php:1353
+#, fuzzy
+msgid "Storage Type"
+msgstr "भण्डारण प्रकार"
+
+#: hmib.php:1355
+#, fuzzy
+msgid "Percent Used"
+msgstr "प्रतिशत उपयोग किया जाता है"
+
+#: hmib.php:1356
+#, fuzzy
+msgid "Used (MB)"
+msgstr "प्रयुक्त (MB)"
+
+#: hmib.php:1357
+#, fuzzy
+msgid "Total (MB)"
+msgstr "कुल (एमबी)"
+
+#: hmib.php:1358
+#, fuzzy
+msgid "Alloc (KB)"
+msgstr "एलोक (KB)"
+
+#: hmib.php:1383
+#, fuzzy
+msgid "No Storage Devices Found"
+msgstr "कोई संग्रहण उपकरण नहीं मिला"
+
+#: hmib.php:1472
+#, fuzzy
+msgid "Device Filter"
+msgstr "डिवाइस फ़िल्टर"
+
+#: hmib.php:1578 hmib.php:2369
+#, fuzzy
+msgid "Recovering"
+msgstr "पुन: प्राप्त करना"
+
+#: hmib.php:1581 hmib.php:2368
+#, fuzzy
+msgid "Up"
+msgstr "ऊपर"
+
+#: hmib.php:1584 hmib.php:2371 setup.php:504
+#, fuzzy
+msgid "Disabled"
+msgstr "अक्षम"
+
+#: hmib.php:1672 hmib.php:2365 hmib.php:2548 setup.php:604
+#, fuzzy
+msgid "Actions"
+msgstr "कार्रवाइयाँ"
+
+#: hmib.php:1675
+#, fuzzy
+msgid "Uptime(d:h:m)"
+msgstr "अपटाइम (घ: ज: मी)"
+
+#: hmib.php:1676
+#, fuzzy
+msgid "Users"
+msgstr "उपयोगकर्ता"
+
+#: hmib.php:1677
+#, fuzzy
+msgid "CPU %"
+msgstr "सी पी यू %"
+
+#: hmib.php:1678
+#, fuzzy
+msgid "CPUs"
+msgstr "सीपीयू"
+
+#: hmib.php:1680
+#, fuzzy
+msgid "Total Mem"
+msgstr "कुल मेम"
+
+#: hmib.php:1681
+#, fuzzy
+msgid "Used Mem"
+msgstr "मेमे का इस्तेमाल किया"
+
+#: hmib.php:1682
+#, fuzzy
+msgid "Total Swap"
+msgstr "कुल स्वैप"
+
+#: hmib.php:1683
+#, fuzzy
+msgid "Used Swap"
+msgstr "प्रयुक्त स्वैप"
+
+#: hmib.php:1729 hmib.php:2405
+#, fuzzy
+msgid "View Storage"
+msgstr "संग्रहण देखें"
+
+#: hmib.php:1730 hmib.php:2406
+#, fuzzy
+msgid "View Hardware"
+msgstr "हार्डवेयर देखें"
+
+#: hmib.php:1731 hmib.php:2407 hmib.php:2578
+#, fuzzy
+msgid "View Processes"
+msgstr "प्रक्रियाओं को देखें"
+
+#: hmib.php:1732 hmib.php:2408
+#, fuzzy
+msgid "View Software Inventory"
+msgstr "सॉफ्टवेयर इन्वेंटरी देखें"
+
+#: hmib.php:1734 hmib.php:2646 hmib.php:2648 hmib.php:2694 hmib.php:2696
+#, fuzzy
+msgid "View Graphs"
+msgstr "रेखांकन देखें"
+
+#: hmib.php:1736
+#, fuzzy
+msgid "No Graphs Defined"
+msgstr "कोई रेखांकन परिभाषित नहीं है"
+
+#: hmib.php:1764
+#, fuzzy
+msgid "No Devices Found"
+msgstr "कोई यंत्र नहीं मिले"
+
+#: hmib.php:1897
+#, fuzzy
+msgid "Software Inventory"
+msgstr "सॉफ्टवेयर इन्वेंटरी"
+
+#: hmib.php:2007 hmib.php:2077
+#, fuzzy
+msgid "Applications"
+msgstr "अनुप्रयोगों"
+
+#: hmib.php:2085
+#, fuzzy
+msgid "Package"
+msgstr "पैकेज"
+
+#: hmib.php:2087
+#, fuzzy
+msgid "Installed"
+msgstr "स्थापित"
+
+#: hmib.php:2108
+#, fuzzy
+msgid "No Software Packages Found"
+msgstr "कोई सॉफ्टवेयर पैकेज नहीं मिला"
+
+#: hmib.php:2123
+#, fuzzy
+msgid "Summary"
+msgstr "सारांश"
+
+#: hmib.php:2125
+#, fuzzy
+msgid "Storage"
+msgstr "भंडारण"
+
+#: hmib.php:2126
+#, fuzzy
+msgid "Hardware"
+msgstr "हार्डवेयर"
+
+#: hmib.php:2128
+#, fuzzy
+msgid "Use History"
+msgstr "इतिहास का उपयोग करें"
+
+#: hmib.php:2129
+#, fuzzy
+msgid "Inventory"
+msgstr "इन्वेंटरी"
+
+#: hmib.php:2130 hmib.php:2813
+#, fuzzy
+msgid "Graphs"
+msgstr "रेखांकन"
+
+#: hmib.php:2289
+#, fuzzy
+msgid "Summary Filter"
+msgstr "सारांश फ़िल्टर"
+
+#: hmib.php:2298 hmib.php:2481
+#, fuzzy
+msgid "Top"
+msgstr "चोटी"
+
+#: hmib.php:2302 hmib.php:2485
+#, fuzzy
+msgid "All Records"
+msgstr "सभी रिकॉर्ड"
+
+#: hmib.php:2303 hmib.php:2486 hmib.php:2487 hmib.php:2488 hmib.php:2489
+#, fuzzy, php-format
+msgid "%d Records"
+msgstr "% d रिकॉर्ड्स"
+
+#: hmib.php:2304 hmib.php:2305 hmib.php:2306
+#, fuzzy, php-format
+msgid "%d Record"
+msgstr "% d रिकॉर्ड"
+
+#: hmib.php:2316 hmib.php:2499
+msgid "NOTE: Import the Host MIB Device Package to view Graphs."
+msgstr ""
+
+#: hmib.php:2327
+#, fuzzy
+msgid "Device Type Summary Statistics"
+msgstr "डिवाइस प्रकार सारांश सांख्यिकी"
+
+#: hmib.php:2367 hmib_types.php:758
+#, fuzzy
+msgid "Version"
+msgstr "संस्करण %s"
+
+#: hmib.php:2372
+#, fuzzy
+msgid "Logins"
+msgstr "लॉगिन"
+
+#: hmib.php:2373
+#, fuzzy
+msgid "CPUS"
+msgstr "CPUS"
+
+#: hmib.php:2374 hmib.php:2553
+#, fuzzy
+msgid "Avg CPU"
+msgstr "औसत सीपीयू"
+
+#: hmib.php:2375 hmib.php:2554
+#, fuzzy
+msgid "Max CPU"
+msgstr "मैक्स सीपीयू"
+
+#: hmib.php:2376
+#, fuzzy
+msgid "Avg Mem"
+msgstr "औसत मेम"
+
+#: hmib.php:2377
+#, fuzzy
+msgid "Max Mem"
+msgstr "मैक्स मेम"
+
+#: hmib.php:2378
+#, fuzzy
+msgid "Avg Swap"
+msgstr "औसत स्वैप"
+
+#: hmib.php:2379
+#, fuzzy
+msgid "Max Swap"
+msgstr "मैक्स स्वैप"
+
+#: hmib.php:2380
+#, fuzzy
+msgid "Avg Proc"
+msgstr "औसत प्रोक"
+
+#: hmib.php:2381
+#, fuzzy
+msgid "Max Proc"
+msgstr "मैक्स प्रोक"
+
+#: hmib.php:2404 hmib.php:2577 hmib.php:2603
+#, fuzzy
+msgid "View Devices"
+msgstr "उपकरण देखें"
+
+#: hmib.php:2437
+#, fuzzy
+msgid "No Device Types"
+msgstr "कोई डिवाइस प्रकार नहीं"
+
+#: hmib.php:2442
+#, fuzzy
+msgid "Process Summary Filter"
+msgstr "प्रक्रिया सारांश फ़िल्टर"
+
+#: hmib.php:2510
+#, fuzzy
+msgid "Process Summary Statistics"
+msgstr "प्रक्रिया सारांश सांख्यिकी"
+
+#: hmib.php:2549
+#, fuzzy
+msgid "Process Name"
+msgstr "प्रक्रिया का नाम"
+
+#: hmib.php:2550
+#, fuzzy
+msgid "Num Paths"
+msgstr "न्यूम पाथ्स"
+
+#: hmib.php:2551 hmib_types.php:884
+#, fuzzy
+msgid "Hosts"
+msgstr "मेजबान"
+
+#: hmib.php:2555
+#, fuzzy
+msgid "Avg Memory"
+msgstr "औसत मेमोरी"
+
+#: hmib.php:2556
+#, fuzzy
+msgid "Max Memory"
+msgstr "अधिकतम मेमोरी"
+
+#: hmib.php:2593
+#, fuzzy
+msgid "No Processes"
+msgstr "कोई प्रक्रिया नहीं"
+
+#: hmib.php:2739
+#, fuzzy
+msgid "Custom Graph List Applied - Filtering from List"
+msgstr "कस्टम ग्राफ़ सूची लागू - सूची से फ़िल्टरिंग"
+
+#: hmib.php:2739
+#, fuzzy
+msgid "Graph Preview Filters"
+msgstr "ग्राफ़ पूर्वावलोकन फ़िल्टर"
+
+#: hmib_types.php:30
 #, fuzzy
 msgid "Delete"
 msgstr "हटाना"
 
-#: ../hmib_types.php:31
+#: hmib_types.php:31
 #, fuzzy
 msgid "Duplicate"
 msgstr "प्रतिलिपि"
 
-#: ../hmib_types.php:226
+#: hmib_types.php:226
 #, fuzzy
 msgid "Click 'Continue' to Delete the following Host Type(s)"
 msgstr "निम्न होस्ट प्रकार को हटाने के लिए 'जारी रखें' पर क्लिक करें"
 
-#: ../hmib_types.php:231 ../hmib_types.php:241 ../hmib_types.php:246
+#: hmib_types.php:231 hmib_types.php:241 hmib_types.php:246
 #, fuzzy
 msgid "Cancel"
 msgstr "कैंसिल करें"
 
-#: ../hmib_types.php:231 ../hmib_types.php:241
+#: hmib_types.php:231 hmib_types.php:241
 #, fuzzy
 msgid "Continue"
 msgstr "जारी रखें"
 
-#: ../hmib_types.php:231
+#: hmib_types.php:231
 #, fuzzy
 msgid "Delete Host Type(s)"
 msgstr "होस्ट प्रकार हटाएं"
 
-#: ../hmib_types.php:235
+#: hmib_types.php:235
 #, fuzzy
 msgid ""
 "Click 'Continue' to Duplicate the following Host Type(s). You may optionally "
@@ -58,76 +667,69 @@ msgstr ""
 "के लिए विवरण को वैकल्पिक रूप से बदल सकते हैं। अन्यथा, नीचे मूल्य नहीं बदलें और मूल नाम को नए "
 "प्रत्यय के साथ दोहराया जाएगा।"
 
-#: ../hmib_types.php:237
+#: hmib_types.php:237
 #, fuzzy
 msgid "Host Type Prefix:"
 msgstr "होस्ट प्रकार उपसर्ग:"
 
-#: ../hmib_types.php:241
+#: hmib_types.php:241
 #, fuzzy
 msgid "Duplicate Host Type(s)"
 msgstr "डुप्लिकेट होस्ट प्रकार"
 
-#: ../hmib_types.php:245
+#: hmib_types.php:245
 #, fuzzy
 msgid "You must select at least one Host Type."
 msgstr "आपको कम से कम एक होस्ट प्रकार का चयन करना होगा।"
 
-#: ../hmib_types.php:352
+#: hmib_types.php:352
 #, fuzzy
 msgid "New Type"
 msgstr "नया प्रकार"
 
-#: ../hmib_types.php:353 ../hmib.php:37 ../hmib.php:52 ../hmib.php:747
-#: ../hmib.php:1066 ../hmib.php:1374 ../hmib.php:1572 ../hmib.php:2103
-#: ../hmib.php:2422
-#, fuzzy
-msgid "Unknown"
-msgstr "अनजान"
-
-#: ../hmib_types.php:397
+#: hmib_types.php:397
 #, fuzzy, php-format
 msgid "There were %d Device Types Added!"
 msgstr "% D डिवाइस प्रकार जोड़े गए थे!"
 
-#: ../hmib_types.php:400
+#: hmib_types.php:400
 #, fuzzy
 msgid "No New Host Types Found!"
 msgstr "कोई नया होस्ट प्रकार नहीं मिला!"
 
-#: ../hmib_types.php:411
+#: hmib_types.php:411
 #, fuzzy
 msgid "Import Results"
 msgstr "आयात परिणाम"
 
-#: ../hmib_types.php:413
+#: hmib_types.php:413
 #, fuzzy
 msgid "Cacti has imported the following items:"
 msgstr "Cacti ने निम्नलिखित वस्तुओं का आयात किया है:"
 
-#: ../hmib_types.php:425
+#: hmib_types.php:425
 #, fuzzy
 msgid "Import Host MIB OS Types"
 msgstr "आयात मेजबान MIB OS प्रकार"
 
-#: ../hmib_types.php:428
+#: hmib_types.php:428
 #, fuzzy
 msgid "Import Device Types from Local File"
 msgstr "स्थानीय फ़ाइल से डिवाइस प्रकार आयात करें"
 
-#: ../hmib_types.php:429
+#: hmib_types.php:429
 #, fuzzy
 msgid ""
 "Please specify the location of the CSV file containing your device type "
 "information."
 msgstr "कृपया अपने डिवाइस प्रकार की जानकारी युक्त CSV फ़ाइल का स्थान निर्दिष्ट करें।"
 
-#: ../hmib_types.php:436
+#: hmib_types.php:436
 #, fuzzy
 msgid "Overwrite Existing Data?"
 msgstr "मौजूदा डेटा को अधिलेखित करें?"
 
-#: ../hmib_types.php:437
+#: hmib_types.php:437
 #, fuzzy
 msgid ""
 "Should the import process be allowed to overwrite existing data?  Please "
@@ -136,32 +738,32 @@ msgstr ""
 "क्या आयात प्रक्रिया को मौजूदा डेटा को अधिलेखित करने की अनुमति दी जानी चाहिए? कृपया "
 "ध्यान दें, इसका मतलब पुरानी पंक्ति को हटाना नहीं है, केवल डुप्लिकेट पंक्तियों को बदलें।"
 
-#: ../hmib_types.php:440
+#: hmib_types.php:440
 #, fuzzy
 msgid "Allow Existing Rows to be Updated?"
 msgstr "मौजूदा पंक्तियों को अपडेट करने की अनुमति दें?"
 
-#: ../hmib_types.php:445
+#: hmib_types.php:445
 #, fuzzy
 msgid "Required File Format Notes"
 msgstr "आवश्यक फ़ाइल स्वरूप नोट्स"
 
-#: ../hmib_types.php:448
+#: hmib_types.php:448
 #, fuzzy
 msgid "The file must contain a header row with the following column headings."
 msgstr "फ़ाइल में निम्नलिखित कॉलम शीर्षकों के साथ एक हेडर पंक्ति होनी चाहिए।"
 
-#: ../hmib_types.php:450
+#: hmib_types.php:450
 #, fuzzy
 msgid "A common name for the Host Type.  For example, Windows 7"
 msgstr "होस्ट प्रकार के लिए एक सामान्य नाम। उदाहरण के लिए, विंडोज 7"
 
-#: ../hmib_types.php:451
+#: hmib_types.php:451
 #, fuzzy
 msgid "The OS version for the Host Type"
 msgstr "होस्ट प्रकार के लिए OS संस्करण"
 
-#: ../hmib_types.php:452
+#: hmib_types.php:452
 #, fuzzy
 msgid ""
 "A unique set of characters from the snmp sysDescr that uniquely identify "
@@ -169,20 +771,20 @@ msgid ""
 msgstr ""
 "स्नाप sysDescr से पात्रों का एक अनूठा सेट जो विशिष्ट रूप से इस उपकरण की पहचान करता है"
 
-#: ../hmib_types.php:453
+#: hmib_types.php:453
 #, fuzzy
 msgid ""
 "The vendor specific snmp sysObjectID that distinguishes this device from the "
 "next"
 msgstr "विक्रेता विशिष्ट स्निप sysObjectID जो इस उपकरण को अगले से अलग करता है"
 
-#: ../hmib_types.php:455
+#: hmib_types.php:455
 #, fuzzy
 msgid ""
 "The primary key for this table is a combination of the following two fields:"
 msgstr "इस तालिका की प्राथमिक कुंजी निम्नलिखित दो क्षेत्रों का एक संयोजन है:"
 
-#: ../hmib_types.php:459
+#: hmib_types.php:459
 #, fuzzy
 msgid ""
 "Therefore, if you attempt to import duplicate device types, the existing "
@@ -191,7 +793,7 @@ msgstr ""
 "इसलिए, यदि आप डुप्लिकेट डिवाइस प्रकारों को आयात करने का प्रयास करते हैं, तो मौजूदा डेटा "
 "को नई जानकारी के साथ अपडेट किया जाएगा।"
 
-#: ../hmib_types.php:461
+#: hmib_types.php:461
 #, fuzzy
 msgid ""
 "The Host Type is determined by scanning its snmp agent for the sysObjectID "
@@ -205,47 +807,42 @@ msgstr ""
 "जाने वाला पहला मैच कुल होस्ट डेटा का उपयोग किया जाता है। इसलिए, यह बहुत महत्वपूर्ण है "
 "कि आप अपने होस्ट के लिए वैध sysObjectID, sysDescrMatch का चयन करें।"
 
-#: ../hmib_types.php:726
+#: hmib_types.php:726
 #, fuzzy
 msgid "Are You Sure?"
 msgstr "क्या आपको यकीन है?"
 
-#: ../hmib_types.php:726
+#: hmib_types.php:726
 #, fuzzy, php-format
 msgid "Are you sure you want to delete the Host Type'%s'"
 msgstr "क्या आप वाकई होस्ट प्रकार ' %s' को हटाना चाहते हैं"
 
-#: ../hmib_types.php:747
+#: hmib_types.php:747
 #, fuzzy
 msgid "Device Scanning Function Options"
 msgstr "डिवाइस स्कैनिंग फ़ंक्शन विकल्प"
 
-#: ../hmib_types.php:751
+#: hmib_types.php:751
 #, fuzzy
 msgid "Name"
 msgstr "नाम"
 
-#: ../hmib_types.php:752
+#: hmib_types.php:752
 #, fuzzy
 msgid "Give this Host Type a meaningful name."
 msgstr "इस Host Type को एक सार्थक नाम दें।"
 
-#: ../hmib_types.php:758 ../hmib.php:2367
-#, fuzzy
-msgid "Version"
-msgstr "संस्करण %s"
-
-#: ../hmib_types.php:759
+#: hmib_types.php:759
 #, fuzzy
 msgid "Fill in the name for the version of this Host Type."
 msgstr "इस होस्ट प्रकार के संस्करण के लिए नाम भरें।"
 
-#: ../hmib_types.php:766
+#: hmib_types.php:766
 #, fuzzy
 msgid "System Description Match"
 msgstr "सिस्टम विवरण मिलान"
 
-#: ../hmib_types.php:767 ../hmib_types.php:774
+#: hmib_types.php:767 hmib_types.php:774
 #, fuzzy, php-format
 msgid ""
 "Provide key information to help HMIB detect the type of Host.  SQL Where "
@@ -256,149 +853,112 @@ msgstr ""
 "समर्थित हैं। SQL जहाँ वाइल्डकार्ड वर्ण '%' चिन्ह है। संगतता समस्याओं के कारण नियमित "
 "एक्सप्रेशन हटा दिए गए हैं।"
 
-#: ../hmib_types.php:773
+#: hmib_types.php:773
 #, fuzzy
 msgid "Vendor snmp Object ID"
 msgstr "विक्रेता snmp वस्तु आईडी"
 
-#: ../hmib_types.php:794
+#: hmib_types.php:794
 #, fuzzy, php-format
 msgid "Host MIB OS Types [edit: %s]"
 msgstr "होस्ट MIB OS प्रकार [संपादित करें: %s]"
 
-#: ../hmib_types.php:796
+#: hmib_types.php:796
 #, fuzzy
 msgid "Host MIB OS Types [new]"
 msgstr "होस्ट MIB OS प्रकार [नया]"
 
-#: ../hmib_types.php:861
+#: hmib_types.php:861
 #, fuzzy
 msgid "Host MIB OS Type Filters"
 msgstr "होस्ट MIB OS प्रकार फ़िल्टर"
 
-#: ../hmib_types.php:873 ../setup.php:589
+#: hmib_types.php:873 setup.php:587
 #, fuzzy
 msgid "OS Types"
 msgstr "ओएस प्रकार"
 
-#: ../hmib_types.php:882
+#: hmib_types.php:882
 #, fuzzy
 msgid "Host Type Name"
 msgstr "होस्ट प्रकार नाम"
 
-#: ../hmib_types.php:883
+#: hmib_types.php:883
 #, fuzzy
 msgid "OS Version"
 msgstr "OS संस्करण"
 
-#: ../hmib_types.php:884 ../hmib.php:2556
-#, fuzzy
-msgid "Hosts"
-msgstr "मेजबान"
-
-#: ../hmib_types.php:885
+#: hmib_types.php:885
 #, fuzzy
 msgid "SNMP ObjectID"
 msgstr "SNMP ऑब्जेक्ट"
 
-#: ../hmib_types.php:886
+#: hmib_types.php:886
 #, fuzzy
 msgid "SNMP Sys Description Match"
 msgstr "SNMP Sys विवरण मिलान"
 
-#: ../hmib_types.php:902
+#: hmib_types.php:902
 #, fuzzy
 msgid "No Host Types Found"
 msgstr "कोई होस्ट प्रकार नहीं मिला"
 
-#: ../hmib_types.php:930
+#: hmib_types.php:930
 #, fuzzy
 msgid "Choose an action:"
 msgstr "एक क्रिया चुनें:"
 
-#: ../hmib_types.php:934 ../hmib_types.php:1002 ../hmib.php:255 ../hmib.php:586
-#: ../hmib.php:935 ../hmib.php:1240 ../hmib.php:1540 ../hmib.php:1972
-#: ../hmib.php:2310 ../hmib.php:2498
-#, fuzzy
-msgid "Go"
-msgstr "चले जाओ"
-
-#: ../hmib_types.php:981 ../hmib.php:265 ../hmib.php:596 ../hmib.php:945
-#: ../hmib.php:1250 ../hmib.php:1550 ../hmib.php:1982 ../hmib.php:2480
-#, fuzzy
-msgid "Search"
-msgstr "खोज"
-
-#: ../hmib_types.php:987 ../hmib.php:189 ../hmib.php:520 ../hmib.php:870
-#: ../hmib.php:1175 ../hmib.php:1481 ../hmib.php:1906
-#, fuzzy
-msgid "OS Type"
-msgstr "ओएस प्रकार"
-
-#: ../hmib_types.php:991 ../hmib.php:295 ../hmib.php:626 ../hmib.php:974
-#: ../hmib.php:1279 ../hmib.php:1598 ../hmib.php:2011
-#, fuzzy
-msgid "Default"
-msgstr "चूक"
-
-#: ../hmib_types.php:1005 ../hmib.php:258 ../hmib.php:589 ../hmib.php:938
-#: ../hmib.php:1243 ../hmib.php:1543 ../hmib.php:1975 ../hmib.php:2313
-#: ../hmib.php:2501
-#, fuzzy
-msgid "Clear"
-msgstr "明确"
-
-#: ../hmib_types.php:1008
-#, fuzzy
-msgid "Scan for New or Unknown Device Types"
-msgstr "नए या अज्ञात डिवाइस प्रकारों के लिए स्कैन करें"
-
-#: ../hmib_types.php:1008
+#: hmib_types.php:1008
 #, fuzzy
 msgid "Rescan"
 msgstr "पुन: स्कैन"
 
-#: ../hmib_types.php:1011
+#: hmib_types.php:1008
 #, fuzzy
-msgid "Import Host Types from a CSV File"
-msgstr "CSV फ़ाइल से होस्ट प्रकार आयात करें"
+msgid "Scan for New or Unknown Device Types"
+msgstr "नए या अज्ञात डिवाइस प्रकारों के लिए स्कैन करें"
 
-#: ../hmib_types.php:1011 ../setup.php:606
+#: hmib_types.php:1011 setup.php:606
 #, fuzzy
 msgid "Import"
 msgstr "आयात"
 
-#: ../hmib_types.php:1014
+#: hmib_types.php:1011
 #, fuzzy
-msgid "Export Host Types to Share with Others"
-msgstr "निर्यात मेजबान प्रकार दूसरों के साथ साझा करने के लिए"
+msgid "Import Host Types from a CSV File"
+msgstr "CSV फ़ाइल से होस्ट प्रकार आयात करें"
 
-#: ../hmib_types.php:1014
+#: hmib_types.php:1014
 #, fuzzy
 msgid "Export"
 msgstr "निर्यात"
 
-#: ../setup.php:38
+#: hmib_types.php:1014
+#, fuzzy
+msgid "Export Host Types to Share with Others"
+msgstr "निर्यात मेजबान प्रकार दूसरों के साथ साझा करने के लिए"
+
+#: setup.php:38
 #, fuzzy
 msgid "Plugin -> Host MIB Viewer"
 msgstr "प्लगइन -> मेजबान एमआईबी दर्शक"
 
-#: ../setup.php:39
+#: setup.php:39
 #, fuzzy
 msgid "Plugin -> Host MIB Admin"
 msgstr "प्लगइन -> मेजबान MIB व्यवस्थापक"
 
-#: ../setup.php:358
+#: setup.php:356
 #, fuzzy
 msgid "Host MIB General Settings"
 msgstr "होस्ट MIB सामान्य सेटिंग्स"
 
-#: ../setup.php:362
+#: setup.php:360
 #, fuzzy
 msgid "Host MIB Poller Enabled"
 msgstr "होस्ट MIB पोलर सक्षम"
 
-#: ../setup.php:363
+#: setup.php:361
 #, fuzzy
 msgid ""
 "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the "
@@ -407,12 +967,12 @@ msgstr ""
 "यदि आप चाहते हैं कि होस्ट MIB मतदान सक्षम हो तो इस बॉक्स को देखें अन्यथा, मतदाता कार्य "
 "नहीं करेगा।"
 
-#: ../setup.php:368
+#: setup.php:366
 #, fuzzy
 msgid "Automatically Discover Cacti Devices"
 msgstr "स्वचालित रूप से डिस्कवर कैक्टि डिवाइसेस"
 
-#: ../setup.php:369
+#: setup.php:367
 #, fuzzy
 msgid ""
 "Do you wish to automatically scan for and add devices which support the Host "
@@ -421,62 +981,61 @@ msgstr ""
 "क्या आप कैक्टि होस्ट टेबल से होस्ट रिसोर्स MIB का समर्थन करने वाले उपकरणों को स्वचालित रूप "
 "से स्कैन और जोड़ना चाहते हैं?"
 
-#: ../setup.php:374
+#: setup.php:372
 #, fuzzy
 msgid "Automatically Purge Devices"
 msgstr "स्वचालित रूप से पर्स डिवाइस"
 
-#: ../setup.php:375
+#: setup.php:373
 #, fuzzy
 msgid ""
 "Do you wish to automatically purge devices that are removed from the Cacti "
 "system?"
 msgstr "क्या आप कैक्टि प्रणाली से हटाए गए उपकरणों को स्वचालित रूप से शुद्ध करना चाहते हैं?"
 
-#: ../setup.php:380
+#: setup.php:378
 #, fuzzy
 msgid "Default Row Count"
 msgstr "डिफ़ॉल्ट पंक्ति गणना"
 
-#: ../setup.php:381
+#: setup.php:379
 #, fuzzy
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
 msgstr "आप डिफ़ॉल्ट रूप से HMIB OS प्रकार पर कितनी पंक्तियाँ देखना चाहते हैं?"
 
-#: ../setup.php:387
+#: setup.php:385
 #, fuzzy
 msgid "Default Top Host Types"
 msgstr "डिफ़ॉल्ट शीर्ष होस्ट प्रकार"
 
-#: ../setup.php:388 ../setup.php:399
+#: setup.php:386 setup.php:397
 #, fuzzy
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
 msgstr "आप डिफ़ॉल्ट रूप से HMIB डैशबोर्ड पर कितनी प्रक्रियाएँ देखना चाहते हैं?"
 
-#: ../setup.php:392 ../setup.php:393 ../setup.php:394 ../setup.php:395
+#: setup.php:390 setup.php:391 setup.php:392 setup.php:393
 #, fuzzy, php-format
 msgid "%d Types"
 msgstr "% d प्रकार"
 
-#: ../setup.php:398
+#: setup.php:396
 #, fuzzy
 msgid "Default Top Processes"
 msgstr "डिफ़ॉल्ट शीर्ष प्रक्रियाएँ"
 
-#: ../setup.php:403 ../setup.php:404 ../setup.php:405 ../setup.php:406
-#: ../setup.php:415 ../setup.php:416 ../setup.php:417 ../setup.php:418
-#: ../setup.php:419 ../setup.php:420 ../setup.php:421 ../setup.php:422
-#: ../setup.php:423
+#: setup.php:401 setup.php:402 setup.php:403 setup.php:404 setup.php:413
+#: setup.php:414 setup.php:415 setup.php:416 setup.php:417 setup.php:418
+#: setup.php:419 setup.php:420 setup.php:421
 #, fuzzy, php-format
 msgid "%d Processes"
 msgstr "% d प्रक्रियाएं"
 
-#: ../setup.php:409
+#: setup.php:407
 #, fuzzy
 msgid "Maximum Concurrent Collectors"
 msgstr "अधिकतम समवर्ती कलेक्टर"
 
-#: ../setup.php:410
+#: setup.php:408
 #, fuzzy
 msgid ""
 "What is the maximum number of concurrent collector process that you want to "
@@ -484,774 +1043,209 @@ msgid ""
 msgstr ""
 "समवर्ती कलेक्टर प्रक्रिया की अधिकतम संख्या क्या है जिसे आप एक बार में चलाना चाहते हैं?"
 
-#: ../setup.php:414
+#: setup.php:412
 #, fuzzy, php-format
 msgid "%d Process"
 msgstr "% d प्रक्रिया"
 
-#: ../setup.php:426
+#: setup.php:424
 #, fuzzy
 msgid "Host Auto Discovery Frequency"
 msgstr "होस्ट ऑटो डिस्कवरी फ्रीक्वेंसी"
 
-#: ../setup.php:430
+#: setup.php:428
 #, fuzzy
 msgid "Auto Discovery Frequency"
 msgstr "ऑटो डिस्कवरी फ्रीक्वेंसी"
 
-#: ../setup.php:431
+#: setup.php:429
 #, fuzzy
 msgid "How often do you want to look for new Cacti Devices?"
 msgstr "आप कितनी बार नए Cacti Devices देखना चाहते हैं?"
 
-#: ../setup.php:437
+#: setup.php:435
 #, fuzzy
 msgid "Host Graph Automation"
 msgstr "मेजबान ग्राफ स्वचालन"
 
-#: ../setup.php:441
+#: setup.php:439
 #, fuzzy
 msgid "Automatically Add New Graphs"
 msgstr "स्वचालित रूप से नए ग्राफ़ जोड़ें"
 
-#: ../setup.php:442
+#: setup.php:440
 #, fuzzy
 msgid "How often do you want to check for new objects to graph?"
 msgstr "आप नई वस्तुओं को ग्राफ़ में कितनी बार जांचना चाहते हैं?"
 
-#: ../setup.php:446
+#: setup.php:444
 #, fuzzy
 msgid "Never"
 msgstr "कभी नहीँ"
 
-#: ../setup.php:447 ../setup.php:511
+#: setup.php:445 setup.php:509
 #, fuzzy, php-format
 msgid "%d Hour"
 msgstr "% d घंटा"
 
-#: ../setup.php:448 ../setup.php:512 ../setup.php:513 ../setup.php:514
+#: setup.php:446 setup.php:510 setup.php:511 setup.php:512
 #, fuzzy, php-format
 msgid "%d Hours"
 msgstr "% d घंटे"
 
-#: ../setup.php:449 ../setup.php:515
+#: setup.php:447 setup.php:513
 #, fuzzy, php-format
 msgid "%d Day"
 msgstr "% द डे"
 
-#: ../setup.php:450
+#: setup.php:448
 #, fuzzy, php-format
 msgid "%d Days"
 msgstr "% ड डय"
 
-#: ../setup.php:453
+#: setup.php:451
 #, fuzzy
 msgid "Host MIB Table Collection Frequencies"
 msgstr "होस्ट MIB तालिका संग्रह फ़्रिक्वेंसी"
 
-#: ../setup.php:457
+#: setup.php:455
 #, fuzzy
 msgid "Running Programs Frequency"
 msgstr "प्रोग्राम रनिंग फ्रीक्वेंसी"
 
-#: ../setup.php:458
+#: setup.php:456
 #, fuzzy
 msgid "How often do you want to scan running software?"
 msgstr "आप कितनी बार रनिंग सॉफ्टवेयर को स्कैन करना चाहते हैं?"
 
-#: ../setup.php:464
+#: setup.php:462
 #, fuzzy
 msgid "Running Programs CPU/Memory Frequency"
 msgstr "रनिंग प्रोग्राम्स CPU / मेमोरी फ्रीक्वेंसी"
 
-#: ../setup.php:465
+#: setup.php:463
 #, fuzzy
 msgid "How often do you want to scan running software for performance data?"
 msgstr "प्रदर्शन डेटा के लिए आप कितनी बार रनिंग सॉफ़्टवेयर को स्कैन करना चाहते हैं?"
 
-#: ../setup.php:471
+#: setup.php:469
 #, fuzzy
 msgid "Installed Software Frequency"
 msgstr "स्थापित सॉफ्टवेयर आवृत्ति"
 
-#: ../setup.php:472
+#: setup.php:470
 #, fuzzy
 msgid "How often do you want to scan for installed software?"
 msgstr "आप कितनी बार स्थापित सॉफ़्टवेयर के लिए स्कैन करना चाहते हैं?"
 
-#: ../setup.php:478
+#: setup.php:476
 #, fuzzy
 msgid "Storage Frequency"
 msgstr "भंडारण की आवृत्ति"
 
-#: ../setup.php:479
+#: setup.php:477
 #, fuzzy
 msgid "How often do you want to scan for Storage performance data?"
 msgstr "संग्रहण प्रदर्शन डेटा के लिए आप कितनी बार स्कैन करना चाहते हैं?"
 
-#: ../setup.php:485
+#: setup.php:483
 #, fuzzy
 msgid "Device Frequency"
 msgstr "उपकरण की आवृत्ति"
 
-#: ../setup.php:486
+#: setup.php:484
 #, fuzzy
 msgid "How often do you want to scan for Device performance data?"
 msgstr "डिवाइस प्रदर्शन डेटा के लिए आप कितनी बार स्कैन करना चाहते हैं?"
 
-#: ../setup.php:492
+#: setup.php:490
 #, fuzzy
 msgid "Processor Frequency"
 msgstr "प्रोसेसर की आवृत्ति"
 
-#: ../setup.php:493
+#: setup.php:491
 #, fuzzy
 msgid "How often do you want to scan for Processor performance data?"
 msgstr "प्रोसेसर प्रदर्शन डेटा के लिए आप कितनी बार स्कैन करना चाहते हैं?"
 
-#: ../setup.php:506 ../hmib.php:1584 ../hmib.php:2371
-#, fuzzy
-msgid "Disabled"
-msgstr "अक्षम"
-
-#: ../setup.php:507
+#: setup.php:505
 #, fuzzy, php-format
 msgid "%d Minute"
 msgstr "% d मिनट"
 
-#: ../setup.php:508 ../setup.php:509 ../setup.php:510
+#: setup.php:506 setup.php:507 setup.php:508
 #, fuzzy, php-format
 msgid "%d Minutes"
 msgstr "% d मिनट"
 
-#: ../setup.php:589
+#: setup.php:587
 #, fuzzy
 msgid "Management"
 msgstr "उपयोगकर्ता प्रबंधन"
 
-#: ../setup.php:593 ../setup.php:594
+#: setup.php:593 setup.php:594
 #, fuzzy
 msgid "Host MIB Inventory Summary"
 msgstr "होस्ट MIB इन्वेंटरी सारांश"
 
-#: ../setup.php:595
+#: setup.php:595
 #, fuzzy
 msgid "Host MIB Details"
 msgstr "होस्ट MIB विवरण"
 
-#: ../setup.php:596
+#: setup.php:596
 #, fuzzy
 msgid "Host MIB Storage"
 msgstr "होस्ट MIB संग्रहण"
 
-#: ../setup.php:597
+#: setup.php:597
 #, fuzzy
 msgid "Host MIB Hardware"
 msgstr "होस्ट MIB हार्डवेयर"
 
-#: ../setup.php:598
+#: setup.php:598
 #, fuzzy
 msgid "Host MIB Running Processes"
 msgstr "होस्ट MIB रनिंग प्रोसेस"
 
-#: ../setup.php:599
+#: setup.php:599
 #, fuzzy
 msgid "Host MIB Process Use History"
 msgstr "होस्ट MIB प्रक्रिया उपयोग इतिहास"
 
-#: ../setup.php:600
+#: setup.php:600
 #, fuzzy
 msgid "Host MIB Software Inventory"
 msgstr "होस्ट MIB सॉफ्टवेयर इन्वेंटरी"
 
-#: ../setup.php:601
+#: setup.php:601
 #, fuzzy
 msgid "Host MIB Graphs"
 msgstr "होस्ट MIB रेखांकन"
 
-#: ../setup.php:603
+#: setup.php:603
 #, fuzzy
 msgid "Host MIB OS Types"
 msgstr "होस्ट MIB OS प्रकार"
 
-#: ../setup.php:604 ../hmib.php:1672 ../hmib.php:2365 ../hmib.php:2553
-#, fuzzy
-msgid "Actions"
-msgstr "कार्रवाइयाँ"
-
-#: ../setup.php:605
+#: setup.php:605
 #, fuzzy
 msgid "(Edit)"
 msgstr "संपादित करें"
 
-#: ../hmib.php:36
 #, fuzzy
-msgid "Error"
-msgstr "त्रुटि"
+#~ msgid "Time when last seen running"
+#~ msgstr "समय जब आखिरी बार दौड़ते हुए देखा गया"
 
-#: ../hmib.php:38
 #, fuzzy
-msgid "Operating System"
-msgstr "ऑपरेटिंग सिस्टम"
+#~ msgid ""
+#~ "WARNING: You need to import your Host MIB Host Template to view Graphs.  "
+#~ "See the README for more information."
+#~ msgstr ""
+#~ "चेतावनी: ग्राफ़ को देखने के लिए आपको अपने होस्ट MIB होस्ट टेम्पलेट को आयात करना होगा। "
+#~ "अधिक जानकारी के लिए README देखें।"
 
-#: ../hmib.php:39
 #, fuzzy
-msgid "Device Driver"
-msgstr "डिवाइस ड्राइवर"
-
-#: ../hmib.php:40
-#, fuzzy
-msgid "Application"
-msgstr "आवेदन"
-
-#: ../hmib.php:44 ../hmib.php:53
-#, fuzzy
-msgid "Running"
-msgstr "चल रहा है"
-
-#: ../hmib.php:45
-#, fuzzy
-msgid "Runnable"
-msgstr "runnable"
-
-#: ../hmib.php:46
-#, fuzzy
-msgid "Not Runnable"
-msgstr "न चलने योग्य"
-
-#: ../hmib.php:47
-#, fuzzy
-msgid "Invalid"
-msgstr "अमान्य"
-
-#: ../hmib.php:51
-#, fuzzy
-msgid "Present"
-msgstr "वर्तमान"
-
-#: ../hmib.php:54
-#, fuzzy
-msgid "Warning"
-msgstr "चेतावनी"
-
-#: ../hmib.php:55
-#, fuzzy
-msgid "Testing"
-msgstr "परिक्षण"
-
-#: ../hmib.php:56 ../hmib.php:1575 ../hmib.php:2370
-#, fuzzy
-msgid "Down"
-msgstr "नीचे"
-
-#: ../hmib.php:180
-#, fuzzy
-msgid "Running Process History"
-msgstr "रनिंग प्रोसेस हिस्ट्री"
-
-#: ../hmib.php:193 ../hmib.php:214 ../hmib.php:236 ../hmib.php:275
-#: ../hmib.php:524 ../hmib.php:545 ../hmib.php:567 ../hmib.php:606
-#: ../hmib.php:874 ../hmib.php:894 ../hmib.php:916 ../hmib.php:955
-#: ../hmib.php:1179 ../hmib.php:1199 ../hmib.php:1221 ../hmib.php:1260
-#: ../hmib.php:1485 ../hmib.php:1505 ../hmib.php:1528 ../hmib.php:1560
-#: ../hmib.php:1910 ../hmib.php:1931 ../hmib.php:1953 ../hmib.php:1992
-#, fuzzy
-msgid "All"
-msgstr "所有"
-
-#: ../hmib.php:210 ../hmib.php:541 ../hmib.php:890 ../hmib.php:1195
-#: ../hmib.php:1927
-#, fuzzy
-msgid "Device"
-msgstr "युक्ति"
-
-#: ../hmib.php:232 ../hmib.php:563 ../hmib.php:912 ../hmib.php:1217
-#: ../hmib.php:1501 ../hmib.php:1949
-#, fuzzy
-msgid "Template"
-msgstr "खाका"
-
-#: ../hmib.php:271 ../hmib.php:379 ../hmib.php:602 ../hmib.php:721
-#: ../hmib.php:1524
-#, fuzzy
-msgid "Process"
-msgstr "प्रक्रिया"
-
-#: ../hmib.php:291 ../hmib.php:622 ../hmib.php:970
-#, fuzzy
-msgid "Entries"
-msgstr "प्रविष्टियां"
-
-#: ../hmib.php:371
-#, fuzzy
-msgid "History"
-msgstr "इतिहास"
-
-#: ../hmib.php:378 ../hmib.php:720 ../hmib.php:1046 ../hmib.php:1351
-#: ../hmib.php:1673 ../hmib.php:2084
-#, fuzzy
-msgid "Hostname"
-msgstr "होस्ट का नाम"
-
-#: ../hmib.php:380
-#, fuzzy
-msgid "Last Seen"
-msgstr "अंतिम बार देखा गया"
-
-#: ../hmib.php:381
-#, fuzzy
-msgid "Use Time (d:h:m)"
-msgstr "समय का उपयोग करें (d: h: m)"
-
-#: ../hmib.php:390 ../hmib.php:736 ../hmib.php:1059 ../hmib.php:1367
-#: ../hmib.php:1744 ../hmib.php:2096
-#, fuzzy
-msgid "Edit Device"
-msgstr "उपकरण संपादित करें"
-
-#: ../hmib.php:397
-#, fuzzy
-msgid "Time when last seen running"
-msgstr "समय जब आखिरी बार दौड़ते हुए देखा गया"
-
-#: ../hmib.php:402
-#, fuzzy
-msgid "No Process History Found"
-msgstr "कोई प्रक्रिया इतिहास नहीं मिला"
-
-#: ../hmib.php:511
-#, fuzzy
-msgid "Running Processes"
-msgstr "प्रक्रिया चल रही है"
-
-#: ../hmib.php:713 ../hmib.php:1679 ../hmib.php:2127 ../hmib.php:2557
-#, fuzzy
-msgid "Processes"
-msgstr "प्रक्रियाओं"
-
-#: ../hmib.php:722
-#, fuzzy
-msgid "Path"
-msgstr "पथ"
-
-#: ../hmib.php:723
-#, fuzzy
-msgid "Parameters"
-msgstr "पैरामीटर"
-
-#: ../hmib.php:724
-#, fuzzy
-msgid "CPU (Hrs)"
-msgstr "CPU (Hrs)"
-
-#: ../hmib.php:725
-#, fuzzy
-msgid "Memory (MB)"
-msgstr "मेमोरी (MB)"
-
-#: ../hmib.php:726 ../hmib.php:951 ../hmib.php:1256 ../hmib.php:1988
-#: ../hmib.php:2086 ../hmib.php:2366
-#, fuzzy
-msgid "Type"
-msgstr "प्रकार"
-
-#: ../hmib.php:727 ../hmib.php:1049 ../hmib.php:1556 ../hmib.php:1674
-#, fuzzy
-msgid "Status"
-msgstr "ऑर्डर स्थिति"
-
-#: ../hmib.php:752
-#, fuzzy
-msgid "No Running Software Found"
-msgstr "कोई रनिंग सॉफ्टवेयर नहीं मिला"
-
-#: ../hmib.php:767
-#, fuzzy
-msgid "Total CPU [h]:"
-msgstr "कुल CPU [h]:"
-
-#: ../hmib.php:768
-#, fuzzy
-msgid "Total Size [MB]:"
-msgstr "कुल आकार [एमबी]:"
-
-#: ../hmib.php:771
-#, fuzzy
-msgid "Avg. CPU [h]:"
-msgstr "औसत। CPU [h]:"
-
-#: ../hmib.php:772
-#, fuzzy
-msgid "Avg. Size [MB]:"
-msgstr "औसत। आकार [एमबी]:"
-
-#: ../hmib.php:861
-#, fuzzy
-msgid "Hardware Inventory"
-msgstr "हार्डवेयर इन्वेंटरी"
-
-#: ../hmib.php:1039 ../hmib.php:1594 ../hmib.php:1665 ../hmib.php:2124
-#, fuzzy
-msgid "Devices"
-msgstr "उपकरण"
-
-#: ../hmib.php:1047
-#, fuzzy
-msgid "Hardware Description"
-msgstr "हार्डवेयर विवरण"
-
-#: ../hmib.php:1048
-#, fuzzy
-msgid "Hardware Type"
-msgstr "हार्डवेयर प्रकार"
-
-#: ../hmib.php:1050 ../hmib.php:1354
-#, fuzzy
-msgid "Errors"
-msgstr "त्रुटियाँ"
-
-#: ../hmib.php:1072
-#, fuzzy
-msgid "No Hardware Found"
-msgstr "कोई हार्डवेयर नहीं मिला"
-
-#: ../hmib.php:1166
-#, fuzzy
-msgid "Storage Inventory"
-msgstr "भंडारण सूची"
-
-#: ../hmib.php:1275 ../hmib.php:1344
-#, fuzzy
-msgid "Volumes"
-msgstr "वॉल्यूम"
-
-#: ../hmib.php:1352
-#, fuzzy
-msgid "Storage Description"
-msgstr "भंडारण विवरण"
-
-#: ../hmib.php:1353
-#, fuzzy
-msgid "Storage Type"
-msgstr "भण्डारण प्रकार"
-
-#: ../hmib.php:1355
-#, fuzzy
-msgid "Percent Used"
-msgstr "प्रतिशत उपयोग किया जाता है"
-
-#: ../hmib.php:1356
-#, fuzzy
-msgid "Used (MB)"
-msgstr "प्रयुक्त (MB)"
-
-#: ../hmib.php:1357
-#, fuzzy
-msgid "Total (MB)"
-msgstr "कुल (एमबी)"
-
-#: ../hmib.php:1358
-#, fuzzy
-msgid "Alloc (KB)"
-msgstr "एलोक (KB)"
-
-#: ../hmib.php:1383
-#, fuzzy
-msgid "No Storage Devices Found"
-msgstr "कोई संग्रहण उपकरण नहीं मिला"
-
-#: ../hmib.php:1472
-#, fuzzy
-msgid "Device Filter"
-msgstr "डिवाइस फ़िल्टर"
-
-#: ../hmib.php:1578 ../hmib.php:2369
-#, fuzzy
-msgid "Recovering"
-msgstr "पुन: प्राप्त करना"
-
-#: ../hmib.php:1581 ../hmib.php:2368
-#, fuzzy
-msgid "Up"
-msgstr "ऊपर"
-
-#: ../hmib.php:1675
-#, fuzzy
-msgid "Uptime(d:h:m)"
-msgstr "अपटाइम (घ: ज: मी)"
-
-#: ../hmib.php:1676
-#, fuzzy
-msgid "Users"
-msgstr "उपयोगकर्ता"
-
-#: ../hmib.php:1677
-#, fuzzy
-msgid "CPU %"
-msgstr "सी पी यू %"
-
-#: ../hmib.php:1678
-#, fuzzy
-msgid "CPUs"
-msgstr "सीपीयू"
-
-#: ../hmib.php:1680
-#, fuzzy
-msgid "Total Mem"
-msgstr "कुल मेम"
-
-#: ../hmib.php:1681
-#, fuzzy
-msgid "Used Mem"
-msgstr "मेमे का इस्तेमाल किया"
-
-#: ../hmib.php:1682
-#, fuzzy
-msgid "Total Swap"
-msgstr "कुल स्वैप"
-
-#: ../hmib.php:1683
-#, fuzzy
-msgid "Used Swap"
-msgstr "प्रयुक्त स्वैप"
-
-#: ../hmib.php:1729 ../hmib.php:2410
-#, fuzzy
-msgid "View Storage"
-msgstr "संग्रहण देखें"
-
-#: ../hmib.php:1730 ../hmib.php:2411
-#, fuzzy
-msgid "View Hardware"
-msgstr "हार्डवेयर देखें"
-
-#: ../hmib.php:1731 ../hmib.php:2412 ../hmib.php:2583
-#, fuzzy
-msgid "View Processes"
-msgstr "प्रक्रियाओं को देखें"
-
-#: ../hmib.php:1732 ../hmib.php:2413
-#, fuzzy
-msgid "View Software Inventory"
-msgstr "सॉफ्टवेयर इन्वेंटरी देखें"
-
-#: ../hmib.php:1734 ../hmib.php:2651 ../hmib.php:2653 ../hmib.php:2703
-#: ../hmib.php:2705
-#, fuzzy
-msgid "View Graphs"
-msgstr "रेखांकन देखें"
-
-#: ../hmib.php:1736
-#, fuzzy
-msgid "No Graphs Defined"
-msgstr "कोई रेखांकन परिभाषित नहीं है"
-
-#: ../hmib.php:1764
-#, fuzzy
-msgid "No Devices Found"
-msgstr "कोई यंत्र नहीं मिले"
-
-#: ../hmib.php:1897
-#, fuzzy
-msgid "Software Inventory"
-msgstr "सॉफ्टवेयर इन्वेंटरी"
-
-#: ../hmib.php:2007 ../hmib.php:2077
-#, fuzzy
-msgid "Applications"
-msgstr "अनुप्रयोगों"
-
-#: ../hmib.php:2085
-#, fuzzy
-msgid "Package"
-msgstr "पैकेज"
-
-#: ../hmib.php:2087
-#, fuzzy
-msgid "Installed"
-msgstr "स्थापित"
-
-#: ../hmib.php:2108
-#, fuzzy
-msgid "No Software Packages Found"
-msgstr "कोई सॉफ्टवेयर पैकेज नहीं मिला"
-
-#: ../hmib.php:2123
-#, fuzzy
-msgid "Summary"
-msgstr "सारांश"
-
-#: ../hmib.php:2125
-#, fuzzy
-msgid "Storage"
-msgstr "भंडारण"
-
-#: ../hmib.php:2126
-#, fuzzy
-msgid "Hardware"
-msgstr "हार्डवेयर"
-
-#: ../hmib.php:2128
-#, fuzzy
-msgid "Use History"
-msgstr "इतिहास का उपयोग करें"
-
-#: ../hmib.php:2129
-#, fuzzy
-msgid "Inventory"
-msgstr "इन्वेंटरी"
-
-#: ../hmib.php:2130
-#, fuzzy
-msgid "Graphs"
-msgstr "रेखांकन"
-
-#: ../hmib.php:2289
-#, fuzzy
-msgid "Summary Filter"
-msgstr "सारांश फ़िल्टर"
-
-#: ../hmib.php:2298 ../hmib.php:2486
-#, fuzzy
-msgid "Top"
-msgstr "चोटी"
-
-#: ../hmib.php:2302 ../hmib.php:2490
-#, fuzzy
-msgid "All Records"
-msgstr "सभी रिकॉर्ड"
-
-#: ../hmib.php:2303 ../hmib.php:2491 ../hmib.php:2492 ../hmib.php:2493
-#: ../hmib.php:2494
-#, fuzzy, php-format
-msgid "%d Records"
-msgstr "% d रिकॉर्ड्स"
-
-#: ../hmib.php:2304 ../hmib.php:2305 ../hmib.php:2306
-#, fuzzy, php-format
-msgid "%d Record"
-msgstr "% d रिकॉर्ड"
-
-#: ../hmib.php:2316 ../hmib.php:2504
-#, fuzzy
-msgid ""
-"WARNING: You need to import your Host MIB Host Template to view Graphs.  See "
-"the README for more information."
-msgstr ""
-"चेतावनी: ग्राफ़ को देखने के लिए आपको अपने होस्ट MIB होस्ट टेम्पलेट को आयात करना होगा। "
-"अधिक जानकारी के लिए README देखें।"
-
-#: ../hmib.php:2327
-#, fuzzy
-msgid "Device Type Summary Statistics"
-msgstr "डिवाइस प्रकार सारांश सांख्यिकी"
-
-#: ../hmib.php:2372
-#, fuzzy
-msgid "Logins"
-msgstr "लॉगिन"
-
-#: ../hmib.php:2373
-#, fuzzy
-msgid "CPUS"
-msgstr "CPUS"
-
-#: ../hmib.php:2374 ../hmib.php:2558
-#, fuzzy
-msgid "Avg CPU"
-msgstr "औसत सीपीयू"
-
-#: ../hmib.php:2375 ../hmib.php:2559
-#, fuzzy
-msgid "Max CPU"
-msgstr "मैक्स सीपीयू"
-
-#: ../hmib.php:2376
-#, fuzzy
-msgid "Avg Mem"
-msgstr "औसत मेम"
-
-#: ../hmib.php:2377
-#, fuzzy
-msgid "Max Mem"
-msgstr "मैक्स मेम"
-
-#: ../hmib.php:2378
-#, fuzzy
-msgid "Avg Swap"
-msgstr "औसत स्वैप"
-
-#: ../hmib.php:2379
-#, fuzzy
-msgid "Max Swap"
-msgstr "मैक्स स्वैप"
-
-#: ../hmib.php:2380
-#, fuzzy
-msgid "Avg Proc"
-msgstr "औसत प्रोक"
-
-#: ../hmib.php:2381
-#, fuzzy
-msgid "Max Proc"
-msgstr "मैक्स प्रोक"
-
-#: ../hmib.php:2409 ../hmib.php:2582 ../hmib.php:2608
-#, fuzzy
-msgid "View Devices"
-msgstr "उपकरण देखें"
-
-#: ../hmib.php:2442
-#, fuzzy
-msgid "No Device Types"
-msgstr "कोई डिवाइस प्रकार नहीं"
-
-#: ../hmib.php:2447
-#, fuzzy
-msgid "Process Summary Filter"
-msgstr "प्रक्रिया सारांश फ़िल्टर"
-
-#: ../hmib.php:2515
-#, fuzzy
-msgid "Process Summary Statistics"
-msgstr "प्रक्रिया सारांश सांख्यिकी"
-
-#: ../hmib.php:2554
-#, fuzzy
-msgid "Process Name"
-msgstr "प्रक्रिया का नाम"
-
-#: ../hmib.php:2555
-#, fuzzy
-msgid "Num Paths"
-msgstr "न्यूम पाथ्स"
-
-#: ../hmib.php:2560
-#, fuzzy
-msgid "Avg Memory"
-msgstr "औसत मेमोरी"
-
-#: ../hmib.php:2561
-#, fuzzy
-msgid "Max Memory"
-msgstr "अधिकतम मेमोरी"
-
-#: ../hmib.php:2598
-#, fuzzy
-msgid "No Processes"
-msgstr "कोई प्रक्रिया नहीं"
-
-#: ../hmib.php:2659 ../hmib.php:2711
-#, fuzzy
-msgid "Please Select Data Query First from Console->Settings->Host Mib First"
-msgstr "कृपया कंसोल से डेटा क्वेरी पहले चुनें-> सेटिंग्स-> होस्ट माइब फर्स्ट"
-
-#: ../hmib.php:2752
-#, fuzzy
-msgid "Graph Preview Filters"
-msgstr "ग्राफ़ पूर्वावलोकन फ़िल्टर"
-
-#: ../hmib.php:2752
-#, fuzzy
-msgid "Custom Graph List Applied - Filtering from List"
-msgstr "कस्टम ग्राफ़ सूची लागू - सूची से फ़िल्टरिंग"
+#~ msgid ""
+#~ "Please Select Data Query First from Console->Settings->Host Mib First"
+#~ msgstr "कृपया कंसोल से डेटा क्वेरी पहले चुनें-> सेटिंग्स-> होस्ट माइब फर्स्ट"
