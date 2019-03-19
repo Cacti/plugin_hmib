@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-29 23:10-0400\n"
+"POT-Creation-Date: 2019-03-19 09:50+0000\n"
 "PO-Revision-Date: 2019-03-16 23:33-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,37 +17,646 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: ../hmib_types.php:30
+#: hmib.php:36
+#, fuzzy
+msgid "Error"
+msgstr "오류"
+
+#: hmib.php:37 hmib.php:52 hmib.php:747 hmib.php:1066 hmib.php:1374
+#: hmib.php:1572 hmib.php:2103 hmib.php:2417 hmib_types.php:353
+#, fuzzy
+msgid "Unknown"
+msgstr "알 수 없음"
+
+#: hmib.php:38
+#, fuzzy
+msgid "Operating System"
+msgstr "시스템 O.S"
+
+#: hmib.php:39
+#, fuzzy
+msgid "Device Driver"
+msgstr "장치 드라이버"
+
+#: hmib.php:40
+#, fuzzy
+msgid "Application"
+msgstr "신청서"
+
+#: hmib.php:44 hmib.php:53
+#, fuzzy
+msgid "Running"
+msgstr "실행 중"
+
+#: hmib.php:45
+#, fuzzy
+msgid "Runnable"
+msgstr "실행 파일"
+
+#: hmib.php:46
+#, fuzzy
+msgid "Not Runnable"
+msgstr "실행 불가"
+
+#: hmib.php:47
+#, fuzzy
+msgid "Invalid"
+msgstr "유효하지 않은"
+
+#: hmib.php:51
+#, fuzzy
+msgid "Present"
+msgstr "선물"
+
+#: hmib.php:54
+#, fuzzy
+msgid "Warning"
+msgstr "경고"
+
+#: hmib.php:55
+#, fuzzy
+msgid "Testing"
+msgstr "시험중"
+
+#: hmib.php:56 hmib.php:1575 hmib.php:2370
+#, fuzzy
+msgid "Down"
+msgstr "아래로"
+
+#: hmib.php:180
+#, fuzzy
+msgid "Running Process History"
+msgstr "프로세스 기록 실행 중"
+
+#: hmib.php:189 hmib.php:520 hmib.php:870 hmib.php:1175 hmib.php:1481
+#: hmib.php:1906 hmib_types.php:987
+#, fuzzy
+msgid "OS Type"
+msgstr "OS 유형"
+
+#: hmib.php:193 hmib.php:214 hmib.php:236 hmib.php:275 hmib.php:524
+#: hmib.php:545 hmib.php:567 hmib.php:606 hmib.php:874 hmib.php:894
+#: hmib.php:916 hmib.php:955 hmib.php:1179 hmib.php:1199 hmib.php:1221
+#: hmib.php:1260 hmib.php:1485 hmib.php:1505 hmib.php:1528 hmib.php:1560
+#: hmib.php:1910 hmib.php:1931 hmib.php:1953 hmib.php:1992
+#, fuzzy
+msgid "All"
+msgstr "모두"
+
+#: hmib.php:210 hmib.php:541 hmib.php:890 hmib.php:1195 hmib.php:1927
+#, fuzzy
+msgid "Device"
+msgstr "장치"
+
+#: hmib.php:232 hmib.php:563 hmib.php:912 hmib.php:1217 hmib.php:1501
+#: hmib.php:1949
+#, fuzzy
+msgid "Template"
+msgstr "템플릿"
+
+#: hmib.php:255 hmib.php:586 hmib.php:935 hmib.php:1240 hmib.php:1540
+#: hmib.php:1972 hmib.php:2310 hmib.php:2493 hmib_types.php:934
+#: hmib_types.php:1002
+#, fuzzy
+msgid "Go"
+msgstr "가기"
+
+#: hmib.php:258 hmib.php:589 hmib.php:938 hmib.php:1243 hmib.php:1543
+#: hmib.php:1975 hmib.php:2313 hmib.php:2496 hmib_types.php:1005
+#, fuzzy
+msgid "Clear"
+msgstr "지우기"
+
+#: hmib.php:265 hmib.php:596 hmib.php:945 hmib.php:1250 hmib.php:1550
+#: hmib.php:1982 hmib.php:2475 hmib_types.php:981
+#, fuzzy
+msgid "Search"
+msgstr "검색"
+
+#: hmib.php:271 hmib.php:379 hmib.php:602 hmib.php:721 hmib.php:1524
+#, fuzzy
+msgid "Process"
+msgstr "Process"
+
+#: hmib.php:291 hmib.php:622 hmib.php:970
+#, fuzzy
+msgid "Entries"
+msgstr "입력 항목"
+
+#: hmib.php:295 hmib.php:626 hmib.php:974 hmib.php:1279 hmib.php:1598
+#: hmib.php:2011 hmib_types.php:991
+#, fuzzy
+msgid "Default"
+msgstr "기본값"
+
+#: hmib.php:371
+#, fuzzy
+msgid "History"
+msgstr "기록"
+
+#: hmib.php:378 hmib.php:720 hmib.php:1046 hmib.php:1351 hmib.php:1673
+#: hmib.php:2084
+#, fuzzy
+msgid "Hostname"
+msgstr "호스트이름:"
+
+#: hmib.php:380
+#, fuzzy
+msgid "Last Seen"
+msgstr "최근 확인"
+
+#: hmib.php:381
+#, fuzzy
+msgid "Use Time (d:h:m)"
+msgstr "사용 시간 (d : h : m)"
+
+#: hmib.php:390 hmib.php:736 hmib.php:1059 hmib.php:1367 hmib.php:1744
+#: hmib.php:2096
+#, fuzzy
+msgid "Edit Device"
+msgstr "장치 편집"
+
+#: hmib.php:402
+#, fuzzy
+msgid "No Process History Found"
+msgstr "프로세스 기록 없음"
+
+#: hmib.php:511
+#, fuzzy
+msgid "Running Processes"
+msgstr "프로세스 실행"
+
+#: hmib.php:713 hmib.php:1679 hmib.php:2127 hmib.php:2552
+#, fuzzy
+msgid "Processes"
+msgstr "프로세스"
+
+#: hmib.php:722
+#, fuzzy
+msgid "Path"
+msgstr "경로"
+
+#: hmib.php:723
+#, fuzzy
+msgid "Parameters"
+msgstr "매개변수"
+
+#: hmib.php:724
+#, fuzzy
+msgid "CPU (Hrs)"
+msgstr "CPU (Hrs)"
+
+#: hmib.php:725
+#, fuzzy
+msgid "Memory (MB)"
+msgstr "메모리 (MB)"
+
+#: hmib.php:726 hmib.php:951 hmib.php:1256 hmib.php:1988 hmib.php:2086
+#: hmib.php:2366
+#, fuzzy
+msgid "Type"
+msgstr "유형"
+
+#: hmib.php:727 hmib.php:1049 hmib.php:1556 hmib.php:1674
+#, fuzzy
+msgid "Status"
+msgstr "상태"
+
+#: hmib.php:752
+#, fuzzy
+msgid "No Running Software Found"
+msgstr "실행중인 소프트웨어 없음"
+
+#: hmib.php:767
+#, fuzzy
+msgid "Total CPU [h]:"
+msgstr "총 CPU [h] :"
+
+#: hmib.php:768
+#, fuzzy
+msgid "Total Size [MB]:"
+msgstr "총 크기 [MB] :"
+
+#: hmib.php:771
+#, fuzzy
+msgid "Avg. CPU [h]:"
+msgstr "평균 CPU [h] :"
+
+#: hmib.php:772
+#, fuzzy
+msgid "Avg. Size [MB]:"
+msgstr "평균 크기 [MB] :"
+
+#: hmib.php:861
+#, fuzzy
+msgid "Hardware Inventory"
+msgstr "하드웨어 인벤토리"
+
+#: hmib.php:1039 hmib.php:1594 hmib.php:1665 hmib.php:2124
+#, fuzzy
+msgid "Devices"
+msgstr "장치"
+
+#: hmib.php:1047
+#, fuzzy
+msgid "Hardware Description"
+msgstr "하드웨어 설명"
+
+#: hmib.php:1048
+#, fuzzy
+msgid "Hardware Type"
+msgstr "하드웨어 유형"
+
+#: hmib.php:1050 hmib.php:1354
+#, fuzzy
+msgid "Errors"
+msgstr "오류"
+
+#: hmib.php:1072
+#, fuzzy
+msgid "No Hardware Found"
+msgstr "하드웨어를 찾을 수 없음"
+
+#: hmib.php:1166
+#, fuzzy
+msgid "Storage Inventory"
+msgstr "저장소 인벤토리"
+
+#: hmib.php:1275 hmib.php:1344
+#, fuzzy
+msgid "Volumes"
+msgstr "볼륨"
+
+#: hmib.php:1352
+#, fuzzy
+msgid "Storage Description"
+msgstr "스토리지 설명"
+
+#: hmib.php:1353
+#, fuzzy
+msgid "Storage Type"
+msgstr "보관 유형"
+
+#: hmib.php:1355
+#, fuzzy
+msgid "Percent Used"
+msgstr "사용 된 비율"
+
+#: hmib.php:1356
+#, fuzzy
+msgid "Used (MB)"
+msgstr "사용 된 (MB)"
+
+#: hmib.php:1357
+#, fuzzy
+msgid "Total (MB)"
+msgstr "총 (MB)"
+
+#: hmib.php:1358
+#, fuzzy
+msgid "Alloc (KB)"
+msgstr "Alloc (KB)"
+
+#: hmib.php:1383
+#, fuzzy
+msgid "No Storage Devices Found"
+msgstr "저장 장치 없음"
+
+#: hmib.php:1472
+#, fuzzy
+msgid "Device Filter"
+msgstr "장치 필터"
+
+#: hmib.php:1578 hmib.php:2369
+#, fuzzy
+msgid "Recovering"
+msgstr "복구 중"
+
+#: hmib.php:1581 hmib.php:2368
+#, fuzzy
+msgid "Up"
+msgstr "위로"
+
+#: hmib.php:1584 hmib.php:2371 setup.php:504
+#, fuzzy
+msgid "Disabled"
+msgstr "비활성화"
+
+#: hmib.php:1672 hmib.php:2365 hmib.php:2548 setup.php:604
+#, fuzzy
+msgid "Actions"
+msgstr "작업"
+
+#: hmib.php:1675
+#, fuzzy
+msgid "Uptime(d:h:m)"
+msgstr "가동 시간 (d : h : m)"
+
+#: hmib.php:1676
+#, fuzzy
+msgid "Users"
+msgstr "사용자"
+
+#: hmib.php:1677
+#, fuzzy
+msgid "CPU %"
+msgstr "CPU %"
+
+#: hmib.php:1678
+#, fuzzy
+msgid "CPUs"
+msgstr "CPU"
+
+#: hmib.php:1680
+#, fuzzy
+msgid "Total Mem"
+msgstr "총 Mem"
+
+#: hmib.php:1681
+#, fuzzy
+msgid "Used Mem"
+msgstr "사용한 Mem"
+
+#: hmib.php:1682
+#, fuzzy
+msgid "Total Swap"
+msgstr "총 스왑"
+
+#: hmib.php:1683
+#, fuzzy
+msgid "Used Swap"
+msgstr "스왑 사용"
+
+#: hmib.php:1729 hmib.php:2405
+#, fuzzy
+msgid "View Storage"
+msgstr "저장소보기"
+
+#: hmib.php:1730 hmib.php:2406
+#, fuzzy
+msgid "View Hardware"
+msgstr "하드웨어보기"
+
+#: hmib.php:1731 hmib.php:2407 hmib.php:2578
+#, fuzzy
+msgid "View Processes"
+msgstr "프로세스보기"
+
+#: hmib.php:1732 hmib.php:2408
+#, fuzzy
+msgid "View Software Inventory"
+msgstr "소프트웨어 인벤토리보기"
+
+#: hmib.php:1734 hmib.php:2646 hmib.php:2648 hmib.php:2694 hmib.php:2696
+#, fuzzy
+msgid "View Graphs"
+msgstr "그래프보기"
+
+#: hmib.php:1736
+#, fuzzy
+msgid "No Graphs Defined"
+msgstr "정의 된 그래프 없음"
+
+#: hmib.php:1764
+#, fuzzy
+msgid "No Devices Found"
+msgstr "장치를 찾을 수 없음"
+
+#: hmib.php:1897
+#, fuzzy
+msgid "Software Inventory"
+msgstr "소프트웨어 인벤토리"
+
+#: hmib.php:2007 hmib.php:2077
+#, fuzzy
+msgid "Applications"
+msgstr "지원서"
+
+#: hmib.php:2085
+#, fuzzy
+msgid "Package"
+msgstr "패키지"
+
+#: hmib.php:2087
+#, fuzzy
+msgid "Installed"
+msgstr "설치됨"
+
+#: hmib.php:2108
+#, fuzzy
+msgid "No Software Packages Found"
+msgstr "소프트웨어 패키지를 찾을 수 없음"
+
+#: hmib.php:2123
+#, fuzzy
+msgid "Summary"
+msgstr "요약"
+
+#: hmib.php:2125
+#, fuzzy
+msgid "Storage"
+msgstr "Storage"
+
+#: hmib.php:2126
+#, fuzzy
+msgid "Hardware"
+msgstr "하드웨어"
+
+#: hmib.php:2128
+#, fuzzy
+msgid "Use History"
+msgstr "사용 기록"
+
+#: hmib.php:2129
+#, fuzzy
+msgid "Inventory"
+msgstr "목록"
+
+#: hmib.php:2130 hmib.php:2813
+#, fuzzy
+msgid "Graphs"
+msgstr "그래프 "
+
+#: hmib.php:2289
+#, fuzzy
+msgid "Summary Filter"
+msgstr "요약 필터"
+
+#: hmib.php:2298 hmib.php:2481
+#, fuzzy
+msgid "Top"
+msgstr "상단"
+
+#: hmib.php:2302 hmib.php:2485
+#, fuzzy
+msgid "All Records"
+msgstr "모든 기록"
+
+#: hmib.php:2303 hmib.php:2486 hmib.php:2487 hmib.php:2488 hmib.php:2489
+#, fuzzy, php-format
+msgid "%d Records"
+msgstr "레코드 % d 개"
+
+#: hmib.php:2304 hmib.php:2305 hmib.php:2306
+#, fuzzy, php-format
+msgid "%d Record"
+msgstr "% d 기록"
+
+#: hmib.php:2316 hmib.php:2499
+msgid "NOTE: Import the Host MIB Device Package to view Graphs."
+msgstr ""
+
+#: hmib.php:2327
+#, fuzzy
+msgid "Device Type Summary Statistics"
+msgstr "장치 유형 요약 통계"
+
+#: hmib.php:2367 hmib_types.php:758
+#, fuzzy
+msgid "Version"
+msgstr "버전"
+
+#: hmib.php:2372
+#, fuzzy
+msgid "Logins"
+msgstr "로그인"
+
+#: hmib.php:2373
+#, fuzzy
+msgid "CPUS"
+msgstr "CPUS"
+
+#: hmib.php:2374 hmib.php:2553
+#, fuzzy
+msgid "Avg CPU"
+msgstr "평균 CPU"
+
+#: hmib.php:2375 hmib.php:2554
+#, fuzzy
+msgid "Max CPU"
+msgstr "최대 CPU"
+
+#: hmib.php:2376
+#, fuzzy
+msgid "Avg Mem"
+msgstr "평균 메모리"
+
+#: hmib.php:2377
+#, fuzzy
+msgid "Max Mem"
+msgstr "최대 Mem"
+
+#: hmib.php:2378
+#, fuzzy
+msgid "Avg Swap"
+msgstr "평균 스왑"
+
+#: hmib.php:2379
+#, fuzzy
+msgid "Max Swap"
+msgstr "최대 스왑"
+
+#: hmib.php:2380
+#, fuzzy
+msgid "Avg Proc"
+msgstr "평균 Proc"
+
+#: hmib.php:2381
+#, fuzzy
+msgid "Max Proc"
+msgstr "최대 Proc"
+
+#: hmib.php:2404 hmib.php:2577 hmib.php:2603
+#, fuzzy
+msgid "View Devices"
+msgstr "장치보기"
+
+#: hmib.php:2437
+#, fuzzy
+msgid "No Device Types"
+msgstr "장치 유형 없음"
+
+#: hmib.php:2442
+#, fuzzy
+msgid "Process Summary Filter"
+msgstr "프로세스 요약 필터"
+
+#: hmib.php:2510
+#, fuzzy
+msgid "Process Summary Statistics"
+msgstr "프로세스 요약 통계"
+
+#: hmib.php:2549
+#, fuzzy
+msgid "Process Name"
+msgstr "프로세스 이름"
+
+#: hmib.php:2550
+#, fuzzy
+msgid "Num Paths"
+msgstr "Num Paths"
+
+#: hmib.php:2551 hmib_types.php:884
+#, fuzzy
+msgid "Hosts"
+msgstr "호스트"
+
+#: hmib.php:2555
+#, fuzzy
+msgid "Avg Memory"
+msgstr "평균 메모리"
+
+#: hmib.php:2556
+#, fuzzy
+msgid "Max Memory"
+msgstr "최대 메모리"
+
+#: hmib.php:2593
+#, fuzzy
+msgid "No Processes"
+msgstr "프로세스 없음"
+
+#: hmib.php:2739
+#, fuzzy
+msgid "Custom Graph List Applied - Filtering from List"
+msgstr "맞춤 그래프 목록 적용 - 목록에서 필터링"
+
+#: hmib.php:2739
+#, fuzzy
+msgid "Graph Preview Filters"
+msgstr "그래프 미리보기 필터"
+
+#: hmib_types.php:30
 #, fuzzy
 msgid "Delete"
 msgstr "삭제"
 
-#: ../hmib_types.php:31
+#: hmib_types.php:31
 #, fuzzy
 msgid "Duplicate"
 msgstr "복사"
 
-#: ../hmib_types.php:226
+#: hmib_types.php:226
 #, fuzzy
 msgid "Click 'Continue' to Delete the following Host Type(s)"
 msgstr "다음 호스트 유형을 삭제하려면 '계속'을 클릭하십시오."
 
-#: ../hmib_types.php:231 ../hmib_types.php:241 ../hmib_types.php:246
+#: hmib_types.php:231 hmib_types.php:241 hmib_types.php:246
 #, fuzzy
 msgid "Cancel"
 msgstr "취소"
 
-#: ../hmib_types.php:231 ../hmib_types.php:241
+#: hmib_types.php:231 hmib_types.php:241
 #, fuzzy
 msgid "Continue"
 msgstr "계속"
 
-#: ../hmib_types.php:231
+#: hmib_types.php:231
 #, fuzzy
 msgid "Delete Host Type(s)"
 msgstr "호스트 유형 삭제"
 
-#: ../hmib_types.php:235
+#: hmib_types.php:235
 #, fuzzy
 msgid ""
 "Click 'Continue' to Duplicate the following Host Type(s). You may optionally "
@@ -58,76 +667,69 @@ msgstr ""
 "명을 선택적으로 변경할 수 있습니다. 그렇지 않으면 아래 값을 변경하지 마십시"
 "오. 원래 이름이 새 접미어로 복제됩니다."
 
-#: ../hmib_types.php:237
+#: hmib_types.php:237
 #, fuzzy
 msgid "Host Type Prefix:"
 msgstr "호스트 유형 접두사 :"
 
-#: ../hmib_types.php:241
+#: hmib_types.php:241
 #, fuzzy
 msgid "Duplicate Host Type(s)"
 msgstr "중복 호스트 유형"
 
-#: ../hmib_types.php:245
+#: hmib_types.php:245
 #, fuzzy
 msgid "You must select at least one Host Type."
 msgstr "하나 이상의 호스트 유형을 선택해야합니다."
 
-#: ../hmib_types.php:352
+#: hmib_types.php:352
 #, fuzzy
 msgid "New Type"
 msgstr "새 용도분류"
 
-#: ../hmib_types.php:353 ../hmib.php:37 ../hmib.php:52 ../hmib.php:747
-#: ../hmib.php:1066 ../hmib.php:1374 ../hmib.php:1572 ../hmib.php:2103
-#: ../hmib.php:2422
-#, fuzzy
-msgid "Unknown"
-msgstr "알 수 없음"
-
-#: ../hmib_types.php:397
+#: hmib_types.php:397
 #, fuzzy, php-format
 msgid "There were %d Device Types Added!"
 msgstr "추가 된 기기 유형이 % d 개 있습니다!"
 
-#: ../hmib_types.php:400
+#: hmib_types.php:400
 #, fuzzy
 msgid "No New Host Types Found!"
 msgstr "새로운 호스트 유형을 찾을 수 없습니다!"
 
-#: ../hmib_types.php:411
+#: hmib_types.php:411
 #, fuzzy
 msgid "Import Results"
 msgstr "결과 가져 오기"
 
-#: ../hmib_types.php:413
+#: hmib_types.php:413
 #, fuzzy
 msgid "Cacti has imported the following items:"
 msgstr "Cacti는 다음 항목을 가져 왔습니다."
 
-#: ../hmib_types.php:425
+#: hmib_types.php:425
 #, fuzzy
 msgid "Import Host MIB OS Types"
 msgstr "호스트 MIB OS 유형 가져 오기"
 
-#: ../hmib_types.php:428
+#: hmib_types.php:428
 #, fuzzy
 msgid "Import Device Types from Local File"
 msgstr "로컬 파일에서 장치 유형 가져 오기"
 
-#: ../hmib_types.php:429
+#: hmib_types.php:429
 #, fuzzy
 msgid ""
 "Please specify the location of the CSV file containing your device type "
 "information."
 msgstr "장치 유형 정보가 들어있는 CSV 파일의 위치를 지정하십시오."
 
-#: ../hmib_types.php:436
+#: hmib_types.php:436
 #, fuzzy
 msgid "Overwrite Existing Data?"
 msgstr "기존 데이터 덮어 쓰기?"
 
-#: ../hmib_types.php:437
+#: hmib_types.php:437
 #, fuzzy
 msgid ""
 "Should the import process be allowed to overwrite existing data?  Please "
@@ -136,52 +738,52 @@ msgstr ""
 "가져 오기 프로세스에서 기존 데이터를 덮어 쓸 수 있습니까? 유의하시기 바랍니"
 "다, 이것은 이전 행을 삭제하는 것을 의미하지 않고 중복 된 행만 대체합니다."
 
-#: ../hmib_types.php:440
+#: hmib_types.php:440
 #, fuzzy
 msgid "Allow Existing Rows to be Updated?"
 msgstr "기존 행을 업데이트하도록 허용 하시겠습니까?"
 
-#: ../hmib_types.php:445
+#: hmib_types.php:445
 #, fuzzy
 msgid "Required File Format Notes"
 msgstr "필수 파일 형식 메모"
 
-#: ../hmib_types.php:448
+#: hmib_types.php:448
 #, fuzzy
 msgid "The file must contain a header row with the following column headings."
 msgstr "파일에는 다음 열 머리글이있는 머리글 행이 있어야합니다."
 
-#: ../hmib_types.php:450
+#: hmib_types.php:450
 #, fuzzy
 msgid "A common name for the Host Type.  For example, Windows 7"
 msgstr "호스트 유형에 대한 공통 이름. 예를 들어, Windows 7"
 
-#: ../hmib_types.php:451
+#: hmib_types.php:451
 #, fuzzy
 msgid "The OS version for the Host Type"
 msgstr "호스트 유형의 OS 버전"
 
-#: ../hmib_types.php:452
+#: hmib_types.php:452
 #, fuzzy
 msgid ""
 "A unique set of characters from the snmp sysDescr that uniquely identify "
 "this device"
 msgstr "이 장치를 고유하게 식별하는 SNMP sysDescr의 고유 한 문자 집합"
 
-#: ../hmib_types.php:453
+#: hmib_types.php:453
 #, fuzzy
 msgid ""
 "The vendor specific snmp sysObjectID that distinguishes this device from the "
 "next"
 msgstr "이 장치를 다음 장치와 구별하는 공급 업체별 snmp sysObjectID"
 
-#: ../hmib_types.php:455
+#: hmib_types.php:455
 #, fuzzy
 msgid ""
 "The primary key for this table is a combination of the following two fields:"
 msgstr "이 테이블의 기본 키는 다음 두 필드의 조합입니다."
 
-#: ../hmib_types.php:459
+#: hmib_types.php:459
 #, fuzzy
 msgid ""
 "Therefore, if you attempt to import duplicate device types, the existing "
@@ -190,7 +792,7 @@ msgstr ""
 "따라서 중복 장치 유형을 가져 오려고하면 기존 데이터가 새 정보로 업데이트됩니"
 "다."
 
-#: ../hmib_types.php:461
+#: hmib_types.php:461
 #, fuzzy
 msgid ""
 "The Host Type is determined by scanning its snmp agent for the sysObjectID "
@@ -204,47 +806,42 @@ msgstr ""
 "첫 x 째 일치는 집계 호스트 데이터에 사용됩니다. 따라서 호스트에 대해 유효한 "
 "sysObjectID, sysDescrMatch를 선택하는 것이 매우 중요합니다."
 
-#: ../hmib_types.php:726
+#: hmib_types.php:726
 #, fuzzy
 msgid "Are You Sure?"
 msgstr "확실해?"
 
-#: ../hmib_types.php:726
+#: hmib_types.php:726
 #, fuzzy, php-format
 msgid "Are you sure you want to delete the Host Type'%s'"
 msgstr "호스트 유형 ' %s'을 (를) 삭제 하시겠습니까?"
 
-#: ../hmib_types.php:747
+#: hmib_types.php:747
 #, fuzzy
 msgid "Device Scanning Function Options"
 msgstr "장치 검색 기능 옵션"
 
-#: ../hmib_types.php:751
+#: hmib_types.php:751
 #, fuzzy
 msgid "Name"
 msgstr "이름"
 
-#: ../hmib_types.php:752
+#: hmib_types.php:752
 #, fuzzy
 msgid "Give this Host Type a meaningful name."
 msgstr "이 호스트 유형에 의미있는 이름을 지정하십시오."
 
-#: ../hmib_types.php:758 ../hmib.php:2367
-#, fuzzy
-msgid "Version"
-msgstr "버전"
-
-#: ../hmib_types.php:759
+#: hmib_types.php:759
 #, fuzzy
 msgid "Fill in the name for the version of this Host Type."
 msgstr "이 호스트 유형의 버전 이름을 입력하십시오."
 
-#: ../hmib_types.php:766
+#: hmib_types.php:766
 #, fuzzy
 msgid "System Description Match"
 msgstr "시스템 설명 일치"
 
-#: ../hmib_types.php:767 ../hmib_types.php:774
+#: hmib_types.php:767 hmib_types.php:774
 #, fuzzy, php-format
 msgid ""
 "Provide key information to help HMIB detect the type of Host.  SQL Where "
@@ -255,149 +852,112 @@ msgstr ""
 "현식이 지원됩니다. SQL 여기서 와일드 카드 문자는 '%'기호입니다. 호환성 문제"
 "로 인해 정규 표현식이 제거되었습니다."
 
-#: ../hmib_types.php:773
+#: hmib_types.php:773
 #, fuzzy
 msgid "Vendor snmp Object ID"
 msgstr "공급 업체 snmp 개체 ID"
 
-#: ../hmib_types.php:794
+#: hmib_types.php:794
 #, fuzzy, php-format
 msgid "Host MIB OS Types [edit: %s]"
 msgstr "호스트 MIB OS 유형 [편집 :  %s]"
 
-#: ../hmib_types.php:796
+#: hmib_types.php:796
 #, fuzzy
 msgid "Host MIB OS Types [new]"
 msgstr "호스트 MIB OS 유형 [신규]"
 
-#: ../hmib_types.php:861
+#: hmib_types.php:861
 #, fuzzy
 msgid "Host MIB OS Type Filters"
 msgstr "호스트 MIB OS 유형 필터"
 
-#: ../hmib_types.php:873 ../setup.php:589
+#: hmib_types.php:873 setup.php:587
 #, fuzzy
 msgid "OS Types"
 msgstr "OS 유형"
 
-#: ../hmib_types.php:882
+#: hmib_types.php:882
 #, fuzzy
 msgid "Host Type Name"
 msgstr "호스트 유형 이름"
 
-#: ../hmib_types.php:883
+#: hmib_types.php:883
 #, fuzzy
 msgid "OS Version"
 msgstr "OS 버전"
 
-#: ../hmib_types.php:884 ../hmib.php:2556
-#, fuzzy
-msgid "Hosts"
-msgstr "호스트"
-
-#: ../hmib_types.php:885
+#: hmib_types.php:885
 #, fuzzy
 msgid "SNMP ObjectID"
 msgstr "SNMP ObjectID"
 
-#: ../hmib_types.php:886
+#: hmib_types.php:886
 #, fuzzy
 msgid "SNMP Sys Description Match"
 msgstr "SNMP 시스템 설명 일치"
 
-#: ../hmib_types.php:902
+#: hmib_types.php:902
 #, fuzzy
 msgid "No Host Types Found"
 msgstr "호스트 유형을 찾을 수 없습니다."
 
-#: ../hmib_types.php:930
+#: hmib_types.php:930
 #, fuzzy
 msgid "Choose an action:"
 msgstr "액션 선택 :"
 
-#: ../hmib_types.php:934 ../hmib_types.php:1002 ../hmib.php:255 ../hmib.php:586
-#: ../hmib.php:935 ../hmib.php:1240 ../hmib.php:1540 ../hmib.php:1972
-#: ../hmib.php:2310 ../hmib.php:2498
-#, fuzzy
-msgid "Go"
-msgstr "가기"
-
-#: ../hmib_types.php:981 ../hmib.php:265 ../hmib.php:596 ../hmib.php:945
-#: ../hmib.php:1250 ../hmib.php:1550 ../hmib.php:1982 ../hmib.php:2480
-#, fuzzy
-msgid "Search"
-msgstr "검색"
-
-#: ../hmib_types.php:987 ../hmib.php:189 ../hmib.php:520 ../hmib.php:870
-#: ../hmib.php:1175 ../hmib.php:1481 ../hmib.php:1906
-#, fuzzy
-msgid "OS Type"
-msgstr "OS 유형"
-
-#: ../hmib_types.php:991 ../hmib.php:295 ../hmib.php:626 ../hmib.php:974
-#: ../hmib.php:1279 ../hmib.php:1598 ../hmib.php:2011
-#, fuzzy
-msgid "Default"
-msgstr "기본값"
-
-#: ../hmib_types.php:1005 ../hmib.php:258 ../hmib.php:589 ../hmib.php:938
-#: ../hmib.php:1243 ../hmib.php:1543 ../hmib.php:1975 ../hmib.php:2313
-#: ../hmib.php:2501
-#, fuzzy
-msgid "Clear"
-msgstr "지우기"
-
-#: ../hmib_types.php:1008
-#, fuzzy
-msgid "Scan for New or Unknown Device Types"
-msgstr "새 장치 또는 알 수없는 장치 유형 검색"
-
-#: ../hmib_types.php:1008
+#: hmib_types.php:1008
 #, fuzzy
 msgid "Rescan"
 msgstr "새로 고침"
 
-#: ../hmib_types.php:1011
+#: hmib_types.php:1008
 #, fuzzy
-msgid "Import Host Types from a CSV File"
-msgstr "CSV 파일에서 호스트 유형 가져 오기"
+msgid "Scan for New or Unknown Device Types"
+msgstr "새 장치 또는 알 수없는 장치 유형 검색"
 
-#: ../hmib_types.php:1011 ../setup.php:606
+#: hmib_types.php:1011 setup.php:606
 #, fuzzy
 msgid "Import"
 msgstr "가져오기"
 
-#: ../hmib_types.php:1014
+#: hmib_types.php:1011
 #, fuzzy
-msgid "Export Host Types to Share with Others"
-msgstr "다른 사람과 공유 할 호스트 유형 내보내기"
+msgid "Import Host Types from a CSV File"
+msgstr "CSV 파일에서 호스트 유형 가져 오기"
 
-#: ../hmib_types.php:1014
+#: hmib_types.php:1014
 #, fuzzy
 msgid "Export"
 msgstr "내보내기"
 
-#: ../setup.php:38
+#: hmib_types.php:1014
+#, fuzzy
+msgid "Export Host Types to Share with Others"
+msgstr "다른 사람과 공유 할 호스트 유형 내보내기"
+
+#: setup.php:38
 #, fuzzy
 msgid "Plugin -> Host MIB Viewer"
 msgstr "플러그인 -> 호스트 MIB 뷰어"
 
-#: ../setup.php:39
+#: setup.php:39
 #, fuzzy
 msgid "Plugin -> Host MIB Admin"
 msgstr "플러그인 -> 호스트 MIB Admin"
 
-#: ../setup.php:358
+#: setup.php:356
 #, fuzzy
 msgid "Host MIB General Settings"
 msgstr "호스트 MIB 일반 설정"
 
-#: ../setup.php:362
+#: setup.php:360
 #, fuzzy
 msgid "Host MIB Poller Enabled"
 msgstr "호스트 MIB 폴러가 활성화 됨"
 
-#: ../setup.php:363
+#: setup.php:361
 #, fuzzy
 msgid ""
 "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the "
@@ -406,12 +966,12 @@ msgstr ""
 "호스트 MIB 폴링을 사용 가능하게하려면이 상자를 선택하십시오. 그렇지 않으면 폴"
 "러가 작동하지 않습니다."
 
-#: ../setup.php:368
+#: setup.php:366
 #, fuzzy
 msgid "Automatically Discover Cacti Devices"
 msgstr "Cacti 장치 자동 검색"
 
-#: ../setup.php:369
+#: setup.php:367
 #, fuzzy
 msgid ""
 "Do you wish to automatically scan for and add devices which support the Host "
@@ -420,837 +980,272 @@ msgstr ""
 "호스트 리소스 테이블을 지원하는 장치를 Cacti 호스트 테이블에서 자동으로 검색"
 "하고 추가 하시겠습니까?"
 
-#: ../setup.php:374
+#: setup.php:372
 #, fuzzy
 msgid "Automatically Purge Devices"
 msgstr "자동으로 장치 제거"
 
-#: ../setup.php:375
+#: setup.php:373
 #, fuzzy
 msgid ""
 "Do you wish to automatically purge devices that are removed from the Cacti "
 "system?"
 msgstr "Cacti 시스템에서 제거 된 장치를 자동으로 제거 하시겠습니까?"
 
-#: ../setup.php:380
+#: setup.php:378
 #, fuzzy
 msgid "Default Row Count"
 msgstr "기본 행 수"
 
-#: ../setup.php:381
+#: setup.php:379
 #, fuzzy
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
 msgstr "기본적으로 HMIB OS 유형에서 몇 행을 보시겠습니까?"
 
-#: ../setup.php:387
+#: setup.php:385
 #, fuzzy
 msgid "Default Top Host Types"
 msgstr "기본 상위 호스트 유형"
 
-#: ../setup.php:388 ../setup.php:399
+#: setup.php:386 setup.php:397
 #, fuzzy
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
 msgstr "HMIB Dashboard에서 기본적으로 몇 개의 프로세스를보고 싶습니까?"
 
-#: ../setup.php:392 ../setup.php:393 ../setup.php:394 ../setup.php:395
+#: setup.php:390 setup.php:391 setup.php:392 setup.php:393
 #, fuzzy, php-format
 msgid "%d Types"
 msgstr "유형 % d 개"
 
-#: ../setup.php:398
+#: setup.php:396
 #, fuzzy
 msgid "Default Top Processes"
 msgstr "기본 상위 프로세스"
 
-#: ../setup.php:403 ../setup.php:404 ../setup.php:405 ../setup.php:406
-#: ../setup.php:415 ../setup.php:416 ../setup.php:417 ../setup.php:418
-#: ../setup.php:419 ../setup.php:420 ../setup.php:421 ../setup.php:422
-#: ../setup.php:423
+#: setup.php:401 setup.php:402 setup.php:403 setup.php:404 setup.php:413
+#: setup.php:414 setup.php:415 setup.php:416 setup.php:417 setup.php:418
+#: setup.php:419 setup.php:420 setup.php:421
 #, fuzzy, php-format
 msgid "%d Processes"
 msgstr "프로세스 % d 개"
 
-#: ../setup.php:409
+#: setup.php:407
 #, fuzzy
 msgid "Maximum Concurrent Collectors"
 msgstr "최대 동시 컬렉터"
 
-#: ../setup.php:410
+#: setup.php:408
 #, fuzzy
 msgid ""
 "What is the maximum number of concurrent collector process that you want to "
 "run at one time?"
 msgstr "한 번에 실행할 동시 콜렉터 프로세스의 최대 수는 얼마입니까?"
 
-#: ../setup.php:414
+#: setup.php:412
 #, fuzzy, php-format
 msgid "%d Process"
 msgstr "프로세스 % d 개"
 
-#: ../setup.php:426
+#: setup.php:424
 #, fuzzy
 msgid "Host Auto Discovery Frequency"
 msgstr "호스트 자동 발견 빈도"
 
-#: ../setup.php:430
+#: setup.php:428
 #, fuzzy
 msgid "Auto Discovery Frequency"
 msgstr "자동 발견 빈도"
 
-#: ../setup.php:431
+#: setup.php:429
 #, fuzzy
 msgid "How often do you want to look for new Cacti Devices?"
 msgstr "새로운 Cacti 장치를 얼마나 자주 찾고 싶습니까?"
 
-#: ../setup.php:437
+#: setup.php:435
 #, fuzzy
 msgid "Host Graph Automation"
 msgstr "호스트 그래프 자동화"
 
-#: ../setup.php:441
+#: setup.php:439
 #, fuzzy
 msgid "Automatically Add New Graphs"
 msgstr "새 그래프 자동 추가"
 
-#: ../setup.php:442
+#: setup.php:440
 #, fuzzy
 msgid "How often do you want to check for new objects to graph?"
 msgstr "얼마나 자주 그래프에 새 객체가 있는지 확인하고 싶습니까?"
 
-#: ../setup.php:446
+#: setup.php:444
 #, fuzzy
 msgid "Never"
 msgstr "안함"
 
-#: ../setup.php:447 ../setup.php:511
+#: setup.php:445 setup.php:509
 #, fuzzy, php-format
 msgid "%d Hour"
 msgstr "% d 시간"
 
-#: ../setup.php:448 ../setup.php:512 ../setup.php:513 ../setup.php:514
+#: setup.php:446 setup.php:510 setup.php:511 setup.php:512
 #, fuzzy, php-format
 msgid "%d Hours"
 msgstr "% d 시간"
 
-#: ../setup.php:449 ../setup.php:515
+#: setup.php:447 setup.php:513
 #, fuzzy, php-format
 msgid "%d Day"
 msgstr "% d 일"
 
-#: ../setup.php:450
+#: setup.php:448
 #, fuzzy, php-format
 msgid "%d Days"
 msgstr "%d일"
 
-#: ../setup.php:453
+#: setup.php:451
 #, fuzzy
 msgid "Host MIB Table Collection Frequencies"
 msgstr "호스트 MIB 테이블 수집 주파수"
 
-#: ../setup.php:457
+#: setup.php:455
 #, fuzzy
 msgid "Running Programs Frequency"
 msgstr "러닝 프로그램 주파수"
 
-#: ../setup.php:458
+#: setup.php:456
 #, fuzzy
 msgid "How often do you want to scan running software?"
 msgstr "실행중인 소프트웨어를 얼마나 자주 검사 하시겠습니까?"
 
-#: ../setup.php:464
+#: setup.php:462
 #, fuzzy
 msgid "Running Programs CPU/Memory Frequency"
 msgstr "실행중인 프로그램 CPU / 메모리 주파수"
 
-#: ../setup.php:465
+#: setup.php:463
 #, fuzzy
 msgid "How often do you want to scan running software for performance data?"
 msgstr ""
 "성능 데이터를 찾기 위해 실행중인 소프트웨어를 얼마나 자주 검사 하시겠습니까?"
 
-#: ../setup.php:471
+#: setup.php:469
 #, fuzzy
 msgid "Installed Software Frequency"
 msgstr "설치된 소프트웨어 빈도"
 
-#: ../setup.php:472
+#: setup.php:470
 #, fuzzy
 msgid "How often do you want to scan for installed software?"
 msgstr "설치된 소프트웨어를 얼마나 자주 검사 하시겠습니까?"
 
-#: ../setup.php:478
+#: setup.php:476
 #, fuzzy
 msgid "Storage Frequency"
 msgstr "저장 빈도"
 
-#: ../setup.php:479
+#: setup.php:477
 #, fuzzy
 msgid "How often do you want to scan for Storage performance data?"
 msgstr "얼마나 자주 스토리지 성능 데이터를 스캔 하시겠습니까?"
 
-#: ../setup.php:485
+#: setup.php:483
 #, fuzzy
 msgid "Device Frequency"
 msgstr "장치 주파수"
 
-#: ../setup.php:486
+#: setup.php:484
 #, fuzzy
 msgid "How often do you want to scan for Device performance data?"
 msgstr "얼마나 자주 디바이스 성능 데이터를 스캔 하시겠습니까?"
 
-#: ../setup.php:492
+#: setup.php:490
 #, fuzzy
 msgid "Processor Frequency"
 msgstr "프로세서 주파수"
 
-#: ../setup.php:493
+#: setup.php:491
 #, fuzzy
 msgid "How often do you want to scan for Processor performance data?"
 msgstr "프로세서 성능 데이터를 얼마나 자주 스캔 하시겠습니까?"
 
-#: ../setup.php:506 ../hmib.php:1584 ../hmib.php:2371
-#, fuzzy
-msgid "Disabled"
-msgstr "비활성화"
-
-#: ../setup.php:507
+#: setup.php:505
 #, fuzzy, php-format
 msgid "%d Minute"
 msgstr "% d 분"
 
-#: ../setup.php:508 ../setup.php:509 ../setup.php:510
+#: setup.php:506 setup.php:507 setup.php:508
 #, fuzzy, php-format
 msgid "%d Minutes"
 msgstr "%d 분"
 
-#: ../setup.php:589
+#: setup.php:587
 #, fuzzy
 msgid "Management"
 msgstr "관리"
 
-#: ../setup.php:593 ../setup.php:594
+#: setup.php:593 setup.php:594
 #, fuzzy
 msgid "Host MIB Inventory Summary"
 msgstr "호스트 MIB 인벤토리 요약"
 
-#: ../setup.php:595
+#: setup.php:595
 #, fuzzy
 msgid "Host MIB Details"
 msgstr "호스트 MIB 세부 정보"
 
-#: ../setup.php:596
+#: setup.php:596
 #, fuzzy
 msgid "Host MIB Storage"
 msgstr "호스트 MIB 저장소"
 
-#: ../setup.php:597
+#: setup.php:597
 #, fuzzy
 msgid "Host MIB Hardware"
 msgstr "호스트 MIB 하드웨어"
 
-#: ../setup.php:598
+#: setup.php:598
 #, fuzzy
 msgid "Host MIB Running Processes"
 msgstr "프로세스를 호스트하는 호스트 MIB"
 
-#: ../setup.php:599
+#: setup.php:599
 #, fuzzy
 msgid "Host MIB Process Use History"
 msgstr "호스트 MIB 프로세스 사용 내역"
 
-#: ../setup.php:600
+#: setup.php:600
 #, fuzzy
 msgid "Host MIB Software Inventory"
 msgstr "호스트 MIB 소프트웨어 인벤토리"
 
-#: ../setup.php:601
+#: setup.php:601
 #, fuzzy
 msgid "Host MIB Graphs"
 msgstr "호스트 MIB 그래프"
 
-#: ../setup.php:603
+#: setup.php:603
 #, fuzzy
 msgid "Host MIB OS Types"
 msgstr "호스트 MIB OS 유형"
 
-#: ../setup.php:604 ../hmib.php:1672 ../hmib.php:2365 ../hmib.php:2553
-#, fuzzy
-msgid "Actions"
-msgstr "작업"
-
-#: ../setup.php:605
+#: setup.php:605
 #, fuzzy
 msgid "(Edit)"
 msgstr "(편집)"
 
-#: ../hmib.php:36
 #, fuzzy
-msgid "Error"
-msgstr "오류"
+#~ msgid "Time when last seen running"
+#~ msgstr "마지막으로 실행 한 시간"
 
-#: ../hmib.php:38
 #, fuzzy
-msgid "Operating System"
-msgstr "시스템 O.S"
+#~ msgid ""
+#~ "WARNING: You need to import your Host MIB Host Template to view Graphs.  "
+#~ "See the README for more information."
+#~ msgstr ""
+#~ "경고 : 그래프를 보려면 호스트 MIB 호스트 템플릿을 가져와야합니다. 자세한 "
+#~ "내용은 README를 참조하십시오."
 
-#: ../hmib.php:39
 #, fuzzy
-msgid "Device Driver"
-msgstr "장치 드라이버"
-
-#: ../hmib.php:40
-#, fuzzy
-msgid "Application"
-msgstr "신청서"
-
-#: ../hmib.php:44 ../hmib.php:53
-#, fuzzy
-msgid "Running"
-msgstr "실행 중"
-
-#: ../hmib.php:45
-#, fuzzy
-msgid "Runnable"
-msgstr "실행 파일"
-
-#: ../hmib.php:46
-#, fuzzy
-msgid "Not Runnable"
-msgstr "실행 불가"
-
-#: ../hmib.php:47
-#, fuzzy
-msgid "Invalid"
-msgstr "유효하지 않은"
-
-#: ../hmib.php:51
-#, fuzzy
-msgid "Present"
-msgstr "선물"
-
-#: ../hmib.php:54
-#, fuzzy
-msgid "Warning"
-msgstr "경고"
-
-#: ../hmib.php:55
-#, fuzzy
-msgid "Testing"
-msgstr "시험중"
-
-#: ../hmib.php:56 ../hmib.php:1575 ../hmib.php:2370
-#, fuzzy
-msgid "Down"
-msgstr "아래로"
-
-#: ../hmib.php:180
-#, fuzzy
-msgid "Running Process History"
-msgstr "프로세스 기록 실행 중"
-
-#: ../hmib.php:193 ../hmib.php:214 ../hmib.php:236 ../hmib.php:275
-#: ../hmib.php:524 ../hmib.php:545 ../hmib.php:567 ../hmib.php:606
-#: ../hmib.php:874 ../hmib.php:894 ../hmib.php:916 ../hmib.php:955
-#: ../hmib.php:1179 ../hmib.php:1199 ../hmib.php:1221 ../hmib.php:1260
-#: ../hmib.php:1485 ../hmib.php:1505 ../hmib.php:1528 ../hmib.php:1560
-#: ../hmib.php:1910 ../hmib.php:1931 ../hmib.php:1953 ../hmib.php:1992
-#, fuzzy
-msgid "All"
-msgstr "모두"
-
-#: ../hmib.php:210 ../hmib.php:541 ../hmib.php:890 ../hmib.php:1195
-#: ../hmib.php:1927
-#, fuzzy
-msgid "Device"
-msgstr "장치"
-
-#: ../hmib.php:232 ../hmib.php:563 ../hmib.php:912 ../hmib.php:1217
-#: ../hmib.php:1501 ../hmib.php:1949
-#, fuzzy
-msgid "Template"
-msgstr "템플릿"
-
-#: ../hmib.php:271 ../hmib.php:379 ../hmib.php:602 ../hmib.php:721
-#: ../hmib.php:1524
-#, fuzzy
-msgid "Process"
-msgstr "Process"
-
-#: ../hmib.php:291 ../hmib.php:622 ../hmib.php:970
-#, fuzzy
-msgid "Entries"
-msgstr "입력 항목"
-
-#: ../hmib.php:371
-#, fuzzy
-msgid "History"
-msgstr "기록"
-
-#: ../hmib.php:378 ../hmib.php:720 ../hmib.php:1046 ../hmib.php:1351
-#: ../hmib.php:1673 ../hmib.php:2084
-#, fuzzy
-msgid "Hostname"
-msgstr "호스트이름:"
-
-#: ../hmib.php:380
-#, fuzzy
-msgid "Last Seen"
-msgstr "최근 확인"
-
-#: ../hmib.php:381
-#, fuzzy
-msgid "Use Time (d:h:m)"
-msgstr "사용 시간 (d : h : m)"
-
-#: ../hmib.php:390 ../hmib.php:736 ../hmib.php:1059 ../hmib.php:1367
-#: ../hmib.php:1744 ../hmib.php:2096
-#, fuzzy
-msgid "Edit Device"
-msgstr "장치 편집"
-
-#: ../hmib.php:397
-#, fuzzy
-msgid "Time when last seen running"
-msgstr "마지막으로 실행 한 시간"
-
-#: ../hmib.php:402
-#, fuzzy
-msgid "No Process History Found"
-msgstr "프로세스 기록 없음"
-
-#: ../hmib.php:511
-#, fuzzy
-msgid "Running Processes"
-msgstr "프로세스 실행"
-
-#: ../hmib.php:713 ../hmib.php:1679 ../hmib.php:2127 ../hmib.php:2557
-#, fuzzy
-msgid "Processes"
-msgstr "프로세스"
-
-#: ../hmib.php:722
-#, fuzzy
-msgid "Path"
-msgstr "경로"
-
-#: ../hmib.php:723
-#, fuzzy
-msgid "Parameters"
-msgstr "매개변수"
-
-#: ../hmib.php:724
-#, fuzzy
-msgid "CPU (Hrs)"
-msgstr "CPU (Hrs)"
-
-#: ../hmib.php:725
-#, fuzzy
-msgid "Memory (MB)"
-msgstr "메모리 (MB)"
-
-#: ../hmib.php:726 ../hmib.php:951 ../hmib.php:1256 ../hmib.php:1988
-#: ../hmib.php:2086 ../hmib.php:2366
-#, fuzzy
-msgid "Type"
-msgstr "유형"
-
-#: ../hmib.php:727 ../hmib.php:1049 ../hmib.php:1556 ../hmib.php:1674
-#, fuzzy
-msgid "Status"
-msgstr "상태"
-
-#: ../hmib.php:752
-#, fuzzy
-msgid "No Running Software Found"
-msgstr "실행중인 소프트웨어 없음"
-
-#: ../hmib.php:767
-#, fuzzy
-msgid "Total CPU [h]:"
-msgstr "총 CPU [h] :"
-
-#: ../hmib.php:768
-#, fuzzy
-msgid "Total Size [MB]:"
-msgstr "총 크기 [MB] :"
-
-#: ../hmib.php:771
-#, fuzzy
-msgid "Avg. CPU [h]:"
-msgstr "평균 CPU [h] :"
-
-#: ../hmib.php:772
-#, fuzzy
-msgid "Avg. Size [MB]:"
-msgstr "평균 크기 [MB] :"
-
-#: ../hmib.php:861
-#, fuzzy
-msgid "Hardware Inventory"
-msgstr "하드웨어 인벤토리"
-
-#: ../hmib.php:1039 ../hmib.php:1594 ../hmib.php:1665 ../hmib.php:2124
-#, fuzzy
-msgid "Devices"
-msgstr "장치"
-
-#: ../hmib.php:1047
-#, fuzzy
-msgid "Hardware Description"
-msgstr "하드웨어 설명"
-
-#: ../hmib.php:1048
-#, fuzzy
-msgid "Hardware Type"
-msgstr "하드웨어 유형"
-
-#: ../hmib.php:1050 ../hmib.php:1354
-#, fuzzy
-msgid "Errors"
-msgstr "오류"
-
-#: ../hmib.php:1072
-#, fuzzy
-msgid "No Hardware Found"
-msgstr "하드웨어를 찾을 수 없음"
-
-#: ../hmib.php:1166
-#, fuzzy
-msgid "Storage Inventory"
-msgstr "저장소 인벤토리"
-
-#: ../hmib.php:1275 ../hmib.php:1344
-#, fuzzy
-msgid "Volumes"
-msgstr "볼륨"
-
-#: ../hmib.php:1352
-#, fuzzy
-msgid "Storage Description"
-msgstr "스토리지 설명"
-
-#: ../hmib.php:1353
-#, fuzzy
-msgid "Storage Type"
-msgstr "보관 유형"
-
-#: ../hmib.php:1355
-#, fuzzy
-msgid "Percent Used"
-msgstr "사용 된 비율"
-
-#: ../hmib.php:1356
-#, fuzzy
-msgid "Used (MB)"
-msgstr "사용 된 (MB)"
-
-#: ../hmib.php:1357
-#, fuzzy
-msgid "Total (MB)"
-msgstr "총 (MB)"
-
-#: ../hmib.php:1358
-#, fuzzy
-msgid "Alloc (KB)"
-msgstr "Alloc (KB)"
-
-#: ../hmib.php:1383
-#, fuzzy
-msgid "No Storage Devices Found"
-msgstr "저장 장치 없음"
-
-#: ../hmib.php:1472
-#, fuzzy
-msgid "Device Filter"
-msgstr "장치 필터"
-
-#: ../hmib.php:1578 ../hmib.php:2369
-#, fuzzy
-msgid "Recovering"
-msgstr "복구 중"
-
-#: ../hmib.php:1581 ../hmib.php:2368
-#, fuzzy
-msgid "Up"
-msgstr "위로"
-
-#: ../hmib.php:1675
-#, fuzzy
-msgid "Uptime(d:h:m)"
-msgstr "가동 시간 (d : h : m)"
-
-#: ../hmib.php:1676
-#, fuzzy
-msgid "Users"
-msgstr "사용자"
-
-#: ../hmib.php:1677
-#, fuzzy
-msgid "CPU %"
-msgstr "CPU %"
-
-#: ../hmib.php:1678
-#, fuzzy
-msgid "CPUs"
-msgstr "CPU"
-
-#: ../hmib.php:1680
-#, fuzzy
-msgid "Total Mem"
-msgstr "총 Mem"
-
-#: ../hmib.php:1681
-#, fuzzy
-msgid "Used Mem"
-msgstr "사용한 Mem"
-
-#: ../hmib.php:1682
-#, fuzzy
-msgid "Total Swap"
-msgstr "총 스왑"
-
-#: ../hmib.php:1683
-#, fuzzy
-msgid "Used Swap"
-msgstr "스왑 사용"
-
-#: ../hmib.php:1729 ../hmib.php:2410
-#, fuzzy
-msgid "View Storage"
-msgstr "저장소보기"
-
-#: ../hmib.php:1730 ../hmib.php:2411
-#, fuzzy
-msgid "View Hardware"
-msgstr "하드웨어보기"
-
-#: ../hmib.php:1731 ../hmib.php:2412 ../hmib.php:2583
-#, fuzzy
-msgid "View Processes"
-msgstr "프로세스보기"
-
-#: ../hmib.php:1732 ../hmib.php:2413
-#, fuzzy
-msgid "View Software Inventory"
-msgstr "소프트웨어 인벤토리보기"
-
-#: ../hmib.php:1734 ../hmib.php:2651 ../hmib.php:2653 ../hmib.php:2703
-#: ../hmib.php:2705
-#, fuzzy
-msgid "View Graphs"
-msgstr "그래프보기"
-
-#: ../hmib.php:1736
-#, fuzzy
-msgid "No Graphs Defined"
-msgstr "정의 된 그래프 없음"
-
-#: ../hmib.php:1764
-#, fuzzy
-msgid "No Devices Found"
-msgstr "장치를 찾을 수 없음"
-
-#: ../hmib.php:1897
-#, fuzzy
-msgid "Software Inventory"
-msgstr "소프트웨어 인벤토리"
-
-#: ../hmib.php:2007 ../hmib.php:2077
-#, fuzzy
-msgid "Applications"
-msgstr "지원서"
-
-#: ../hmib.php:2085
-#, fuzzy
-msgid "Package"
-msgstr "패키지"
-
-#: ../hmib.php:2087
-#, fuzzy
-msgid "Installed"
-msgstr "설치됨"
-
-#: ../hmib.php:2108
-#, fuzzy
-msgid "No Software Packages Found"
-msgstr "소프트웨어 패키지를 찾을 수 없음"
-
-#: ../hmib.php:2123
-#, fuzzy
-msgid "Summary"
-msgstr "요약"
-
-#: ../hmib.php:2125
-#, fuzzy
-msgid "Storage"
-msgstr "Storage"
-
-#: ../hmib.php:2126
-#, fuzzy
-msgid "Hardware"
-msgstr "하드웨어"
-
-#: ../hmib.php:2128
-#, fuzzy
-msgid "Use History"
-msgstr "사용 기록"
-
-#: ../hmib.php:2129
-#, fuzzy
-msgid "Inventory"
-msgstr "목록"
-
-#: ../hmib.php:2130
-#, fuzzy
-msgid "Graphs"
-msgstr "그래프 "
-
-#: ../hmib.php:2289
-#, fuzzy
-msgid "Summary Filter"
-msgstr "요약 필터"
-
-#: ../hmib.php:2298 ../hmib.php:2486
-#, fuzzy
-msgid "Top"
-msgstr "상단"
-
-#: ../hmib.php:2302 ../hmib.php:2490
-#, fuzzy
-msgid "All Records"
-msgstr "모든 기록"
-
-#: ../hmib.php:2303 ../hmib.php:2491 ../hmib.php:2492 ../hmib.php:2493
-#: ../hmib.php:2494
-#, fuzzy, php-format
-msgid "%d Records"
-msgstr "레코드 % d 개"
-
-#: ../hmib.php:2304 ../hmib.php:2305 ../hmib.php:2306
-#, fuzzy, php-format
-msgid "%d Record"
-msgstr "% d 기록"
-
-#: ../hmib.php:2316 ../hmib.php:2504
-#, fuzzy
-msgid ""
-"WARNING: You need to import your Host MIB Host Template to view Graphs.  See "
-"the README for more information."
-msgstr ""
-"경고 : 그래프를 보려면 호스트 MIB 호스트 템플릿을 가져와야합니다. 자세한 내용"
-"은 README를 참조하십시오."
-
-#: ../hmib.php:2327
-#, fuzzy
-msgid "Device Type Summary Statistics"
-msgstr "장치 유형 요약 통계"
-
-#: ../hmib.php:2372
-#, fuzzy
-msgid "Logins"
-msgstr "로그인"
-
-#: ../hmib.php:2373
-#, fuzzy
-msgid "CPUS"
-msgstr "CPUS"
-
-#: ../hmib.php:2374 ../hmib.php:2558
-#, fuzzy
-msgid "Avg CPU"
-msgstr "평균 CPU"
-
-#: ../hmib.php:2375 ../hmib.php:2559
-#, fuzzy
-msgid "Max CPU"
-msgstr "최대 CPU"
-
-#: ../hmib.php:2376
-#, fuzzy
-msgid "Avg Mem"
-msgstr "평균 메모리"
-
-#: ../hmib.php:2377
-#, fuzzy
-msgid "Max Mem"
-msgstr "최대 Mem"
-
-#: ../hmib.php:2378
-#, fuzzy
-msgid "Avg Swap"
-msgstr "평균 스왑"
-
-#: ../hmib.php:2379
-#, fuzzy
-msgid "Max Swap"
-msgstr "최대 스왑"
-
-#: ../hmib.php:2380
-#, fuzzy
-msgid "Avg Proc"
-msgstr "평균 Proc"
-
-#: ../hmib.php:2381
-#, fuzzy
-msgid "Max Proc"
-msgstr "최대 Proc"
-
-#: ../hmib.php:2409 ../hmib.php:2582 ../hmib.php:2608
-#, fuzzy
-msgid "View Devices"
-msgstr "장치보기"
-
-#: ../hmib.php:2442
-#, fuzzy
-msgid "No Device Types"
-msgstr "장치 유형 없음"
-
-#: ../hmib.php:2447
-#, fuzzy
-msgid "Process Summary Filter"
-msgstr "프로세스 요약 필터"
-
-#: ../hmib.php:2515
-#, fuzzy
-msgid "Process Summary Statistics"
-msgstr "프로세스 요약 통계"
-
-#: ../hmib.php:2554
-#, fuzzy
-msgid "Process Name"
-msgstr "프로세스 이름"
-
-#: ../hmib.php:2555
-#, fuzzy
-msgid "Num Paths"
-msgstr "Num Paths"
-
-#: ../hmib.php:2560
-#, fuzzy
-msgid "Avg Memory"
-msgstr "평균 메모리"
-
-#: ../hmib.php:2561
-#, fuzzy
-msgid "Max Memory"
-msgstr "최대 메모리"
-
-#: ../hmib.php:2598
-#, fuzzy
-msgid "No Processes"
-msgstr "프로세스 없음"
-
-#: ../hmib.php:2659 ../hmib.php:2711
-#, fuzzy
-msgid "Please Select Data Query First from Console->Settings->Host Mib First"
-msgstr "먼저 Console> Settings> Host Mib First에서 데이터 쿼리를 선택하십시오."
-
-#: ../hmib.php:2752
-#, fuzzy
-msgid "Graph Preview Filters"
-msgstr "그래프 미리보기 필터"
-
-#: ../hmib.php:2752
-#, fuzzy
-msgid "Custom Graph List Applied - Filtering from List"
-msgstr "맞춤 그래프 목록 적용 - 목록에서 필터링"
+#~ msgid ""
+#~ "Please Select Data Query First from Console->Settings->Host Mib First"
+#~ msgstr ""
+#~ "먼저 Console> Settings> Host Mib First에서 데이터 쿼리를 선택하십시오."
