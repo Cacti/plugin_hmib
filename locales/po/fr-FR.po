@@ -6,16 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: developers@cacti.net\n"
 "POT-Creation-Date: 2019-03-19 09:50+0000\n"
-"PO-Revision-Date: 2019-03-16 23:24-0400\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: fr_FR\n"
+"PO-Revision-Date: 2019-05-29 15:13+0000\n"
+"Last-Translator: Olivier VOGEL <olivier.vogel@st.com>\n"
+"Language-Team: French <http://translate.cacti.net/projects/cacti/hmib/fr-FR/>"
+"\n"
+"Language: fr-FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.4-dev\n"
 
 #: hmib.php:36
 #, fuzzy
@@ -110,7 +112,6 @@ msgstr "Équipement"
 
 #: hmib.php:232 hmib.php:563 hmib.php:912 hmib.php:1217 hmib.php:1501
 #: hmib.php:1949
-#, fuzzy
 msgid "Template"
 msgstr "Modèle"
 
@@ -129,7 +130,6 @@ msgstr "Effacer"
 
 #: hmib.php:265 hmib.php:596 hmib.php:945 hmib.php:1250 hmib.php:1550
 #: hmib.php:1982 hmib.php:2475 hmib_types.php:981
-#, fuzzy
 msgid "Search"
 msgstr "Rechercher"
 
@@ -145,7 +145,6 @@ msgstr "Entrées"
 
 #: hmib.php:295 hmib.php:626 hmib.php:974 hmib.php:1279 hmib.php:1598
 #: hmib.php:2011 hmib_types.php:991
-#, fuzzy
 msgid "Default"
 msgstr "Défaut"
 
@@ -473,7 +472,6 @@ msgid "Inventory"
 msgstr "Inventaire"
 
 #: hmib.php:2130 hmib.php:2813
-#, fuzzy
 msgid "Graphs"
 msgstr "Graphiques"
 
@@ -628,7 +626,6 @@ msgid "Graph Preview Filters"
 msgstr "Filtres de prévisualisation graphique"
 
 #: hmib_types.php:30
-#, fuzzy
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -643,12 +640,10 @@ msgid "Click 'Continue' to Delete the following Host Type(s)"
 msgstr "Cliquez sur'Continuer' pour supprimer le(s) type(s) d'hôte suivant(s)"
 
 #: hmib_types.php:231 hmib_types.php:241 hmib_types.php:246
-#, fuzzy
 msgid "Cancel"
 msgstr "Abandonner"
 
 #: hmib_types.php:231 hmib_types.php:241
-#, fuzzy
 msgid "Continue"
 msgstr "Continuer"
 
