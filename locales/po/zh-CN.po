@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: hmib on cacti 1.1.34\n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
 "POT-Creation-Date: 2019-03-19 09:50+0000\n"
-"PO-Revision-Date: 2019-04-26 03:12+0000\n"
-"Last-Translator: whsir <wh@whsir.com>\n"
+"PO-Revision-Date: 2019-07-13 03:14+0000\n"
+"Last-Translator: tomcat <luis_126@126.com>\n"
 "Language-Team: Chinese (Simplified) <http://translate.cacti.net/projects/"
 "cacti/hmib/zh-CN/>\n"
 "Language: zh-CN\n"
@@ -101,19 +101,16 @@ msgstr "模板"
 #: hmib.php:255 hmib.php:586 hmib.php:935 hmib.php:1240 hmib.php:1540
 #: hmib.php:1972 hmib.php:2310 hmib.php:2493 hmib_types.php:934
 #: hmib_types.php:1002
-#, fuzzy
 msgid "Go"
 msgstr "Go"
 
 #: hmib.php:258 hmib.php:589 hmib.php:938 hmib.php:1243 hmib.php:1543
 #: hmib.php:1975 hmib.php:2313 hmib.php:2496 hmib_types.php:1005
-#, fuzzy
 msgid "Clear"
 msgstr "清除"
 
 #: hmib.php:265 hmib.php:596 hmib.php:945 hmib.php:1250 hmib.php:1550
 #: hmib.php:1982 hmib.php:2475 hmib_types.php:981
-#, fuzzy
 msgid "Search"
 msgstr "搜索"
 
