@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: hmib on cacti 1.1.34\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: developers@cacti.net\n"
 "POT-Creation-Date: 2019-03-19 09:50+0000\n"
-"PO-Revision-Date: 2019-07-16 13:15+0000\n"
+"PO-Revision-Date: 2019-07-23 08:33+0000\n"
 "Last-Translator: tomcat <luis_126@126.com>\n"
 "Language-Team: Chinese (Simplified) <http://translate.cacti.net/projects/"
 "cacti/hmib/zh-CN/>\n"
@@ -335,12 +335,10 @@ msgid "View Software Inventory"
 msgstr "查看软件清单"
 
 #: hmib.php:1734 hmib.php:2646 hmib.php:2648 hmib.php:2694 hmib.php:2696
-#, fuzzy
 msgid "View Graphs"
 msgstr "查看图形"
 
 #: hmib.php:1736
-#, fuzzy
 msgid "No Graphs Defined"
 msgstr "没有定义的图形"
 
