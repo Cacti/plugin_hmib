@@ -33,14 +33,21 @@ Bug and feature enhancements for the hmib plugin are handled in GitHub.  If you 
 
 ## ChangeLog
 
+--- develop ---
+
+* issue#15: Searching from the hmib pages do not work with international characters
+
 --- 3.1 ---
+
 * feature: More of the user interface using ajax callbacks
 * issue#8: Correct sql errors in hmib.php page
 
 --- 3.0 ---
+
 * Cacti 1.0 Compatibility 
 
 --- 2.0 ---
+
 * bug: Template detection is automatic now based upon Hash
 * feature: Add new Summary Graph Template for average and peak memory use by process
 * bug: trim core# off of processes that include that variable in the name of the binary
@@ -49,19 +56,23 @@ Bug and feature enhancements for the hmib plugin are handled in GitHub.  If you 
 * feature: Support new Theme engine
 
 --- 1.5 ---
+
 * bug#0002123: hmib does not handle sysContact or other field that contains an apostrophe
 * bug: Remove regex support for SysDesc as it is breaking discovery
 
 --- 1.4 ---
+
 * bug: Performance issues when viewing pages
 * bug: Pagination issues with Use History
 
 --- 1.3 ---
+
 * bug: Workaround bug in IE6
 * bug: Don't throw warning when using 'Use History'
 * feature: Support Ugroup Plugin
 
 --- 1.2 ---
+
 * feature: provide use history interface
 * bug: make UI W3C compliant
 * bug: respect Host edit permissions
@@ -71,8 +82,10 @@ Bug and feature enhancements for the hmib plugin are handled in GitHub.  If you 
 * feature: allow sysDescMatch and sysObjectIDMatch use regex
 
 --- 1.1 ---
+
 * big: issue when deleting dead hosts
 * feature: provide statistics for visualization of hmib runtime
 
 --- 1.0 ---
+
 * Initial release

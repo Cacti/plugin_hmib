@@ -128,10 +128,9 @@ function hmib_history() {
 			'options' => array('options' => 'sanitize_search_string')
 			),
 		'filter' => array(
-			'filter' => FILTER_CALLBACK,
+			'filter' => FILTER_DEFAULT,
 			'pageset' => true,
-			'default' => '',
-			'options' => array('options' => 'sanitize_search_string')
+			'default' => ''
 			),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
@@ -265,7 +264,7 @@ function hmib_history() {
 						<?php print __('Search');?>
 					</td>
 					<td>
-						<input type='text' size='25' id='filter' value='<?php print get_request_var('filter');?>'>
+						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
 					<td>
 						<?php print __('Process');?>
@@ -338,9 +337,10 @@ function hmib_history() {
 	}
 
 	if (get_request_var('filter') != '') {
-		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . " (host.description LIKE '%" . get_request_var('filter') . "%' OR
-			hrswls.name LIKE '%" . get_request_var('filter') . "%' OR
-			host.hostname LIKE '%" . get_request_var('filter') . "%')";
+		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . ' (
+			host.description LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . '
+			OR hrswls.name LIKE '   . db_qstr('%' . get_request_var('filter') . '%') . '
+			OR host.hostname LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . ')';
 	}
 
 	$sql = "SELECT hrswls.*, host.hostname, host.description, host.disabled
@@ -596,7 +596,7 @@ function hmib_running() {
 						<?php print __('Search');?>
 					</td>
 					<td>
-						<input type='textbox' size='25' id='filter' value='<?php print get_request_var('filter');?>'>
+						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
 					<td>
 						<?php print __('Process');?>
@@ -669,9 +669,10 @@ function hmib_running() {
 	}
 
 	if (get_request_var('filter') != '') {
-		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . " (host.description LIKE '%" . get_request_var('filter') . "%' OR
-			hrswr.name LIKE '%" . get_request_var('filter') . "%' OR
-			host.hostname LIKE '%" . get_request_var('filter') . "%')";
+		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . ' (
+			host.description LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . '
+			OR hrswr.name LIKE '    . db_qstr('%' . get_request_var('filter') . '%') . '
+			OR host.hostname LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . ')';
 	}
 
 	$sql = "SELECT hrswr.*, host.hostname, host.description, host.disabled
@@ -945,7 +946,7 @@ function hmib_hardware() {
 						<?php print __('Search');?>
 					</td>
 					<td>
-						<input type='textbox' size='25' id='filter' value='<?php print get_request_var('filter');?>'>
+						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
 					<td>
 						<?php print __('Type');?>
@@ -1017,9 +1018,10 @@ function hmib_hardware() {
 	}
 
 	if (get_request_var('filter') != '') {
-		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . " (host.description LIKE '%" . get_request_var('filter') . "%' OR
-			hrd.description LIKE '%" . get_request_var('filter') . "%' OR
-			host.hostname LIKE '%" . get_request_var('filter') . "%')";
+		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . ' (
+			host.description LIKE '   . db_qstr('%' . get_request_var('filter') . '%') . '
+			OR hrd.description LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . '
+			OR host.hostname LIKE '   . db_qstr('%' . get_request_var('filter') . '%') . ')';
 	}
 
 	$sql = "SELECT hrd.*, host.hostname, host.description AS hd, host.disabled
@@ -1250,7 +1252,7 @@ function hmib_storage() {
 						<?php print __('Search');?>
 					</td>
 					<td>
-						<input type='textbox' size='25' id='filter' value='<?php print get_request_var('filter');?>'>
+						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
 					<td>
 						<?php print __('Type');?>
@@ -1322,9 +1324,10 @@ function hmib_storage() {
 	}
 
 	if (get_request_var('filter') != '') {
-		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . " (host.description LIKE '%" . get_request_var('filter') . "%' OR
-			hrsto.description LIKE '%" . get_request_var('filter') . "%' OR
-			host.hostname LIKE '%" . get_request_var('filter') . "%')";
+		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . ' (
+			host.description LIKE '     . db_qstr('%' . get_request_var('filter') . '%') . '
+			OR hrsto.description LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . '
+			OR host.hostname LIKE '     . db_qstr('%' . get_request_var('filter') . '%') . ')';
 	}
 
 	$sql = "SELECT hrsto.*, hrsto.used/hrsto.size AS percent, host.hostname, host.description AS hd, host.disabled
@@ -1550,7 +1553,7 @@ function hmib_devices() {
 						<?php print __('Search');?>
 					</td>
 					<td>
-						<input type='textbox' size='25' id='filter' value='<?php print get_request_var('filter');?>'>
+						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
 					<td>
 						<?php print __('Status');?>
@@ -1644,8 +1647,7 @@ function hmib_devices() {
 	}
 
 	if (get_request_var('filter') != '') {
-		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . " host.description LIKE '%" . get_request_var('filter') . "%' OR
-			host.hostname LIKE '%" . get_request_var('filter') . "%'";
+		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . ' host.description LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . ' OR host.hostname LIKE ' . db_qstr('%' . get_request_var('filter') . '%');
 	}
 
 	$sql = "SELECT hrs.*, host.hostname, host.description, host.disabled
@@ -1982,7 +1984,7 @@ function hmib_software() {
 						<?php print __('Search');?>
 					</td>
 					<td>
-						<input type='textbox' size='25' id='filter' value='<?php print get_request_var('filter');?>'>
+						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
 					<td>
 						<?php print __('Type');?>
@@ -2054,10 +2056,11 @@ function hmib_software() {
 	}
 
 	if (get_request_var('filter') != '') {
-		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . " (host.description LIKE '%" . get_request_var('filter') . "%' OR
-			hrswi.name LIKE '%" . get_request_var('filter') . "%' OR
-			hrswi.date LIKE '%" . get_request_var('filter') . "%' OR
-			host.hostname LIKE '%" . get_request_var('filter') . "%')";
+		$sql_where .= (strlen($sql_where) ? ' AND':'WHERE') . ' (
+			host.description LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . '
+			OR hrswi.name LIKE '    . db_qstr('%' . get_request_var('filter') . '%') . '
+			OR hrswi.date LIKE '    . db_qstr('%' . get_request_var('filter') . '%') . '
+			OR host.hostname LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . ')';
 	}
 
 	$sql = "SELECT hrswi.*, host.hostname, host.description, host.disabled
@@ -2475,7 +2478,7 @@ function hmib_summary() {
 						<?php print __('Search');?>
 					</td>
 					<td>
-						<input type='textbox' size='25' id='filter' value='<?php print get_request_var('filter');?>'>
+						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
 					<td>
 						<?php print __('Top');?>
@@ -2518,9 +2521,10 @@ function hmib_summary() {
 	}
 
 	if (strlen(get_request_var('filter'))) {
-		$sql_where = "AND (hrswr.name LIKE '%" . get_request_var('filter') . "%' OR
-			hrswr.path LIKE '%" . get_request_var('filter') . "%' OR
-			hrswr.parameters LIKE '%" . get_request_var('filter') . "%')";
+		$sql_where = 'AND (
+			hrswr.name LIKE '          . db_qstr('%' . get_request_var('filter') . '%') . '
+			OR hrswr.path LIKE '       . db_qstr('%' . get_request_var('filter') . '%') . '
+			OR hrswr.parameters LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . ')';
 	} else {
 		$sql_where = '';
 	}
@@ -2780,7 +2784,7 @@ function hmib_view_graphs() {
 	$total_graphs = 0;
 
 	// Filter sql_where
-	$sql_where  = (get_request_var('filter') != '' ? "gtg.title_cache LIKE '%" . get_request_var('filter') . "%'":'');
+	$sql_where  = (get_request_var('filter') != '' ? 'gtg.title_cache LIKE ' . db_qstr('%' . get_request_var('filter') . '%'):'');
 
 	if ($sql_or != '') {
 		$sql_where .= ($sql_where != '' ? ' AND ':'') . $sql_or;
