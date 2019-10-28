@@ -278,7 +278,21 @@ function hmib_setup_table () {
 		(11,'.1.3.6.1.4.1.311.1.1.3.1.2', 'Windows 2000 Version 5.0','Windows 2000 Server','2000'),
 		(12,'.1.3.6.1.4.1.311.1.1.3.1.2', 'Windows 2000 Version 5.1','Windows 2000 Server','2000'),
 		(13,'.1.3.6.1.4.1.311.1.1.3.1.3', 'Windows Version 5.2','Windows 2003 DC','2003'),
-		(14,'.1.3.6.1.4.1.311.1.1.3.1.2', 'Windows Version 5.2','Windows 2003 Server','2003');");
+		(14,'.1.3.6.1.4.1.311.1.1.3.1.2', 'Windows Version 5.2','Windows 2003 Server','2003'),
+		(16,'.1.3.6.1.4.1.311.1.1.3.1.2', 'Windows Version 6.2','Windows 2012 Server','2012'),
+		(17,'.1.3.6.1.4.1.311.1.1.3.1.2', 'Windows Version 6.3','Windows 2016 Server','2016'),
+		(18,'.1.3.6.1.4.1.8072.3.2.10', 'Linux','Linux','Linux'),
+		(19,'.1.3.6.1.4.1.8072.3.2.10', 'Linux%gentoo%','Gentoo Linux','Gentoo'),
+		(20,'.1.3.6.1.4.1.8072.3.2.10', 'Linux%ubuntu%','Ubuntu','ubuntu'),
+		(21,'.1.3.6.1.4.1.8072.3.2.10', 'Linux%centos%','CentOS','CentOS'),
+		(22,'.1.3.6.1.4.1.8072.3.2.10', 'Linux%ndlp%','McAfee Network DLP','DLP'),
+		(23,'.1.3', 'Linux%PAE%','Cisco UCM or CCX','UCM'),
+		(24,'.1.3', 'Identity Services Engine','Cisco ISE','ISE'),
+		(25,'.1.3', 'Cisco Prime Infrastructure','Cisco Prime Infrastructure','Prime'),
+		(26,'.1.3', 'AsyncOS','Cisco Web Security Appliance','WSA'),
+		(27,'.1.3', 'UCOS','Cisco Unity','CUC'),
+		(28,'.1.3.6.1.4.1.2.3.1.2.1.1.3', 'IBM%AIX%06.01%','AIX','6.1'),
+		(29,'', 'VMware ESXi','VMware ESXi','ESXi');");
 
 	db_execute("INSERT INTO `plugin_hmib_types` VALUES
 		(1,'.1.3.6.1.2.1.25.3.1.12','Co-Processor'),
