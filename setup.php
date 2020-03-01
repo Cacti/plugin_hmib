@@ -348,10 +348,21 @@ function hmib_setup_table() {
 		(51,'.1.3.6.1.2.1.25.3.9.9','NTFS')");
 
 	/* optimizations */
-	db_execute('ALTER TABLE data_input_data ADD INDEX data_template_data_id(data_template_data_id)');
-	db_execute('ALTER TABLE data_input_data ADD INDEX data_input_field_id(data_input_field_id)');
-	db_execute('ALTER TABLE snmp_query_graph ADD INDEX graph_template_id(graph_template_id)');
-	db_execute('ALTER TABLE snmp_query_graph ADD INDEX snmp_query_id(snmp_query_id)');
+	if (!db_index_exists('data_input_data', 'data_template_data_id')) {
+		db_execute('ALTER TABLE data_input_data ADD INDEX data_template_data_id(data_template_data_id)');
+	}
+
+	if (!db_index_exists('data_input_data', 'data_input_field_id')) {
+		db_execute('ALTER TABLE data_input_data ADD INDEX data_input_field_id(data_input_field_id)');
+	}
+
+	if (!db_index_exists('snmp_query_graph', 'graph_template_id')) {
+		db_execute('ALTER TABLE snmp_query_graph ADD INDEX graph_template_id(graph_template_id)');
+	}
+
+	if (!db_index_exists('snmp_query_graph', 'graph_query_id')) {
+		db_execute('ALTER TABLE snmp_query_graph ADD INDEX snmp_query_id(snmp_query_id)');
+	}
 }
 
 function hmib_poller_bottom() {
