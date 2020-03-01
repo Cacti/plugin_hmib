@@ -1,7 +1,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2017 The Cacti Group                                 |
+ | Copyright (C) 2004-2020 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -13,7 +13,7 @@
  | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           |
  | GNU General Public License for more details.                            |
  +-------------------------------------------------------------------------+
- | Cacti: The Complete RRDTool-based Graphing Solution                     |
+ | Cacti: The Complete RRDtool-based Graphing Solution                     |
  +-------------------------------------------------------------------------+
  | This code is designed, written, and maintained by the Cacti Group. See  |
  | about.php and/or the AUTHORS file for specific developer information.   |
@@ -33,27 +33,27 @@ if (get_request_var('action') == 'ajax_hosts') {
 }
 
 $hmib_hrSWTypes = array(
-	0 => __('Error'),
-	1 => __('Unknown'),
-	2 => __('Operating System'),
-	3 => __('Device Driver'),
-	4 => __('Application')
+	0 => __('Error', 'hmib'),
+	1 => __('Unknown', 'hmib'),
+	2 => __('Operating System', 'hmib'),
+	3 => __('Device Driver', 'hmib'),
+	4 => __('Application', 'hmib')
 );
 
 $hmib_hrSWRunStatus = array(
-	1 => __('Running'),
-	2 => __('Runnable'),
-	3 => __('Not Runnable'),
-	4 => __('Invalid')
+	1 => __('Running', 'hmib'),
+	2 => __('Runnable', 'hmib'),
+	3 => __('Not Runnable', 'hmib'),
+	4 => __('Invalid', 'hmib')
 );
 
 $hmib_hrDeviceStatus = array(
-	0 => __('Present'),
-	1 => __('Unknown'),
-	2 => __('Running'),
-	3 => __('Warning'),
-	4 => __('Testing'),
-	5 => __('Down')
+	0 => __('Present', 'hmib'),
+	1 => __('Unknown', 'hmib'),
+	2 => __('Running', 'hmib'),
+	3 => __('Warning', 'hmib'),
+	4 => __('Testing', 'hmib'),
+	5 => __('Down', 'hmib')
 );
 
 $hmib_types = array_rekey(db_fetch_assoc('SELECT *
@@ -176,7 +176,7 @@ function hmib_history() {
 	</script>
 	<?php
 
-	html_start_box(__('Running Process History'), '100%', '', '3', 'center', '');
+	html_start_box(__('Running Process History', 'hmib'), '100%', '', '3', 'center', '');
 
 	?>
 	<tr class='even'>
@@ -185,11 +185,11 @@ function hmib_history() {
 			<table class='filterTable'>
 				<tr>
 					<td>
-						<?php print __('OS Type');?>
+						<?php print __('OS Type', 'hmib');?>
 					</td>
 					<td>
 						<select id='type' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$types = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
 								FROM plugin_hmib_hrSystemTypes AS hrst
@@ -197,20 +197,20 @@ function hmib_history() {
 								ON hrst.id=hrs.host_type
 								WHERE name!='' ORDER BY name");
 
-							if (sizeof($types)) {
+							if (cacti_sizeof($types)) {
 								foreach($types AS $t) {
-									echo "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . $t['name'] . '</option>';
+									print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
 								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Device');?>
+						<?php print __('Device', 'hmib');?>
 					</td>
 					<td>
 						<select id='device' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
 								FROM plugin_hmib_hrSystem AS hrs
@@ -219,20 +219,20 @@ function hmib_history() {
 								(get_request_var('type') > 0 ? 'WHERE hrs.host_type=' . get_request_var('type'):'') .
 								' ORDER BY description');
 
-							if (sizeof($hosts)) {
+							if (cacti_sizeof($hosts)) {
 								foreach($hosts AS $h) {
-									echo "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+									print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
 								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Template');?>
+						<?php print __('Template', 'hmib');?>
 					</td>
 					<td>
 						<select id='template' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
 								FROM host_template AS ht
@@ -242,60 +242,60 @@ function hmib_history() {
 								ON host.id=hrs.host_id
 								ORDER BY name');
 
-							if (sizeof($templates)) {
+							if (cacti_sizeof($templates)) {
 								foreach($templates AS $t) {
-									echo "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . $t['name'] . '</option>';
+									print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
 								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<input id='refresh' type='button' onClick='applyFilter(document.history)' value='<?php print __('Go');?>'>
-					</td>
-					<td>
-						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
+						<span>
+							<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
+							<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+						</span>
 					</td>
 				</tr>
 			</table>
 			<table class='filterTable'>
 				<tr>
 					<td>
-						<?php print __('Search');?>
+						<?php print __('Search', 'hmib');?>
 					</td>
 					<td>
 						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
 					<td>
-						<?php print __('Process');?>
+						<?php print __('Process', 'hmib');?>
 					</td>
 					<td>
 						<select id='process' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$procs = db_fetch_assoc("SELECT DISTINCT name
 								FROM plugin_hmib_hrSWRun_last_seen AS hrswr
 								WHERE name!='System Idle Time' AND name NOT LIKE '128%' AND (name IS NOT NULL AND name!='')
 								ORDER BY name");
 
-							if (sizeof($procs)) {
+							if (cacti_sizeof($procs)) {
 								foreach($procs AS $p) {
-									echo "<option value='" . $p['name'] . "' " . (get_request_var('process') == $p['name'] ? 'selected':'') . '>' . $p['name'] . '</option>';
+									print "<option value='" . html_escape($p['name']) . "' " . (get_request_var('process') == $p['name'] ? 'selected':'') . '>' . html_escape($p['name']) . '</option>';
 								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Entries');?>
+						<?php print __('Entries', 'hmib');?>
 					</td>
 					<td>
 						<select id='rows' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default');?></option>
+							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
 							<?php
-							if (sizeof($item_rows)) {
+							if (cacti_sizeof($item_rows)) {
 								foreach($item_rows AS $key => $name) {
-									echo "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+									print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
 								}
 							}
 							?>
@@ -354,7 +354,7 @@ function hmib_history() {
 		$sql_where
 		ORDER BY " . get_request_var('sort_column') . ' ' . get_request_var('sort_direction') . ' ' . $limit;
 
-	//echo $sql;
+	//print $sql;
 
 	$rows       = db_fetch_assoc($sql);
 
@@ -368,43 +368,43 @@ function hmib_history() {
 		ON hrst.id=hrs.host_type
 		$sql_where");
 
-	$nav = html_nav_bar('hmib.php?action=history', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, 5, __('History'), 'page', 'main');
+	$display_text = array(
+		'description' => array('display' => __('Hostname', 'hmib'),         'sort' => 'ASC',  'align' => 'left'),
+		'hrswls.name' => array('display' => __('Process', 'hmib'),          'sort' => 'DESC', 'align' => 'left'),
+		'last_seen'   => array('display' => __('Last Seen', 'hmib'),        'sort' => 'ASC',  'align' => 'right'),
+		'total_time'  => array('display' => __('Use Time (d:h:m)', 'hmib'), 'sort' => 'DESC', 'align' => 'right')
+	);
+
+	$nav = html_nav_bar('hmib.php?action=history', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('History', 'hmib'), 'page', 'main');
 
 	print $nav;
 
 	html_start_box('', '100%', '', '3', 'center', '');
 
-	$display_text = array(
-		'description' => array('display' => __('Hostname'),         'sort' => 'ASC',  'align' => 'left'),
-		'hrswls.name' => array('display' => __('Process'),          'sort' => 'DESC', 'align' => 'left'),
-		'last_seen'   => array('display' => __('Last Seen'),        'sort' => 'ASC',  'align' => 'right'),
-		'total_time'  => array('display' => __('Use Time (d:h:m)'), 'sort' => 'DESC', 'align' => 'right')
-	);
-
 	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=history');
 
-	if (sizeof($rows)) {
+	if (cacti_sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row();
 			if (api_plugin_user_realm_auth('host.php')) {
-				$host_url    = "<a href='" . htmlspecialchars($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device') . "'>" . $row['hostname'] . '</a>';
+				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
 			} else {
-				$host_url    = $row['hostname'];
+				$host_url = html_escape($row['hostname']);
 			}
 
-			echo "<td class='nowrap left'>" . filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
-			echo "<td class='nowrap left'>" . filter_value($row['name'], get_request_var('filter')) . '</td>';
-			echo "<td class='nowrap right'>" . filter_value($row['last_seen'], get_request_var('filter')) . '</td>';
-			echo "<td class='nowrap right'>" . hmib_get_runtime($row['total_time']) . '</td>';
+			print "<td class='nowrap left'>" . filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
+			print "<td class='nowrap left'>" . filter_value($row['name'], get_request_var('filter')) . '</td>';
+			print "<td class='nowrap right'>" . filter_value($row['last_seen'], get_request_var('filter')) . '</td>';
+			print "<td class='nowrap right'>" . hmib_get_runtime($row['total_time']) . '</td>';
 		}
-		echo '</tr>';
+		print '</tr>';
 	} else {
-		print '<tr><td colspan="4"><em>' . __('No Process History Found') . '</em></td></tr>';
+		print '<tr><td colspan="4"><em>' . __('No Process History Found', 'hmib') . '</em></td></tr>';
 	}
 
 	html_end_box(false);
 
-	if (sizeof($rows)) {
+	if (cacti_sizeof($rows)) {
 		print $nav;
 	}
 }
@@ -508,7 +508,7 @@ function hmib_running() {
 	</script>
 	<?php
 
-	html_start_box(__('Running Processes'), '100%', '', '3', 'center', '');
+	html_start_box(__('Running Processes', 'hmib'), '100%', '', '3', 'center', '');
 
 	?>
 	<tr class='even'>
@@ -517,11 +517,11 @@ function hmib_running() {
 			<table class='filterTable'>
 				<tr>
 					<td>
-						<?php print __('OS Type');?>
+						<?php print __('OS Type', 'hmib');?>
 					</td>
 					<td>
 						<select id='type' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$types = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
 								FROM plugin_hmib_hrSystemTypes AS hrst
@@ -529,20 +529,20 @@ function hmib_running() {
 								ON hrst.id=hrs.host_type
 								WHERE name!='' ORDER BY name");
 
-							if (sizeof($types)) {
+							if (cacti_sizeof($types)) {
 								foreach($types AS $t) {
-									echo "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . $t['name'] . '</option>';
+									print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
 								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Device');?>
+						<?php print __('Device', 'hmib');?>
 					</td>
 					<td>
 						<select id='device' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
 								FROM plugin_hmib_hrSystem AS hrs
@@ -551,20 +551,20 @@ function hmib_running() {
 								(get_request_var('type') > 0 ? 'WHERE hrs.host_type=' . get_request_var('type'):'') .
 								' ORDER BY description');
 
-							if (sizeof($hosts)) {
+							if (cacti_sizeof($hosts)) {
 								foreach($hosts AS $h) {
-									echo "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+									print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
 								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Template');?>
+						<?php print __('Template', 'hmib');?>
 					</td>
 					<td>
 						<select id='template' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
 								FROM host_template AS ht
@@ -574,60 +574,60 @@ function hmib_running() {
 								ON host.id=hrs.host_id
 								ORDER BY name');
 
-							if (sizeof($templates)) {
+							if (cacti_sizeof($templates)) {
 								foreach($templates AS $t) {
-									echo "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . $t['name'] . '</option>';
+									print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
 								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
-					</td>
-					<td>
-						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
+						<span>
+							<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
+							<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+						</span>
 					</td>
 				</tr>
 			</table>
 			<table class='filterTable'>
 				<tr>
 					<td>
-						<?php print __('Search');?>
+						<?php print __('Search', 'hmib');?>
 					</td>
 					<td>
 						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
 					<td>
-						<?php print __('Process');?>
+						<?php print __('Process', 'hmib');?>
 					</td>
 					<td>
 						<select id='process' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$procs = db_fetch_assoc("SELECT DISTINCT name
 								FROM plugin_hmib_hrSWRun_last_seen AS hrswr
 								WHERE name!='System Idle Time' AND name NOT LIKE '128%' AND (name IS NOT NULL AND name!='')
 								ORDER BY name");
 
-							if (sizeof($procs)) {
+							if (cacti_sizeof($procs)) {
 								foreach($procs AS $p) {
-									echo "<option value='" . $p['name'] . "' " . (get_request_var('process') == $p['name'] ? 'selected':'') . '>' . $p['name'] . '</option>';
+									print "<option value='" . html_escape($p['name']) . "' " . (get_request_var('process') == $p['name'] ? 'selected':'') . '>' . html_escape($p['name']) . '</option>';
 								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Entries');?>
+						<?php print __('Entries', 'hmib');?>
 					</td>
 					<td>
 						<select id='rows' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default');?></option>
+							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
 							<?php
-							if (sizeof($item_rows)) {
+							if (cacti_sizeof($item_rows)) {
 								foreach($item_rows AS $key => $name) {
-									echo "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+									print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
 								}
 							}
 							?>
@@ -686,7 +686,7 @@ function hmib_running() {
 		$sql_where
 		ORDER BY " . get_request_var('sort_column') . ' ' . get_request_var('sort_direction') . ' ' . $limit;
 
-	//echo $sql;
+	//print $sql;
 
 	$rows       = db_fetch_assoc($sql);
 
@@ -711,51 +711,51 @@ function hmib_running() {
 		ON hrst.id=hrs.host_type
 		$sql_where");
 
-	$nav = html_nav_bar('hmib.php?action=running', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, 16, __('Processes'), 'page', 'main');
+	$display_text = array(
+		'description' => array('display' => __('Hostname', 'hmib'),    'sort' => 'ASC',  'align' => 'left'),
+		'hrswr.name'  => array('display' => __('Process', 'hmib'),     'sort' => 'DESC', 'align' => 'left'),
+		'path'        => array('display' => __('Path', 'hmib'),        'sort' => 'ASC',  'align' => 'left'),
+		'parameters'  => array('display' => __('Parameters', 'hmib'),  'sort' => 'ASC',  'align' => 'left'),
+		'perfCpu'     => array('display' => __('CPU (Hrs)', 'hmib'),   'sort' => 'DESC', 'align' => 'right'),
+		'perfMemory'  => array('display' => __('Memory (MB)', 'hmib'), 'sort' => 'DESC', 'align' => 'right'),
+		'type'        => array('display' => __('Type', 'hmib'),        'sort' => 'ASC',  'align' => 'right'),
+		'status'      => array('display' => __('Status', 'hmib'),      'sort' => 'DESC', 'align' => 'right')
+	);
+
+	$nav = html_nav_bar('hmib.php?action=running', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('Processes', 'hmib'), 'page', 'main');
 
 	print $nav;
 
 	html_start_box('', '100%', '', '3', 'center', '');
 
-	$display_text = array(
-		'description' => array('display' => __('Hostname'),    'sort' => 'ASC',  'align' => 'left'),
-		'hrswr.name'  => array('display' => __('Process'),     'sort' => 'DESC', 'align' => 'left'),
-		'path'        => array('display' => __('Path'),        'sort' => 'ASC',  'align' => 'left'),
-		'parameters'  => array('display' => __('Parameters'),  'sort' => 'ASC',  'align' => 'left'),
-		'perfCpu'     => array('display' => __('CPU (Hrs)'),   'sort' => 'DESC', 'align' => 'right'),
-		'perfMemory'  => array('display' => __('Memory (MB)'), 'sort' => 'DESC', 'align' => 'right'),
-		'type'        => array('display' => __('Type'),        'sort' => 'ASC',  'align' => 'right'),
-		'status'      => array('display' => __('Status'),      'sort' => 'DESC', 'align' => 'right')
-	);
-
 	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=running', 'page', 'main');
 
-	if (sizeof($rows)) {
-		foreach ($rows as $row) {
+	if (cacti_sizeof($rows)) {
+		foreach($rows as $row) {
 			form_alternate_row();
 			if (api_plugin_user_realm_auth('host.php')) {
-				$host_url = "<a href='" . htmlspecialchars($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device') . "'>" . $row['hostname'] . '</a>';
+				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
 			} else {
-				$host_url = $row['hostname'];
+				$host_url = html_escape($row['hostname']);
 			}
 
-			echo "<td class='nowrap left'>"  . filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
-			echo "<td class='nowrap left'>"  . filter_value($row['name'], get_request_var('filter')) . '</td>';
-			echo "<td class='nowrap left'>"  . filter_value($row['path'], get_request_var('filter')) . '</td>';
-			echo "<td class='nowrap left'>"  . filter_value($row['parameters'], get_request_var('filter')) . '</td>';
-			echo "<td class='nowrap right'>" . number_format_i18n($row['perfCPU']/3600,0) . '</td>';
-			echo "<td class='nowrap right'>" . number_format_i18n($row['perfMemory']/1024,2) . '</td>';
-			echo "<td class='nowrap right'>" . (isset($hmib_hrSWTypes[$row['type']]) ? $hmib_hrSWTypes[$row['type']]:__('Unknown')) . '</td>';
-			echo "<td class='nowrap right'>" . $hmib_hrSWRunStatus[$row['status']] . '</td>';
+			print "<td class='nowrap left'>"  . filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
+			print "<td class='nowrap left'>"  . filter_value($row['name'], get_request_var('filter')) . '</td>';
+			print "<td class='nowrap left'>"  . filter_value($row['path'], get_request_var('filter')) . '</td>';
+			print "<td class='nowrap left'>"  . filter_value($row['parameters'], get_request_var('filter')) . '</td>';
+			print "<td class='nowrap right'>" . number_format_i18n($row['perfCPU']/3600,0) . '</td>';
+			print "<td class='nowrap right'>" . number_format_i18n($row['perfMemory']/1024,2) . '</td>';
+			print "<td class='nowrap right'>" . (isset($hmib_hrSWTypes[$row['type']]) ? $hmib_hrSWTypes[$row['type']]:__('Unknown', 'hmib')) . '</td>';
+			print "<td class='nowrap right'>" . $hmib_hrSWRunStatus[$row['status']] . '</td>';
 		}
-		echo '</tr>';
+		print '</tr>';
 	} else {
-		print '<tr><td colspan="8"><em>' . __('No Running Software Found') . '</em></td></tr>';
+		print '<tr><td colspan="8"><em>' . __('No Running Software Found', 'hmib') . '</em></td></tr>';
 	}
 
 	html_end_box(false);
 
-	if (sizeof($rows)) {
+	if (cacti_sizeof($rows)) {
 		print $nav;
 	}
 
@@ -765,12 +765,12 @@ function hmib_running() {
 function running_legend($totals, $total_rows) {
 	html_start_box('', '100%', '', '3', 'center', '');
 	print '<tr>';
-	print '<td><b>' . __('Total CPU [h]:') . '</b> ' . number_format_i18n($totals['cpu']/3600,0) . '</td>';
-	print '<td><b>' . __('Total Size [MB]:') . '</b> ' . number_format_i18n($totals['memory']/1024,2) . '</td>';
+	print '<td><b>' . __('Total CPU [h]:', 'hmib') . '</b> ' . number_format_i18n($totals['cpu']/3600,0) . '</td>';
+	print '<td><b>' . __('Total Size [MB]:', 'hmib') . '</b> ' . number_format_i18n($totals['memory']/1024,2) . '</td>';
 	print '</tr>';
 	print '<tr>';
-	print '<td><b>' . __('Avg. CPU [h]:') . '</b> ' . ($total_rows ? number_format_i18n($totals['cpu']/(3600*$total_rows),0) : 0) . '</td>';
-	print '<td><b>' . __('Avg. Size [MB]:') . '</b> ' . ($total_rows ? number_format_i18n($totals['memory']/(1024*$total_rows),2) : 0) . '</td>';
+	print '<td><b>' . __('Avg. CPU [h]:', 'hmib') . '</b> ' . ($total_rows ? number_format_i18n($totals['cpu']/(3600*$total_rows),0) : 0) . '</td>';
+	print '<td><b>' . __('Avg. Size [MB]:', 'hmib') . '</b> ' . ($total_rows ? number_format_i18n($totals['memory']/(1024*$total_rows),2) : 0) . '</td>';
 	print '</tr>';
 	html_end_box(false);
 }
@@ -859,7 +859,7 @@ function hmib_hardware() {
 	</script>
 	<?php
 
-	html_start_box(__('Hardware Inventory'), '100%', '', '3', 'center', '');
+	html_start_box(__('Hardware Inventory', 'hmib'), '100%', '', '3', 'center', '');
 
 	?>
 	<tr class='even'>
@@ -868,31 +868,31 @@ function hmib_hardware() {
 			<table class='filterTable'>
 				<tr>
 					<td>
-						<?php print __('OS Type');?>
+						<?php print __('OS Type', 'hmib');?>
 					</td>
 					<td>
 						<select id='ostype' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
 								FROM plugin_hmib_hrSystemTypes AS hrst
 								INNER JOIN plugin_hmib_hrSystem AS hrs
 								ON hrst.id=hrs.host_type
 								WHERE name!='' ORDER BY name");
-							if (sizeof($ostypes)) {
-							foreach($ostypes AS $t) {
-								echo "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . $t['name'] . '</option>';
-							}
+							if (cacti_sizeof($ostypes)) {
+								foreach($ostypes AS $t) {
+									print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Device');?>
+						<?php print __('Device', 'hmib');?>
 					</td>
 					<td>
 						<select id='device' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
 								FROM plugin_hmib_hrSystem AS hrs
@@ -901,20 +901,20 @@ function hmib_hardware() {
 								(get_request_var('type') > 0 ? 'WHERE hrs.host_type=' . get_request_var('type'):'') .
 								' ORDER BY description');
 
-							if (sizeof($hosts)) {
-							foreach($hosts AS $h) {
-								echo "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
-							}
+							if (cacti_sizeof($hosts)) {
+								foreach($hosts AS $h) {
+									print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Template');?>
+						<?php print __('Template', 'hmib');?>
 					</td>
 					<td>
 						<select id='template' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
 								FROM host_template AS ht
@@ -924,60 +924,60 @@ function hmib_hardware() {
 								ON host.id=hrs.host_id
 								ORDER BY name');
 
-							if (sizeof($templates)) {
-							foreach($templates AS $t) {
-								echo "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . $t['name'] . '</option>';
-							}
+							if (cacti_sizeof($templates)) {
+								foreach($templates AS $t) {
+									print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
-					</td>
-					<td>
-						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
+						<span>
+							<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
+							<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+						</span>
 					</td>
 				</tr>
 			</table>
 			<table class='filterTable'>
 				<tr>
 					<td>
-						<?php print __('Search');?>
+						<?php print __('Search', 'hmib');?>
 					</td>
 					<td>
 						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
 					<td>
-						<?php print __('Type');?>
+						<?php print __('Type', 'hmib');?>
 					</td>
 					<td>
 						<select id='type' onChange='applyFilter()'>
-						<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+						<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 						<?php
 							$types = db_fetch_assoc('SELECT DISTINCT hrd.type as type, ht.id as id, ht.description as description
 							FROM plugin_hmib_hrDevices as hrd
 							LEFT JOIN plugin_hmib_types as ht ON (hrd.type = ht.id)
 							ORDER BY description');
-							if (sizeof($types)) {
+							if (cacti_sizeof($types)) {
 								foreach($types AS $t) {
-									echo "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . $t['description'] . '</option>';
+									print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . $t['description'] . '</option>';
 								}
 							}
 						?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Entries');?>
+						<?php print __('Entries', 'hmib');?>
 					</td>
 					<td>
 						<select id='rows' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default');?></option>
+							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
 							<?php
-							if (sizeof($item_rows)) {
-							foreach($item_rows AS $key => $name) {
-								echo "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
-							}
+							if (cacti_sizeof($item_rows)) {
+								foreach($item_rows AS $key => $name) {
+									print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+								}
 							}
 							?>
 						</select>
@@ -1038,45 +1038,45 @@ function hmib_hardware() {
 		INNER JOIN plugin_hmib_hrSystem AS hrs ON host.id=hrs.host_id
 		$sql_where");
 
-	$nav = html_nav_bar('hmib.php?action=hardware', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, 16, __('Devices'), 'page', 'main');
+	$display_text = array(
+		'host.description' => array('display' => __('Hostname', 'hmib'),             'sort' => 'ASC',  'align' => 'left'),
+		'hrd.description'  => array('display' => __('Hardware Description', 'hmib'), 'sort' => 'DESC', 'align' => 'left'),
+		'type'             => array('display' => __('Hardware Type', 'hmib'),        'sort' => 'ASC',  'align' => 'left'),
+		'status'           => array('display' => __('Status', 'hmib'),               'sort' => 'DESC', 'align' => 'right'),
+		'errors'           => array('display' => __('Errors', 'hmib'),               'sort' => 'DESC', 'align' => 'right')
+	);
+
+	$nav = html_nav_bar('hmib.php?action=hardware', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('Devices', 'hmib'), 'page', 'main');
 
 	print $nav;
 
 	html_start_box('', '100%', '', '3', 'center', '');
 
-	$display_text = array(
-		'host.description' => array('display' => __('Hostname'),             'sort' => 'ASC',  'align' => 'left'),
-		'hrd.description'  => array('display' => __('Hardware Description'), 'sort' => 'DESC', 'align' => 'left'),
-		'type'             => array('display' => __('Hardware Type'),        'sort' => 'ASC',  'align' => 'left'),
-		'status'           => array('display' => __('Status'),               'sort' => 'DESC', 'align' => 'right'),
-		'errors'           => array('display' => __('Errors'),               'sort' => 'DESC', 'align' => 'right')
-	);
-
 	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=hardware');
 
-	if (sizeof($rows)) {
+	if (cacti_sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row();
 			if (api_plugin_user_realm_auth('host.php')) {
-				$host_url = "<a href='" . htmlspecialchars($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device') . "'>" . $row['hostname'] . '</a>';
+				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
 			} else {
-				$host_url = $row['hostname'];
+				$host_url = html_escape($row['hostname']);
 			}
 
-			echo "<td>" . filter_value($row['hd'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
-			echo "<td>" . filter_value($row['description'], get_request_var('filter')) . '</td>';
-			echo "<td>" . (isset($hmib_types[$row['type']]) ? $hmib_types[$row['type']]:__('Unknown')) . '</td>';
-			echo "<td class='right'>" . $hmib_hrDeviceStatus[$row['status']] . '</td>';
-			echo "<td class='right'>" . $row['errors'] . '</td>';
+			print "<td>" . filter_value($row['hd'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
+			print "<td>" . filter_value($row['description'], get_request_var('filter')) . '</td>';
+			print "<td>" . (isset($hmib_types[$row['type']]) ? $hmib_types[$row['type']]:__('Unknown', 'hmib')) . '</td>';
+			print "<td class='right'>" . $hmib_hrDeviceStatus[$row['status']] . '</td>';
+			print "<td class='right'>" . $row['errors'] . '</td>';
 		}
-		echo '</tr>';
+		print '</tr>';
 	} else {
-		print '<tr><td><em>' . __('No Hardware Found') . '</em></td></tr>';
+		print '<tr><td><em>' . __('No Hardware Found', 'hmib') . '</em></td></tr>';
 	}
 
 	html_end_box(false);
 
-	if (sizeof($rows)) {
+	if (cacti_sizeof($rows)) {
 		print $nav;
 	}
 }
@@ -1165,7 +1165,7 @@ function hmib_storage() {
 	</script>
 	<?php
 
-	html_start_box(__('Storage Inventory'), '100%', '', '3', 'center', '');
+	html_start_box(__('Storage Inventory', 'hmib'), '100%', '', '3', 'center', '');
 
 	?>
 	<tr class='even'>
@@ -1174,31 +1174,32 @@ function hmib_storage() {
 			<table class='filterTable'>
 				<tr>
 					<td>
-						<?php print __('OS Type');?>
+						<?php print __('OS Type', 'hmib');?>
 					</td>
 					<td width='1'>
 						<select id='ostype' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
 								FROM plugin_hmib_hrSystemTypes AS hrst
 								INNER JOIN plugin_hmib_hrSystem AS hrs
 								ON hrst.id=hrs.host_type
 								WHERE name!='' ORDER BY name");
-							if (sizeof($ostypes)) {
-							foreach($ostypes AS $t) {
-								echo "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . $t['name'] . '</option>';
-							}
+
+							if (cacti_sizeof($ostypes)) {
+								foreach($ostypes AS $t) {
+									print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Device');?>
+						<?php print __('Device', 'hmib');?>
 					</td>
 					<td width='1'>
 						<select id='device' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
 								FROM plugin_hmib_hrSystem AS hrs
@@ -1207,20 +1208,20 @@ function hmib_storage() {
 								(get_request_var('type') > 0 ? 'WHERE hrs.host_type=' . get_request_var('type'):'') .
 								' ORDER BY description');
 
-							if (sizeof($hosts)) {
-							foreach($hosts AS $h) {
-								echo "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
-							}
+							if (cacti_sizeof($hosts)) {
+								foreach($hosts AS $h) {
+									print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Template');?>
+						<?php print __('Template', 'hmib');?>
 					</td>
 					<td width='1'>
 						<select id='template' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
 								FROM host_template AS ht
@@ -1230,59 +1231,59 @@ function hmib_storage() {
 								ON host.id=hrs.host_id
 								ORDER BY name');
 
-							if (sizeof($templates)) {
-							foreach($templates AS $t) {
-								echo "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . $t['name'] . '</option>';
-							}
+							if (cacti_sizeof($templates)) {
+								foreach($templates AS $t) {
+									print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
-					</td>
-					<td>
-						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
+						<span>
+							<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
+							<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+						</span>
 					</td>
 				</tr>
 			</table>
 			<table class='filterTable'>
 				<tr>
 					<td>
-						<?php print __('Search');?>
+						<?php print __('Search', 'hmib');?>
 					</td>
 					<td>
 						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
 					<td>
-						<?php print __('Type');?>
+						<?php print __('Type', 'hmib');?>
 					</td>
 					<td width='1'>
 						<select id='type' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 								$types = db_fetch_assoc('SELECT DISTINCT hrsto.type as type, ht.id as id, ht.description as description
 								FROM plugin_hmib_hrStorage AS hrsto
 								LEFT JOIN plugin_hmib_types as ht ON (hrsto.type = ht.id)
 								ORDER BY description');
-								if (sizeof($types)) {
+								if (cacti_sizeof($types)) {
 									foreach($types AS $t) {
-										echo "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . $t['description'] . '</option>';
+										print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . $t['description'] . '</option>';
 									}
 								}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Volumes');?>
+						<?php print __('Volumes', 'hmib');?>
 					</td>
 					<td width='1'>
 						<select id='rows' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default');?></option>
+							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
 							<?php
-							if (sizeof($item_rows)) {
+							if (cacti_sizeof($item_rows)) {
 							foreach($item_rows AS $key => $name) {
-								echo "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+								print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
 							}
 							}
 							?>
@@ -1344,51 +1345,51 @@ function hmib_storage() {
 		INNER JOIN plugin_hmib_hrSystem AS hrs ON host.id=hrs.host_id
 		$sql_where");
 
-	$nav = html_nav_bar('hmib.php?action=storage', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, 16, __('Volumes'), 'page', 'main');
+	$display_text = array(
+		'host.description'  => array('display' => __('Hostname', 'hmib'),            'sort' => 'ASC',  'align' => 'left'),
+		'hrsto.description' => array('display' => __('Storage Description', 'hmib'), 'sort' => 'DESC', 'align' => 'left'),
+		'type'              => array('display' => __('Storage Type', 'hmib'),        'sort' => 'ASC',  'align' => 'left'),
+		'failures'          => array('display' => __('Errors', 'hmib'),              'sort' => 'DESC', 'align' => 'right'),
+		'percent'           => array('display' => __('Percent Used', 'hmib'),        'sort' => 'DESC', 'align' => 'right'),
+		'used'              => array('display' => __('Used (MB)', 'hmib'),           'sort' => 'DESC', 'align' => 'right'),
+		'size'              => array('display' => __('Total (MB)', 'hmib'),          'sort' => 'DESC', 'align' => 'right'),
+		'allocationUnits'   => array('display' => __('Alloc (KB)', 'hmib'),          'sort' => 'DESC', 'align' => 'right')
+	);
+
+	$nav = html_nav_bar('hmib.php?action=storage', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('Volumes', 'hmib'), 'page', 'main');
 
 	print $nav;
 
 	html_start_box('', '100%', '', '3', 'center', '');
 
-	$display_text = array(
-		'host.description'  => array('display' => __('Hostname'),            'sort' => 'ASC',  'align' => 'left'),
-		'hrsto.description' => array('display' => __('Storage Description'), 'sort' => 'DESC', 'align' => 'left'),
-		'type'              => array('display' => __('Storage Type'),        'sort' => 'ASC',  'align' => 'left'),
-		'failures'          => array('display' => __('Errors'),              'sort' => 'DESC', 'align' => 'right'),
-		'percent'           => array('display' => __('Percent Used'),        'sort' => 'DESC', 'align' => 'right'),
-		'used'              => array('display' => __('Used (MB)'),           'sort' => 'DESC', 'align' => 'right'),
-		'size'              => array('display' => __('Total (MB)'),          'sort' => 'DESC', 'align' => 'right'),
-		'allocationUnits'   => array('display' => __('Alloc (KB)'),          'sort' => 'DESC', 'align' => 'right')
-	);
-
 	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=storage');
 
-	if (sizeof($rows)) {
+	if (cacti_sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row();
 			if (api_plugin_user_realm_auth('host.php')) {
-				$host_url = "<a href='" . htmlspecialchars($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device') . "'>" . $row['hostname'] . '</a>';
+				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
 			} else {
-				$host_url = $row['hostname'];
+				$host_url = html_escape($row['hostname']);
 			}
 
-			echo "<td>" . filter_value($row['hd'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
-			echo "<td>" . filter_value($row['description'], get_request_var('filter')) . '</td>';
-			echo "<td>" . (isset($hmib_types[$row['type']]) ? $hmib_types[$row['type']]:__('Unknown')) . '</td>';
-			echo "<td class='right'>" . $row['failures'] . '</td>';
-			echo "<td class='right'>" . round($row['percent']*100,2) . ' %</td>';
-			echo "<td class='right'>" . number_format_i18n($row['used']/1024,0) . '</td>';
-			echo "<td class='right'>" . number_format_i18n($row['size']/1024,0) . '</td>';
-			echo "<td class='right'>" . number_format_i18n($row['allocationUnits']) . '</td>';
+			print "<td>" . filter_value($row['hd'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
+			print "<td>" . filter_value($row['description'], get_request_var('filter')) . '</td>';
+			print "<td>" . (isset($hmib_types[$row['type']]) ? $hmib_types[$row['type']]:__('Unknown', 'hmib')) . '</td>';
+			print "<td class='right'>" . $row['failures'] . '</td>';
+			print "<td class='right'>" . round($row['percent']*100,2) . ' %</td>';
+			print "<td class='right'>" . number_format_i18n($row['used']/1024,0) . '</td>';
+			print "<td class='right'>" . number_format_i18n($row['size']/1024,0) . '</td>';
+			print "<td class='right'>" . number_format_i18n($row['allocationUnits']) . '</td>';
 		}
-		echo '</tr>';
+		print '</tr>';
 	} else {
-		print '<tr><td colspan="8"><em>' . __('No Storage Devices Found') . '</em></td></tr>';
+		print '<tr><td colspan="8"><em>' . __('No Storage Devices Found', 'hmib') . '</em></td></tr>';
 	}
 
 	html_end_box(false);
 
-	if (sizeof($rows)) {
+	if (cacti_sizeof($rows)) {
 		print $nav;
 	}
 }
@@ -1472,7 +1473,7 @@ function hmib_devices() {
 	</script>
 	<?php
 
-	html_start_box(__('Device Filter'), '100%', '', '3', 'center', '');
+	html_start_box(__('Device Filter', 'hmib'), '100%', '', '3', 'center', '');
 
 	?>
 	<tr class='even'>
@@ -1481,31 +1482,32 @@ function hmib_devices() {
 			<table class='filterTable'>
 				<tr>
 					<td>
-						<?php print __('OS Type');?>
+						<?php print __('OS Type', 'hmib');?>
 					</td>
 					<td>
 						<select id='type' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$types = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
 								FROM plugin_hmib_hrSystemTypes AS hrst
 								INNER JOIN plugin_hmib_hrSystem AS hrs
 								ON hrst.id=hrs.host_type
 								WHERE name!='' ORDER BY name");
-							if (sizeof($types)) {
-							foreach($types AS $t) {
-								echo "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . $t['name'] . '</option>';
-							}
+
+							if (cacti_sizeof($types)) {
+								foreach($types AS $t) {
+									print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Template');?>
+						<?php print __('Template', 'hmib');?>
 					</td>
 					<td>
 						<select id='template' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
 								FROM host_template AS ht
@@ -1515,52 +1517,56 @@ function hmib_devices() {
 								ON host.id=hrs.host_id
 								ORDER BY name');
 
-							if (sizeof($templates)) {
-							foreach($templates AS $t) {
-								echo "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . $t['name'] . '</option>';
-							}
+							if (cacti_sizeof($templates)) {
+								foreach($templates AS $t) {
+									print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Process');?>
+						<?php print __('Process', 'hmib');?>
 					</td>
 					<td>
 						<select id='process' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
-							$processes = db_fetch_assoc("SELECT DISTINCT name FROM plugin_hmib_hrSWRun WHERE name!='' ORDER BY name");
-							if (sizeof($processes)) {
-							foreach($processes AS $p) {
-								echo "<option value='" . $p['name'] . "' " . (get_request_var('process') == $p['name'] ? 'selected':'') . '>' . $p['name'] . '</option>';
-							}
+							$processes = db_fetch_assoc("SELECT DISTINCT name
+								FROM plugin_hmib_hrSWRun
+								WHERE name != ''
+								ORDER BY name");
+
+							if (cacti_sizeof($processes)) {
+								foreach($processes AS $p) {
+									print "<option value='" . html_escape($p['name']) . "' " . (get_request_var('process') == $p['name'] ? 'selected':'') . '>' . html_escape($p['name']) . '</option>';
+								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<input id='refresh' type='button' onClick='applyFilter(document.devices)' value='<?php print __('Go');?>'>
-					</td>
-					<td>
-						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
+						<span>
+							<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
+							<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+						</span>
 					</td>
 				</tr>
 			</table>
 			<table class='filterTable'>
 				<tr>
 					<td>
-						<?php print __('Search');?>
+						<?php print __('Search', 'hmib');?>
 					</td>
 					<td>
 						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
 					<td>
-						<?php print __('Status');?>
+						<?php print __('Status', 'hmib');?>
 					</td>
 					<td>
 						<select id='status' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$statuses = db_fetch_assoc('SELECT DISTINCT status
 								FROM host
@@ -1568,49 +1574,48 @@ function hmib_devices() {
 								ON host.id=plugin_hmib_hrSystem.host_id');
 							$statuses = array_merge($statuses, array('-2' => array('status' => '-2')));
 
-							if (sizeof($statuses)) {
-							foreach($statuses AS $s) {
-								switch($s['status']) {
-									case '0':
-										$status = __('Unknown');
-										break;
-									case '1':
-										$status = __('Down');
-										break;
-									case '2':
-										$status = __('Recovering');
-										break;
-									case '3':
-										$status = __('Up');
-										break;
-									case '-2':
-										$status = __('Disabled');
-										break;
+							if (cacti_sizeof($statuses)) {
+								foreach($statuses AS $s) {
+									switch($s['status']) {
+										case '0':
+											$status = __('Unknown', 'hmib');
+											break;
+										case '1':
+											$status = __('Down', 'hmib');
+											break;
+										case '2':
+											$status = __('Recovering', 'hmib');
+											break;
+										case '3':
+											$status = __('Up', 'hmib');
+											break;
+										case '-2':
+											$status = __('Disabled', 'hmib');
+											break;
+									}
+									print "<option value='" . $s['status'] . "' " . (get_request_var('status') == $s['status'] ? 'selected':'') . '>' . $status . '</option>';
 								}
-								echo "<option value='" . $s['status'] . "' " . (get_request_var('status') == $s['status'] ? 'selected':'') . '>' . $status . '</option>';
-							}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Devices');?>
+						<?php print __('Devices', 'hmib');?>
 					</td>
 					<td>
 						<select id='rows' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default');?></option>
+							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
 							<?php
-							if (sizeof($item_rows)) {
-							foreach($item_rows AS $key => $name) {
-								echo "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
-							}
+							if (cacti_sizeof($item_rows)) {
+								foreach($item_rows AS $key => $name) {
+									print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+								}
 							}
 							?>
 						</select>
 					</td>
 				</tr>
 			</table>
-			<input type='hidden' id='page' value='<?php print get_request_var('page');?>'>
 			</form>
 		</td>
 	</tr>
@@ -1664,27 +1669,27 @@ function hmib_devices() {
 		$sql_join
 		$sql_where");
 
-	$nav = html_nav_bar('hmib.php?action=devices', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, 16, __('Devices'), 'page', 'main');
+	$display_text = array(
+		'nosort'      => array('display' => __('Actions', 'hmib'),       'sort' => 'ASC',  'align' => 'left'),
+		'description' => array('display' => __('Hostname', 'hmib'),      'sort' => 'ASC',  'align' => 'left'),
+		'host_status' => array('display' => __('Status', 'hmib'),        'sort' => 'DESC', 'align' => 'right'),
+		'uptime'      => array('display' => __('Uptime(d:h:m)', 'hmib'), 'sort' => 'DESC', 'align' => 'right'),
+		'users'       => array('display' => __('Users', 'hmib'),         'sort' => 'DESC', 'align' => 'right'),
+		'cpuPercent'  => array('display' => __('CPU %', 'hmib'),         'sort' => 'DESC', 'align' => 'right'),
+		'numCpus'     => array('display' => __('CPUs', 'hmib'),          'sort' => 'DESC', 'align' => 'right'),
+		'processes'   => array('display' => __('Processes', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
+		'memSize'     => array('display' => __('Total Mem', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
+		'memUsed'     => array('display' => __('Used Mem', 'hmib'),      'sort' => 'DESC', 'align' => 'right'),
+		'swapSize'    => array('display' => __('Total Swap', 'hmib'),    'sort' => 'DESC', 'align' => 'right'),
+		'swapUsed'    => array('display' => __('Used Swap', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
+
+	);
+
+	$nav = html_nav_bar('hmib.php?action=devices', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('Devices', 'hmib'), 'page', 'main');
 
 	print $nav;
 
 	html_start_box('', '100%', '', '3', 'center', '');
-
-	$display_text = array(
-		'nosort'      => array('display' => __('Actions'),       'sort' => 'ASC',  'align' => 'left'),
-		'description' => array('display' => __('Hostname'),      'sort' => 'ASC',  'align' => 'left'),
-		'host_status' => array('display' => __('Status'),        'sort' => 'DESC', 'align' => 'right'),
-		'uptime'      => array('display' => __('Uptime(d:h:m)'), 'sort' => 'DESC', 'align' => 'right'),
-		'users'       => array('display' => __('Users'),         'sort' => 'DESC', 'align' => 'right'),
-		'cpuPercent'  => array('display' => __('CPU %'),         'sort' => 'DESC', 'align' => 'right'),
-		'numCpus'     => array('display' => __('CPUs'),          'sort' => 'DESC', 'align' => 'right'),
-		'processes'   => array('display' => __('Processes'),     'sort' => 'DESC', 'align' => 'right'),
-		'memSize'     => array('display' => __('Total Mem'),     'sort' => 'DESC', 'align' => 'right'),
-		'memUsed'     => array('display' => __('Used Mem'),      'sort' => 'DESC', 'align' => 'right'),
-		'swapSize'    => array('display' => __('Total Swap'),    'sort' => 'DESC', 'align' => 'right'),
-		'swapUsed'    => array('display' => __('Used Swap'),     'sort' => 'DESC', 'align' => 'right'),
-
-	);
 
 	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=devices');
 
@@ -1715,7 +1720,7 @@ function hmib_devices() {
 		FROM graph_templates
 		WHERE hash='62205afbd4066e5c4700338841e3901e'");
 
-	if (sizeof($rows)) {
+	if (cacti_sizeof($rows)) {
 		foreach ($rows as $row) {
 			$days      = intval($row['uptime'] / (60*60*24*100));
 			$remainder = $row['uptime'] % (60*60*24*100);
@@ -1726,16 +1731,16 @@ function hmib_devices() {
 			$found = db_fetch_cell('SELECT COUNT(*) FROM graph_local WHERE host_id=' . $row['host_id']);
 
 			form_alternate_row();
-			echo "<td class='nowrap'>";
-			//echo "<a style='padding:1px;' href='" . htmlspecialchars("$url?action=dashboard&reset=1&device=" . $row["host_id"]) . "'><img src='$dashboard' title='View Dashboard' align='absmiddle'></a>";
-			echo "<a class='pic' href='" . htmlspecialchars("$url?action=storage&reset=1&device=" . $row['host_id']) . "'><img src='$storage' title='" . __('View Storage') . "' align='absmiddle' alt=''></a>";
-			echo "<a class='pic' href='" . htmlspecialchars("$url?action=hardware&reset=1&device=" . $row['host_id']) . "'><img src='$hardw' title='" . __('View Hardware') . "' align='absmiddle' alt=''></a>";
-			echo "<a class='pic' href='" . htmlspecialchars("$url?action=running&reset=1&device=" . $row['host_id']) . "'><img src='$proc' title='" . __('View Processes') . "' align='absmiddle' alt=''></a>";
-			echo "<a class='pic' href='" . htmlspecialchars("$url?action=software&reset=1&device=" . $row['host_id']) . "'><img src='$inven' title='" . __('View Software Inventory') . "' align='absmiddle' alt=''></a>";
+			print "<td class='nowrap'>";
+			//print "<a style='padding:1px;' href='" . html_escape("$url?action=dashboard&reset=1&device=" . $row["host_id"]) . "'><img src='$dashboard' title='View Dashboard' align='absmiddle'></a>";
+			print "<a class='pic' href='" . html_escape("$url?action=storage&reset=1&device=" . $row['host_id']) . "'><img src='$storage' title='" . __('View Storage', 'hmib') . "' align='absmiddle' alt=''></a>";
+			print "<a class='pic' href='" . html_escape("$url?action=hardware&reset=1&device=" . $row['host_id']) . "'><img src='$hardw' title='" . __('View Hardware', 'hmib') . "' align='absmiddle' alt=''></a>";
+			print "<a class='pic' href='" . html_escape("$url?action=running&reset=1&device=" . $row['host_id']) . "'><img src='$proc' title='" . __('View Processes', 'hmib') . "' align='absmiddle' alt=''></a>";
+			print "<a class='pic' href='" . html_escape("$url?action=software&reset=1&device=" . $row['host_id']) . "'><img src='$inven' title='" . __('View Software Inventory', 'hmib') . "' align='absmiddle' alt=''></a>";
 			if ($found) {
-				echo "<a class='pic' href='" . htmlspecialchars("$url?action=graphs&reset=1&host_id=" . $row['host_id'] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=") . "'><img  src='$graphs' title='" . __('View Graphs') . "' align='absmiddle' alt=''></a>";
+				print "<a class='pic' href='" . html_escape("$url?action=graphs&reset=1&host_id=" . $row['host_id'] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=") . "'><img  src='$graphs' title='" . __('View Graphs', 'hmib') . "' align='absmiddle' alt=''></a>";
 			} else {
-				echo "<img src='$nographs' title='" . __('No Graphs Defined') . "' align='absmiddle' alt=''>";
+				print "<img src='$nographs' title='" . __('No Graphs Defined', 'hmib') . "' align='absmiddle' alt=''>";
 			}
 
 			$graph_cpu   = hmib_get_graph_url($hcpudq, 0, $row['host_id'], '', $row['numCpus'], false);
@@ -1743,32 +1748,32 @@ function hmib_devices() {
 			$graph_users = hmib_get_graph_template_url($hugt, 0, $row['host_id'], ($row['host_status'] < 2 ? 'N/A':$row['users']), false);
 			$graph_aproc = hmib_get_graph_template_url($hpgt, 0, $row['host_id'], ($row['host_status'] < 2 ? 'N/A':$row['processes']), false);
 			if (api_plugin_user_realm_auth('host.php')) {
-				$host_url = "<a href='" . htmlspecialchars($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device') . "'>" . $row['hostname'] . '</a>';
+				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
 			} else {
-				$host_url = $row['hostname'];
+				$host_url = html_escape($row['hostname']);
 			}
 
-			echo '</td>';
-			echo "<td class='nowrap left'>" . $row['description'] . ' [ ' . $host_url . ' ]</td>';
-			echo "<td class='nowrap right'>" . get_colored_device_status(($row['disabled'] == 'on' ? true : false), $row['host_status']) . '</td>';
-			echo "<td class='nowrap right'>" . hmib_format_uptime($days, $hours, $minutes) . '</td>';
-			echo "<td class='nowrap right'>" . $graph_users              . '</td>';
-			echo "<td class='nowrap right'>" . ($row['host_status'] < 2 ? 'N/A':$graph_cpup) . '</td>';
-			echo "<td class='nowrap right'>" . ($row['host_status'] < 2 ? 'N/A':$graph_cpu)  . '</td>';
-			echo "<td class='nowrap right'>" . $graph_aproc                   . '</td>';
-			echo "<td class='nowrap right'>" . hmib_memory($row['memSize'])   . '</td>';
-			echo "<td class='nowrap right'>" . ($row['host_status'] < 2 ? 'N/A':round($row['memUsed'],0))  . ' %</td>';
-			echo "<td class='nowrap right'>" . hmib_memory($row['swapSize'])  . '</td>';
-			echo "<td class='nowrap right'>" . ($row['host_status'] < 2 ? 'N/A':round($row['swapUsed'],0)) . ' %</td>';
+			print '</td>';
+			print "<td class='nowrap left'>" . $row['description'] . ' [ ' . $host_url . ' ]</td>';
+			print "<td class='nowrap right'>" . get_colored_device_status(($row['disabled'] == 'on' ? true : false), $row['host_status']) . '</td>';
+			print "<td class='nowrap right'>" . hmib_format_uptime($days, $hours, $minutes) . '</td>';
+			print "<td class='nowrap right'>" . $graph_users              . '</td>';
+			print "<td class='nowrap right'>" . ($row['host_status'] < 2 ? 'N/A':$graph_cpup) . '</td>';
+			print "<td class='nowrap right'>" . ($row['host_status'] < 2 ? 'N/A':$graph_cpu)  . '</td>';
+			print "<td class='nowrap right'>" . $graph_aproc                   . '</td>';
+			print "<td class='nowrap right'>" . hmib_memory($row['memSize'])   . '</td>';
+			print "<td class='nowrap right'>" . ($row['host_status'] < 2 ? 'N/A':round($row['memUsed'],0))  . ' %</td>';
+			print "<td class='nowrap right'>" . hmib_memory($row['swapSize'])  . '</td>';
+			print "<td class='nowrap right'>" . ($row['host_status'] < 2 ? 'N/A':round($row['swapUsed'],0)) . ' %</td>';
 		}
-		echo '</tr>';
+		print '</tr>';
 	} else {
-		print '<tr><td colspan="12"><em>' . __('No Devices Found') . '</em></td></tr>';
+		print '<tr><td colspan="12"><em>' . __('No Devices Found', 'hmib') . '</em></td></tr>';
 	}
 
 	html_end_box(false);
 
-	if (sizeof($rows)) {
+	if (cacti_sizeof($rows)) {
 		print $nav;
 	}
 }
@@ -1896,7 +1901,7 @@ function hmib_software() {
 	</script>
 	<?php
 
-	html_start_box(__('Software Inventory'), '100%', '', '3', 'center', '');
+	html_start_box(__('Software Inventory', 'hmib'), '100%', '', '3', 'center', '');
 
 	?>
 	<tr class='even'>
@@ -1905,11 +1910,11 @@ function hmib_software() {
 			<table class='filterTable'>
 				<tr>
 					<td>
-						<?php print __('OS Type');?>
+						<?php print __('OS Type', 'hmib');?>
 					</td>
 					<td>
 						<select id='ostype' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
 								FROM plugin_hmib_hrSystemTypes AS hrst
@@ -1917,20 +1922,20 @@ function hmib_software() {
 								ON hrst.id=hrs.host_type
 								WHERE name!='' ORDER BY name");
 
-							if (sizeof($ostypes)) {
+							if (cacti_sizeof($ostypes)) {
 								foreach($ostypes AS $t) {
-									echo "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . $t['name'] . '</option>';
+									print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
 								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Device');?>
+						<?php print __('Device', 'hmib');?>
 					</td>
 					<td>
 						<select id='device' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
 								FROM plugin_hmib_hrSystem AS hrs
@@ -1939,20 +1944,20 @@ function hmib_software() {
 								(get_request_var('ostype') > 0 ? 'WHERE hrs.host_type=' . get_request_var('ostype'):'') .
 								' ORDER BY description');
 
-							if (sizeof($hosts)) {
+							if (cacti_sizeof($hosts)) {
 								foreach($hosts AS $h) {
-									echo "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+									print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
 								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Template');?>
+						<?php print __('Template', 'hmib');?>
 					</td>
 					<td>
 						<select id='template' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
 								FROM host_template AS ht
@@ -1962,59 +1967,59 @@ function hmib_software() {
 								ON host.id=hrs.host_id
 								ORDER BY name');
 
-							if (sizeof($templates)) {
+							if (cacti_sizeof($templates)) {
 								foreach($templates AS $t) {
-									echo "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . $t['name'] . '</option>';
+									print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escpae($t['name']) . '</option>';
 								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
-					</td>
-					<td>
-						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
+						<span>
+							<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
+							<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+						</span>
 					</td>
 				</tr>
 			</table>
 			<table class='filterTable'>
 				<tr>
 					<td>
-						<?php print __('Search');?>
+						<?php print __('Search', 'hmib');?>
 					</td>
 					<td>
 						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
 					<td>
-						<?php print __('Type');?>
+						<?php print __('Type', 'hmib');?>
 					</td>
 					<td>
 						<select id='type' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All');?></option>
+							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
 							$types = db_fetch_assoc('SELECT DISTINCT type
 								FROM plugin_hmib_hrSWInstalled
 								ORDER BY type');
 
-							if (sizeof($types)) {
+							if (cacti_sizeof($types)) {
 								foreach($types AS $t) {
-									echo "<option value='" . $t['type'] . "' " . (get_request_var('type') == $t['type'] ? 'selected':'') . '>' . $hmib_hrSWTypes[$t['type']] . '</option>';
+									print "<option value='" . $t['type'] . "' " . (get_request_var('type') == $t['type'] ? 'selected':'') . '>' . $hmib_hrSWTypes[$t['type']] . '</option>';
 								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<?php print __('Applications');?>
+						<?php print __('Applications', 'hmib');?>
 					</td>
 					<td>
 						<select id='rows' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default');?></option>
+							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
 							<?php
-							if (sizeof($item_rows)) {
+							if (cacti_sizeof($item_rows)) {
 								foreach($item_rows AS $key => $name) {
-									echo "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+									print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
 								}
 							}
 							?>
@@ -2022,7 +2027,6 @@ function hmib_software() {
 					</td>
 				</tr>
 			</table>
-			<input type='hidden' id='page' value='<?php print get_request_var('page');?>'>
 			</form>
 		</td>
 	</tr>
@@ -2077,43 +2081,44 @@ function hmib_software() {
 		INNER JOIN plugin_hmib_hrSystem AS hrs ON host.id=hrs.host_id
 		$sql_where");
 
-	$nav = html_nav_bar('hmib.php?action=software', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, 16, __('Applications'), 'page', 'main');
+	$display_text = array(
+		'description' => array('display' => __('Hostname', 'hmib'),   'sort' => 'ASC',  'align' => 'left'),
+		'name'        => array('display' => __('Package', 'hmib'),    'sort' => 'DESC', 'align' => 'left'),
+		'type'        => array('display' => __('Type', 'hmib'),       'sort' => 'ASC',  'align' => 'left'),
+		'date'        => array('display' => __('Installed', 'hmib'),  'sort' => 'DESC', 'align' => 'right')
+	);
+
+	$nav = html_nav_bar('hmib.php?action=software', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('Applications', 'hmib'), 'page', 'main');
 
 	print $nav;
 
 	html_start_box('', '100%', '', '3', 'center', '');
 
-	$display_text = array(
-		'description' => array('display' => __('Hostname'),   'sort' => 'ASC',  'align' => 'left'),
-		'name'        => array('display' => __('Package'),    'sort' => 'DESC', 'align' => 'left'),
-		'type'        => array('display' => __('Type'),       'sort' => 'ASC',  'align' => 'left'),
-		'date'        => array('display' => __('Installed'),  'sort' => 'DESC', 'align' => 'right')
-	);
-
 	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=software');
 
-	if (sizeof($rows)) {
+	if (cacti_sizeof($rows)) {
 		foreach ($rows as $row) {
 			form_alternate_row();
+
 			if (api_plugin_user_realm_auth('host.php')) {
-				$host_url = "<a href='" . htmlspecialchars($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device') . "'>" . $row['hostname'] . '</a>';
+				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
 			} else {
-				$host_url = $row['hostname'];
+				$host_url = html_escape($row['hostname']);
 			}
 
-			echo '<td>' . filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
-			echo '<td>' . filter_value($row['name'], get_request_var('filter')) . '</td>';
-			echo '<td>' . (isset($hmib_hrSWTypes[$row['type']]) ? $hmib_hrSWTypes[$row['type']]:__('Unknown')) . '</td>';
-			echo "<td class='right'>" . filter_value($row['date'], get_request_var('filter')) . '</td>';
+			print '<td>' . filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
+			print '<td>' . filter_value($row['name'], get_request_var('filter')) . '</td>';
+			print '<td>' . (isset($hmib_hrSWTypes[$row['type']]) ? $hmib_hrSWTypes[$row['type']]:__('Unknown', 'hmib')) . '</td>';
+			print "<td class='right'>" . filter_value($row['date'], get_request_var('filter')) . '</td>';
 		}
-		echo '</tr>';
+		print '</tr>';
 	} else {
-		print '<tr><td colspan="4"><em>' . __('No Software Packages Found') . '</em></td></tr>';
+		print '<tr><td colspan="4"><em>' . __('No Software Packages Found', 'hmib') . '</em></td></tr>';
 	}
 
 	html_end_box(false);
 
-	if (sizeof($rows)) {
+	if (cacti_sizeof($rows)) {
 		print $nav;
 	}
 }
@@ -2123,14 +2128,14 @@ function hmib_tabs() {
 
 	/* present a tabbed interface */
 	$tabs = array(
-		'summary'  => __('Summary'),
-		'devices'  => __('Devices'),
-		'storage'  => __('Storage'),
-		'hardware' => __('Hardware'),
-		'running'  => __('Processes'),
-		'history'  => __('Use History'),
-		'software' => __('Inventory'),
-		'graphs'   => __('Graphs')
+		'summary'  => __('Summary', 'hmib'),
+		'devices'  => __('Devices', 'hmib'),
+		'storage'  => __('Storage', 'hmib'),
+		'hardware' => __('Hardware', 'hmib'),
+		'running'  => __('Processes', 'hmib'),
+		'history'  => __('Use History', 'hmib'),
+		'software' => __('Inventory', 'hmib'),
+		'graphs'   => __('Graphs', 'hmib')
 	);
 
 	/* set the default tab */
@@ -2139,7 +2144,7 @@ function hmib_tabs() {
 	/* draw the tabs */
 	print "<div class='tabs'><nav><ul>\n";
 
-	if (sizeof($tabs)) {
+	if (cacti_sizeof($tabs)) {
 		foreach (array_keys($tabs) as $tab_short_name) {
 			print "<li><a class='pic" . (($tab_short_name == $current_tab) ? " selected'" : "'") . " href='" . $config['url_path'] .
 				'plugins/hmib/hmib.php?' .
@@ -2192,7 +2197,7 @@ function hmib_summary() {
 		if (isset_request_var('sort_column')) {
 			$_SESSION['sess_hmib_proc_sort_column']    = get_request_var('sort_column');
 			$_SESSION['sess_hmib_proc_sort_direction'] = get_request_var('sort_direction');
-		}elseif (!isset($_SESSION['sess_hmib_proc_sort_column'])) {
+		} elseif (!isset($_SESSION['sess_hmib_proc_sort_column'])) {
 			$_SESSION['sess_hmib_proc_sort_column']    = 'maxCpu';
 			$_SESSION['sess_hmib_proc_sort_direction'] = 'DESC';
 		}
@@ -2201,7 +2206,7 @@ function hmib_summary() {
 			$_SESSION['sess_hmib_host_sort_column']    = 'downHosts';
 			$_SESSION['sess_hmib_host_sort_direction'] = 'DESC';
 		}
-	}elseif (isset_request_var('area') && get_nfilter_request_var('area') == 'hosts') {
+	} elseif (isset_request_var('area') && get_nfilter_request_var('area') == 'hosts') {
 		if (isset_request_var('clear')) {
 			kill_session_var('sess_hmib_host_top');
 			kill_session_var('sess_hmib_host_sort_column');
@@ -2215,7 +2220,7 @@ function hmib_summary() {
 		if (isset_request_var('sort_column')) {
 			$_SESSION['sess_hmib_host_sort_column']    = get_request_var('sort_column');
 			$_SESSION['sess_hmib_host_sort_direction'] = get_request_var('sort_direction');
-		}elseif (!isset($_SESSION['sess_hmib_host_sort_column'])) {
+		} elseif (!isset($_SESSION['sess_hmib_host_sort_column'])) {
 			$_SESSION['sess_hmib_host_sort_column']    = 'downHosts';
 			$_SESSION['sess_hmib_host_sort_direction'] = 'DESC';
 		}
@@ -2289,7 +2294,7 @@ function hmib_summary() {
 	</script>
 	<?php
 
-	html_start_box(__('Summary Filter'), '100%', '', '3', 'center', '');
+	html_start_box(__('Summary Filter', 'hmib'), '100%', '', '3', 'center', '');
 
 	?>
 	<tr class='even'>
@@ -2298,25 +2303,25 @@ function hmib_summary() {
 			<table class='filterTable'>
 				<tr>
 					<td>
-						<?php print __('Top');?>
+						<?php print __('Top', 'hmib');?>
 					</td>
 					<td>
 						<select id='htop' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('htop') == '-1') {?> selected<?php }?>><?php print __('All Records');?></option>
-							<option value='5'<?php if (get_request_var('htop') == '5') {?> selected<?php }?>><?php print __('%d Records', 5);?></option>
-							<option value='10'<?php if (get_request_var('htop') == '10') {?> selected<?php }?>><?php print __('%d Record', 10);?>s</option>
-							<option value='15'<?php if (get_request_var('htop') == '15') {?> selected<?php }?>><?php print __('%d Record', 15);?>s</option>
-							<option value='20'<?php if (get_request_var('htop') == '20') {?> selected<?php }?>><?php print __('%d Record', 20);?>s</option>
+							<option value='-1'<?php if (get_request_var('htop') == '-1') {?> selected<?php }?>><?php print __('All Records', 'hmib');?></option>
+							<option value='5'<?php if (get_request_var('htop') == '5') {?> selected<?php }?>><?php print __('%d Records', 5, 'hmib');?></option>
+							<option value='10'<?php if (get_request_var('htop') == '10') {?> selected<?php }?>><?php print __('%d Record', 10, 'hmib');?>s</option>
+							<option value='15'<?php if (get_request_var('htop') == '15') {?> selected<?php }?>><?php print __('%d Record', 15, 'hmib');?>s</option>
+							<option value='20'<?php if (get_request_var('htop') == '20') {?> selected<?php }?>><?php print __('%d Record', 20, 'hmib');?>s</option>
 						</select>
 					</td>
 					<td>
-						<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go');?>'>
+						<span>
+							<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
+							<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+						</span>
 					</td>
 					<td>
-						<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear');?>'>
-					</td>
-					<td>
-						<?php print $templates_missing ? '<strong>' . __('NOTE: Import the Host MIB Device Package to view Graphs.') . '</strong>':'';?>
+						<?php print $templates_missing ? '<strong>' . __('NOTE: Import the Host MIB Device Package to view Graphs.', 'hmib') . '</strong>':'';?>
 					</td>
 				</tr>
 			</table>
@@ -2327,11 +2332,11 @@ function hmib_summary() {
 
 	html_end_box(false);
 
-	html_start_box(__('Device Type Summary Statistics'), '100%', '', '3', 'center', '');
+	html_start_box(__('Device Type Summary Statistics', 'hmib'), '100%', '', '3', 'center', '');
 
 	if (!isset($_SESSION['sess_hmib_host_top'])) {
 		$limit = 'LIMIT ' . read_config_option('hmib_top_types');
-	}elseif ($_SESSION['sess_hmib_host_top'] == '-1') {
+	} elseif ($_SESSION['sess_hmib_host_top'] == '-1') {
 		$limit = '';
 	} else {
 		$limit = 'LIMIT ' . $_SESSION['sess_hmib_host_top'];
@@ -2365,28 +2370,28 @@ function hmib_summary() {
 	$rows = db_fetch_assoc($sql);
 
 	$display_text = array(
-		'nosort'        => array('display' => __('Actions'),     'sort' => 'ASC',  'align' => 'left'),
-		'name'          => array('display' => __('Type'),        'sort' => 'ASC',  'align' => 'left'),
-		'(version/1)'   => array('display' => __('Version'),     'sort' => 'ASC',  'align' => 'right'),
-		'upHosts'       => array('display' => __('Up'),          'sort' => 'DESC', 'align' => 'right'),
-		'recHosts'      => array('display' => __('Recovering'),  'sort' => 'DESC', 'align' => 'right'),
-		'downHosts'     => array('display' => __('Down'),        'sort' => 'DESC', 'align' => 'right'),
-		'disabledHosts' => array('display' => __('Disabled'),    'sort' => 'DESC', 'align' => 'right'),
-		'users'         => array('display' => __('Logins'),      'sort' => 'DESC', 'align' => 'right'),
-		'cpus'          => array('display' => __('CPUS'),        'sort' => 'DESC', 'align' => 'right'),
-		'avgCpuPercent' => array('display' => __('Avg CPU'),     'sort' => 'DESC', 'align' => 'right'),
-		'maxCpuPercent' => array('display' => __('Max CPU'),     'sort' => 'DESC', 'align' => 'right'),
-		'avgMem'        => array('display' => __('Avg Mem'),     'sort' => 'DESC', 'align' => 'right'),
-		'maxMem'        => array('display' => __('Max Mem'),     'sort' => 'DESC', 'align' => 'right'),
-		'avgSwap'       => array('display' => __('Avg Swap'),    'sort' => 'DESC', 'align' => 'right'),
-		'maxSwap'       => array('display' => __('Max Swap'),    'sort' => 'DESC', 'align' => 'right'),
-		'avgProcesses'  => array('display' => __('Avg Proc'),    'sort' => 'DESC', 'align' => 'right'),
-		'maxProcesses'  => array('display' => __('Max Proc'),    'sort' => 'DESC', 'align' => 'right')
+		'nosort'        => array('display' => __('Actions', 'hmib'),     'sort' => 'ASC',  'align' => 'left'),
+		'name'          => array('display' => __('Type', 'hmib'),        'sort' => 'ASC',  'align' => 'left'),
+		'(version/1)'   => array('display' => __('Version', 'hmib'),     'sort' => 'ASC',  'align' => 'right'),
+		'upHosts'       => array('display' => __('Up', 'hmib'),          'sort' => 'DESC', 'align' => 'right'),
+		'recHosts'      => array('display' => __('Recovering', 'hmib'),  'sort' => 'DESC', 'align' => 'right'),
+		'downHosts'     => array('display' => __('Down', 'hmib'),        'sort' => 'DESC', 'align' => 'right'),
+		'disabledHosts' => array('display' => __('Disabled', 'hmib'),    'sort' => 'DESC', 'align' => 'right'),
+		'users'         => array('display' => __('Logins', 'hmib'),      'sort' => 'DESC', 'align' => 'right'),
+		'cpus'          => array('display' => __('CPUS', 'hmib'),        'sort' => 'DESC', 'align' => 'right'),
+		'avgCpuPercent' => array('display' => __('Avg CPU', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
+		'maxCpuPercent' => array('display' => __('Max CPU', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
+		'avgMem'        => array('display' => __('Avg Mem', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
+		'maxMem'        => array('display' => __('Max Mem', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
+		'avgSwap'       => array('display' => __('Avg Swap', 'hmib'),    'sort' => 'DESC', 'align' => 'right'),
+		'maxSwap'       => array('display' => __('Max Swap', 'hmib'),    'sort' => 'DESC', 'align' => 'right'),
+		'avgProcesses'  => array('display' => __('Avg Proc', 'hmib'),    'sort' => 'DESC', 'align' => 'right'),
+		'maxProcesses'  => array('display' => __('Max Proc', 'hmib'),    'sort' => 'DESC', 'align' => 'right')
 	);
 
 	html_header_sort($display_text, $_SESSION['sess_hmib_host_sort_column'], $_SESSION['sess_hmib_host_sort_direction'], false, 'hmib.php?action=summary&area=hosts');
 
-	if (sizeof($rows)) {
+	if (cacti_sizeof($rows)) {
 		foreach ($rows as $row) {
 			if (!$templates_missing) {
 				$host_id = db_fetch_cell("SELECT id FROM host WHERE host_template_id=$htsd");
@@ -2403,46 +2408,46 @@ function hmib_summary() {
 			$graph_mproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['maxProcesses'],0), false);
 
 			form_alternate_row();
-			echo "<td class='nowrap'>";
-			echo "<a class='pic' href='" . htmlspecialchars("$url?reset=1&action=devices&type=" . $row['host_type']) . "'><img src='$host' title='" . __('View Devices') . "' alt=''></a>";
-			echo "<a class='pic' href='" . htmlspecialchars("$url?reset=1&action=storage&ostype=" . $row['host_type']) . "'><img src='$storage' title='" . __('View Storage') . "' alt=''></a>";
-			echo "<a class='pic' href='" . htmlspecialchars("$url?reset=1&action=hardware&ostype=" . $row['host_type']) . "'><img src='$hardw' title='" . __('View Hardware') . "' alt=''></a>";
-			echo "<a class='pic' href='" . htmlspecialchars("$url?reset=1&action=running&type=" . $row['host_type']) . "'><img src='$proc' title='" . __('View Processes') . "' alt=''></a>";
-			echo "<a class='pic' href='" . htmlspecialchars("$url?reset=1&action=software&ostype=" . $row['host_type']) . "'><img src='$inven' title='" . __('View Software Inventory') . "' alt=''></a>";
-			echo $graph_url;
-			echo '</td>';
+			print "<td class='nowrap'>";
+			print "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&type=" . $row['host_type']) . "'><img src='$host' title='" . __('View Devices', 'hmib') . "' alt=''></a>";
+			print "<a class='pic' href='" . html_escape("$url?reset=1&action=storage&ostype=" . $row['host_type']) . "'><img src='$storage' title='" . __('View Storage', 'hmib') . "' alt=''></a>";
+			print "<a class='pic' href='" . html_escape("$url?reset=1&action=hardware&ostype=" . $row['host_type']) . "'><img src='$hardw' title='" . __('View Hardware', 'hmib') . "' alt=''></a>";
+			print "<a class='pic' href='" . html_escape("$url?reset=1&action=running&type=" . $row['host_type']) . "'><img src='$proc' title='" . __('View Processes', 'hmib') . "' alt=''></a>";
+			print "<a class='pic' href='" . html_escape("$url?reset=1&action=software&ostype=" . $row['host_type']) . "'><img src='$inven' title='" . __('View Software Inventory', 'hmib') . "' alt=''></a>";
+			print $graph_url;
+			print '</td>';
 
 			$upHosts   = hmib_get_device_status_url($row['upHosts'], $row['host_type'], 3);
 			$recHosts  = hmib_get_device_status_url($row['recHosts'], $row['host_type'], 2);
 			$downHosts = hmib_get_device_status_url($row['downHosts'], $row['host_type'], 1);
 			$disaHosts = hmib_get_device_status_url($row['disabledHosts'], $row['host_type'], 0);
 
-			echo "<td class='nowrap left'>"  . ($row['name'] != '' ? $row['name']:__('Unknown')) . '</td>';
-			echo "<td class='nowrap right'>" . $row['version'] . '</td>';
-			echo "<td class='nowrap right'>" . $upHosts . '</td>';
-			echo "<td class='nowrap right'>" . $recHosts . '</td>';
-			echo "<td class='nowrap right'>" . $downHosts . '</td>';
-			echo "<td class='nowrap right'>" . $disaHosts . '</td>';
-			echo "<td class='nowrap right'>" . $graph_users . '</td>';
-			echo "<td class='nowrap right'>" . $graph_ncpu . '</td>';
-			echo "<td class='nowrap right'>" . $graph_acpu . ' %</td>';
-			echo "<td class='nowrap right'>" . $graph_mcpu . ' %</td>';
-			echo "<td class='nowrap right'>" . round($row['avgMem'],2) . ' %</td>';
-			echo "<td class='nowrap right'>" . round($row['maxMem'],2) . ' %</td>';
-			echo "<td class='nowrap right'>" . round($row['avgSwap'],2) . ' %</td>';
-			echo "<td class='nowrap right'>" . round($row['maxSwap'],2) . ' %</td>';
-			echo "<td class='nowrap right'>" . $graph_aproc . '</td>';
-			echo "<td class='nowrap right'>" . $graph_mproc . '</td>';
+			print "<td class='nowrap left'>"  . ($row['name'] != '' ? html_escape($row['name']):__('Unknown', 'hmib')) . '</td>';
+			print "<td class='nowrap right'>" . $row['version'] . '</td>';
+			print "<td class='nowrap right'>" . $upHosts . '</td>';
+			print "<td class='nowrap right'>" . $recHosts . '</td>';
+			print "<td class='nowrap right'>" . $downHosts . '</td>';
+			print "<td class='nowrap right'>" . $disaHosts . '</td>';
+			print "<td class='nowrap right'>" . $graph_users . '</td>';
+			print "<td class='nowrap right'>" . $graph_ncpu . '</td>';
+			print "<td class='nowrap right'>" . $graph_acpu . ' %</td>';
+			print "<td class='nowrap right'>" . $graph_mcpu . ' %</td>';
+			print "<td class='nowrap right'>" . round($row['avgMem'],2) . ' %</td>';
+			print "<td class='nowrap right'>" . round($row['maxMem'],2) . ' %</td>';
+			print "<td class='nowrap right'>" . round($row['avgSwap'],2) . ' %</td>';
+			print "<td class='nowrap right'>" . round($row['maxSwap'],2) . ' %</td>';
+			print "<td class='nowrap right'>" . $graph_aproc . '</td>';
+			print "<td class='nowrap right'>" . $graph_mproc . '</td>';
 		}
 
-		echo '</tr>';
+		print '</tr>';
 	} else {
-		print '<tr><td colspan="8"><em>' . __('No Device Types') . '</em></td></tr>';
+		print '<tr><td colspan="8"><em>' . __('No Device Types', 'hmib') . '</em></td></tr>';
 	}
 
 	html_end_box();
 
-	html_start_box(__('Process Summary Filter'), '100%', '', '3', 'center', '');
+	html_start_box(__('Process Summary Filter', 'hmib'), '100%', '', '3', 'center', '');
 
 	?>
 	<script type='text/javascript'>
@@ -2475,31 +2480,31 @@ function hmib_summary() {
 			<table class='filterTable'>
 				<tr>
 					<td>
-						<?php print __('Search');?>
+						<?php print __('Search', 'hmib');?>
 					</td>
 					<td>
 						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
 					<td>
-						<?php print __('Top');?>
+						<?php print __('Top', 'hmib');?>
 					</td>
 					<td>
 						<select id='ptop' onChange='applyProcFilter()'>
-							<option value='-1'<?php if (get_request_var('ptop') == '-1') {?> selected<?php }?>><?php print __('All Records');?></option>
-							<option value='5'<?php if (get_request_var('ptop') == '5') {?> selected<?php }?>><?php print __('%d Records', 5);?></option>
-							<option value='10'<?php if (get_request_var('ptop') == '10') {?> selected<?php }?>><?php print __('%d Records', 10);?></option>
-							<option value='15'<?php if (get_request_var('ptop') == '15') {?> selected<?php }?>><?php print __('%d Records', 15);?></option>
-							<option value='20'<?php if (get_request_var('ptop') == '20') {?> selected<?php }?>><?php print __('%d Records', 20);?></option>
+							<option value='-1'<?php if (get_request_var('ptop') == '-1') {?> selected<?php }?>><?php print __('All Records', 'hmib');?></option>
+							<option value='5'<?php if (get_request_var('ptop') == '5') {?> selected<?php }?>><?php print __('%d Records', 5, 'hmib');?></option>
+							<option value='10'<?php if (get_request_var('ptop') == '10') {?> selected<?php }?>><?php print __('%d Records', 10, 'hmib');?></option>
+							<option value='15'<?php if (get_request_var('ptop') == '15') {?> selected<?php }?>><?php print __('%d Records', 15, 'hmib');?></option>
+							<option value='20'<?php if (get_request_var('ptop') == '20') {?> selected<?php }?>><?php print __('%d Records', 20, 'hmib');?></option>
 						</select>
 					</td>
 					<td>
-						<input id='refresh' type='button' onClick='applyProcFilter(document.proc_summary)' value='<?php print __('Go');?>'>
+						<span>
+							<input id='refresh' type='button' onClick='applyProcFilter()' value='<?php print __('Go', 'hmib');?>'>
+							<input id='clear' type='button' onClick='clearProc()' value='<?php print __('Clear', 'hmib');?>'>
+						</span>
 					</td>
 					<td>
-						<input id='clear' type='button' onClick='clearProc()' value='<?php print __('Clear');?>'>
-					</td>
-					<td>
-						&nbsp;&nbsp;<?php print $templates_missing ? '<strong>' . __('NOTE: Import the Host MIB Device Package to view Graphs.') . '</strong>':'';?>
+						&nbsp;&nbsp;<?php print $templates_missing ? '<strong>' . __('NOTE: Import the Host MIB Device Package to view Graphs.', 'hmib') . '</strong>':'';?>
 					</td>
 				</tr>
 			</table>
@@ -2510,11 +2515,11 @@ function hmib_summary() {
 
 	html_end_box(false);
 
-	html_start_box(__('Process Summary Statistics'), '100%', '', '3', 'center', '');
+	html_start_box(__('Process Summary Statistics', 'hmib'), '100%', '', '3', 'center', '');
 
 	if (!isset($_SESSION['sess_hmib_proc_top'])) {
 		$limit = 'LIMIT ' . read_config_option('hmib_top_processes');
-	}elseif ($_SESSION['sess_hmib_proc_top'] == '-1') {
+	} elseif ($_SESSION['sess_hmib_proc_top'] == '-1') {
 		$limit = '';
 	} else {
 		$limit = 'LIMIT ' . $_SESSION['sess_hmib_proc_top'];
@@ -2546,18 +2551,18 @@ function hmib_summary() {
 
 	$rows = db_fetch_assoc($sql);
 
-	//echo $sql;
+	//print $sql;
 
 	$display_text = array(
-		'nosort'       => array('display' => __('Actions'),      'sort' => 'ASC',  'align' => 'left'),
-		'name'         => array('display' => __('Process Name'), 'sort' => 'ASC',  'align' => 'left'),
-		'paths'        => array('display' => __('Num Paths'),    'sort' => 'DESC', 'align' => 'right'),
-		'numHosts'     => array('display' => __('Hosts'),        'sort' => 'DESC', 'align' => 'right'),
-		'numProcesses' => array('display' => __('Processes'),    'sort' => 'DESC', 'align' => 'right'),
-		'avgCpu'       => array('display' => __('Avg CPU'),      'sort' => 'DESC', 'align' => 'right'),
-		'maxCpu'       => array('display' => __('Max CPU'),      'sort' => 'DESC', 'align' => 'right'),
-		'avgMemory'    => array('display' => __('Avg Memory'),   'sort' => 'DESC', 'align' => 'right'),
-		'maxMemory'    => array('display' => __('Max Memory'),   'sort' => 'DESC', 'align' => 'right')
+		'nosort'       => array('display' => __('Actions', 'hmib'),      'sort' => 'ASC',  'align' => 'left'),
+		'name'         => array('display' => __('Process Name', 'hmib'), 'sort' => 'ASC',  'align' => 'left'),
+		'paths'        => array('display' => __('Num Paths', 'hmib'),    'sort' => 'DESC', 'align' => 'right'),
+		'numHosts'     => array('display' => __('Hosts', 'hmib'),        'sort' => 'DESC', 'align' => 'right'),
+		'numProcesses' => array('display' => __('Processes', 'hmib'),    'sort' => 'DESC', 'align' => 'right'),
+		'avgCpu'       => array('display' => __('Avg CPU', 'hmib'),      'sort' => 'DESC', 'align' => 'right'),
+		'maxCpu'       => array('display' => __('Max CPU', 'hmib'),      'sort' => 'DESC', 'align' => 'right'),
+		'avgMemory'    => array('display' => __('Avg Memory', 'hmib'),   'sort' => 'DESC', 'align' => 'right'),
+		'maxMemory'    => array('display' => __('Max Memory', 'hmib'),   'sort' => 'DESC', 'align' => 'right')
 	);
 
 	html_header_sort($display_text, $_SESSION['sess_hmib_proc_sort_column'], $_SESSION['sess_hmib_proc_sort_direction'], false, 'hmib.php?action=summary&area=processes');
@@ -2572,29 +2577,29 @@ function hmib_summary() {
 		FROM snmp_query
 		WHERE hash='6b0ef0fe7f1d85bbb6812801ca15a7c5'");
 
-	if (sizeof($rows)) {
+	if (cacti_sizeof($rows)) {
 		foreach ($rows as $row) {
 			$graph_url = hmib_get_graph_url($adq, 0, 0, $row['name']);
 
 			form_alternate_row();
-			echo "<td class='nowrap'>";
-			echo "<a class='pic' href='" . htmlspecialchars("$url?reset=1&action=devices&process=" . $row['name']) . "'><img src='$host' title='" . __('View Devices') . "' align='absmiddle' alt=''></a>";
-			echo "<a class='pic' href='" . htmlspecialchars("$url?reset=1&action=running&process=" . $row['name']) . "'><img src='$proc' title='" . __('View Processes') . "' align='absmiddle' alt=''></a>";
-			echo $graph_url;
-			echo '</td>';
-			echo "<td class='left' width='140'>" . $row['name'] . '</td>';
-			echo "<td class='right'>" . $row['paths'] . '</td>';
-			echo "<td class='right'>" . $row['numHosts'] . '</td>';
-			echo "<td class='right'>" . $row['numProcesses'] . '</td>';
-			echo "<td class='right'>" . number_format_i18n($row['avgCpu']/3600,0) . ' Hrs</td>';
-			echo "<td class='right'>" . number_format_i18n($row['maxCpu']/3600,0) . ' Hrs</td>';
-			echo "<td class='right'>" . number_format_i18n($row['avgMemory']/1024,2) . ' MB</td>';
-			echo "<td class='right'>" . number_format_i18n($row['maxMemory']/1024,2) . ' MB</td>';
+			print "<td class='nowrap'>";
+			print "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&process=" . $row['name']) . "'><img src='$host' title='" . __('View Devices', 'hmib') . "' align='absmiddle' alt=''></a>";
+			print "<a class='pic' href='" . html_escape("$url?reset=1&action=running&process=" . $row['name']) . "'><img src='$proc' title='" . __('View Processes', 'hmib') . "' align='absmiddle' alt=''></a>";
+			print $graph_url;
+			print '</td>';
+			print "<td class='left' width='140'>" . html_escape($row['name']) . '</td>';
+			print "<td class='right'>" . $row['paths'] . '</td>';
+			print "<td class='right'>" . $row['numHosts'] . '</td>';
+			print "<td class='right'>" . $row['numProcesses'] . '</td>';
+			print "<td class='right'>" . number_format_i18n($row['avgCpu']/3600,0) . ' Hrs</td>';
+			print "<td class='right'>" . number_format_i18n($row['maxCpu']/3600,0) . ' Hrs</td>';
+			print "<td class='right'>" . number_format_i18n($row['avgMemory']/1024,2) . ' MB</td>';
+			print "<td class='right'>" . number_format_i18n($row['maxMemory']/1024,2) . ' MB</td>';
 		}
 
-		echo '</tr>';
+		print '</tr>';
 	} else {
-		print '<tr><td colspan="9"><em>' . __('No Processes') . '</em></td></tr>';
+		print '<tr><td colspan="9"><em>' . __('No Processes', 'hmib') . '</em></td></tr>';
 	}
 
 	html_end_box();
@@ -2604,7 +2609,7 @@ function hmib_get_device_status_url($count, $host_type, $status) {
 	global $config;
 
 	if ($count > 0) {
-		return "<a class='pic' href='" . htmlspecialchars($config['url_path'] . "plugins/hmib/hmib.php?action=devices&reset=1&type=$host_type&status=$status") . "' title='" . __('View Devices') . "'>$count</a>";
+		return "<a class='pic' href='" . html_escape($config['url_path'] . "plugins/hmib/hmib.php?action=devices&reset=1&type=$host_type&status=$status") . "' title='" . __('View Devices', 'hmib') . "'>$count</a>";
 	} else {
 		return $count;
 	}
@@ -2639,17 +2644,17 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
 			$sql_where");
 
 		$graph_add = '';
-		if (sizeof($graphs)) {
+		if (cacti_sizeof($graphs)) {
 			foreach($graphs as $graph) {
 				$graph_add .= (strlen($graph_add) ? ',':'') . $graph['id'];
 			}
 		}
 
-		if (sizeof($graphs)) {
+		if (cacti_sizeof($graphs)) {
 			if ($image) {
-				return "<a class='pic' href='" . htmlspecialchars($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs') . "'><img alt='' src='" . $graph . "'></a>";
+				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'><img alt='' src='" . $graph . "'></a>";
 			} else {
-				return "<a class='pic' href='" . htmlspecialchars($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs') . "'>$title</a>";
+				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'>$title</a>";
 			}
 		}
 	}
@@ -2668,7 +2673,7 @@ function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = 
 	$hstr = '';
 	if ($host_type > 0) {
 		$hosts = db_fetch_assoc("SELECT host_id FROM plugin_hmib_hrSystem WHERE host_type=$host_type");
-		if (sizeof($hosts)) {
+		if (cacti_sizeof($hosts)) {
 			foreach($hosts as $host) {
 				$hstr .= (strlen($hstr) ? ',':'(') . $host['host_id'];
 			}
@@ -2687,17 +2692,17 @@ function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = 
 		$graphs = db_fetch_assoc($sql);
 
 		$graph_add = '';
-		if (sizeof($graphs)) {
+		if (cacti_sizeof($graphs)) {
 			foreach($graphs as $g) {
 				$graph_add .= (strlen($graph_add) ? ',':'') . $g['id'];
 			}
 		}
 
-		if (sizeof($graphs)) {
+		if (cacti_sizeof($graphs)) {
 			if ($image) {
-				return "<a class='pic' href='" . htmlspecialchars($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs') . "'><img alt='' align='absmiddle' src='" . $graph . "'></a>";
+				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'><img alt='' align='absmiddle' src='" . $graph . "'></a>";
 			} else {
-				return "<a class='pic' href='" . htmlspecialchars($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs') . "'>$title</a>";
+				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'>$title</a>";
 			}
 		}
 	}
@@ -2740,7 +2745,7 @@ function hmib_view_graphs() {
 	$hosts = $_SESSION['sess_hmib_hosts'];
 
 	/* include graph view filter selector */
-	html_start_box(__('Graph Preview Filters') . (isset_request_var('style') && strlen(get_request_var('style')) ? ' [ ' . __('Custom Graph List Applied - Filtering from List') . ' ]':''), '100%', '', '3', 'center', '');
+	html_start_box(__('Graph Preview Filters', 'hmib') . (isset_request_var('style') && strlen(get_request_var('style')) ? ' [ ' . __('Custom Graph List Applied - Filtering from List', 'hmib') . ' ]':''), '100%', '', '3', 'center', '');
 
 	html_graph_preview_filter('hmib.php', 'graphs', "h.id IN ($hosts)", "gt.id IN ($gt)");
 
@@ -2775,7 +2780,7 @@ function hmib_view_graphs() {
 
 			$graph_array = array_keys($graph_list);
 
-			if (sizeof($graph_array)) {
+			if (cacti_sizeof($graph_array)) {
 				$sql_or = array_to_sql_or($graph_array, 'gl.id');
 			}
 		}
@@ -2834,3 +2839,4 @@ function hmib_view_graphs() {
 
 	bottom_footer();
 }
+

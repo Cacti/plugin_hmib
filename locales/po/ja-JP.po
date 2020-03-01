@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-19 09:50+0000\n"
+"POT-Creation-Date: 2020-02-29 19:06-0500\n"
 "PO-Revision-Date: 2019-03-16 23:31-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,8 +22,8 @@ msgstr ""
 msgid "Error"
 msgstr "エラー"
 
-#: hmib.php:37 hmib.php:52 hmib.php:747 hmib.php:1066 hmib.php:1374
-#: hmib.php:1572 hmib.php:2103 hmib.php:2417 hmib_types.php:353
+#: hmib.php:37 hmib.php:52 hmib.php:748 hmib.php:1068 hmib.php:1378
+#: hmib.php:1581 hmib.php:2111 hmib.php:2425 hmib_types.php:352
 #, fuzzy
 msgid "Unknown"
 msgstr "不明"
@@ -78,100 +78,100 @@ msgstr "警告"
 msgid "Testing"
 msgstr "テスト"
 
-#: hmib.php:56 hmib.php:1575 hmib.php:2370
+#: hmib.php:56 hmib.php:1584 hmib.php:2378
 #, fuzzy
 msgid "Down"
 msgstr "下"
 
-#: hmib.php:180
+#: hmib.php:179
 #, fuzzy
 msgid "Running Process History"
 msgstr "実行中のプロセス履歴"
 
-#: hmib.php:189 hmib.php:520 hmib.php:870 hmib.php:1175 hmib.php:1481
-#: hmib.php:1906 hmib_types.php:987
+#: hmib.php:188 hmib.php:520 hmib.php:871 hmib.php:1177 hmib.php:1485
+#: hmib.php:1913 hmib_types.php:968
 #, fuzzy
 msgid "OS Type"
 msgstr "OSの種類"
 
-#: hmib.php:193 hmib.php:214 hmib.php:236 hmib.php:275 hmib.php:524
-#: hmib.php:545 hmib.php:567 hmib.php:606 hmib.php:874 hmib.php:894
-#: hmib.php:916 hmib.php:955 hmib.php:1179 hmib.php:1199 hmib.php:1221
-#: hmib.php:1260 hmib.php:1485 hmib.php:1505 hmib.php:1528 hmib.php:1560
-#: hmib.php:1910 hmib.php:1931 hmib.php:1953 hmib.php:1992
+#: hmib.php:192 hmib.php:213 hmib.php:235 hmib.php:274 hmib.php:524
+#: hmib.php:545 hmib.php:567 hmib.php:606 hmib.php:875 hmib.php:895
+#: hmib.php:917 hmib.php:956 hmib.php:1181 hmib.php:1202 hmib.php:1224
+#: hmib.php:1263 hmib.php:1489 hmib.php:1510 hmib.php:1533 hmib.php:1569
+#: hmib.php:1917 hmib.php:1938 hmib.php:1960 hmib.php:1999
 #, fuzzy
 msgid "All"
 msgstr "すべて"
 
-#: hmib.php:210 hmib.php:541 hmib.php:890 hmib.php:1195 hmib.php:1927
+#: hmib.php:209 hmib.php:541 hmib.php:891 hmib.php:1198 hmib.php:1934
 #, fuzzy
 msgid "Device"
 msgstr "デバイス"
 
-#: hmib.php:232 hmib.php:563 hmib.php:912 hmib.php:1217 hmib.php:1501
-#: hmib.php:1949
+#: hmib.php:231 hmib.php:563 hmib.php:913 hmib.php:1220 hmib.php:1506
+#: hmib.php:1956
 #, fuzzy
 msgid "Template"
 msgstr "テンプレート"
 
-#: hmib.php:255 hmib.php:586 hmib.php:935 hmib.php:1240 hmib.php:1540
-#: hmib.php:1972 hmib.php:2310 hmib.php:2493 hmib_types.php:934
-#: hmib_types.php:1002
+#: hmib.php:255 hmib.php:587 hmib.php:937 hmib.php:1244 hmib.php:1550
+#: hmib.php:1980 hmib.php:2319 hmib.php:2502 hmib_types.php:915
+#: hmib_types.php:984
 #, fuzzy
 msgid "Go"
 msgstr "Go"
 
-#: hmib.php:258 hmib.php:589 hmib.php:938 hmib.php:1243 hmib.php:1543
-#: hmib.php:1975 hmib.php:2313 hmib.php:2496 hmib_types.php:1005
+#: hmib.php:256 hmib.php:588 hmib.php:938 hmib.php:1245 hmib.php:1551
+#: hmib.php:1981 hmib.php:2320 hmib.php:2503 hmib_types.php:985
 #, fuzzy
 msgid "Clear"
 msgstr "クリア"
 
-#: hmib.php:265 hmib.php:596 hmib.php:945 hmib.php:1250 hmib.php:1550
-#: hmib.php:1982 hmib.php:2475 hmib_types.php:981
+#: hmib.php:264 hmib.php:596 hmib.php:946 hmib.php:1253 hmib.php:1559
+#: hmib.php:1989 hmib.php:2483 hmib_types.php:962
 #, fuzzy
 msgid "Search"
 msgstr "検索"
 
-#: hmib.php:271 hmib.php:379 hmib.php:602 hmib.php:721 hmib.php:1524
+#: hmib.php:270 hmib.php:373 hmib.php:602 hmib.php:716 hmib.php:1529
 #, fuzzy
 msgid "Process"
 msgstr "手順"
 
-#: hmib.php:291 hmib.php:622 hmib.php:970
+#: hmib.php:290 hmib.php:622 hmib.php:971
 #, fuzzy
 msgid "Entries"
 msgstr "エントリー"
 
-#: hmib.php:295 hmib.php:626 hmib.php:974 hmib.php:1279 hmib.php:1598
-#: hmib.php:2011 hmib_types.php:991
+#: hmib.php:294 hmib.php:626 hmib.php:975 hmib.php:1282 hmib.php:1607
+#: hmib.php:2018 hmib_types.php:972
 #, fuzzy
 msgid "Default"
 msgstr "デフォルト"
 
-#: hmib.php:371
-#, fuzzy
-msgid "History"
-msgstr "履歴"
-
-#: hmib.php:378 hmib.php:720 hmib.php:1046 hmib.php:1351 hmib.php:1673
-#: hmib.php:2084
+#: hmib.php:372 hmib.php:715 hmib.php:1042 hmib.php:1349 hmib.php:1674
+#: hmib.php:2085
 #, fuzzy
 msgid "Hostname"
 msgstr "ホスト名"
 
-#: hmib.php:380
+#: hmib.php:374
 #, fuzzy
 msgid "Last Seen"
 msgstr "最後に見たのは"
 
-#: hmib.php:381
+#: hmib.php:375
 #, fuzzy
 msgid "Use Time (d:h:m)"
 msgstr "使用時間（d：h：m）"
 
-#: hmib.php:390 hmib.php:736 hmib.php:1059 hmib.php:1367 hmib.php:1744
-#: hmib.php:2096
+#: hmib.php:378
+#, fuzzy
+msgid "History"
+msgstr "履歴"
+
+#: hmib.php:390 hmib.php:737 hmib.php:1061 hmib.php:1371 hmib.php:1751
+#: hmib.php:2104
 #, fuzzy
 msgid "Edit Device"
 msgstr "デバイスを編集"
@@ -186,442 +186,442 @@ msgstr "プロセス履歴が見つかりません"
 msgid "Running Processes"
 msgstr "実行中のプロセス"
 
-#: hmib.php:713 hmib.php:1679 hmib.php:2127 hmib.php:2552
-#, fuzzy
-msgid "Processes"
-msgstr "プロセッサー"
-
-#: hmib.php:722
+#: hmib.php:717
 #, fuzzy
 msgid "Path"
 msgstr "データソースのパス"
 
-#: hmib.php:723
+#: hmib.php:718
 #, fuzzy
 msgid "Parameters"
 msgstr "パラメータ"
 
-#: hmib.php:724
+#: hmib.php:719
 #, fuzzy
 msgid "CPU (Hrs)"
 msgstr "CPU（時間）"
 
-#: hmib.php:725
+#: hmib.php:720
 #, fuzzy
 msgid "Memory (MB)"
 msgstr "メモリ（MB）"
 
-#: hmib.php:726 hmib.php:951 hmib.php:1256 hmib.php:1988 hmib.php:2086
-#: hmib.php:2366
+#: hmib.php:721 hmib.php:952 hmib.php:1259 hmib.php:1995 hmib.php:2087
+#: hmib.php:2374
 #, fuzzy
 msgid "Type"
 msgstr "タイプ"
 
-#: hmib.php:727 hmib.php:1049 hmib.php:1556 hmib.php:1674
+#: hmib.php:722 hmib.php:1045 hmib.php:1565 hmib.php:1675
 #, fuzzy
 msgid "Status"
 msgstr "状態"
 
-#: hmib.php:752
+#: hmib.php:725 hmib.php:1680 hmib.php:2135 hmib.php:2561
+#, fuzzy
+msgid "Processes"
+msgstr "プロセッサー"
+
+#: hmib.php:753
 #, fuzzy
 msgid "No Running Software Found"
 msgstr "実行中のソフトウェアが見つかりません"
 
-#: hmib.php:767
+#: hmib.php:768
 #, fuzzy
 msgid "Total CPU [h]:"
 msgstr "合計CPU [h]："
 
-#: hmib.php:768
+#: hmib.php:769
 #, fuzzy
 msgid "Total Size [MB]:"
 msgstr "合計サイズ[MB]："
 
-#: hmib.php:771
+#: hmib.php:772
 #, fuzzy
 msgid "Avg. CPU [h]:"
 msgstr "平均CPU [h]："
 
-#: hmib.php:772
+#: hmib.php:773
 #, fuzzy
 msgid "Avg. Size [MB]:"
 msgstr "平均サイズ[MB]："
 
-#: hmib.php:861
+#: hmib.php:862
 #, fuzzy
 msgid "Hardware Inventory"
 msgstr "ハードウェアインベントリ"
 
-#: hmib.php:1039 hmib.php:1594 hmib.php:1665 hmib.php:2124
-#, fuzzy
-msgid "Devices"
-msgstr "デバイス"
-
-#: hmib.php:1047
+#: hmib.php:1043
 #, fuzzy
 msgid "Hardware Description"
 msgstr "ハードウェアの説明"
 
-#: hmib.php:1048
+#: hmib.php:1044
 #, fuzzy
 msgid "Hardware Type"
 msgstr "ハードウェアの種類"
 
-#: hmib.php:1050 hmib.php:1354
+#: hmib.php:1046 hmib.php:1352
 #, fuzzy
 msgid "Errors"
 msgstr "エラー"
 
-#: hmib.php:1072
+#: hmib.php:1049 hmib.php:1603 hmib.php:1688 hmib.php:2132
+#, fuzzy
+msgid "Devices"
+msgstr "デバイス"
+
+#: hmib.php:1074
 #, fuzzy
 msgid "No Hardware Found"
 msgstr "ハードウェアが見つかりません"
 
-#: hmib.php:1166
+#: hmib.php:1168
 #, fuzzy
 msgid "Storage Inventory"
 msgstr "保管在庫"
 
-#: hmib.php:1275 hmib.php:1344
+#: hmib.php:1278 hmib.php:1359
 #, fuzzy
 msgid "Volumes"
 msgstr "ボリューム"
 
-#: hmib.php:1352
+#: hmib.php:1350
 #, fuzzy
 msgid "Storage Description"
 msgstr "ストレージの説明"
 
-#: hmib.php:1353
+#: hmib.php:1351
 #, fuzzy
 msgid "Storage Type"
 msgstr "保管タイプ"
 
-#: hmib.php:1355
+#: hmib.php:1353
 #, fuzzy
 msgid "Percent Used"
 msgstr "使用率"
 
-#: hmib.php:1356
+#: hmib.php:1354
 #, fuzzy
 msgid "Used (MB)"
 msgstr "使用済み（MB）"
 
-#: hmib.php:1357
+#: hmib.php:1355
 #, fuzzy
 msgid "Total (MB)"
 msgstr "合計（MB）"
 
-#: hmib.php:1358
+#: hmib.php:1356
 #, fuzzy
 msgid "Alloc (KB)"
 msgstr "割り当て（KB）"
 
-#: hmib.php:1383
+#: hmib.php:1387
 #, fuzzy
 msgid "No Storage Devices Found"
 msgstr "ストレージデバイスが見つかりません"
 
-#: hmib.php:1472
+#: hmib.php:1476
 #, fuzzy
 msgid "Device Filter"
 msgstr "デバイスフィルタ"
 
-#: hmib.php:1578 hmib.php:2369
+#: hmib.php:1587 hmib.php:2377
 #, fuzzy
 msgid "Recovering"
 msgstr "回復"
 
-#: hmib.php:1581 hmib.php:2368
+#: hmib.php:1590 hmib.php:2376
 #, fuzzy
 msgid "Up"
 msgstr "上"
 
-#: hmib.php:1584 hmib.php:2371 setup.php:504
+#: hmib.php:1593 hmib.php:2379 setup.php:504
 #, fuzzy
 msgid "Disabled"
 msgstr "無効"
 
-#: hmib.php:1672 hmib.php:2365 hmib.php:2548 setup.php:604
+#: hmib.php:1673 hmib.php:2373 hmib.php:2557 setup.php:604
 #, fuzzy
 msgid "Actions"
 msgstr "操作"
 
-#: hmib.php:1675
+#: hmib.php:1676
 #, fuzzy
 msgid "Uptime(d:h:m)"
 msgstr "稼働時間（d：h：m）"
 
-#: hmib.php:1676
+#: hmib.php:1677
 #, fuzzy
 msgid "Users"
 msgstr "ユーザー"
 
-#: hmib.php:1677
+#: hmib.php:1678
 #, fuzzy
 msgid "CPU %"
 msgstr "CPU ％"
 
-#: hmib.php:1678
+#: hmib.php:1679
 #, fuzzy
 msgid "CPUs"
 msgstr "CPU"
 
-#: hmib.php:1680
+#: hmib.php:1681
 #, fuzzy
 msgid "Total Mem"
 msgstr "合計メモリ"
 
-#: hmib.php:1681
+#: hmib.php:1682
 #, fuzzy
 msgid "Used Mem"
 msgstr "使用されたMem"
 
-#: hmib.php:1682
+#: hmib.php:1683
 #, fuzzy
 msgid "Total Swap"
 msgstr "合計スワップ"
 
-#: hmib.php:1683
+#: hmib.php:1684
 #, fuzzy
 msgid "Used Swap"
 msgstr "中古スワップ"
 
-#: hmib.php:1729 hmib.php:2405
+#: hmib.php:1736 hmib.php:2413
 #, fuzzy
 msgid "View Storage"
 msgstr "ストレージを見る"
 
-#: hmib.php:1730 hmib.php:2406
+#: hmib.php:1737 hmib.php:2414
 #, fuzzy
 msgid "View Hardware"
 msgstr "ハードウェアを見る"
 
-#: hmib.php:1731 hmib.php:2407 hmib.php:2578
+#: hmib.php:1738 hmib.php:2415 hmib.php:2587
 #, fuzzy
 msgid "View Processes"
 msgstr "プロセスを表示"
 
-#: hmib.php:1732 hmib.php:2408
+#: hmib.php:1739 hmib.php:2416
 #, fuzzy
 msgid "View Software Inventory"
 msgstr "ソフトウェアインベントリを表示する"
 
-#: hmib.php:1734 hmib.php:2646 hmib.php:2648 hmib.php:2694 hmib.php:2696
+#: hmib.php:1741 hmib.php:2655 hmib.php:2657 hmib.php:2703 hmib.php:2705
 #, fuzzy
 msgid "View Graphs"
 msgstr "グラフを表示する"
 
-#: hmib.php:1736
+#: hmib.php:1743
 #, fuzzy
 msgid "No Graphs Defined"
 msgstr "グラフが定義されていません"
 
-#: hmib.php:1764
+#: hmib.php:1771
 #, fuzzy
 msgid "No Devices Found"
 msgstr "デバイスが見つかりません"
 
-#: hmib.php:1897
+#: hmib.php:1904
 #, fuzzy
 msgid "Software Inventory"
 msgstr "ソフトウェアインベントリ"
 
-#: hmib.php:2007 hmib.php:2077
+#: hmib.php:2014 hmib.php:2091
 #, fuzzy
 msgid "Applications"
 msgstr "求人応募"
 
-#: hmib.php:2085
+#: hmib.php:2086
 #, fuzzy
 msgid "Package"
 msgstr "パッケージ"
 
-#: hmib.php:2087
+#: hmib.php:2088
 #, fuzzy
 msgid "Installed"
 msgstr "インストール済み"
 
-#: hmib.php:2108
+#: hmib.php:2116
 #, fuzzy
 msgid "No Software Packages Found"
 msgstr "ソフトウェアパッケージが見つかりません"
 
-#: hmib.php:2123
+#: hmib.php:2131
 #, fuzzy
 msgid "Summary"
 msgstr "概要"
 
-#: hmib.php:2125
+#: hmib.php:2133
 #, fuzzy
 msgid "Storage"
 msgstr "ストレージ"
 
-#: hmib.php:2126
+#: hmib.php:2134
 #, fuzzy
 msgid "Hardware"
 msgstr "ハードウェア"
 
-#: hmib.php:2128
+#: hmib.php:2136
 #, fuzzy
 msgid "Use History"
 msgstr "使用履歴"
 
-#: hmib.php:2129
+#: hmib.php:2137
 #, fuzzy
 msgid "Inventory"
 msgstr "在庫"
 
-#: hmib.php:2130 hmib.php:2813
+#: hmib.php:2138 hmib.php:2822
 #, fuzzy
 msgid "Graphs"
 msgstr "グラフ"
 
-#: hmib.php:2289
+#: hmib.php:2297
 #, fuzzy
 msgid "Summary Filter"
 msgstr "サマリフィルタ"
 
-#: hmib.php:2298 hmib.php:2481
+#: hmib.php:2306 hmib.php:2489
 #, fuzzy
 msgid "Top"
 msgstr "上"
 
-#: hmib.php:2302 hmib.php:2485
+#: hmib.php:2310 hmib.php:2493
 #, fuzzy
 msgid "All Records"
 msgstr "全レコード"
 
-#: hmib.php:2303 hmib.php:2486 hmib.php:2487 hmib.php:2488 hmib.php:2489
+#: hmib.php:2311 hmib.php:2494 hmib.php:2495 hmib.php:2496 hmib.php:2497
 #, fuzzy, php-format
 msgid "%d Records"
 msgstr "％d件のレコード"
 
-#: hmib.php:2304 hmib.php:2305 hmib.php:2306
+#: hmib.php:2312 hmib.php:2313 hmib.php:2314
 #, fuzzy, php-format
 msgid "%d Record"
 msgstr "％dレコード"
 
-#: hmib.php:2316 hmib.php:2499
+#: hmib.php:2324 hmib.php:2507
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
 msgstr ""
 
-#: hmib.php:2327
+#: hmib.php:2335
 #, fuzzy
 msgid "Device Type Summary Statistics"
 msgstr "装置タイプ要約統計"
 
-#: hmib.php:2367 hmib_types.php:758
+#: hmib.php:2375 hmib_types.php:737
 #, fuzzy
 msgid "Version"
 msgstr "バージョン"
 
-#: hmib.php:2372
+#: hmib.php:2380
 #, fuzzy
 msgid "Logins"
 msgstr "ログイン"
 
-#: hmib.php:2373
+#: hmib.php:2381
 #, fuzzy
 msgid "CPUS"
 msgstr "CPUS"
 
-#: hmib.php:2374 hmib.php:2553
+#: hmib.php:2382 hmib.php:2562
 #, fuzzy
 msgid "Avg CPU"
 msgstr "平均CPU"
 
-#: hmib.php:2375 hmib.php:2554
+#: hmib.php:2383 hmib.php:2563
 #, fuzzy
 msgid "Max CPU"
 msgstr "最大CPU"
 
-#: hmib.php:2376
+#: hmib.php:2384
 #, fuzzy
 msgid "Avg Mem"
 msgstr "平均メモリー"
 
-#: hmib.php:2377
+#: hmib.php:2385
 #, fuzzy
 msgid "Max Mem"
 msgstr "マックスメモ"
 
-#: hmib.php:2378
+#: hmib.php:2386
 #, fuzzy
 msgid "Avg Swap"
 msgstr "平均スワップ"
 
-#: hmib.php:2379
+#: hmib.php:2387
 #, fuzzy
 msgid "Max Swap"
 msgstr "マックススワップ"
 
-#: hmib.php:2380
+#: hmib.php:2388
 #, fuzzy
 msgid "Avg Proc"
 msgstr "平均処理"
 
-#: hmib.php:2381
+#: hmib.php:2389
 #, fuzzy
 msgid "Max Proc"
 msgstr "マックスプロック"
 
-#: hmib.php:2404 hmib.php:2577 hmib.php:2603
+#: hmib.php:2412 hmib.php:2586 hmib.php:2612
 #, fuzzy
 msgid "View Devices"
 msgstr "デバイスを見る"
 
-#: hmib.php:2437
+#: hmib.php:2445
 #, fuzzy
 msgid "No Device Types"
 msgstr "デバイスタイプなし"
 
-#: hmib.php:2442
+#: hmib.php:2450
 #, fuzzy
 msgid "Process Summary Filter"
 msgstr "プロセスサマリフィルタ"
 
-#: hmib.php:2510
+#: hmib.php:2518
 #, fuzzy
 msgid "Process Summary Statistics"
 msgstr "プロセス要約統計"
 
-#: hmib.php:2549
+#: hmib.php:2558
 #, fuzzy
 msgid "Process Name"
 msgstr "プロセス名"
 
-#: hmib.php:2550
+#: hmib.php:2559
 #, fuzzy
 msgid "Num Paths"
 msgstr "パス数"
 
-#: hmib.php:2551 hmib_types.php:884
+#: hmib.php:2560 hmib_types.php:864
 #, fuzzy
 msgid "Hosts"
 msgstr "ホスト"
 
-#: hmib.php:2555
+#: hmib.php:2564
 #, fuzzy
 msgid "Avg Memory"
 msgstr "平均メモリ"
 
-#: hmib.php:2556
+#: hmib.php:2565
 #, fuzzy
 msgid "Max Memory"
 msgstr "最大メモリ"
 
-#: hmib.php:2593
+#: hmib.php:2602
 #, fuzzy
 msgid "No Processes"
 msgstr "プロセッサー"
 
-#: hmib.php:2739
+#: hmib.php:2748
 #, fuzzy
 msgid "Custom Graph List Applied - Filtering from List"
 msgstr "カスタムグラフリストの適用 - リストからのフィルタリング"
 
-#: hmib.php:2739
+#: hmib.php:2748
 #, fuzzy
 msgid "Graph Preview Filters"
 msgstr "グラフプレビューフィルタ"
@@ -682,54 +682,54 @@ msgstr "ホストタイプが重複しています"
 msgid "You must select at least one Host Type."
 msgstr "少なくとも1つのホストタイプを選択する必要があります。"
 
-#: hmib_types.php:352
+#: hmib_types.php:351
 #, fuzzy
 msgid "New Type"
 msgstr "新しいタイプ"
 
-#: hmib_types.php:397
+#: hmib_types.php:396
 #, fuzzy, php-format
 msgid "There were %d Device Types Added!"
 msgstr "％d個のデバイスタイプが追加されました。"
 
-#: hmib_types.php:400
+#: hmib_types.php:399
 #, fuzzy
 msgid "No New Host Types Found!"
 msgstr "新しいホストタイプは見つかりませんでした。"
 
-#: hmib_types.php:411
+#: hmib_types.php:410
 #, fuzzy
 msgid "Import Results"
 msgstr "読み込み結果"
 
-#: hmib_types.php:413
+#: hmib_types.php:412
 #, fuzzy
 msgid "Cacti has imported the following items:"
 msgstr "Cactiは以下の商品を輸入しています："
 
-#: hmib_types.php:425
+#: hmib_types.php:424
 #, fuzzy
 msgid "Import Host MIB OS Types"
 msgstr "ホストMIB OSタイプのインポート"
 
-#: hmib_types.php:428
+#: hmib_types.php:427
 #, fuzzy
 msgid "Import Device Types from Local File"
 msgstr "ローカルファイルからのデバイスタイプのインポート"
 
-#: hmib_types.php:429
+#: hmib_types.php:428
 #, fuzzy
 msgid ""
 "Please specify the location of the CSV file containing your device type "
 "information."
 msgstr "デバイスタイプ情報を含むCSVファイルの場所を指定してください。"
 
-#: hmib_types.php:436
+#: hmib_types.php:435
 #, fuzzy
 msgid "Overwrite Existing Data?"
 msgstr "既存のデータを上書きしますか？"
 
-#: hmib_types.php:437
+#: hmib_types.php:436
 #, fuzzy
 msgid ""
 "Should the import process be allowed to overwrite existing data?  Please "
@@ -739,53 +739,53 @@ msgstr ""
 "注意してください、これは古い行を削除することを意味するのではなく、重複する行"
 "を置き換えるだけです。"
 
-#: hmib_types.php:440
+#: hmib_types.php:439
 #, fuzzy
 msgid "Allow Existing Rows to be Updated?"
 msgstr "既存の行を更新することを許可しますか？"
 
-#: hmib_types.php:445
+#: hmib_types.php:444
 #, fuzzy
 msgid "Required File Format Notes"
 msgstr "必要なファイル形式"
 
-#: hmib_types.php:448
+#: hmib_types.php:447
 #, fuzzy
 msgid "The file must contain a header row with the following column headings."
 msgstr ""
 "ファイルには、次の列見出しを持つヘッダー行が含まれている必要があります。"
 
-#: hmib_types.php:450
+#: hmib_types.php:449
 #, fuzzy
 msgid "A common name for the Host Type.  For example, Windows 7"
 msgstr "ホストタイプの共通名。たとえば、Windows 7"
 
-#: hmib_types.php:451
+#: hmib_types.php:450
 #, fuzzy
 msgid "The OS version for the Host Type"
 msgstr "ホストタイプのOSバージョン"
 
-#: hmib_types.php:452
+#: hmib_types.php:451
 #, fuzzy
 msgid ""
 "A unique set of characters from the snmp sysDescr that uniquely identify "
 "this device"
 msgstr "このデバイスを一意に識別する、snmp sysDescrからの固有の文字セット"
 
-#: hmib_types.php:453
+#: hmib_types.php:452
 #, fuzzy
 msgid ""
 "The vendor specific snmp sysObjectID that distinguishes this device from the "
 "next"
 msgstr "このデバイスと次のデバイスを区別するベンダー固有のsnmp sysObjectID"
 
-#: hmib_types.php:455
+#: hmib_types.php:454
 #, fuzzy
 msgid ""
 "The primary key for this table is a combination of the following two fields:"
 msgstr "このテーブルの主キーは、次の2つのフィールドの組み合わせです。"
 
-#: hmib_types.php:459
+#: hmib_types.php:458
 #, fuzzy
 msgid ""
 "Therefore, if you attempt to import duplicate device types, the existing "
@@ -794,7 +794,7 @@ msgstr ""
 "したがって、重複したデバイスタイプをインポートしようとすると、既存のデータが"
 "新しい情報で更新されます。"
 
-#: hmib_types.php:461
+#: hmib_types.php:460
 #, fuzzy
 msgid ""
 "The Host Type is determined by scanning its snmp agent for the sysObjectID "
@@ -811,40 +811,30 @@ msgstr ""
 
 #: hmib_types.php:726
 #, fuzzy
-msgid "Are You Sure?"
-msgstr "本当にしますか?"
-
-#: hmib_types.php:726
-#, fuzzy, php-format
-msgid "Are you sure you want to delete the Host Type'%s'"
-msgstr "ホストタイプ '％s'を削除してもよろしいですか？"
-
-#: hmib_types.php:747
-#, fuzzy
 msgid "Device Scanning Function Options"
 msgstr "デバイススキャン機能のオプション"
 
-#: hmib_types.php:751
+#: hmib_types.php:730
 #, fuzzy
 msgid "Name"
 msgstr "名前"
 
-#: hmib_types.php:752
+#: hmib_types.php:731
 #, fuzzy
 msgid "Give this Host Type a meaningful name."
 msgstr "このホストタイプにわかりやすい名前を付けます。"
 
-#: hmib_types.php:759
+#: hmib_types.php:738
 #, fuzzy
 msgid "Fill in the name for the version of this Host Type."
 msgstr "このホストタイプのバージョンの名前を入力してください。"
 
-#: hmib_types.php:766
+#: hmib_types.php:745
 #, fuzzy
 msgid "System Description Match"
 msgstr "システム記述の一致"
 
-#: hmib_types.php:767 hmib_types.php:774
+#: hmib_types.php:746 hmib_types.php:753
 #, fuzzy, php-format
 msgid ""
 "Provide key information to help HMIB detect the type of Host.  SQL Where "
@@ -855,100 +845,105 @@ msgstr ""
 "サポートされています。 SQLここで、ワイルドカード文字は '％'記号です。互換性の"
 "問題により、正規表現は削除されました。"
 
-#: hmib_types.php:773
+#: hmib_types.php:752
 #, fuzzy
 msgid "Vendor snmp Object ID"
 msgstr "ベンダーsnmpオブジェクトID"
 
-#: hmib_types.php:794
+#: hmib_types.php:773
 #, fuzzy, php-format
 msgid "Host MIB OS Types [edit: %s]"
 msgstr "ホストMIBのOSタイプ[編集：％s]"
 
-#: hmib_types.php:796
+#: hmib_types.php:775
 #, fuzzy
 msgid "Host MIB OS Types [new]"
 msgstr "ホストMIBのOSタイプ[new]"
 
-#: hmib_types.php:861
+#: hmib_types.php:841
 #, fuzzy
 msgid "Host MIB OS Type Filters"
 msgstr "ホストMIB OSタイプフィルタ"
 
-#: hmib_types.php:873 setup.php:587
+#: hmib_types.php:853 setup.php:587
 #, fuzzy
 msgid "OS Types"
 msgstr "OSの種類"
 
-#: hmib_types.php:882
+#: hmib_types.php:862
 #, fuzzy
 msgid "Host Type Name"
 msgstr "ホストタイプ名"
 
-#: hmib_types.php:883
+#: hmib_types.php:863
 #, fuzzy
 msgid "OS Version"
 msgstr "OSのバージョン"
 
-#: hmib_types.php:885
+#: hmib_types.php:865
 #, fuzzy
 msgid "SNMP ObjectID"
 msgstr "SNMPオブジェクトID"
 
-#: hmib_types.php:886
+#: hmib_types.php:866
 #, fuzzy
 msgid "SNMP Sys Description Match"
 msgstr "SNMPシステム記述の一致"
 
-#: hmib_types.php:902
+#: hmib_types.php:883
 #, fuzzy
 msgid "No Host Types Found"
 msgstr "ホストタイプが見つかりません"
 
-#: hmib_types.php:930
+#: hmib_types.php:911
 #, fuzzy
 msgid "Choose an action:"
 msgstr "アクションを選択してください。"
 
-#: hmib_types.php:1008
+#: hmib_types.php:986
 #, fuzzy
 msgid "Rescan"
 msgstr "再スキャン"
 
-#: hmib_types.php:1008
+#: hmib_types.php:986
 #, fuzzy
 msgid "Scan for New or Unknown Device Types"
 msgstr "新規または未知のデバイスタイプをスキャンする"
 
-#: hmib_types.php:1011 setup.php:606
+#: hmib_types.php:987 setup.php:606
 #, fuzzy
 msgid "Import"
 msgstr "インポート"
 
-#: hmib_types.php:1011
+#: hmib_types.php:987
 #, fuzzy
 msgid "Import Host Types from a CSV File"
 msgstr "CSVファイルからホストタイプをインポートする"
 
-#: hmib_types.php:1014
+#: hmib_types.php:988
 #, fuzzy
 msgid "Export"
 msgstr "エクスポート"
 
-#: hmib_types.php:1014
+#: hmib_types.php:988
 #, fuzzy
 msgid "Export Host Types to Share with Others"
 msgstr "ホストタイプをエクスポートして他のユーザーと共有する"
 
 #: setup.php:38
 #, fuzzy
-msgid "Plugin -> Host MIB Viewer"
+msgid "Host MIB Viewer"
 msgstr "プラグイン - >ホストMIBビューア"
 
 #: setup.php:39
 #, fuzzy
-msgid "Plugin -> Host MIB Admin"
+msgid "Host MIB Admin"
 msgstr "プラグイン - >ホストMIB管理"
+
+#: setup.php:353
+#, fuzzy
+msgid "Host MIB"
+msgstr "ホストMIBグラフ"
 
 #: setup.php:356
 #, fuzzy
@@ -1235,6 +1230,14 @@ msgstr "ホストMIBのOSタイプ"
 #, fuzzy
 msgid "(Edit)"
 msgstr "(編集)"
+
+#, fuzzy
+#~ msgid "Are You Sure?"
+#~ msgstr "本当にしますか?"
+
+#, fuzzy
+#~ msgid "Are you sure you want to delete the Host Type'%s'"
+#~ msgstr "ホストタイプ '％s'を削除してもよろしいですか？"
 
 #, fuzzy
 #~ msgid "Time when last seen running"

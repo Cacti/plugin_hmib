@@ -69,6 +69,10 @@ GitHub.
 
 * feature: PHP 7.2 compability
 
+* issue: Update language support
+
+* issue: Correct some stored XSS issues
+
 --- 3.1 ---
 
 * feature: More of the user interface using ajax callbacks

@@ -1,7 +1,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2017 The Cacti Group                                 |
+ | Copyright (C) 2004-2020 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -13,7 +13,7 @@
  | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           |
  | GNU General Public License for more details.                            |
  +-------------------------------------------------------------------------+
- | Cacti: The Complete RRDTool-based Graphing Solution                     |
+ | Cacti: The Complete RRDtool-based Graphing Solution                     |
  +-------------------------------------------------------------------------+
  | This code is designed, written, and maintained by the Cacti Group. See  |
  | about.php and/or the AUTHORS file for specific developer information.   |
@@ -27,8 +27,8 @@ include('./include/auth.php');
 include_once('./lib/snmp.php');
 
 $host_types_actions = array(
-	1 => __('Delete'),
-	2 => __('Duplicate')
+	1 => __('Delete', 'hmib'),
+	2 => __('Duplicate', 'hmib')
 );
 
 /* set default action */
@@ -60,13 +60,13 @@ default:
 		rescan_types();
 		header('Location: hmib_types.php?header=false');
 		exit;
-	}elseif (isset_request_var('import')) {
+	} elseif (isset_request_var('import')) {
 		header('Location: hmib_types.php?action=import');
 		exit;
-	}elseif (isset_request_var('export')) {
+	} elseif (isset_request_var('export')) {
 		hmib_host_type_export();
 		exit;
-	}else{
+	} else {
 		top_header();
 		hmib_host_type();
 		bottom_footer();
@@ -95,10 +95,10 @@ function form_save() {
 
 			/* obtain debug information if it's set */
 			$debug_data = hmib_host_type_import_processor($csv_data);
-			if(sizeof($debug_data) > 0) {
+			if (cacti_sizeof($debug_data) > 0) {
 				$_SESSION['import_debug_info'] = $debug_data;
 			}
-		}else{
+		} else {
 			header('Location: hmib_types.php?action=import');
 			exit;
 		}
@@ -107,7 +107,7 @@ function form_save() {
 	}
 }
 
-function api_hmib_host_type_remove($host_type_id){
+function api_hmib_host_type_remove($host_type_id) {
 	db_execute_prepared('DELETE FROM plugin_hmib_hrSystemTypes WHERE id = ?', array($host_type_id));
 	db_execute_prepared('UPDATE plugin_hmib_hrSystem SET host_type=0 WHERE host_type = ?', array($host_type_id));
 }
@@ -127,11 +127,11 @@ function hmib_host_type_save($host_type_id, $name, $version, $sysDescrMatch, $sy
 
 			if ($host_type_id) {
 				raise_message(1);
-			}else{
+			} else {
 				raise_message(2);
 			}
 		}
-	}else{
+	} else {
 		db_execute_prepared('UPDATE plugin_hmib_hrSystemTypes SET
 			name = ?, version = ?, sysDescrMatch = ?, sysObjectID = ? WHERE id = ?', array($name, $version, $sysDescrMatch, $sysObjectID, $host_type_id));
 
@@ -153,7 +153,7 @@ function hmib_duplicate_host_type($host_type_id, $dup_id, $host_type_title) {
 		if (substr_count($host_type_title, '<description>')) {
 			/* substitute the title variable */
 			$save['name'] = str_replace('<description>', $host_type['name'], $host_type_title);
-		}else{
+		} else {
 			$save['name'] = $host_type_title . '(' . $dup_id . ')';
 		}
 
@@ -185,7 +185,7 @@ function form_actions() {
 				foreach($selected_items as $item) {
 					api_hmib_host_type_remove($item);
 				}
-			}elseif (get_request_var('drp_action') == '2') { /* duplicate */
+			} elseif (get_request_var('drp_action') == '2') { /* duplicate */
 				foreach($selected_items as $item) {
 					hmib_duplicate_host_type($item, $i, get_request_var('title_format'));
 				}
@@ -200,7 +200,7 @@ function form_actions() {
 	$host_types_list = ''; $i = 0;
 
 	/* loop through each of the device types selected on the previous page and get more info about them */
-	foreach ($_POST as $var => $val) {
+	while (list($var,$val) = each($_POST)) {
 		if (preg_match('/^chk_([0-9]+)$/', $var, $matches)) {
 			/* ================= input validation ================= */
 			input_validate_input_number($matches[1]);
@@ -223,28 +223,28 @@ function form_actions() {
 	if (get_filter_request_var('drp_action') == '1') { /* delete */
 		print "	<tr>
 				<td class='textArea'>
-					<p>" . __('Click \'Continue\' to Delete the following Host Type(s)') . "</p>
+					<p>" . __('Click \'Continue\' to Delete the following Host Type(s)', 'hmib') . "</p>
 					<p><ul>$host_types_list</ul></p>
 				</td>
 			</tr>\n";
 
-		$save_html = "<input type='button' value='" . __('Cancel') . "' onClick='cactiReturnTo()'>&nbsp;<input type='submit' value='" . __('Continue') . "' title='" . __('Delete Host Type(s)') . "'>";
-	}elseif (get_filter_request_var('drp_action') == '2') { /* duplicate */
+		$save_html = "<input type='button' value='" . __('Cancel', 'hmib') . "' onClick='cactiReturnTo()'>&nbsp;<input type='submit' value='" . __('Continue', 'hmib') . "' title='" . __('Delete Host Type(s)', 'hmib') . "'>";
+	} elseif (get_filter_request_var('drp_action') == '2') { /* duplicate */
 		print "	<tr>
 				<td class='textArea'>
-					<p>" . __('Click \'Continue\' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix.') . "</p>
+					<p>" . __('Click \'Continue\' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix.', 'hmib') . "</p>
 					<p><ul>$host_types_list</ul></p>
-					<p><strong>" . __('Host Type Prefix:') . "</strong><br>"; form_text_box('title_format', '<description> (1)', '', '255', '30', 'text'); print "</p>
+					<p><strong>" . __('Host Type Prefix:', 'hmib') . "</strong><br>"; form_text_box('title_format', '<description> (1)', '', '255', '30', 'text'); print "</p>
 				</td>
 			</tr>\n";
 
-		$save_html = "<input type='button' value='" . __('Cancel') . "' onClick='cactiReturnTo()'>&nbsp;<input type='submit' value='" . __('Continue') . "' title='" . __('Duplicate Host Type(s)') . "'>";
+		$save_html = "<input type='button' value='" . __('Cancel', 'hmib') . "' onClick='cactiReturnTo()'>&nbsp;<input type='submit' value='" . __('Continue', 'hmib') . "' title='" . __('Duplicate Host Type(s)', 'hmib') . "'>";
 	}
 
 	if (!isset($host_types_array)) {
-		print "<tr><td class='odd'><span class='textError'>" . __('You must select at least one Host Type.') . "</span></td></tr>\n";
-		$save_html = "<input type='button' value='" . __('Cancel') . "' onClick='cactiReturnTo()'>";
-	}else{
+		print "<tr><td class='odd'><span class='textError'>" . __('You must select at least one Host Type.', 'hmib') . "</span></td></tr>\n";
+		$save_html = "<input type='button' value='" . __('Cancel', 'hmib') . "' onClick='cactiReturnTo()'>";
+	} else {
 	}
 
 	print "<tr class='even'>
@@ -319,13 +319,13 @@ function hmib_host_type_export() {
 
 	$sql_where = '';
 
-	$host_types = hmib_get_host_types($sql_where, 0, FALSE);
+	$host_types = hmib_get_host_types($sql_where, 0, false);
 
 	$xport_array = array();
 	array_push($xport_array, '"id","name","version",' .
 		'"sysDescrMatch","sysObjectID"');
 
-	if (sizeof($host_types)) {
+	if (cacti_sizeof($host_types)) {
 		foreach($host_types as $host_type) {
 			array_push($xport_array,'"' .
 			$host_type['id'] . '","' .
@@ -348,8 +348,8 @@ function rescan_types() {
 
 	/* let's allocate an array for results */
 	$insert_array = array();
-	$new_name     = __('New Type');
-	$new_version  = __('Unknown');
+	$new_name     = __('New Type', 'hmib');
+	$new_version  = __('Unknown', 'hmib');
 
 	/* get all the various device types from the database */
 	$unknown_host_types = db_fetch_assoc("SELECT DISTINCT sysObjectID, sysDescr, host_type
@@ -365,24 +365,24 @@ function rescan_types() {
 	$known_types = db_fetch_assoc('SELECT id, sysDescrMatch, sysObjectID FROM plugin_hmib_hrSystemTypes');
 
 	/* loop through all device rows and look for a matching type */
-	if (sizeof($unknown_host_types)) {
-	foreach($unknown_host_types as $type) {
-		$found = FALSE;
-		if (sizeof($known_types)) {
-		foreach($known_types as $known) {
-			db_execute('UPDATE plugin_hmib_hrSystem SET host_type=' . $known['id'] . "
-				WHERE host_type=0 AND (sysObjectID LIKE '%" . $known['sysObjectID'] . "%' AND
-				sysDescr LIKE '%" . $known['sysDescrMatch'] . "%')
-				OR (sysObjectID RLIKE '" . $known['sysObjectID'] . "' AND
-				sysDescr RLIKE '" . $known['sysDescrMatch'] . "')");
+	if (cacti_sizeof($unknown_host_types)) {
+		foreach($unknown_host_types as $type) {
+			$found = false;
+			if (cacti_sizeof($known_types)) {
+				foreach($known_types as $known) {
+					db_execute('UPDATE plugin_hmib_hrSystem SET host_type=' . $known['id'] . "
+						WHERE host_type=0 AND (sysObjectID LIKE '%" . $known['sysObjectID'] . "%' AND
+						sysDescr LIKE '%" . $known['sysDescrMatch'] . "%')
+						OR (sysObjectID RLIKE '" . $known['sysObjectID'] . "' AND
+						sysDescr RLIKE '" . $known['sysDescrMatch'] . "')");
 
-			if (db_affected_rows() > 0) {
-				$found = TRUE;
-				break;
+					if (db_affected_rows() > 0) {
+						$found = true;
+						break;
+					}
+				}
 			}
 		}
-		}
-	}
 	}
 
 	/* update the host types from unknown_host_types that have a value of 0 */
@@ -393,10 +393,10 @@ function rescan_types() {
 	$new_types = db_affected_rows();
 
 	if ($new_types > 0) {
-		$_SESSION['hmib_message'] = __('There were %d Device Types Added!', $new_types);
+		$_SESSION['hmib_message'] = __('There were %d Device Types Added!', $new_types, 'hmib');
 		raise_message('hmib_message');
-	}else{
-		$_SESSION['hmib_message'] = __('No New Host Types Found!');
+	} else {
+		$_SESSION['hmib_message'] = __('No New Host Types Found!', 'hmib');
 		raise_message('hmib_message');
 	}
 }
@@ -407,9 +407,9 @@ function hmib_host_type_import() {
 	?><form method='post' action='hmib_types.php?action=import' enctype='multipart/form-data'><?php
 
 	if ((isset($_SESSION['import_debug_info'])) && (is_array($_SESSION['import_debug_info']))) {
-		html_start_box(__('Import Results'), '100%', '', '3', 'center', '');
+		html_start_box(__('Import Results', 'hmib'), '100%', '', '3', 'center', '');
 
-		print "<tr class='odd'><td><p class='textArea'>" . __('Cacti has imported the following items:') . "</p>";
+		print "<tr class='odd'><td><p class='textArea'>" . __('Cacti has imported the following items:', 'hmib') . "</p>";
 		foreach($_SESSION['import_debug_info'] as $import_result) {
 			form_alternate_row();
 			print '<td>' . $import_result . '</td>';
@@ -421,43 +421,43 @@ function hmib_host_type_import() {
 		kill_session_var('import_debug_info');
 	}
 
-	html_start_box(__('Import Host MIB OS Types'), '100%', '', '3', 'center', '');
+	html_start_box(__('Import Host MIB OS Types', 'hmib'), '100%', '', '3', 'center', '');
 
 	form_alternate_row();?>
-		<td width='50%'><font class='textEditTitle'><?php print __('Import Device Types from Local File');?></font><br>
-			<?php print __('Please specify the location of the CSV file containing your device type information.');?>
+		<td width='50%'><font class='textEditTitle'><?php print __('Import Device Types from Local File', 'hmib');?></font><br>
+			<?php print __('Please specify the location of the CSV file containing your device type information.', 'hmib');?>
 		</td>
 		<td align='left'>
 			<input type='file' name='import_file'>
 		</td>
 	</tr><?php
 	form_alternate_row();?>
-		<td width='50%'><font class='textEditTitle'><?php print __('Overwrite Existing Data?');?></font><br>
-			<?php print __('Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows.');?>
+		<td width='50%'><font class='textEditTitle'><?php print __('Overwrite Existing Data?', 'hmib');?></font><br>
+			<?php print __('Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows.', 'hmib');?>
 		</td>
 		<td align='left'>
-			<input type='checkbox' name='allow_update' id='allow_update'><?php print __('Allow Existing Rows to be Updated?');?>
+			<input type='checkbox' name='allow_update' id='allow_update'><?php print __('Allow Existing Rows to be Updated?', 'hmib');?>
 		</td><?php
 
-	html_end_box(FALSE);
+	html_end_box(false);
 
-	html_start_box(__('Required File Format Notes'), '100%', '', '3', 'center', '');
+	html_start_box(__('Required File Format Notes', 'hmib'), '100%', '', '3', 'center', '');
 
 	form_alternate_row();?>
-		<td><strong><?php print __('The file must contain a header row with the following column headings.');?></strong>
+		<td><strong><?php print __('The file must contain a header row with the following column headings.', 'hmib');?></strong>
 			<br><br>
-			<strong>name</strong> - <?php print __('A common name for the Host Type.  For example, Windows 7');?><br>
-			<strong>version</strong> - <?php print __('The OS version for the Host Type');?><br>
-			<strong>sysDescrMatch</strong> - <?php print __('A unique set of characters from the snmp sysDescr that uniquely identify this device');?><br>
-			<strong>sysObjectID</strong> - <?php print __('The vendor specific snmp sysObjectID that distinguishes this device from the next');?><br>
+			<strong>name</strong> - <?php print __('A common name for the Host Type.  For example, Windows 7', 'hmib');?><br>
+			<strong>version</strong> - <?php print __('The OS version for the Host Type', 'hmib');?><br>
+			<strong>sysDescrMatch</strong> - <?php print __('A unique set of characters from the snmp sysDescr that uniquely identify this device', 'hmib');?><br>
+			<strong>sysObjectID</strong> - <?php print __('The vendor specific snmp sysObjectID that distinguishes this device from the next', 'hmib');?><br>
 			<br>
-			<strong><?php print __('The primary key for this table is a combination of the following two fields:');?></strong>
+			<strong><?php print __('The primary key for this table is a combination of the following two fields:', 'hmib');?></strong>
 			<br><br>
 			sysDescrMatch, sysObjectID
 			<br><br>
-			<strong><?php print __('Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information.');?></strong>
+			<strong><?php print __('Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information.', 'hmib');?></strong>
 			<br><br>
-			<strong><?php print __('The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts.');?></strong>
+			<strong><?php print __('The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts.', 'hmib');?></strong>
 			<br>
 		</td>
 	</tr><?php
@@ -492,7 +492,7 @@ function hmib_host_type_import_processor(&$host_types) {
 		if ($i == 0) {
 			$save_order = '(';
 			$j          = 0;
-			$first_column     = TRUE;
+			$first_column     = true;
 			$update_suffix    = '';
 			$required         = 0;
 
@@ -508,11 +508,11 @@ function hmib_host_type_import_processor(&$host_types) {
 
 						$save_order .= $line_item;
 						$insert_columns[] = $j;
-						$first_column = FALSE;
+						$first_column = false;
 
 						if (strlen($update_suffix)) {
 							$update_suffix .= ", $line_item=VALUES($line_item)";
-						}else{
+						} else {
 							$update_suffix .= " ON DUPLICATE KEY UPDATE $line_item=VALUES($line_item)";
 						}
 
@@ -528,11 +528,11 @@ function hmib_host_type_import_processor(&$host_types) {
 
 						$save_order .= $line_item;
 						$insert_columns[] = $j;
-						$first_column = FALSE;
+						$first_column = false;
 
 						if (strlen($update_suffix)) {
 							$update_suffix .= ", $line_item=VALUES($line_item)";
-						}else{
+						} else {
 							$update_suffix .= " ON DUPLICATE KEY UPDATE $line_item=VALUES($line_item)";
 						}
 
@@ -548,11 +548,11 @@ function hmib_host_type_import_processor(&$host_types) {
 
 						$save_order .= $line_item;
 						$insert_columns[] = $j;
-						$first_column = FALSE;
+						$first_column = false;
 
 						if (strlen($update_suffix)) {
 							$update_suffix .= ", $line_item=VALUES($line_item)";
-						}else{
+						} else {
 							$update_suffix .= " ON DUPLICATE KEY UPDATE $line_item=VALUES($line_item)";
 						}
 
@@ -565,11 +565,11 @@ function hmib_host_type_import_processor(&$host_types) {
 						$save_order .= $line_item;
 						$insert_columns[] = $j;
 						$save_vendor_id = $j;
-						$first_column = FALSE;
+						$first_column = false;
 
 						if (strlen($update_suffix)) {
 							$update_suffix .= ", $line_item=VALUES($line_item)";
-						}else{
+						} else {
 							$update_suffix .= " ON DUPLICATE KEY UPDATE $line_item=VALUES($line_item)";
 						}
 
@@ -582,11 +582,11 @@ function hmib_host_type_import_processor(&$host_types) {
 						$save_order .= $line_item;
 						$insert_columns[] = $j;
 						$save_description_id = $j;
-						$first_column = FALSE;
+						$first_column = false;
 
 						if (strlen($update_suffix)) {
 							$update_suffix .= ", $line_item=VALUES($line_item)";
-						}else{
+						} else {
 							$update_suffix .= " ON DUPLICATE KEY UPDATE $line_item=VALUES($line_item)";
 						}
 
@@ -602,22 +602,22 @@ function hmib_host_type_import_processor(&$host_types) {
 
 			if ($required >= 3) {
 				array_push($return_array, '<strong>HEADER LINE PROCESSED OK</strong>:  <br>Columns found where: ' . $save_order . '<br>');
-			}else{
+			} else {
 				array_push($return_array, '<strong>HEADER LINE PROCESSING ERROR</strong>: Missing required field <br>Columns found where:' . $save_order . '<br>');
 				break;
 			}
-		}else{
+		} else {
 			$save_value = '(';
 			$j = 0;
-			$first_column = TRUE;
+			$first_column = true;
 			$sql_where = '';
 
 			foreach($line_array as $line_item) {
 				if (in_array($j, $insert_columns)) {
 					if (!$first_column) {
 						$save_value .= ',';
-					}else{
-						$first_column = FALSE;
+					} else {
+						$first_column = false;
 					}
 
 					if ($j == $host_type_id || $j == $sysDescrMatch_id || $j == $sysObjectID_id ) {
@@ -635,7 +635,7 @@ function hmib_host_type_import_processor(&$host_types) {
 							default:
 								/* do nothing */
 							}
-						}else{
+						} else {
 							switch($j) {
 							case $host_type_id:
 								$sql_where .= "WHERE id=" . db_qstr($line_item);
@@ -683,22 +683,22 @@ function hmib_host_type_import_processor(&$host_types) {
 
 					if (db_execute($sql_execute)) {
 						array_push($return_array,"INSERT SUCCEEDED: Name: $name, Version: $version, sysDescr: $sysDescrMatch, sysObjectID: $sysObjectID");
-					}else{
+					} else {
 						array_push($return_array,"<strong>INSERT FAILED:</strong> Name: $name, Version: $version, sysDescr: $sysDescrMatch, sysObjectID: $sysObjectID");
 					}
-				}else{
+				} else {
 					/* perform check to see if the row exists */
 					$existing_row = db_fetch_row("SELECT * FROM plugin_hmib_hrSystemTypes $sql_where");
 
-					if (sizeof($existing_row)) {
+					if (cacti_sizeof($existing_row)) {
 						array_push($return_array,"<strong>INSERT SKIPPED, EXISTING:</strong> Name: $name, Vendor: $vendor, sysDescr: $sysDescrMatch, sysObjectID: $sysObjectID");
-					}else{
+					} else {
 						$sql_execute = 'INSERT INTO plugin_hmib_hrSystemTypes ' . $save_order .
 							' VALUES' . $save_value;
 
 						if (db_execute($sql_execute)) {
 							array_push($return_array,"INSERT SUCCEEDED: Name: $name, Version: $version, sysDescr: $sysDescrMatch, sysObjectID: $sysObjectID");
-						}else{
+						} else {
 							array_push($return_array,"<strong>INSERT FAILED:</strong> Name: $name, Version: $version, sysDescr: $sysDescrMatch, sysObjectID: $sysObjectID");
 						}
 					}
@@ -712,26 +712,6 @@ function hmib_host_type_import_processor(&$host_types) {
 	return $return_array;
 }
 
-function hmib_host_type_remove() {
-	global $config;
-
-	/* ================= input validation ================= */
-	get_filter_request_var('id');
-	get_filter_request_var('host_id');
-	/* ==================================================== */
-
-	if ((read_config_option('remove_verification') == 'on') && (!isset_request_var('confirm'))) {
-		top_header();
-		form_confirm(__('Are You Sure?'), __("Are you sure you want to delete the Host Type'%s'", db_fetch_cell('SELECT description FROM host WHERE id=' . get_request_var('host_id'))) . "'</strong>?", 'hmib_types.php', 'hmib_types.php?action=remove&id=' . get_request_var('id'));
-		bottom_footer();
-		exit;
-	}
-
-	if ((read_config_option('remove_verification') == '') || (isset_request_var('confirm'))) {
-		hmib_host_type_remove(get_request_var('id'));
-	}
-}
-
 function hmib_host_type_edit() {
 	global $config;
 
@@ -743,34 +723,34 @@ function hmib_host_type_edit() {
 	$fields_host_type_edit = array(
 	'spacer0' => array(
 		'method' => 'spacer',
-		'friendly_name' => __('Device Scanning Function Options')
+		'friendly_name' => __('Device Scanning Function Options', 'hmib')
 		),
 	'name' => array(
 		'method' => 'textbox',
-		'friendly_name' => __('Name'),
-		'description' => __('Give this Host Type a meaningful name.'),
+		'friendly_name' => __('Name', 'hmib'),
+		'description' => __('Give this Host Type a meaningful name.', 'hmib'),
 		'value' => '|arg1:name|',
 		'max_length' => '250'
 		),
 	'version' => array(
 		'method' => 'textbox',
-		'friendly_name' => __('Version'),
-		'description' => __('Fill in the name for the version of this Host Type.'),
+		'friendly_name' => __('Version', 'hmib'),
+		'description' => __('Fill in the name for the version of this Host Type.', 'hmib'),
 		'value' => '|arg1:version|',
 		'max_length' => '10',
 		'size' => '10'
 		),
 	'sysDescrMatch' => array(
 		'method' => 'textbox',
-		'friendly_name' => __('System Description Match'),
-		'description' => __('Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the \'%\' sign. Regular Expressions have been removed due to compatibility issues.'),
+		'friendly_name' => __('System Description Match', 'hmib'),
+		'description' => __('Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the \'%\' sign. Regular Expressions have been removed due to compatibility issues.', 'hmib'),
 		'value' => '|arg1:sysDescrMatch|',
 		'max_length' => '250'
 		),
 	'sysObjectID' => array(
 		'method' => 'textbox',
-		'friendly_name' => __('Vendor snmp Object ID'),
-		'description' => __('Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the \'%\' sign. Regular Expressions have been removed due to compatibility issues.'),
+		'friendly_name' => __('Vendor snmp Object ID', 'hmib'),
+		'description' => __('Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the \'%\' sign. Regular Expressions have been removed due to compatibility issues.', 'hmib'),
 		'value' => '|arg1:sysObjectID|',
 		'max_length' => '250'
 		),
@@ -790,9 +770,9 @@ function hmib_host_type_edit() {
 
 	if (!isempty_request_var('id')) {
 		$host_type = db_fetch_row('SELECT * FROM plugin_hmib_hrSystemTypes WHERE id=' . get_filter_request_var('id'));
-		$header_label = __('Host MIB OS Types [edit: %s]', $host_type['name']);
-	}else{
-		$header_label = __('Host MIB OS Types [new]');
+		$header_label = __esc('Host MIB OS Types [edit: %s]', $host_type['name'], 'hmib');
+	} else {
+		$header_label = __('Host MIB OS Types [new]', 'hmib');
 	}
 
 	form_start('hmib_types.php');
@@ -810,12 +790,12 @@ function hmib_host_type_edit() {
 
 	if (isset($host_type)) {
 		form_save_button('hmib_types.php', 'save', '', 'id');
-	}else{
+	} else {
 		form_save_button('cancel', 'save', '', 'id');
 	}
 }
 
-function hmib_get_host_types(&$sql_where, $rows, $apply_limits = TRUE) {
+function hmib_get_host_types(&$sql_where, $rows, $apply_limits = true) {
 	if (get_request_var('filter') != '') {
 		$sql_where = ' WHERE (
 			plugin_hmib_hrSystemTypes.name LIKE '             . db_qstr('%' . get_request_var('filter') . '%') . '
@@ -827,7 +807,7 @@ function hmib_get_host_types(&$sql_where, $rows, $apply_limits = TRUE) {
 	$sql_order = get_order_string();
 	if ($apply_limits) {
 		$sql_limit = ' LIMIT ' . ($rows*(get_request_var('page')-1)) . ',' . $rows;
-	}else{
+	} else {
 		$sql_limit = '';
 	}
 
@@ -852,13 +832,13 @@ function hmib_host_type() {
 
 	if (get_request_var('rows') == -1) {
 		$row_limit = read_config_option('num_rows_table');
-	}elseif (get_request_var('rows') == -2) {
+	} elseif (get_request_var('rows') == -2) {
 		$row_limit = 999999;
-	}else{
+	} else {
 		$row_limit = get_request_var('rows');
 	}
 
-	html_start_box(__('Host MIB OS Type Filters'), '100%', '', '3', 'center', 'hmib_types.php?action=edit');
+	html_start_box(__('Host MIB OS Type Filters', 'hmib'), '100%', '', '3', 'center', 'hmib_types.php?action=edit');
 	hmib_host_type_filter();
 	html_end_box();
 
@@ -870,7 +850,7 @@ function hmib_host_type() {
 		COUNT(*)
 		FROM plugin_hmib_hrSystemTypes' . $sql_where);
 
-	$nav = html_nav_bar('hmib_types.php', MAX_DISPLAY_PAGES, get_request_var('page'), $row_limit, $total_rows, 9, __('OS Types'), 'page', 'main');
+	$nav = html_nav_bar('hmib_types.php', MAX_DISPLAY_PAGES, get_request_var('page'), $row_limit, $total_rows, 9, __('OS Types', 'hmib'), 'page', 'main');
 
 	form_start('hmib_types.php');
 
@@ -879,15 +859,16 @@ function hmib_host_type() {
 	html_start_box('', '100%', '', '3', 'center', '');
 
 	$display_text = array(
-		'name'          => array(__('Host Type Name'), 'ASC'),
-		'version'       => array(__('OS Version'), 'DESC'),
-		'totals'        => array(__('Hosts'), 'DESC'),
-		'sysObjectID'   => array(__('SNMP ObjectID'), 'DESC'),
-		'sysDescrMatch' => array(__('SNMP Sys Description Match'), 'ASC'));
+		'name'          => array(__('Host Type Name', 'hmib'), 'ASC'),
+		'version'       => array(__('OS Version', 'hmib'), 'DESC'),
+		'totals'        => array(__('Hosts', 'hmib'), 'DESC'),
+		'sysObjectID'   => array(__('SNMP ObjectID', 'hmib'), 'DESC'),
+		'sysDescrMatch' => array(__('SNMP Sys Description Match', 'hmib'), 'ASC')
+	);
 
 	html_header_sort_checkbox($display_text, get_request_var('sort_column'), get_request_var('sort_direction'));
 
-	if (sizeof($host_types)) {
+	if (cacti_sizeof($host_types)) {
 		foreach ($host_types as $host_type) {
 			form_alternate_row('line' . $host_type['id'], true);
 			form_selectable_cell('<a class="linkEditMain" href="' . htmlspecialchars('hmib_types.php?action=edit&id=' . $host_type['id']) . '">' . $host_type['name'] . '</a>', $host_type['id']);
@@ -898,13 +879,13 @@ function hmib_host_type() {
 			form_checkbox_cell($host_type['name'], $host_type['id']);
 			form_end_row();
 		}
-	}else{
-		print "<tr><td colspan='10'><em>" . __('No Host Types Found') . "</em></td></tr>";
+	} else {
+		print "<tr><td colspan='10'><em>" . __('No Host Types Found', 'hmib') . "</em></td></tr>";
 	}
 
 	html_end_box(false);
 
-	if (sizeof($host_types)) {
+	if (cacti_sizeof($host_types)) {
 		print $nav;
 	}
 
@@ -924,14 +905,14 @@ function hmib_draw_actions_dropdown($actions_array, $include_form_end = true) {
 	<table align='center' width='100%'>
 		<tr>
 			<td width='1' valign='top'>
-				<img src='<?php echo $config['url_path']; ?>images/arrow.gif' alt='' align='middle'>&nbsp;
+				<img src='<?php print $config['url_path']; ?>images/arrow.gif' alt='' align='middle'>&nbsp;
 			</td>
 			<td align='right'>
-				<?php print __('Choose an action:');?>
+				<?php print __('Choose an action:', 'hmib');?>
 				<?php form_dropdown('drp_action',$actions_array,'','','1','','');?>
 			</td>
 			<td width='1' align='right'>
-				<input type='submit' name='go' value='<?php print __('Go');?>'>
+				<input type='submit' name='go' value='<?php print __('Go', 'hmib');?>'>
 			</td>
 		</tr>
 	</table>
@@ -974,44 +955,38 @@ function hmib_host_type_filter() {
 	<tr class='even'>
 		<td>
 			<form name='form_host_types'>
-			<table>
+			<table class='filterTable'>
 				<tr>
 					</td>
-					<td style='width:55px;'>
-						<?php print __('Search');?>
+					<td>
+						<?php print __('Search', 'hmib');?>
 					</td>
 					<td>
 						<input type='text' id='filter' size='25' value='<?php print html_escape_request_var('filter');?>'>
 					</td>
-					<td style='white-space:nowrap;'>
-						<?php print __('OS Type');?>
+					<td>
+						<?php print __('OS Type', 'hmib');?>
 					</td>
 					<td>
 						<select id='rows' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var_request('rows') == '-1') {?> selected<?php }?>><?php print __('Default');?></option>
+							<option value='-1'<?php if (get_request_var_request('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
 							<?php
-							if (sizeof($item_rows) > 0) {
-							foreach ($item_rows as $key => $value) {
-								print "<option value='" . $key . "'"; if (get_request_var_request('rows') == $key) { print ' selected'; } print '>' . $value . "</option>\n";
-							}
+							if (cacti_sizeof($item_rows) > 0) {
+								foreach ($item_rows as $key => $value) {
+									print "<option value='" . $key . "'"; if (get_request_var_request('rows') == $key) { print ' selected'; } print '>' . $value . "</option>\n";
+								}
 							}
 							?>
 						</select>
 					</td>
 					<td>
-						<input id='refresh' type='button' value='<?php print __('Go');?>' onClick='applyFilter()'>
-					</td>
-					<td>
-						<input id='clear' type='button' value='<?php print __('Clear');?>' onClick='clearFilter()'>
-					</td>
-					<td>
-						<input type='button' title='<?php print __('Scan for New or Unknown Device Types');?>' value='<?php print __('Rescan');?>' onClick='rescanTypes()'>
-					</td>
-					<td>
-						<input type='button' title='<?php print __('Import Host Types from a CSV File');?>' value='<?php print __('Import');?>' onClick='importTypes()'>
-					</td>
-					<td>
-						<input type='submit' name='export' title='<?php print __('Export Host Types to Share with Others');?>' value='<?php print __('Export');?>'>
+						<span>
+							<input id='refresh' type='button' value='<?php print __('Go', 'hmib');?>' onClick='applyFilter()'>
+							<input id='clear' type='button' value='<?php print __('Clear', 'hmib');?>' onClick='clearFilter()'>
+							<input type='button' title='<?php print __('Scan for New or Unknown Device Types', 'hmib');?>' value='<?php print __('Rescan', 'hmib');?>' onClick='rescanTypes()'>
+							<input type='button' title='<?php print __('Import Host Types from a CSV File', 'hmib');?>' value='<?php print __('Import', 'hmib');?>' onClick='importTypes()'>
+							<input type='submit' name='export' title='<?php print __('Export Host Types to Share with Others', 'hmib');?>' value='<?php print __('Export', 'hmib');?>'>
+						</span>
 					</td>
 				</tr>
 			</table>

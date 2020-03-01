@@ -1,7 +1,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2017 The Cacti Group                                 |
+ | Copyright (C) 2004-2020 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -13,7 +13,7 @@
  | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           |
  | GNU General Public License for more details.                            |
  +-------------------------------------------------------------------------+
- | Cacti: The Complete RRDTool-based Graphing Solution                     |
+ | Cacti: The Complete RRDtool-based Graphing Solution                     |
  +-------------------------------------------------------------------------+
  | This code is designed, written, and maintained by the Cacti Group. See  |
  | about.php and/or the AUTHORS file for specific developer information.   |
@@ -332,7 +332,7 @@ function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $pass
 		if (is_array($temp_array) && sizeof($temp_array)) {
 			foreach($temp_array as $key => $value) {
 				foreach($banned_snmp_strings as $item) {
-					if(strstr($value, $item) != '') {
+					if (strstr($value, $item) != '') {
 						unset($temp_array[$key]);
 						continue 2;
 					}
@@ -400,7 +400,7 @@ function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $pass
 		if (is_array($temp_array) && sizeof($temp_array)) {
 			foreach($temp_array as $key => $value) {
 				foreach($banned_snmp_strings as $item) {
-					if(strstr($value, $item) != '') {
+					if (strstr($value, $item) != '') {
 						unset($temp_array[$key]);
 						continue 2;
 					}
@@ -431,7 +431,7 @@ function format_snmp_string($string, $snmp_oid_included) {
 	if ($snmp_oid_included) {
 		/* strip off all leading junk (the oid and stuff) */
 		$string_array = explode('=', $string);
-		if (sizeof($string_array) == 1) {
+		if (cacti_sizeof($string_array) == 1) {
 			/* trim excess first */
 			$string = trim($string);
 		} elseif ((substr($string, 0, 1) == '.') || (strpos($string, '::') !== false)) {
@@ -528,7 +528,7 @@ function format_snmp_string($string, $snmp_oid_included) {
 		}
 
 		if ($ishex) $string = $hexval;
-	} elseif (preg_match("/(hex:\?)?([a-fA-F0-9]{1,2}(:|\s)){5}/", $string)) {
+	} elseif (preg_match("/(hex:\?)?([a-fA-F0-9]{1,2}(:|\s)) {5}/", $string)) {
 		$octet = '';
 
 		/* strip of the 'hex:' */
@@ -553,7 +553,7 @@ function format_snmp_string($string, $snmp_oid_included) {
 	}
 
 	foreach($banned_snmp_strings as $item) {
-		if(strstr($string, $item) != '') {
+		if (strstr($string, $item) != '') {
 			$string = '';
 			break;
 		}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-19 09:50+0000\n"
+"POT-Creation-Date: 2020-02-29 19:06-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,8 +21,8 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: hmib.php:37 hmib.php:52 hmib.php:747 hmib.php:1066 hmib.php:1374
-#: hmib.php:1572 hmib.php:2103 hmib.php:2417 hmib_types.php:353
+#: hmib.php:37 hmib.php:52 hmib.php:748 hmib.php:1068 hmib.php:1378
+#: hmib.php:1581 hmib.php:2111 hmib.php:2425 hmib_types.php:352
 msgid "Unknown"
 msgstr ""
 
@@ -66,84 +66,84 @@ msgstr ""
 msgid "Testing"
 msgstr ""
 
-#: hmib.php:56 hmib.php:1575 hmib.php:2370
+#: hmib.php:56 hmib.php:1584 hmib.php:2378
 msgid "Down"
 msgstr ""
 
-#: hmib.php:180
+#: hmib.php:179
 msgid "Running Process History"
 msgstr ""
 
-#: hmib.php:189 hmib.php:520 hmib.php:870 hmib.php:1175 hmib.php:1481
-#: hmib.php:1906 hmib_types.php:987
+#: hmib.php:188 hmib.php:520 hmib.php:871 hmib.php:1177 hmib.php:1485
+#: hmib.php:1913 hmib_types.php:968
 msgid "OS Type"
 msgstr ""
 
-#: hmib.php:193 hmib.php:214 hmib.php:236 hmib.php:275 hmib.php:524
-#: hmib.php:545 hmib.php:567 hmib.php:606 hmib.php:874 hmib.php:894
-#: hmib.php:916 hmib.php:955 hmib.php:1179 hmib.php:1199 hmib.php:1221
-#: hmib.php:1260 hmib.php:1485 hmib.php:1505 hmib.php:1528 hmib.php:1560
-#: hmib.php:1910 hmib.php:1931 hmib.php:1953 hmib.php:1992
+#: hmib.php:192 hmib.php:213 hmib.php:235 hmib.php:274 hmib.php:524
+#: hmib.php:545 hmib.php:567 hmib.php:606 hmib.php:875 hmib.php:895
+#: hmib.php:917 hmib.php:956 hmib.php:1181 hmib.php:1202 hmib.php:1224
+#: hmib.php:1263 hmib.php:1489 hmib.php:1510 hmib.php:1533 hmib.php:1569
+#: hmib.php:1917 hmib.php:1938 hmib.php:1960 hmib.php:1999
 msgid "All"
 msgstr ""
 
-#: hmib.php:210 hmib.php:541 hmib.php:890 hmib.php:1195 hmib.php:1927
+#: hmib.php:209 hmib.php:541 hmib.php:891 hmib.php:1198 hmib.php:1934
 msgid "Device"
 msgstr ""
 
-#: hmib.php:232 hmib.php:563 hmib.php:912 hmib.php:1217 hmib.php:1501
-#: hmib.php:1949
+#: hmib.php:231 hmib.php:563 hmib.php:913 hmib.php:1220 hmib.php:1506
+#: hmib.php:1956
 msgid "Template"
 msgstr ""
 
-#: hmib.php:255 hmib.php:586 hmib.php:935 hmib.php:1240 hmib.php:1540
-#: hmib.php:1972 hmib.php:2310 hmib.php:2493 hmib_types.php:934
-#: hmib_types.php:1002
+#: hmib.php:255 hmib.php:587 hmib.php:937 hmib.php:1244 hmib.php:1550
+#: hmib.php:1980 hmib.php:2319 hmib.php:2502 hmib_types.php:915
+#: hmib_types.php:984
 msgid "Go"
 msgstr ""
 
-#: hmib.php:258 hmib.php:589 hmib.php:938 hmib.php:1243 hmib.php:1543
-#: hmib.php:1975 hmib.php:2313 hmib.php:2496 hmib_types.php:1005
+#: hmib.php:256 hmib.php:588 hmib.php:938 hmib.php:1245 hmib.php:1551
+#: hmib.php:1981 hmib.php:2320 hmib.php:2503 hmib_types.php:985
 msgid "Clear"
 msgstr ""
 
-#: hmib.php:265 hmib.php:596 hmib.php:945 hmib.php:1250 hmib.php:1550
-#: hmib.php:1982 hmib.php:2475 hmib_types.php:981
+#: hmib.php:264 hmib.php:596 hmib.php:946 hmib.php:1253 hmib.php:1559
+#: hmib.php:1989 hmib.php:2483 hmib_types.php:962
 msgid "Search"
 msgstr ""
 
-#: hmib.php:271 hmib.php:379 hmib.php:602 hmib.php:721 hmib.php:1524
+#: hmib.php:270 hmib.php:373 hmib.php:602 hmib.php:716 hmib.php:1529
 msgid "Process"
 msgstr ""
 
-#: hmib.php:291 hmib.php:622 hmib.php:970
+#: hmib.php:290 hmib.php:622 hmib.php:971
 msgid "Entries"
 msgstr ""
 
-#: hmib.php:295 hmib.php:626 hmib.php:974 hmib.php:1279 hmib.php:1598
-#: hmib.php:2011 hmib_types.php:991
+#: hmib.php:294 hmib.php:626 hmib.php:975 hmib.php:1282 hmib.php:1607
+#: hmib.php:2018 hmib_types.php:972
 msgid "Default"
 msgstr ""
 
-#: hmib.php:371
-msgid "History"
-msgstr ""
-
-#: hmib.php:378 hmib.php:720 hmib.php:1046 hmib.php:1351 hmib.php:1673
-#: hmib.php:2084
+#: hmib.php:372 hmib.php:715 hmib.php:1042 hmib.php:1349 hmib.php:1674
+#: hmib.php:2085
 msgid "Hostname"
 msgstr ""
 
-#: hmib.php:380
+#: hmib.php:374
 msgid "Last Seen"
 msgstr ""
 
-#: hmib.php:381
+#: hmib.php:375
 msgid "Use Time (d:h:m)"
 msgstr ""
 
-#: hmib.php:390 hmib.php:736 hmib.php:1059 hmib.php:1367 hmib.php:1744
-#: hmib.php:2096
+#: hmib.php:378
+msgid "History"
+msgstr ""
+
+#: hmib.php:390 hmib.php:737 hmib.php:1061 hmib.php:1371 hmib.php:1751
+#: hmib.php:2104
 msgid "Edit Device"
 msgstr ""
 
@@ -155,358 +155,358 @@ msgstr ""
 msgid "Running Processes"
 msgstr ""
 
-#: hmib.php:713 hmib.php:1679 hmib.php:2127 hmib.php:2552
-msgid "Processes"
-msgstr ""
-
-#: hmib.php:722
+#: hmib.php:717
 msgid "Path"
 msgstr ""
 
-#: hmib.php:723
+#: hmib.php:718
 msgid "Parameters"
 msgstr ""
 
-#: hmib.php:724
+#: hmib.php:719
 msgid "CPU (Hrs)"
 msgstr ""
 
-#: hmib.php:725
+#: hmib.php:720
 msgid "Memory (MB)"
 msgstr ""
 
-#: hmib.php:726 hmib.php:951 hmib.php:1256 hmib.php:1988 hmib.php:2086
-#: hmib.php:2366
+#: hmib.php:721 hmib.php:952 hmib.php:1259 hmib.php:1995 hmib.php:2087
+#: hmib.php:2374
 msgid "Type"
 msgstr ""
 
-#: hmib.php:727 hmib.php:1049 hmib.php:1556 hmib.php:1674
+#: hmib.php:722 hmib.php:1045 hmib.php:1565 hmib.php:1675
 msgid "Status"
 msgstr ""
 
-#: hmib.php:752
+#: hmib.php:725 hmib.php:1680 hmib.php:2135 hmib.php:2561
+msgid "Processes"
+msgstr ""
+
+#: hmib.php:753
 msgid "No Running Software Found"
 msgstr ""
 
-#: hmib.php:767
+#: hmib.php:768
 msgid "Total CPU [h]:"
 msgstr ""
 
-#: hmib.php:768
+#: hmib.php:769
 msgid "Total Size [MB]:"
 msgstr ""
 
-#: hmib.php:771
+#: hmib.php:772
 msgid "Avg. CPU [h]:"
 msgstr ""
 
-#: hmib.php:772
+#: hmib.php:773
 msgid "Avg. Size [MB]:"
 msgstr ""
 
-#: hmib.php:861
+#: hmib.php:862
 msgid "Hardware Inventory"
 msgstr ""
 
-#: hmib.php:1039 hmib.php:1594 hmib.php:1665 hmib.php:2124
-msgid "Devices"
-msgstr ""
-
-#: hmib.php:1047
+#: hmib.php:1043
 msgid "Hardware Description"
 msgstr ""
 
-#: hmib.php:1048
+#: hmib.php:1044
 msgid "Hardware Type"
 msgstr ""
 
-#: hmib.php:1050 hmib.php:1354
+#: hmib.php:1046 hmib.php:1352
 msgid "Errors"
 msgstr ""
 
-#: hmib.php:1072
+#: hmib.php:1049 hmib.php:1603 hmib.php:1688 hmib.php:2132
+msgid "Devices"
+msgstr ""
+
+#: hmib.php:1074
 msgid "No Hardware Found"
 msgstr ""
 
-#: hmib.php:1166
+#: hmib.php:1168
 msgid "Storage Inventory"
 msgstr ""
 
-#: hmib.php:1275 hmib.php:1344
+#: hmib.php:1278 hmib.php:1359
 msgid "Volumes"
 msgstr ""
 
-#: hmib.php:1352
+#: hmib.php:1350
 msgid "Storage Description"
 msgstr ""
 
-#: hmib.php:1353
+#: hmib.php:1351
 msgid "Storage Type"
 msgstr ""
 
-#: hmib.php:1355
+#: hmib.php:1353
 msgid "Percent Used"
 msgstr ""
 
-#: hmib.php:1356
+#: hmib.php:1354
 msgid "Used (MB)"
 msgstr ""
 
-#: hmib.php:1357
+#: hmib.php:1355
 msgid "Total (MB)"
 msgstr ""
 
-#: hmib.php:1358
+#: hmib.php:1356
 msgid "Alloc (KB)"
 msgstr ""
 
-#: hmib.php:1383
+#: hmib.php:1387
 msgid "No Storage Devices Found"
 msgstr ""
 
-#: hmib.php:1472
+#: hmib.php:1476
 msgid "Device Filter"
 msgstr ""
 
-#: hmib.php:1578 hmib.php:2369
+#: hmib.php:1587 hmib.php:2377
 msgid "Recovering"
 msgstr ""
 
-#: hmib.php:1581 hmib.php:2368
+#: hmib.php:1590 hmib.php:2376
 msgid "Up"
 msgstr ""
 
-#: hmib.php:1584 hmib.php:2371 setup.php:504
+#: hmib.php:1593 hmib.php:2379 setup.php:504
 msgid "Disabled"
 msgstr ""
 
-#: hmib.php:1672 hmib.php:2365 hmib.php:2548 setup.php:604
+#: hmib.php:1673 hmib.php:2373 hmib.php:2557 setup.php:604
 msgid "Actions"
 msgstr ""
 
-#: hmib.php:1675
+#: hmib.php:1676
 msgid "Uptime(d:h:m)"
 msgstr ""
 
-#: hmib.php:1676
+#: hmib.php:1677
 msgid "Users"
 msgstr ""
 
-#: hmib.php:1677
+#: hmib.php:1678
 msgid "CPU %"
 msgstr ""
 
-#: hmib.php:1678
+#: hmib.php:1679
 msgid "CPUs"
 msgstr ""
 
-#: hmib.php:1680
+#: hmib.php:1681
 msgid "Total Mem"
 msgstr ""
 
-#: hmib.php:1681
+#: hmib.php:1682
 msgid "Used Mem"
 msgstr ""
 
-#: hmib.php:1682
+#: hmib.php:1683
 msgid "Total Swap"
 msgstr ""
 
-#: hmib.php:1683
+#: hmib.php:1684
 msgid "Used Swap"
 msgstr ""
 
-#: hmib.php:1729 hmib.php:2405
+#: hmib.php:1736 hmib.php:2413
 msgid "View Storage"
 msgstr ""
 
-#: hmib.php:1730 hmib.php:2406
+#: hmib.php:1737 hmib.php:2414
 msgid "View Hardware"
 msgstr ""
 
-#: hmib.php:1731 hmib.php:2407 hmib.php:2578
+#: hmib.php:1738 hmib.php:2415 hmib.php:2587
 msgid "View Processes"
 msgstr ""
 
-#: hmib.php:1732 hmib.php:2408
+#: hmib.php:1739 hmib.php:2416
 msgid "View Software Inventory"
 msgstr ""
 
-#: hmib.php:1734 hmib.php:2646 hmib.php:2648 hmib.php:2694 hmib.php:2696
+#: hmib.php:1741 hmib.php:2655 hmib.php:2657 hmib.php:2703 hmib.php:2705
 msgid "View Graphs"
 msgstr ""
 
-#: hmib.php:1736
+#: hmib.php:1743
 msgid "No Graphs Defined"
 msgstr ""
 
-#: hmib.php:1764
+#: hmib.php:1771
 msgid "No Devices Found"
 msgstr ""
 
-#: hmib.php:1897
+#: hmib.php:1904
 msgid "Software Inventory"
 msgstr ""
 
-#: hmib.php:2007 hmib.php:2077
+#: hmib.php:2014 hmib.php:2091
 msgid "Applications"
 msgstr ""
 
-#: hmib.php:2085
+#: hmib.php:2086
 msgid "Package"
 msgstr ""
 
-#: hmib.php:2087
+#: hmib.php:2088
 msgid "Installed"
 msgstr ""
 
-#: hmib.php:2108
+#: hmib.php:2116
 msgid "No Software Packages Found"
 msgstr ""
 
-#: hmib.php:2123
+#: hmib.php:2131
 msgid "Summary"
 msgstr ""
 
-#: hmib.php:2125
+#: hmib.php:2133
 msgid "Storage"
 msgstr ""
 
-#: hmib.php:2126
+#: hmib.php:2134
 msgid "Hardware"
 msgstr ""
 
-#: hmib.php:2128
+#: hmib.php:2136
 msgid "Use History"
 msgstr ""
 
-#: hmib.php:2129
+#: hmib.php:2137
 msgid "Inventory"
 msgstr ""
 
-#: hmib.php:2130 hmib.php:2813
+#: hmib.php:2138 hmib.php:2822
 msgid "Graphs"
 msgstr ""
 
-#: hmib.php:2289
+#: hmib.php:2297
 msgid "Summary Filter"
 msgstr ""
 
-#: hmib.php:2298 hmib.php:2481
+#: hmib.php:2306 hmib.php:2489
 msgid "Top"
 msgstr ""
 
-#: hmib.php:2302 hmib.php:2485
+#: hmib.php:2310 hmib.php:2493
 msgid "All Records"
 msgstr ""
 
-#: hmib.php:2303 hmib.php:2486 hmib.php:2487 hmib.php:2488 hmib.php:2489
+#: hmib.php:2311 hmib.php:2494 hmib.php:2495 hmib.php:2496 hmib.php:2497
 #, php-format
 msgid "%d Records"
 msgstr ""
 
-#: hmib.php:2304 hmib.php:2305 hmib.php:2306
+#: hmib.php:2312 hmib.php:2313 hmib.php:2314
 #, php-format
 msgid "%d Record"
 msgstr ""
 
-#: hmib.php:2316 hmib.php:2499
+#: hmib.php:2324 hmib.php:2507
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
 msgstr ""
 
-#: hmib.php:2327
+#: hmib.php:2335
 msgid "Device Type Summary Statistics"
 msgstr ""
 
-#: hmib.php:2367 hmib_types.php:758
+#: hmib.php:2375 hmib_types.php:737
 msgid "Version"
 msgstr ""
 
-#: hmib.php:2372
+#: hmib.php:2380
 msgid "Logins"
 msgstr ""
 
-#: hmib.php:2373
+#: hmib.php:2381
 msgid "CPUS"
 msgstr ""
 
-#: hmib.php:2374 hmib.php:2553
+#: hmib.php:2382 hmib.php:2562
 msgid "Avg CPU"
 msgstr ""
 
-#: hmib.php:2375 hmib.php:2554
+#: hmib.php:2383 hmib.php:2563
 msgid "Max CPU"
 msgstr ""
 
-#: hmib.php:2376
+#: hmib.php:2384
 msgid "Avg Mem"
 msgstr ""
 
-#: hmib.php:2377
+#: hmib.php:2385
 msgid "Max Mem"
 msgstr ""
 
-#: hmib.php:2378
+#: hmib.php:2386
 msgid "Avg Swap"
 msgstr ""
 
-#: hmib.php:2379
+#: hmib.php:2387
 msgid "Max Swap"
 msgstr ""
 
-#: hmib.php:2380
+#: hmib.php:2388
 msgid "Avg Proc"
 msgstr ""
 
-#: hmib.php:2381
+#: hmib.php:2389
 msgid "Max Proc"
 msgstr ""
 
-#: hmib.php:2404 hmib.php:2577 hmib.php:2603
+#: hmib.php:2412 hmib.php:2586 hmib.php:2612
 msgid "View Devices"
 msgstr ""
 
-#: hmib.php:2437
+#: hmib.php:2445
 msgid "No Device Types"
 msgstr ""
 
-#: hmib.php:2442
+#: hmib.php:2450
 msgid "Process Summary Filter"
 msgstr ""
 
-#: hmib.php:2510
+#: hmib.php:2518
 msgid "Process Summary Statistics"
 msgstr ""
 
-#: hmib.php:2549
+#: hmib.php:2558
 msgid "Process Name"
 msgstr ""
 
-#: hmib.php:2550
+#: hmib.php:2559
 msgid "Num Paths"
 msgstr ""
 
-#: hmib.php:2551 hmib_types.php:884
+#: hmib.php:2560 hmib_types.php:864
 msgid "Hosts"
 msgstr ""
 
-#: hmib.php:2555
+#: hmib.php:2564
 msgid "Avg Memory"
 msgstr ""
 
-#: hmib.php:2556
+#: hmib.php:2565
 msgid "Max Memory"
 msgstr ""
 
-#: hmib.php:2593
+#: hmib.php:2602
 msgid "No Processes"
 msgstr ""
 
-#: hmib.php:2739
+#: hmib.php:2748
 msgid "Custom Graph List Applied - Filtering from List"
 msgstr ""
 
-#: hmib.php:2739
+#: hmib.php:2748
 msgid "Graph Preview Filters"
 msgstr ""
 
@@ -553,95 +553,95 @@ msgstr ""
 msgid "You must select at least one Host Type."
 msgstr ""
 
-#: hmib_types.php:352
+#: hmib_types.php:351
 msgid "New Type"
 msgstr ""
 
-#: hmib_types.php:397
+#: hmib_types.php:396
 #, php-format
 msgid "There were %d Device Types Added!"
 msgstr ""
 
-#: hmib_types.php:400
+#: hmib_types.php:399
 msgid "No New Host Types Found!"
 msgstr ""
 
-#: hmib_types.php:411
+#: hmib_types.php:410
 msgid "Import Results"
 msgstr ""
 
-#: hmib_types.php:413
+#: hmib_types.php:412
 msgid "Cacti has imported the following items:"
 msgstr ""
 
-#: hmib_types.php:425
+#: hmib_types.php:424
 msgid "Import Host MIB OS Types"
 msgstr ""
 
-#: hmib_types.php:428
+#: hmib_types.php:427
 msgid "Import Device Types from Local File"
 msgstr ""
 
-#: hmib_types.php:429
+#: hmib_types.php:428
 msgid ""
 "Please specify the location of the CSV file containing your device type "
 "information."
 msgstr ""
 
-#: hmib_types.php:436
+#: hmib_types.php:435
 msgid "Overwrite Existing Data?"
 msgstr ""
 
-#: hmib_types.php:437
+#: hmib_types.php:436
 msgid ""
 "Should the import process be allowed to overwrite existing data?  Please "
 "note, this does not mean delete old row, only replace duplicate rows."
 msgstr ""
 
-#: hmib_types.php:440
+#: hmib_types.php:439
 msgid "Allow Existing Rows to be Updated?"
 msgstr ""
 
-#: hmib_types.php:445
+#: hmib_types.php:444
 msgid "Required File Format Notes"
 msgstr ""
 
-#: hmib_types.php:448
+#: hmib_types.php:447
 msgid "The file must contain a header row with the following column headings."
 msgstr ""
 
-#: hmib_types.php:450
+#: hmib_types.php:449
 msgid "A common name for the Host Type.  For example, Windows 7"
 msgstr ""
 
-#: hmib_types.php:451
+#: hmib_types.php:450
 msgid "The OS version for the Host Type"
 msgstr ""
 
-#: hmib_types.php:452
+#: hmib_types.php:451
 msgid ""
 "A unique set of characters from the snmp sysDescr that uniquely identify "
 "this device"
 msgstr ""
 
-#: hmib_types.php:453
+#: hmib_types.php:452
 msgid ""
 "The vendor specific snmp sysObjectID that distinguishes this device from the "
 "next"
 msgstr ""
 
-#: hmib_types.php:455
+#: hmib_types.php:454
 msgid ""
 "The primary key for this table is a combination of the following two fields:"
 msgstr ""
 
-#: hmib_types.php:459
+#: hmib_types.php:458
 msgid ""
 "Therefore, if you attempt to import duplicate device types, the existing "
 "data will be updated with the new information."
 msgstr ""
 
-#: hmib_types.php:461
+#: hmib_types.php:460
 msgid ""
 "The Host Type is determined by scanning its snmp agent for the sysObjectID "
 "and sysDescription and comparing it against values in the Host Types "
@@ -651,35 +651,26 @@ msgid ""
 msgstr ""
 
 #: hmib_types.php:726
-msgid "Are You Sure?"
-msgstr ""
-
-#: hmib_types.php:726
-#, php-format
-msgid "Are you sure you want to delete the Host Type'%s'"
-msgstr ""
-
-#: hmib_types.php:747
 msgid "Device Scanning Function Options"
 msgstr ""
 
-#: hmib_types.php:751
+#: hmib_types.php:730
 msgid "Name"
 msgstr ""
 
-#: hmib_types.php:752
+#: hmib_types.php:731
 msgid "Give this Host Type a meaningful name."
 msgstr ""
 
-#: hmib_types.php:759
+#: hmib_types.php:738
 msgid "Fill in the name for the version of this Host Type."
 msgstr ""
 
-#: hmib_types.php:766
+#: hmib_types.php:745
 msgid "System Description Match"
 msgstr ""
 
-#: hmib_types.php:767 hmib_types.php:774
+#: hmib_types.php:746 hmib_types.php:753
 #, php-format
 msgid ""
 "Provide key information to help HMIB detect the type of Host.  SQL Where "
@@ -687,81 +678,85 @@ msgid ""
 "Regular Expressions have been removed due to compatibility issues."
 msgstr ""
 
-#: hmib_types.php:773
+#: hmib_types.php:752
 msgid "Vendor snmp Object ID"
 msgstr ""
 
-#: hmib_types.php:794
+#: hmib_types.php:773
 #, php-format
 msgid "Host MIB OS Types [edit: %s]"
 msgstr ""
 
-#: hmib_types.php:796
+#: hmib_types.php:775
 msgid "Host MIB OS Types [new]"
 msgstr ""
 
-#: hmib_types.php:861
+#: hmib_types.php:841
 msgid "Host MIB OS Type Filters"
 msgstr ""
 
-#: hmib_types.php:873 setup.php:587
+#: hmib_types.php:853 setup.php:587
 msgid "OS Types"
 msgstr ""
 
-#: hmib_types.php:882
+#: hmib_types.php:862
 msgid "Host Type Name"
 msgstr ""
 
-#: hmib_types.php:883
+#: hmib_types.php:863
 msgid "OS Version"
 msgstr ""
 
-#: hmib_types.php:885
+#: hmib_types.php:865
 msgid "SNMP ObjectID"
 msgstr ""
 
-#: hmib_types.php:886
+#: hmib_types.php:866
 msgid "SNMP Sys Description Match"
 msgstr ""
 
-#: hmib_types.php:902
+#: hmib_types.php:883
 msgid "No Host Types Found"
 msgstr ""
 
-#: hmib_types.php:930
+#: hmib_types.php:911
 msgid "Choose an action:"
 msgstr ""
 
-#: hmib_types.php:1008
+#: hmib_types.php:986
 msgid "Rescan"
 msgstr ""
 
-#: hmib_types.php:1008
+#: hmib_types.php:986
 msgid "Scan for New or Unknown Device Types"
 msgstr ""
 
-#: hmib_types.php:1011 setup.php:606
+#: hmib_types.php:987 setup.php:606
 msgid "Import"
 msgstr ""
 
-#: hmib_types.php:1011
+#: hmib_types.php:987
 msgid "Import Host Types from a CSV File"
 msgstr ""
 
-#: hmib_types.php:1014
+#: hmib_types.php:988
 msgid "Export"
 msgstr ""
 
-#: hmib_types.php:1014
+#: hmib_types.php:988
 msgid "Export Host Types to Share with Others"
 msgstr ""
 
 #: setup.php:38
-msgid "Plugin -> Host MIB Viewer"
+msgid "Host MIB Viewer"
 msgstr ""
 
 #: setup.php:39
-msgid "Plugin -> Host MIB Admin"
+msgid "Host MIB Admin"
+msgstr ""
+
+#: setup.php:353
+msgid "Host MIB"
 msgstr ""
 
 #: setup.php:356

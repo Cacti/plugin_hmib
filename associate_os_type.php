@@ -2,7 +2,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2017 The Cacti Group                                 |
+ | Copyright (C) 2004-2020 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -14,7 +14,7 @@
  | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           |
  | GNU General Public License for more details.                            |
  +-------------------------------------------------------------------------+
- | Cacti: The Complete RRDTool-based Graphing Solution                     |
+ | Cacti: The Complete RRDtool-based Graphing Solution                     |
  +-------------------------------------------------------------------------+
  | This code is designed, written, and maintained by the Cacti Group. See  |
  | about.php and/or the AUTHORS file for specific developer information.   |
@@ -23,17 +23,9 @@
  +-------------------------------------------------------------------------+
 */
 
-/* We are not talking to the browser */
-$no_http_headers = TRUE;
-
-/* do NOT run this script through a web browser */
-if (!isset($_SERVER['argv'][0]) || isset($_SERVER['REQUEST_METHOD'])  || isset($_SERVER['REMOTE_ADDR'])) {
-	die('<br><strong>This script is only meant to run at the command line.</strong>');
-}
-
 chdir(dirname(__FILE__));
 chdir('../..');
-include('./include/global.php');
+include('./include/cli_check.php');
 
 /* process calling arguments */
 $parms = $_SERVER['argv'];
@@ -41,9 +33,9 @@ array_shift($parms);
 
 global $debug, $start, $seed, $forcerun;
 
-$debug = FALSE;
+$debug = false;
 
-if (sizeof($parms)) {
+if (cacti_sizeof($parms)) {
 	foreach($parms as $parameter) {
 		if (strpos($parameter, '=')) {
 			list($arg, $value) = explode('=', $parameter);
@@ -55,7 +47,7 @@ if (sizeof($parms)) {
 		switch ($arg) {
 			case '-d':
 			case '--debug':
-				$debug = TRUE;
+				$debug = true;
 				break;
 			case '--version':
 			case '-V':
@@ -83,26 +75,26 @@ function debug($message) {
 	global $debug;
 
 	if ($debug) {
-		echo 'DEBUG: ' . trim($message) . "\n";
+		print 'DEBUG: ' . trim($message) . "\n";
 	}
 }
 
 function process_hosts() {
 	global $start, $seed;
 
-	echo "NOTE: Processing OS Types Begins\n";
+	print "NOTE: Processing OS Types Begins\n";
 
 	$types = db_fetch_assoc('SELECT * FROM plugin_hmib_hrSystemTypes');
 
-	if (sizeof($types)) {
-	foreach($types as $t) {
-		db_execute('UPDATE plugin_hmib_hrSystem AS hrs SET host_type='. $t['id'] . "
-			WHERE hrs.sysDescr LIKE '%" . $t['sysDescrMatch'] . "%'
-			AND hrs.sysObjectID LIKE '" . $t['sysObjectID'] . "%'");
-	}
+	if (cacti_sizeof($types)) {
+		foreach($types as $t) {
+			db_execute('UPDATE plugin_hmib_hrSystem AS hrs SET host_type='. $t['id'] . "
+				WHERE hrs.sysDescr LIKE '%" . $t['sysDescrMatch'] . "%'
+				AND hrs.sysObjectID LIKE '" . $t['sysObjectID'] . "%'");
+		}
 	}
 
-	echo "NOTE: Processing OS Types Ended\n";
+	print "NOTE: Processing OS Types Ended\n";
 }
 
 function display_version() {
@@ -113,11 +105,12 @@ function display_version() {
 	}
 
 	$version = plugin_hmib_version();
-	echo "Host MIB Associate OS Type, Version " . $version['version'] . ", " . COPYRIGHT_YEARS . "\n";
+	print "Host MIB Associate OS Type, Version " . $version['version'] . ", " . COPYRIGHT_YEARS . "\n";
 }
 
 function display_help() {
 	display_version();
 
-	echo "\nusage: call without any parameter\n";
+	print "\nusage: call without any parameter\n";
 }
+

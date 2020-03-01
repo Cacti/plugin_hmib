@@ -2,7 +2,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2017 The Cacti Group                                 |
+ | Copyright (C) 2004-2020 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -14,7 +14,7 @@
  | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           |
  | GNU General Public License for more details.                            |
  +-------------------------------------------------------------------------+
- | Cacti: The Complete RRDTool-based Graphing Solution                     |
+ | Cacti: The Complete RRDtool-based Graphing Solution                     |
  +-------------------------------------------------------------------------+
  | This code is designed, written, and maintained by the Cacti Group. See  |
  | about.php and/or the AUTHORS file for specific developer information.   |
@@ -36,11 +36,11 @@ array_shift($parms);
 
 global $debug, $start, $seed, $forcerun;
 
-$debug    = FALSE;
-$forcerun = FALSE;
+$debug    = false;
+$forcerun = false;
 $start    = time();
 
-if (sizeof($parms)) {
+if (cacti_sizeof($parms)) {
 	foreach($parms as $parameter) {
 		if (strpos($parameter, '=')) {
 			list($arg, $value) = explode('=', $parameter);
@@ -52,11 +52,11 @@ if (sizeof($parms)) {
 		switch ($arg) {
 			case '-d':
 			case '--debug':
-				$debug = TRUE;
+				$debug = true;
 				break;
 			case '-f':
 			case '--force':
-				$forcerun = TRUE;
+				$forcerun = true;
 				break;
 			case '--version':
 			case '-V':
@@ -88,7 +88,7 @@ $frequency = read_config_option('hmib_automation_frequency') * 86400;
 debug("Last Run Was '" . date('Y-m-d H:i:s', $last_run) . "', Frequency is '" . ($frequency/86400) . "' Hours");
 if ($frequency == 0 && !$forcerun) {
 	print "NOTE:  Graph Automation is Disabled\n";
-}elseif (($frequency > 0 && ($start - $last_run) > $frequency) || $forcerun) {
+} elseif (($frequency > 0 && ($start - $last_run) > $frequency) || $forcerun) {
 	print "NOTE:  Starting Automation Process\n";
 	db_execute("REPLACE INTO settings (name,value) VALUES ('hmib_automation_lastrun', '$start')");
 	add_graphs();
@@ -167,7 +167,7 @@ function add_host_based_graphs() {
 		ON host.id=plugin_hmib_hrSystem.host_id
 		WHERE host_status=3 AND host.disabled=''");
 
-	if (sizeof($hosts)) {
+	if (cacti_sizeof($hosts)) {
 		foreach($hosts as $h) {
 			debug("Processing Host '" . $h['description'] . '[' . $h['host_id'] . "]'");
 			if ($host_users_gt) {
@@ -202,7 +202,7 @@ function add_host_based_graphs() {
 	}
 }
 
-function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = TRUE) {
+function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = true) {
 	global $config;
 
 	/* add entry if it does not exist */
@@ -220,7 +220,7 @@ function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = 
 		WHERE snmp_query_id=' . $dq);
 
 	debug('Adding Graphs');
-	if (sizeof($graph_templates)) {
+	if (cacti_sizeof($graph_templates)) {
 	foreach($graph_templates as $gt) {
 		hmib_dq_graphs($host_id, $dq, $gt['graph_template_id'], $gt['id'], $field, $regex, $include);
 	}
@@ -281,18 +281,18 @@ function add_summary_graphs($host_id, $host_template) {
 		FROM host_snmp_query
 		WHERE host_id=$host_id");
 
-	if (sizeof($data_queries)) {
-	foreach($data_queries as $dq) {
-		$graph_templates = db_fetch_assoc('SELECT *
-			FROM snmp_query_graph
-			WHERE snmp_query_id=' . $dq['snmp_query_id']);
+	if (cacti_sizeof($data_queries)) {
+		foreach($data_queries as $dq) {
+			$graph_templates = db_fetch_assoc('SELECT *
+				FROM snmp_query_graph
+				WHERE snmp_query_id=' . $dq['snmp_query_id']);
 
-		if (sizeof($graph_templates)) {
-		foreach($graph_templates as $gt) {
-			hmib_dq_graphs($host_id, $dq['snmp_query_id'], $gt['graph_template_id'], $gt['id']);
+			if (cacti_sizeof($graph_templates)) {
+				foreach($graph_templates as $gt) {
+					hmib_dq_graphs($host_id, $dq['snmp_query_id'], $gt['graph_template_id'], $gt['id']);
+				}
+			}
 		}
-		}
-	}
 	}
 
 	debug('Processing Graph Templates');
@@ -300,30 +300,30 @@ function add_summary_graphs($host_id, $host_template) {
 		FROM host_graph
 		WHERE host_id=$host_id");
 
-	if (sizeof($graph_templates)) {
-	foreach($graph_templates as $gt) {
-		/* see if the graph exists already */
-		$exists = db_fetch_cell("SELECT count(*)
-			FROM graph_local
-			WHERE host_id=$host_id
-			AND graph_template_id=" . $gt['graph_template_id']);
+	if (cacti_sizeof($graph_templates)) {
+		foreach($graph_templates as $gt) {
+			/* see if the graph exists already */
+			$exists = db_fetch_cell("SELECT count(*)
+				FROM graph_local
+				WHERE host_id=$host_id
+				AND graph_template_id=" . $gt['graph_template_id']);
 
-		if (!$exists) {
-			print "NOTE: Adding item: '$field_value' for Host: " . $host_id;
+			if (!$exists) {
+				print "NOTE: Adding item: '$field_value' for Host: " . $host_id;
 
-			$command = "$php_bin -q $base/cli/add_graphs.php" .
-				' --graph-template-id=' . $gt['graph_template_id'] .
-				' --graph-type=cg' .
-				' --host-id=' . $host_id;
+				$command = "$php_bin -q $base/cli/add_graphs.php" .
+					' --graph-template-id=' . $gt['graph_template_id'] .
+					' --graph-type=cg' .
+					' --host-id=' . $host_id;
 
-			print str_replace("\n", ' ', passthru($command)) . "\n";
+				print str_replace("\n", ' ', passthru($command)) . "\n";
+			}
 		}
-	}
 	}
 }
 
 function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
-	$field = '', $regex = '', $include = TRUE) {
+	$field = '', $regex = '', $include = true) {
 
 	global $config, $php_bin, $path_grid;
 
@@ -342,15 +342,15 @@ function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
 		AND host_id=$host_id
 		AND snmp_query_id=$query_id");
 
-	if (sizeof($items)) {
+	if (cacti_sizeof($items)) {
 		foreach($items as $item) {
 			$field_value = $item['field_value'];
 			$index       = $item['snmp_index'];
 
 			if ($regex == '') {
 				/* add graph below */
-			} elseif ((($include == TRUE) && (preg_match('/' . $regex . '/', $field_value))) ||
-				(($include != TRUE) && (!preg_match('/' . $regex . '/', $field_value)))) {
+			} elseif ((($include == true) && (preg_match('/' . $regex . '/', $field_value))) ||
+				(($include != true) && (!preg_match('/' . $regex . '/', $field_value)))) {
 				/* add graph below */
 			} else {
 				print "NOTE: Bypassig item due to Regex rule: '" . $field_value . "' for Host: " . $host_id . "\n";
@@ -406,3 +406,4 @@ function display_help() {
 	print "\nThe Host MIB process that creates graphs for Cacti.\n\n";
 	print "usage: poller_graphs.php [-f] [-d]\n";
 }
+

@@ -2,7 +2,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2017 The Cacti Group                                 |
+ | Copyright (C) 2004-2020 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -14,7 +14,7 @@
  | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           |
  | GNU General Public License for more details.                            |
  +-------------------------------------------------------------------------+
- | Cacti: The Complete RRDTool-based Graphing Solution                     |
+ | Cacti: The Complete RRDtool-based Graphing Solution                     |
  +-------------------------------------------------------------------------+
  | This code is designed, written, and maintained by the Cacti Group. See  |
  | about.php and/or the AUTHORS file for specific developer information.   |
@@ -48,16 +48,16 @@ array_shift($parms);
 
 global $debug, $start, $seed, $forcerun;
 
-$debug          = FALSE;
-$forcerun       = FALSE;
-$forcediscovery = FALSE;
-$mainrun        = FALSE;
+$debug          = false;
+$forcerun       = false;
+$forcediscovery = false;
+$mainrun        = false;
 $host_id        = '';
 $start          = '';
 $seed           = '';
 $key            = '';
 
-if (sizeof($parms)) {
+if (cacti_sizeof($parms)) {
 	foreach($parms as $parameter) {
 		if (strpos($parameter, '=')) {
 			list($arg, $value) = explode('=', $parameter);
@@ -69,7 +69,7 @@ if (sizeof($parms)) {
 		switch ($arg) {
 			case '-d':
 			case '--debug':
-				$debug = TRUE;
+				$debug = true;
 				break;
 			case '--host-id':
 				$host_id = $value;
@@ -82,14 +82,14 @@ if (sizeof($parms)) {
 				break;
 			case '-f':
 			case '--force':
-				$forcerun = TRUE;
+				$forcerun = true;
 				break;
 			case '-fd':
 			case '--force-discovery':
-				$forcediscovery = TRUE;
+				$forcediscovery = true;
 				break;
 			case '-M':
-				$mainrun = TRUE;
+				$mainrun = true;
 				break;
 			case '-s':
 			case '--start':
@@ -175,7 +175,7 @@ function autoDiscoverHosts() {
 
 	$snmp_errors = 0;
 
-	if (sizeof($hosts)) {
+	if (cacti_sizeof($hosts)) {
 		foreach($hosts as $host) {
 			debug("AutoDiscovery Check for Host '" . $host['description'] . '[' . $host['hostname'] . "]'");
 			$hostMib   = cacti_snmp_walk($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.25.1', $host['snmp_version'],
@@ -190,7 +190,7 @@ function autoDiscoverHosts() {
 				$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 				read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
 
-			if (sizeof($hostMib)) {
+			if (cacti_sizeof($hostMib)) {
 				$add = true;
 
 				if ($add) {
@@ -296,7 +296,7 @@ function process_hosts() {
 	print "NOTE: Launching Collectors Starting\n";
 
 	$i = 0;
-	if (sizeof($hosts)) {
+	if (cacti_sizeof($hosts)) {
 		foreach ($hosts as $host) {
 			while (true) {
 				$processes = db_fetch_cell('SELECT COUNT(*) FROM plugin_hmib_processes');
@@ -386,7 +386,7 @@ function process_hosts() {
 			ON host.id=hr.host_id
 			WHERE host.id IS NULL');
 
-		if (sizeof($dead_hosts)) {
+		if (cacti_sizeof($dead_hosts)) {
 			foreach($dead_hosts as $host) {
 				db_execute('DELETE FROM plugin_hmib_hrSystem WHERE host_id='. $host['host_id']);
 				db_execute('DELETE FROM plugin_hmib_hrSWRun WHERE host_id='. $host['host_id']);
@@ -415,7 +415,7 @@ function process_hosts() {
 		ON hrp.host_id=hrs.host_id
 		GROUP BY host.id, host.status');
 
-	if (sizeof($stats)) {
+	if (cacti_sizeof($stats)) {
 		$sql_insert = '';
 
 		$sql_prefix = 'INSERT INTO plugin_hmib_hrSystem
@@ -468,7 +468,7 @@ function process_hosts() {
 
 	$types = db_fetch_assoc('SELECT * FROM plugin_hmib_hrSystemTypes');
 
-	if (sizeof($types)) {
+	if (cacti_sizeof($types)) {
 		foreach($types as $t) {
 			db_execute('UPDATE plugin_hmib_hrSystem AS hrs SET host_type='. $t['id'] . "
 				WHERE hrs.sysDescr LIKE '%" . $t['sysDescrMatch'] . "%'
@@ -498,7 +498,7 @@ function process_hosts() {
 	db_execute("REPLACE INTO settings (name,value) VALUES ('stats_hmib', '" . $cacti_stats . "')");
 
 	/* log to the logfile */
-	cacti_log('HMIB STATS: ' . $cacti_stats , TRUE, 'SYSTEM');
+	cacti_log('HMIB STATS: ' . $cacti_stats , true, 'SYSTEM');
 	print "NOTE: Host Mib Polling Completed, $cacti_stats\n";
 
 	/* launch the graph creation process */
@@ -598,7 +598,7 @@ function checkHost($host_id) {
 function collect_hrSystem(&$host) {
 	global $hrSystem, $cnn_id, $snmp_errors;
 
-	if (sizeof($host)) {
+	if (cacti_sizeof($host)) {
 		debug("Polling hrSystem from '" . $host['description'] . '[' . $host['hostname'] . "]'");
 		$hostMib   = cacti_snmp_walk($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.25.1', $host['snmp_version'],
 			$host['snmp_username'], $host['snmp_password'],
@@ -617,7 +617,7 @@ function collect_hrSystem(&$host) {
 		$set_string = '';
 
 		// Locate the values names
-		if (sizeof($hostMib)) {
+		if (cacti_sizeof($hostMib)) {
 			foreach($hostMib as $mib) {
 				/* do some cleanup */
 				if (substr($mib['oid'], 0, 1) != '.') $mib['oid'] = '.' . trim($mib['oid']);
@@ -684,7 +684,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 
 	$cols = db_get_table_column_types($table);
 
-	if (sizeof($host)) {
+	if (cacti_sizeof($host)) {
 		/* mark for deletion */
 		db_execute("UPDATE $table SET present=0 WHERE host_id=" . $host['id']);
 
@@ -715,7 +715,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 		$sql_suffix = '';
 		$sql_prefix = "INSERT INTO $table";
 
-		if (sizeof($tree)) {
+		if (cacti_sizeof($tree)) {
 			foreach($tree as $bname => $oid) {
 				if ($bname != 'baseOID' && $bname != 'index') {
 					$values     .= (strlen($values) ? '`, `':'`') . $bname;
@@ -734,7 +734,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 		$hrProcValid  = false;
 		$effective    = 0;
 
-		if (sizeof($hostMib)) {
+		if (cacti_sizeof($hostMib)) {
 			foreach($hostMib as $mib) {
 				/* do some cleanup */
 				if (substr($mib['oid'], 0, 1) != '.') $mib['oid'] = '.' . $mib['oid'];
@@ -745,7 +745,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 
 				$splitIndex = hmib_splitBaseIndex($mib['oid']);
 
-				if (sizeof($splitIndex)) {
+				if (cacti_sizeof($splitIndex)) {
 					$index = $splitIndex[1];
 					$oid   = $splitIndex[0];
 					$key   = array_search($oid, $tree);
@@ -779,7 +779,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 										read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
 
 									if (is_numeric($user) && is_numeric($system) && sizeof($mib)) {
-										$effective = (($user + $system) * 2) / (sizeof($mib));
+										$effective = (($user + $system) * 2) / (cacti_sizeof($mib));
 									} else {
 										$effective = 0;
 									}
@@ -797,7 +797,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 					if (!empty($key)) {
 						if ($key == 'type') {
 							$value = explode('(', $mib['value']);
-							if (sizeof($value) > 1) {
+							if (cacti_sizeof($value) > 1) {
 								$value = trim($value[1], " \n\r)");
 								if ($table != 'plugin_hmib_hrSWInstalled' && $table != 'plugin_hmib_hrSWRun') {
 									$new_array[$index][$key] = (isset($types[$value]) ? $types[$value]['id']:0);
@@ -864,7 +864,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 		/* dump the output to the database */
 		$sql_insert = '';
 		$count      = 0;
-		if (sizeof($new_array)) {
+		if (cacti_sizeof($new_array)) {
 			foreach($new_array as $index => $item) {
 				$sql_insert .= (strlen($sql_insert) ? '), (':'(') . $host['id'] . ', ' . $index . ', ';
 				$i = 0;
@@ -981,3 +981,4 @@ function display_help() {
 	print "master process: poller_hmib.php [-M] [-f] [-fd] [-d]\n";
 	print "child  process: poller_hmib.php --host-id=N [--seed=N] [-f] [-d]\n\n";
 }
+
