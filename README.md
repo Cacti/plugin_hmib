@@ -67,6 +67,8 @@ GitHub.
 * issue#15: Searching from the hmib pages do not work with international
   characters
 
+* issue#21: poller_hmib.php[681]:sizeof(), CactiErrorHandler())
+
 * feature: PHP 7.2 compability
 
 * issue: Update language support

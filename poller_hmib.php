@@ -678,7 +678,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 
 	debug("Beginning Processing for '" . $host['description'] . '[' . $host['hostname'] . "]', Table '$name'");
 
-	if (!sizeof($types)) {
+	if (!cacti_sizeof($types)) {
 		$types = array_rekey(db_fetch_assoc('SELECT id, oid, description FROM plugin_hmib_types'), 'oid', array('id', 'description'));
 	}
 
