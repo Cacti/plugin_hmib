@@ -62,7 +62,7 @@ GitHub.
 
 ## ChangeLog
 
---- develop ---
+--- 3.2 ---
 
 * issue#15: Searching from the hmib pages do not work with international
   characters
