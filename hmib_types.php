@@ -929,6 +929,13 @@ function hmib_host_type_filter() {
 
 	?>
 	<script type='text/javascript'>
+	$(function() {
+		$('#types').submit(function(event) {
+			event.preventDefault();
+			applyFilter();
+		});
+	});
+
 	function applyFilter() {
 		strURL = '?rows=' + $('#rows').val();
 		strURL += '&filter=' + $('#filter').val();
@@ -951,10 +958,15 @@ function hmib_host_type_filter() {
 		loadPageNoHeader(strURL);
 	}
 
+	function exportTypes() {
+		strURL = '?export=true&header=false';
+		document.location = strURL;
+	}
+
 	</script>
 	<tr class='even'>
 		<td>
-			<form name='form_host_types'>
+			<form id='types'>
 			<table class='filterTable'>
 				<tr>
 					</td>
@@ -971,7 +983,7 @@ function hmib_host_type_filter() {
 						<select id='rows' onChange='applyFilter()'>
 							<option value='-1'<?php if (get_request_var_request('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
 							<?php
-							if (cacti_sizeof($item_rows) > 0) {
+							if (cacti_sizeof($item_rows)) {
 								foreach ($item_rows as $key => $value) {
 									print "<option value='" . $key . "'"; if (get_request_var_request('rows') == $key) { print ' selected'; } print '>' . $value . "</option>\n";
 								}
@@ -984,8 +996,8 @@ function hmib_host_type_filter() {
 							<input id='refresh' type='button' value='<?php print __('Go', 'hmib');?>' onClick='applyFilter()'>
 							<input id='clear' type='button' value='<?php print __('Clear', 'hmib');?>' onClick='clearFilter()'>
 							<input type='button' title='<?php print __('Scan for New or Unknown Device Types', 'hmib');?>' value='<?php print __('Rescan', 'hmib');?>' onClick='rescanTypes()'>
-							<input type='button' title='<?php print __('Import Host Types from a CSV File', 'hmib');?>' value='<?php print __('Import', 'hmib');?>' onClick='importTypes()'>
-							<input type='submit' name='export' title='<?php print __('Export Host Types to Share with Others', 'hmib');?>' value='<?php print __('Export', 'hmib');?>'>
+							<input id='import' type='button' title='<?php print __('Import Host Types from a CSV File', 'hmib');?>' value='<?php print __('Import', 'hmib');?>' onClick='importTypes()'>
+							<input id='export' type='button' title='<?php print __('Export Host Types to Share with Others', 'hmib');?>' value='<?php print __('Export', 'hmib');?>' onClick='exportTypes()'>
 						</span>
 					</td>
 				</tr>
@@ -997,4 +1009,3 @@ function hmib_host_type_filter() {
 	<?php
 }
 
-?>

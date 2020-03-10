@@ -62,6 +62,12 @@ GitHub.
 
 ## ChangeLog
 
+--- develop ---
+
+* issue#19: Cannot filter on 'Unknown'
+
+* issue#22: Export of OS Types not working 
+
 --- 3.2 ---
 
 * issue#15: Searching from the hmib pages do not work with international
