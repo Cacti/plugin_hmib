@@ -550,7 +550,10 @@ function checkHost($host_id) {
 	$hrProcessor_freq      = read_config_option('hmib_hrProcessor_freq');
 
 	/* remove the key process and insert the set a process lock */
-	db_execute("DELETE FROM plugin_hmib_processes WHERE pid=$key");
+	if ($key != '') {
+		db_execute("DELETE FROM plugin_hmib_processes WHERE pid=$key");
+	}
+
 	db_execute('REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (' . getmypid() . ", $seed)");
 
 	/* obtain host information */
@@ -577,21 +580,25 @@ function checkHost($host_id) {
 		collect_hrProcessor($host);
 	}
 
+	/* compensate for batch systems */
+	$time = substr(time(), 0, 3);
+
 	/* update the most recent table */
 	db_execute('INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name, total_time)
 		SELECT DISTINCT host_id, name, ' . read_config_option('hmib_hrSWRunPerf_freq') . ' AS `total_time`
 		FROM plugin_hmib_hrSWRun
-		WHERE host_id=' . $host['id'] . '
-		ON DUPLICATE KEY UPDATE last_seen=NOW(),total_time=total_time+VALUES(total_time)');
+		WHERE host_id=' . $host['id'] . "
+		AND name NOT LIKE '$time%'
+		ON DUPLICATE KEY UPDATE last_seen=NOW(),total_time=total_time+VALUES(total_time)");
 
 	/* remove the process lock */
 	db_execute('DELETE FROM plugin_hmib_processes WHERE pid=' . getmypid());
 
 	/* remove odd entries */
-	db_execute("DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE name=''");
+	db_execute("DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE name='' OR name LIKE '$time%'");
 
 	if ($snmp_errors > 0) {
-		cacti_log("WARNING: Host[$host_id] experienced $snmp_errors SNMP Errors while performing data.  Increase logging to HIGH to see errors.", false, 'HMIB');
+		cacti_log("WARNING: Device[$host_id] experienced $snmp_errors SNMP Errors while performing data.  Increase logging to HIGH to see errors.", false, 'HMIB');
 	}
 }
 

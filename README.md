@@ -66,7 +66,13 @@ GitHub.
 
 * issue#19: Cannot filter on 'Unknown'
 
-* issue#22: Export of OS Types not working 
+* issue#22: Export of OS Types not working
+
+* issue#23: Various issues with Host Type and filtering
+
+* issue#24: 500 Error in Inventory page
+
+* issue: Don't collect batch process history
 
 --- 3.2 ---
 
