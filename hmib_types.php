@@ -108,8 +108,14 @@ function form_save() {
 }
 
 function api_hmib_host_type_remove($host_type_id) {
-	db_execute_prepared('DELETE FROM plugin_hmib_hrSystemTypes WHERE id = ?', array($host_type_id));
-	db_execute_prepared('UPDATE plugin_hmib_hrSystem SET host_type=0 WHERE host_type = ?', array($host_type_id));
+	db_execute_prepared('DELETE FROM plugin_hmib_hrSystemTypes
+		WHERE id = ?',
+		array($host_type_id));
+
+	db_execute_prepared('UPDATE plugin_hmib_hrSystem
+		SET host_type=0
+		WHERE host_type = ?',
+		array($host_type_id));
 }
 
 function hmib_host_type_save($host_type_id, $name, $version, $sysDescrMatch, $sysObjectID) {
@@ -132,8 +138,10 @@ function hmib_host_type_save($host_type_id, $name, $version, $sysDescrMatch, $sy
 			}
 		}
 	} else {
-		db_execute_prepared('UPDATE plugin_hmib_hrSystemTypes SET
-			name = ?, version = ?, sysDescrMatch = ?, sysObjectID = ? WHERE id = ?', array($name, $version, $sysDescrMatch, $sysObjectID, $host_type_id));
+		db_execute_prepared('UPDATE plugin_hmib_hrSystemTypes
+			SET name = ?, version = ?, sysDescrMatch = ?, sysObjectID = ?
+			WHERE id = ?',
+			array($name, $version, $sysDescrMatch, $sysObjectID, $host_type_id));
 
 		raise_message(1);
 	}
@@ -143,9 +151,10 @@ function hmib_host_type_save($host_type_id, $name, $version, $sysDescrMatch, $sy
 
 function hmib_duplicate_host_type($host_type_id, $dup_id, $host_type_title) {
 	if (!empty($host_type_id)) {
-		$host_type = db_fetch_row("SELECT *
+		$host_type = db_fetch_row_prepared('SELECT *
 			FROM plugin_hmib_hrSystemTypes
-			WHERE id=$host_type_id");
+			WHERE id = ?',
+			array($host_type_id));
 
 		/* create new entry: graph_local */
 		$save['id'] = 0;
@@ -186,8 +195,10 @@ function form_actions() {
 					api_hmib_host_type_remove($item);
 				}
 			} elseif (get_request_var('drp_action') == '2') { /* duplicate */
+				$i = 0;
 				foreach($selected_items as $item) {
 					hmib_duplicate_host_type($item, $i, get_request_var('title_format'));
+					$i++;
 				}
 			}
 		}
@@ -200,18 +211,24 @@ function form_actions() {
 	$host_types_list = ''; $i = 0;
 
 	/* loop through each of the device types selected on the previous page and get more info about them */
-	while (list($var,$val) = each($_POST)) {
-		if (preg_match('/^chk_([0-9]+)$/', $var, $matches)) {
-			/* ================= input validation ================= */
-			input_validate_input_number($matches[1]);
-			/* ==================================================== */
+	if (cacti_sizeof($_POST)) {
+		foreach($_POST as $var => $val) {
+			if (preg_match('/^chk_([0-9]+)$/', $var, $matches)) {
+				/* ================= input validation ================= */
+				input_validate_input_number($matches[1]);
+				/* ==================================================== */
 
-			$host_types_info = db_fetch_row('SELECT name FROM plugin_hmib_hrSystemTypes WHERE id=' . $matches[1]);
-			$host_types_list .= '<li>' . $host_types_info['name'] . '</li>';
-			$host_types_array[$i] = $matches[1];
+				$host_types_info = db_fetch_row_prepared('SELECT name
+					FROM plugin_hmib_hrSystemTypes
+					WHERE id = ?',
+					array($matches[1]));
+
+				$host_types_list .= '<li>' . html_escape($host_types_info['name']) . '</li>';
+				$host_types_array[$i] = $matches[1];
+			}
+
+			$i++;
 		}
-
-		$i++;
 	}
 
 	top_header();
@@ -220,31 +237,31 @@ function form_actions() {
 
 	html_start_box($host_types_actions{get_request_var('drp_action')}, '60%', '', '3', 'center', '');
 
-	if (get_filter_request_var('drp_action') == '1') { /* delete */
-		print "	<tr>
+	if (cacti_sizeof($host_types_array)) {
+		if (get_filter_request_var('drp_action') == '1') { /* delete */
+			print "<tr>
 				<td class='textArea'>
 					<p>" . __('Click \'Continue\' to Delete the following Host Type(s)', 'hmib') . "</p>
-					<p><ul>$host_types_list</ul></p>
+					<ul class='itemList'>$host_types_list</ul>
 				</td>
-			</tr>\n";
+			</tr>";
 
-		$save_html = "<input type='button' value='" . __('Cancel', 'hmib') . "' onClick='cactiReturnTo()'>&nbsp;<input type='submit' value='" . __('Continue', 'hmib') . "' title='" . __('Delete Host Type(s)', 'hmib') . "'>";
-	} elseif (get_filter_request_var('drp_action') == '2') { /* duplicate */
-		print "	<tr>
+			$save_html = "<input type='button' value='" . __('Cancel', 'hmib') . "' onClick='cactiReturnTo()'>&nbsp;<input type='submit' value='" . __('Continue', 'hmib') . "' title='" . __('Delete Host Type(s)', 'hmib') . "'>";
+		} elseif (get_filter_request_var('drp_action') == '2') { /* duplicate */
+			print "<tr>
 				<td class='textArea'>
 					<p>" . __('Click \'Continue\' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix.', 'hmib') . "</p>
-					<p><ul>$host_types_list</ul></p>
+					<ul class='itemList'>$host_types_list</ul>
 					<p><strong>" . __('Host Type Prefix:', 'hmib') . "</strong><br>"; form_text_box('title_format', '<description> (1)', '', '255', '30', 'text'); print "</p>
 				</td>
-			</tr>\n";
+			</tr>";
 
-		$save_html = "<input type='button' value='" . __('Cancel', 'hmib') . "' onClick='cactiReturnTo()'>&nbsp;<input type='submit' value='" . __('Continue', 'hmib') . "' title='" . __('Duplicate Host Type(s)', 'hmib') . "'>";
-	}
-
-	if (!isset($host_types_array)) {
-		print "<tr><td class='odd'><span class='textError'>" . __('You must select at least one Host Type.', 'hmib') . "</span></td></tr>\n";
-		$save_html = "<input type='button' value='" . __('Cancel', 'hmib') . "' onClick='cactiReturnTo()'>";
+			$save_html = "<input type='button' value='" . __('Cancel', 'hmib') . "' onClick='cactiReturnTo()'>&nbsp;<input type='submit' value='" . __('Continue', 'hmib') . "' title='" . __('Duplicate Host Type(s)', 'hmib') . "'>";
+		}
 	} else {
+		raise_message(40);
+		header('Location: hmib_types.php?header=false');
+		exit;
 	}
 
 	print "<tr class='even'>
@@ -254,7 +271,7 @@ function form_actions() {
 			<input type='hidden' name='drp_action' value='" . get_request_var('drp_action') . "'>
 			$save_html
 		</td>
-	</tr>\n";
+	</tr>";
 
 	html_end_box();
 
@@ -413,7 +430,7 @@ function hmib_host_type_import() {
 		foreach($_SESSION['import_debug_info'] as $import_result) {
 			form_alternate_row();
 			print '<td>' . $import_result . '</td>';
-			print "</tr>\n";
+			print "</tr>";
 		}
 
 		html_end_box();
@@ -985,7 +1002,7 @@ function hmib_host_type_filter() {
 							<?php
 							if (cacti_sizeof($item_rows)) {
 								foreach ($item_rows as $key => $value) {
-									print "<option value='" . $key . "'"; if (get_request_var_request('rows') == $key) { print ' selected'; } print '>' . $value . "</option>\n";
+									print "<option value='" . $key . "'"; if (get_request_var_request('rows') == $key) { print ' selected'; } print '>' . $value . "</option>";
 								}
 							}
 							?>

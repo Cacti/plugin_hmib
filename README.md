@@ -72,6 +72,10 @@ GitHub.
 
 * issue#24: 500 Error in Inventory page
 
+* issue#26: Undefined variable i in hmib_types.php
+
+* issue#27: The each() function is deprecated in hmib_types.php
+
 * issue: Don't collect batch process history
 
 --- 3.2 ---
