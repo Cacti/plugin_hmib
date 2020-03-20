@@ -611,6 +611,11 @@ function hmib_config_arrays() {
 
 	$menu[__('Management')]['plugins/hmib/hmib_types.php'] = __('OS Types', 'hmib');
 
+	if (function_exists('auth_augment_roles')) {
+		auth_augment_roles(__('Normal User'), array('hmib.php'));
+		auth_augment_roles(__('General Administration'), array('hmib_types.php'));
+	}
+
 	hmib_check_upgrade();
 }
 
