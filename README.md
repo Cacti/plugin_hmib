@@ -62,7 +62,7 @@ GitHub.
 
 ## ChangeLog
 
---- develop ---
+--- 3.3 ---
 
 * issue#19: Cannot filter on 'Unknown'
 
@@ -77,6 +77,10 @@ GitHub.
 * issue#27: The each() function is deprecated in hmib_types.php
 
 * issue: Don't collect batch process history
+
+* feature: Move images to glyphs
+
+* feature: Minimum version Cacti 1.2.11
 
 --- 3.2 ---
 

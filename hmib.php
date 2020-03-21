@@ -1785,15 +1785,16 @@ function hmib_devices() {
 
 			form_alternate_row();
 			print "<td class='nowrap'>";
-			//print "<a style='padding:1px;' href='" . html_escape("$url?action=dashboard&reset=1&device=" . $row["host_id"]) . "'><img src='$dashboard' title='View Dashboard' align='absmiddle'></a>";
-			print "<a class='pic' href='" . html_escape("$url?action=storage&reset=1&device=" . $row['host_id']) . "'><img src='$storage' title='" . __('View Storage', 'hmib') . "' align='absmiddle' alt=''></a>";
-			print "<a class='pic' href='" . html_escape("$url?action=hardware&reset=1&device=" . $row['host_id']) . "'><img src='$hardw' title='" . __('View Hardware', 'hmib') . "' align='absmiddle' alt=''></a>";
-			print "<a class='pic' href='" . html_escape("$url?action=running&reset=1&device=" . $row['host_id']) . "'><img src='$proc' title='" . __('View Processes', 'hmib') . "' align='absmiddle' alt=''></a>";
-			print "<a class='pic' href='" . html_escape("$url?action=software&reset=1&device=" . $row['host_id']) . "'><img src='$inven' title='" . __('View Software Inventory', 'hmib') . "' align='absmiddle' alt=''></a>";
+			//print "<a style='padding:1px;' href='" . html_escape("$url?action=dashboard&reset=1&device=" . $row["host_id"]) . "'><i src='$dashboard' title='View Dashboard'></i></a>";
+			print "<a class='pic' href='" . html_escape("$url?action=storage&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-database' title='" . __('View Storage', 'hmib') . "'></i></a>";
+			print "<a class='pic' href='" . html_escape("$url?action=hardware&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-microchip' style='color:lightblue' title='" . __('View Hardware', 'hmib') . "'></i></a>";
+			print "<a class='pic' href='" . html_escape("$url?action=running&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i></a>";
+			print "<a class='pic' href='" . html_escape("$url?action=software&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-archive' title='" . __('View Software Inventory', 'hmib') . "'></i></a>";
+
 			if ($found) {
-				print "<a class='pic' href='" . html_escape("$url?action=graphs&reset=1&host_id=" . $row['host_id'] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=") . "'><img  src='$graphs' title='" . __('View Graphs', 'hmib') . "' align='absmiddle' alt=''></a>";
+				print "<a class='pic' href='" . html_escape("$url?action=graphs&reset=1&host_id=" . $row['host_id'] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=") . "'><i class='fas fa-chart-line' style='color:orange;' title='" . __('View Graphs', 'hmib') . "'></i></a>";
 			} else {
-				print "<img src='$nographs' title='" . __('No Graphs Defined', 'hmib') . "' align='absmiddle' alt=''>";
+				print "<i class='fas fa-chart-line' title='" . __('No Graphs Defined', 'hmib') . "'></i>";
 			}
 
 			$graph_cpu   = hmib_get_graph_url($hcpudq, 0, $row['host_id'], '', $row['numCpus'], false);
@@ -2467,11 +2468,11 @@ function hmib_summary() {
 
 			form_alternate_row();
 			print "<td class='nowrap'>";
-			print "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&ostype=" . $row['host_type']) . "'><img src='$host' title='" . __('View Devices', 'hmib') . "' alt=''></a>";
-			print "<a class='pic' href='" . html_escape("$url?reset=1&action=storage&ostype=" . $row['host_type']) . "'><img src='$storage' title='" . __('View Storage', 'hmib') . "' alt=''></a>";
-			print "<a class='pic' href='" . html_escape("$url?reset=1&action=hardware&ostype=" . $row['host_type']) . "'><img src='$hardw' title='" . __('View Hardware', 'hmib') . "' alt=''></a>";
-			print "<a class='pic' href='" . html_escape("$url?reset=1&action=running&ostype=" . $row['host_type']) . "'><img src='$proc' title='" . __('View Processes', 'hmib') . "' alt=''></a>";
-			print "<a class='pic' href='" . html_escape("$url?reset=1&action=software&ostype=" . $row['host_type']) . "'><img src='$inven' title='" . __('View Software Inventory', 'hmib') . "' alt=''></a>";
+			print "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&ostype=" . $row['host_type']) . "'><i class='fas fa-server deviceUp' title='" . __('View Devices', 'hmib') . "'></i></a>";
+			print "<a class='pic' href='" . html_escape("$url?reset=1&action=storage&ostype=" . $row['host_type']) . "'><i class='fas fa-database' title='" . __('View Storage', 'hmib') . "'></i></a>";
+			print "<a class='pic' href='" . html_escape("$url?reset=1&action=hardware&ostype=" . $row['host_type']) . "'><i class='fas fa-microchip' style='color:lightblue;' title='" . __('View Hardware', 'hmib') . "'></i></a>";
+			print "<a class='pic' href='" . html_escape("$url?reset=1&action=running&ostype=" . $row['host_type']) . "'><i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i></a>";
+			print "<a class='pic' href='" . html_escape("$url?reset=1&action=software&ostype=" . $row['host_type']) . "'><i class='fas fa-archive title='" . __('View Software Inventory', 'hmib') . "'></i></a>";
 			print $graph_url;
 			print '</td>';
 
@@ -2641,8 +2642,8 @@ function hmib_summary() {
 
 			form_alternate_row();
 			print "<td class='nowrap'>";
-			print "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&process=" . $row['name']) . "'><img src='$host' title='" . __('View Devices', 'hmib') . "' align='absmiddle' alt=''></a>";
-			print "<a class='pic' href='" . html_escape("$url?reset=1&action=running&process=" . $row['name']) . "'><img src='$proc' title='" . __('View Processes', 'hmib') . "' align='absmiddle' alt=''></a>";
+			print "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&process=" . $row['name']) . "'><i class='fas fa-server deviceUp' title='" . __('View Devices', 'hmib') . "'></i></a>";
+			print "<a class='pic' href='" . html_escape("$url?reset=1&action=running&process=" . $row['name']) . "'><i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i></a>";
 			print $graph_url;
 			print '</td>';
 			print "<td class='left' width='140'>" . html_escape($row['name']) . '</td>';
@@ -2710,7 +2711,7 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
 
 		if (cacti_sizeof($graphs)) {
 			if ($image) {
-				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'><img alt='' src='" . $graph . "'></a>";
+				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'><i class='fas fa-chart-line' style='color:orange;'></i></a>";
 			} else {
 				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'>$title</a>";
 			}
@@ -2758,7 +2759,7 @@ function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = 
 
 		if (cacti_sizeof($graphs)) {
 			if ($image) {
-				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'><img alt='' align='absmiddle' src='" . $graph . "'></a>";
+				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'><i class='fas fa-chart-line' style='color:orange;' src='" . $graph . "'></i></a>";
 			} else {
 				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'>$title</a>";
 			}
