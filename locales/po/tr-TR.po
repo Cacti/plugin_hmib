@@ -7,29 +7,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-29 19:06-0500\n"
-"PO-Revision-Date: 2019-03-16 23:45-0400\n"
+"POT-Creation-Date: 2020-12-12 20:08-0500\n"
+"PO-Revision-Date: 2020-12-12 20:47-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: hmib.php:36
-#, fuzzy
 msgid "Error"
 msgstr "Hata"
 
-#: hmib.php:37 hmib.php:52 hmib.php:748 hmib.php:1068 hmib.php:1378
-#: hmib.php:1581 hmib.php:2111 hmib.php:2425 hmib_types.php:352
-#, fuzzy
+#: hmib.php:37 hmib.php:52 hmib.php:193 hmib.php:534 hmib.php:760 hmib.php:894
+#: hmib.php:1094 hmib.php:1214 hmib.php:1417 hmib.php:1535 hmib.php:1628
+#: hmib.php:1970 hmib.php:2170 hmib.php:2484 hmib_types.php:369
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
 #: hmib.php:38
-#, fuzzy
 msgid "Operating System"
 msgstr "İşletim Sistemi"
 
@@ -39,12 +37,10 @@ msgid "Device Driver"
 msgstr "Aygıt sürücüsü"
 
 #: hmib.php:40
-#, fuzzy
 msgid "Application"
 msgstr "Uygulama"
 
 #: hmib.php:44 hmib.php:53
-#, fuzzy
 msgid "Running"
 msgstr "Çalışıyor"
 
@@ -59,27 +55,22 @@ msgid "Not Runnable"
 msgstr "Çalıştırılamaz"
 
 #: hmib.php:47
-#, fuzzy
 msgid "Invalid"
 msgstr "Geçersiz"
 
 #: hmib.php:51
-#, fuzzy
 msgid "Present"
 msgstr "Mevcut"
 
 #: hmib.php:54
-#, fuzzy
 msgid "Warning"
 msgstr "Uyarı"
 
 #: hmib.php:55
-#, fuzzy
 msgid "Testing"
 msgstr "Test"
 
-#: hmib.php:56 hmib.php:1584 hmib.php:2378
-#, fuzzy
+#: hmib.php:56 hmib.php:1631 hmib.php:2437
 msgid "Down"
 msgstr "Aşağı"
 
@@ -88,848 +79,753 @@ msgstr "Aşağı"
 msgid "Running Process History"
 msgstr "İşlem Geçmişini Çalıştırma"
 
-#: hmib.php:188 hmib.php:520 hmib.php:871 hmib.php:1177 hmib.php:1485
-#: hmib.php:1913 hmib_types.php:968
+#: hmib.php:188 hmib.php:529 hmib.php:889 hmib.php:1209 hmib.php:1530
+#: hmib.php:1965 hmib_types.php:997
 #, fuzzy
 msgid "OS Type"
 msgstr "Os türü"
 
-#: hmib.php:192 hmib.php:213 hmib.php:235 hmib.php:274 hmib.php:524
-#: hmib.php:545 hmib.php:567 hmib.php:606 hmib.php:875 hmib.php:895
-#: hmib.php:917 hmib.php:956 hmib.php:1181 hmib.php:1202 hmib.php:1224
-#: hmib.php:1263 hmib.php:1489 hmib.php:1510 hmib.php:1533 hmib.php:1569
-#: hmib.php:1917 hmib.php:1938 hmib.php:1960 hmib.php:1999
-#, fuzzy
+#: hmib.php:192 hmib.php:214 hmib.php:236 hmib.php:275 hmib.php:533
+#: hmib.php:555 hmib.php:577 hmib.php:616 hmib.php:893 hmib.php:915
+#: hmib.php:937 hmib.php:976 hmib.php:1213 hmib.php:1235 hmib.php:1257
+#: hmib.php:1296 hmib.php:1534 hmib.php:1556 hmib.php:1579 hmib.php:1615
+#: hmib.php:1969 hmib.php:1991 hmib.php:2013 hmib.php:2052
 msgid "All"
 msgstr "Tümü"
 
-#: hmib.php:209 hmib.php:541 hmib.php:891 hmib.php:1198 hmib.php:1934
-#, fuzzy
+#: hmib.php:210 hmib.php:551 hmib.php:911 hmib.php:1231 hmib.php:1987
 msgid "Device"
 msgstr "Cihaz"
 
-#: hmib.php:231 hmib.php:563 hmib.php:913 hmib.php:1220 hmib.php:1506
-#: hmib.php:1956
-#, fuzzy
+#: hmib.php:232 hmib.php:573 hmib.php:933 hmib.php:1253 hmib.php:1552
+#: hmib.php:2009
 msgid "Template"
 msgstr "Şablon"
 
-#: hmib.php:255 hmib.php:587 hmib.php:937 hmib.php:1244 hmib.php:1550
-#: hmib.php:1980 hmib.php:2319 hmib.php:2502 hmib_types.php:915
-#: hmib_types.php:984
-#, fuzzy
+#: hmib.php:256 hmib.php:597 hmib.php:957 hmib.php:1277 hmib.php:1596
+#: hmib.php:2033 hmib.php:2378 hmib.php:2561 hmib_types.php:932
+#: hmib_types.php:1013
 msgid "Go"
 msgstr "Git"
 
-#: hmib.php:256 hmib.php:588 hmib.php:938 hmib.php:1245 hmib.php:1551
-#: hmib.php:1981 hmib.php:2320 hmib.php:2503 hmib_types.php:985
-#, fuzzy
+#: hmib.php:257 hmib.php:598 hmib.php:958 hmib.php:1278 hmib.php:1597
+#: hmib.php:2034 hmib.php:2379 hmib.php:2562 hmib_types.php:1014
 msgid "Clear"
 msgstr "Temizle"
 
-#: hmib.php:264 hmib.php:596 hmib.php:946 hmib.php:1253 hmib.php:1559
-#: hmib.php:1989 hmib.php:2483 hmib_types.php:962
-#, fuzzy
+#: hmib.php:265 hmib.php:606 hmib.php:966 hmib.php:1286 hmib.php:1605
+#: hmib.php:2042 hmib.php:2542 hmib_types.php:991
 msgid "Search"
 msgstr "Arama"
 
-#: hmib.php:270 hmib.php:373 hmib.php:602 hmib.php:716 hmib.php:1529
-#, fuzzy
+#: hmib.php:271 hmib.php:376 hmib.php:612 hmib.php:728 hmib.php:1575
 msgid "Process"
 msgstr "Süreç"
 
-#: hmib.php:290 hmib.php:622 hmib.php:971
-#, fuzzy
+#: hmib.php:291 hmib.php:632 hmib.php:991
 msgid "Entries"
 msgstr "Kayıtlar"
 
-#: hmib.php:294 hmib.php:626 hmib.php:975 hmib.php:1282 hmib.php:1607
-#: hmib.php:2018 hmib_types.php:972
-#, fuzzy
+#: hmib.php:295 hmib.php:636 hmib.php:995 hmib.php:1315 hmib.php:1654
+#: hmib.php:2071 hmib_types.php:1001
 msgid "Default"
 msgstr "Varsayılan"
 
-#: hmib.php:372 hmib.php:715 hmib.php:1042 hmib.php:1349 hmib.php:1674
-#: hmib.php:2085
-#, fuzzy
+#: hmib.php:375 hmib.php:727 hmib.php:1068 hmib.php:1388 hmib.php:1727
+#: hmib.php:2144
 msgid "Hostname"
 msgstr "Sunucu Adı"
 
-#: hmib.php:374
-#, fuzzy
+#: hmib.php:377
 msgid "Last Seen"
 msgstr "Son Görülme"
 
-#: hmib.php:375
+#: hmib.php:378
 #, fuzzy
 msgid "Use Time (d:h:m)"
 msgstr "Kullanım Süresi (d: h: m)"
 
-#: hmib.php:378
-#, fuzzy
+#: hmib.php:381
 msgid "History"
 msgstr "Geçmiş"
 
-#: hmib.php:390 hmib.php:737 hmib.php:1061 hmib.php:1371 hmib.php:1751
-#: hmib.php:2104
+#: hmib.php:393 hmib.php:749 hmib.php:1087 hmib.php:1410 hmib.php:1805
+#: hmib.php:2163
 #, fuzzy
 msgid "Edit Device"
 msgstr "Cihazı Düzenle"
 
-#: hmib.php:402
+#: hmib.php:405
 #, fuzzy
 msgid "No Process History Found"
 msgstr "İşlem Geçmişi Bulunamadı"
 
-#: hmib.php:511
-#, fuzzy
+#: hmib.php:520
 msgid "Running Processes"
-msgstr "Devam Eden Süreçler"
+msgstr "Çalışan İşlemler"
 
-#: hmib.php:717
-#, fuzzy
+#: hmib.php:729
 msgid "Path"
 msgstr "Yol"
 
-#: hmib.php:718
-#, fuzzy
+#: hmib.php:730
 msgid "Parameters"
 msgstr "Parametreler"
 
-#: hmib.php:719
+#: hmib.php:731
 #, fuzzy
 msgid "CPU (Hrs)"
 msgstr "CPU (Saat)"
 
-#: hmib.php:720
+#: hmib.php:732
 #, fuzzy
 msgid "Memory (MB)"
 msgstr "Hafıza (MB)"
 
-#: hmib.php:721 hmib.php:952 hmib.php:1259 hmib.php:1995 hmib.php:2087
-#: hmib.php:2374
-#, fuzzy
+#: hmib.php:733 hmib.php:972 hmib.php:1292 hmib.php:2048 hmib.php:2146
+#: hmib.php:2433
 msgid "Type"
 msgstr "Tip"
 
-#: hmib.php:722 hmib.php:1045 hmib.php:1565 hmib.php:1675
-#, fuzzy
+#: hmib.php:734 hmib.php:1071 hmib.php:1611 hmib.php:1728
 msgid "Status"
 msgstr "Durum"
 
-#: hmib.php:725 hmib.php:1680 hmib.php:2135 hmib.php:2561
-#, fuzzy
+#: hmib.php:737 hmib.php:1733 hmib.php:2194 hmib.php:2620
 msgid "Processes"
 msgstr "Süreçler"
 
-#: hmib.php:753
+#: hmib.php:765
 #, fuzzy
 msgid "No Running Software Found"
 msgstr "Çalışan Yazılım Bulunamadı"
 
-#: hmib.php:768
+#: hmib.php:780
 #, fuzzy
 msgid "Total CPU [h]:"
 msgstr "Toplam CPU [h]:"
 
-#: hmib.php:769
+#: hmib.php:781
 #, fuzzy
 msgid "Total Size [MB]:"
 msgstr "Toplam Boyut [MB]:"
 
-#: hmib.php:772
+#: hmib.php:784
 #, fuzzy
 msgid "Avg. CPU [h]:"
 msgstr "Ort. CPU [h]:"
 
-#: hmib.php:773
+#: hmib.php:785
 #, fuzzy
 msgid "Avg. Size [MB]:"
 msgstr "Ort. Boyut [MB]:"
 
-#: hmib.php:862
+#: hmib.php:880
 #, fuzzy
 msgid "Hardware Inventory"
 msgstr "Donanım Envanteri"
 
-#: hmib.php:1043
+#: hmib.php:1069
 #, fuzzy
 msgid "Hardware Description"
 msgstr "Donanım Açıklaması"
 
-#: hmib.php:1044
+#: hmib.php:1070
 #, fuzzy
 msgid "Hardware Type"
 msgstr "Donanım türü"
 
-#: hmib.php:1046 hmib.php:1352
-#, fuzzy
+#: hmib.php:1072 hmib.php:1391
 msgid "Errors"
 msgstr "Hatalar"
 
-#: hmib.php:1049 hmib.php:1603 hmib.php:1688 hmib.php:2132
-#, fuzzy
+#: hmib.php:1075 hmib.php:1650 hmib.php:1741 hmib.php:2191
 msgid "Devices"
 msgstr "Cihazlar"
 
-#: hmib.php:1074
+#: hmib.php:1100
 #, fuzzy
 msgid "No Hardware Found"
 msgstr "Donanım bulunamadı"
 
-#: hmib.php:1168
+#: hmib.php:1200
 #, fuzzy
 msgid "Storage Inventory"
 msgstr "Depolama Envanteri"
 
-#: hmib.php:1278 hmib.php:1359
+#: hmib.php:1311 hmib.php:1398
 #, fuzzy
 msgid "Volumes"
 msgstr "Cilt"
 
-#: hmib.php:1350
+#: hmib.php:1389
 #, fuzzy
 msgid "Storage Description"
 msgstr "Depolama açıklaması"
 
-#: hmib.php:1351
+#: hmib.php:1390
 #, fuzzy
 msgid "Storage Type"
 msgstr "Depolama türü"
 
-#: hmib.php:1353
+#: hmib.php:1392
 #, fuzzy
 msgid "Percent Used"
 msgstr "Kullanılan Yüzde"
 
-#: hmib.php:1354
+#: hmib.php:1393
 #, fuzzy
 msgid "Used (MB)"
 msgstr "Kullanılmış (MB)"
 
-#: hmib.php:1355
+#: hmib.php:1394
 #, fuzzy
 msgid "Total (MB)"
 msgstr "Toplam (MB)"
 
-#: hmib.php:1356
+#: hmib.php:1395
 #, fuzzy
 msgid "Alloc (KB)"
 msgstr "Alloc (KB)"
 
-#: hmib.php:1387
+#: hmib.php:1426
 #, fuzzy
 msgid "No Storage Devices Found"
 msgstr "Depolama Aygıtı Bulunamadı"
 
-#: hmib.php:1476
+#: hmib.php:1521
 #, fuzzy
 msgid "Device Filter"
 msgstr "Cihaz filtresi"
 
-#: hmib.php:1587 hmib.php:2377
+#: hmib.php:1634 hmib.php:2436
 #, fuzzy
 msgid "Recovering"
 msgstr "kurtarma"
 
-#: hmib.php:1590 hmib.php:2376
-#, fuzzy
+#: hmib.php:1637 hmib.php:2435
 msgid "Up"
 msgstr "Yukarı"
 
-#: hmib.php:1593 hmib.php:2379 setup.php:504
-#, fuzzy
+#: hmib.php:1640 hmib.php:2438 setup.php:529
 msgid "Disabled"
 msgstr "Devre dışı"
 
-#: hmib.php:1673 hmib.php:2373 hmib.php:2557 setup.php:604
-#, fuzzy
+#: hmib.php:1726 hmib.php:2432 hmib.php:2616 setup.php:634
 msgid "Actions"
 msgstr "Eylemler"
 
-#: hmib.php:1676
+#: hmib.php:1729
 #, fuzzy
 msgid "Uptime(d:h:m)"
 msgstr "Çalışma süresi (d: s: d)"
 
-#: hmib.php:1677
-#, fuzzy
+#: hmib.php:1730
 msgid "Users"
 msgstr "Kullanıcılar"
 
-#: hmib.php:1678
+#: hmib.php:1731
 #, fuzzy
 msgid "CPU %"
 msgstr "İŞLEMCİ %"
 
-#: hmib.php:1679
+#: hmib.php:1732
 #, fuzzy
 msgid "CPUs"
 msgstr "CPU'lar"
 
-#: hmib.php:1681
+#: hmib.php:1734
 #, fuzzy
 msgid "Total Mem"
 msgstr "Toplam Mem"
 
-#: hmib.php:1682
+#: hmib.php:1735
 #, fuzzy
 msgid "Used Mem"
 msgstr "Kullanılan Mem"
 
-#: hmib.php:1683
+#: hmib.php:1736
 #, fuzzy
 msgid "Total Swap"
 msgstr "Toplam takas"
 
-#: hmib.php:1684
+#: hmib.php:1737
 #, fuzzy
 msgid "Used Swap"
 msgstr "Kullanılan Swap"
 
-#: hmib.php:1736 hmib.php:2413
+#: hmib.php:1789 hmib.php:2472
 #, fuzzy
 msgid "View Storage"
 msgstr "Depolamayı Görüntüle"
 
-#: hmib.php:1737 hmib.php:2414
+#: hmib.php:1790 hmib.php:2473
 #, fuzzy
 msgid "View Hardware"
 msgstr "Donanımı Görüntüle"
 
-#: hmib.php:1738 hmib.php:2415 hmib.php:2587
+#: hmib.php:1791 hmib.php:2474 hmib.php:2646
 #, fuzzy
 msgid "View Processes"
 msgstr "İşlemleri Görüntüle"
 
-#: hmib.php:1739 hmib.php:2416
+#: hmib.php:1792 hmib.php:2475
 #, fuzzy
 msgid "View Software Inventory"
 msgstr "Yazılım Envanterini Görüntüleyin"
 
-#: hmib.php:1741 hmib.php:2655 hmib.php:2657 hmib.php:2703 hmib.php:2705
+#: hmib.php:1795 hmib.php:2714 hmib.php:2716 hmib.php:2762 hmib.php:2764
 #, fuzzy
 msgid "View Graphs"
 msgstr "Grafikleri Görüntüle"
 
-#: hmib.php:1743
+#: hmib.php:1797
 #, fuzzy
 msgid "No Graphs Defined"
 msgstr "Tanımlanmış Grafik Yok"
 
-#: hmib.php:1771
-#, fuzzy
+#: hmib.php:1825
 msgid "No Devices Found"
-msgstr "Hiçbir cihaz bulunamadı"
+msgstr "Hiç Aygıtı Bulunamadı"
 
-#: hmib.php:1904
+#: hmib.php:1956
 #, fuzzy
 msgid "Software Inventory"
 msgstr "Yazılım Envanteri"
 
-#: hmib.php:2014 hmib.php:2091
-#, fuzzy
+#: hmib.php:2067 hmib.php:2150
 msgid "Applications"
 msgstr "Uygulamalar"
 
-#: hmib.php:2086
-#, fuzzy
+#: hmib.php:2145
 msgid "Package"
 msgstr "Paket"
 
-#: hmib.php:2088
-#, fuzzy
+#: hmib.php:2147
 msgid "Installed"
 msgstr "Yüklü"
 
-#: hmib.php:2116
+#: hmib.php:2175
 #, fuzzy
 msgid "No Software Packages Found"
 msgstr "Yazılım Paketi Bulunamadı"
 
-#: hmib.php:2131
-#, fuzzy
+#: hmib.php:2190
 msgid "Summary"
 msgstr "Özet"
 
-#: hmib.php:2133
-#, fuzzy
+#: hmib.php:2192
 msgid "Storage"
 msgstr "Depolama"
 
-#: hmib.php:2134
-#, fuzzy
+#: hmib.php:2193
 msgid "Hardware"
 msgstr "Donanım"
 
-#: hmib.php:2136
+#: hmib.php:2195
 #, fuzzy
 msgid "Use History"
 msgstr "Geçmişi Kullan"
 
-#: hmib.php:2137
-#, fuzzy
+#: hmib.php:2196
 msgid "Inventory"
 msgstr "Envanter"
 
-#: hmib.php:2138 hmib.php:2822
-#, fuzzy
+#: hmib.php:2197 hmib.php:2881
 msgid "Graphs"
 msgstr "Grafikler"
 
-#: hmib.php:2297
+#: hmib.php:2356
 #, fuzzy
 msgid "Summary Filter"
 msgstr "Özet Filtresi"
 
-#: hmib.php:2306 hmib.php:2489
-#, fuzzy
+#: hmib.php:2365 hmib.php:2548
 msgid "Top"
 msgstr "Üst"
 
-#: hmib.php:2310 hmib.php:2493
-#, fuzzy
+#: hmib.php:2369 hmib.php:2552
 msgid "All Records"
 msgstr "Tüm Kayıtlar"
 
-#: hmib.php:2311 hmib.php:2494 hmib.php:2495 hmib.php:2496 hmib.php:2497
+#: hmib.php:2370 hmib.php:2553 hmib.php:2554 hmib.php:2555 hmib.php:2556
 #, fuzzy, php-format
 msgid "%d Records"
 msgstr "% d Kayıt"
 
-#: hmib.php:2312 hmib.php:2313 hmib.php:2314
+#: hmib.php:2371 hmib.php:2372 hmib.php:2373
 #, fuzzy, php-format
 msgid "%d Record"
 msgstr "% d Kayıt"
 
-#: hmib.php:2324 hmib.php:2507
+#: hmib.php:2383 hmib.php:2566
+#, fuzzy
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
-msgstr ""
+msgstr "NOT: Grafikleri görüntülemek için Ana Bilgisayar MIB Aygıt Paketini içe aktarın."
 
-#: hmib.php:2335
+#: hmib.php:2394
 #, fuzzy
 msgid "Device Type Summary Statistics"
 msgstr "Cihaz Türü Özet İstatistikleri"
 
-#: hmib.php:2375 hmib_types.php:737
-#, fuzzy
+#: hmib.php:2434 hmib_types.php:754
 msgid "Version"
 msgstr "Versiyon"
 
-#: hmib.php:2380
-#, fuzzy
+#: hmib.php:2439
 msgid "Logins"
 msgstr "Oturumlar"
 
-#: hmib.php:2381
+#: hmib.php:2440
 #, fuzzy
 msgid "CPUS"
 msgstr "CPU'lar"
 
-#: hmib.php:2382 hmib.php:2562
+#: hmib.php:2441 hmib.php:2621
 #, fuzzy
 msgid "Avg CPU"
 msgstr "Ort. CPU"
 
-#: hmib.php:2383 hmib.php:2563
+#: hmib.php:2442 hmib.php:2622
 #, fuzzy
 msgid "Max CPU"
 msgstr "Maksimum işlemci"
 
-#: hmib.php:2384
+#: hmib.php:2443
 #, fuzzy
 msgid "Avg Mem"
 msgstr "Ort. Mem"
 
-#: hmib.php:2385
+#: hmib.php:2444
 #, fuzzy
 msgid "Max Mem"
 msgstr "Max Mem"
 
-#: hmib.php:2386
+#: hmib.php:2445
 #, fuzzy
 msgid "Avg Swap"
 msgstr "Ort. Swap"
 
-#: hmib.php:2387
+#: hmib.php:2446
 #, fuzzy
 msgid "Max Swap"
 msgstr "Max Swap"
 
-#: hmib.php:2388
+#: hmib.php:2447
 #, fuzzy
 msgid "Avg Proc"
 msgstr "Ort. İşlem"
 
-#: hmib.php:2389
+#: hmib.php:2448
 #, fuzzy
 msgid "Max Proc"
 msgstr "Max Proc"
 
-#: hmib.php:2412 hmib.php:2586 hmib.php:2612
+#: hmib.php:2471 hmib.php:2645 hmib.php:2671
 #, fuzzy
 msgid "View Devices"
 msgstr "Cihazları Görüntüle"
 
-#: hmib.php:2445
+#: hmib.php:2504
 #, fuzzy
 msgid "No Device Types"
 msgstr "Aygıt Türü Yok"
 
-#: hmib.php:2450
+#: hmib.php:2509
 #, fuzzy
 msgid "Process Summary Filter"
 msgstr "İşlem Özeti Filtresi"
 
-#: hmib.php:2518
+#: hmib.php:2577
 #, fuzzy
 msgid "Process Summary Statistics"
 msgstr "İşlem Özeti İstatistikleri"
 
-#: hmib.php:2558
+#: hmib.php:2617
 #, fuzzy
 msgid "Process Name"
 msgstr "İşlem adı"
 
-#: hmib.php:2559
+#: hmib.php:2618
 #, fuzzy
 msgid "Num Paths"
 msgstr "Num Yolları"
 
-#: hmib.php:2560 hmib_types.php:864
-#, fuzzy
+#: hmib.php:2619 hmib_types.php:881
 msgid "Hosts"
-msgstr "Sunucular"
+msgstr "Ana makineler"
 
-#: hmib.php:2564
+#: hmib.php:2623
 #, fuzzy
 msgid "Avg Memory"
 msgstr "Ort. Hafıza"
 
-#: hmib.php:2565
+#: hmib.php:2624
 #, fuzzy
 msgid "Max Memory"
 msgstr "Maksimum bellek"
 
-#: hmib.php:2602
+#: hmib.php:2661
 #, fuzzy
 msgid "No Processes"
 msgstr "Süreçler"
 
-#: hmib.php:2748
+#: hmib.php:2807
 #, fuzzy
 msgid "Custom Graph List Applied - Filtering from List"
 msgstr "Uygulanan Özel Grafik Listesi - Listeden Filtreleme"
 
-#: hmib.php:2748
+#: hmib.php:2807
 #, fuzzy
 msgid "Graph Preview Filters"
 msgstr "Grafik Önizleme Filtreleri"
 
 #: hmib_types.php:30
-#, fuzzy
 msgid "Delete"
 msgstr "Sil"
 
 #: hmib_types.php:31
-#, fuzzy
 msgid "Duplicate"
 msgstr "Kopyala"
 
-#: hmib_types.php:226
+#: hmib_types.php:244
 #, fuzzy
 msgid "Click 'Continue' to Delete the following Host Type(s)"
 msgstr "Aşağıdaki Ana Bilgisayar Türlerini silmek için 'Devam Et'i tıklayın."
 
-#: hmib_types.php:231 hmib_types.php:241 hmib_types.php:246
-#, fuzzy
+#: hmib_types.php:249 hmib_types.php:259
 msgid "Cancel"
 msgstr "İptal"
 
-#: hmib_types.php:231 hmib_types.php:241
-#, fuzzy
+#: hmib_types.php:249 hmib_types.php:259
 msgid "Continue"
 msgstr "Devam et"
 
-#: hmib_types.php:231
+#: hmib_types.php:249
 #, fuzzy
 msgid "Delete Host Type(s)"
 msgstr "Ana Bilgisayar Türlerini Sil"
 
-#: hmib_types.php:235
+#: hmib_types.php:253
 #, fuzzy
-msgid ""
-"Click 'Continue' to Duplicate the following Host Type(s). You may optionally "
-"change the description for the new Host Type(s).  Otherwise, do not change "
-"value below and the original name will be replicated with a new suffix."
-msgstr ""
-"Aşağıdaki Ana Bilgisayar Türlerini Çoğaltmak için 'Devam Et'i tıklayın. "
-"İsteğe bağlı olarak yeni Ana Bilgisayar Türleri için açıklamasını "
-"değiştirebilirsiniz. Aksi takdirde, aşağıdaki değeri değiştirmeyin; orijinal "
-"ad yeni bir sonek ile çoğaltılır."
+msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
+msgstr "Aşağıdaki Ana Bilgisayar Türlerini Çoğaltmak için 'Devam Et'i tıklayın. İsteğe bağlı olarak yeni Ana Bilgisayar Türleri için açıklamasını değiştirebilirsiniz. Aksi takdirde, aşağıdaki değeri değiştirmeyin; orijinal ad yeni bir sonek ile çoğaltılır."
 
-#: hmib_types.php:237
+#: hmib_types.php:255
 #, fuzzy
 msgid "Host Type Prefix:"
 msgstr "Ana Bilgisayar Türü Öneki:"
 
-#: hmib_types.php:241
+#: hmib_types.php:259
 #, fuzzy
 msgid "Duplicate Host Type(s)"
 msgstr "Yinelenen Ana Bilgisayar Türleri"
 
-#: hmib_types.php:245
-#, fuzzy
-msgid "You must select at least one Host Type."
-msgstr "En az bir Ana Bilgisayar Türü seçmelisiniz."
-
-#: hmib_types.php:351
-#, fuzzy
+#: hmib_types.php:368
 msgid "New Type"
 msgstr "Yeni Tür"
 
-#: hmib_types.php:396
+#: hmib_types.php:413
 #, fuzzy, php-format
 msgid "There were %d Device Types Added!"
 msgstr "% D cihaz tipi eklendi!"
 
-#: hmib_types.php:399
+#: hmib_types.php:416
 #, fuzzy
 msgid "No New Host Types Found!"
 msgstr "Yeni Konak Tipi Bulunamadı!"
 
-#: hmib_types.php:410
-#, fuzzy
+#: hmib_types.php:427
 msgid "Import Results"
 msgstr "İçeri Aktarma Sonuçları"
 
-#: hmib_types.php:412
+#: hmib_types.php:429
 #, fuzzy
 msgid "Cacti has imported the following items:"
 msgstr "Cacti aşağıdakileri ithal etti:"
 
-#: hmib_types.php:424
+#: hmib_types.php:441
 #, fuzzy
 msgid "Import Host MIB OS Types"
 msgstr "Ana Bilgisayar MIB İşletim Sistemi Türlerini İçe Aktar"
 
-#: hmib_types.php:427
+#: hmib_types.php:444
 #, fuzzy
 msgid "Import Device Types from Local File"
 msgstr "Aygıt Dosyalarını Yerel Dosyadan İçe Aktar"
 
-#: hmib_types.php:428
+#: hmib_types.php:445
 #, fuzzy
-msgid ""
-"Please specify the location of the CSV file containing your device type "
-"information."
-msgstr ""
-"Lütfen cihaz türü bilgilerinizi içeren CSV dosyasının konumunu belirtin."
+msgid "Please specify the location of the CSV file containing your device type information."
+msgstr "Lütfen cihaz türü bilgilerinizi içeren CSV dosyasının konumunu belirtin."
 
-#: hmib_types.php:435
+#: hmib_types.php:452
 #, fuzzy
 msgid "Overwrite Existing Data?"
 msgstr "Mevcut Verilerin Üzerine Yazılsın mı?"
 
-#: hmib_types.php:436
+#: hmib_types.php:453
 #, fuzzy
-msgid ""
-"Should the import process be allowed to overwrite existing data?  Please "
-"note, this does not mean delete old row, only replace duplicate rows."
-msgstr ""
-"İçe aktarma işleminin mevcut verilerin üzerine yazmasına izin verilmeli "
-"midir? Lütfen dikkat, bu eski satırı silmek anlamına gelmez, sadece "
-"tekrarlanan satırları değiştir."
+msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
+msgstr "İçe aktarma işleminin mevcut verilerin üzerine yazmasına izin verilmeli midir? Lütfen dikkat, bu eski satırı silmek anlamına gelmez, sadece tekrarlanan satırları değiştir."
 
-#: hmib_types.php:439
+#: hmib_types.php:456
 #, fuzzy
 msgid "Allow Existing Rows to be Updated?"
 msgstr "Mevcut Satırların Güncellenmesine İzin Verilsin mi?"
 
-#: hmib_types.php:444
+#: hmib_types.php:461
 #, fuzzy
 msgid "Required File Format Notes"
 msgstr "Gerekli Dosya Biçimi Notları"
 
-#: hmib_types.php:447
+#: hmib_types.php:464
 #, fuzzy
 msgid "The file must contain a header row with the following column headings."
-msgstr ""
-"Dosya, aşağıdaki sütun başlıklarına sahip bir başlık satırı içermelidir."
+msgstr "Dosya, aşağıdaki sütun başlıklarına sahip bir başlık satırı içermelidir."
 
-#: hmib_types.php:449
+#: hmib_types.php:466
 #, fuzzy
 msgid "A common name for the Host Type.  For example, Windows 7"
 msgstr "Ana Bilgisayar Türü için ortak bir ad. Örneğin, Windows 7"
 
-#: hmib_types.php:450
+#: hmib_types.php:467
 #, fuzzy
 msgid "The OS version for the Host Type"
 msgstr "Ana Bilgisayar Türü için işletim sistemi sürümü"
 
-#: hmib_types.php:451
+#: hmib_types.php:468
 #, fuzzy
-msgid ""
-"A unique set of characters from the snmp sysDescr that uniquely identify "
-"this device"
-msgstr ""
-"Bu aygıtı benzersiz şekilde tanımlayan snmp sysDescr öğesinden benzersiz bir "
-"karakter kümesi"
+msgid "A unique set of characters from the snmp sysDescr that uniquely identify this device"
+msgstr "Bu aygıtı benzersiz şekilde tanımlayan snmp sysDescr öğesinden benzersiz bir karakter kümesi"
 
-#: hmib_types.php:452
+#: hmib_types.php:469
 #, fuzzy
-msgid ""
-"The vendor specific snmp sysObjectID that distinguishes this device from the "
-"next"
+msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
 msgstr "Bu cihazı diğerinden ayıran satıcıya özgü snmp sysObjectID"
 
-#: hmib_types.php:454
+#: hmib_types.php:471
 #, fuzzy
-msgid ""
-"The primary key for this table is a combination of the following two fields:"
+msgid "The primary key for this table is a combination of the following two fields:"
 msgstr "Bu tablonun birincil anahtarı, aşağıdaki iki alanın birleşimidir:"
 
-#: hmib_types.php:458
+#: hmib_types.php:475
 #, fuzzy
-msgid ""
-"Therefore, if you attempt to import duplicate device types, the existing "
-"data will be updated with the new information."
-msgstr ""
-"Bu nedenle, yinelenen aygıt türlerini içe aktarmayı denerseniz, mevcut "
-"veriler yeni bilgilerle güncellenir."
+msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
+msgstr "Bu nedenle, yinelenen aygıt türlerini içe aktarmayı denerseniz, mevcut veriler yeni bilgilerle güncellenir."
 
-#: hmib_types.php:460
+#: hmib_types.php:477
 #, fuzzy
-msgid ""
-"The Host Type is determined by scanning its snmp agent for the sysObjectID "
-"and sysDescription and comparing it against values in the Host Types "
-"database.  The first match that is found in the database is used aggregate "
-"Host data.  Therefore, it is very important that you select valid "
-"sysObjectID, sysDescrMatch for your Hosts."
-msgstr ""
-"Ana Bilgisayar Türü, snmp aracısını sysObjectID ve sysDescription için "
-"tarayarak ve Ana Bilgisayar Türleri veritabanındaki değerlerle "
-"karşılaştırarak belirlenir. Veritabanında bulunan ilk eşleme, toplu Ana "
-"Bilgisayar verileri kullanılır. Bu nedenle, Ana Bilgisayarlarınız için "
-"geçerli sysObjectID, sysDescrMatch seçmeniz çok önemlidir."
+msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
+msgstr "Ana Bilgisayar Türü, snmp aracısını sysObjectID ve sysDescription için tarayarak ve Ana Bilgisayar Türleri veritabanındaki değerlerle karşılaştırarak belirlenir. Veritabanında bulunan ilk eşleme, toplu Ana Bilgisayar verileri kullanılır. Bu nedenle, Ana Bilgisayarlarınız için geçerli sysObjectID, sysDescrMatch seçmeniz çok önemlidir."
 
-#: hmib_types.php:726
+#: hmib_types.php:743
 #, fuzzy
 msgid "Device Scanning Function Options"
 msgstr "Cihaz Tarama Fonksiyonu Seçenekleri"
 
-#: hmib_types.php:730
-#, fuzzy
+#: hmib_types.php:747
 msgid "Name"
 msgstr "İsim"
 
-#: hmib_types.php:731
+#: hmib_types.php:748
 #, fuzzy
 msgid "Give this Host Type a meaningful name."
 msgstr "Bu Ana Bilgisayarı Ver'e anlamlı bir ad verin."
 
-#: hmib_types.php:738
+#: hmib_types.php:755
 #, fuzzy
 msgid "Fill in the name for the version of this Host Type."
 msgstr "Bu Ana Bilgisayar Türü sürümünün adını girin."
 
-#: hmib_types.php:745
+#: hmib_types.php:762
 #, fuzzy
 msgid "System Description Match"
 msgstr "Sistem Açıklaması Eşleşmesi"
 
-#: hmib_types.php:746 hmib_types.php:753
+#: hmib_types.php:763 hmib_types.php:770
 #, fuzzy, php-format
-msgid ""
-"Provide key information to help HMIB detect the type of Host.  SQL Where "
-"expressions are supported.  SQL Where wildcard character is the '%' sign. "
-"Regular Expressions have been removed due to compatibility issues."
-msgstr ""
-"HMIB'ın Ana Bilgisayar türünü algılamasına yardımcı olacak temel bilgileri "
-"girin. SQL Where ifadeleri desteklenir. SQL Joker karakter '%' işaretidir. "
-"Uyumluluk sorunları nedeniyle normal İfadeler kaldırıldı."
+msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
+msgstr "HMIB'ın Ana Bilgisayar türünü algılamasına yardımcı olacak temel bilgileri girin. SQL Where ifadeleri desteklenir. SQL Joker karakter '%' işaretidir. Uyumluluk sorunları nedeniyle normal İfadeler kaldırıldı."
 
-#: hmib_types.php:752
+#: hmib_types.php:769
 #, fuzzy
 msgid "Vendor snmp Object ID"
 msgstr "Satıcı snmp Nesne Kimliği"
 
-#: hmib_types.php:773
+#: hmib_types.php:790
 #, fuzzy, php-format
 msgid "Host MIB OS Types [edit: %s]"
 msgstr "Ana Bilgisayar MIB OS Tipleri [değiştir: %s]"
 
-#: hmib_types.php:775
+#: hmib_types.php:792
 #, fuzzy
 msgid "Host MIB OS Types [new]"
 msgstr "Ana Bilgisayar MIB İşletim Sistemi Türleri [yeni]"
 
-#: hmib_types.php:841
+#: hmib_types.php:858
 #, fuzzy
 msgid "Host MIB OS Type Filters"
 msgstr "Ana Bilgisayar MIB OS Tipi Filtreler"
 
-#: hmib_types.php:853 setup.php:587
+#: hmib_types.php:870 setup.php:612
 #, fuzzy
 msgid "OS Types"
 msgstr "İşletim Sistemi Türleri"
 
-#: hmib_types.php:862
+#: hmib_types.php:879
 #, fuzzy
 msgid "Host Type Name"
 msgstr "Ana Bilgisayar Türü Adı"
 
-#: hmib_types.php:863
+#: hmib_types.php:880
 #, fuzzy
 msgid "OS Version"
 msgstr "OS sürümü"
 
-#: hmib_types.php:865
+#: hmib_types.php:882
 #, fuzzy
 msgid "SNMP ObjectID"
 msgstr "SNMP Nesne Kimliği"
 
-#: hmib_types.php:866
+#: hmib_types.php:883
 #, fuzzy
 msgid "SNMP Sys Description Match"
 msgstr "SNMP Sys Açıklama Eşleşme"
 
-#: hmib_types.php:883
+#: hmib_types.php:900
 #, fuzzy
 msgid "No Host Types Found"
 msgstr "Ana Bilgisayar Türü Bulunamadı"
 
-#: hmib_types.php:911
+#: hmib_types.php:928
 #, fuzzy
 msgid "Choose an action:"
-msgstr "Bir eylem seçin:"
+msgstr "Eylem Seçiniz..."
 
-#: hmib_types.php:986
-#, fuzzy
+#: hmib_types.php:1015
 msgid "Rescan"
-msgstr "Yeniden tara"
+msgstr "Yeniden Tara"
 
-#: hmib_types.php:986
+#: hmib_types.php:1015
 #, fuzzy
 msgid "Scan for New or Unknown Device Types"
 msgstr "Yeni veya Bilinmeyen Aygıt Türlerini Tara"
 
-#: hmib_types.php:987 setup.php:606
-#, fuzzy
+#: hmib_types.php:1016 setup.php:636
 msgid "Import"
 msgstr "İçe Aktar"
 
-#: hmib_types.php:987
+#: hmib_types.php:1016
 #, fuzzy
 msgid "Import Host Types from a CSV File"
 msgstr "CSV Dosyasından Ana Bilgisayar Türlerini İçe Aktar"
 
-#: hmib_types.php:988
-#, fuzzy
+#: hmib_types.php:1017
 msgid "Export"
 msgstr "Dışa Aktar"
 
-#: hmib_types.php:988
+#: hmib_types.php:1017
 #, fuzzy
 msgid "Export Host Types to Share with Others"
 msgstr "Başkalarıyla Paylaşmak için Ana Bilgisayar Türlerini Dışa Aktar"
@@ -944,300 +840,292 @@ msgstr "Eklentisi -> Host MIB Viewer"
 msgid "Host MIB Admin"
 msgstr "Eklentisi -> Host MIB Admin"
 
-#: setup.php:353
+#: setup.php:378
 #, fuzzy
 msgid "Host MIB"
 msgstr "Konak MIB Grafikleri"
 
-#: setup.php:356
+#: setup.php:381
 #, fuzzy
 msgid "Host MIB General Settings"
 msgstr "Ana Bilgisayar MIB Genel Ayarları"
 
-#: setup.php:360
+#: setup.php:385
 #, fuzzy
 msgid "Host MIB Poller Enabled"
 msgstr "Ana Bilgisayar MIB Poller Etkin"
 
-#: setup.php:361
+#: setup.php:386
 #, fuzzy
-msgid ""
-"Check this box, if you want Host MIB polling to be enabled.  Otherwise, the "
-"poller will not function."
-msgstr ""
-"Host MIB sorgulamanın etkin olmasını istiyorsanız bu kutuyu işaretleyin. "
-"Aksi takdirde, yoklayıcı çalışmayacaktır."
+msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
+msgstr "Host MIB sorgulamanın etkin olmasını istiyorsanız bu kutuyu işaretleyin. Aksi takdirde, yoklayıcı çalışmayacaktır."
 
-#: setup.php:366
+#: setup.php:391
 #, fuzzy
 msgid "Automatically Discover Cacti Devices"
 msgstr "Cacti Cihazlarını Otomatik Olarak Keşfedin"
 
-#: setup.php:367
+#: setup.php:392
 #, fuzzy
-msgid ""
-"Do you wish to automatically scan for and add devices which support the Host "
-"Resource MIB from the Cacti host table?"
-msgstr ""
-"Cacti ana bilgisayar tablosundan Ana Bilgisayar Kaynak MIB'sini destekleyen "
-"cihazları otomatik olarak taramak ve eklemek ister misiniz?"
+msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
+msgstr "Cacti ana bilgisayar tablosundan Ana Bilgisayar Kaynak MIB'sini destekleyen cihazları otomatik olarak taramak ve eklemek ister misiniz?"
 
-#: setup.php:372
+#: setup.php:397
 #, fuzzy
 msgid "Automatically Purge Devices"
 msgstr "Cihazları Otomatik Olarak Temizle"
 
-#: setup.php:373
+#: setup.php:398
 #, fuzzy
-msgid ""
-"Do you wish to automatically purge devices that are removed from the Cacti "
-"system?"
-msgstr ""
-"Cacti sisteminden kaldırılan cihazları otomatik olarak temizlemek istiyor "
-"musunuz?"
+msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
+msgstr "Cacti sisteminden kaldırılan cihazları otomatik olarak temizlemek istiyor musunuz?"
 
-#: setup.php:378
+#: setup.php:403
 #, fuzzy
 msgid "Default Row Count"
 msgstr "Varsayılan Satır Sayısı"
 
-#: setup.php:379
+#: setup.php:404
 #, fuzzy
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
 msgstr "HMIB OS Tipinde varsayılan olarak kaç satır görmek istiyorsunuz?"
 
-#: setup.php:385
+#: setup.php:410
 #, fuzzy
 msgid "Default Top Host Types"
 msgstr "Varsayılan Üst Ana Bilgisayar Türleri"
 
-#: setup.php:386 setup.php:397
+#: setup.php:411 setup.php:422
 #, fuzzy
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
 msgstr "HMIB Panosunda varsayılan olarak kaç işlem görmek istiyorsunuz?"
 
-#: setup.php:390 setup.php:391 setup.php:392 setup.php:393
+#: setup.php:415 setup.php:416 setup.php:417 setup.php:418
 #, fuzzy, php-format
 msgid "%d Types"
 msgstr "% d Türleri"
 
-#: setup.php:396
+#: setup.php:421
 #, fuzzy
 msgid "Default Top Processes"
 msgstr "Varsayılan Üst İşlemler"
 
-#: setup.php:401 setup.php:402 setup.php:403 setup.php:404 setup.php:413
-#: setup.php:414 setup.php:415 setup.php:416 setup.php:417 setup.php:418
-#: setup.php:419 setup.php:420 setup.php:421
+#: setup.php:426 setup.php:427 setup.php:428 setup.php:429 setup.php:438
+#: setup.php:439 setup.php:440 setup.php:441 setup.php:442 setup.php:443
+#: setup.php:444 setup.php:445 setup.php:446
 #, fuzzy, php-format
 msgid "%d Processes"
 msgstr "% d İşlemler"
 
-#: setup.php:407
+#: setup.php:432
 #, fuzzy
 msgid "Maximum Concurrent Collectors"
 msgstr "Maksimum Eşzamanlı Koleksiyoner"
 
-#: setup.php:408
+#: setup.php:433
 #, fuzzy
-msgid ""
-"What is the maximum number of concurrent collector process that you want to "
-"run at one time?"
-msgstr ""
-"Bir kerede çalıştırmak istediğiniz maksimum eşzamanlı toplayıcı işlem sayısı "
-"nedir?"
+msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
+msgstr "Bir kerede çalıştırmak istediğiniz maksimum eşzamanlı toplayıcı işlem sayısı nedir?"
 
-#: setup.php:412
+#: setup.php:437
 #, fuzzy, php-format
 msgid "%d Process"
 msgstr "% d Süreç"
 
-#: setup.php:424
+#: setup.php:449
 #, fuzzy
 msgid "Host Auto Discovery Frequency"
 msgstr "Ana Bilgisayar Otomatik Bulma Frekansı"
 
-#: setup.php:428
+#: setup.php:453
 #, fuzzy
 msgid "Auto Discovery Frequency"
 msgstr "Otomatik Keşif Frekansı"
 
-#: setup.php:429
+#: setup.php:454
 #, fuzzy
 msgid "How often do you want to look for new Cacti Devices?"
 msgstr "Ne kadar sıklıkla yeni Cacti Cihazları aramak istersiniz?"
 
-#: setup.php:435
+#: setup.php:460
 #, fuzzy
 msgid "Host Graph Automation"
 msgstr "Ana Bilgisayar Grafiği Otomasyonu"
 
-#: setup.php:439
+#: setup.php:464
 #, fuzzy
 msgid "Automatically Add New Graphs"
 msgstr "Yeni Grafikleri Otomatik Olarak Ekle"
 
-#: setup.php:440
+#: setup.php:465
 #, fuzzy
 msgid "How often do you want to check for new objects to graph?"
 msgstr "Yeni nesnelerin grafiğini ne sıklıkla kontrol etmek istiyorsunuz?"
 
-#: setup.php:444
-#, fuzzy
+#: setup.php:469
 msgid "Never"
 msgstr "Asla"
 
-#: setup.php:445 setup.php:509
-#, fuzzy, php-format
+#: setup.php:470 setup.php:534
+#, php-format
 msgid "%d Hour"
 msgstr "%d Saat"
 
-#: setup.php:446 setup.php:510 setup.php:511 setup.php:512
-#, fuzzy, php-format
+#: setup.php:471 setup.php:535 setup.php:536 setup.php:537
+#, php-format
 msgid "%d Hours"
 msgstr "%d Saat"
 
-#: setup.php:447 setup.php:513
-#, fuzzy, php-format
+#: setup.php:472 setup.php:538
+#, php-format
 msgid "%d Day"
 msgstr "%d Gün"
 
-#: setup.php:448
-#, fuzzy, php-format
+#: setup.php:473
+#, php-format
 msgid "%d Days"
 msgstr "%d Gün"
 
-#: setup.php:451
+#: setup.php:476
 #, fuzzy
 msgid "Host MIB Table Collection Frequencies"
 msgstr "Host MIB Masa Toplama Frekansları"
 
-#: setup.php:455
+#: setup.php:480
 #, fuzzy
 msgid "Running Programs Frequency"
 msgstr "Çalışan Programlar Frekansı"
 
-#: setup.php:456
+#: setup.php:481
 #, fuzzy
 msgid "How often do you want to scan running software?"
 msgstr "Çalışan yazılımı ne sıklıkla taramak istiyorsunuz?"
 
-#: setup.php:462
+#: setup.php:487
 #, fuzzy
 msgid "Running Programs CPU/Memory Frequency"
 msgstr "Çalışan Programlar CPU / Bellek Frekansı"
 
-#: setup.php:463
+#: setup.php:488
 #, fuzzy
 msgid "How often do you want to scan running software for performance data?"
-msgstr ""
-"Çalışan yazılımları performans verileri için ne sıklıkla taramak "
-"istiyorsunuz?"
+msgstr "Çalışan yazılımları performans verileri için ne sıklıkla taramak istiyorsunuz?"
 
-#: setup.php:469
+#: setup.php:494
 #, fuzzy
 msgid "Installed Software Frequency"
 msgstr "Kurulu Yazılım Frekansı"
 
-#: setup.php:470
+#: setup.php:495
 #, fuzzy
 msgid "How often do you want to scan for installed software?"
 msgstr "Yüklü yazılımı ne sıklıkla taramak istiyorsunuz?"
 
-#: setup.php:476
+#: setup.php:501
 #, fuzzy
 msgid "Storage Frequency"
 msgstr "Depolama frekansı"
 
-#: setup.php:477
+#: setup.php:502
 #, fuzzy
 msgid "How often do you want to scan for Storage performance data?"
 msgstr "Depolama performansı verilerini ne sıklıkla taramak istiyorsunuz?"
 
-#: setup.php:483
+#: setup.php:508
 #, fuzzy
 msgid "Device Frequency"
 msgstr "Cihaz Frekansı"
 
-#: setup.php:484
+#: setup.php:509
 #, fuzzy
 msgid "How often do you want to scan for Device performance data?"
 msgstr "Cihaz performans verilerini ne sıklıkla taramak istiyorsunuz?"
 
-#: setup.php:490
+#: setup.php:515
 #, fuzzy
 msgid "Processor Frequency"
 msgstr "İşlemci Frekansı"
 
-#: setup.php:491
+#: setup.php:516
 #, fuzzy
 msgid "How often do you want to scan for Processor performance data?"
 msgstr "İşlemci performans verilerini ne sıklıkla taramak istiyorsunuz?"
 
-#: setup.php:505
-#, fuzzy, php-format
+#: setup.php:530
+#, php-format
 msgid "%d Minute"
-msgstr "% d Dakika"
+msgstr "% d dakika"
 
-#: setup.php:506 setup.php:507 setup.php:508
-#, fuzzy, php-format
+#: setup.php:531 setup.php:532 setup.php:533
+#, php-format
 msgid "%d Minutes"
 msgstr "%d Dakika"
 
-#: setup.php:587
-#, fuzzy
+#: setup.php:612
 msgid "Management"
 msgstr "Kullanıcı Yonetimi"
 
-#: setup.php:593 setup.php:594
+#: setup.php:615
+msgid "Normal User"
+msgstr "Normal Kullanıcı"
+
+#: setup.php:616
+#, fuzzy
+msgid "General Administration"
+msgstr "Genel Yönetim"
+
+#: setup.php:623 setup.php:624
 #, fuzzy
 msgid "Host MIB Inventory Summary"
 msgstr "Ana Bilgisayar MIB Envanter Özeti"
 
-#: setup.php:595
+#: setup.php:625
 #, fuzzy
 msgid "Host MIB Details"
 msgstr "Ev sahibi MIB Details"
 
-#: setup.php:596
+#: setup.php:626
 #, fuzzy
 msgid "Host MIB Storage"
 msgstr "Ana Bilgisayar MIB Depolama"
 
-#: setup.php:597
+#: setup.php:627
 #, fuzzy
 msgid "Host MIB Hardware"
 msgstr "Ana Bilgisayar MIB Donanımı"
 
-#: setup.php:598
+#: setup.php:628
 #, fuzzy
 msgid "Host MIB Running Processes"
 msgstr "Ana Bilgisayar MIB Koşu İşlemleri"
 
-#: setup.php:599
+#: setup.php:629
 #, fuzzy
 msgid "Host MIB Process Use History"
 msgstr "Ana Bilgisayar MIB İşlemi Kullanımı Geçmişi"
 
-#: setup.php:600
+#: setup.php:630
 #, fuzzy
 msgid "Host MIB Software Inventory"
 msgstr "Host MIB Yazılım Envanteri"
 
-#: setup.php:601
+#: setup.php:631
 #, fuzzy
 msgid "Host MIB Graphs"
 msgstr "Konak MIB Grafikleri"
 
-#: setup.php:603
+#: setup.php:633
 #, fuzzy
 msgid "Host MIB OS Types"
 msgstr "Ana Bilgisayar MIB İşletim Sistemi Türleri"
 
-#: setup.php:605
-#, fuzzy
+#: setup.php:635
 msgid "(Edit)"
 msgstr "(Düzenle)"
+
+#, fuzzy
+#~ msgid "You must select at least one Host Type."
+#~ msgstr "En az bir Ana Bilgisayar Türü seçmelisiniz."
 
 #, fuzzy
 #~ msgid "Are You Sure?"
@@ -1252,14 +1140,9 @@ msgstr "(Düzenle)"
 #~ msgstr "En son koşarken görülen zaman"
 
 #, fuzzy
-#~ msgid ""
-#~ "WARNING: You need to import your Host MIB Host Template to view Graphs.  "
-#~ "See the README for more information."
-#~ msgstr ""
-#~ "UYARI: Grafikleri görüntülemek için Ana Bilgisayar MIB Ana Bilgisayar "
-#~ "Şablonunuzu içe aktarmanız gerekir. Daha fazla bilgi için README'ye bakın."
+#~ msgid "WARNING: You need to import your Host MIB Host Template to view Graphs.  See the README for more information."
+#~ msgstr "UYARI: Grafikleri görüntülemek için Ana Bilgisayar MIB Ana Bilgisayar Şablonunuzu içe aktarmanız gerekir. Daha fazla bilgi için README'ye bakın."
 
 #, fuzzy
-#~ msgid ""
-#~ "Please Select Data Query First from Console->Settings->Host Mib First"
+#~ msgid "Please Select Data Query First from Console->Settings->Host Mib First"
 #~ msgstr "Lütfen Konsoldan İlk Önce Veri Sorgusu'nu Seçin"

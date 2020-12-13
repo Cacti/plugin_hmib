@@ -7,24 +7,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hmib on cacti 1.1.34\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-29 19:06-0500\n"
-"PO-Revision-Date: 2019-07-16 13:15+0000\n"
+"POT-Creation-Date: 2020-12-12 20:08-0500\n"
+"PO-Revision-Date: 2020-12-12 20:47-0500\n"
 "Last-Translator: tomcat <luis_126@126.com>\n"
-"Language-Team: Chinese (Simplified) <http://translate.cacti.net/projects/"
-"cacti/hmib/zh-CN/>\n"
-"Language: zh-CN\n"
+"Language-Team: Chinese (Simplified) <http://translate.cacti.net/projects/cacti/hmib/zh-CN/>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: hmib.php:36
 msgid "Error"
 msgstr "错误"
 
-#: hmib.php:37 hmib.php:52 hmib.php:748 hmib.php:1068 hmib.php:1378
-#: hmib.php:1581 hmib.php:2111 hmib.php:2425 hmib_types.php:352
+#: hmib.php:37 hmib.php:52 hmib.php:193 hmib.php:534 hmib.php:760 hmib.php:894
+#: hmib.php:1094 hmib.php:1214 hmib.php:1417 hmib.php:1535 hmib.php:1628
+#: hmib.php:1970 hmib.php:2170 hmib.php:2484 hmib_types.php:369
 msgid "Unknown"
 msgstr "未知"
 
@@ -68,7 +68,7 @@ msgstr "警告"
 msgid "Testing"
 msgstr "测试"
 
-#: hmib.php:56 hmib.php:1584 hmib.php:2378
+#: hmib.php:56 hmib.php:1631 hmib.php:2437
 msgid "Down"
 msgstr "宕机"
 
@@ -76,446 +76,445 @@ msgstr "宕机"
 msgid "Running Process History"
 msgstr "运行过程历史"
 
-#: hmib.php:188 hmib.php:520 hmib.php:871 hmib.php:1177 hmib.php:1485
-#: hmib.php:1913 hmib_types.php:968
+#: hmib.php:188 hmib.php:529 hmib.php:889 hmib.php:1209 hmib.php:1530
+#: hmib.php:1965 hmib_types.php:997
 msgid "OS Type"
 msgstr "OS类型"
 
-#: hmib.php:192 hmib.php:213 hmib.php:235 hmib.php:274 hmib.php:524
-#: hmib.php:545 hmib.php:567 hmib.php:606 hmib.php:875 hmib.php:895
-#: hmib.php:917 hmib.php:956 hmib.php:1181 hmib.php:1202 hmib.php:1224
-#: hmib.php:1263 hmib.php:1489 hmib.php:1510 hmib.php:1533 hmib.php:1569
-#: hmib.php:1917 hmib.php:1938 hmib.php:1960 hmib.php:1999
+#: hmib.php:192 hmib.php:214 hmib.php:236 hmib.php:275 hmib.php:533
+#: hmib.php:555 hmib.php:577 hmib.php:616 hmib.php:893 hmib.php:915
+#: hmib.php:937 hmib.php:976 hmib.php:1213 hmib.php:1235 hmib.php:1257
+#: hmib.php:1296 hmib.php:1534 hmib.php:1556 hmib.php:1579 hmib.php:1615
+#: hmib.php:1969 hmib.php:1991 hmib.php:2013 hmib.php:2052
 msgid "All"
 msgstr "所有"
 
-#: hmib.php:209 hmib.php:541 hmib.php:891 hmib.php:1198 hmib.php:1934
+#: hmib.php:210 hmib.php:551 hmib.php:911 hmib.php:1231 hmib.php:1987
 msgid "Device"
 msgstr "设备"
 
-#: hmib.php:231 hmib.php:563 hmib.php:913 hmib.php:1220 hmib.php:1506
-#: hmib.php:1956
+#: hmib.php:232 hmib.php:573 hmib.php:933 hmib.php:1253 hmib.php:1552
+#: hmib.php:2009
 msgid "Template"
 msgstr "模板"
 
-#: hmib.php:255 hmib.php:587 hmib.php:937 hmib.php:1244 hmib.php:1550
-#: hmib.php:1980 hmib.php:2319 hmib.php:2502 hmib_types.php:915
-#: hmib_types.php:984
+#: hmib.php:256 hmib.php:597 hmib.php:957 hmib.php:1277 hmib.php:1596
+#: hmib.php:2033 hmib.php:2378 hmib.php:2561 hmib_types.php:932
+#: hmib_types.php:1013
 msgid "Go"
 msgstr "Go"
 
-#: hmib.php:256 hmib.php:588 hmib.php:938 hmib.php:1245 hmib.php:1551
-#: hmib.php:1981 hmib.php:2320 hmib.php:2503 hmib_types.php:985
+#: hmib.php:257 hmib.php:598 hmib.php:958 hmib.php:1278 hmib.php:1597
+#: hmib.php:2034 hmib.php:2379 hmib.php:2562 hmib_types.php:1014
 msgid "Clear"
 msgstr "清除"
 
-#: hmib.php:264 hmib.php:596 hmib.php:946 hmib.php:1253 hmib.php:1559
-#: hmib.php:1989 hmib.php:2483 hmib_types.php:962
+#: hmib.php:265 hmib.php:606 hmib.php:966 hmib.php:1286 hmib.php:1605
+#: hmib.php:2042 hmib.php:2542 hmib_types.php:991
 msgid "Search"
 msgstr "搜索"
 
-#: hmib.php:270 hmib.php:373 hmib.php:602 hmib.php:716 hmib.php:1529
+#: hmib.php:271 hmib.php:376 hmib.php:612 hmib.php:728 hmib.php:1575
 msgid "Process"
 msgstr "处理"
 
-#: hmib.php:290 hmib.php:622 hmib.php:971
+#: hmib.php:291 hmib.php:632 hmib.php:991
 msgid "Entries"
 msgstr "条目"
 
-#: hmib.php:294 hmib.php:626 hmib.php:975 hmib.php:1282 hmib.php:1607
-#: hmib.php:2018 hmib_types.php:972
+#: hmib.php:295 hmib.php:636 hmib.php:995 hmib.php:1315 hmib.php:1654
+#: hmib.php:2071 hmib_types.php:1001
 msgid "Default"
 msgstr "默认"
 
-#: hmib.php:372 hmib.php:715 hmib.php:1042 hmib.php:1349 hmib.php:1674
-#: hmib.php:2085
+#: hmib.php:375 hmib.php:727 hmib.php:1068 hmib.php:1388 hmib.php:1727
+#: hmib.php:2144
 msgid "Hostname"
 msgstr "主机名"
 
-#: hmib.php:374
+#: hmib.php:377
 msgid "Last Seen"
 msgstr "最后一次露面"
 
-#: hmib.php:375
+#: hmib.php:378
 msgid "Use Time (d:h:m)"
 msgstr "使用时间 (d:h:m)"
 
-#: hmib.php:378
+#: hmib.php:381
 msgid "History"
 msgstr "历史"
 
-#: hmib.php:390 hmib.php:737 hmib.php:1061 hmib.php:1371 hmib.php:1751
-#: hmib.php:2104
+#: hmib.php:393 hmib.php:749 hmib.php:1087 hmib.php:1410 hmib.php:1805
+#: hmib.php:2163
 msgid "Edit Device"
 msgstr "编辑设备"
 
-#: hmib.php:402
+#: hmib.php:405
 msgid "No Process History Found"
 msgstr "找不到过程历史记录"
 
-#: hmib.php:511
+#: hmib.php:520
 msgid "Running Processes"
 msgstr "运行进程"
 
-#: hmib.php:717
+#: hmib.php:729
 msgid "Path"
 msgstr "路径"
 
-#: hmib.php:718
+#: hmib.php:730
 msgid "Parameters"
 msgstr "Parameters"
 
-#: hmib.php:719
+#: hmib.php:731
 msgid "CPU (Hrs)"
 msgstr "CPU (Hrs)"
 
-#: hmib.php:720
+#: hmib.php:732
 msgid "Memory (MB)"
 msgstr "Memory (MB)"
 
-#: hmib.php:721 hmib.php:952 hmib.php:1259 hmib.php:1995 hmib.php:2087
-#: hmib.php:2374
+#: hmib.php:733 hmib.php:972 hmib.php:1292 hmib.php:2048 hmib.php:2146
+#: hmib.php:2433
 msgid "Type"
 msgstr "类型"
 
-#: hmib.php:722 hmib.php:1045 hmib.php:1565 hmib.php:1675
+#: hmib.php:734 hmib.php:1071 hmib.php:1611 hmib.php:1728
 msgid "Status"
 msgstr "状态"
 
-#: hmib.php:725 hmib.php:1680 hmib.php:2135 hmib.php:2561
+#: hmib.php:737 hmib.php:1733 hmib.php:2194 hmib.php:2620
 msgid "Processes"
 msgstr "流程..."
 
-#: hmib.php:753
+#: hmib.php:765
 msgid "No Running Software Found"
 msgstr "没有找到运行的软件"
 
-#: hmib.php:768
+#: hmib.php:780
 msgid "Total CPU [h]:"
 msgstr "总 CPU [h]:"
 
-#: hmib.php:769
+#: hmib.php:781
 msgid "Total Size [MB]:"
 msgstr "总大小 [MB]:"
 
-#: hmib.php:772
+#: hmib.php:784
 msgid "Avg. CPU [h]:"
 msgstr "平均. CPU [h]:"
 
-#: hmib.php:773
+#: hmib.php:785
 msgid "Avg. Size [MB]:"
 msgstr "平均大小 [MB]:"
 
-#: hmib.php:862
+#: hmib.php:880
 msgid "Hardware Inventory"
 msgstr "硬件清单"
 
-#: hmib.php:1043
+#: hmib.php:1069
 msgid "Hardware Description"
 msgstr "硬件描述"
 
-#: hmib.php:1044
+#: hmib.php:1070
 msgid "Hardware Type"
 msgstr "硬件类型"
 
-#: hmib.php:1046 hmib.php:1352
+#: hmib.php:1072 hmib.php:1391
 msgid "Errors"
 msgstr "错误"
 
-#: hmib.php:1049 hmib.php:1603 hmib.php:1688 hmib.php:2132
+#: hmib.php:1075 hmib.php:1650 hmib.php:1741 hmib.php:2191
 msgid "Devices"
 msgstr "设备"
 
-#: hmib.php:1074
+#: hmib.php:1100
 msgid "No Hardware Found"
 msgstr "找不到硬件"
 
-#: hmib.php:1168
+#: hmib.php:1200
 msgid "Storage Inventory"
 msgstr "存储清单"
 
-#: hmib.php:1278 hmib.php:1359
+#: hmib.php:1311 hmib.php:1398
 msgid "Volumes"
 msgstr "卷"
 
-#: hmib.php:1350
+#: hmib.php:1389
 msgid "Storage Description"
 msgstr "存储说明"
 
-#: hmib.php:1351
+#: hmib.php:1390
 msgid "Storage Type"
 msgstr "存储类型"
 
-#: hmib.php:1353
+#: hmib.php:1392
 msgid "Percent Used"
 msgstr "使用百分比"
 
-#: hmib.php:1354
+#: hmib.php:1393
 msgid "Used (MB)"
 msgstr "使用（MB）"
 
-#: hmib.php:1355
+#: hmib.php:1394
 msgid "Total (MB)"
 msgstr "总计（MB）"
 
-#: hmib.php:1356
+#: hmib.php:1395
 msgid "Alloc (KB)"
 msgstr "分配 (KB)"
 
-#: hmib.php:1387
+#: hmib.php:1426
 msgid "No Storage Devices Found"
 msgstr "找不到存储设备"
 
-#: hmib.php:1476
+#: hmib.php:1521
 msgid "Device Filter"
 msgstr "设备过滤器"
 
-#: hmib.php:1587 hmib.php:2377
+#: hmib.php:1634 hmib.php:2436
 msgid "Recovering"
 msgstr "恢复"
 
-#: hmib.php:1590 hmib.php:2376
+#: hmib.php:1637 hmib.php:2435
 msgid "Up"
 msgstr "启动"
 
-#: hmib.php:1593 hmib.php:2379 setup.php:504
+#: hmib.php:1640 hmib.php:2438 setup.php:529
 msgid "Disabled"
 msgstr "已禁用"
 
-#: hmib.php:1673 hmib.php:2373 hmib.php:2557 setup.php:604
+#: hmib.php:1726 hmib.php:2432 hmib.php:2616 setup.php:634
 msgid "Actions"
 msgstr "操作"
 
-#: hmib.php:1676
+#: hmib.php:1729
 msgid "Uptime(d:h:m)"
 msgstr "正常运行时间(d:h:m)"
 
-#: hmib.php:1677
+#: hmib.php:1730
 msgid "Users"
 msgstr "用户"
 
-#: hmib.php:1678
+#: hmib.php:1731
 msgid "CPU %"
 msgstr "CPU %"
 
-#: hmib.php:1679
+#: hmib.php:1732
 msgid "CPUs"
 msgstr "CPUs"
 
-#: hmib.php:1681
+#: hmib.php:1734
 msgid "Total Mem"
 msgstr "总内存"
 
-#: hmib.php:1682
+#: hmib.php:1735
 msgid "Used Mem"
 msgstr "使用的内存"
 
-#: hmib.php:1683
+#: hmib.php:1736
 msgid "Total Swap"
 msgstr "总Swap"
 
-#: hmib.php:1684
+#: hmib.php:1737
 msgid "Used Swap"
 msgstr "使用的Swap"
 
-#: hmib.php:1736 hmib.php:2413
+#: hmib.php:1789 hmib.php:2472
 msgid "View Storage"
 msgstr "查看存储"
 
-#: hmib.php:1737 hmib.php:2414
+#: hmib.php:1790 hmib.php:2473
 msgid "View Hardware"
 msgstr "查看硬件"
 
-#: hmib.php:1738 hmib.php:2415 hmib.php:2587
+#: hmib.php:1791 hmib.php:2474 hmib.php:2646
 msgid "View Processes"
 msgstr "查看进程"
 
-#: hmib.php:1739 hmib.php:2416
+#: hmib.php:1792 hmib.php:2475
 msgid "View Software Inventory"
 msgstr "查看软件清单"
 
-#: hmib.php:1741 hmib.php:2655 hmib.php:2657 hmib.php:2703 hmib.php:2705
-#, fuzzy
+#: hmib.php:1795 hmib.php:2714 hmib.php:2716 hmib.php:2762 hmib.php:2764
 msgid "View Graphs"
 msgstr "查看图形"
 
-#: hmib.php:1743
+#: hmib.php:1797
 #, fuzzy
 msgid "No Graphs Defined"
 msgstr "没有定义的图形"
 
-#: hmib.php:1771
+#: hmib.php:1825
 msgid "No Devices Found"
 msgstr "未找到设备"
 
-#: hmib.php:1904
+#: hmib.php:1956
 msgid "Software Inventory"
 msgstr "软件清单"
 
-#: hmib.php:2014 hmib.php:2091
+#: hmib.php:2067 hmib.php:2150
 msgid "Applications"
 msgstr "应用"
 
-#: hmib.php:2086
+#: hmib.php:2145
 msgid "Package"
 msgstr "包"
 
-#: hmib.php:2088
+#: hmib.php:2147
 msgid "Installed"
 msgstr "安装"
 
-#: hmib.php:2116
+#: hmib.php:2175
 msgid "No Software Packages Found"
 msgstr "找不到软件包"
 
-#: hmib.php:2131
+#: hmib.php:2190
 msgid "Summary"
 msgstr "概要"
 
-#: hmib.php:2133
+#: hmib.php:2192
 msgid "Storage"
 msgstr "存储"
 
-#: hmib.php:2134
+#: hmib.php:2193
 msgid "Hardware"
 msgstr "硬件"
 
-#: hmib.php:2136
+#: hmib.php:2195
 msgid "Use History"
 msgstr "使用历史"
 
-#: hmib.php:2137
+#: hmib.php:2196
 msgid "Inventory"
 msgstr "库存"
 
-#: hmib.php:2138 hmib.php:2822
+#: hmib.php:2197 hmib.php:2881
 msgid "Graphs"
 msgstr "图表"
 
-#: hmib.php:2297
+#: hmib.php:2356
 msgid "Summary Filter"
 msgstr "摘要过滤器"
 
-#: hmib.php:2306 hmib.php:2489
+#: hmib.php:2365 hmib.php:2548
 msgid "Top"
 msgstr "顶部"
 
-#: hmib.php:2310 hmib.php:2493
+#: hmib.php:2369 hmib.php:2552
 msgid "All Records"
 msgstr "所有记录"
 
-#: hmib.php:2311 hmib.php:2494 hmib.php:2495 hmib.php:2496 hmib.php:2497
+#: hmib.php:2370 hmib.php:2553 hmib.php:2554 hmib.php:2555 hmib.php:2556
 #, php-format
 msgid "%d Records"
 msgstr "%d 记录"
 
-#: hmib.php:2312 hmib.php:2313 hmib.php:2314
+#: hmib.php:2371 hmib.php:2372 hmib.php:2373
 #, php-format
 msgid "%d Record"
 msgstr "%d 记录"
 
-#: hmib.php:2324 hmib.php:2507
+#: hmib.php:2383 hmib.php:2566
+#, fuzzy
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
-msgstr ""
+msgstr "注意：导入主机MIB设备软件包以查看图。"
 
-#: hmib.php:2335
+#: hmib.php:2394
 msgid "Device Type Summary Statistics"
 msgstr "设备类型汇总统计"
 
-#: hmib.php:2375 hmib_types.php:737
+#: hmib.php:2434 hmib_types.php:754
 msgid "Version"
 msgstr "版本"
 
-#: hmib.php:2380
+#: hmib.php:2439
 msgid "Logins"
 msgstr "登录"
 
-#: hmib.php:2381
+#: hmib.php:2440
 msgid "CPUS"
 msgstr "CPUS"
 
-#: hmib.php:2382 hmib.php:2562
+#: hmib.php:2441 hmib.php:2621
 msgid "Avg CPU"
 msgstr "平均CPU"
 
-#: hmib.php:2383 hmib.php:2563
+#: hmib.php:2442 hmib.php:2622
 msgid "Max CPU"
 msgstr "最大CPU"
 
-#: hmib.php:2384
+#: hmib.php:2443
 msgid "Avg Mem"
 msgstr "平均内存"
 
-#: hmib.php:2385
+#: hmib.php:2444
 msgid "Max Mem"
 msgstr "最大内存"
 
-#: hmib.php:2386
+#: hmib.php:2445
 msgid "Avg Swap"
 msgstr "平均 Swap"
 
-#: hmib.php:2387
+#: hmib.php:2446
 msgid "Max Swap"
 msgstr "最大Swap"
 
-#: hmib.php:2388
+#: hmib.php:2447
 msgid "Avg Proc"
 msgstr "平均进程"
 
-#: hmib.php:2389
+#: hmib.php:2448
 msgid "Max Proc"
 msgstr "最大进程"
 
-#: hmib.php:2412 hmib.php:2586 hmib.php:2612
+#: hmib.php:2471 hmib.php:2645 hmib.php:2671
 msgid "View Devices"
 msgstr "查看设备"
 
-#: hmib.php:2445
+#: hmib.php:2504
 msgid "No Device Types"
 msgstr "没有设备类型"
 
-#: hmib.php:2450
+#: hmib.php:2509
 msgid "Process Summary Filter"
 msgstr "进程摘要过滤器"
 
-#: hmib.php:2518
+#: hmib.php:2577
 msgid "Process Summary Statistics"
 msgstr "进程汇总统计"
 
-#: hmib.php:2558
+#: hmib.php:2617
 msgid "Process Name"
 msgstr "进程名称"
 
-#: hmib.php:2559
+#: hmib.php:2618
 msgid "Num Paths"
 msgstr "数字路径"
 
-#: hmib.php:2560 hmib_types.php:864
+#: hmib.php:2619 hmib_types.php:881
 msgid "Hosts"
 msgstr "主机"
 
-#: hmib.php:2564
+#: hmib.php:2623
 msgid "Avg Memory"
 msgstr "平均内存"
 
-#: hmib.php:2565
+#: hmib.php:2624
 msgid "Max Memory"
 msgstr "最大内存"
 
-#: hmib.php:2602
+#: hmib.php:2661
 msgid "No Processes"
 msgstr "没有进程"
 
-#: hmib.php:2748
+#: hmib.php:2807
 msgid "Custom Graph List Applied - Filtering from List"
 msgstr "自定义图表列表已应用 - 从列表中过滤"
 
-#: hmib.php:2748
+#: hmib.php:2807
 msgid "Graph Preview Filters"
 msgstr "图预览过滤器"
 
 #: hmib_types.php:30
-#, fuzzy
 msgid "Delete"
 msgstr "删除"
 
@@ -523,242 +522,206 @@ msgstr "删除"
 msgid "Duplicate"
 msgstr "重复"
 
-#: hmib_types.php:226
+#: hmib_types.php:244
 msgid "Click 'Continue' to Delete the following Host Type(s)"
 msgstr "点击“继续”以删除以下主机类型"
 
-#: hmib_types.php:231 hmib_types.php:241 hmib_types.php:246
-#, fuzzy
+#: hmib_types.php:249 hmib_types.php:259
 msgid "Cancel"
 msgstr "取消"
 
-#: hmib_types.php:231 hmib_types.php:241
+#: hmib_types.php:249 hmib_types.php:259
 msgid "Continue"
 msgstr "继续"
 
-#: hmib_types.php:231
+#: hmib_types.php:249
 msgid "Delete Host Type(s)"
 msgstr "删除主机类型"
 
-#: hmib_types.php:235
-msgid ""
-"Click 'Continue' to Duplicate the following Host Type(s). You may optionally "
-"change the description for the new Host Type(s).  Otherwise, do not change "
-"value below and the original name will be replicated with a new suffix."
-msgstr ""
-"点击“继续”以复制以下主机类型。 您可以选择更改新主机类型的描述。 否则，请勿更"
-"改下面的值，原始名称将被复制为新的后缀。"
+#: hmib_types.php:253
+msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
+msgstr "点击“继续”以复制以下主机类型。 您可以选择更改新主机类型的描述。 否则，请勿更改下面的值，原始名称将被复制为新的后缀。"
 
-#: hmib_types.php:237
+#: hmib_types.php:255
 msgid "Host Type Prefix:"
 msgstr "主机类型前缀："
 
-#: hmib_types.php:241
+#: hmib_types.php:259
 msgid "Duplicate Host Type(s)"
 msgstr "重复主机类型"
 
-#: hmib_types.php:245
-msgid "You must select at least one Host Type."
-msgstr "您必须至少选择一种主机类型。"
-
-#: hmib_types.php:351
+#: hmib_types.php:368
 msgid "New Type"
 msgstr "新类型"
 
-#: hmib_types.php:396
+#: hmib_types.php:413
 #, php-format
 msgid "There were %d Device Types Added!"
 msgstr "有 %d 设备类型已添加！"
 
-#: hmib_types.php:399
+#: hmib_types.php:416
 msgid "No New Host Types Found!"
 msgstr "找不到新的主机类型！"
 
-#: hmib_types.php:410
+#: hmib_types.php:427
 msgid "Import Results"
 msgstr "导入结果"
 
-#: hmib_types.php:412
+#: hmib_types.php:429
 msgid "Cacti has imported the following items:"
 msgstr "Cacti 导入了以下条目："
 
-#: hmib_types.php:424
+#: hmib_types.php:441
 msgid "Import Host MIB OS Types"
 msgstr "导入主机MIB操作系统类型"
 
-#: hmib_types.php:427
+#: hmib_types.php:444
 msgid "Import Device Types from Local File"
 msgstr "从本地文件导入设备类型"
 
-#: hmib_types.php:428
-msgid ""
-"Please specify the location of the CSV file containing your device type "
-"information."
+#: hmib_types.php:445
+msgid "Please specify the location of the CSV file containing your device type information."
 msgstr "请指定包含设备类型信息的CSV文件的位置。"
 
-#: hmib_types.php:435
+#: hmib_types.php:452
 msgid "Overwrite Existing Data?"
 msgstr "覆盖现有数据？"
 
-#: hmib_types.php:436
-msgid ""
-"Should the import process be allowed to overwrite existing data?  Please "
-"note, this does not mean delete old row, only replace duplicate rows."
-msgstr ""
-"是否允许导入过程覆盖现有数据？ 请注意，这并不意味着删除旧的行，只能替换重复的"
-"行。"
+#: hmib_types.php:453
+msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
+msgstr "是否允许导入过程覆盖现有数据？ 请注意，这并不意味着删除旧的行，只能替换重复的行。"
 
-#: hmib_types.php:439
+#: hmib_types.php:456
 msgid "Allow Existing Rows to be Updated?"
 msgstr "允许更新现有的行？"
 
-#: hmib_types.php:444
+#: hmib_types.php:461
 msgid "Required File Format Notes"
 msgstr "必需的文件格式注释"
 
-#: hmib_types.php:447
+#: hmib_types.php:464
 msgid "The file must contain a header row with the following column headings."
 msgstr "该文件必须包含具有以下列标题的标题行。"
 
-#: hmib_types.php:449
+#: hmib_types.php:466
 msgid "A common name for the Host Type.  For example, Windows 7"
 msgstr "主机类型的通用名称。 例如，Windows 7"
 
-#: hmib_types.php:450
+#: hmib_types.php:467
 msgid "The OS version for the Host Type"
 msgstr "主机类型的操作系统版本"
 
-#: hmib_types.php:451
-msgid ""
-"A unique set of characters from the snmp sysDescr that uniquely identify "
-"this device"
+#: hmib_types.php:468
+msgid "A unique set of characters from the snmp sysDescr that uniquely identify this device"
 msgstr "snmp sysDescr中唯一标识此设备的一组独特字符"
 
-#: hmib_types.php:452
-msgid ""
-"The vendor specific snmp sysObjectID that distinguishes this device from the "
-"next"
+#: hmib_types.php:469
+msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
 msgstr "供应商特定的snmp sysObjectID区分这个设备和下一个"
 
-#: hmib_types.php:454
-msgid ""
-"The primary key for this table is a combination of the following two fields:"
+#: hmib_types.php:471
+msgid "The primary key for this table is a combination of the following two fields:"
 msgstr "此表的主键是以下两个字段的组合："
 
-#: hmib_types.php:458
-msgid ""
-"Therefore, if you attempt to import duplicate device types, the existing "
-"data will be updated with the new information."
+#: hmib_types.php:475
+msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
 msgstr "因此，如果您尝试导入重复的设备类型，则现有数据将使用新信息进行更新。"
 
-#: hmib_types.php:460
-msgid ""
-"The Host Type is determined by scanning its snmp agent for the sysObjectID "
-"and sysDescription and comparing it against values in the Host Types "
-"database.  The first match that is found in the database is used aggregate "
-"Host data.  Therefore, it is very important that you select valid "
-"sysObjectID, sysDescrMatch for your Hosts."
-msgstr ""
-"主机类型是通过扫描sysObjectID和sysDescription的snmp代理并将其与主机类型数据库"
-"中的值进行比较来确定的。 在数据库中找到的第一个匹配使用聚合主机数据。 因此，"
-"为您的主机选择有效的sysObjectID，sysDescrMatch是非常重要的。"
+#: hmib_types.php:477
+msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
+msgstr "主机类型是通过扫描sysObjectID和sysDescription的snmp代理并将其与主机类型数据库中的值进行比较来确定的。 在数据库中找到的第一个匹配使用聚合主机数据。 因此，为您的主机选择有效的sysObjectID，sysDescrMatch是非常重要的。"
 
-#: hmib_types.php:726
+#: hmib_types.php:743
 msgid "Device Scanning Function Options"
 msgstr "设备扫描功能选项"
 
-#: hmib_types.php:730
+#: hmib_types.php:747
 msgid "Name"
 msgstr "名称"
 
-#: hmib_types.php:731
+#: hmib_types.php:748
 msgid "Give this Host Type a meaningful name."
 msgstr "给这个主机类型一个有意义的名字。"
 
-#: hmib_types.php:738
+#: hmib_types.php:755
 msgid "Fill in the name for the version of this Host Type."
 msgstr "填写此主机类型版本的名称。"
 
-#: hmib_types.php:745
+#: hmib_types.php:762
 msgid "System Description Match"
 msgstr "系统描述匹配"
 
-#: hmib_types.php:746 hmib_types.php:753
+#: hmib_types.php:763 hmib_types.php:770
 #, php-format
-msgid ""
-"Provide key information to help HMIB detect the type of Host.  SQL Where "
-"expressions are supported.  SQL Where wildcard character is the '%' sign. "
-"Regular Expressions have been removed due to compatibility issues."
-msgstr ""
-"提供关键信息以帮助HMIB检测主机的类型。 SQL在哪里支持表达式。 SQL通配符"
-"是'％'符号。 由于兼容性问题，正则表达式已被删除。"
+msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
+msgstr "提供关键信息以帮助HMIB检测主机的类型。 SQL在哪里支持表达式。 SQL通配符是'％'符号。 由于兼容性问题，正则表达式已被删除。"
 
-#: hmib_types.php:752
+#: hmib_types.php:769
 msgid "Vendor snmp Object ID"
 msgstr "供应商snmp对象ID"
 
-#: hmib_types.php:773
+#: hmib_types.php:790
 #, php-format
 msgid "Host MIB OS Types [edit: %s]"
 msgstr "主机MIB操作系统类型[编辑：%s]"
 
-#: hmib_types.php:775
+#: hmib_types.php:792
 msgid "Host MIB OS Types [new]"
 msgstr "主机MIB操作系统类型[新建]"
 
-#: hmib_types.php:841
+#: hmib_types.php:858
 msgid "Host MIB OS Type Filters"
 msgstr "Host MIB OS Type Filters"
 
-#: hmib_types.php:853 setup.php:587
+#: hmib_types.php:870 setup.php:612
 msgid "OS Types"
 msgstr "OS类型"
 
-#: hmib_types.php:862
+#: hmib_types.php:879
 msgid "Host Type Name"
 msgstr "主机类型名称"
 
-#: hmib_types.php:863
+#: hmib_types.php:880
 msgid "OS Version"
 msgstr "OS版本"
 
-#: hmib_types.php:865
+#: hmib_types.php:882
 msgid "SNMP ObjectID"
 msgstr "SNMP对象ID"
 
-#: hmib_types.php:866
+#: hmib_types.php:883
 msgid "SNMP Sys Description Match"
 msgstr "SNMP系统描述匹配"
 
-#: hmib_types.php:883
+#: hmib_types.php:900
 msgid "No Host Types Found"
 msgstr "没有找到主机类型"
 
-#: hmib_types.php:911
+#: hmib_types.php:928
 msgid "Choose an action:"
 msgstr "选择一个动作："
 
-#: hmib_types.php:986
+#: hmib_types.php:1015
 msgid "Rescan"
 msgstr "重新扫描"
 
-#: hmib_types.php:986
+#: hmib_types.php:1015
 msgid "Scan for New or Unknown Device Types"
 msgstr "扫描新的或未知的设备类型"
 
-#: hmib_types.php:987 setup.php:606
+#: hmib_types.php:1016 setup.php:636
 msgid "Import"
 msgstr "导入"
 
-#: hmib_types.php:987
+#: hmib_types.php:1016
 msgid "Import Host Types from a CSV File"
 msgstr "从CSV文件导入主机类型"
 
-#: hmib_types.php:988
+#: hmib_types.php:1017
 msgid "Export"
 msgstr "导出"
 
-#: hmib_types.php:988
+#: hmib_types.php:1017
 msgid "Export Host Types to Share with Others"
 msgstr "导出主机类型以与其他人共享"
 
@@ -772,245 +735,248 @@ msgstr "插件 - >主机MIB查看器"
 msgid "Host MIB Admin"
 msgstr "插件 - >主机MIB管理"
 
-#: setup.php:353
+#: setup.php:378
 #, fuzzy
 msgid "Host MIB"
 msgstr "主机MIB图形"
 
-#: setup.php:356
+#: setup.php:381
 msgid "Host MIB General Settings"
 msgstr "主机MIB常规设置"
 
-#: setup.php:360
+#: setup.php:385
 msgid "Host MIB Poller Enabled"
 msgstr "主机MIB轮询器已启用"
 
-#: setup.php:361
-msgid ""
-"Check this box, if you want Host MIB polling to be enabled.  Otherwise, the "
-"poller will not function."
+#: setup.php:386
+msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
 msgstr "如果希望启用主机MIB轮询，请选中此框。 否则，轮询器将无法运行。"
 
-#: setup.php:366
+#: setup.php:391
 msgid "Automatically Discover Cacti Devices"
 msgstr "自动发现 Cacti设备"
 
-#: setup.php:367
-msgid ""
-"Do you wish to automatically scan for and add devices which support the Host "
-"Resource MIB from the Cacti host table?"
+#: setup.php:392
+msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
 msgstr "您是否希望自动扫描并添加支持来自Cacti主机表的主机资源MIB的设备？"
 
-#: setup.php:372
+#: setup.php:397
 msgid "Automatically Purge Devices"
 msgstr "自动清除设备"
 
-#: setup.php:373
-msgid ""
-"Do you wish to automatically purge devices that are removed from the Cacti "
-"system?"
+#: setup.php:398
+msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
 msgstr "您是否希望自动清除从Cacti系统中移除的设备？"
 
-#: setup.php:378
+#: setup.php:403
 msgid "Default Row Count"
 msgstr "默认行数"
 
-#: setup.php:379
+#: setup.php:404
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
 msgstr "默认情况下，您希望在HMIB OS类型上看到多少行？"
 
-#: setup.php:385
+#: setup.php:410
 msgid "Default Top Host Types"
 msgstr "默认顶级主机类型"
 
-#: setup.php:386 setup.php:397
+#: setup.php:411 setup.php:422
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
 msgstr "默认情况下，您希望在HMIB仪表板上看到多少个进程？"
 
-#: setup.php:390 setup.php:391 setup.php:392 setup.php:393
+#: setup.php:415 setup.php:416 setup.php:417 setup.php:418
 #, php-format
 msgid "%d Types"
 msgstr "%d 类型"
 
-#: setup.php:396
+#: setup.php:421
 msgid "Default Top Processes"
 msgstr "默认顶部流程"
 
-#: setup.php:401 setup.php:402 setup.php:403 setup.php:404 setup.php:413
-#: setup.php:414 setup.php:415 setup.php:416 setup.php:417 setup.php:418
-#: setup.php:419 setup.php:420 setup.php:421
+#: setup.php:426 setup.php:427 setup.php:428 setup.php:429 setup.php:438
+#: setup.php:439 setup.php:440 setup.php:441 setup.php:442 setup.php:443
+#: setup.php:444 setup.php:445 setup.php:446
 #, php-format
 msgid "%d Processes"
 msgstr "%d 个进程"
 
-#: setup.php:407
+#: setup.php:432
 msgid "Maximum Concurrent Collectors"
 msgstr "最大并发收集器"
 
-#: setup.php:408
-msgid ""
-"What is the maximum number of concurrent collector process that you want to "
-"run at one time?"
+#: setup.php:433
+msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
 msgstr "您想同时运行的并发收集器进程的最大数量是多少？"
 
-#: setup.php:412
+#: setup.php:437
 #, php-format
 msgid "%d Process"
 msgstr "%d 进程"
 
-#: setup.php:424
+#: setup.php:449
 msgid "Host Auto Discovery Frequency"
 msgstr "主机自动发现频率"
 
-#: setup.php:428
+#: setup.php:453
 msgid "Auto Discovery Frequency"
 msgstr "自动发现频率"
 
-#: setup.php:429
+#: setup.php:454
 msgid "How often do you want to look for new Cacti Devices?"
 msgstr "您想多久查找一次新的Cacti 设备？"
 
-#: setup.php:435
+#: setup.php:460
 msgid "Host Graph Automation"
 msgstr "主机图形自动化"
 
-#: setup.php:439
+#: setup.php:464
 msgid "Automatically Add New Graphs"
 msgstr "自动添加新图"
 
-#: setup.php:440
+#: setup.php:465
 msgid "How often do you want to check for new objects to graph?"
 msgstr "你想多久检查一次新的对象来绘制图表？"
 
-#: setup.php:444
+#: setup.php:469
 msgid "Never"
 msgstr "从不"
 
-#: setup.php:445 setup.php:509
+#: setup.php:470 setup.php:534
 #, php-format
 msgid "%d Hour"
 msgstr "%d 小时"
 
-#: setup.php:446 setup.php:510 setup.php:511 setup.php:512
+#: setup.php:471 setup.php:535 setup.php:536 setup.php:537
 #, php-format
 msgid "%d Hours"
 msgstr "%d 小时"
 
-#: setup.php:447 setup.php:513
+#: setup.php:472 setup.php:538
 #, php-format
 msgid "%d Day"
 msgstr "%d 天"
 
-#: setup.php:448
+#: setup.php:473
 #, php-format
 msgid "%d Days"
 msgstr "%d 天"
 
-#: setup.php:451
+#: setup.php:476
 msgid "Host MIB Table Collection Frequencies"
 msgstr "主机MIB表收集频率"
 
-#: setup.php:455
+#: setup.php:480
 msgid "Running Programs Frequency"
 msgstr "运行程序频率"
 
-#: setup.php:456
+#: setup.php:481
 msgid "How often do you want to scan running software?"
 msgstr "你想多久扫描一次正在运行的软件？"
 
-#: setup.php:462
+#: setup.php:487
 msgid "Running Programs CPU/Memory Frequency"
 msgstr "运行程序CPU /内存频率"
 
-#: setup.php:463
+#: setup.php:488
 msgid "How often do you want to scan running software for performance data?"
 msgstr "您希望扫描正在运行的软件以获得性能数据的频率？"
 
-#: setup.php:469
+#: setup.php:494
 msgid "Installed Software Frequency"
 msgstr "安装软件频率"
 
-#: setup.php:470
+#: setup.php:495
 msgid "How often do you want to scan for installed software?"
 msgstr "您想多久扫描一次安装的软件？"
 
-#: setup.php:476
+#: setup.php:501
 msgid "Storage Frequency"
 msgstr "存储频率"
 
-#: setup.php:477
+#: setup.php:502
 msgid "How often do you want to scan for Storage performance data?"
 msgstr "您希望扫描存储性能数据的频率如何？"
 
-#: setup.php:483
+#: setup.php:508
 msgid "Device Frequency"
 msgstr "设备频率数据？"
 
-#: setup.php:484
+#: setup.php:509
 msgid "How often do you want to scan for Device performance data?"
 msgstr "您希望扫描设备性能数据的频率如何？"
 
-#: setup.php:490
+#: setup.php:515
 msgid "Processor Frequency"
 msgstr "处理器频率"
 
-#: setup.php:491
+#: setup.php:516
 msgid "How often do you want to scan for Processor performance data?"
 msgstr "您希望扫描处理器性能数据的频率如何？"
 
-#: setup.php:505
+#: setup.php:530
 #, php-format
 msgid "%d Minute"
 msgstr "%d 分钟"
 
-#: setup.php:506 setup.php:507 setup.php:508
+#: setup.php:531 setup.php:532 setup.php:533
 #, php-format
 msgid "%d Minutes"
 msgstr "%d 分钟"
 
-#: setup.php:587
+#: setup.php:612
 msgid "Management"
 msgstr "管理"
 
-#: setup.php:593 setup.php:594
+#: setup.php:615
+msgid "Normal User"
+msgstr "普通用户"
+
+#: setup.php:616
+msgid "General Administration"
+msgstr "基本管理"
+
+#: setup.php:623 setup.php:624
 msgid "Host MIB Inventory Summary"
 msgstr "主机MIB清单摘要"
 
-#: setup.php:595
+#: setup.php:625
 msgid "Host MIB Details"
 msgstr "主机MIB详细信息"
 
-#: setup.php:596
+#: setup.php:626
 msgid "Host MIB Storage"
 msgstr "主机MIB存储"
 
-#: setup.php:597
+#: setup.php:627
 msgid "Host MIB Hardware"
 msgstr "主机MIB硬件"
 
-#: setup.php:598
+#: setup.php:628
 msgid "Host MIB Running Processes"
 msgstr "主机MIB运行进程"
 
-#: setup.php:599
+#: setup.php:629
 msgid "Host MIB Process Use History"
 msgstr "主机MIB进程使用历史"
 
-#: setup.php:600
+#: setup.php:630
 msgid "Host MIB Software Inventory"
 msgstr "主机MIB软件清单"
 
-#: setup.php:601
+#: setup.php:631
 msgid "Host MIB Graphs"
 msgstr "主机MIB图形"
 
-#: setup.php:603
+#: setup.php:633
 msgid "Host MIB OS Types"
 msgstr "主机MIB OS类型"
 
-#: setup.php:605
+#: setup.php:635
 msgid "(Edit)"
 msgstr "（编辑）"
+
+#~ msgid "You must select at least one Host Type."
+#~ msgstr "您必须至少选择一种主机类型。"
 
 #~ msgid "Are You Sure?"
 #~ msgstr "你确定？"
@@ -1021,13 +987,8 @@ msgstr "（编辑）"
 #~ msgid "Time when last seen running"
 #~ msgstr "上次看到运行的时间"
 
-#~ msgid ""
-#~ "WARNING: You need to import your Host MIB Host Template to view Graphs.  "
-#~ "See the README for more information."
-#~ msgstr ""
-#~ "警告：您需要导入您的主机MIB主机模板才能查看图形。 请参阅自述文件以获取更多"
-#~ "信息。"
+#~ msgid "WARNING: You need to import your Host MIB Host Template to view Graphs.  See the README for more information."
+#~ msgstr "警告：您需要导入您的主机MIB主机模板才能查看图形。 请参阅自述文件以获取更多信息。"
 
-#~ msgid ""
-#~ "Please Select Data Query First from Console->Settings->Host Mib First"
+#~ msgid "Please Select Data Query First from Console->Settings->Host Mib First"
 #~ msgstr "请首先从控制台 - >设置 - >主机Mib首先选择数据查询"
