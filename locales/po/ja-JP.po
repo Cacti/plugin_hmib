@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 20:08-0500\n"
+"Report-Msgid-Bugs-To: developers@cacti.net\n"
+"POT-Creation-Date: 2020-12-12 22:15-0500\n"
 "PO-Revision-Date: 2020-12-12 20:44-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1127,10 +1127,6 @@ msgid "(Edit)"
 msgstr "(編集)"
 
 #, fuzzy
-#~ msgid "You must select at least one Host Type."
-#~ msgstr "少なくとも1つのホストタイプを選択する必要があります。"
-
-#, fuzzy
 #~ msgid "Are You Sure?"
 #~ msgstr "本当にしますか?"
 
@@ -1149,3 +1145,7 @@ msgstr "(編集)"
 #, fuzzy
 #~ msgid "Please Select Data Query First from Console->Settings->Host Mib First"
 #~ msgstr "[コンソール]  - > [設定]  - > [Host Mib First]の順に選択してください。"
+
+#, fuzzy
+#~ msgid "You must select at least one Host Type."
+#~ msgstr "少なくとも1つのホストタイプを選択する必要があります。"

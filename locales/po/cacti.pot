@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR The Cacti Group
+# This file is distributed under the same license as the Cacti package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 20:40-0500\n"
+"Project-Id-Version: Cacti \n"
+"Report-Msgid-Bugs-To: developers@cacti.net\n"
+"POT-Creation-Date: 2020-12-12 22:15-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -536,10 +536,7 @@ msgid "Delete Host Type(s)"
 msgstr ""
 
 #: hmib_types.php:253
-msgid ""
-"Click 'Continue' to Duplicate the following Host Type(s). You may optionally "
-"change the description for the new Host Type(s).  Otherwise, do not change "
-"value below and the original name will be replicated with a new suffix."
+msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
 msgstr ""
 
 #: hmib_types.php:255
@@ -580,9 +577,7 @@ msgid "Import Device Types from Local File"
 msgstr ""
 
 #: hmib_types.php:445
-msgid ""
-"Please specify the location of the CSV file containing your device type "
-"information."
+msgid "Please specify the location of the CSV file containing your device type information."
 msgstr ""
 
 #: hmib_types.php:452
@@ -590,9 +585,7 @@ msgid "Overwrite Existing Data?"
 msgstr ""
 
 #: hmib_types.php:453
-msgid ""
-"Should the import process be allowed to overwrite existing data?  Please "
-"note, this does not mean delete old row, only replace duplicate rows."
+msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
 msgstr ""
 
 #: hmib_types.php:456
@@ -616,35 +609,23 @@ msgid "The OS version for the Host Type"
 msgstr ""
 
 #: hmib_types.php:468
-msgid ""
-"A unique set of characters from the snmp sysDescr that uniquely identify "
-"this device"
+msgid "A unique set of characters from the snmp sysDescr that uniquely identify this device"
 msgstr ""
 
 #: hmib_types.php:469
-msgid ""
-"The vendor specific snmp sysObjectID that distinguishes this device from the "
-"next"
+msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
 msgstr ""
 
 #: hmib_types.php:471
-msgid ""
-"The primary key for this table is a combination of the following two fields:"
+msgid "The primary key for this table is a combination of the following two fields:"
 msgstr ""
 
 #: hmib_types.php:475
-msgid ""
-"Therefore, if you attempt to import duplicate device types, the existing "
-"data will be updated with the new information."
+msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
 msgstr ""
 
 #: hmib_types.php:477
-msgid ""
-"The Host Type is determined by scanning its snmp agent for the sysObjectID "
-"and sysDescription and comparing it against values in the Host Types "
-"database.  The first match that is found in the database is used aggregate "
-"Host data.  Therefore, it is very important that you select valid "
-"sysObjectID, sysDescrMatch for your Hosts."
+msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
 msgstr ""
 
 #: hmib_types.php:743
@@ -669,10 +650,7 @@ msgstr ""
 
 #: hmib_types.php:763 hmib_types.php:770
 #, php-format
-msgid ""
-"Provide key information to help HMIB detect the type of Host.  SQL Where "
-"expressions are supported.  SQL Where wildcard character is the '%' sign. "
-"Regular Expressions have been removed due to compatibility issues."
+msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
 msgstr ""
 
 #: hmib_types.php:769
@@ -765,9 +743,7 @@ msgid "Host MIB Poller Enabled"
 msgstr ""
 
 #: setup.php:386
-msgid ""
-"Check this box, if you want Host MIB polling to be enabled.  Otherwise, the "
-"poller will not function."
+msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
 msgstr ""
 
 #: setup.php:391
@@ -775,9 +751,7 @@ msgid "Automatically Discover Cacti Devices"
 msgstr ""
 
 #: setup.php:392
-msgid ""
-"Do you wish to automatically scan for and add devices which support the Host "
-"Resource MIB from the Cacti host table?"
+msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
 msgstr ""
 
 #: setup.php:397
@@ -785,9 +759,7 @@ msgid "Automatically Purge Devices"
 msgstr ""
 
 #: setup.php:398
-msgid ""
-"Do you wish to automatically purge devices that are removed from the Cacti "
-"system?"
+msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
 msgstr ""
 
 #: setup.php:403
@@ -827,9 +799,7 @@ msgid "Maximum Concurrent Collectors"
 msgstr ""
 
 #: setup.php:433
-msgid ""
-"What is the maximum number of concurrent collector process that you want to "
-"run at one time?"
+msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
 msgstr ""
 
 #: setup.php:437

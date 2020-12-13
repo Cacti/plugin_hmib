@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 20:08-0500\n"
+"Report-Msgid-Bugs-To: developers@cacti.net\n"
+"POT-Creation-Date: 2020-12-12 22:15-0500\n"
 "PO-Revision-Date: 2020-12-12 20:42-0500\n"
 "Last-Translator: Javier Pobeda <javier.pobeda@pm.me>\n"
 "Language-Team: Spanish <http://translate.cacti.net/projects/cacti/hmib/es-ES/>\n"
@@ -1104,10 +1104,6 @@ msgid "(Edit)"
 msgstr "(Editar)"
 
 #, fuzzy
-#~ msgid "You must select at least one Host Type."
-#~ msgstr "Debe seleccionar al menos un Tipo de host."
-
-#, fuzzy
 #~ msgid "Are You Sure?"
 #~ msgstr "Estas seguro?"
 
@@ -1126,3 +1122,7 @@ msgstr "(Editar)"
 #, fuzzy
 #~ msgid "Please Select Data Query First from Console->Settings->Host Mib First"
 #~ msgstr "Por favor, seleccione primero la consulta de datos de la Consola->Configuración->Anfitrión Mib First"
+
+#, fuzzy
+#~ msgid "You must select at least one Host Type."
+#~ msgstr "Debe seleccionar al menos un Tipo de host."

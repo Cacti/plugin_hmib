@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: hmib on cacti 1.1.34\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 20:08-0500\n"
+"Report-Msgid-Bugs-To: developers@cacti.net\n"
+"POT-Creation-Date: 2020-12-12 22:15-0500\n"
 "PO-Revision-Date: 2020-12-12 20:47-0500\n"
 "Last-Translator: tomcat <luis_126@126.com>\n"
 "Language-Team: Chinese (Simplified) <http://translate.cacti.net/projects/cacti/hmib/zh-CN/>\n"
@@ -975,9 +975,6 @@ msgstr "主机MIB OS类型"
 msgid "(Edit)"
 msgstr "（编辑）"
 
-#~ msgid "You must select at least one Host Type."
-#~ msgstr "您必须至少选择一种主机类型。"
-
 #~ msgid "Are You Sure?"
 #~ msgstr "你确定？"
 
@@ -992,3 +989,6 @@ msgstr "（编辑）"
 
 #~ msgid "Please Select Data Query First from Console->Settings->Host Mib First"
 #~ msgstr "请首先从控制台 - >设置 - >主机Mib首先选择数据查询"
+
+#~ msgid "You must select at least one Host Type."
+#~ msgstr "您必须至少选择一种主机类型。"

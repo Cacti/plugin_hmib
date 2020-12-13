@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 20:08-0500\n"
+"Report-Msgid-Bugs-To: developers@cacti.net\n"
+"POT-Creation-Date: 2020-12-12 22:15-0500\n"
 "PO-Revision-Date: 2020-12-12 20:41-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1116,10 +1116,6 @@ msgid "(Edit)"
 msgstr "(Verändern)"
 
 #, fuzzy
-#~ msgid "You must select at least one Host Type."
-#~ msgstr "Sie müssen mindestens einen Hosttyp auswählen."
-
-#, fuzzy
 #~ msgid "Are You Sure?"
 #~ msgstr "Sind Sie sicher?"
 
@@ -1138,3 +1134,7 @@ msgstr "(Verändern)"
 #, fuzzy
 #~ msgid "Please Select Data Query First from Console->Settings->Host Mib First"
 #~ msgstr "Bitte wählen Sie zuerst die Datenabfrage über die Konsole->Einstellungen->Host Mib First aus."
+
+#, fuzzy
+#~ msgid "You must select at least one Host Type."
+#~ msgstr "Sie müssen mindestens einen Hosttyp auswählen."
