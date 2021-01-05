@@ -557,48 +557,57 @@ function checkHost($host_id) {
 	db_execute('REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (' . getmypid() . ", $seed)");
 
 	/* obtain host information */
-	$host = db_fetch_row("SELECT * FROM host WHERE id=$host_id");
+	$host = db_fetch_row_prepared('SELECT *
+		FROM host WHERE id = ?',
+		array($host_id));
 
-	// Run the collectors
-	collect_hrSystem($host);
-	if (runCollector($start, $hrDevices_lastrun, $hrDevices_freq)) {
-		collect_hrDevices($host);
-	}
-	if (runCollector($start, $hrSWRun_lastrun, $hrSWRun_freq)) {
-		collect_hrSWRun($host);
-	}
-	if (runCollector($start, $hrSWRunPerf_lastrun, $hrSWRunPerf_freq)) {
-		collect_hrSWRunPerf($host);
-	}
-	if (runCollector($start, $hrSWInstalled_lastrun, $hrSWInstalled_freq)) {
-		collect_hrSWInstalled($host);
-	}
-	if (runCollector($start, $hrStorage_lastrun, $hrStorage_freq)) {
-		collect_hrStorage($host);
-	}
-	if (runCollector($start, $hrProcessor_lastrun, $hrProcessor_freq)) {
-		collect_hrProcessor($host);
-	}
+	if (cacti_sizeof($host)) {
+		// Run the collectors
+		collect_hrSystem($host);
+		if (runCollector($start, $hrDevices_lastrun, $hrDevices_freq)) {
+			collect_hrDevices($host);
+		}
+		if (runCollector($start, $hrSWRun_lastrun, $hrSWRun_freq)) {
+			collect_hrSWRun($host);
+		}
+		if (runCollector($start, $hrSWRunPerf_lastrun, $hrSWRunPerf_freq)) {
+			collect_hrSWRunPerf($host);
+		}
+		if (runCollector($start, $hrSWInstalled_lastrun, $hrSWInstalled_freq)) {
+			collect_hrSWInstalled($host);
+		}
+		if (runCollector($start, $hrStorage_lastrun, $hrStorage_freq)) {
+			collect_hrStorage($host);
+		}
+		if (runCollector($start, $hrProcessor_lastrun, $hrProcessor_freq)) {
+			collect_hrProcessor($host);
+		}
 
-	/* compensate for batch systems */
-	$time = substr(time(), 0, 3);
+		/* compensate for batch systems */
+		$time = substr(time(), 0, 3);
 
-	/* update the most recent table */
-	db_execute('INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name, total_time)
-		SELECT DISTINCT host_id, name, ' . read_config_option('hmib_hrSWRunPerf_freq') . ' AS `total_time`
-		FROM plugin_hmib_hrSWRun
-		WHERE host_id=' . $host['id'] . "
-		AND name NOT LIKE '$time%'
-		ON DUPLICATE KEY UPDATE last_seen=NOW(),total_time=total_time+VALUES(total_time)");
+		/* update the most recent table */
+		db_execute_prepared('INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name, total_time)
+			SELECT DISTINCT host_id, name, ' . read_config_option('hmib_hrSWRunPerf_freq') . " AS `total_time`
+			FROM plugin_hmib_hrSWRun
+			WHERE host_id = ?
+			AND name NOT LIKE '$time%'
+			ON DUPLICATE KEY UPDATE
+				last_seen=NOW(),
+				total_time=total_time+VALUES(total_time)",
+			array($host['id']));
 
-	/* remove the process lock */
-	db_execute('DELETE FROM plugin_hmib_processes WHERE pid=' . getmypid());
+		/* remove the process lock */
+		db_execute_prepared('DELETE FROM plugin_hmib_processes
+			WHERE pid = ?',
+			array(getmypid()));
 
-	/* remove odd entries */
-	db_execute("DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE name='' OR name LIKE '$time%'");
+		/* remove odd entries */
+		db_execute("DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE name='' OR name LIKE '$time%'");
 
-	if ($snmp_errors > 0) {
-		cacti_log("WARNING: Device[$host_id] experienced $snmp_errors SNMP Errors while performing data.  Increase logging to HIGH to see errors.", false, 'HMIB');
+		if ($snmp_errors > 0) {
+			cacti_log("WARNING: Device[$host_id] experienced $snmp_errors SNMP Errors while performing data.  Increase logging to HIGH to see errors.", false, 'HMIB');
+		}
 	}
 }
 
