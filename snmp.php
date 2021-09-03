@@ -452,7 +452,7 @@ function format_snmp_string($string, $snmp_oid_included) {
 		$fail   = false;
 		$pieces = explode(':', $string);
 		foreach($pieces AS $p) {
-			if (strlen($p) > 2) {
+			if (!preg_match('/^[0-9a-fA-F]{1,2}$/',$p)) {
 				$fail = true;
 				break;
 			}

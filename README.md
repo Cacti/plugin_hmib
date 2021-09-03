@@ -76,6 +76,8 @@ GitHub.
 
 * issue#27: The each() function is deprecated in hmib_types.php
 
+* issue#28: Invalid characters cause error in HEX detection
+
 * issue: Don't collect batch process history
 
 * feature: Move images to glyphs
