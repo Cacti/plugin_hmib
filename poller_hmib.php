@@ -487,9 +487,9 @@ function process_hosts() {
 	$end = $seconds + $micro;
 
 	$cacti_stats = sprintf(
-		'time:%01.4f ' .
-		'processes:%s ' .
-		'hosts:%s',
+		'Time:%01.4f ' .
+		'Processes:%s ' .
+		'Hosts:%s',
 		round($end-$start,2),
 		$concurrent_processes,
 		sizeof($hosts));
