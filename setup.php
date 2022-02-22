@@ -620,15 +620,14 @@ function hmib_config_arrays() {
 }
 
 function hmib_draw_navigation_text ($nav) {
-	$nav['hmib.php:']          = array('title' => __('Host MIB Inventory Summary', 'hmib'), 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
 	$nav['hmib.php:summary']   = array('title' => __('Host MIB Inventory Summary', 'hmib'), 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
-	$nav['hmib.php:devices']   = array('title' => __('Host MIB Details', 'hmib'), 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
-	$nav['hmib.php:storage']   = array('title' => __('Host MIB Storage', 'hmib'), 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
-	$nav['hmib.php:hardware']  = array('title' => __('Host MIB Hardware', 'hmib'), 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
-	$nav['hmib.php:running']   = array('title' => __('Host MIB Running Processes', 'hmib'), 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
-	$nav['hmib.php:history']   = array('title' => __('Host MIB Process Use History', 'hmib'), 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
-	$nav['hmib.php:software']  = array('title' => __('Host MIB Software Inventory', 'hmib'), 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
-	$nav['hmib.php:graphs']    = array('title' => __('Host MIB Graphs', 'hmib'), 'mapping' => '', 'url' => 'hmib.php', 'level' => '0');
+	$nav['hmib.php:devices']   = array('title' => __('Host MIB Details', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0');
+	$nav['hmib.php:storage']   = array('title' => __('Host MIB Storage', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0');
+	$nav['hmib.php:hardware']  = array('title' => __('Host MIB Hardware', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0');
+	$nav['hmib.php:running']   = array('title' => __('Host MIB Running Processes', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0');
+	$nav['hmib.php:history']   = array('title' => __('Host MIB Process Use History', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0');
+	$nav['hmib.php:software']  = array('title' => __('Host MIB Software Inventory', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0');
+	$nav['hmib.php:graphs']    = array('title' => __('Host MIB Graphs', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0');
 
 	$nav['hmib_types.php:']       = array('title' => __('Host MIB OS Types', 'hmib'), 'mapping' => 'index.php:', 'url' => 'hmib_types.php', 'level' => '1');
 	$nav['hmib_types.php:actions']= array('title' => __('Actions', 'hmib'), 'mapping' => 'index.php:,hmib_types.php:', 'url' => 'hmib_types.php', 'level' => '2');
