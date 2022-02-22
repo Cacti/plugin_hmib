@@ -235,7 +235,7 @@ function form_actions() {
 
 	form_start('hmib_types.php');
 
-	html_start_box($host_types_actions{get_request_var('drp_action')}, '60%', '', '3', 'center', '');
+	html_start_box($host_types_actions[get_request_var('drp_action')], '60%', '', '3', 'center', '');
 
 	if (cacti_sizeof($host_types_array)) {
 		if (get_filter_request_var('drp_action') == '1') { /* delete */
