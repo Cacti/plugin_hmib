@@ -694,7 +694,6 @@ function hmib_get_cpu_indexes($host_index) {
 		$i = 0;
 		foreach($indexes as $i) {
 			$rarray[] = $i;
-			$i++;
 		}
 	}
 
