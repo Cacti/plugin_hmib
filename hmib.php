@@ -1,7 +1,7 @@
 <?php
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2020 The Cacti Group                                 |
+ | Copyright (C) 2004-2022 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -1728,7 +1728,7 @@ function hmib_devices() {
 		'host_status' => array('display' => __('Status', 'hmib'),        'sort' => 'DESC', 'align' => 'right'),
 		'uptime'      => array('display' => __('Uptime(d:h:m)', 'hmib'), 'sort' => 'DESC', 'align' => 'right'),
 		'users'       => array('display' => __('Users', 'hmib'),         'sort' => 'DESC', 'align' => 'right'),
-		'cpuPercent'  => array('display' => __('CPU %', 'hmib'),         'sort' => 'DESC', 'align' => 'right'),
+		'cpuPercent'  => array('display' => __('CPU %%%', 'hmib'),       'sort' => 'DESC', 'align' => 'right'),
 		'numCpus'     => array('display' => __('CPUs', 'hmib'),          'sort' => 'DESC', 'align' => 'right'),
 		'processes'   => array('display' => __('Processes', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
 		'memSize'     => array('display' => __('Total Mem', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
