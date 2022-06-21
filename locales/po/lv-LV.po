@@ -4,11 +4,11 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2020-12-12 22:15-0500\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: Automatically generated\nLanguage-Team: none\nLanguage: lv\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2020-12-12 22:15-0500\nPO-Revision-Date: 2022-06-21 23:05+0000\nLast-Translator: Coool (github.com/Coool) <coool@mail.lv>\nLanguage-Team: Latvian <http://translate.cacti.net/projects/cacti/hmib/lv/>\nLanguage: lv-LV\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\nX-Generator: Weblate 4.8.1\n"
 
 #: hmib.php:36
 msgid "Error"
-msgstr ""
+msgstr "Kļūda"
 
 #: hmib.php:37 hmib.php:52 hmib.php:193 hmib.php:534 hmib.php:760 hmib.php:894
 #: hmib.php:1094 hmib.php:1214 hmib.php:1417 hmib.php:1535 hmib.php:1628
@@ -18,19 +18,19 @@ msgstr ""
 
 #: hmib.php:38
 msgid "Operating System"
-msgstr ""
+msgstr "Operētājsistēma"
 
 #: hmib.php:39
 msgid "Device Driver"
-msgstr ""
+msgstr "Ierīces draiveris"
 
 #: hmib.php:40
 msgid "Application"
-msgstr ""
+msgstr "Programmatūra"
 
 #: hmib.php:44 hmib.php:53
 msgid "Running"
-msgstr ""
+msgstr "Procesā"
 
 #: hmib.php:45
 msgid "Runnable"
@@ -42,19 +42,20 @@ msgstr ""
 
 #: hmib.php:47
 msgid "Invalid"
-msgstr ""
+msgstr "Nederīgs"
 
 #: hmib.php:51
 msgid "Present"
-msgstr ""
+msgstr "Šobrīd"
 
 #: hmib.php:54
 msgid "Warning"
-msgstr ""
+msgstr "Brīdinājums"
 
 #: hmib.php:55
+#, fuzzy
 msgid "Testing"
-msgstr ""
+msgstr "Pārbaude"
 
 #: hmib.php:56 hmib.php:1631 hmib.php:2437
 msgid "Down"
@@ -62,12 +63,12 @@ msgstr ""
 
 #: hmib.php:179
 msgid "Running Process History"
-msgstr ""
+msgstr "Darbojošos procesu vēsture"
 
 #: hmib.php:188 hmib.php:529 hmib.php:889 hmib.php:1209 hmib.php:1530
 #: hmib.php:1965 hmib_types.php:997
 msgid "OS Type"
-msgstr ""
+msgstr "Operētājsistēmas tips"
 
 #: hmib.php:192 hmib.php:214 hmib.php:236 hmib.php:275 hmib.php:533
 #: hmib.php:555 hmib.php:577 hmib.php:616 hmib.php:893 hmib.php:915
@@ -75,16 +76,16 @@ msgstr ""
 #: hmib.php:1296 hmib.php:1534 hmib.php:1556 hmib.php:1579 hmib.php:1615
 #: hmib.php:1969 hmib.php:1991 hmib.php:2013 hmib.php:2052
 msgid "All"
-msgstr ""
+msgstr "Visi"
 
 #: hmib.php:210 hmib.php:551 hmib.php:911 hmib.php:1231 hmib.php:1987
 msgid "Device"
-msgstr ""
+msgstr "Ierīce"
 
 #: hmib.php:232 hmib.php:573 hmib.php:933 hmib.php:1253 hmib.php:1552
 #: hmib.php:2009
 msgid "Template"
-msgstr ""
+msgstr "Veidne"
 
 #: hmib.php:256 hmib.php:597 hmib.php:957 hmib.php:1277 hmib.php:1596
 #: hmib.php:2033 hmib.php:2378 hmib.php:2561 hmib_types.php:932
@@ -95,34 +96,34 @@ msgstr ""
 #: hmib.php:257 hmib.php:598 hmib.php:958 hmib.php:1278 hmib.php:1597
 #: hmib.php:2034 hmib.php:2379 hmib.php:2562 hmib_types.php:1014
 msgid "Clear"
-msgstr ""
+msgstr "Notīrīt"
 
 #: hmib.php:265 hmib.php:606 hmib.php:966 hmib.php:1286 hmib.php:1605
 #: hmib.php:2042 hmib.php:2542 hmib_types.php:991
 msgid "Search"
-msgstr ""
+msgstr "Meklēt"
 
 #: hmib.php:271 hmib.php:376 hmib.php:612 hmib.php:728 hmib.php:1575
 msgid "Process"
-msgstr ""
+msgstr "Process"
 
 #: hmib.php:291 hmib.php:632 hmib.php:991
 msgid "Entries"
-msgstr ""
+msgstr "Ieraksti"
 
 #: hmib.php:295 hmib.php:636 hmib.php:995 hmib.php:1315 hmib.php:1654
 #: hmib.php:2071 hmib_types.php:1001
 msgid "Default"
-msgstr ""
+msgstr "Noklusējuma"
 
 #: hmib.php:375 hmib.php:727 hmib.php:1068 hmib.php:1388 hmib.php:1727
 #: hmib.php:2144
 msgid "Hostname"
-msgstr ""
+msgstr "Resursdatora nosaukums"
 
 #: hmib.php:377
 msgid "Last Seen"
-msgstr ""
+msgstr "Pēdējo reizi redzēts"
 
 #: hmib.php:378
 msgid "Use Time (d:h:m)"
@@ -130,109 +131,110 @@ msgstr ""
 
 #: hmib.php:381
 msgid "History"
-msgstr ""
+msgstr "Vēsture"
 
 #: hmib.php:393 hmib.php:749 hmib.php:1087 hmib.php:1410 hmib.php:1805
 #: hmib.php:2163
 msgid "Edit Device"
-msgstr ""
+msgstr "Rediģēt ierīci"
 
 #: hmib.php:405
+#, fuzzy
 msgid "No Process History Found"
-msgstr ""
+msgstr "Nav atrasta procesa vēsture"
 
 #: hmib.php:520
 msgid "Running Processes"
-msgstr ""
+msgstr "Darbojošies procesi"
 
 #: hmib.php:729
 msgid "Path"
-msgstr ""
+msgstr "Ceļš"
 
 #: hmib.php:730
 msgid "Parameters"
-msgstr ""
+msgstr "Parametri"
 
 #: hmib.php:731
 msgid "CPU (Hrs)"
-msgstr ""
+msgstr "CPU (stundas)"
 
 #: hmib.php:732
 msgid "Memory (MB)"
-msgstr ""
+msgstr "Atmiņa (MB)"
 
 #: hmib.php:733 hmib.php:972 hmib.php:1292 hmib.php:2048 hmib.php:2146
 #: hmib.php:2433
 msgid "Type"
-msgstr ""
+msgstr "Tips"
 
 #: hmib.php:734 hmib.php:1071 hmib.php:1611 hmib.php:1728
 msgid "Status"
-msgstr ""
+msgstr "Statuss"
 
 #: hmib.php:737 hmib.php:1733 hmib.php:2194 hmib.php:2620
 msgid "Processes"
-msgstr ""
+msgstr "Procesi"
 
 #: hmib.php:765
 msgid "No Running Software Found"
-msgstr ""
+msgstr "Nav atrasta neviena darbojošos programmatūra"
 
 #: hmib.php:780
 msgid "Total CPU [h]:"
-msgstr ""
+msgstr "Kopējās CPU [stundas]:"
 
 #: hmib.php:781
 msgid "Total Size [MB]:"
-msgstr ""
+msgstr "Kopējais izmērs [MB]:"
 
 #: hmib.php:784
 msgid "Avg. CPU [h]:"
-msgstr ""
+msgstr "Vidējās CPU [stundas]:"
 
 #: hmib.php:785
 msgid "Avg. Size [MB]:"
-msgstr ""
+msgstr "Vidējais izmērs [MB]:"
 
 #: hmib.php:880
 msgid "Hardware Inventory"
-msgstr ""
+msgstr "Aparatūras uzskaite"
 
 #: hmib.php:1069
 msgid "Hardware Description"
-msgstr ""
+msgstr "Aparatūras apraksts"
 
 #: hmib.php:1070
 msgid "Hardware Type"
-msgstr ""
+msgstr "Aparatūras tips"
 
 #: hmib.php:1072 hmib.php:1391
 msgid "Errors"
-msgstr ""
+msgstr "Kļūdas"
 
 #: hmib.php:1075 hmib.php:1650 hmib.php:1741 hmib.php:2191
 msgid "Devices"
-msgstr ""
+msgstr "Ierīces"
 
 #: hmib.php:1100
 msgid "No Hardware Found"
-msgstr ""
+msgstr "Nav atrasta neviena aparatūra"
 
 #: hmib.php:1200
 msgid "Storage Inventory"
-msgstr ""
+msgstr "Krātuves uzskaite"
 
 #: hmib.php:1311 hmib.php:1398
 msgid "Volumes"
-msgstr ""
+msgstr "Apjomi"
 
 #: hmib.php:1389
 msgid "Storage Description"
-msgstr ""
+msgstr "Krātuves apraksts"
 
 #: hmib.php:1390
 msgid "Storage Type"
-msgstr ""
+msgstr "Krātuves tips"
 
 #: hmib.php:1392
 msgid "Percent Used"
@@ -240,11 +242,11 @@ msgstr ""
 
 #: hmib.php:1393
 msgid "Used (MB)"
-msgstr ""
+msgstr "Izmantoti (MB)"
 
 #: hmib.php:1394
 msgid "Total (MB)"
-msgstr ""
+msgstr "Kopējie (MB)"
 
 #: hmib.php:1395
 msgid "Alloc (KB)"
@@ -252,15 +254,15 @@ msgstr ""
 
 #: hmib.php:1426
 msgid "No Storage Devices Found"
-msgstr ""
+msgstr "Nav atrasta neviena krātuves ierīces"
 
 #: hmib.php:1521
 msgid "Device Filter"
-msgstr ""
+msgstr "Ierīces filtrēšana"
 
 #: hmib.php:1634 hmib.php:2436
 msgid "Recovering"
-msgstr ""
+msgstr "Atgūstas"
 
 #: hmib.php:1637 hmib.php:2435
 msgid "Up"
@@ -268,63 +270,63 @@ msgstr ""
 
 #: hmib.php:1640 hmib.php:2438 setup.php:529
 msgid "Disabled"
-msgstr ""
+msgstr "Atspējots"
 
 #: hmib.php:1726 hmib.php:2432 hmib.php:2616 setup.php:634
 msgid "Actions"
-msgstr ""
+msgstr "Darbības"
 
 #: hmib.php:1729
 msgid "Uptime(d:h:m)"
-msgstr ""
+msgstr "Darbošanās laiks (d:s:m)"
 
 #: hmib.php:1730
 msgid "Users"
-msgstr ""
+msgstr "Lietotāji"
 
 #: hmib.php:1731
 msgid "CPU %"
-msgstr ""
+msgstr "Procesors %"
 
 #: hmib.php:1732
 msgid "CPUs"
-msgstr ""
+msgstr "Procesori"
 
 #: hmib.php:1734
 msgid "Total Mem"
-msgstr ""
+msgstr "Kopējā atmiņa"
 
 #: hmib.php:1735
 msgid "Used Mem"
-msgstr ""
+msgstr "Izmantotā atmiņa"
 
 #: hmib.php:1736
 msgid "Total Swap"
-msgstr ""
+msgstr "Kopējā apmaiņa vieta"
 
 #: hmib.php:1737
 msgid "Used Swap"
-msgstr ""
+msgstr "Izmantotā apmaiņa vieta"
 
 #: hmib.php:1789 hmib.php:2472
 msgid "View Storage"
-msgstr ""
+msgstr "Skatīt krātuvi"
 
 #: hmib.php:1790 hmib.php:2473
 msgid "View Hardware"
-msgstr ""
+msgstr "Skatīt aparatūru"
 
 #: hmib.php:1791 hmib.php:2474 hmib.php:2646
 msgid "View Processes"
-msgstr ""
+msgstr "Skatīt procesus"
 
 #: hmib.php:1792 hmib.php:2475
 msgid "View Software Inventory"
-msgstr ""
+msgstr "Skatīt programmatūras uzskaiti"
 
 #: hmib.php:1795 hmib.php:2714 hmib.php:2716 hmib.php:2762 hmib.php:2764
 msgid "View Graphs"
-msgstr ""
+msgstr "Skatīt grafikus"
 
 #: hmib.php:1797
 msgid "No Graphs Defined"
@@ -332,15 +334,15 @@ msgstr ""
 
 #: hmib.php:1825
 msgid "No Devices Found"
-msgstr ""
+msgstr "Netika atrasta neviena ierīce"
 
 #: hmib.php:1956
 msgid "Software Inventory"
-msgstr ""
+msgstr "Programmatūras uzskaite"
 
 #: hmib.php:2067 hmib.php:2150
 msgid "Applications"
-msgstr ""
+msgstr "Programmas"
 
 #: hmib.php:2145
 msgid "Package"
@@ -348,7 +350,7 @@ msgstr ""
 
 #: hmib.php:2147
 msgid "Installed"
-msgstr ""
+msgstr "Uzstādīts"
 
 #: hmib.php:2175
 msgid "No Software Packages Found"
@@ -356,19 +358,19 @@ msgstr ""
 
 #: hmib.php:2190
 msgid "Summary"
-msgstr ""
+msgstr "Kopsavilkums"
 
 #: hmib.php:2192
 msgid "Storage"
-msgstr ""
+msgstr "Krātuve"
 
 #: hmib.php:2193
 msgid "Hardware"
-msgstr ""
+msgstr "Aparatūra"
 
 #: hmib.php:2195
 msgid "Use History"
-msgstr ""
+msgstr "Izmantot vēsturi"
 
 #: hmib.php:2196
 msgid "Inventory"
@@ -376,11 +378,11 @@ msgstr ""
 
 #: hmib.php:2197 hmib.php:2881
 msgid "Graphs"
-msgstr ""
+msgstr "Grafiki"
 
 #: hmib.php:2356
 msgid "Summary Filter"
-msgstr ""
+msgstr "Kopsavilkuma filtrēšana"
 
 #: hmib.php:2365 hmib.php:2548
 msgid "Top"
@@ -388,17 +390,17 @@ msgstr ""
 
 #: hmib.php:2369 hmib.php:2552
 msgid "All Records"
-msgstr ""
+msgstr "Visi ieraksti"
 
 #: hmib.php:2370 hmib.php:2553 hmib.php:2554 hmib.php:2555 hmib.php:2556
 #, php-format
 msgid "%d Records"
-msgstr ""
+msgstr "%d ieraksti"
 
 #: hmib.php:2371 hmib.php:2372 hmib.php:2373
 #, php-format
 msgid "%d Record"
-msgstr ""
+msgstr "%d ieraksts"
 
 #: hmib.php:2383 hmib.php:2566
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
@@ -418,7 +420,7 @@ msgstr ""
 
 #: hmib.php:2440
 msgid "CPUS"
-msgstr ""
+msgstr "Procesori"
 
 #: hmib.php:2441 hmib.php:2621
 msgid "Avg CPU"
