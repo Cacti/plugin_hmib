@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2020-12-12 22:15-0500\nPO-Revision-Date: 2022-06-21 23:05+0000\nLast-Translator: Coool (github.com/Coool) <coool@mail.lv>\nLanguage-Team: Latvian <http://translate.cacti.net/projects/cacti/hmib/lv/>\nLanguage: lv-LV\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\nX-Generator: Weblate 4.8.1\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2020-12-12 22:15-0500\nPO-Revision-Date: 2022-06-23 03:22+0000\nLast-Translator: Coool (github.com/Coool) <coool@mail.lv>\nLanguage-Team: Latvian <http://translate.cacti.net/projects/cacti/hmib/lv/>\nLanguage: lv-LV\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\nX-Generator: Weblate 4.8.1\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -14,7 +14,7 @@ msgstr "Kļūda"
 #: hmib.php:1094 hmib.php:1214 hmib.php:1417 hmib.php:1535 hmib.php:1628
 #: hmib.php:1970 hmib.php:2170 hmib.php:2484 hmib_types.php:369
 msgid "Unknown"
-msgstr ""
+msgstr "Nezināms"
 
 #: hmib.php:38
 msgid "Operating System"
@@ -59,7 +59,7 @@ msgstr "Pārbaude"
 
 #: hmib.php:56 hmib.php:1631 hmib.php:2437
 msgid "Down"
-msgstr ""
+msgstr "Uz leju"
 
 #: hmib.php:179
 msgid "Running Process History"
@@ -91,7 +91,7 @@ msgstr "Veidne"
 #: hmib.php:2033 hmib.php:2378 hmib.php:2561 hmib_types.php:932
 #: hmib_types.php:1013
 msgid "Go"
-msgstr ""
+msgstr "Aiziet"
 
 #: hmib.php:257 hmib.php:598 hmib.php:958 hmib.php:1278 hmib.php:1597
 #: hmib.php:2034 hmib.php:2379 hmib.php:2562 hmib_types.php:1014
@@ -139,9 +139,8 @@ msgid "Edit Device"
 msgstr "Rediģēt ierīci"
 
 #: hmib.php:405
-#, fuzzy
 msgid "No Process History Found"
-msgstr "Nav atrasta procesa vēsture"
+msgstr "Nav atrasta neviena procesa vēsture"
 
 #: hmib.php:520
 msgid "Running Processes"
@@ -238,7 +237,7 @@ msgstr "Krātuves tips"
 
 #: hmib.php:1392
 msgid "Percent Used"
-msgstr ""
+msgstr "Izmantoti procenti"
 
 #: hmib.php:1393
 msgid "Used (MB)"
@@ -266,7 +265,7 @@ msgstr "Atgūstas"
 
 #: hmib.php:1637 hmib.php:2435
 msgid "Up"
-msgstr ""
+msgstr "Uz augšu"
 
 #: hmib.php:1640 hmib.php:2438 setup.php:529
 msgid "Disabled"
@@ -302,11 +301,11 @@ msgstr "Izmantotā atmiņa"
 
 #: hmib.php:1736
 msgid "Total Swap"
-msgstr "Kopējā apmaiņa vieta"
+msgstr "Kopējā apmaiņas vieta"
 
 #: hmib.php:1737
 msgid "Used Swap"
-msgstr "Izmantotā apmaiņa vieta"
+msgstr "Izmantotā apmaiņas vieta"
 
 #: hmib.php:1789 hmib.php:2472
 msgid "View Storage"
@@ -330,7 +329,7 @@ msgstr "Skatīt grafikus"
 
 #: hmib.php:1797
 msgid "No Graphs Defined"
-msgstr ""
+msgstr "Nav nevienu definētu grafiku"
 
 #: hmib.php:1825
 msgid "No Devices Found"
@@ -374,7 +373,7 @@ msgstr "Izmantot vēsturi"
 
 #: hmib.php:2196
 msgid "Inventory"
-msgstr ""
+msgstr "Inventārs"
 
 #: hmib.php:2197 hmib.php:2881
 msgid "Graphs"
@@ -386,7 +385,7 @@ msgstr "Kopsavilkuma filtrēšana"
 
 #: hmib.php:2365 hmib.php:2548
 msgid "Top"
-msgstr ""
+msgstr "Virs"
 
 #: hmib.php:2369 hmib.php:2552
 msgid "All Records"
@@ -408,11 +407,11 @@ msgstr ""
 
 #: hmib.php:2394
 msgid "Device Type Summary Statistics"
-msgstr ""
+msgstr "Ierīces tipa kopsavilkuma statistika"
 
 #: hmib.php:2434 hmib_types.php:754
 msgid "Version"
-msgstr ""
+msgstr "Versija"
 
 #: hmib.php:2439
 msgid "Logins"
@@ -424,39 +423,39 @@ msgstr "Procesori"
 
 #: hmib.php:2441 hmib.php:2621
 msgid "Avg CPU"
-msgstr ""
+msgstr "Vidējais CPU"
 
 #: hmib.php:2442 hmib.php:2622
 msgid "Max CPU"
-msgstr ""
+msgstr "Maksimālais CPU"
 
 #: hmib.php:2443
 msgid "Avg Mem"
-msgstr ""
+msgstr "Vidējais atmiņas"
 
 #: hmib.php:2444
 msgid "Max Mem"
-msgstr ""
+msgstr "Maksimālais atmiņas"
 
 #: hmib.php:2445
 msgid "Avg Swap"
-msgstr ""
+msgstr "Vidējais apmaiņas"
 
 #: hmib.php:2446
 msgid "Max Swap"
-msgstr ""
+msgstr "Maksimālais apmaiņas"
 
 #: hmib.php:2447
 msgid "Avg Proc"
-msgstr ""
+msgstr "Vidējais procesu"
 
 #: hmib.php:2448
 msgid "Max Proc"
-msgstr ""
+msgstr "Maksimālais procesu"
 
 #: hmib.php:2471 hmib.php:2645 hmib.php:2671
 msgid "View Devices"
-msgstr ""
+msgstr "Skatīt ierīces"
 
 #: hmib.php:2504
 msgid "No Device Types"
@@ -464,15 +463,15 @@ msgstr ""
 
 #: hmib.php:2509
 msgid "Process Summary Filter"
-msgstr ""
+msgstr "Procesa kopsavilkuma filtrēšana"
 
 #: hmib.php:2577
 msgid "Process Summary Statistics"
-msgstr ""
+msgstr "Procesa kopsavilkuma statistika"
 
 #: hmib.php:2617
 msgid "Process Name"
-msgstr ""
+msgstr "Procesa nosaukums"
 
 #: hmib.php:2618
 msgid "Num Paths"
