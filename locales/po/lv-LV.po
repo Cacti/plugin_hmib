@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2020-12-12 22:15-0500\nPO-Revision-Date: 2022-06-26 07:10+0000\nLast-Translator: Coool (github.com/Coool) <coool@mail.lv>\nLanguage-Team: Latvian <http://translate.cacti.net/projects/cacti/hmib/lv/>\nLanguage: lv-LV\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\nX-Generator: Weblate 4.8.1\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2020-12-12 22:15-0500\nPO-Revision-Date: 2022-06-27 01:17+0000\nLast-Translator: Coool (github.com/Coool) <coool@mail.lv>\nLanguage-Team: Latvian <http://translate.cacti.net/projects/cacti/hmib/lv/>\nLanguage: lv-LV\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\nX-Generator: Weblate 4.8.1\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -741,7 +741,7 @@ msgstr "Automātiski atrast Cacti ierīces"
 
 #: setup.php:392
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
-msgstr ""
+msgstr "Vai vēlaties automātiski meklēt un pievienot ierīces, kas atbalsta resursdatora resursa MIB, no Cacti resursdatora tabulas?"
 
 #: setup.php:397
 msgid "Automatically Purge Devices"
@@ -798,7 +798,7 @@ msgstr "%d process"
 
 #: setup.php:449
 msgid "Host Auto Discovery Frequency"
-msgstr ""
+msgstr "Resursdatora automātiskais atklāšanas biežums"
 
 #: setup.php:453
 msgid "Auto Discovery Frequency"
@@ -818,7 +818,7 @@ msgstr "Automātiski pievienot jaunus grafikus"
 
 #: setup.php:465
 msgid "How often do you want to check for new objects to graph?"
-msgstr ""
+msgstr "Cik bieži vēlaties pārbaudīt, vai ir jauni objekti, ko attēlot?"
 
 #: setup.php:469
 msgid "Never"
@@ -924,15 +924,15 @@ msgstr ""
 
 #: setup.php:625
 msgid "Host MIB Details"
-msgstr ""
+msgstr "Resursdatora MIB detalizēta informācija"
 
 #: setup.php:626
 msgid "Host MIB Storage"
-msgstr ""
+msgstr "Resursdatora MIB krātuve"
 
 #: setup.php:627
 msgid "Host MIB Hardware"
-msgstr ""
+msgstr "Resursdatora MIB aparatūra"
 
 #: setup.php:628
 msgid "Host MIB Running Processes"
