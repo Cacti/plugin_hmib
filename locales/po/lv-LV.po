@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2020-12-12 22:15-0500\nPO-Revision-Date: 2022-06-27 01:17+0000\nLast-Translator: Coool (github.com/Coool) <coool@mail.lv>\nLanguage-Team: Latvian <http://translate.cacti.net/projects/cacti/hmib/lv/>\nLanguage: lv-LV\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\nX-Generator: Weblate 4.8.1\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2020-12-12 22:15-0500\nPO-Revision-Date: 2022-06-27 21:07+0000\nLast-Translator: Coool (github.com/Coool) <coool@mail.lv>\nLanguage-Team: Latvian <http://translate.cacti.net/projects/cacti/hmib/lv/>\nLanguage: lv-LV\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\nX-Generator: Weblate 4.8.1\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -58,7 +58,7 @@ msgstr "Pārbaude"
 
 #: hmib.php:56 hmib.php:1631 hmib.php:2437
 msgid "Down"
-msgstr "Uz leju"
+msgstr "Neaktīva (nedarbojoša, bezsaistē)"
 
 #: hmib.php:179
 msgid "Running Process History"
@@ -264,7 +264,7 @@ msgstr "Atgūstas"
 
 #: hmib.php:1637 hmib.php:2435
 msgid "Up"
-msgstr "Uz augšu"
+msgstr "Aktīva (darbojoša, tiešsaistē)"
 
 #: hmib.php:1640 hmib.php:2438 setup.php:529
 msgid "Disabled"
@@ -402,7 +402,7 @@ msgstr "%d ieraksts"
 
 #: hmib.php:2383 hmib.php:2566
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
-msgstr ""
+msgstr "PIEZĪME: Lai skatītu grafikus, importējiet resursdatora MIB ierīces pakotni."
 
 #: hmib.php:2394
 msgid "Device Type Summary Statistics"
@@ -603,11 +603,11 @@ msgstr "Unikāls rakstzīmju komplekts no SNMP sysDescr, kas identificē šo ier
 
 #: hmib_types.php:469
 msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
-msgstr ""
+msgstr "Izplatītāja specifiskais SNMP sysObjectID, kas atšķir šo ierīci no nākamās"
 
 #: hmib_types.php:471
 msgid "The primary key for this table is a combination of the following two fields:"
-msgstr ""
+msgstr "Šīs tabulas primārā atslēga ir divu sekojošu lauku kombinācija:"
 
 #: hmib_types.php:475
 msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
@@ -615,7 +615,7 @@ msgstr "Tāpēc, ja jūs mēģināt importēt ierīču tipu dublikātus, esošie
 
 #: hmib_types.php:477
 msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
-msgstr ""
+msgstr "Resursdatora tips tiek noteikts, vaicājot tā SNMP aģentu pēc sysObjectID un sysDescription vērtībām un salīdzinot tās ar vērtībām resursdatora tipu datubāzē.  Pirmā atbilstība, ko atrod datubāzē, tiek izmantota, lai apkopotu resursdatora datus.  Tāpēc ir ļoti svarīgi saviem resursdatoriem norādīt derīgu sysObjectID, sysDescrMatch."
 
 #: hmib_types.php:743
 msgid "Device Scanning Function Options"
