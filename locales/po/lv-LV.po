@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2020-12-12 22:15-0500\nPO-Revision-Date: 2022-06-27 21:07+0000\nLast-Translator: Coool (github.com/Coool) <coool@mail.lv>\nLanguage-Team: Latvian <http://translate.cacti.net/projects/cacti/hmib/lv/>\nLanguage: lv-LV\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\nX-Generator: Weblate 4.8.1\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2020-12-12 22:15-0500\nPO-Revision-Date: 2022-07-11 10:11+0000\nLast-Translator: Coool (github.com/Coool) <coool@mail.lv>\nLanguage-Team: Latvian <http://translate.cacti.net/projects/cacti/hmib/lv/>\nLanguage: lv-LV\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\nX-Generator: Weblate 4.8.1\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -414,7 +414,7 @@ msgstr "Versija"
 
 #: hmib.php:2439
 msgid "Logins"
-msgstr ""
+msgstr "Autorizācijas dati"
 
 #: hmib.php:2440
 msgid "CPUS"
@@ -638,9 +638,9 @@ msgid "System Description Match"
 msgstr "Sistēmas apraksts sakrīt"
 
 #: hmib_types.php:763 hmib_types.php:770
-#, php-format
+#, fuzzy, php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr ""
+msgstr "Norādiet galveno informāciju, lai palīdzētu HMIB noteikt resursdatora tipu.  SQL Kur tiek atbalstītas izteiksmes. SQL Kur aizstājējzīme ir \"%\" zīme. Regulārās izteiksmes ir noņemtas saderības problēmu dēļ."
 
 #: hmib_types.php:769
 msgid "Vendor snmp Object ID"
@@ -753,11 +753,11 @@ msgstr "Vai vēlaties automātiski tīrīt ierīces, kuras tiek dzēstas no Cact
 
 #: setup.php:403
 msgid "Default Row Count"
-msgstr "Noklusējuma rindu skaits"
+msgstr "Noklusējuma ierakstus skaits"
 
 #: setup.php:404
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
-msgstr ""
+msgstr "Cik ierakstus pēc noklusējuma vēlaties redzēt HMIB Operētājsistēmas tips?"
 
 #: setup.php:410
 msgid "Default Top Host Types"
@@ -765,7 +765,7 @@ msgstr "Noklusējuma labākie resursdatora tipi"
 
 #: setup.php:411 setup.php:422
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
-msgstr ""
+msgstr "Cik procesus pēc noklusējuma vēlaties redzēt HMIB informācijas panelī?"
 
 #: setup.php:415 setup.php:416 setup.php:417 setup.php:418
 #, php-format
@@ -785,11 +785,11 @@ msgstr "%d procesi"
 
 #: setup.php:432
 msgid "Maximum Concurrent Collectors"
-msgstr ""
+msgstr "Maksimālais vienlaicīgo savācēju skaits"
 
 #: setup.php:433
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
-msgstr ""
+msgstr "Kāds ir maksimālais vienlaicīgo savācēju procesu skaits, ko vēlaties palaist vienā reizē?"
 
 #: setup.php:437
 #, php-format
@@ -846,7 +846,7 @@ msgstr "%d dienas"
 
 #: setup.php:476
 msgid "Host MIB Table Collection Frequencies"
-msgstr ""
+msgstr "Resursdatora MIB tabulu ievākšanas biežumi"
 
 #: setup.php:480
 msgid "Running Programs Frequency"
@@ -920,7 +920,7 @@ msgstr "Pamatadministrācija"
 
 #: setup.php:623 setup.php:624
 msgid "Host MIB Inventory Summary"
-msgstr ""
+msgstr "Resursdatora MIB uzskaites kopsavilkums"
 
 #: setup.php:625
 msgid "Host MIB Details"
@@ -936,23 +936,23 @@ msgstr "Resursdatora MIB aparatūra"
 
 #: setup.php:628
 msgid "Host MIB Running Processes"
-msgstr ""
+msgstr "Resursdatora MIB darbojošies procesi"
 
 #: setup.php:629
 msgid "Host MIB Process Use History"
-msgstr ""
+msgstr "Resursdatora MIB procesa izmantošanas vēsture"
 
 #: setup.php:630
 msgid "Host MIB Software Inventory"
-msgstr ""
+msgstr "Resursdatora MIB programmatūras uzskaite"
 
 #: setup.php:631
 msgid "Host MIB Graphs"
-msgstr ""
+msgstr "Resursdatora MIB grafiki"
 
 #: setup.php:633
 msgid "Host MIB OS Types"
-msgstr ""
+msgstr "Resursdatora MIB Operētājsistēmas tipi"
 
 #: setup.php:635
 msgid "(Edit)"
