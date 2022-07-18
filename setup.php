@@ -25,7 +25,6 @@
 function plugin_hmib_install() {
 	# graph setup all arrays needed for automation
 	api_plugin_register_hook('hmib', 'config_arrays',         'hmib_config_arrays',         'setup.php');
-	api_plugin_register_hook('hmib', 'config_form',           'hmib_config_form',           'setup.php');
 	api_plugin_register_hook('hmib', 'config_settings',       'hmib_config_settings',       'setup.php');
 	api_plugin_register_hook('hmib', 'draw_navigation_text',  'hmib_draw_navigation_text',  'setup.php');
 	api_plugin_register_hook('hmib', 'poller_bottom',         'hmib_poller_bottom',         'setup.php');
@@ -107,6 +106,8 @@ function hmib_check_upgrade() {
 			db_execute("ALTER TABLE plugin_hmib_hrSWRun_last_seen
 				ADD COLUMN `total_time` BIGINT unsigned not null default '0' AFTER `name`");
 		}
+
+		db_execute('DELETE FROM plugin_hooks WHERE name="hmib" AND hook="config_form"');
 	}
 }
 
