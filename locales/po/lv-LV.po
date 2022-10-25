@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2020-12-12 22:15-0500\nPO-Revision-Date: 2022-09-26 01:57+0000\nLast-Translator: Coool (github.com/Coool) <coool@mail.lv>\nLanguage-Team: Latvian <http://translate.cacti.net/projects/cacti/hmib/lv/>\nLanguage: lv-LV\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\nX-Generator: Weblate 4.8.1\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2020-12-12 22:15-0500\nPO-Revision-Date: 2022-10-25 04:08+0000\nLast-Translator: Coool (github.com/Coool) <coool@mail.lv>\nLanguage-Team: Latvian <http://translate.cacti.net/projects/cacti/hmib/lv/>\nLanguage: lv-LV\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\nX-Generator: Weblate 4.8.1\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -46,7 +46,7 @@ msgstr "Nederīgs"
 
 #: hmib.php:51
 msgid "Present"
-msgstr "Šobrīd"
+msgstr "Tagad"
 
 #: hmib.php:54
 msgid "Warning"
@@ -54,7 +54,7 @@ msgstr "Brīdinājums"
 
 #: hmib.php:55
 msgid "Testing"
-msgstr "Pārbaude"
+msgstr "Testēšana"
 
 #: hmib.php:56 hmib.php:1631 hmib.php:2437
 msgid "Down"
@@ -90,7 +90,7 @@ msgstr "Veidne"
 #: hmib.php:2033 hmib.php:2378 hmib.php:2561 hmib_types.php:932
 #: hmib_types.php:1013
 msgid "Go"
-msgstr "Aiziet"
+msgstr "Doties"
 
 #: hmib.php:257 hmib.php:598 hmib.php:958 hmib.php:1278 hmib.php:1597
 #: hmib.php:2034 hmib.php:2379 hmib.php:2562 hmib_types.php:1014
