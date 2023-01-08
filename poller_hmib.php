@@ -483,11 +483,10 @@ function process_hosts() {
 
 
 	/* take time and log performance data */
-	list($micro,$seconds) = explode(' ', microtime());
-	$end = $seconds + $micro;
+	$end = microtime(true);
 
 	$cacti_stats = sprintf(
-		'Time:%01.4f ' .
+		'Time:%0.2f ' .
 		'Processes:%s ' .
 		'Hosts:%s',
 		round($end-$start,2),
@@ -563,23 +562,37 @@ function checkHost($host_id) {
 
 	if (cacti_sizeof($host)) {
 		// Run the collectors
+		cacti_log(sprintf('Running Device System Info Collection for Device[%s]', $host['id']), false, 'HMIB', POLLER_VERBOSITY_MEDIUM);
+
 		collect_hrSystem($host);
+
 		if (runCollector($start, $hrDevices_lastrun, $hrDevices_freq)) {
+			cacti_log(sprintf('Running Device Collection for Device[%s]', $host['id']), false, 'HMIB', POLLER_VERBOSITY_MEDIUM);
 			collect_hrDevices($host);
 		}
+
 		if (runCollector($start, $hrSWRun_lastrun, $hrSWRun_freq)) {
+			cacti_log(sprintf('Running Running Process Collection for Device[%s]', $host['id']), false, 'HMIB', POLLER_VERBOSITY_MEDIUM);
 			collect_hrSWRun($host);
 		}
+
 		if (runCollector($start, $hrSWRunPerf_lastrun, $hrSWRunPerf_freq)) {
+			cacti_log(sprintf('Running Running Process Performance Collection for Device[%s]', $host['id']), false, 'HMIB', POLLER_VERBOSITY_MEDIUM);
 			collect_hrSWRunPerf($host);
 		}
+
 		if (runCollector($start, $hrSWInstalled_lastrun, $hrSWInstalled_freq)) {
+			cacti_log(sprintf('Running Software Install Collection for Device[%s]', $host['id']), false, 'HMIB', POLLER_VERBOSITY_MEDIUM);
 			collect_hrSWInstalled($host);
 		}
+
 		if (runCollector($start, $hrStorage_lastrun, $hrStorage_freq)) {
+			cacti_log(sprintf('Running Storage Collection for Device[%s]', $host['id']), false, 'HMIB', POLLER_VERBOSITY_MEDIUM);
 			collect_hrStorage($host);
 		}
+
 		if (runCollector($start, $hrProcessor_lastrun, $hrProcessor_freq)) {
+			cacti_log(sprintf('Running Processor Collection for Device[%s]', $host['id']), false, 'HMIB', POLLER_VERBOSITY_MEDIUM);
 			collect_hrProcessor($host);
 		}
 
