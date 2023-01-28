@@ -75,7 +75,7 @@ GitHub.
 
 * issue: Automation problems with PHP8+
 
-* feature: Support for 1.2.23+ packages
+* feature: Support for 1.2.24+ packages
 
 --- 3.3 ---
 
@@ -99,7 +99,6 @@ GitHub.
 
 * feature: Minimum version Cacti 1.2.11
 
-
 --- 3.2 ---
 
 * issue#15: Searching from the hmib pages do not work with international
@@ -113,18 +112,15 @@ GitHub.
 
 * issue: Correct some stored XSS issues
 
-
 --- 3.1 ---
 
 * feature: More of the user interface using ajax callbacks
 
 * issue#8: Correct sql errors in hmib.php page
 
-
 --- 3.0 ---
 
 * Cacti 1.0 Compatibility
-
 
 --- 2.0 ---
 
@@ -143,7 +139,6 @@ GitHub.
 
 * feature: Support new Theme engine
 
-
 --- 1.5 ---
 
 * bug#0002123: hmib does not handle sysContact or other field that contains an
@@ -151,13 +146,11 @@ GitHub.
 
 * bug: Remove regex support for SysDesc as it is breaking discovery
 
-
 --- 1.4 ---
 
 * bug: Performance issues when viewing pages
 
 * bug: Pagination issues with Use History
-
 
 --- 1.3 ---
 
@@ -166,7 +159,6 @@ GitHub.
 * bug: Don't throw warning when using 'Use History'
 
 * feature: Support Ugroup Plugin
-
 
 --- 1.2 ---
 
@@ -184,13 +176,11 @@ GitHub.
 
 * feature: allow sysDescMatch and sysObjectIDMatch use regex
 
-
 --- 1.1 ---
 
 * big: issue when deleting dead hosts
 
 * feature: provide statistics for visualization of hmib runtime
-
 
 --- 1.0 ---
 
