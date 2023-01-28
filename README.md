@@ -69,6 +69,12 @@ GitHub.
 
 ## ChangeLog
 
+--- 3.4 ---
+
+* issue: Relocate package files information to correct location
+
+* feature: Support for 1.2.23+ packages
+
 --- 3.3 ---
 
 * issue#19: Cannot filter on 'Unknown'
