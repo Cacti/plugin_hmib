@@ -73,6 +73,8 @@ GitHub.
 
 * issue: Relocate package files information to correct location
 
+* issue: Automation problems with PHP8+
+
 * feature: Support for 1.2.23+ packages
 
 --- 3.3 ---

@@ -278,17 +278,26 @@ function add_summary_graphs($host_id, $host_template) {
 	if (empty($host_id)) {
 		/* add the host */
 		debug('Adding Host');
+
 		$result = exec("$php_bin -q $base/cli/add_device.php --description='Summary Device' --ip=summary --template=$host_template --version=0 --avail=none", $return_code);
+
+		$host_id = db_fetch_cell_prepared('SELECT id
+			FROM host
+			WHERE host_template_id = ?',
+			array($host_template));
 	} else {
 		debug('Reindexing Host');
+
 		$result = exec("$php_bin -q $base/cli/poller_reindex_hosts.php -id=$host_id -qid=All", $return_code);
 	}
 
 	/* data query graphs first */
 	debug('Processing Data Queries');
-	$data_queries = db_fetch_assoc("SELECT *
+
+	$data_queries = db_fetch_assoc_prepared('SELECT *
 		FROM host_snmp_query
-		WHERE host_id=$host_id");
+		WHERE host_id = ?',
+		array($host_id));
 
 	if (cacti_sizeof($data_queries)) {
 		foreach($data_queries as $dq) {
@@ -384,7 +393,9 @@ function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
 					' --snmp-field=' . $field .
 					' --snmp-value=' . cacti_escapeshellarg($field_value);
 
-				print "NOTE: Adding item: '$field_value' " . str_replace("\n", ' ', passthru($command)) . "\n";
+				$output = shell_exec($command);
+
+				print "NOTE: Adding item: '$field_value' " . str_replace("\n", ' ', $output) . PHP_EOL;
 			}
 		}
 	}
@@ -413,6 +424,6 @@ function display_help() {
 	display_version();
 
 	print "\nThe Host MIB process that creates graphs for Cacti.\n\n";
-	print "usage: poller_graphs.php [-f] [-d]\n";
+	print "usage: poller_graphs.php [--force] [--debug]\n";
 }
 
