@@ -28,12 +28,12 @@ discovered Devices operating system, and when that step is completed properly,
 the Cacti 'hmib' tab will classify system usage by Operating System.
 
 The hmib plugin also includes several Graph Templates that allow you to track
-application memory and cpu utilization accross you environment as well as
+application memory and cpu utilization across you environment as well as
 several other Cacti Graphs.
 
 A few of these Cacti Graph Templates include script files that will allow Cacti
 to leverage the HMIB data for graphing instead of directly accessing the Cacti
-Devices for that information.  This appoach leads to reduce Cacti polling times
+Devices for that information.  This approach leads to reduce Cacti polling times
 due to the elimination of latency obtaining the information.
 
 ## Installation
@@ -42,24 +42,23 @@ Just like any other Cacti plugin, untar the package to the Cacti plugins
 directory, rename the directory to 'hmib', and then from Cacti's Plugin
 Management interface, Install and Enable the pluign.
 
-Once you have installed the hmib plugin, you need to install it's Device
-Template, and then in addition, you must copy the script server script files to
-Cacti's scripts directory.  Those files are located in the plugins
-templates/scripts directory.  In addition, you should copy the script server
-resource files to Cacti's resource/script_server directory.  Once there,
-graphing for Cacti's build in Host Resources Mib objects will come from the hmib
-plugin.  Make backups of all files replaced, just in case you decide to remove
-the plugin at a later date.
+Once you have installed the hmib plugin, you need to install two Packages for Graphing.
+First you need to install the 'Host_Mib_Summary_Device.xml.gz' package.  This Device
+Package installs a Device Template and associated Data Queries and Graph Templates to
+track roll-up statistics by OS Type and by application name.
+
+The second package to install is the 'Host_Mib_Device_Level_Application_stats.xml.gz'.
+This package  includes a Data Query to track Application memory and CPU use at the 
+individual Device level.  You will need to manually add this Data Query to either the Device Template for your HMIB type devices and Sync Templates, or manually add it to devices 
+that you wish to track specific memory and CPU stats by application.  For this specific
+Data Query, you will either have to manually create the Graphs, or create an automation
+rule to create the Graphs that you are interested in.
 
 Once everything is in place, you need to goto Cacti's Settings page and locate
 the 'Host MIB' tab and complete the hmib's setup.  From there, you can set
 collections frequencies and levels of parallelism.  You can also turn on the
 automation of Cacti Devices and Graphs as well.  The hmib plugin also monitors
 application usage over time.
-
-Once you have installed and enabled the Plugin, ensure that you import the
-Device Package Host_Mib_Summary_Device.xml.gz that is located in the
-hmib/templates directory.
 
 ## Bugs and Feature Enhancements
 
@@ -68,6 +67,12 @@ find a first search the Cacti forums for a solution before creating an issue in
 GitHub.
 
 ## ChangeLog
+
+--- develop ---
+
+* issue: Fix warnings generated in more recent versions of PHP
+* feature: Add new Data Query to track Application statistics at the Device Level
+
 
 --- 3.4 ---
 
