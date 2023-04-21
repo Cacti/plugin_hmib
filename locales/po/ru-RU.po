@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2020-12-12 22:15-0500\nPO-Revision-Date: 2023-04-20 18:52+0000\nLast-Translator: Сергей <zersh@mail.ru>\nLanguage-Team: Russian <http://translate.cacti.net/projects/cacti/hmib/ru/>\nLanguage: ru-RU\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\nX-Generator: Weblate 4.8.1\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2020-12-12 22:15-0500\nPO-Revision-Date: 2023-04-21 12:26+0000\nLast-Translator: Сергей <zersh@mail.ru>\nLanguage-Team: Russian <http://translate.cacti.net/projects/cacti/hmib/ru/>\nLanguage: ru-RU\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\nX-Generator: Weblate 4.8.1\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -625,9 +625,8 @@ msgid "Import Results"
 msgstr "Импорт Результатов"
 
 #: hmib_types.php:429
-#, fuzzy
 msgid "Cacti has imported the following items:"
-msgstr "Кактусы импортировали следующие товары:"
+msgstr "Cacti импортировал следующие элементы:"
 
 #: hmib_types.php:441
 #, fuzzy
@@ -645,7 +644,6 @@ msgid "Please specify the location of the CSV file containing your device type i
 msgstr "Пожалуйста, укажите местоположение CSV-файла, содержащего информацию о типе устройства."
 
 #: hmib_types.php:452
-#, fuzzy
 msgid "Overwrite Existing Data?"
 msgstr "Перезаписать существующие данные?"
 
@@ -655,17 +653,14 @@ msgid "Should the import process be allowed to overwrite existing data?  Please 
 msgstr "Должен ли процесс импорта быть разрешен для перезаписи существующих данных?  Обратите внимание, что это не означает удаление старой строки, а только замена дубликатов строк."
 
 #: hmib_types.php:456
-#, fuzzy
 msgid "Allow Existing Rows to be Updated?"
 msgstr "Разрешить обновление существующих строк?"
 
 #: hmib_types.php:461
-#, fuzzy
 msgid "Required File Format Notes"
 msgstr "Примечания к требуемому формату файла"
 
 #: hmib_types.php:464
-#, fuzzy
 msgid "The file must contain a header row with the following column headings."
 msgstr "Файл должен содержать строку заголовка со следующими заголовками столбцов."
 
