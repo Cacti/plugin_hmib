@@ -393,12 +393,13 @@ function hmib_history() {
 			form_alternate_row();
 
 			if (api_plugin_user_realm_auth('host.php')) {
-				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
+				$host_url = html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']);
+
+				form_selectable_cell(filter_value($row['description'], get_request_var('filter'), $host_url), $id, '', '', __esc('Edit Device', 'hmib'));
 			} else {
-				$host_url = html_escape($row['hostname']);
+				form_selectable_cell(filter_value($row['description'], get_request_var('filter')), $id);
 			}
 
-			form_selectable_cell(filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]', $id);
 			form_selectable_cell(filter_value($row['name'], get_request_var('filter')), $id);
 			form_selectable_cell(filter_value($row['last_seen'], get_request_var('filter')), $id, '', 'right');
 			form_selectable_cell(hmib_get_runtime($row['total_time']), $id, '', 'right');
@@ -755,12 +756,13 @@ function hmib_running() {
 			form_alternate_row();
 
 			if (api_plugin_user_realm_auth('host.php')) {
-				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
+				$host_url = html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']);
+
+				form_selectable_cell(filter_value($row['description'], get_request_var('filter'), $host_url), $id, '', '', __esc('Edit Device', 'hmib'));
 			} else {
-				$host_url = html_escape($row['hostname']);
+				form_selectable_cell(filter_value($row['description'], get_request_var('filter')), $id);
 			}
 
-			form_selectable_cell(filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]', $id);
 			form_selectable_cell(filter_value($row['name'], get_request_var('filter')), $id);
 			form_selectable_cell(filter_value($row['path'], get_request_var('filter')) , $id);
 			form_selectable_cell(filter_value($row['parameters'], get_request_var('filter')), $id);
@@ -1100,12 +1102,13 @@ function hmib_hardware() {
 			form_alternate_row();
 
 			if (api_plugin_user_realm_auth('host.php')) {
-				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
+				$host_url = html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']);
+
+				form_selectable_cell(filter_value($row['hd'], get_request_var('filter'), $host_url), $id, '', '', __esc('Edit Device', 'hmib'));
 			} else {
-				$host_url = html_escape($row['hostname']);
+				form_selectable_cell(filter_value($row['hd'], get_request_var('filter')), $id);
 			}
 
-			form_selectable_cell(filter_value($row['hd'], get_request_var('filter')) . ' [ ' . $host_url . ' ]', $id);
 			form_selectable_cell(filter_value($row['description'], get_request_var('filter')), $id);
 			form_selectable_cell((isset($hmib_types[$row['type']]) ? $hmib_types[$row['type']]:__('Unknown', 'hmib')), $id);
 			form_selectable_cell($hmib_hrDeviceStatus[$row['status']], $id, '', 'right');
@@ -1430,12 +1433,13 @@ function hmib_storage() {
 			form_alternate_row();
 
 			if (api_plugin_user_realm_auth('host.php')) {
-				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
+				$host_url = html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']);
+
+				form_selectable_cell(filter_value($row['hd'], get_request_var('filter'), $host_url), $id, '', '', __esc('Edit Device', 'hmib'));
 			} else {
-				$host_url = html_escape($row['hostname']);
+				form_selectable_cell(filter_value($row['hd'], get_request_var('filter')), $id);
 			}
 
-			form_selectable_cell(filter_value($row['hd'], get_request_var('filter')) . ' [ ' . $host_url . ' ]', $id);
 			form_selectable_cell(filter_value($row['description'], get_request_var('filter')), $id);
 			form_selectable_cell((isset($hmib_types[$row['type']]) ? $hmib_types[$row['type']]:__('Unknown', 'hmib')), $id);
 
@@ -1815,13 +1819,32 @@ function hmib_devices() {
 			form_alternate_row();
 
 			//print "<a style='padding:1px;' href='" . html_escape("$url?action=dashboard&reset=1&device=" . $row["host_id"]) . "'><i src='$dashboard' title='View Dashboard'></i></a>";
-			$aurl  = "<a class='pic' href='" . html_escape("$url?action=storage&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-database' title='" . __('View Storage', 'hmib') . "'></i></a>";
-			$aurl .= "<a class='pic' href='" . html_escape("$url?action=hardware&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-microchip' style='color:lightblue' title='" . __('View Hardware', 'hmib') . "'></i></a>";
-			$aurl .= "<a class='pic' href='" . html_escape("$url?action=running&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i></a>";
-			$aurl .= "<a class='pic' href='" . html_escape("$url?action=software&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-archive' title='" . __('View Software Inventory', 'hmib') . "'></i></a>";
+
+			$aurl  = "<a class='pic'
+				href='" . html_escape("$url?action=storage&reset=1&device=" . $row['host_id']) . "'>
+				<i class='fas fa-database' title='" . __('View Storage', 'hmib') . "'></i>
+			</a>";
+
+			$aurl .= "<a class='pic'
+				href='" . html_escape("$url?action=hardware&reset=1&device=" . $row['host_id']) . "'>
+				<i class='fas fa-microchip' style='color:lightblue' title='" . __('View Hardware', 'hmib') . "'></i>
+			</a>";
+
+			$aurl .= "<a class='pic'
+				href='" . html_escape("$url?action=running&reset=1&device=" . $row['host_id']) . "'>
+				<i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i>
+			</a>";
+
+			$aurl .= "<a class='pic'
+				href='" . html_escape("$url?action=software&reset=1&device=" . $row['host_id']) . "'>
+				<i class='fas fa-archive' title='" . __('View Software Inventory', 'hmib') . "'></i>
+			</a>";
 
 			if ($found) {
-				$aurl .= "<a class='pic' href='" . html_escape("$url?action=graphs&reset=1&host_id=" . $row['host_id'] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=") . "'><i class='fas fa-chart-line' style='color:orange;' title='" . __('View Graphs', 'hmib') . "'></i></a>";
+				$aurl .= "<a class='pic'
+					href='" . html_escape("$url?action=graphs&reset=1&host_id=" . $row['host_id'] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=") . "'>
+					<i class='fas fa-chart-line' style='color:orange;' title='" . __('View Graphs', 'hmib') . "'></i>
+				</a>";
 			} else {
 				$aurl .= "<i class='fas fa-chart-line' title='" . __('No Graphs Defined', 'hmib') . "'></i>";
 			}
@@ -1834,12 +1857,13 @@ function hmib_devices() {
 			$graph_aproc = hmib_get_graph_template_url($hpgt, 0, $row['host_id'], ($row['host_status'] < 2 ? 'N/A':$row['processes']), false);
 
 			if (api_plugin_user_realm_auth('host.php')) {
-				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
+				$host_url = html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']);
+
+				form_selectable_cell(filter_value($row['description'], get_request_var('filter'), $host_url), $id, '', '', __esc('Edit Device', 'hmib'));
 			} else {
-				$host_url = html_escape($row['hostname']);
+				form_selectable_cell(html_escape($row['description']), $id);
 			}
 
-			form_selectable_cell(html_escape($row['description'] . ' [ ' . $host_url . ' ]'), $id);
 
 			form_selectable_cell(get_colored_device_status(($row['disabled'] == 'on' ? true : false), $row['host_status']), $id, '', 'right');
 			form_selectable_cell(hmib_format_uptime($days, $hours, $minutes), $id, '', 'right');
@@ -2197,12 +2221,13 @@ function hmib_software() {
 			form_alternate_row();
 
 			if (api_plugin_user_realm_auth('host.php')) {
-				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
+				$host_url = html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']);
+
+				form_selectable_cell(filter_value($row['description'], get_request_var('filter'), $host_url), $id, '', '', __esc('Edit Device', 'hmib'));
 			} else {
-				$host_url = html_escape($row['hostname']);
+				form_selectable_cell(filter_value($row['description'], get_request_var('filter')), $id);
 			}
 
-			form_selectable_cell(filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]', $id);
 			form_selectable_cell(filter_value($row['name'], get_request_var('filter')), $id);
 			form_selectable_cell((isset($hmib_hrSWTypes[$row['type']]) ? $hmib_hrSWTypes[$row['type']]:__('Unknown', 'hmib')), $id);
 			form_selectable_cell(filter_value($row['date'], get_request_var('filter')), $id, '', 'right');
@@ -2731,7 +2756,7 @@ function hmib_get_device_status_url($count, $host_type, $status) {
 	global $config;
 
 	if ($count > 0) {
-		return "<a class='pic' href='" . html_escape($config['url_path'] . "plugins/hmib/hmib.php?action=devices&reset=1&ostype=$host_type&status=$status") . "' title='" . __('View Devices', 'hmib') . "'>$count</a>";
+		return "<a class='pic linkEditMain' href='" . html_escape($config['url_path'] . "plugins/hmib/hmib.php?action=devices&reset=1&ostype=$host_type&status=$status") . "' title='" . __('View Devices', 'hmib') . "'>$count</a>";
 	} else {
 		return $count;
 	}
@@ -2776,7 +2801,7 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
 			if ($image) {
 				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'><i class='fas fa-chart-line' style='color:orange;'></i></a>";
 			} else {
-				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'>$title</a>";
+				return "<a class='pic linkEditMain' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'>$title</a>";
 			}
 		}
 	}
@@ -2822,9 +2847,9 @@ function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = 
 
 		if (cacti_sizeof($graphs)) {
 			if ($image) {
-				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'><i class='fas fa-chart-line' style='color:orange;' src='" . $graph . "'></i></a>";
+				return "<a class='pic linkEditMain' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'><i class='fas fa-chart-line' style='color:orange;' src='" . $graph . "'></i></a>";
 			} else {
-				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'>$title</a>";
+				return "<a class='pic linkEditMain' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'>$title</a>";
 			}
 		}
 	}
