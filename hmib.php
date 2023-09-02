@@ -387,20 +387,26 @@ function hmib_history() {
 	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=history');
 
 	if (cacti_sizeof($rows)) {
+		$id = 0;
+
 		foreach ($rows as $row) {
 			form_alternate_row();
+
 			if (api_plugin_user_realm_auth('host.php')) {
 				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
 			} else {
 				$host_url = html_escape($row['hostname']);
 			}
 
-			print "<td class='nowrap left'>" . filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
-			print "<td class='nowrap left'>" . filter_value($row['name'], get_request_var('filter')) . '</td>';
-			print "<td class='nowrap right'>" . filter_value($row['last_seen'], get_request_var('filter')) . '</td>';
-			print "<td class='nowrap right'>" . hmib_get_runtime($row['total_time']) . '</td>';
+			form_selectable_cell(filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]', $id);
+			form_selectable_cell(filter_value($row['name'], get_request_var('filter')), $id);
+			form_selectable_cell(filter_value($row['last_seen'], get_request_var('filter')), $id, '', 'right');
+			form_selectable_cell(hmib_get_runtime($row['total_time']), $id, '', 'right');
+
+			$id++;
+
+			form_end_row();
 		}
-		print '</tr>';
 	} else {
 		print '<tr><td colspan="4"><em>' . __('No Process History Found', 'hmib') . '</em></td></tr>';
 	}
@@ -743,24 +749,30 @@ function hmib_running() {
 	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=running', 'page', 'main');
 
 	if (cacti_sizeof($rows)) {
+		$id = 0;
+
 		foreach($rows as $row) {
 			form_alternate_row();
+
 			if (api_plugin_user_realm_auth('host.php')) {
 				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
 			} else {
 				$host_url = html_escape($row['hostname']);
 			}
 
-			print "<td class='nowrap left'>"  . filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
-			print "<td class='nowrap left'>"  . filter_value($row['name'], get_request_var('filter')) . '</td>';
-			print "<td class='nowrap left'>"  . filter_value($row['path'], get_request_var('filter')) . '</td>';
-			print "<td class='nowrap left'>"  . filter_value($row['parameters'], get_request_var('filter')) . '</td>';
-			print "<td class='nowrap right'>" . number_format_i18n($row['perfCPU']/3600,0) . '</td>';
-			print "<td class='nowrap right'>" . number_format_i18n($row['perfMemory']/1024,2) . '</td>';
-			print "<td class='nowrap right'>" . (isset($hmib_hrSWTypes[$row['type']]) ? $hmib_hrSWTypes[$row['type']]:__('Unknown', 'hmib')) . '</td>';
-			print "<td class='nowrap right'>" . $hmib_hrSWRunStatus[$row['status']] . '</td>';
+			form_selectable_cell(filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]', $id);
+			form_selectable_cell(filter_value($row['name'], get_request_var('filter')), $id);
+			form_selectable_cell(filter_value($row['path'], get_request_var('filter')) , $id);
+			form_selectable_cell(filter_value($row['parameters'], get_request_var('filter')), $id);
+			form_selectable_cell(number_format_i18n($row['perfCPU']/3600,0), $id, '', 'right');
+			form_selectable_cell(number_format_i18n($row['perfMemory']/1024,2), $id, '', 'right');
+			form_selectable_cell((isset($hmib_hrSWTypes[$row['type']]) ? $hmib_hrSWTypes[$row['type']]:__('Unknown', 'hmib')), $id, '', 'right');
+			form_selectable_cell($hmib_hrSWRunStatus[$row['status']], $id, '', 'right');
+
+			$id++;
+
+			form_end_row();
 		}
-		print '</tr>';
 	} else {
 		print '<tr><td colspan="8"><em>' . __('No Running Software Found', 'hmib') . '</em></td></tr>';
 	}
@@ -780,6 +792,7 @@ function running_legend($totals, $total_rows) {
 	print '<td><b>' . __('Total CPU [h]:', 'hmib') . '</b> ' . number_format_i18n($totals['cpu']/3600,0) . '</td>';
 	print '<td><b>' . __('Total Size [MB]:', 'hmib') . '</b> ' . number_format_i18n($totals['memory']/1024,2) . '</td>';
 	print '</tr>';
+
 	print '<tr>';
 	print '<td><b>' . __('Avg. CPU [h]:', 'hmib') . '</b> ' . ($total_rows ? number_format_i18n($totals['cpu']/(3600*$total_rows),0) : 0) . '</td>';
 	print '<td><b>' . __('Avg. Size [MB]:', 'hmib') . '</b> ' . ($total_rows ? number_format_i18n($totals['memory']/(1024*$total_rows),2) : 0) . '</td>';
@@ -1081,21 +1094,28 @@ function hmib_hardware() {
 	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=hardware');
 
 	if (cacti_sizeof($rows)) {
+		$id = 0;
+
 		foreach ($rows as $row) {
 			form_alternate_row();
+
 			if (api_plugin_user_realm_auth('host.php')) {
 				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
 			} else {
 				$host_url = html_escape($row['hostname']);
 			}
 
-			print "<td>" . filter_value($row['hd'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
-			print "<td>" . filter_value($row['description'], get_request_var('filter')) . '</td>';
-			print "<td>" . (isset($hmib_types[$row['type']]) ? $hmib_types[$row['type']]:__('Unknown', 'hmib')) . '</td>';
-			print "<td class='right'>" . $hmib_hrDeviceStatus[$row['status']] . '</td>';
-			print "<td class='right'>" . $row['errors'] . '</td>';
+			form_selectable_cell(filter_value($row['hd'], get_request_var('filter')) . ' [ ' . $host_url . ' ]', $id);
+			form_selectable_cell(filter_value($row['description'], get_request_var('filter')), $id);
+			form_selectable_cell((isset($hmib_types[$row['type']]) ? $hmib_types[$row['type']]:__('Unknown', 'hmib')), $id);
+			form_selectable_cell($hmib_hrDeviceStatus[$row['status']], $id, '', 'right');
+			form_selectable_cell($row['errors'], $id, '', 'right');
+
+			$id++;
+
+			form_end_row();
 		}
-		print '</tr>';
+
 	} else {
 		print '<tr><td><em>' . __('No Hardware Found', 'hmib') . '</em></td></tr>';
 	}
@@ -1404,24 +1424,31 @@ function hmib_storage() {
 	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=storage');
 
 	if (cacti_sizeof($rows)) {
+		$id = 0;
+
 		foreach ($rows as $row) {
 			form_alternate_row();
+
 			if (api_plugin_user_realm_auth('host.php')) {
 				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
 			} else {
 				$host_url = html_escape($row['hostname']);
 			}
 
-			print "<td>" . filter_value($row['hd'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
-			print "<td>" . filter_value($row['description'], get_request_var('filter')) . '</td>';
-			print "<td>" . (isset($hmib_types[$row['type']]) ? $hmib_types[$row['type']]:__('Unknown', 'hmib')) . '</td>';
-			print "<td class='right'>" . $row['failures'] . '</td>';
-			print "<td class='right'>" . round($row['percent']*100,2) . ' %</td>';
-			print "<td class='right'>" . number_format_i18n($row['used']/1024,0) . '</td>';
-			print "<td class='right'>" . number_format_i18n($row['size']/1024,0) . '</td>';
-			print "<td class='right'>" . number_format_i18n($row['allocationUnits']) . '</td>';
+			form_selectable_cell(filter_value($row['hd'], get_request_var('filter')) . ' [ ' . $host_url . ' ]', $id);
+			form_selectable_cell(filter_value($row['description'], get_request_var('filter')), $id);
+			form_selectable_cell((isset($hmib_types[$row['type']]) ? $hmib_types[$row['type']]:__('Unknown', 'hmib')), $id);
+
+			form_selectable_cell($row['failures'], $id, '', 'right');
+			form_selectable_cell(round($row['percent']*100, 2) . '%', $id, '', 'right');
+			form_selectable_cell(number_format_i18n($row['used']/1024, 0), $id, '', 'right');
+			form_selectable_cell(number_format_i18n($row['size']/1024, 0), $id, '', 'right');
+			form_selectable_cell(number_format_i18n($row['allocationUnits']), $id, '', 'right');
+
+			$id++;
+
+			form_end_row();
 		}
-		print '</tr>';
 	} else {
 		print '<tr><td colspan="8"><em>' . __('No Storage Devices Found', 'hmib') . '</em></td></tr>';
 	}
@@ -1774,6 +1801,8 @@ function hmib_devices() {
 		WHERE hash='62205afbd4066e5c4700338841e3901e'");
 
 	if (cacti_sizeof($rows)) {
+		$id = 0;
+
 		foreach ($rows as $row) {
 			$days      = intval($row['uptime'] / (60*60*24*100));
 			$remainder = $row['uptime'] % (60*60*24*100);
@@ -1784,43 +1813,49 @@ function hmib_devices() {
 			$found = db_fetch_cell('SELECT COUNT(*) FROM graph_local WHERE host_id=' . $row['host_id']);
 
 			form_alternate_row();
-			print "<td class='nowrap'>";
+
 			//print "<a style='padding:1px;' href='" . html_escape("$url?action=dashboard&reset=1&device=" . $row["host_id"]) . "'><i src='$dashboard' title='View Dashboard'></i></a>";
-			print "<a class='pic' href='" . html_escape("$url?action=storage&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-database' title='" . __('View Storage', 'hmib') . "'></i></a>";
-			print "<a class='pic' href='" . html_escape("$url?action=hardware&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-microchip' style='color:lightblue' title='" . __('View Hardware', 'hmib') . "'></i></a>";
-			print "<a class='pic' href='" . html_escape("$url?action=running&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i></a>";
-			print "<a class='pic' href='" . html_escape("$url?action=software&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-archive' title='" . __('View Software Inventory', 'hmib') . "'></i></a>";
+			$aurl  = "<a class='pic' href='" . html_escape("$url?action=storage&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-database' title='" . __('View Storage', 'hmib') . "'></i></a>";
+			$aurl .= "<a class='pic' href='" . html_escape("$url?action=hardware&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-microchip' style='color:lightblue' title='" . __('View Hardware', 'hmib') . "'></i></a>";
+			$aurl .= "<a class='pic' href='" . html_escape("$url?action=running&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i></a>";
+			$aurl .= "<a class='pic' href='" . html_escape("$url?action=software&reset=1&device=" . $row['host_id']) . "'><i class='fas fa-archive' title='" . __('View Software Inventory', 'hmib') . "'></i></a>";
 
 			if ($found) {
-				print "<a class='pic' href='" . html_escape("$url?action=graphs&reset=1&host_id=" . $row['host_id'] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=") . "'><i class='fas fa-chart-line' style='color:orange;' title='" . __('View Graphs', 'hmib') . "'></i></a>";
+				$aurl .= "<a class='pic' href='" . html_escape("$url?action=graphs&reset=1&host_id=" . $row['host_id'] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=") . "'><i class='fas fa-chart-line' style='color:orange;' title='" . __('View Graphs', 'hmib') . "'></i></a>";
 			} else {
-				print "<i class='fas fa-chart-line' title='" . __('No Graphs Defined', 'hmib') . "'></i>";
+				$aurl .= "<i class='fas fa-chart-line' title='" . __('No Graphs Defined', 'hmib') . "'></i>";
 			}
+
+			form_selectable_cell($aurl, $id, '1%');
 
 			$graph_cpu   = hmib_get_graph_url($hcpudq, 0, $row['host_id'], '', $row['numCpus'], false);
 			$graph_cpup  = hmib_get_graph_url($hcpudq, 0, $row['host_id'], '', round($row['cpuPercent'],2). ' %', false);
 			$graph_users = hmib_get_graph_template_url($hugt, 0, $row['host_id'], ($row['host_status'] < 2 ? 'N/A':$row['users']), false);
 			$graph_aproc = hmib_get_graph_template_url($hpgt, 0, $row['host_id'], ($row['host_status'] < 2 ? 'N/A':$row['processes']), false);
+
 			if (api_plugin_user_realm_auth('host.php')) {
 				$host_url = "<a href='" . html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']) . "' title='" . __('Edit Device', 'hmib') . "'>" . html_escape($row['hostname']) . '</a>';
 			} else {
 				$host_url = html_escape($row['hostname']);
 			}
 
-			print '</td>';
-			print "<td class='nowrap left'>" . $row['description'] . ' [ ' . $host_url . ' ]</td>';
-			print "<td class='nowrap right'>" . get_colored_device_status(($row['disabled'] == 'on' ? true : false), $row['host_status']) . '</td>';
-			print "<td class='nowrap right'>" . hmib_format_uptime($days, $hours, $minutes) . '</td>';
-			print "<td class='nowrap right'>" . $graph_users              . '</td>';
-			print "<td class='nowrap right'>" . ($row['host_status'] < 2 ? 'N/A':$graph_cpup) . '</td>';
-			print "<td class='nowrap right'>" . ($row['host_status'] < 2 ? 'N/A':$graph_cpu)  . '</td>';
-			print "<td class='nowrap right'>" . $graph_aproc                   . '</td>';
-			print "<td class='nowrap right'>" . hmib_memory($row['memSize'])   . '</td>';
-			print "<td class='nowrap right'>" . ($row['host_status'] < 2 ? 'N/A':round($row['memUsed'],0))  . ' %</td>';
-			print "<td class='nowrap right'>" . hmib_memory($row['swapSize'])  . '</td>';
-			print "<td class='nowrap right'>" . ($row['host_status'] < 2 ? 'N/A':round($row['swapUsed'],0)) . ' %</td>';
+			form_selectable_cell(html_escape($row['description'] . ' [ ' . $host_url . ' ]'), $id);
+
+			form_selectable_cell(get_colored_device_status(($row['disabled'] == 'on' ? true : false), $row['host_status']), $id, '', 'right');
+			form_selectable_cell(hmib_format_uptime($days, $hours, $minutes), $id, '', 'right');
+			form_selectable_cell($graph_users, $id, '', 'right');
+			form_selectable_cell(($row['host_status'] < 2 ? 'N/A':$graph_cpup), $id, '', 'right');
+			form_selectable_cell(($row['host_status'] < 2 ? 'N/A':$graph_cpu), $id, '', 'right');
+			form_selectable_cell($graph_aproc, $id, '', 'right');
+			form_selectable_cell(hmib_memory($row['memSize']), $id, '', 'right');
+			form_selectable_cell(($row['host_status'] < 2 ? 'N/A':round($row['memUsed'],0)) . '%', $id, '', 'right');
+			form_selectable_cell(hmib_memory($row['swapSize']), $id, '', 'right');
+			form_selectable_cell(($row['host_status'] < 2 ? 'N/A':round($row['swapUsed'],0)) . ' %', $id, '', 'right');
+
+			$id++;
+
+			form_end_row();
 		}
-		print '</tr>';
 	} else {
 		print '<tr><td colspan="12"><em>' . __('No Devices Found', 'hmib') . '</em></td></tr>';
 	}
@@ -2156,6 +2191,8 @@ function hmib_software() {
 	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=software');
 
 	if (cacti_sizeof($rows)) {
+		$id = 0;
+
 		foreach ($rows as $row) {
 			form_alternate_row();
 
@@ -2165,12 +2202,15 @@ function hmib_software() {
 				$host_url = html_escape($row['hostname']);
 			}
 
-			print '<td>' . filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]</td>';
-			print '<td>' . filter_value($row['name'], get_request_var('filter')) . '</td>';
-			print '<td>' . (isset($hmib_hrSWTypes[$row['type']]) ? $hmib_hrSWTypes[$row['type']]:__('Unknown', 'hmib')) . '</td>';
-			print "<td class='right'>" . filter_value($row['date'], get_request_var('filter')) . '</td>';
+			form_selectable_cell(filter_value($row['description'], get_request_var('filter')) . ' [ ' . $host_url . ' ]', $id);
+			form_selectable_cell(filter_value($row['name'], get_request_var('filter')), $id);
+			form_selectable_cell((isset($hmib_hrSWTypes[$row['type']]) ? $hmib_hrSWTypes[$row['type']]:__('Unknown', 'hmib')), $id);
+			form_selectable_cell(filter_value($row['date'], get_request_var('filter')), $id, '', 'right');
+
+			$id++;
+
+			form_end_row();
 		}
-		print '</tr>';
 	} else {
 		print '<tr><td colspan="4"><em>' . __('No Software Packages Found', 'hmib') . '</em></td></tr>';
 	}
@@ -2451,7 +2491,11 @@ function hmib_summary() {
 	html_header_sort($display_text, $_SESSION['sess_hmib_host_sort_column'], $_SESSION['sess_hmib_host_sort_direction'], false, 'hmib.php?action=summary&area=hosts');
 
 	if (cacti_sizeof($rows)) {
+		$id = 0;
+
 		foreach ($rows as $row) {
+			form_alternate_row();
+
 			if (!$templates_missing) {
 				$host_id = db_fetch_cell("SELECT id FROM host WHERE host_template_id=$htsd");
 			} else {
@@ -2459,47 +2503,56 @@ function hmib_summary() {
 			}
 
 			$graph_url   = hmib_get_graph_url($htdq, 0, $host_id, $row['id']);
+
 			$graph_ncpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', $row['cpus'], false);
 			$graph_acpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', round($row['avgCpuPercent'],2), false);
 			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', round($row['maxCpuPercent'],2), false);
+
 			$graph_users = hmib_get_graph_template_url($hugt, $row['id'], 0, $row['users'], false);
 			$graph_aproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['avgProcesses'],0), false);
 			$graph_mproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['maxProcesses'],0), false);
 
-			form_alternate_row();
-			print "<td class='nowrap'>";
-			print "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&ostype=" . $row['host_type']) . "'><i class='fas fa-server deviceUp' title='" . __('View Devices', 'hmib') . "'></i></a>";
-			print "<a class='pic' href='" . html_escape("$url?reset=1&action=storage&ostype=" . $row['host_type']) . "'><i class='fas fa-database' title='" . __('View Storage', 'hmib') . "'></i></a>";
-			print "<a class='pic' href='" . html_escape("$url?reset=1&action=hardware&ostype=" . $row['host_type']) . "'><i class='fas fa-microchip' style='color:lightblue;' title='" . __('View Hardware', 'hmib') . "'></i></a>";
-			print "<a class='pic' href='" . html_escape("$url?reset=1&action=running&ostype=" . $row['host_type']) . "'><i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i></a>";
-			print "<a class='pic' href='" . html_escape("$url?reset=1&action=software&ostype=" . $row['host_type']) . "'><i class='fas fa-archive title='" . __('View Software Inventory', 'hmib') . "'></i></a>";
-			print $graph_url;
-			print '</td>';
+			$aurl  = "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&ostype=" . $row['host_type']) . "'><i class='fas fa-server deviceUp' title='" . __('View Devices', 'hmib') . "'></i></a>";
+
+			$aurl .= "<a class='pic' href='" . html_escape("$url?reset=1&action=storage&ostype=" . $row['host_type']) . "'><i class='fas fa-database' title='" . __('View Storage', 'hmib') . "'></i></a>";
+
+			$aurl .= "<a class='pic' href='" . html_escape("$url?reset=1&action=hardware&ostype=" . $row['host_type']) . "'><i class='fas fa-microchip' style='color:lightblue;' title='" . __('View Hardware', 'hmib') . "'></i></a>";
+
+			$aurl .= "<a class='pic' href='" . html_escape("$url?reset=1&action=running&ostype=" . $row['host_type']) . "'><i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i></a>";
+
+			$aurl .= "<a class='pic' href='" . html_escape("$url?reset=1&action=software&ostype=" . $row['host_type']) . "'><i class='fas fa-archive title='" . __('View Software Inventory', 'hmib') . "'></i></a>";
+
+			$aurl .= $graph_url;
+
+			form_selectable_cell($aurl, $id, '1%');
 
 			$upHosts   = hmib_get_device_status_url($row['upHosts'], $row['host_type'], 3);
 			$recHosts  = hmib_get_device_status_url($row['recHosts'], $row['host_type'], 2);
 			$downHosts = hmib_get_device_status_url($row['downHosts'], $row['host_type'], 1);
 			$disaHosts = hmib_get_device_status_url($row['disabledHosts'], $row['host_type'], 0);
 
-			print "<td class='nowrap left'>"  . ($row['name'] != '' ? html_escape($row['name']):__('Unknown', 'hmib')) . '</td>';
-			print "<td class='nowrap right'>" . $row['version'] . '</td>';
-			print "<td class='nowrap right'>" . $upHosts . '</td>';
-			print "<td class='nowrap right'>" . $recHosts . '</td>';
-			print "<td class='nowrap right'>" . $downHosts . '</td>';
-			print "<td class='nowrap right'>" . $disaHosts . '</td>';
-			print "<td class='nowrap right'>" . $graph_users . '</td>';
-			print "<td class='nowrap right'>" . $graph_ncpu . '</td>';
-			print "<td class='nowrap right'>" . $graph_acpu . ' %</td>';
-			print "<td class='nowrap right'>" . $graph_mcpu . ' %</td>';
-			print "<td class='nowrap right'>" . round($row['avgMem'],2) . ' %</td>';
-			print "<td class='nowrap right'>" . round($row['maxMem'],2) . ' %</td>';
-			print "<td class='nowrap right'>" . round($row['avgSwap'],2) . ' %</td>';
-			print "<td class='nowrap right'>" . round($row['maxSwap'],2) . ' %</td>';
-			print "<td class='nowrap right'>" . $graph_aproc . '</td>';
-			print "<td class='nowrap right'>" . $graph_mproc . '</td>';
-		}
+			form_selectable_cell(($row['name'] != '' ? html_escape($row['name']):__('Unknown', 'hmib')), $id);
 
-		print '</tr>';
+			form_selectable_cell($row['version'], $id, '', 'right');
+			form_selectable_cell($upHosts, $id, '', 'right');
+			form_selectable_cell($recHosts, $id, '', 'right');
+			form_selectable_cell($downHosts, $id, '', 'right');
+			form_selectable_cell($disaHosts, $id, '', 'right');
+			form_selectable_cell($graph_users, $id, '', 'right');
+			form_selectable_cell($graph_ncpu, $id, '', 'right');
+			form_selectable_cell($graph_acpu . '%', $id, '', 'right');
+			form_selectable_cell($graph_mcpu . '%', $id, '', 'right');
+			form_selectable_cell(round($row['avgMem'],2) . '%', $id, '', 'right');
+			form_selectable_cell(round($row['maxMem'],2) . '%', $id, '', 'right');
+			form_selectable_cell(round($row['avgSwap'],2) . '%', $id, '', 'right');
+			form_selectable_cell(round($row['maxSwap'],2) . '%', $id, '', 'right');
+			form_selectable_cell($graph_aproc, $id, '', 'right');
+			form_selectable_cell($graph_mproc, $id, '', 'right');
+
+			$id++;
+
+			form_end_row();
+		}
 	} else {
 		print '<tr><td colspan="8"><em>' . __('No Device Types', 'hmib') . '</em></td></tr>';
 	}
@@ -2637,26 +2690,36 @@ function hmib_summary() {
 		WHERE hash='6b0ef0fe7f1d85bbb6812801ca15a7c5'");
 
 	if (cacti_sizeof($rows)) {
+		$id = 0;
+
 		foreach ($rows as $row) {
 			$graph_url = hmib_get_graph_url($adq, 0, 0, $row['name']);
 
 			form_alternate_row();
-			print "<td class='nowrap'>";
-			print "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&process=" . $row['name']) . "'><i class='fas fa-server deviceUp' title='" . __('View Devices', 'hmib') . "'></i></a>";
-			print "<a class='pic' href='" . html_escape("$url?reset=1&action=running&process=" . $row['name']) . "'><i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i></a>";
-			print $graph_url;
-			print '</td>';
-			print "<td class='left' width='140'>" . html_escape($row['name']) . '</td>';
-			print "<td class='right'>" . $row['paths'] . '</td>';
-			print "<td class='right'>" . $row['numHosts'] . '</td>';
-			print "<td class='right'>" . $row['numProcesses'] . '</td>';
-			print "<td class='right'>" . number_format_i18n($row['avgCpu']/3600,0) . ' Hrs</td>';
-			print "<td class='right'>" . number_format_i18n($row['maxCpu']/3600,0) . ' Hrs</td>';
-			print "<td class='right'>" . number_format_i18n($row['avgMemory']/1024,2) . ' MB</td>';
-			print "<td class='right'>" . number_format_i18n($row['maxMemory']/1024,2) . ' MB</td>';
-		}
 
-		print '</tr>';
+			$url = "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&process=" . $row['name']) . "'>
+				<i class='fas fa-server deviceUp' title='" . __('View Devices', 'hmib') . "'></i>
+			</a>" .
+			"<a class='pic' href='" . html_escape("$url?reset=1&action=running&process=" . $row['name']) . "'>
+				<i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i>
+			</a>" . $graph_url;
+
+			form_selectable_cell($url, $id, '1%');
+			form_selectable_cell(html_escape($row['name']), $id);
+
+			form_selectable_cell($row['paths'], $id, '', 'right');
+			form_selectable_cell($row['numHosts'], $id, '', 'right');
+			form_selectable_cell($row['numProcesses'], $id, '', 'right');
+
+			form_selectable_cell(__('%s Hrs', number_format_i18n($row['avgCpu']/3600,0), 'hmib'), $id, '', 'right');
+			form_selectable_cell(__('%s Hrs', number_format_i18n($row['maxCpu']/3600,0), 'hmib'), $id, '', 'right');
+			form_selectable_cell(__('%s MB', number_format_i18n($row['avgMemory']/1000,2), 'hmib'), $id, '', 'right');
+			form_selectable_cell(__('%s MB', number_format_i18n($row['maxMemory']/1000,2), 'hmib'), $id, '', 'right');
+
+			$id++;
+
+			form_end_row();
+		}
 	} else {
 		print '<tr><td colspan="9"><em>' . __('No Processes', 'hmib') . '</em></td></tr>';
 	}
