@@ -895,7 +895,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 		$count      = 0;
 		if (cacti_sizeof($new_array)) {
 			foreach($new_array as $index => $item) {
-				$sql_insert .= (strlen($sql_insert) ? '), (':'(') . $host['id'] . ', ' . $index . ', ';
+				$sql_insert .= (strlen($sql_insert) ? '), (':'(') . $host['id'] . ', ' . db_qstr($index) . ', ';
 				$i = 0;
 				foreach($tree as $key => $oid) {
 					if ($key != 'baseOID' && $key != 'index') {
@@ -907,7 +907,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 									strstr($cols[$key]['type'], 'decimal') !== false) {
 
 									if (is_numeric($item[$key])) {
-										$sql_insert .= ($i > 0 ? ', ':'') . $item[$key];
+										$sql_insert .= ($i > 0 ? ', ':'') . db_qstr($item[$key]);
 									} else {
 										$sql_insert .= ($i > 0 ? ', ':'') . '0';
 									}
@@ -925,7 +925,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 									strstr($cols[$key]['type'], 'decimal') !== false) {
 
 									if (isset($item[$key]) && is_numeric($item[$key])) {
-										$sql_insert .= ($i >  0 ? ', ':'') . $item[$key];
+										$sql_insert .= ($i >  0 ? ', ':'') . db_qstr($item[$key]);
 									} else {
 										$sql_insert .= ($i >  0 ? ', ':'') . '0';
 									}
