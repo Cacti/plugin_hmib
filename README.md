@@ -40,7 +40,7 @@ due to the elimination of latency obtaining the information.
 
 Just like any other Cacti plugin, untar the package to the Cacti plugins
 directory, rename the directory to 'hmib', and then from Cacti's Plugin
-Management interface, Install and Enable the pluign.
+Management interface, Install and Enable the plugin.
 
 Once you have installed the hmib plugin, you need to install two Packages for Graphing.
 First you need to install the 'Host_Mib_Summary_Device.xml.gz' package.  This Device
@@ -111,7 +111,7 @@ GitHub.
 
 * issue#21: poller_hmib.php[681]:sizeof(), CactiErrorHandler())
 
-* feature: PHP 7.2 compability
+* feature: PHP 7.2 compatibility
 
 * issue: Update language support
 
