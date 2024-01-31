@@ -283,7 +283,23 @@ function hmib_gt_graph($host_id, $graph_template_id) {
 			' --graph-type=cg' .
 			' --host-id=' . $host_id;
 
-		print str_replace("\n", ' ', passthru($command)) . "\n";
+		$return_code = 0;
+		$output      = array();
+		$timeout     = 20;
+
+		exec_with_timeout($command, $output, $return_code, $timeout);
+
+		if (cacti_sizeof($output)) {
+			if ($return_code != 0) {
+				print "WARNING: add_graphs.php CLI returned a non-zero return code of $return_code" . PHP_EOL;
+			}
+
+			foreach($output as $l) {
+				print trim($l) . PHP_EOL;
+			}
+		} else {
+			print "WARNING: add_graphs.php CLI returned no data with a return code of $return_code" . PHP_EOL;
+		}
 	}
 }
 
