@@ -71,6 +71,7 @@ GitHub.
 --- develop ---
 
 * issue: Fix warnings generated in more recent versions of PHP
+* issue#33: Escaping issues with SQL arguments
 * issue#34: Multiple HMIB errors with Graphing function returning no data.
 * feature: Add new Data Query to track Application statistics at the Device Level
 

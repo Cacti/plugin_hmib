@@ -233,7 +233,7 @@ function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = 
 	debug('Reindexing Host');
 	run_data_query($host_id, $dq);
 
-	$graph_templates = db_fetch_assoc('SELECT *
+	$graph_templates = db_fetch_assoc_prepared('SELECT *
 		FROM snmp_query_graph
 		WHERE snmp_query_id = ?',
 		array($dq));

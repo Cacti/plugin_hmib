@@ -892,11 +892,17 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 
 		/* dump the output to the database */
 		$sql_insert = '';
+		$sql_params = array();
 		$count      = 0;
 		if (cacti_sizeof($new_array)) {
 			foreach($new_array as $index => $item) {
-				$sql_insert .= (strlen($sql_insert) ? '), (':'(') . $host['id'] . ', ' . db_qstr($index) . ', ';
+				$sql_insert .= ($sql_insert != '' ? '), (':'(') . '?, ?, ';
+
+				$sql_params[] = $host['id'];
+				$sql_params[] = $index;
+
 				$i = 0;
+
 				foreach($tree as $key => $oid) {
 					if ($key != 'baseOID' && $key != 'index') {
 						if (isset($item[$key]) && $item[$key] != '') {
@@ -907,12 +913,15 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 									strstr($cols[$key]['type'], 'decimal') !== false) {
 
 									if (is_numeric($item[$key])) {
-										$sql_insert .= ($i > 0 ? ', ':'') . db_qstr($item[$key]);
+										$sql_insert .= ($i > 0 ? ', ':'') . '?';
+										$sql_params[] = $item[$key];
 									} else {
-										$sql_insert .= ($i > 0 ? ', ':'') . '0';
+										$sql_insert .= ($i > 0 ? ', ':'') . '?';
+										$sql_params[] = 0;
 									}
 								} else {
-									$sql_insert .= ($i >  0 ? ', ':'') . db_qstr($item[$key]);
+									$sql_insert .= ($i >  0 ? ', ':'') . '?';
+									$sql_params[] = $item[$key];
 								}
 
 								$i++;
@@ -925,15 +934,19 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 									strstr($cols[$key]['type'], 'decimal') !== false) {
 
 									if (isset($item[$key]) && is_numeric($item[$key])) {
-										$sql_insert .= ($i >  0 ? ', ':'') . db_qstr($item[$key]);
+										$sql_insert .= ($i >  0 ? ', ':'') . '?';
+										$sql_params[] = $item[$key];
 									} else {
-										$sql_insert .= ($i >  0 ? ', ':'') . '0';
+										$sql_insert .= ($i >  0 ? ', ':'') . '?';
+										$sql_params[] = 0;
 									}
 								} else {
 									if (isset($item[$key])) {
-										$sql_insert .= ($i >  0 ? ', ':'') . db_qstr($item[$key]);
+										$sql_insert .= ($i >  0 ? ', ':'') . '?';
+										$sql_params[] = $item[$key];
 									} else {
-										$sql_insert .= ($i >  0 ? ', ':'') . '""';
+										$sql_insert .= ($i >  0 ? ', ':'') . '?';
+										$sql_params[] = 0;
 									}
 								}
 
@@ -946,14 +959,15 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 
 			$sql_insert .= ')';
 			$count++;
-			if (($count % 200) == 0) {
-				db_execute($sql_prefix . $sql_insert . $sql_suffix);
+			if (($count % 100) == 0) {
+				db_execute_prepared($sql_prefix . $sql_insert . $sql_suffix, $sql_params);
 				$sql_insert = '';
+				$sql_params = array();
 			}
 		}
 
 		if ($sql_insert != '') {
-			db_execute($sql_prefix . $sql_insert . $sql_suffix);
+			db_execute_prepared($sql_prefix . $sql_insert . $sql_suffix, $sql_params);
 		}
 
 		/* remove old records */
