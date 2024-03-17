@@ -364,7 +364,25 @@ function add_summary_graphs($host_id, $host_template) {
 					' --graph-type=cg' .
 					' --host-id=' . $host_id;
 
-				print str_replace("\n", ' ', passthru($command)) . "\n";
+				$output      = array();
+				$return_code = 0;
+				$timeout     = 20;
+
+				exec_with_timeout($command, $output, $return_code, $timeout);
+
+				if ($return_code == 0) {
+					if (cacti_sizeof($output)) {
+						print implode(PHP_EOL, $output);
+					} else {
+						print 'Graph command completed sucessfully without returning any data.' . PHP_EOL;
+					}
+				} else {
+					print 'Graph command completed with errors.' . PHP_EOL;
+
+					if (cacti_sizeof($output)) {
+						print implode(PHP_EOL, $output);
+					}
+				}
 			}
 		}
 	}
