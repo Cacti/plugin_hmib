@@ -7,23 +7,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2020-12-12 22:15-0500\n"
-"PO-Revision-Date: 2020-12-12 20:41-0500\n"
+"POT-Creation-Date: 2024-06-08 09:44-0400\n"
+"PO-Revision-Date: 2024-06-08 09:47-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: hmib.php:36
 msgid "Error"
 msgstr "Fehler"
 
-#: hmib.php:37 hmib.php:52 hmib.php:193 hmib.php:534 hmib.php:760 hmib.php:894
-#: hmib.php:1094 hmib.php:1214 hmib.php:1417 hmib.php:1535 hmib.php:1628
-#: hmib.php:1970 hmib.php:2170 hmib.php:2484 hmib_types.php:369
+#: hmib.php:37 hmib.php:52 hmib.php:193 hmib.php:541 hmib.php:771 hmib.php:909
+#: hmib.php:1113 hmib.php:1237 hmib.php:1444 hmib.php:1566 hmib.php:1659
+#: hmib.php:2029 hmib.php:2232 hmib.php:2559 hmib_types.php:369
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -44,12 +44,10 @@ msgid "Running"
 msgstr "Läuft"
 
 #: hmib.php:45
-#, fuzzy
 msgid "Runnable"
 msgstr "Lauffähig"
 
 #: hmib.php:46
-#, fuzzy
 msgid "Not Runnable"
 msgstr "Nicht lauffähig"
 
@@ -69,69 +67,67 @@ msgstr "Warnung"
 msgid "Testing"
 msgstr "Testen"
 
-#: hmib.php:56 hmib.php:1631 hmib.php:2437
+#: hmib.php:56 hmib.php:1662 hmib.php:2502
 msgid "Down"
 msgstr "Runter"
 
 #: hmib.php:179
-#, fuzzy
 msgid "Running Process History"
 msgstr "Laufende Prozesshistorie"
 
-#: hmib.php:188 hmib.php:529 hmib.php:889 hmib.php:1209 hmib.php:1530
-#: hmib.php:1965 hmib_types.php:997
-#, fuzzy
+#: hmib.php:188 hmib.php:536 hmib.php:904 hmib.php:1232 hmib.php:1561
+#: hmib.php:2024 hmib_types.php:997
 msgid "OS Type"
 msgstr "OS-Typ"
 
-#: hmib.php:192 hmib.php:214 hmib.php:236 hmib.php:275 hmib.php:533
-#: hmib.php:555 hmib.php:577 hmib.php:616 hmib.php:893 hmib.php:915
-#: hmib.php:937 hmib.php:976 hmib.php:1213 hmib.php:1235 hmib.php:1257
-#: hmib.php:1296 hmib.php:1534 hmib.php:1556 hmib.php:1579 hmib.php:1615
-#: hmib.php:1969 hmib.php:1991 hmib.php:2013 hmib.php:2052
+#: hmib.php:192 hmib.php:214 hmib.php:236 hmib.php:275 hmib.php:540
+#: hmib.php:562 hmib.php:584 hmib.php:623 hmib.php:908 hmib.php:930
+#: hmib.php:952 hmib.php:991 hmib.php:1236 hmib.php:1258 hmib.php:1280
+#: hmib.php:1319 hmib.php:1565 hmib.php:1587 hmib.php:1610 hmib.php:1646
+#: hmib.php:2028 hmib.php:2050 hmib.php:2072 hmib.php:2111
 msgid "All"
 msgstr "Alle"
 
-#: hmib.php:210 hmib.php:551 hmib.php:911 hmib.php:1231 hmib.php:1987
+#: hmib.php:210 hmib.php:558 hmib.php:926 hmib.php:1254 hmib.php:2046
 msgid "Device"
 msgstr "Zielsysteme"
 
-#: hmib.php:232 hmib.php:573 hmib.php:933 hmib.php:1253 hmib.php:1552
-#: hmib.php:2009
+#: hmib.php:232 hmib.php:580 hmib.php:948 hmib.php:1276 hmib.php:1583
+#: hmib.php:2068
 msgid "Template"
 msgstr "Vorlage"
 
-#: hmib.php:256 hmib.php:597 hmib.php:957 hmib.php:1277 hmib.php:1596
-#: hmib.php:2033 hmib.php:2378 hmib.php:2561 hmib_types.php:932
+#: hmib.php:256 hmib.php:604 hmib.php:972 hmib.php:1300 hmib.php:1627
+#: hmib.php:2092 hmib.php:2443 hmib.php:2639 hmib_types.php:932
 #: hmib_types.php:1013
 msgid "Go"
 msgstr "Anwenden"
 
-#: hmib.php:257 hmib.php:598 hmib.php:958 hmib.php:1278 hmib.php:1597
-#: hmib.php:2034 hmib.php:2379 hmib.php:2562 hmib_types.php:1014
+#: hmib.php:257 hmib.php:605 hmib.php:973 hmib.php:1301 hmib.php:1628
+#: hmib.php:2093 hmib.php:2444 hmib.php:2640 hmib_types.php:1014
 msgid "Clear"
 msgstr "Löschen"
 
-#: hmib.php:265 hmib.php:606 hmib.php:966 hmib.php:1286 hmib.php:1605
-#: hmib.php:2042 hmib.php:2542 hmib_types.php:991
+#: hmib.php:265 hmib.php:613 hmib.php:981 hmib.php:1309 hmib.php:1636
+#: hmib.php:2101 hmib.php:2620 hmib_types.php:991
 msgid "Search"
 msgstr "Suche"
 
-#: hmib.php:271 hmib.php:376 hmib.php:612 hmib.php:728 hmib.php:1575
+#: hmib.php:271 hmib.php:376 hmib.php:619 hmib.php:735 hmib.php:1606
 msgid "Process"
 msgstr "Prozess"
 
-#: hmib.php:291 hmib.php:632 hmib.php:991
+#: hmib.php:291 hmib.php:639 hmib.php:1006
 msgid "Entries"
 msgstr "Einträge"
 
-#: hmib.php:295 hmib.php:636 hmib.php:995 hmib.php:1315 hmib.php:1654
-#: hmib.php:2071 hmib_types.php:1001
+#: hmib.php:295 hmib.php:643 hmib.php:1010 hmib.php:1338 hmib.php:1685
+#: hmib.php:2130 hmib_types.php:1001
 msgid "Default"
 msgstr "Voreinstellung"
 
-#: hmib.php:375 hmib.php:727 hmib.php:1068 hmib.php:1388 hmib.php:1727
-#: hmib.php:2144
+#: hmib.php:375 hmib.php:734 hmib.php:1083 hmib.php:1411 hmib.php:1758
+#: hmib.php:2203
 msgid "Hostname"
 msgstr "Zielsystemname"
 
@@ -140,7 +136,6 @@ msgid "Last Seen"
 msgstr "Zuletzt gesehen"
 
 #: hmib.php:378
-#, fuzzy
 msgid "Use Time (d:h:m)"
 msgstr "Nutzungszeit (d:h:m)"
 
@@ -148,430 +143,381 @@ msgstr "Nutzungszeit (d:h:m)"
 msgid "History"
 msgstr "Verlauf"
 
-#: hmib.php:393 hmib.php:749 hmib.php:1087 hmib.php:1410 hmib.php:1805
-#: hmib.php:2163
+#: hmib.php:398 hmib.php:761 hmib.php:1107 hmib.php:1438 hmib.php:1862
+#: hmib.php:2226
 msgid "Edit Device"
 msgstr "Gerät bearbeiten"
 
-#: hmib.php:405
-#, fuzzy
+#: hmib.php:412
 msgid "No Process History Found"
 msgstr "Keine Prozesshistorie gefunden"
 
-#: hmib.php:520
+#: hmib.php:527
 msgid "Running Processes"
 msgstr "Laufende Prozesse"
 
-#: hmib.php:729
+#: hmib.php:736
 msgid "Path"
 msgstr "Pfad"
 
-#: hmib.php:730
+#: hmib.php:737
 msgid "Parameters"
 msgstr "Parameter"
 
-#: hmib.php:731
-#, fuzzy
+#: hmib.php:738
 msgid "CPU (Hrs)"
 msgstr "CPU (Stunden)"
 
-#: hmib.php:732
-#, fuzzy
+#: hmib.php:739
 msgid "Memory (MB)"
 msgstr "Speicher (MB)"
 
-#: hmib.php:733 hmib.php:972 hmib.php:1292 hmib.php:2048 hmib.php:2146
-#: hmib.php:2433
+#: hmib.php:740 hmib.php:987 hmib.php:1315 hmib.php:2107 hmib.php:2205
+#: hmib.php:2498
 msgid "Type"
 msgstr "Typ"
 
-#: hmib.php:734 hmib.php:1071 hmib.php:1611 hmib.php:1728
+#: hmib.php:741 hmib.php:1086 hmib.php:1642 hmib.php:1759
 msgid "Status"
 msgstr "Status"
 
-#: hmib.php:737 hmib.php:1733 hmib.php:2194 hmib.php:2620
+#: hmib.php:744 hmib.php:1764 hmib.php:2259 hmib.php:2698
 msgid "Processes"
 msgstr "Prozesse"
 
-#: hmib.php:765
-#, fuzzy
+#: hmib.php:779
 msgid "No Running Software Found"
 msgstr "Keine laufende Software gefunden"
 
-#: hmib.php:780
-#, fuzzy
+#: hmib.php:794
 msgid "Total CPU [h]:"
 msgstr "Gesamte CPU[h]:"
 
-#: hmib.php:781
-#, fuzzy
+#: hmib.php:795
 msgid "Total Size [MB]:"
 msgstr "Gesamtgröße[MB]:"
 
-#: hmib.php:784
-#, fuzzy
+#: hmib.php:799
 msgid "Avg. CPU [h]:"
 msgstr "Durchschnittlich CPU[h]:"
 
-#: hmib.php:785
-#, fuzzy
+#: hmib.php:800
 msgid "Avg. Size [MB]:"
 msgstr "Durchschnittlich Größe[MB]:"
 
-#: hmib.php:880
-#, fuzzy
+#: hmib.php:895
 msgid "Hardware Inventory"
 msgstr "Hardware-Inventarisierung"
 
-#: hmib.php:1069
-#, fuzzy
+#: hmib.php:1084
 msgid "Hardware Description"
-msgstr "Hardware-Beschreibung"
+msgstr "Hardware Beschreibung"
 
-#: hmib.php:1070
-#, fuzzy
+#: hmib.php:1085
 msgid "Hardware Type"
 msgstr "Hardware-Typ"
 
-#: hmib.php:1072 hmib.php:1391
+#: hmib.php:1087 hmib.php:1414
 msgid "Errors"
 msgstr "Fehler"
 
-#: hmib.php:1075 hmib.php:1650 hmib.php:1741 hmib.php:2191
+#: hmib.php:1090 hmib.php:1681 hmib.php:1772 hmib.php:2256
 msgid "Devices"
 msgstr "Zielsysteme"
 
-#: hmib.php:1100
-#, fuzzy
+#: hmib.php:1123
 msgid "No Hardware Found"
 msgstr "Keine Hardware gefunden"
 
-#: hmib.php:1200
-#, fuzzy
+#: hmib.php:1223
 msgid "Storage Inventory"
 msgstr "Lagerbestand"
 
-#: hmib.php:1311 hmib.php:1398
-#, fuzzy
+#: hmib.php:1334 hmib.php:1421
 msgid "Volumes"
 msgstr "Volumen"
 
-#: hmib.php:1389
-#, fuzzy
+#: hmib.php:1412
 msgid "Storage Description"
-msgstr "Speicherbeschreibung"
+msgstr "Besondere Hindernisse? Wo genau sollte der Container aufgestellt werden?"
 
-#: hmib.php:1390
+#: hmib.php:1413
 msgid "Storage Type"
 msgstr "Lager Typ des Artikels"
 
-#: hmib.php:1392
-#, fuzzy
+#: hmib.php:1415
 msgid "Percent Used"
 msgstr "Verwendetes Prozent"
 
-#: hmib.php:1393
-#, fuzzy
+#: hmib.php:1416
 msgid "Used (MB)"
 msgstr "Gebraucht (MB)"
 
-#: hmib.php:1394
-#, fuzzy
+#: hmib.php:1417
 msgid "Total (MB)"
 msgstr "Gesamt (MB)"
 
-#: hmib.php:1395
-#, fuzzy
+#: hmib.php:1418
 msgid "Alloc (KB)"
 msgstr "Allokation (KB)"
 
-#: hmib.php:1426
-#, fuzzy
+#: hmib.php:1457
 msgid "No Storage Devices Found"
 msgstr "Keine Speichergeräte gefunden"
 
-#: hmib.php:1521
-#, fuzzy
+#: hmib.php:1552
 msgid "Device Filter"
 msgstr "Gerätefilter"
 
-#: hmib.php:1634 hmib.php:2436
+#: hmib.php:1665 hmib.php:2501
 msgid "Recovering"
 msgstr "Wiederherstellend"
 
-#: hmib.php:1637 hmib.php:2435
+#: hmib.php:1668 hmib.php:2500
 msgid "Up"
 msgstr "Hoch"
 
-#: hmib.php:1640 hmib.php:2438 setup.php:529
+#: hmib.php:1671 hmib.php:2503 setup.php:530
 msgid "Disabled"
 msgstr "Deaktiviert"
 
-#: hmib.php:1726 hmib.php:2432 hmib.php:2616 setup.php:634
+#: hmib.php:1757 hmib.php:2497 hmib.php:2694 setup.php:634
 msgid "Actions"
 msgstr "Aktionen"
 
-#: hmib.php:1729
-#, fuzzy
+#: hmib.php:1760
 msgid "Uptime(d:h:m)"
 msgstr "Betriebszeit(d:h:m)"
 
-#: hmib.php:1730
+#: hmib.php:1761
 msgid "Users"
 msgstr "Benutzer"
 
-#: hmib.php:1731
-#, fuzzy
-msgid "CPU %"
+#: hmib.php:1762
+msgid "CPU %%%"
 msgstr "CPU %"
 
-#: hmib.php:1732
+#: hmib.php:1763
 msgid "CPUs"
 msgstr "Prozessoren"
 
-#: hmib.php:1734
-#, fuzzy
+#: hmib.php:1765
 msgid "Total Mem"
 msgstr "Gesamtmemory"
 
-#: hmib.php:1735
-#, fuzzy
+#: hmib.php:1766
 msgid "Used Mem"
 msgstr "Verwendete Mem"
 
-#: hmib.php:1736
-#, fuzzy
+#: hmib.php:1767
 msgid "Total Swap"
 msgstr "Total Swap"
 
-#: hmib.php:1737
-#, fuzzy
+#: hmib.php:1768
 msgid "Used Swap"
 msgstr "Gebrauchter Swap"
 
-#: hmib.php:1789 hmib.php:2472
-#, fuzzy
+#: hmib.php:1825 hmib.php:2542
 msgid "View Storage"
 msgstr "Speicher anzeigen"
 
-#: hmib.php:1790 hmib.php:2473
-#, fuzzy
+#: hmib.php:1830 hmib.php:2544
 msgid "View Hardware"
 msgstr "Hardware anzeigen"
 
-#: hmib.php:1791 hmib.php:2474 hmib.php:2646
-#, fuzzy
+#: hmib.php:1835 hmib.php:2546 hmib.php:2729
 msgid "View Processes"
 msgstr "Prozesse anzeigen"
 
-#: hmib.php:1792 hmib.php:2475
-#, fuzzy
+#: hmib.php:1840 hmib.php:2548
 msgid "View Software Inventory"
 msgstr "Software-Inventarisierung anzeigen"
 
-#: hmib.php:1795 hmib.php:2714 hmib.php:2716 hmib.php:2762 hmib.php:2764
+#: hmib.php:1846 hmib.php:2802 hmib.php:2804 hmib.php:2850 hmib.php:2852
 msgid "View Graphs"
 msgstr "Graphen anschauen"
 
-#: hmib.php:1797
-#, fuzzy
+#: hmib.php:1849
 msgid "No Graphs Defined"
 msgstr "Keine Diagramme definiert"
 
-#: hmib.php:1825
-#, fuzzy
+#: hmib.php:1884
 msgid "No Devices Found"
 msgstr "Keine Geräte gefunden"
 
-#: hmib.php:1956
-#, fuzzy
+#: hmib.php:2015
 msgid "Software Inventory"
 msgstr "Software-Inventarisierung"
 
-#: hmib.php:2067 hmib.php:2150
+#: hmib.php:2126 hmib.php:2209
 msgid "Applications"
 msgstr "Bewerbungen"
 
-#: hmib.php:2145
+#: hmib.php:2204
 msgid "Package"
 msgstr "Paket"
 
-#: hmib.php:2147
+#: hmib.php:2206
 msgid "Installed"
 msgstr "Installiert"
 
-#: hmib.php:2175
-#, fuzzy
+#: hmib.php:2240
 msgid "No Software Packages Found"
 msgstr "Keine Softwarepakete gefunden"
 
-#: hmib.php:2190
+#: hmib.php:2255
 msgid "Summary"
 msgstr "Zusammenfassung"
 
-#: hmib.php:2192
+#: hmib.php:2257
 msgid "Storage"
 msgstr "Speicherung"
 
-#: hmib.php:2193
+#: hmib.php:2258
 msgid "Hardware"
 msgstr "Hardware"
 
-#: hmib.php:2195
-#, fuzzy
+#: hmib.php:2260
 msgid "Use History"
 msgstr "Nutzungshistorie"
 
-#: hmib.php:2196
+#: hmib.php:2261
 msgid "Inventory"
 msgstr "Inventar"
 
-#: hmib.php:2197 hmib.php:2881
+#: hmib.php:2262 hmib.php:2969
 msgid "Graphs"
 msgstr "Diagramme"
 
-#: hmib.php:2356
-#, fuzzy
+#: hmib.php:2421
 msgid "Summary Filter"
 msgstr "Zusammenfassungsfilter"
 
-#: hmib.php:2365 hmib.php:2548
+#: hmib.php:2430 hmib.php:2626
 msgid "Top"
 msgstr "Oben"
 
-#: hmib.php:2369 hmib.php:2552
-#, fuzzy
+#: hmib.php:2434 hmib.php:2630
 msgid "All Records"
 msgstr "Alle Datensätze"
 
-#: hmib.php:2370 hmib.php:2553 hmib.php:2554 hmib.php:2555 hmib.php:2556
-#, fuzzy, php-format
+#: hmib.php:2435 hmib.php:2631 hmib.php:2632 hmib.php:2633 hmib.php:2634
+#, php-format
 msgid "%d Records"
 msgstr "%d Datensätze"
 
-#: hmib.php:2371 hmib.php:2372 hmib.php:2373
-#, fuzzy, php-format
+#: hmib.php:2436 hmib.php:2437 hmib.php:2438
+#, php-format
 msgid "%d Record"
 msgstr "%d Aufzeichnung"
 
-#: hmib.php:2383 hmib.php:2566
-#, fuzzy
+#: hmib.php:2448 hmib.php:2644
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
 msgstr "HINWEIS: Importieren Sie das Host-MIB-Gerätepaket, um Diagramme anzuzeigen."
 
-#: hmib.php:2394
-#, fuzzy
+#: hmib.php:2459
 msgid "Device Type Summary Statistics"
 msgstr "Gerätetyp Zusammenfassung Statistik"
 
-#: hmib.php:2434 hmib_types.php:754
+#: hmib.php:2499 hmib_types.php:754
 msgid "Version"
 msgstr "Version"
 
-#: hmib.php:2439
+#: hmib.php:2504
 msgid "Logins"
 msgstr "Anmeldungen"
 
-#: hmib.php:2440
-#, fuzzy
+#: hmib.php:2505
 msgid "CPUS"
-msgstr "CPUS"
+msgstr "Prozessoren"
 
-#: hmib.php:2441 hmib.php:2621
-#, fuzzy
+#: hmib.php:2506 hmib.php:2699
 msgid "Avg CPU"
 msgstr "Durchschnittliche CPU"
 
-#: hmib.php:2442 hmib.php:2622
-#, fuzzy
+#: hmib.php:2507 hmib.php:2700
 msgid "Max CPU"
 msgstr "Maximale CPU"
 
-#: hmib.php:2443
-#, fuzzy
+#: hmib.php:2508
 msgid "Avg Mem"
 msgstr "Avg Mem"
 
-#: hmib.php:2444
-#, fuzzy
+#: hmib.php:2509
 msgid "Max Mem"
 msgstr "Max Mem"
 
-#: hmib.php:2445
-#, fuzzy
+#: hmib.php:2510
 msgid "Avg Swap"
 msgstr "Avg Tausch"
 
-#: hmib.php:2446
-#, fuzzy
+#: hmib.php:2511
 msgid "Max Swap"
 msgstr "Max Tausch"
 
-#: hmib.php:2447
-#, fuzzy
+#: hmib.php:2512
 msgid "Avg Proc"
 msgstr "Avg Proc"
 
-#: hmib.php:2448
-#, fuzzy
+#: hmib.php:2513
 msgid "Max Proc"
 msgstr "Max Proc"
 
-#: hmib.php:2471 hmib.php:2645 hmib.php:2671
+#: hmib.php:2540 hmib.php:2726 hmib.php:2759
 msgid "View Devices"
 msgstr "Geräte anzeigen"
 
-#: hmib.php:2504
-#, fuzzy
+#: hmib.php:2582
 msgid "No Device Types"
 msgstr "Keine Gerätetypen"
 
-#: hmib.php:2509
-#, fuzzy
+#: hmib.php:2587
 msgid "Process Summary Filter"
 msgstr "Prozesszusammenfassungsfilter"
 
-#: hmib.php:2577
-#, fuzzy
+#: hmib.php:2655
 msgid "Process Summary Statistics"
 msgstr "Prozessübersicht Statistik"
 
-#: hmib.php:2617
-#, fuzzy
+#: hmib.php:2695
 msgid "Process Name"
-msgstr "Prozessname"
+msgstr "Prozess Name"
 
-#: hmib.php:2618
-#, fuzzy
+#: hmib.php:2696
 msgid "Num Paths"
 msgstr "Zahlenpfade"
 
-#: hmib.php:2619 hmib_types.php:881
+#: hmib.php:2697 hmib_types.php:881
 msgid "Hosts"
 msgstr "Hosts"
 
-#: hmib.php:2623
-#, fuzzy
+#: hmib.php:2701
 msgid "Avg Memory"
 msgstr "Avg Speicher"
 
-#: hmib.php:2624
-#, fuzzy
+#: hmib.php:2702
 msgid "Max Memory"
 msgstr "Max. Speicher"
 
-#: hmib.php:2661
-#, fuzzy
+#: hmib.php:2739 hmib.php:2740
+#, php-format
+msgid "%s Hrs"
+msgstr "%s Std"
+
+#: hmib.php:2741 hmib.php:2742
+#, php-format
+msgid "%s MB"
+msgstr "%s MB"
+
+#: hmib.php:2749
 msgid "No Processes"
 msgstr "Prozesse"
 
-#: hmib.php:2807
-#, fuzzy
+#: hmib.php:2895
 msgid "Custom Graph List Applied - Filtering from List"
 msgstr "Angewandte Liste benutzerdefinierter Grafiken - Filtern aus der Liste"
 
-#: hmib.php:2807
-#, fuzzy
+#: hmib.php:2895
 msgid "Graph Preview Filters"
 msgstr "Diagramm-Vorschau-Filter"
 
@@ -584,7 +530,6 @@ msgid "Duplicate"
 msgstr "Duplizieren"
 
 #: hmib_types.php:244
-#, fuzzy
 msgid "Click 'Continue' to Delete the following Host Type(s)"
 msgstr "Klicken Sie auf \"Weiter\", um den/die folgenden Host-Typ(en) zu löschen."
 
@@ -597,22 +542,18 @@ msgid "Continue"
 msgstr "Fortsetzen"
 
 #: hmib_types.php:249
-#, fuzzy
 msgid "Delete Host Type(s)"
 msgstr "Hosttyp(e) löschen"
 
 #: hmib_types.php:253
-#, fuzzy
 msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
 msgstr "Klicken Sie auf \"Weiter\", um den/die folgenden Host-Typ(en) zu duplizieren. Sie können die Beschreibung für den/die neuen Hosttyp(e) optional ändern.  Andernfalls ändern Sie den Wert unten nicht und der ursprüngliche Name wird mit einem neuen Suffix repliziert."
 
 #: hmib_types.php:255
-#, fuzzy
 msgid "Host Type Prefix:"
 msgstr "Hosttyp-Präfix:"
 
 #: hmib_types.php:259
-#, fuzzy
 msgid "Duplicate Host Type(s)"
 msgstr "Doppelter Hosttyp(e)"
 
@@ -621,12 +562,11 @@ msgid "New Type"
 msgstr "Neue Art"
 
 #: hmib_types.php:413
-#, fuzzy, php-format
+#, php-format
 msgid "There were %d Device Types Added!"
 msgstr "Es wurden %d Gerätetypen hinzugefügt!"
 
 #: hmib_types.php:416
-#, fuzzy
 msgid "No New Host Types Found!"
 msgstr "Keine neuen Host-Typen gefunden!"
 
@@ -639,82 +579,66 @@ msgid "Cacti has imported the following items:"
 msgstr "Cacti hat folgende Elemente importiert:"
 
 #: hmib_types.php:441
-#, fuzzy
 msgid "Import Host MIB OS Types"
 msgstr "Host-MIB-Betriebssystemtypen importieren"
 
 #: hmib_types.php:444
-#, fuzzy
 msgid "Import Device Types from Local File"
 msgstr "Gerätetypen aus der lokalen Datei importieren"
 
 #: hmib_types.php:445
-#, fuzzy
 msgid "Please specify the location of the CSV file containing your device type information."
 msgstr "Bitte geben Sie den Speicherort der CSV-Datei an, die Ihre Gerätetypinformationen enthält."
 
 #: hmib_types.php:452
-#, fuzzy
 msgid "Overwrite Existing Data?"
 msgstr "Bestehende Daten überschreiben?"
 
 #: hmib_types.php:453
-#, fuzzy
 msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
 msgstr "Soll der Importprozess bestehende Daten überschreiben dürfen?  Bitte beachten Sie, dass dies nicht bedeutet, alte Zeilen zu löschen, sondern nur doppelte Zeilen zu ersetzen."
 
 #: hmib_types.php:456
-#, fuzzy
 msgid "Allow Existing Rows to be Updated?"
 msgstr "Bestehende Zeilen aktualisieren lassen?"
 
 #: hmib_types.php:461
-#, fuzzy
 msgid "Required File Format Notes"
 msgstr "Erforderliche Hinweise zum Dateiformat"
 
 #: hmib_types.php:464
-#, fuzzy
 msgid "The file must contain a header row with the following column headings."
 msgstr "Die Datei muss eine Kopfzeile mit den folgenden Spaltenüberschriften enthalten."
 
 #: hmib_types.php:466
-#, fuzzy
 msgid "A common name for the Host Type.  For example, Windows 7"
 msgstr "Ein gebräuchlicher Name für den Hosttyp.  Zum Beispiel Windows 7"
 
 #: hmib_types.php:467
-#, fuzzy
 msgid "The OS version for the Host Type"
 msgstr "Die Betriebssystem-Version für den Host-Typ"
 
 #: hmib_types.php:468
-#, fuzzy
 msgid "A unique set of characters from the snmp sysDescr that uniquely identify this device"
 msgstr "Ein eindeutiger Zeichensatz aus dem snmp sysDescr, der dieses Gerät eindeutig identifiziert."
 
 #: hmib_types.php:469
-#, fuzzy
 msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
 msgstr "Die herstellerspezifische snmp sysObjectID, die dieses Gerät von dem nächsten unterscheidet."
 
 #: hmib_types.php:471
-#, fuzzy
 msgid "The primary key for this table is a combination of the following two fields:"
 msgstr "Der Primärschlüssel für diese Tabelle ist eine Kombination aus den beiden folgenden Feldern:"
 
 #: hmib_types.php:475
-#, fuzzy
 msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
 msgstr "Wenn Sie daher versuchen, doppelte Gerätetypen zu importieren, werden die vorhandenen Daten mit den neuen Informationen aktualisiert."
 
 #: hmib_types.php:477
-#, fuzzy
 msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
 msgstr "Der Hosttyp wird bestimmt, indem sein snmp-Agent nach sysObjectID und sysDescription gescannt und mit Werten in der Hosttyp-Datenbank verglichen wird.  Die erste Übereinstimmung, die in der Datenbank gefunden wird, ist die Verwendung von aggregierten Hostdaten.  Daher ist es sehr wichtig, dass Sie für Ihre Hosts eine gültige sysObjectID, sysDescrMatch auswählen."
 
 #: hmib_types.php:743
-#, fuzzy
 msgid "Device Scanning Function Options"
 msgstr "Optionen für die Geräteabtastfunktion"
 
@@ -723,17 +647,14 @@ msgid "Name"
 msgstr "Name"
 
 #: hmib_types.php:748
-#, fuzzy
 msgid "Give this Host Type a meaningful name."
 msgstr "Geben Sie diesem Hosttyp einen aussagekräftigen Namen."
 
 #: hmib_types.php:755
-#, fuzzy
 msgid "Fill in the name for the version of this Host Type."
 msgstr "Geben Sie den Namen für die Version dieses Host-Typs ein."
 
 #: hmib_types.php:762
-#, fuzzy
 msgid "System Description Match"
 msgstr "Abgleich der Systembeschreibung"
 
@@ -743,32 +664,27 @@ msgid "Provide key information to help HMIB detect the type of Host.  SQL Where 
 msgstr "Bereitstellung von Schlüsselinformationen, die dem HMIB helfen, den Typ des Hosts zu erkennen.  SQL Wo Ausdrücke unterstützt werden.  SQL Wenn das Platzhalterzeichen das Zeichen'%' ist. Reguläre Ausdrücke wurden aufgrund von Kompatibilitätsproblemen entfernt."
 
 #: hmib_types.php:769
-#, fuzzy
 msgid "Vendor snmp Object ID"
 msgstr "Lieferant snmp Objekt-ID"
 
 #: hmib_types.php:790
-#, fuzzy, php-format
+#, php-format
 msgid "Host MIB OS Types [edit: %s]"
 msgstr "Host MIB OS Typen[bearbeiten: %s]"
 
 #: hmib_types.php:792
-#, fuzzy
 msgid "Host MIB OS Types [new]"
 msgstr "Host MIB-Betriebssystemtypen[neu]"
 
 #: hmib_types.php:858
-#, fuzzy
 msgid "Host MIB OS Type Filters"
 msgstr "Host MIB OS Typ Filter"
 
-#: hmib_types.php:870 setup.php:612
-#, fuzzy
+#: hmib_types.php:870 setup.php:613
 msgid "OS Types"
 msgstr "OS-Typen"
 
 #: hmib_types.php:879
-#, fuzzy
 msgid "Host Type Name"
 msgstr "Name des Hosttyps"
 
@@ -777,22 +693,18 @@ msgid "OS Version"
 msgstr "OS Version"
 
 #: hmib_types.php:882
-#, fuzzy
 msgid "SNMP ObjectID"
 msgstr "SNMP Objekt-ID"
 
 #: hmib_types.php:883
-#, fuzzy
 msgid "SNMP Sys Description Match"
 msgstr "SNMP Sys Beschreibung Übereinstimmung"
 
 #: hmib_types.php:900
-#, fuzzy
 msgid "No Host Types Found"
 msgstr "Keine Hosttypen gefunden"
 
 #: hmib_types.php:928
-#, fuzzy
 msgid "Choose an action:"
 msgstr "Eine Aktion wählen"
 
@@ -801,7 +713,6 @@ msgid "Rescan"
 msgstr "Neu einlesen"
 
 #: hmib_types.php:1015
-#, fuzzy
 msgid "Scan for New or Unknown Device Types"
 msgstr "Nach neuen oder unbekannten Gerätetypen suchen"
 
@@ -810,7 +721,6 @@ msgid "Import"
 msgstr "Daten importieren"
 
 #: hmib_types.php:1016
-#, fuzzy
 msgid "Import Host Types from a CSV File"
 msgstr "Host-Typen aus einer CSV-Datei importieren"
 
@@ -819,295 +729,249 @@ msgid "Export"
 msgstr "Exportieren"
 
 #: hmib_types.php:1017
-#, fuzzy
 msgid "Export Host Types to Share with Others"
 msgstr "Exportieren Sie Hosttypen, um sie mit anderen zu teilen."
 
-#: setup.php:38
-#, fuzzy
+#: setup.php:37
 msgid "Host MIB Viewer"
 msgstr "Plugin -> Host MIB Betrachter"
 
-#: setup.php:39
-#, fuzzy
+#: setup.php:38
 msgid "Host MIB Admin"
 msgstr "Plugin -> Host MIB Administrator"
 
-#: setup.php:378
-#, fuzzy
+#: setup.php:379
 msgid "Host MIB"
 msgstr "Host MIB Grafiken"
 
-#: setup.php:381
-#, fuzzy
+#: setup.php:382
 msgid "Host MIB General Settings"
 msgstr "Allgemeine Einstellungen der Host-MIB"
 
-#: setup.php:385
-#, fuzzy
+#: setup.php:386
 msgid "Host MIB Poller Enabled"
 msgstr "Host MIB Poller aktiviert"
 
-#: setup.php:386
-#, fuzzy
+#: setup.php:387
 msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
 msgstr "Aktivieren Sie dieses Kontrollkästchen, wenn Sie möchten, dass die Host-MIB-Abfrage aktiviert wird.  Andernfalls funktioniert der Poller nicht."
 
-#: setup.php:391
-#, fuzzy
+#: setup.php:392
 msgid "Automatically Discover Cacti Devices"
 msgstr "Automatische Erkennung von Kakteengeräten"
 
-#: setup.php:392
-#, fuzzy
+#: setup.php:393
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
 msgstr "Möchten Sie automatisch nach Geräten suchen und hinzufügen, die die Host Resource MIB aus der Cacti-Host-Tabelle unterstützen?"
 
-#: setup.php:397
-#, fuzzy
+#: setup.php:398
 msgid "Automatically Purge Devices"
 msgstr "Geräte automatisch bereinigen"
 
-#: setup.php:398
-#, fuzzy
+#: setup.php:399
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
 msgstr "Möchten Sie Geräte, die aus dem Cacti-System entfernt wurden, automatisch bereinigen?"
 
-#: setup.php:403
-#, fuzzy
+#: setup.php:404
 msgid "Default Row Count"
 msgstr "Standard-Zeilenanzahl"
 
-#: setup.php:404
-#, fuzzy
+#: setup.php:405
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
 msgstr "Wie viele Zeilen möchten Sie standardmäßig auf dem HMIB OS Type sehen?"
 
-#: setup.php:410
-#, fuzzy
+#: setup.php:411
 msgid "Default Top Host Types"
 msgstr "Standardmäßige Top-Host-Typen"
 
-#: setup.php:411 setup.php:422
-#, fuzzy
+#: setup.php:412 setup.php:423
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
 msgstr "Wie viele Prozesse möchten Sie standardmäßig auf dem HMIB Dashboard sehen?"
 
-#: setup.php:415 setup.php:416 setup.php:417 setup.php:418
-#, fuzzy, php-format
+#: setup.php:416 setup.php:417 setup.php:418 setup.php:419
+#, php-format
 msgid "%d Types"
 msgstr "%d Typen"
 
-#: setup.php:421
-#, fuzzy
+#: setup.php:422
 msgid "Default Top Processes"
 msgstr "Standard Top-Prozesse"
 
-#: setup.php:426 setup.php:427 setup.php:428 setup.php:429 setup.php:438
-#: setup.php:439 setup.php:440 setup.php:441 setup.php:442 setup.php:443
-#: setup.php:444 setup.php:445 setup.php:446
-#, fuzzy, php-format
+#: setup.php:427 setup.php:428 setup.php:429 setup.php:430 setup.php:439
+#: setup.php:440 setup.php:441 setup.php:442 setup.php:443 setup.php:444
+#: setup.php:445 setup.php:446 setup.php:447
+#, php-format
 msgid "%d Processes"
 msgstr "%d Prozesse"
 
-#: setup.php:432
-#, fuzzy
+#: setup.php:433
 msgid "Maximum Concurrent Collectors"
 msgstr "Maximale Anzahl gleichzeitiger Kollektoren"
 
-#: setup.php:433
-#, fuzzy
+#: setup.php:434
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
 msgstr "Wie hoch ist die maximale Anzahl von gleichzeitigen Kollektorprozessen, die Sie gleichzeitig ausführen möchten?"
 
-#: setup.php:437
-#, fuzzy, php-format
+#: setup.php:438
+#, php-format
 msgid "%d Process"
 msgstr "%d Prozess"
 
-#: setup.php:449
-#, fuzzy
+#: setup.php:450
 msgid "Host Auto Discovery Frequency"
 msgstr "Host Auto Discovery Frequenz"
 
-#: setup.php:453
-#, fuzzy
+#: setup.php:454
 msgid "Auto Discovery Frequency"
 msgstr "Automatische Erkennungshäufigkeit"
 
-#: setup.php:454
-#, fuzzy
+#: setup.php:455
 msgid "How often do you want to look for new Cacti Devices?"
 msgstr "Wie oft möchten Sie nach neuen Kakteenprodukten suchen?"
 
-#: setup.php:460
-#, fuzzy
+#: setup.php:461
 msgid "Host Graph Automation"
 msgstr "Automatisierung von Host-Grafiken"
 
-#: setup.php:464
-#, fuzzy
+#: setup.php:465
 msgid "Automatically Add New Graphs"
 msgstr "Neue Grafiken automatisch hinzufügen"
 
-#: setup.php:465
-#, fuzzy
+#: setup.php:466
 msgid "How often do you want to check for new objects to graph?"
 msgstr "Wie oft möchten Sie nach neuen Objekten für die Darstellung suchen?"
 
-#: setup.php:469
+#: setup.php:470
 msgid "Never"
 msgstr "Niemals"
 
-#: setup.php:470 setup.php:534
+#: setup.php:471 setup.php:535
 #, php-format
 msgid "%d Hour"
 msgstr "%d Stunde"
 
-#: setup.php:471 setup.php:535 setup.php:536 setup.php:537
+#: setup.php:472 setup.php:536 setup.php:537 setup.php:538
 #, php-format
 msgid "%d Hours"
 msgstr "%d Stunden"
 
-#: setup.php:472 setup.php:538
+#: setup.php:473 setup.php:539
 #, php-format
 msgid "%d Day"
 msgstr "%d Tag"
 
-#: setup.php:473
+#: setup.php:474
 #, php-format
 msgid "%d Days"
 msgstr "%d Tage"
 
-#: setup.php:476
-#, fuzzy
+#: setup.php:477
 msgid "Host MIB Table Collection Frequencies"
 msgstr "Host MIB Tabelle Sammlungshäufigkeiten"
 
-#: setup.php:480
-#, fuzzy
+#: setup.php:481
 msgid "Running Programs Frequency"
 msgstr "Häufigkeit der Ausführung von Programmen"
 
-#: setup.php:481
-#, fuzzy
+#: setup.php:482
 msgid "How often do you want to scan running software?"
 msgstr "Wie oft möchten Sie laufende Software scannen?"
 
-#: setup.php:487
-#, fuzzy
+#: setup.php:488
 msgid "Running Programs CPU/Memory Frequency"
 msgstr "Ausführungsprogramme CPU/Speicherfrequenz"
 
-#: setup.php:488
-#, fuzzy
+#: setup.php:489
 msgid "How often do you want to scan running software for performance data?"
 msgstr "Wie oft möchten Sie laufende Software auf Leistungsdaten überprüfen?"
 
-#: setup.php:494
-#, fuzzy
+#: setup.php:495
 msgid "Installed Software Frequency"
 msgstr "Installierte Software-Frequenz"
 
-#: setup.php:495
-#, fuzzy
+#: setup.php:496
 msgid "How often do you want to scan for installed software?"
 msgstr "Wie oft möchten Sie nach installierter Software suchen?"
 
-#: setup.php:501
-#, fuzzy
+#: setup.php:502
 msgid "Storage Frequency"
 msgstr "Speicherfrequenz"
 
-#: setup.php:502
-#, fuzzy
+#: setup.php:503
 msgid "How often do you want to scan for Storage performance data?"
 msgstr "Wie oft möchten Sie nach Speicherleistungsdaten suchen?"
 
-#: setup.php:508
-#, fuzzy
+#: setup.php:509
 msgid "Device Frequency"
 msgstr "Gerätefrequenz"
 
-#: setup.php:509
-#, fuzzy
+#: setup.php:510
 msgid "How often do you want to scan for Device performance data?"
 msgstr "Wie oft möchten Sie nach Geräteleistungsdaten suchen?"
 
-#: setup.php:515
-#, fuzzy
+#: setup.php:516
 msgid "Processor Frequency"
 msgstr "Prozessor-Frequenz"
 
-#: setup.php:516
-#, fuzzy
+#: setup.php:517
 msgid "How often do you want to scan for Processor performance data?"
 msgstr "Wie oft möchten Sie nach Leistungsdaten des Prozessors suchen?"
 
-#: setup.php:530
+#: setup.php:531
 #, php-format
 msgid "%d Minute"
 msgstr "%d Minute"
 
-#: setup.php:531 setup.php:532 setup.php:533
+#: setup.php:532 setup.php:533 setup.php:534
 #, php-format
 msgid "%d Minutes"
 msgstr "%d Minuten"
 
-#: setup.php:612
+#: setup.php:613
 msgid "Management"
 msgstr "Verwaltung"
 
-#: setup.php:615
+#: setup.php:616
 msgid "Normal User"
 msgstr "Kunde / Urlauber"
 
-#: setup.php:616
+#: setup.php:617
 msgid "General Administration"
 msgstr "Allgemeine Administration"
 
-#: setup.php:623 setup.php:624
-#, fuzzy
+#: setup.php:624
 msgid "Host MIB Inventory Summary"
 msgstr "Host MIB Inventory Zusammenfassung"
 
 #: setup.php:625
-#, fuzzy
 msgid "Host MIB Details"
 msgstr "Details zur Host-MIB"
 
 #: setup.php:626
-#, fuzzy
 msgid "Host MIB Storage"
 msgstr "Host-MIB-Speicher"
 
 #: setup.php:627
-#, fuzzy
 msgid "Host MIB Hardware"
 msgstr "Host MIB Hardware"
 
 #: setup.php:628
-#, fuzzy
 msgid "Host MIB Running Processes"
 msgstr "Host MIB laufende Prozesse"
 
 #: setup.php:629
-#, fuzzy
 msgid "Host MIB Process Use History"
 msgstr "Host MIB Prozess Nutzungsverlauf"
 
 #: setup.php:630
-#, fuzzy
 msgid "Host MIB Software Inventory"
 msgstr "Host MIB Software Inventarisierung"
 
 #: setup.php:631
-#, fuzzy
 msgid "Host MIB Graphs"
 msgstr "Host MIB Grafiken"
 
 #: setup.php:633
-#, fuzzy
 msgid "Host MIB OS Types"
 msgstr "Host MIB OS Typen"
 
@@ -1116,25 +980,25 @@ msgid "(Edit)"
 msgstr "(Verändern)"
 
 #, fuzzy
-#~ msgid "Are You Sure?"
-#~ msgstr "Sind Sie sicher?"
-
-#, fuzzy
-#~ msgid "Are you sure you want to delete the Host Type'%s'"
-#~ msgstr "Sind Sie sicher, dass Sie den Hosttyp'%s' löschen möchten?"
-
-#, fuzzy
-#~ msgid "Time when last seen running"
-#~ msgstr "Zeit, in der das letzte Mal gesehen wurde, dass es läuft."
-
-#, fuzzy
-#~ msgid "WARNING: You need to import your Host MIB Host Template to view Graphs.  See the README for more information."
-#~ msgstr "WARNUNG: Sie müssen Ihre Host-MIB-Hostvorlage importieren, um Grafiken anzuzeigen.  Weitere Informationen finden Sie im README."
+#~ msgid "You must select at least one Host Type."
+#~ msgstr "Sie müssen mindestens einen Hosttyp auswählen."
 
 #, fuzzy
 #~ msgid "Please Select Data Query First from Console->Settings->Host Mib First"
 #~ msgstr "Bitte wählen Sie zuerst die Datenabfrage über die Konsole->Einstellungen->Host Mib First aus."
 
 #, fuzzy
-#~ msgid "You must select at least one Host Type."
-#~ msgstr "Sie müssen mindestens einen Hosttyp auswählen."
+#~ msgid "WARNING: You need to import your Host MIB Host Template to view Graphs.  See the README for more information."
+#~ msgstr "WARNUNG: Sie müssen Ihre Host-MIB-Hostvorlage importieren, um Grafiken anzuzeigen.  Weitere Informationen finden Sie im README."
+
+#, fuzzy
+#~ msgid "Time when last seen running"
+#~ msgstr "Zeit, in der das letzte Mal gesehen wurde, dass es läuft."
+
+#, fuzzy
+#~ msgid "Are you sure you want to delete the Host Type'%s'"
+#~ msgstr "Sind Sie sicher, dass Sie den Hosttyp'%s' löschen möchten?"
+
+#, fuzzy
+#~ msgid "Are You Sure?"
+#~ msgstr "Sind Sie sicher?"
