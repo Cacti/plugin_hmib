@@ -4,19 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr ""
-"Project-Id-Version: hmib on cacti 1.1.34\n"
-"Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2024-06-08 09:44-0400\n"
-"PO-Revision-Date: 2024-06-08 10:04-0400\n"
-"Last-Translator: Ben Hsu <48728121@qq.com>\n"
-"Language-Team: Chinese (Simplified) <http://translate.cacti.net/projects/cacti/hmib/zh_Hans/>\n"
-"Language: zh_CN\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.4.4\n"
+msgstr "Project-Id-Version: hmib on cacti 1.1.34\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2024-06-20 15:11+0000\nLast-Translator: tql <fttx31@126.com>\nLanguage-Team: Chinese (Simplified) <http://translate.cacti.net/projects/cacti/hmib/zh_Hans/>\nLanguage: zh-CN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 4.8.1\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -805,7 +793,7 @@ msgstr "默认顶部流程"
 #: setup.php:445 setup.php:446 setup.php:447
 #, php-format
 msgid "%d Processes"
-msgstr "%d 个进程"
+msgstr "%d进程"
 
 #: setup.php:433
 msgid "Maximum Concurrent Collectors"
