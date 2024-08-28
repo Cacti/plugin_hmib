@@ -357,7 +357,7 @@ function add_summary_graphs($host_id, $host_template) {
 				array($host_id, $gt['graph_template_id']));
 
 			if (!$exists) {
-				print "NOTE: Adding item: '$field_value' for Host: " . $host_id;
+				print "NOTE: Adding item: '" . $gt['graph_template_id'] . "' for Host: " . $host_id;
 
 				$command = "$php_bin -q $base/cli/add_graphs.php" .
 					' --graph-template-id=' . $gt['graph_template_id'] .
@@ -450,7 +450,7 @@ function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
 				if ($results != '') {
 					print "NOTE: Adding item: '$field_value' " . str_replace("\n", ' ', $results) . PHP_EOL;
 				} else {
-					print "ERROR: Problem Adding item '$field_name'" . PHP_EOL;
+					print "ERROR: Problem Adding item '$field_value'" . PHP_EOL;
 				}
 			}
 		}
