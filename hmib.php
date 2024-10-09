@@ -64,7 +64,7 @@ general_header();
 
 hmib_tabs();
 
-switch(get_request_var('action')) {
+switch(get_nfilter_request_var('action')) {
 case 'summary':
 	hmib_summary();
 	break;
@@ -148,165 +148,160 @@ function hmib_history() {
 	validate_store_request_vars($filters, 'sess_hmib_hist');
 	/* ================= input validation ================= */
 
-	?>
-	<script type='text/javascript'>
-	function applyFilter() {
-		var strURL = 'hmib.php?action=history';
-		strURL += '&template=' + $('#template').val();
-		strURL += '&filter='   + $('#filter').val();
-		strURL += '&rows='     + $('#rows').val();
-		strURL += '&device='   + $('#device').val();
-		strURL += '&process='  + $('#process').val();
-		strURL += '&ostype='   + $('#ostype').val();
-		strURL += '&page='     + $('#page').val();
-		strURL += '&header=false';
-		loadPageNoHeader(strURL);
-	}
-
-	function clearFilter() {
-		var strURL = 'hmib.php?action=history&clear=true&header=false';
-		loadPageNoHeader(strURL);
-	}
-
-	$(function() {
-		$('#history').submit(function(event) {
-			event.preventDefault();
-			applyFilter();
-		});
-	});
-	</script>
-	<?php
-
 	html_start_box(__('Running Process History', 'hmib'), '100%', '', '3', 'center', '');
 
 	?>
 	<tr class='even'>
 		<td>
 			<form id='history' method='get' action='hmib.php?action=history'>
-			<table class='filterTable'>
-				<tr>
-					<td>
-						<?php print __('OS Type', 'hmib');?>
-					</td>
-					<td>
-						<select id='ostype' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib');?></option>
-							<?php
-							$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
-								FROM plugin_hmib_hrSystemTypes AS hrst
-								INNER JOIN plugin_hmib_hrSystem AS hrs
-								ON hrst.id=hrs.host_type
-								WHERE name!='' ORDER BY name");
+				<table class='filterTable'>
+					<tr>
+						<td>
+							<?php print __('OS Type', 'hmib');?>
+						</td>
+						<td>
+							<select id='ostype' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib');?></option>
+								<?php
+								$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
+									FROM plugin_hmib_hrSystemTypes AS hrst
+									INNER JOIN plugin_hmib_hrSystem AS hrs
+									ON hrst.id=hrs.host_type
+									WHERE name!='' ORDER BY name");
 
-							if (cacti_sizeof($ostypes)) {
-								foreach($ostypes AS $t) {
-									print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+								if (cacti_sizeof($ostypes)) {
+									foreach($ostypes AS $t) {
+										print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Device', 'hmib');?>
-					</td>
-					<td>
-						<select id='device' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
-								FROM plugin_hmib_hrSystem AS hrs
-								INNER JOIN host
-								ON hrs.host_id=host.id ' .
-								(get_request_var('ostype') > 0 ? 'WHERE hrs.host_type=' . get_request_var('ostype'):'') .
-								' ORDER BY description');
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Device', 'hmib');?>
+						</td>
+						<td>
+							<select id='device' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
+									FROM plugin_hmib_hrSystem AS hrs
+									INNER JOIN host
+									ON hrs.host_id=host.id ' .
+									(get_request_var('ostype') > 0 ? 'WHERE hrs.host_type=' . get_request_var('ostype'):'') .
+									' ORDER BY description');
 
-							if (cacti_sizeof($hosts)) {
-								foreach($hosts AS $h) {
-									print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+								if (cacti_sizeof($hosts)) {
+									foreach($hosts AS $h) {
+										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Template', 'hmib');?>
-					</td>
-					<td>
+								?>
+							</select>
+						</td>
+							<td>
+							<?php print __('Template', 'hmib');?>
+						</td>
+						<td>
 						<select id='template' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
-								FROM host_template AS ht
-								INNER JOIN host
-								ON ht.id=host.host_template_id
-								INNER JOIN plugin_hmib_hrSystem AS hrs
-								ON host.id=hrs.host_id
-								ORDER BY name');
+								<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
+									FROM host_template AS ht
+									INNER JOIN host
+									ON ht.id=host.host_template_id
+									INNER JOIN plugin_hmib_hrSystem AS hrs
+									ON host.id=hrs.host_id
+									ORDER BY name');
 
-							if (cacti_sizeof($templates)) {
-								foreach($templates AS $t) {
-									print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+								if (cacti_sizeof($templates)) {
+									foreach($templates AS $t) {
+										print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<span>
-							<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
-							<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
-						</span>
-					</td>
-				</tr>
-			</table>
-			<table class='filterTable'>
-				<tr>
-					<td>
-						<?php print __('Search', 'hmib');?>
-					</td>
-					<td>
-						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
-					</td>
-					<td>
-						<?php print __('Process', 'hmib');?>
-					</td>
-					<td>
-						<select id='process' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$procs = db_fetch_assoc("SELECT DISTINCT name
-								FROM plugin_hmib_hrSWRun_last_seen AS hrswr
-								WHERE name!='System Idle Time' AND name NOT LIKE '128%' AND (name IS NOT NULL AND name!='')
-								ORDER BY name");
+								?>
+							</select>
+						</td>
+						<td>
+							<span>
+								<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
+								<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+							</span>
+						</td>
+					</tr>
+				</table>
+				<table class='filterTable'>
+					<tr>
+						<td>
+							<?php print __('Search', 'hmib');?>
+						</td>
+						<td>
+							<input type='text' size='30' id='filter' value='<?php print html_escape_request_var('filter');?>'>
+						</td>
+						<td>
+							<?php print __('Process', 'hmib');?>
+						</td>
+						<td>
+							<select id='process' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$procs = db_fetch_assoc("SELECT DISTINCT name
+									FROM plugin_hmib_hrSWRun_last_seen AS hrswr
+									WHERE name!='System Idle Time' AND name NOT LIKE '128%' AND (name IS NOT NULL AND name!='')
+									ORDER BY name");
 
-							if (cacti_sizeof($procs)) {
-								foreach($procs AS $p) {
-									print "<option value='" . html_escape($p['name']) . "' " . (get_request_var('process') == $p['name'] ? 'selected':'') . '>' . html_escape($p['name']) . '</option>';
+								if (cacti_sizeof($procs)) {
+									foreach($procs AS $p) {
+										print "<option value='" . html_escape($p['name']) . "' " . (get_request_var('process') == $p['name'] ? 'selected':'') . '>' . html_escape($p['name']) . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Entries', 'hmib');?>
-					</td>
-					<td>
-						<select id='rows' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
-							<?php
-							if (cacti_sizeof($item_rows)) {
-								foreach($item_rows AS $key => $name) {
-									print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Entries', 'hmib');?>
+						</td>
+						<td>
+							<select id='rows' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
+								<?php
+								if (cacti_sizeof($item_rows)) {
+									foreach($item_rows AS $key => $name) {
+										print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-				</tr>
-			</table>
-			<input type='hidden' id='page' value='<?php print get_request_var('page');?>'>
+								?>
+							</select>
+						</td>
+					</tr>
+				</table>
 			</form>
+			<script type='text/javascript'>
+			function applyFilter() {
+				var strURL = 'hmib.php?action=history';
+				strURL += '&template=' + $('#template').val();
+				strURL += '&filter='   + $('#filter').val();
+				strURL += '&rows='     + $('#rows').val();
+				strURL += '&device='   + $('#device').val();
+				strURL += '&process='  + $('#process').val();
+				strURL += '&ostype='   + $('#ostype').val();
+				strURL += '&header=false';
+				loadPageNoHeader(strURL);
+			}
+
+			function clearFilter() {
+				var strURL = 'hmib.php?action=history&clear=true&header=false';
+				loadPageNoHeader(strURL);
+			}
+
+			$(function() {
+				$('#history').submit(function(event) {
+					event.preventDefault();
+					applyFilter();
+				});
+			});
+			</script>
 		</td>
 	</tr>
 	<?php
@@ -319,32 +314,40 @@ function hmib_history() {
 		$num_rows = get_request_var('rows');
 	}
 
-	$limit     = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
-	$sql_where = "WHERE hrswls.name!='' AND hrswls.name!='System Idle Process'";
+	$sql_where  = "WHERE hrswls.name!='' AND hrswls.name!='System Idle Process'";
+	$sql_params = array();
+	$sql_limit  = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
+	$sql_order  = get_order_string();
 
 	if (get_request_var('template') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.host_template_id=' . get_request_var('template');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.host_template_id = ?';
+		$sql_params[] = get_request_var('template');
 	}
 
 	if (get_request_var('device') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.id=' . get_request_var('device');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.id = ?';
+		$sql_params[] = get_request_var('device');
 	}
 
 	if (get_request_var('ostype') > 0) {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrs.host_type=' . get_request_var('ostype');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrs.host_type = ?';
+		$sql_params[] = get_request_var('ostype');
 	} elseif (get_request_var('ostype') == 0) {
 		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrst.id IS NULL';
 	}
 
 	if (get_request_var('process') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . " hrswls.name='" . get_request_var('process') . "'";
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrswls.name = ?';
+		$sql_params[] = get_request_var('process');
 	}
 
 	if (get_request_var('filter') != '') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' (
-			host.description LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . '
-			OR hrswls.name LIKE '   . db_qstr('%' . get_request_var('filter') . '%') . '
-			OR host.hostname LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . ')';
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') .
+			'(host.description LIKE ? OR hrswls.name LIKE ? OR host.hostname LIKE ?)';
+
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
 	}
 
 	$sql = "SELECT hrswls.*, host.hostname, host.description, host.disabled
@@ -356,13 +359,14 @@ function hmib_history() {
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrst.id=hrs.host_type
 		$sql_where
-		ORDER BY " . get_request_var('sort_column') . ' ' . get_request_var('sort_direction') . ' ' . $limit;
+		$sql_order
+		$sql_limit";
 
 	//print $sql;
 
-	$rows       = db_fetch_assoc($sql);
+	$rows = db_fetch_assoc_prepared($sql, $sql_params);
 
-	$total_rows = db_fetch_cell("SELECT COUNT(*)
+	$total_rows = db_fetch_cell_prepared("SELECT COUNT(*)
 		FROM plugin_hmib_hrSWRun_last_seen AS hrswls
 		INNER JOIN host
 		ON host.id=hrswls.host_id
@@ -370,7 +374,7 @@ function hmib_history() {
 		ON hrs.host_id=host.id
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrst.id=hrs.host_type
-		$sql_where");
+		$sql_where", $sql_params);
 
 	$display_text = array(
 		'description' => array(
@@ -513,165 +517,161 @@ function hmib_running() {
 	validate_store_request_vars($filters, 'sess_hmib_run');
 	/* ================= input validation ================= */
 
-	?>
-	<script type='text/javascript'>
-	function applyFilter() {
-		var strURL = 'hmib.php?action=running';
-		strURL += '&template=' + $('#template').val();
-		strURL += '&filter='   + $('#filter').val();
-		strURL += '&rows='     + $('#rows').val();
-		strURL += '&device='   + $('#device').val();
-		strURL += '&process='  + $('#process').val();
-		strURL += '&ostype='   + $('#ostype').val();
-		strURL += '&header=false';
-		loadPageNoHeader(strURL);
-	}
-
-	function clearFilter() {
-		var strURL = 'hmib.php?action=running&clear=true&header=false';
-		loadPageNoHeader(strURL);
-	}
-
-	$(function() {
-		$('#running').submit(function(event) {
-			event.preventDefault();
-			applyFilter();
-		});
-	});
-	</script>
-	<?php
-
 	html_start_box(__('Running Processes', 'hmib'), '100%', '', '3', 'center', '');
 
 	?>
 	<tr class='even'>
 		<td>
 			<form id='running' method='get' action='hmib.php?action=running'>
-			<table class='filterTable'>
-				<tr>
-					<td>
-						<?php print __('OS Type', 'hmib');?>
-					</td>
-					<td>
-						<select id='ostype' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib');?></option>
-							<?php
-							$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
-								FROM plugin_hmib_hrSystemTypes AS hrst
-								INNER JOIN plugin_hmib_hrSystem AS hrs
-								ON hrst.id=hrs.host_type
-								WHERE name!='' ORDER BY name");
+				<table class='filterTable'>
+					<tr>
+						<td>
+							<?php print __('OS Type', 'hmib');?>
+						</td>
+						<td>
+							<select id='ostype' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib');?></option>
+								<?php
+								$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
+									FROM plugin_hmib_hrSystemTypes AS hrst
+									INNER JOIN plugin_hmib_hrSystem AS hrs
+									ON hrst.id=hrs.host_type
+									WHERE name!='' ORDER BY name");
 
-							if (cacti_sizeof($ostypes)) {
-								foreach($ostypes AS $t) {
-									print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+								if (cacti_sizeof($ostypes)) {
+									foreach($ostypes AS $t) {
+										print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Device', 'hmib');?>
-					</td>
-					<td>
-						<select id='device' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
-								FROM plugin_hmib_hrSystem AS hrs
-								INNER JOIN host
-								ON hrs.host_id=host.id ' .
-								(get_request_var('ostype') > 0 ? 'WHERE hrs.host_type=' . get_request_var('ostype'):'') .
-								' ORDER BY description');
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Device', 'hmib');?>
+						</td>
+						<td>
+							<select id='device' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
+									FROM plugin_hmib_hrSystem AS hrs
+									INNER JOIN host
+									ON hrs.host_id=host.id ' .
+									(get_request_var('ostype') > 0 ? 'WHERE hrs.host_type=' . get_request_var('ostype'):'') .
+									' ORDER BY description');
 
-							if (cacti_sizeof($hosts)) {
-								foreach($hosts AS $h) {
-									print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+								if (cacti_sizeof($hosts)) {
+									foreach($hosts AS $h) {
+										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
+								?>
+							</select>
+						</td>
+						<td>
 						<?php print __('Template', 'hmib');?>
-					</td>
-					<td>
-						<select id='template' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
-								FROM host_template AS ht
-								INNER JOIN host
-								ON ht.id=host.host_template_id
-								INNER JOIN plugin_hmib_hrSystem AS hrs
-								ON host.id=hrs.host_id
-								ORDER BY name');
+						</td>
+						<td>
+							<select id='template' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
+									FROM host_template AS ht
+									INNER JOIN host
+									ON ht.id=host.host_template_id
+									INNER JOIN plugin_hmib_hrSystem AS hrs
+									ON host.id=hrs.host_id
+									ORDER BY name');
 
-							if (cacti_sizeof($templates)) {
-								foreach($templates AS $t) {
-									print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+								if (cacti_sizeof($templates)) {
+									foreach($templates AS $t) {
+										print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<span>
-							<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
-							<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
-						</span>
-					</td>
-				</tr>
-			</table>
-			<table class='filterTable'>
-				<tr>
-					<td>
-						<?php print __('Search', 'hmib');?>
-					</td>
-					<td>
-						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
-					</td>
-					<td>
-						<?php print __('Process', 'hmib');?>
-					</td>
-					<td>
-						<select id='process' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$procs = db_fetch_assoc("SELECT DISTINCT name
-								FROM plugin_hmib_hrSWRun_last_seen AS hrswr
-								WHERE name!='System Idle Time' AND name NOT LIKE '128%' AND (name IS NOT NULL AND name!='')
-								ORDER BY name");
+								?>
+							</select>
+						</td>
+						<td>
+							<span>
+								<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
+								<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+							</span>
+						</td>
+					</tr>
+				</table>
+				<table class='filterTable'>
+					<tr>
+						<td>
+							<?php print __('Search', 'hmib');?>
+						</td>
+						<td>
+							<input type='text' size='30' id='filter' value='<?php print html_escape_request_var('filter');?>'>
+						</td>
+						<td>
+							<?php print __('Process', 'hmib');?>
+						</td>
+						<td>
+							<select id='process' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$procs = db_fetch_assoc("SELECT DISTINCT name
+									FROM plugin_hmib_hrSWRun_last_seen AS hrswr
+										WHERE name!='System Idle Time' AND name NOT LIKE '128%' AND (name IS NOT NULL AND name!='')
+									ORDER BY name");
 
-							if (cacti_sizeof($procs)) {
-								foreach($procs AS $p) {
-									print "<option value='" . html_escape($p['name']) . "' " . (get_request_var('process') == $p['name'] ? 'selected':'') . '>' . html_escape($p['name']) . '</option>';
+								if (cacti_sizeof($procs)) {
+									foreach($procs AS $p) {
+										print "<option value='" . html_escape($p['name']) . "' " . (get_request_var('process') == $p['name'] ? 'selected':'') . '>' . html_escape($p['name']) . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Entries', 'hmib');?>
-					</td>
-					<td>
-						<select id='rows' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
-							<?php
-							if (cacti_sizeof($item_rows)) {
-								foreach($item_rows AS $key => $name) {
-									print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Entries', 'hmib');?>
+						</td>
+						<td>
+							<select id='rows' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
+								<?php
+								if (cacti_sizeof($item_rows)) {
+									foreach($item_rows AS $key => $name) {
+										print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-				</tr>
-			</table>
+								?>
+							</select>
+						</td>
+					</tr>
+				</table>
+			</form>
+			<script type='text/javascript'>
+			function applyFilter() {
+				var strURL = 'hmib.php?action=running';
+				strURL += '&template=' + $('#template').val();
+				strURL += '&filter='   + $('#filter').val();
+				strURL += '&rows='     + $('#rows').val();
+				strURL += '&device='   + $('#device').val();
+				strURL += '&process='  + $('#process').val();
+				strURL += '&ostype='   + $('#ostype').val();
+				strURL += '&header=false';
+				loadPageNoHeader(strURL);
+			}
+
+			function clearFilter() {
+				var strURL = 'hmib.php?action=running&clear=true&header=false';
+				loadPageNoHeader(strURL);
+			}
+
+			$(function() {
+				$('#running').submit(function(event) {
+					event.preventDefault();
+					applyFilter();
+				});
+			});
+			</script>
 		</td>
-		<input type='hidden' id='page' value='<?php print get_request_var('page');?>'>
-		</form>
 	</tr>
 	<?php
 
@@ -683,32 +683,41 @@ function hmib_running() {
 		$num_rows = get_request_var('rows');
 	}
 
-	$limit     = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
-	$sql_where = "WHERE hrswr.name!='' AND hrswr.name!='System Idle Process'";
+	$sql_limit  = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
+	$sql_where  = "WHERE hrswr.name != '' AND hrswr.name != 'System Idle Process'";
+	$sql_params = array();
+	$sql_order  = get_order_string();
 
 	if (get_request_var('template') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.host_template_id=' . get_request_var('template');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.host_template_id = ?';
+		$sql_params[] = get_request_var('template');
 	}
 
 	if (get_request_var('device') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.id=' . get_request_var('device');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.id = ?';
+		$sql_params[] = get_request_var('device');
 	}
 
 	if (get_request_var('ostype') > 0) {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrs.host_type=' . get_request_var('ostype');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrs.host_type = ?';
+		$sql_params[] = get_request_var('ostype');
 	} elseif (get_request_var('ostype') == 0) {
 		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrst.id IS NULL';
 	}
 
 	if (get_request_var('process') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . " hrswr.name='" . get_request_var('process') . "'";
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrswr.name = ?';
+		$sql_params[] = get_request_var('process');
 	}
 
 	if (get_request_var('filter') != '') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' (
-			host.description LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . '
-			OR hrswr.name LIKE '    . db_qstr('%' . get_request_var('filter') . '%') . '
-			OR host.hostname LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . ')';
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') .
+			' (host.description LIKE ? OR hrswr.name LIKE ? OR hrswr.parameters LIKE ? OR host.hostname LIKE ?)';
+
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
 	}
 
 	$sql = "SELECT hrswr.*, host.hostname, host.description, host.disabled
@@ -720,13 +729,14 @@ function hmib_running() {
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrst.id=hrs.host_type
 		$sql_where
-		ORDER BY " . get_request_var('sort_column') . ' ' . get_request_var('sort_direction') . ' ' . $limit;
+		$sql_order
+		$sql_limit";
 
 	//print $sql;
 
-	$rows       = db_fetch_assoc($sql);
+	$rows = db_fetch_assoc_prepared($sql, $sql_params);
 
-	$total_rows = db_fetch_cell("SELECT COUNT(*)
+	$total_rows = db_fetch_cell_prepared("SELECT COUNT(*)
 		FROM plugin_hmib_hrSWRun AS hrswr
 		INNER JOIN host
 		ON host.id=hrswr.host_id
@@ -734,9 +744,9 @@ function hmib_running() {
 		ON hrs.host_id=host.id
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrst.id=hrs.host_type
-		$sql_where");
+		$sql_where", $sql_params);
 
-	$totals = db_fetch_row("SELECT
+	$totals = db_fetch_row_prepared("SELECT
 		ROUND(SUM(perfCPU),2) as cpu,
 		ROUND(SUM(perfMemory),2) as memory
 		FROM plugin_hmib_hrSWRun AS hrswr
@@ -745,7 +755,7 @@ function hmib_running() {
 		ON hrs.host_id=host.id
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrst.id=hrs.host_type
-		$sql_where");
+		$sql_where", $sql_params);
 
 	$display_text = array(
 		'description' => array(
@@ -912,164 +922,159 @@ function hmib_hardware() {
 	validate_store_request_vars($filters, 'sess_hmib_hw');
 	/* ================= input validation ================= */
 
-	?>
-	<script type='text/javascript'>
-	function applyFilter() {
-		var strURL = 'hmib.php?action=hardware';
-		strURL += '&template=' + $('#template').val();
-		strURL += '&filter='   + $('#filter').val();
-		strURL += '&rows='     + $('#rows').val();
-		strURL += '&device='   + $('#device').val();
-		strURL += '&ostype='   + $('#ostype').val();
-		strURL += '&type='     + $('#type').val();
-		strURL += '&page='     + $('#page').val();
-		strURL += '&header=false';
-		loadPageNoHeader(strURL);
-	}
-
-	function clearFilter() {
-		var strURL = 'hmib.php?action=hardware&clear=true&header=false';
-		loadPageNoHeader(strURL);
-	}
-
-	$(function() {
-		$('#hardware').submit(function(event) {
-			event.preventDefault();
-			applyFilter();
-		});
-	});
-	</script>
-	<?php
-
 	html_start_box(__('Hardware Inventory', 'hmib'), '100%', '', '3', 'center', '');
 
 	?>
 	<tr class='even'>
 		<td>
 			<form id='hardware' method='get'>
-			<table class='filterTable'>
-				<tr>
-					<td>
-						<?php print __('OS Type', 'hmib');?>
-					</td>
-					<td>
-						<select id='ostype' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib');?></option>
-							<?php
-							$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
-								FROM plugin_hmib_hrSystemTypes AS hrst
-								INNER JOIN plugin_hmib_hrSystem AS hrs
-								ON hrst.id=hrs.host_type
-								WHERE name!='' ORDER BY name");
+				<table class='filterTable'>
+					<tr>
+						<td>
+							<?php print __('OS Type', 'hmib');?>
+						</td>
+						<td>
+							<select id='ostype' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib');?></option>
+								<?php
+								$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
+									FROM plugin_hmib_hrSystemTypes AS hrst
+									INNER JOIN plugin_hmib_hrSystem AS hrs
+									ON hrst.id=hrs.host_type
+									WHERE name!='' ORDER BY name");
 
-							if (cacti_sizeof($ostypes)) {
-								foreach($ostypes AS $t) {
-									print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+								if (cacti_sizeof($ostypes)) {
+									foreach($ostypes AS $t) {
+										print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Device', 'hmib');?>
-					</td>
-					<td>
-						<select id='device' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
-								FROM plugin_hmib_hrSystem AS hrs
-								INNER JOIN host
-								ON hrs.host_id=host.id ' .
-								(get_request_var('ostype') > 0 ? 'WHERE hrs.host_type=' . get_request_var('ostype'):'') .
-								' ORDER BY description');
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Device', 'hmib');?>
+						</td>
+						<td>
+							<select id='device' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
+									FROM plugin_hmib_hrSystem AS hrs
+									INNER JOIN host
+									ON hrs.host_id=host.id ' .
+									(get_request_var('ostype') > 0 ? 'WHERE hrs.host_type=' . get_request_var('ostype'):'') .
+									' ORDER BY description');
 
-							if (cacti_sizeof($hosts)) {
-								foreach($hosts AS $h) {
-									print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+								if (cacti_sizeof($hosts)) {
+									foreach($hosts AS $h) {
+										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Template', 'hmib');?>
-					</td>
-					<td>
-						<select id='template' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
-								FROM host_template AS ht
-								INNER JOIN host
-								ON ht.id=host.host_template_id
-								INNER JOIN plugin_hmib_hrSystem AS hrs
-								ON host.id=hrs.host_id
-								ORDER BY name');
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Template', 'hmib');?>
+						</td>
+						<td>
+							<select id='template' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
+									FROM host_template AS ht
+									INNER JOIN host
+									ON ht.id=host.host_template_id
+									INNER JOIN plugin_hmib_hrSystem AS hrs
+									ON host.id=hrs.host_id
+									ORDER BY name');
 
-							if (cacti_sizeof($templates)) {
-								foreach($templates AS $t) {
-									print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+								if (cacti_sizeof($templates)) {
+									foreach($templates AS $t) {
+										print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<span>
-							<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
-							<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
-						</span>
-					</td>
-				</tr>
-			</table>
-			<table class='filterTable'>
-				<tr>
-					<td>
-						<?php print __('Search', 'hmib');?>
-					</td>
-					<td>
-						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
-					</td>
-					<td>
-						<?php print __('Type', 'hmib');?>
-					</td>
-					<td>
-						<select id='type' onChange='applyFilter()'>
-						<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-						<?php
-							$types = db_fetch_assoc('SELECT DISTINCT hrd.type as type, ht.id as id, ht.description as description
-							FROM plugin_hmib_hrDevices as hrd
-							LEFT JOIN plugin_hmib_types as ht ON (hrd.type = ht.id)
-							ORDER BY description');
-							if (cacti_sizeof($types)) {
-								foreach($types AS $t) {
-									print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . $t['description'] . '</option>';
-								}
-							}
-						?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Entries', 'hmib');?>
-					</td>
-					<td>
-						<select id='rows' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
+								?>
+							</select>
+						</td>
+						<td>
+							<span>
+								<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
+								<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+							</span>
+						</td>
+					</tr>
+				</table>
+				<table class='filterTable'>
+					<tr>
+						<td>
+							<?php print __('Search', 'hmib');?>
+						</td>
+						<td>
+							<input type='text' size='30' id='filter' value='<?php print html_escape_request_var('filter');?>'>
+						</td>
+						<td>
+							<?php print __('Type', 'hmib');?>
+						</td>
+						<td>
+							<select id='type' onChange='applyFilter()'>
+							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
 							<?php
-							if (cacti_sizeof($item_rows)) {
-								foreach($item_rows AS $key => $name) {
-									print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+								$types = db_fetch_assoc('SELECT DISTINCT hrd.type as type, ht.id as id, ht.description as description
+								FROM plugin_hmib_hrDevices as hrd
+								LEFT JOIN plugin_hmib_types as ht ON (hrd.type = ht.id)
+								ORDER BY description');
+								if (cacti_sizeof($types)) {
+									foreach($types AS $t) {
+										print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . $t['description'] . '</option>';
+									}
 								}
-							}
 							?>
-						</select>
-					</td>
-				</tr>
-			</table>
-			<input type='hidden' id='page' value='<?php print get_request_var('page');?>'>
+							</select>
+						</td>
+						<td>
+							<?php print __('Entries', 'hmib');?>
+						</td>
+						<td>
+							<select id='rows' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
+								<?php
+								if (cacti_sizeof($item_rows)) {
+									foreach($item_rows AS $key => $name) {
+										print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+									}
+								}
+								?>
+							</select>
+						</td>
+					</tr>
+				</table>
 			</form>
+			<script type='text/javascript'>
+			function applyFilter() {
+				var strURL = 'hmib.php?action=hardware';
+				strURL += '&template=' + $('#template').val();
+				strURL += '&filter='   + $('#filter').val();
+				strURL += '&rows='     + $('#rows').val();
+				strURL += '&device='   + $('#device').val();
+				strURL += '&ostype='   + $('#ostype').val();
+				strURL += '&type='     + $('#type').val();
+				strURL += '&header=false';
+				loadPageNoHeader(strURL);
+			}
+
+			function clearFilter() {
+				var strURL = 'hmib.php?action=hardware&clear=true&header=false';
+				loadPageNoHeader(strURL);
+			}
+
+			$(function() {
+				$('#hardware').submit(function(event) {
+					event.preventDefault();
+					applyFilter();
+				});
+			});
+			</script>
 		</td>
 	</tr>
 	<?php
@@ -1082,32 +1087,40 @@ function hmib_hardware() {
 		$num_rows = get_request_var('rows');
 	}
 
-	$limit     = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
-	$sql_where = "WHERE (hrd.description IS NOT NULL AND hrd.description!='')";
+	$sql_where  = "WHERE (hrd.description IS NOT NULL AND hrd.description!='')";
+	$sql_params = array();
+	$sql_limit  = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
+	$sql_order  = get_order_string();
 
 	if (get_request_var('template') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.host_template_id=' . get_request_var('template');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.host_template_id = ?';
+		$sql_params[] = get_request_var('template');
 	}
 
 	if (get_request_var('device') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.id=' . get_request_var('device');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.id = ?';
+		$sql_params[] = get_request_var('devices');
 	}
 
 	if (get_request_var('ostype') > 0) {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrs.host_type=' . get_request_var('ostype');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrs.host_type = ?';
+		$sql_params[] = get_request_var('ostype');
 	} elseif (get_request_var('ostype') == 0) {
 		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrst.id IS NULL';
 	}
 
 	if (get_request_var('type') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrd.type=' . get_request_var('type');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrd.type = ?';
+		$sql_params[] = get_request_var('type');
 	}
 
 	if (get_request_var('filter') != '') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' (
-			host.description LIKE '   . db_qstr('%' . get_request_var('filter') . '%') . '
-			OR hrd.description LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . '
-			OR host.hostname LIKE '   . db_qstr('%' . get_request_var('filter') . '%') . ')';
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') .
+			' (host.description LIKE ? OR hrd.description LIKE ? OR host.hostname LIKE ?)';
+
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
 	}
 
 	$sql = "SELECT hrd.*, host.hostname, host.description AS hd, host.disabled
@@ -1117,16 +1130,18 @@ function hmib_hardware() {
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrs.host_type=hrst.id
 		$sql_where
-		ORDER BY " . get_request_var('sort_column') . ' ' . get_request_var('sort_direction') . ' ' . $limit;
+		$sql_order
+		$sql_limit";
 
-	$rows       = db_fetch_assoc($sql);
-	$total_rows = db_fetch_cell("SELECT COUNT(*)
+	$rows = db_fetch_assoc_prepared($sql, $sql_params);
+
+	$total_rows = db_fetch_cell_prepared("SELECT COUNT(*)
 		FROM plugin_hmib_hrDevices AS hrd
 		INNER JOIN host ON host.id=hrd.host_id
 		INNER JOIN plugin_hmib_hrSystem AS hrs ON host.id=hrs.host_id
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrs.host_type=hrst.id
-		$sql_where");
+		$sql_where", $sql_params);
 
 	$display_text = array(
 		'host.description' => array(
@@ -1261,32 +1276,6 @@ function hmib_storage() {
 	/* ================= input validation ================= */
 
 	?>
-	<script type='text/javascript'>
-	function applyFilter() {
-		var strURL = 'hmib.php?action=storage';
-		strURL += '&template=' + $('#template').val();
-		strURL += '&filter='   + $('#filter').val();
-		strURL += '&rows='     + $('#rows').val();
-		strURL += '&device='   + $('#device').val();
-		strURL += '&ostype='   + $('#ostype').val();
-		strURL += '&type='     + $('#type').val();
-		strURL += '&page='     + $('#page').val();
-		strURL += '&header=false';
-		loadPageNoHeader(strURL);
-	}
-
-	function clearFilter() {
-		var strURL = 'hmib.php?action=storage&clear=true&header=false';
-		loadPageNoHeader(strURL);
-	}
-
-	$(function() {
-		$('#storage').submit(function(event) {
-			event.preventDefault();
-			applyFilter();
-		});
-	});
-	</script>
 	<?php
 
 	html_start_box(__('Storage Inventory', 'hmib'), '100%', '', '3', 'center', '');
@@ -1295,129 +1284,153 @@ function hmib_storage() {
 	<tr class='even'>
 		<td>
 			<form id='storage' method='get'>
-			<table class='filterTable'>
-				<tr>
-					<td>
-						<?php print __('OS Type', 'hmib');?>
-					</td>
-					<td>
-						<select id='ostype' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib');?></option>
-							<?php
-							$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
-								FROM plugin_hmib_hrSystemTypes AS hrst
-								INNER JOIN plugin_hmib_hrSystem AS hrs
-								ON hrst.id=hrs.host_type
-								WHERE name!='' ORDER BY name");
+				<table class='filterTable'>
+					<tr>
+						<td>
+							<?php print __('OS Type', 'hmib');?>
+						</td>
+						<td>
+							<select id='ostype' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib');?></option>
+								<?php
+								$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
+									FROM plugin_hmib_hrSystemTypes AS hrst
+									INNER JOIN plugin_hmib_hrSystem AS hrs
+									ON hrst.id=hrs.host_type
+									WHERE name!='' ORDER BY name");
 
-							if (cacti_sizeof($ostypes)) {
-								foreach($ostypes AS $t) {
-									print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
-								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Device', 'hmib');?>
-					</td>
-					<td>
-						<select id='device' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
-								FROM plugin_hmib_hrSystem AS hrs
-								INNER JOIN host
-								ON hrs.host_id=host.id ' .
-								(get_request_var('ostype') > 0 ? 'WHERE hrs.host_type=' . get_request_var('ostype'):'') .
-								' ORDER BY description');
-
-							if (cacti_sizeof($hosts)) {
-								foreach($hosts AS $h) {
-									print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
-								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Template', 'hmib');?>
-					</td>
-					<td>
-						<select id='template' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
-								FROM host_template AS ht
-								INNER JOIN host
-								ON ht.id=host.host_template_id
-								INNER JOIN plugin_hmib_hrSystem AS hrs
-								ON host.id=hrs.host_id
-								ORDER BY name');
-
-							if (cacti_sizeof($templates)) {
-								foreach($templates AS $t) {
-									print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
-								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<span>
-							<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
-							<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
-						</span>
-					</td>
-				</tr>
-			</table>
-			<table class='filterTable'>
-				<tr>
-					<td>
-						<?php print __('Search', 'hmib');?>
-					</td>
-					<td>
-						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
-					</td>
-					<td>
-						<?php print __('Type', 'hmib');?>
-					</td>
-					<td>
-						<select id='type' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-								$types = db_fetch_assoc('SELECT DISTINCT hrsto.type as type, ht.id as id, ht.description as description
-								FROM plugin_hmib_hrStorage AS hrsto
-								LEFT JOIN plugin_hmib_types as ht ON (hrsto.type = ht.id)
-								ORDER BY description');
-								if (cacti_sizeof($types)) {
-									foreach($types AS $t) {
-										print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . $t['description'] . '</option>';
+								if (cacti_sizeof($ostypes)) {
+									foreach($ostypes AS $t) {
+										print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
 									}
 								}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Volumes', 'hmib');?>
-					</td>
-					<td>
-						<select id='rows' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
-							<?php
-							if (cacti_sizeof($item_rows)) {
-							foreach($item_rows AS $key => $name) {
-								print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
-							}
-							}
-							?>
-						</select>
-					</td>
-				</tr>
-			</table>
-			<input type='hidden' id='page' value='<?php print get_request_var('page');?>'>
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Device', 'hmib');?>
+						</td>
+						<td>
+							<select id='device' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
+									FROM plugin_hmib_hrSystem AS hrs
+									INNER JOIN host
+									ON hrs.host_id=host.id ' .
+									(get_request_var('ostype') > 0 ? 'WHERE hrs.host_type=' . get_request_var('ostype'):'') .
+									' ORDER BY description');
+
+								if (cacti_sizeof($hosts)) {
+									foreach($hosts AS $h) {
+										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+									}
+								}
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Template', 'hmib');?>
+						</td>
+						<td>
+							<select id='template' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
+									FROM host_template AS ht
+									INNER JOIN host
+									ON ht.id=host.host_template_id
+									INNER JOIN plugin_hmib_hrSystem AS hrs
+									ON host.id=hrs.host_id
+									ORDER BY name');
+
+								if (cacti_sizeof($templates)) {
+									foreach($templates AS $t) {
+										print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+									}
+								}
+								?>
+							</select>
+						</td>
+						<td>
+							<span>
+								<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
+								<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+							</span>
+						</td>
+					</tr>
+				</table>
+				<table class='filterTable'>
+					<tr>
+						<td>
+							<?php print __('Search', 'hmib');?>
+						</td>
+						<td>
+							<input type='text' size='30' id='filter' value='<?php print html_escape_request_var('filter');?>'>
+						</td>
+						<td>
+							<?php print __('Type', 'hmib');?>
+						</td>
+						<td>
+							<select id='type' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+									$types = db_fetch_assoc('SELECT DISTINCT hrsto.type as type, ht.id as id, ht.description as description
+									FROM plugin_hmib_hrStorage AS hrsto
+									LEFT JOIN plugin_hmib_types as ht ON (hrsto.type = ht.id)
+									ORDER BY description');
+									if (cacti_sizeof($types)) {
+										foreach($types AS $t) {
+											print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . $t['description'] . '</option>';
+										}
+									}
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Volumes', 'hmib');?>
+						</td>
+						<td>
+							<select id='rows' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
+								<?php
+								if (cacti_sizeof($item_rows)) {
+									foreach($item_rows AS $key => $name) {
+										print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+									}
+								}
+								?>
+							</select>
+						</td>
+					</tr>
+				</table>
 			</form>
+			<script type='text/javascript'>
+			function applyFilter() {
+				var strURL = 'hmib.php?action=storage';
+				strURL += '&template=' + $('#template').val();
+				strURL += '&filter='   + $('#filter').val();
+				strURL += '&rows='     + $('#rows').val();
+				strURL += '&device='   + $('#device').val();
+				strURL += '&ostype='   + $('#ostype').val();
+				strURL += '&type='     + $('#type').val();
+				strURL += '&header=false';
+				loadPageNoHeader(strURL);
+			}
+
+			function clearFilter() {
+				var strURL = 'hmib.php?action=storage&clear=true&header=false';
+				loadPageNoHeader(strURL);
+			}
+
+			$(function() {
+				$('#storage').submit(function(event) {
+					event.preventDefault();
+					applyFilter();
+				});
+			});
+			</script>
 		</td>
 	</tr>
 	<?php
@@ -1430,32 +1443,40 @@ function hmib_storage() {
 		$num_rows = get_request_var('rows');
 	}
 
-	$limit     = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
-	$sql_where = "WHERE (hrsto.description IS NOT NULL AND hrsto.description!='')";
+	$sql_where  = "WHERE (hrsto.description IS NOT NULL AND hrsto.description!='')";
+	$sql_params = array();
+	$sql_limit  = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
+	$sql_order  = get_order_string();
 
 	if (get_request_var('template') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.host_template_id=' . get_request_var('template');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.host_template_id = ?';
+		$sql_params[] = get_request_var('template');
 	}
 
 	if (get_request_var('device') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.id=' . get_request_var('device');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.id = ?';
+		$sql_params[] = get_request_var('device');
 	}
 
 	if (get_request_var('ostype') > 0) {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrs.host_type=' . get_request_var('ostype');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrs.host_type = ?';
+		$sql_params[] = get_request_var('ostype');
 	} elseif (get_request_var('ostype') == 0) {
 		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrst.id IS NULL';
 	}
 
 	if (get_request_var('type') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrsto.type=' . get_request_var('type');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrsto.type = ?';
+		$sql_params[] = get_request_var('type');
 	}
 
 	if (get_request_var('filter') != '') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' (
-			host.description LIKE '     . db_qstr('%' . get_request_var('filter') . '%') . '
-			OR hrsto.description LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . '
-			OR host.hostname LIKE '     . db_qstr('%' . get_request_var('filter') . '%') . ')';
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') .
+			' (host.description LIKE ? OR hrsto.description LIKE ? OR host.hostname LIKE ?)';
+
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
 	}
 
 	$sql = "SELECT hrsto.*, hrsto.used/hrsto.size AS percent, host.hostname, host.description AS hd, host.disabled
@@ -1465,16 +1486,18 @@ function hmib_storage() {
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrs.host_type=hrst.id
 		$sql_where
-		ORDER BY " . get_request_var('sort_column') . ' ' . get_request_var('sort_direction') . ' ' . $limit;
+		$sql_order
+		$sql_limit";
 
-	$rows       = db_fetch_assoc($sql);
-	$total_rows = db_fetch_cell("SELECT COUNT(*)
+	$rows = db_fetch_assoc_prepared($sql, $sql_params);
+
+	$total_rows = db_fetch_cell_prepared("SELECT COUNT(*)
 		FROM plugin_hmib_hrStorage AS hrsto
 		INNER JOIN host ON host.id=hrsto.host_id
 		INNER JOIN plugin_hmib_hrSystem AS hrs ON host.id=hrs.host_id
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrs.host_type=hrst.id
-		$sql_where");
+		$sql_where", $sql_params);
 
 	$display_text = array(
 		'host.description' => array(
@@ -1621,181 +1644,177 @@ function hmib_devices() {
 	validate_store_request_vars($filters, 'sess_hmib_devices');
 	/* ================= input validation ================= */
 
-	?>
-	<script type='text/javascript'>
-	function applyFilter() {
-		var strURL  = 'hmib.php?action=devices';
-		strURL += '&ostype='   + $('#ostype').val();
-		strURL += '&status='   + $('#status').val();
-		strURL += '&process='  + $('#process').val();
-		strURL += '&template=' + $('#template').val();
-		strURL += '&filter='   + $('#filter').val();
-		strURL += '&rows='     + $('#rows').val();
-		strURL += '&page='     + $('#page').val();
-		strURL += '&header=false';
-		loadPageNoHeader(strURL);
-	}
-
-	function clearFilter() {
-		var strURL = 'hmib.php?action=devices&clear=true&header=false';
-		loadPageNoHeader(strURL);
-	}
-
-	$(function() {
-		$('#devices').submit(function(event) {
-			event.preventDefault();
-			applyFilter();
-		});
-	});
-	</script>
-	<?php
-
 	html_start_box(__('Device Filter', 'hmib'), '100%', '', '3', 'center', '');
 
 	?>
 	<tr class='even'>
 		<td>
 			<form id='devices' action='hmib.php?action=devices'>
-			<table class='filterTable'>
-				<tr>
-					<td>
-						<?php print __('OS Type', 'hmib');?>
-					</td>
-					<td>
-						<select id='ostype' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib');?></option>
-							<?php
-							$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
-								FROM plugin_hmib_hrSystemTypes AS hrst
-								INNER JOIN plugin_hmib_hrSystem AS hrs
-								ON hrst.id=hrs.host_type
-								WHERE name!='' ORDER BY name");
+				<table class='filterTable'>
+					<tr>
+						<td>
+							<?php print __('OS Type', 'hmib');?>
+						</td>
+						<td>
+							<select id='ostype' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib');?></option>
+								<?php
+								$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
+									FROM plugin_hmib_hrSystemTypes AS hrst
+									INNER JOIN plugin_hmib_hrSystem AS hrs
+									ON hrst.id=hrs.host_type
+									WHERE name!='' ORDER BY name");
 
-							if (cacti_sizeof($ostypes)) {
-								foreach($ostypes AS $t) {
-									print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
-								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Template', 'hmib');?>
-					</td>
-					<td>
-						<select id='template' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
-								FROM host_template AS ht
-								INNER JOIN host
-								ON ht.id=host.host_template_id
-								INNER JOIN plugin_hmib_hrSystem AS hrs
-								ON host.id=hrs.host_id
-								ORDER BY name');
-
-							if (cacti_sizeof($templates)) {
-								foreach($templates AS $t) {
-									print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
-								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Process', 'hmib');?>
-					</td>
-					<td>
-						<select id='process' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$processes = db_fetch_assoc("SELECT DISTINCT name
-								FROM plugin_hmib_hrSWRun
-								WHERE name != ''
-								ORDER BY name");
-
-							if (cacti_sizeof($processes)) {
-								foreach($processes AS $p) {
-									print "<option value='" . html_escape($p['name']) . "' " . (get_request_var('process') == $p['name'] ? 'selected':'') . '>' . html_escape($p['name']) . '</option>';
-								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<span>
-							<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
-							<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
-						</span>
-					</td>
-				</tr>
-			</table>
-			<table class='filterTable'>
-				<tr>
-					<td>
-						<?php print __('Search', 'hmib');?>
-					</td>
-					<td>
-						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
-					</td>
-					<td>
-						<?php print __('Status', 'hmib');?>
-					</td>
-					<td>
-						<select id='status' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$statuses = db_fetch_assoc('SELECT DISTINCT status
-								FROM host
-								INNER JOIN plugin_hmib_hrSystem
-								ON host.id=plugin_hmib_hrSystem.host_id');
-
-							$statuses = array_merge($statuses, array('-2' => array('status' => '-2')));
-
-							if (cacti_sizeof($statuses)) {
-								foreach($statuses AS $s) {
-									switch($s['status']) {
-										case '0':
-											$status = __('Unknown', 'hmib');
-											break;
-										case '1':
-											$status = __('Down', 'hmib');
-											break;
-										case '2':
-											$status = __('Recovering', 'hmib');
-											break;
-										case '3':
-											$status = __('Up', 'hmib');
-											break;
-										case '-2':
-											$status = __('Disabled', 'hmib');
-											break;
+								if (cacti_sizeof($ostypes)) {
+									foreach($ostypes AS $t) {
+										print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
 									}
-									print "<option value='" . $s['status'] . "' " . (get_request_var('status') == $s['status'] ? 'selected':'') . '>' . $status . '</option>';
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Devices', 'hmib');?>
-					</td>
-					<td>
-						<select id='rows' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
-							<?php
-							if (cacti_sizeof($item_rows)) {
-								foreach($item_rows AS $key => $name) {
-									print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Template', 'hmib');?>
+						</td>
+						<td>
+							<select id='template' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
+									FROM host_template AS ht
+									INNER JOIN host
+									ON ht.id=host.host_template_id
+									INNER JOIN plugin_hmib_hrSystem AS hrs
+									ON host.id=hrs.host_id
+									ORDER BY name');
+
+								if (cacti_sizeof($templates)) {
+									foreach($templates AS $t) {
+										print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-				</tr>
-			</table>
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Process', 'hmib');?>
+						</td>
+						<td>
+							<select id='process' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$processes = db_fetch_assoc("SELECT DISTINCT name
+									FROM plugin_hmib_hrSWRun
+									WHERE name != ''
+									ORDER BY name");
+
+								if (cacti_sizeof($processes)) {
+									foreach($processes AS $p) {
+										print "<option value='" . html_escape($p['name']) . "' " . (get_request_var('process') == $p['name'] ? 'selected':'') . '>' . html_escape($p['name']) . '</option>';
+									}
+								}
+								?>
+							</select>
+						</td>
+						<td>
+							<span>
+								<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
+								<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+							</span>
+						</td>
+					</tr>
+				</table>
+				<table class='filterTable'>
+					<tr>
+						<td>
+							<?php print __('Search', 'hmib');?>
+						</td>
+						<td>
+							<input type='text' size='30' id='filter' value='<?php print html_escape_request_var('filter');?>'>
+						</td>
+						<td>
+							<?php print __('Status', 'hmib');?>
+						</td>
+						<td>
+							<select id='status' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$statuses = db_fetch_assoc('SELECT DISTINCT status
+									FROM host
+									INNER JOIN plugin_hmib_hrSystem
+									ON host.id=plugin_hmib_hrSystem.host_id');
+
+								$statuses = array_merge($statuses, array('-2' => array('status' => '-2')));
+
+								if (cacti_sizeof($statuses)) {
+									foreach($statuses AS $s) {
+										switch($s['status']) {
+											case '0':
+												$status = __('Unknown', 'hmib');
+												break;
+											case '1':
+												$status = __('Down', 'hmib');
+												break;
+											case '2':
+												$status = __('Recovering', 'hmib');
+												break;
+											case '3':
+												$status = __('Up', 'hmib');
+												break;
+											case '-2':
+												$status = __('Disabled', 'hmib');
+												break;
+										}
+										print "<option value='" . $s['status'] . "' " . (get_request_var('status') == $s['status'] ? 'selected':'') . '>' . $status . '</option>';
+									}
+								}
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Devices', 'hmib');?>
+						</td>
+						<td>
+							<select id='rows' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
+								<?php
+								if (cacti_sizeof($item_rows)) {
+									foreach($item_rows AS $key => $name) {
+										print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+									}
+								}
+								?>
+							</select>
+						</td>
+					</tr>
+				</table>
 			</form>
+			<script type='text/javascript'>
+			function applyFilter() {
+				var strURL  = 'hmib.php?action=devices';
+				strURL += '&ostype='   + $('#ostype').val();
+				strURL += '&status='   + $('#status').val();
+				strURL += '&process='  + $('#process').val();
+				strURL += '&template=' + $('#template').val();
+				strURL += '&filter='   + $('#filter').val();
+				strURL += '&rows='     + $('#rows').val();
+				strURL += '&header=false';
+				loadPageNoHeader(strURL);
+			}
+
+			function clearFilter() {
+				var strURL = 'hmib.php?action=devices&clear=true&header=false';
+				loadPageNoHeader(strURL);
+			}
+
+			$(function() {
+				$('#devices').submit(function(event) {
+					event.preventDefault();
+					applyFilter();
+				});
+			});
+			</script>
 		</td>
 	</tr>
 	<?php
@@ -1808,32 +1827,42 @@ function hmib_devices() {
 		$num_rows = get_request_var('rows');
 	}
 
-	$limit     = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
-	$sql_where = '';
+	$sql_limit  = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
+	$sql_where  = '';
+	$sql_params = array();
+	$sql_order  = get_order_string();
 
 	if (get_request_var('template') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.host_template_id=' . get_request_var('template');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.host_template_id = ?';
+		$sql_params[] = get_request_var('template');
 	}
 
 	if (get_request_var('status') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrs.host_status=' . get_request_var('status');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrs.host_status = ?';
+		$sql_params[] = get_request_var('status');
 	}
 
 	if (get_request_var('ostype') > 0) {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrs.host_type=' . get_request_var('ostype');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrs.host_type = ?';
+		$sql_params[] = get_request_var('ostype');
 	} elseif (get_request_var('ostype') == 0) {
 		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrst.id IS NULL';
 	}
 
 	if (get_request_var('process') != '' && get_request_var('process') != '-1') {
 		$sql_join = 'INNER JOIN plugin_hmib_hrSWRun AS hrswr ON host.id=hrswr.host_id';
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . " hrswr.name='" . get_request_var('process') . "'";
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrswr.name = ?';
+		$sql_params[] = get_request_var('process');
 	} else {
 		$sql_join = '';
 	}
 
 	if (get_request_var('filter') != '') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.description LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . ' OR host.hostname LIKE ' . db_qstr('%' . get_request_var('filter') . '%');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') .
+			'(host.description LIKE ? OR host.hostname LIKE ?)';
+
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
 	}
 
 	$sql = "SELECT hrs.*, host.hostname, host.description, host.disabled
@@ -1843,16 +1872,18 @@ function hmib_devices() {
 		ON hrs.host_type=hrst.id
 		$sql_join
 		$sql_where
-		ORDER BY " . get_request_var('sort_column') . ' ' . get_request_var('sort_direction') . ' ' . $limit;
+		$sql_order
+		$sql_limit";
 
-	$rows       = db_fetch_assoc($sql);
-	$total_rows = db_fetch_cell("SELECT COUNT(*)
+	$rows = db_fetch_assoc_prepared($sql, $sql_params);
+
+	$total_rows = db_fetch_cell_prepared("SELECT COUNT(*)
 		FROM plugin_hmib_hrSystem AS hrs
 		INNER JOIN host ON host.id=hrs.host_id
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrs.host_type=hrst.id
 		$sql_join
-		$sql_where");
+		$sql_where", $sql_params);
 
 	$display_text = array(
 		'nosort' => array(
@@ -1979,7 +2010,7 @@ function hmib_devices() {
 			</a>";
 
 			$aurl .= "<a class='pic'
-				href='" . html_escape("$url?action=running&reset=1&device=" . $row['host_id']) . "'>
+				href='" . html_escape("$url?action=running%action=running&reset=1&device=" . $row['host_id']) . "'>
 				<i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i>
 			</a>";
 
@@ -1990,7 +2021,7 @@ function hmib_devices() {
 
 			if ($found) {
 				$aurl .= "<a class='pic'
-					href='" . html_escape("$url?action=graphs&reset=1&host_id=" . $row['host_id'] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=") . "'>
+					href='" . html_escape("$url?action=graphs&action=graphs&reset=1&host_id=" . $row['host_id'] . "&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=") . "'>
 					<i class='fas fa-chart-line' style='color:orange;' title='" . __('View Graphs', 'hmib') . "'></i>
 				</a>";
 			} else {
@@ -2001,8 +2032,8 @@ function hmib_devices() {
 
 			$graph_cpu   = hmib_get_graph_url($hcpudq, 0, $row['host_id'], '', $row['numCpus'], false);
 			$graph_cpup  = hmib_get_graph_url($hcpudq, 0, $row['host_id'], '', round($row['cpuPercent'],2). ' %', false);
-			$graph_users = hmib_get_graph_template_url($hugt, 0, $row['host_id'], ($row['host_status'] < 2 ? 'N/A':$row['users']), false);
-			$graph_aproc = hmib_get_graph_template_url($hpgt, 0, $row['host_id'], ($row['host_status'] < 2 ? 'N/A':$row['processes']), false);
+			$graph_users = hmib_get_graph_template_url($hugt, 0, $row['host_id'], ($row['host_status'] < 2 ? __('N/A', 'hmib'):$row['users']), false);
+			$graph_aproc = hmib_get_graph_template_url($hpgt, 0, $row['host_id'], ($row['host_status'] < 2 ? __('N/A', 'hmib'):$row['processes']), false);
 
 			if (api_plugin_user_realm_auth('host.php')) {
 				$host_url = html_escape($config['url_path'] . 'host.php?action=edit&id=' . $row['host_id']);
@@ -2132,32 +2163,6 @@ function hmib_software() {
 	/* ================= input validation ================= */
 
 	?>
-	<script type='text/javascript'>
-	function applyFilter() {
-		var strURL = 'hmib.php?action=software';
-		strURL += '&template=' + $('#template').val();
-		strURL += '&filter='   + $('#filter').val();
-		strURL += '&rows='     + $('#rows').val();
-		strURL += '&device='   + $('#device').val();
-		strURL += '&ostype='   + $('#ostype').val();
-		strURL += '&type='     + $('#type').val();
-		strURL += '&page='     + $('#page').val();
-		strURL += '&header=false';
-		loadPageNoHeader(strURL);
-	}
-
-	function clearFilter() {
-		var strURL = 'hmib.php?action=software&clear=true&header=false';
-		loadPageNoHeader(strURL);
-	}
-
-	$(function() {
-		$('#software').submit(function(event) {
-			event.preventDefault();
-			applyFilter();
-		});
-	});
-	</script>
 	<?php
 
 	html_start_box(__('Software Inventory', 'hmib'), '100%', '', '3', 'center', '');
@@ -2166,128 +2171,153 @@ function hmib_software() {
 	<tr class='even'>
 		<td>
 			<form id='software' method='get'>
-			<table class='filterTable'>
-				<tr>
-					<td>
-						<?php print __('OS Type', 'hmib');?>
-					</td>
-					<td>
-						<select id='ostype' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib');?></option>
-							<?php
-							$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
-								FROM plugin_hmib_hrSystemTypes AS hrst
-								INNER JOIN plugin_hmib_hrSystem AS hrs
-								ON hrst.id=hrs.host_type
-								WHERE name!='' ORDER BY name");
+				<table class='filterTable'>
+					<tr>
+						<td>
+							<?php print __('OS Type', 'hmib');?>
+						</td>
+						<td>
+							<select id='ostype' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib');?></option>
+								<?php
+								$ostypes = db_fetch_assoc("SELECT DISTINCT id, CONCAT_WS('', name, ' [', version, ']') AS name
+									FROM plugin_hmib_hrSystemTypes AS hrst
+									INNER JOIN plugin_hmib_hrSystem AS hrs
+									ON hrst.id=hrs.host_type
+									WHERE name!='' ORDER BY name");
 
-							if (cacti_sizeof($ostypes)) {
-								foreach($ostypes AS $t) {
-									print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+								if (cacti_sizeof($ostypes)) {
+									foreach($ostypes AS $t) {
+										print "<option value='" . $t['id'] . "' " . (get_request_var('ostype') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Device', 'hmib');?>
-					</td>
-					<td>
-						<select id='device' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
-								FROM plugin_hmib_hrSystem AS hrs
-								INNER JOIN host
-								ON hrs.host_id=host.id ' .
-								(get_request_var('ostype') > 0 ? 'WHERE hrs.host_type=' . get_request_var('ostype'):'') .
-								' ORDER BY description');
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Device', 'hmib');?>
+						</td>
+						<td>
+							<select id='device' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
+									FROM plugin_hmib_hrSystem AS hrs
+									INNER JOIN host
+									ON hrs.host_id=host.id ' .
+									(get_request_var('ostype') > 0 ? 'WHERE hrs.host_type=' . get_request_var('ostype'):'') .
+									' ORDER BY description');
 
-							if (cacti_sizeof($hosts)) {
-								foreach($hosts AS $h) {
-									print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+								if (cacti_sizeof($hosts)) {
+									foreach($hosts AS $h) {
+										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Template', 'hmib');?>
-					</td>
-					<td>
-						<select id='template' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
-								FROM host_template AS ht
-								INNER JOIN host
-								ON ht.id=host.host_template_id
-								INNER JOIN plugin_hmib_hrSystem AS hrs
-								ON host.id=hrs.host_id
-								ORDER BY name');
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Template', 'hmib');?>
+						</td>
+						<td>
+							<select id='template' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
+									FROM host_template AS ht
+									INNER JOIN host
+									ON ht.id=host.host_template_id
+									INNER JOIN plugin_hmib_hrSystem AS hrs
+									ON host.id=hrs.host_id
+									ORDER BY name');
 
-							if (cacti_sizeof($templates)) {
-								foreach($templates AS $t) {
-									print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+								if (cacti_sizeof($templates)) {
+									foreach($templates AS $t) {
+										print "<option value='" . $t['id'] . "' " . (get_request_var('template') == $t['id'] ? 'selected':'') . '>' . html_escape($t['name']) . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<span>
-							<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
-							<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
-						</span>
-					</td>
-				</tr>
-			</table>
-			<table class='filterTable'>
-				<tr>
-					<td>
-						<?php print __('Search', 'hmib');?>
-					</td>
-					<td>
-						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
-					</td>
-					<td>
-						<?php print __('Type', 'hmib');?>
-					</td>
-					<td>
-						<select id='type' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
-							<?php
-							$types = db_fetch_assoc('SELECT DISTINCT type
-								FROM plugin_hmib_hrSWInstalled
-								ORDER BY type');
+								?>
+							</select>
+						</td>
+						<td>
+							<span>
+								<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
+								<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+							</span>
+						</td>
+					</tr>
+				</table>
+				<table class='filterTable'>
+					<tr>
+						<td>
+							<?php print __('Search', 'hmib');?>
+						</td>
+						<td>
+							<input type='text' size='30' id='filter' value='<?php print html_escape_request_var('filter');?>'>
+						</td>
+						<td>
+							<?php print __('Type', 'hmib');?>
+						</td>
+						<td>
+							<select id='type' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib');?></option>
+								<?php
+								$types = db_fetch_assoc('SELECT DISTINCT type
+									FROM plugin_hmib_hrSWInstalled
+									ORDER BY type');
 
-							if (cacti_sizeof($types)) {
-								foreach($types AS $t) {
-									print "<option value='" . $t['type'] . "' " . (get_request_var('type') == $t['type'] ? 'selected':'') . '>' . $hmib_hrSWTypes[$t['type']] . '</option>';
+								if (cacti_sizeof($types)) {
+									foreach($types AS $t) {
+										print "<option value='" . $t['type'] . "' " . (get_request_var('type') == $t['type'] ? 'selected':'') . '>' . $hmib_hrSWTypes[$t['type']] . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-					<td>
-						<?php print __('Applications', 'hmib');?>
-					</td>
-					<td>
-						<select id='rows' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
-							<?php
-							if (cacti_sizeof($item_rows)) {
-								foreach($item_rows AS $key => $name) {
-									print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+								?>
+							</select>
+						</td>
+						<td>
+							<?php print __('Applications', 'hmib');?>
+						</td>
+						<td>
+							<select id='rows' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib');?></option>
+								<?php
+								if (cacti_sizeof($item_rows)) {
+									foreach($item_rows AS $key => $name) {
+										print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected':'') . '>' . $name . '</option>';
+									}
 								}
-							}
-							?>
-						</select>
-					</td>
-				</tr>
-			</table>
+								?>
+							</select>
+						</td>
+					</tr>
+				</table>
 			</form>
+			<script type='text/javascript'>
+			function applyFilter() {
+				var strURL = 'hmib.php?action=software';
+				strURL += '&template=' + $('#template').val();
+				strURL += '&filter='   + $('#filter').val();
+				strURL += '&rows='     + $('#rows').val();
+				strURL += '&device='   + $('#device').val();
+				strURL += '&ostype='   + $('#ostype').val();
+				strURL += '&type='     + $('#type').val();
+				strURL += '&header=false';
+				loadPageNoHeader(strURL);
+			}
+
+			function clearFilter() {
+				var strURL = 'hmib.php?action=software&clear=true&header=false';
+				loadPageNoHeader(strURL);
+			}
+
+			$(function() {
+				$('#software').submit(function(event) {
+					event.preventDefault();
+					applyFilter();
+				});
+			});
+			</script>
 		</td>
 	</tr>
 	<?php
@@ -2300,33 +2330,41 @@ function hmib_software() {
 		$num_rows = get_request_var('rows');
 	}
 
-	$limit     = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
-	$sql_where = '';
+	$sql_limit  = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
+	$sql_where  = '';
+	$sql_params = array();
+	$sql_order  = get_order_string();
 
 	if (get_request_var('template') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.host_template_id=' . get_request_var('template');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.host_template_id = ?';
+		$sql_params[] = get_request_var('template');
 	}
 
 	if (get_request_var('device') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.id=' . get_request_var('device');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' host.id = ?';
+		$sql_params[] = get_request_var('device');
 	}
 
 	if (get_request_var('ostype') > 0) {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrs.host_type=' . get_request_var('ostype');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrs.host_type = ?';
+		$sql_params[] = get_request_var('ostype');
 	} elseif (get_request_var('ostype') == 0) {
 		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrst.id IS NULL';
 	}
 
 	if (get_request_var('type') != '-1') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrswi.type=' . get_request_var('type');
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' hrswi.type = ?';
+		$sql_params[] = get_request_var('type');
 	}
 
 	if (get_request_var('filter') != '') {
-		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') . ' (
-			host.description LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . '
-			OR hrswi.name LIKE '    . db_qstr('%' . get_request_var('filter') . '%') . '
-			OR hrswi.date LIKE '    . db_qstr('%' . get_request_var('filter') . '%') . '
-			OR host.hostname LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . ')';
+		$sql_where .= ($sql_where != '' ? ' AND':'WHERE') .
+			' (host.description LIKE ? OR hrswi.name LIKE ? OR hrswi.date LIKE ? OR host.hostname LIKE ?)';
+
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
 	}
 
 	$sql = "SELECT hrswi.*, host.hostname, host.description, host.disabled
@@ -2336,16 +2374,18 @@ function hmib_software() {
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrst.id=hrs.host_type
 		$sql_where
-		ORDER BY " . get_request_var('sort_column') . ' ' . get_request_var('sort_direction') . ' ' . $limit;
+		$sql_order
+		$sql_limit";
 
-	$rows       = db_fetch_assoc($sql);
-	$total_rows = db_fetch_cell("SELECT COUNT(*)
+	$rows = db_fetch_assoc_prepared($sql, $sql_params);
+
+	$total_rows = db_fetch_cell_prepared("SELECT COUNT(*)
 		FROM plugin_hmib_hrSWInstalled AS hrswi
 		INNER JOIN host ON host.id=hrswi.host_id
 		INNER JOIN plugin_hmib_hrSystem AS hrs ON host.id=hrs.host_id
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrst.id=hrs.host_type
-		$sql_where");
+		$sql_where", $sql_params);
 
 	$display_text = array(
 		'description' => array(
@@ -2416,14 +2456,14 @@ function hmib_tabs() {
 
 	/* present a tabbed interface */
 	$tabs = array(
-		'summary'  => __('Summary', 'hmib'),
-		'devices'  => __('Devices', 'hmib'),
-		'storage'  => __('Storage', 'hmib'),
-		'hardware' => __('Hardware', 'hmib'),
-		'running'  => __('Processes', 'hmib'),
-		'history'  => __('Use History', 'hmib'),
-		'software' => __('Inventory', 'hmib'),
-		'graphs'   => __('Graphs', 'hmib')
+		'summary'  => __esc('Summary', 'hmib'),
+		'devices'  => __esc('Devices', 'hmib'),
+		'storage'  => __esc('Storage', 'hmib'),
+		'hardware' => __esc('Hardware', 'hmib'),
+		'running'  => __esc('Processes', 'hmib'),
+		'history'  => __esc('Use History', 'hmib'),
+		'software' => __esc('Inventory', 'hmib'),
+		'graphs'   => __esc('Graphs', 'hmib')
 	);
 
 	/* set the default tab */
@@ -2437,10 +2477,10 @@ function hmib_tabs() {
 			print "<li><a class='pic" . (($tab_short_name == $current_tab) ? " selected'" : "'") . " href='" . $config['url_path'] .
 				'plugins/hmib/hmib.php?' .
 				'action=' . $tab_short_name .
-				"'> " . $tabs[$tab_short_name] . "</a></li>";
+				"'> " . $tabs[$tab_short_name] . '</a></li>';
 		}
 	}
-	print "</ul></nav></div>";
+	print '</ul></nav></div>';
 }
 
 function hmib_summary() {
@@ -2634,12 +2674,14 @@ function hmib_summary() {
 	html_start_box(__('Device Type Summary Statistics', 'hmib'), '100%', '', '3', 'center', '');
 
 	if (get_request_var('htop') > 0) {
-		$limit = 'LIMIT ' . get_request_var('htop');
+		$sql_limit = 'LIMIT ' . get_request_var('htop');
 	} elseif (get_request_var('htop') == '-1') {
-		$limit = 'LIMIT 20';
+		$sql_limit = 'LIMIT 20';
 	}
 
-	$sql = 'SELECT
+	$sql_order = ' ORDER BY ' . $_SESSION['sess_hmib_host_sort_column'] . ' ' . $_SESSION['sess_hmib_host_sort_direction'];
+
+	$sql = "SELECT
 		hrst.id AS id,
 		hrst.name AS name,
 		hrst.version AS version,
@@ -2662,7 +2704,8 @@ function hmib_summary() {
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrs.host_type=hrst.id
 		GROUP BY name, version
-		ORDER BY ' . $_SESSION['sess_hmib_host_sort_column'] . ' ' . $_SESSION['sess_hmib_host_sort_direction'] . ' ' . $limit;
+		$sql_order
+		$sql_limit";
 
 	$rows = db_fetch_assoc($sql);
 
@@ -2898,16 +2941,18 @@ function hmib_summary() {
 		$num_rows = 20;
 	}
 
-	$sql_limit = 'LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
-	$sql_order = 'ORDER BY ' . $_SESSION['sess_hmib_proc_sort_column'] . ' ' . $_SESSION['sess_hmib_proc_sort_direction'];
+	$sql_where  = '';
+	$sql_params = array();
+	$sql_limit  = 'LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
+	$sql_order  = 'ORDER BY ' . $_SESSION['sess_hmib_proc_sort_column'] . ' ' . $_SESSION['sess_hmib_proc_sort_direction'];
 
 	if (strlen(get_request_var('filter'))) {
 		$sql_where = 'AND (
-			hrswr.name LIKE '          . db_qstr('%' . get_request_var('filter') . '%') . '
-			OR hrswr.path LIKE '       . db_qstr('%' . get_request_var('filter') . '%') . '
-			OR hrswr.parameters LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . ')';
-	} else {
-		$sql_where = '';
+			hrswr.name LIKE ? OR hrswr.path LIKE ? OR hrswr.parameters LIKE ?)';
+
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
+		$sql_params[] = '%' . get_request_var('filter') . '%';
 	}
 
 	$sql = "SELECT
@@ -2926,11 +2971,11 @@ function hmib_summary() {
 		$sql_order
 		$sql_limit";
 
-	$rows = db_fetch_assoc($sql);
+	$rows = db_fetch_assoc_prepared($sql, $sql_params);
 
-	$total_rows = db_fetch_cell("SELECT COUNT(DISTINCT name)
+	$total_rows = db_fetch_cell_prepared("SELECT COUNT(DISTINCT name)
 		FROM plugin_hmib_hrSWRun
-		$sql_where");
+		$sql_where", $sql_params);
 
 	$display_text = array(
 		'nosort' => array(
@@ -3057,26 +3102,29 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
 	$nograph = $config['url_path'] . 'plugins/hmib/images/view_graphs_disabled.gif';
 	$graph   = $config['url_path'] . 'plugins/hmib/images/view_graphs.gif';
 
+	$sql_where    = 'WHERE gl.graph_template_id = ?';
+	$sql_params[] = $graph_template;
+
 	if (!empty($graph_template)) {
 		if ($host_type > 0) {
-			$sql_join  = 'INNER JOIN plugin_hmib_hrSystem AS hrs ON hrs.host_id=gl.host_id';
-			$sql_where = "AND hrs.host_type=$host_type";
+			$sql_join  = 'INNER JOIN plugin_hmib_hrSystem AS hrs ON hrs.host_id = gl.host_id';
+			$sql_where .= ' AND hrs.host_type = ?';
+			$sql_params[] = $host_type;
 
 			if ($host_id > 0) {
-				$sql_where = "AND gl.host_id=$host_id";
+				$sql_where .= ' AND gl.host_id = ?';
+				$sql_params[] = $host_id;
 			}
 		} elseif ($host_id > 0) {
 			$sql_join  = '';
-			$sql_where = "AND gl.host_id=$host_id";
-		} else {
-			$sql_join  = '';
-			$sql_where = '';
+			$sql_where .= ' AND gl.host_id = ?';
+			$sql_params[] = $host_id;
 		}
 
-		$graphs = db_fetch_assoc("SELECT gl.* FROM graph_local AS gl
+		$graphs = db_fetch_assoc_prepared("SELECT gl.*
+			FROM graph_local AS gl
 			$sql_join
-			WHERE gl.graph_template_id=$graph_template
-			$sql_where");
+			$sql_where", $sql_params);
 
 		$graph_add = '';
 		if (cacti_sizeof($graphs)) {
@@ -3222,9 +3270,12 @@ function hmib_view_graphs() {
 	}
 
 	$total_graphs = 0;
+	$sql_where    = '';
 
 	// Filter sql_where
-	$sql_where  = (get_request_var('filter') != '' ? 'gtg.title_cache LIKE ' . db_qstr('%' . get_request_var('filter') . '%'):'');
+	if (get_request_var('rfilter') != '') {
+		$sql_where = 'gtg.title_cache RLIKE ' . db_qstr(get_request_var('rfilter'));
+	}
 
 	if ($sql_or != '') {
 		$sql_where .= ($sql_where != '' ? ' AND ':'') . $sql_or;
@@ -3232,18 +3283,18 @@ function hmib_view_graphs() {
 
 	// Host Id sql_where
 	if (get_request_var('host_id') > 0) {
-		$sql_where .= ($sql_where != '' ? ' AND':'') . ' gl.host_id=' . get_request_var('host_id');
+		$sql_where .= ($sql_where != '' ? ' AND':'') . ' gl.host_id = ' . get_request_var('host_id');
 	}
 
 	// Graph Template Id sql_where
 	if (get_request_var('graph_template_id') > 0) {
-		$sql_where .= ($sql_where != '' ? ' AND':'') . ' gl.graph_template_id=' . get_request_var('graph_template_id');
+		$sql_where .= ($sql_where != '' ? ' AND':'') . ' gl.graph_template_id IN (' . get_request_var('graph_template_id') . ')';
 	}
 
-	$limit  = (get_request_var('graphs')*(get_request_var('page')-1)) . ',' . get_request_var('graphs');
-	$order  = 'gtg.title_cache';
+	$sql_limit  = (get_request_var('graphs')*(get_request_var('page')-1)) . ',' . get_request_var('graphs');
+	$sql_order  = 'gtg.title_cache';
 
-	$graphs = get_allowed_graphs($sql_where, $order, $limit, $total_graphs);
+	$graphs = get_allowed_graphs($sql_where, $sql_order, $sql_limit, $total_graphs);
 
 	/* do some fancy navigation url construction so we don't have to try and rebuild the url string */
 	if (preg_match('/page=[0-9]+/',basename($_SERVER['QUERY_STRING']))) {

@@ -2,7 +2,10 @@ ChangeLog
 
 --- develop ---
 * feature: Add page counter to the processes filter for the Summary tab
+* feature: Move the main hmib interface to prepared statements where possible
 * issue#35: Hmib tab produces fatal memory error no matter the amount of memory allocated
+* issue: The processes sub-tab does not search on the command parameters
+* issue: Fix Graph Filtering to include proper regular expression
 
 --- 3.5 ---
 * feature: Add new Data Query to track Application statistics at the Device Level
