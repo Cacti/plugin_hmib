@@ -90,6 +90,7 @@ case 'graphs':
 	hmib_view_graphs();
 	break;
 }
+
 bottom_footer();
 
 function hmib_history() {
@@ -101,47 +102,47 @@ function hmib_history() {
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-			),
+		),
 		'page' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-			),
+		),
 		'template' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'device' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'ostype' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '-1',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'filter' => array(
 			'filter' => FILTER_DEFAULT,
 			'pageset' => true,
 			'default' => ''
-			),
+		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'name',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
 			'options' => array('options' => 'sanitize_search_string')
-			)
+		)
 	);
 
 	validate_store_request_vars($filters, 'sess_hmib_hist');
@@ -150,7 +151,7 @@ function hmib_history() {
 	?>
 	<script type='text/javascript'>
 	function applyFilter() {
-		strURL  = '?action=history';
+		var strURL = 'hmib.php?action=history';
 		strURL += '&template=' + $('#template').val();
 		strURL += '&filter='   + $('#filter').val();
 		strURL += '&rows='     + $('#rows').val();
@@ -163,7 +164,7 @@ function hmib_history() {
 	}
 
 	function clearFilter() {
-		strURL = '?action=history&clear=true&header=false';
+		var strURL = 'hmib.php?action=history&clear=true&header=false';
 		loadPageNoHeader(strURL);
 	}
 
@@ -372,10 +373,26 @@ function hmib_history() {
 		$sql_where");
 
 	$display_text = array(
-		'description' => array('display' => __('Hostname', 'hmib'),         'sort' => 'ASC',  'align' => 'left'),
-		'hrswls.name' => array('display' => __('Process', 'hmib'),          'sort' => 'DESC', 'align' => 'left'),
-		'last_seen'   => array('display' => __('Last Seen', 'hmib'),        'sort' => 'ASC',  'align' => 'right'),
-		'total_time'  => array('display' => __('Use Time (d:h:m)', 'hmib'), 'sort' => 'DESC', 'align' => 'right')
+		'description' => array(
+			'display' => __('Hostname', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'hrswls.name' => array(
+			'display' => __('Process', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'left'
+		),
+		'last_seen' => array(
+			'display' => __('Last Seen', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'right'
+		),
+		'total_time' => array(
+			'display' => __('Use Time (d:h:m)', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		)
 	);
 
 	$nav = html_nav_bar('hmib.php?action=history', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('History', 'hmib'), 'page', 'main');
@@ -449,48 +466,48 @@ function hmib_running() {
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-			),
+		),
 		'page' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-			),
+		),
 		'template' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'device' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'ostype' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'filter' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '-1',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'name',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
 			'options' => array('options' => 'sanitize_search_string')
-			)
+		)
 	);
 
 	validate_store_request_vars($filters, 'sess_hmib_run');
@@ -499,7 +516,7 @@ function hmib_running() {
 	?>
 	<script type='text/javascript'>
 	function applyFilter() {
-		strURL  = '?action=running';
+		var strURL = 'hmib.php?action=running';
 		strURL += '&template=' + $('#template').val();
 		strURL += '&filter='   + $('#filter').val();
 		strURL += '&rows='     + $('#rows').val();
@@ -511,7 +528,7 @@ function hmib_running() {
 	}
 
 	function clearFilter() {
-		strURL = '?action=running&clear=true&header=false';
+		var strURL = 'hmib.php?action=running&clear=true&header=false';
 		loadPageNoHeader(strURL);
 	}
 
@@ -731,14 +748,46 @@ function hmib_running() {
 		$sql_where");
 
 	$display_text = array(
-		'description' => array('display' => __('Hostname', 'hmib'),    'sort' => 'ASC',  'align' => 'left'),
-		'hrswr.name'  => array('display' => __('Process', 'hmib'),     'sort' => 'DESC', 'align' => 'left'),
-		'path'        => array('display' => __('Path', 'hmib'),        'sort' => 'ASC',  'align' => 'left'),
-		'parameters'  => array('display' => __('Parameters', 'hmib'),  'sort' => 'ASC',  'align' => 'left'),
-		'perfCpu'     => array('display' => __('CPU (Hrs)', 'hmib'),   'sort' => 'DESC', 'align' => 'right'),
-		'perfMemory'  => array('display' => __('Memory (MB)', 'hmib'), 'sort' => 'DESC', 'align' => 'right'),
-		'type'        => array('display' => __('Type', 'hmib'),        'sort' => 'ASC',  'align' => 'right'),
-		'status'      => array('display' => __('Status', 'hmib'),      'sort' => 'DESC', 'align' => 'right')
+		'description' => array(
+			'display' => __('Hostname', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'hrswr.name' => array(
+			'display' => __('Process', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'left'
+		),
+		'path' => array(
+			'display' => __('Path', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'parameters' => array(
+			'display' => __('Parameters', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'perfCpu' => array(
+			'display' => __('CPU (Hrs)', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'perfMemory' => array(
+			'display' => __('Memory (MB)', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'type' => array(
+			'display' => __('Type', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'right'
+		),
+		'status' => array(
+			'display' => __('Status', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		)
 	);
 
 	$nav = html_nav_bar('hmib.php?action=running', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('Processes', 'hmib'), 'page', 'main');
@@ -811,53 +860,53 @@ function hmib_hardware() {
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-			),
+		),
 		'page' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-			),
+		),
 		'template' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'device' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'type' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'ostype' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '-1',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'filter' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'hrd.description',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
 			'options' => array('options' => 'sanitize_search_string')
-			)
+		)
 	);
 
 	validate_store_request_vars($filters, 'sess_hmib_hw');
@@ -866,7 +915,7 @@ function hmib_hardware() {
 	?>
 	<script type='text/javascript'>
 	function applyFilter() {
-		strURL  = '?action=hardware';
+		var strURL = 'hmib.php?action=hardware';
 		strURL += '&template=' + $('#template').val();
 		strURL += '&filter='   + $('#filter').val();
 		strURL += '&rows='     + $('#rows').val();
@@ -879,7 +928,7 @@ function hmib_hardware() {
 	}
 
 	function clearFilter() {
-		strURL = '?action=hardware&clear=true&header=false';
+		var strURL = 'hmib.php?action=hardware&clear=true&header=false';
 		loadPageNoHeader(strURL);
 	}
 
@@ -1080,11 +1129,31 @@ function hmib_hardware() {
 		$sql_where");
 
 	$display_text = array(
-		'host.description' => array('display' => __('Hostname', 'hmib'),             'sort' => 'ASC',  'align' => 'left'),
-		'hrd.description'  => array('display' => __('Hardware Description', 'hmib'), 'sort' => 'DESC', 'align' => 'left'),
-		'type'             => array('display' => __('Hardware Type', 'hmib'),        'sort' => 'ASC',  'align' => 'left'),
-		'status'           => array('display' => __('Status', 'hmib'),               'sort' => 'DESC', 'align' => 'right'),
-		'errors'           => array('display' => __('Errors', 'hmib'),               'sort' => 'DESC', 'align' => 'right')
+		'host.description' => array(
+			'display' => __('Hostname', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'hrd.description'  => array(
+			'display' => __('Hardware Description', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'left'
+		),
+		'type' => array(
+			'display' => __('Hardware Type', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'status' => array(
+			'display' => __('Status', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'errors' => array(
+			'display' => __('Errors', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		)
 	);
 
 	$nav = html_nav_bar('hmib.php?action=hardware', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('Devices', 'hmib'), 'page', 'main');
@@ -1139,53 +1208,53 @@ function hmib_storage() {
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-			),
+		),
 		'page' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-			),
+		),
 		'template' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'device' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'type' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'ostype' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '-1',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'filter' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'hrsto.description',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
 			'options' => array('options' => 'sanitize_search_string')
-			)
+		)
 	);
 
 	validate_store_request_vars($filters, 'sess_hmib_st');
@@ -1194,7 +1263,7 @@ function hmib_storage() {
 	?>
 	<script type='text/javascript'>
 	function applyFilter() {
-		strURL  = '?action=storage';
+		var strURL = 'hmib.php?action=storage';
 		strURL += '&template=' + $('#template').val();
 		strURL += '&filter='   + $('#filter').val();
 		strURL += '&rows='     + $('#rows').val();
@@ -1207,7 +1276,7 @@ function hmib_storage() {
 	}
 
 	function clearFilter() {
-		strURL = '?action=storage&clear=true&header=false';
+		var strURL = 'hmib.php?action=storage&clear=true&header=false';
 		loadPageNoHeader(strURL);
 	}
 
@@ -1408,14 +1477,46 @@ function hmib_storage() {
 		$sql_where");
 
 	$display_text = array(
-		'host.description'  => array('display' => __('Hostname', 'hmib'),            'sort' => 'ASC',  'align' => 'left'),
-		'hrsto.description' => array('display' => __('Storage Description', 'hmib'), 'sort' => 'DESC', 'align' => 'left'),
-		'type'              => array('display' => __('Storage Type', 'hmib'),        'sort' => 'ASC',  'align' => 'left'),
-		'failures'          => array('display' => __('Errors', 'hmib'),              'sort' => 'DESC', 'align' => 'right'),
-		'percent'           => array('display' => __('Percent Used', 'hmib'),        'sort' => 'DESC', 'align' => 'right'),
-		'used'              => array('display' => __('Used (MB)', 'hmib'),           'sort' => 'DESC', 'align' => 'right'),
-		'size'              => array('display' => __('Total (MB)', 'hmib'),          'sort' => 'DESC', 'align' => 'right'),
-		'allocationUnits'   => array('display' => __('Alloc (KB)', 'hmib'),          'sort' => 'DESC', 'align' => 'right')
+		'host.description' => array(
+			'display' => __('Hostname', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'hrsto.description' => array(
+			'display' => __('Storage Description', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'left'
+		),
+		'type' => array(
+			'display' => __('Storage Type', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'failures' => array(
+			'display' => __('Errors', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'percent' => array(
+			'display' => __('Percent Used', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'used' => array(
+			'display' => __('Used (MB)', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'size' => array(
+			'display' => __('Total (MB)', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'allocationUnits' => array(
+			'display' => __('Alloc (KB)', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		)
 	);
 
 	$nav = html_nav_bar('hmib.php?action=storage', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('Volumes', 'hmib'), 'page', 'main');
@@ -1473,48 +1574,48 @@ function hmib_devices() {
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-			),
+		),
 		'page' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-			),
+		),
 		'template' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
 			'options' => array('options' => 'sanitize_search_string'),
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'status' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'ostype' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'filter' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'description',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
 			'options' => array('options' => 'sanitize_search_string')
-			)
+		)
 	);
 
 	validate_store_request_vars($filters, 'sess_hmib_devices');
@@ -1523,7 +1624,7 @@ function hmib_devices() {
 	?>
 	<script type='text/javascript'>
 	function applyFilter() {
-		strURL  = '?action=devices';
+		var strURL  = 'hmib.php?action=devices';
 		strURL += '&ostype='   + $('#ostype').val();
 		strURL += '&status='   + $('#status').val();
 		strURL += '&process='  + $('#process').val();
@@ -1536,7 +1637,7 @@ function hmib_devices() {
 	}
 
 	function clearFilter() {
-		strURL = '?action=devices&clear=true&header=false';
+		var strURL = 'hmib.php?action=devices&clear=true&header=false';
 		loadPageNoHeader(strURL);
 	}
 
@@ -1754,19 +1855,66 @@ function hmib_devices() {
 		$sql_where");
 
 	$display_text = array(
-		'nosort'      => array('display' => __('Actions', 'hmib'),       'sort' => 'ASC',  'align' => 'left'),
-		'description' => array('display' => __('Hostname', 'hmib'),      'sort' => 'ASC',  'align' => 'left'),
-		'host_status' => array('display' => __('Status', 'hmib'),        'sort' => 'DESC', 'align' => 'right'),
-		'uptime'      => array('display' => __('Uptime(d:h:m)', 'hmib'), 'sort' => 'DESC', 'align' => 'right'),
-		'users'       => array('display' => __('Users', 'hmib'),         'sort' => 'DESC', 'align' => 'right'),
-		'cpuPercent'  => array('display' => __('CPU %%%', 'hmib'),       'sort' => 'DESC', 'align' => 'right'),
-		'numCpus'     => array('display' => __('CPUs', 'hmib'),          'sort' => 'DESC', 'align' => 'right'),
-		'processes'   => array('display' => __('Processes', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
-		'memSize'     => array('display' => __('Total Mem', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
-		'memUsed'     => array('display' => __('Used Mem', 'hmib'),      'sort' => 'DESC', 'align' => 'right'),
-		'swapSize'    => array('display' => __('Total Swap', 'hmib'),    'sort' => 'DESC', 'align' => 'right'),
-		'swapUsed'    => array('display' => __('Used Swap', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
-
+		'nosort' => array(
+			'display' => __('Actions', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'description' => array(
+			'display' => __('Hostname', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'host_status' => array(
+			'display' => __('Status', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'uptime' => array(
+			'display' => __('Uptime(d:h:m)', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'users' => array(
+			'display' => __('Users', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'cpuPercent' => array(
+			'display' => __('CPU %%%', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'numCpus' => array(
+			'display' => __('CPUs', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'processes' => array(
+			'display' => __('Processes', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'memSize' => array(
+			'display' => __('Total Mem', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'memUsed' => array(
+			'display' => __('Used Mem', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'swapSize' => array(
+			'display' => __('Total Swap', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'swapUsed' => array(
+			'display' => __('Used Swap', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		)
 	);
 
 	$nav = html_nav_bar('hmib.php?action=devices', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('Devices', 'hmib'), 'page', 'main');
@@ -1937,47 +2085,47 @@ function hmib_software() {
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-			),
+		),
 		'page' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-			),
+		),
 		'template' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'device' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'type' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'ostype' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-			),
+		),
 		'filter' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'name',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
 			'options' => array('options' => 'sanitize_search_string')
-			)
+		)
 	);
 
 	validate_store_request_vars($filters, 'sess_hmib_sw');
@@ -1986,7 +2134,7 @@ function hmib_software() {
 	?>
 	<script type='text/javascript'>
 	function applyFilter() {
-		strURL  = '?action=software';
+		var strURL = 'hmib.php?action=software';
 		strURL += '&template=' + $('#template').val();
 		strURL += '&filter='   + $('#filter').val();
 		strURL += '&rows='     + $('#rows').val();
@@ -1999,7 +2147,7 @@ function hmib_software() {
 	}
 
 	function clearFilter() {
-		strURL = '?action=software&clear=true&header=false';
+		var strURL = 'hmib.php?action=software&clear=true&header=false';
 		loadPageNoHeader(strURL);
 	}
 
@@ -2200,10 +2348,26 @@ function hmib_software() {
 		$sql_where");
 
 	$display_text = array(
-		'description' => array('display' => __('Hostname', 'hmib'),   'sort' => 'ASC',  'align' => 'left'),
-		'name'        => array('display' => __('Package', 'hmib'),    'sort' => 'DESC', 'align' => 'left'),
-		'type'        => array('display' => __('Type', 'hmib'),       'sort' => 'ASC',  'align' => 'left'),
-		'date'        => array('display' => __('Installed', 'hmib'),  'sort' => 'DESC', 'align' => 'right')
+		'description' => array(
+			'display' => __('Hostname', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'name' => array(
+			'display' => __('Package', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'left'
+		),
+		'type' => array(
+			'display' => __('Type', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'date' => array(
+			'display' => __('Installed', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		)
 	);
 
 	$nav = html_nav_bar('hmib.php?action=software', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('Applications', 'hmib'), 'page', 'main');
@@ -2266,108 +2430,122 @@ function hmib_tabs() {
 	$current_tab = get_request_var('action');
 
 	/* draw the tabs */
-	print "<div class='tabs'><nav><ul>\n";
+	print "<div class='tabs'><nav><ul>";
 
 	if (cacti_sizeof($tabs)) {
 		foreach (array_keys($tabs) as $tab_short_name) {
 			print "<li><a class='pic" . (($tab_short_name == $current_tab) ? " selected'" : "'") . " href='" . $config['url_path'] .
 				'plugins/hmib/hmib.php?' .
 				'action=' . $tab_short_name .
-				"'> " . $tabs[$tab_short_name] . "</a></li>\n";
+				"'> " . $tabs[$tab_short_name] . "</a></li>";
 		}
 	}
-	print "</ul></nav></div>\n";
+	print "</ul></nav></div>";
 }
 
 function hmib_summary() {
 	global $device_actions, $item_rows, $config;
 
-	/* ================= input validation ================= */
-	get_filter_request_var('htop');
-	get_filter_request_var('ptop');
-	/* ==================================================== */
+	/* ================= input validation and session storage ================= */
+	$clear_area = '';
 
-	/* clean up sort string */
-	if (isset_request_var('sort_column')) {
-		set_request_var('sort_column', sanitize_search_string(get_nfilter_request_var('sort_column')));
+	if (isset_request_var('clear')) {
+		$clear_area = get_nfilter_request_var('area');
+		unset_request_var('clear');
 	}
 
-	/* clean up sort string */
-	if (isset_request_var('sort_direction')) {
-		set_request_var('sort_direction', sanitize_search_string(get_nfilter_request_var('sort_direction')));
-	}
-
-	/* clean up search string */
-	if (isset_request_var('filter')) {
-		set_request_var('filter', sanitize_search_string(get_nfilter_request_var('filter')));
-	}
-
-	/* remember these search fields in session vars so we don't have
-	 * to keep passing them around
-	 */
-	if (isset_request_var('area') && get_nfilter_request_var('area') == 'processes') {
-		if (isset_request_var('clear')) {
-			kill_session_var('sess_hmib_proc_top');
-			kill_session_var('sess_hmib_proc_filter');
-			kill_session_var('sess_hmib_proc_sort_column');
-			kill_session_var('sess_hmib_proc_sort_direction');
-
-			unset_request_var('filter');
-			unset_request_var('ptop');
-			unset_request_var('sort_column');
-			unset_request_var('sort_direction');
-		}
-
-		if (isset_request_var('sort_column')) {
-			$_SESSION['sess_hmib_proc_sort_column']    = get_request_var('sort_column');
-			$_SESSION['sess_hmib_proc_sort_direction'] = get_request_var('sort_direction');
-		} elseif (!isset($_SESSION['sess_hmib_proc_sort_column'])) {
-			$_SESSION['sess_hmib_proc_sort_column']    = 'maxCpu';
-			$_SESSION['sess_hmib_proc_sort_direction'] = 'DESC';
-		}
-
-		if (!isset($_SESSION['sess_hmib_host_sort_column'])) {
-			$_SESSION['sess_hmib_host_sort_column']    = 'downHosts';
-			$_SESSION['sess_hmib_host_sort_direction'] = 'DESC';
-		}
-	} elseif (isset_request_var('area') && get_nfilter_request_var('area') == 'hosts') {
-		if (isset_request_var('clear')) {
-			kill_session_var('sess_hmib_host_top');
-			kill_session_var('sess_hmib_host_sort_column');
-			kill_session_var('sess_hmib_host_sort_direction');
-
-			unset_request_var('htop');
-			unset_request_var('sort_column');
-			unset_request_var('sort_direction');
-		}
-
-		if (isset_request_var('sort_column')) {
-			$_SESSION['sess_hmib_host_sort_column']    = get_request_var('sort_column');
-			$_SESSION['sess_hmib_host_sort_direction'] = get_request_var('sort_direction');
-		} elseif (!isset($_SESSION['sess_hmib_host_sort_column'])) {
-			$_SESSION['sess_hmib_host_sort_column']    = 'downHosts';
-			$_SESSION['sess_hmib_host_sort_direction'] = 'DESC';
-		}
-
-		if (!isset($_SESSION['sess_hmib_proc_sort_column'])) {
-			$_SESSION['sess_hmib_proc_sort_column'] = 'maxCpu';
-			$_SESSION['sess_hmib_proc_sort_direction'] = 'DESC';
-		}
+	if ($clear_area == 'processes') {
+		set_request_var('clear', true);
 	} else {
-		if (!isset($_SESSION['sess_hmib_host_sort_column'])) {
-			$_SESSION['sess_hmib_host_sort_column']    = 'downHosts';
-			$_SESSION['sess_hmib_host_sort_direction'] = 'DESC';
-		}
+		unset_request_var('clear');
+	}
 
-		if (!isset($_SESSION['sess_hmib_proc_sort_column'])) {
-			$_SESSION['sess_hmib_proc_sort_column']    = 'maxCpu';
-			$_SESSION['sess_hmib_proc_sort_direction'] = 'DESC';
+	$filters = array(
+		'ptop' => array(
+			'filter' => FILTER_VALIDATE_INT,
+			'pageset' => true,
+			'default' => read_config_option('hmib_top_processes')
+		),
+		'page' => array(
+			'filter' => FILTER_VALIDATE_INT,
+			'default' => '1'
+		),
+		'filter' => array(
+			'filter' => FILTER_DEFAULT,
+			'pageset' => true,
+			'default' => ''
+		),
+		'sort_column' => array(
+			'filter' => FILTER_CALLBACK,
+			'default' => 'maxCpu',
+			'options' => array('options' => 'sanitize_search_string')
+		),
+		'sort_direction' => array(
+			'filter' => FILTER_CALLBACK,
+			'default' => 'DESC',
+			'options' => array('options' => 'sanitize_search_string')
+		)
+	);
+
+	/* if we are operating on the hosts area, don't reset the sort data */
+	if (isset_request_var('area') && get_nfilter_request_var('area') != 'processes') {
+		unset($filters['sort_column']);
+		unset($filters['sort_direction']);
+
+		$sort_column    = get_nfilter_request_var('sort_column');
+		$sort_direction = get_nfilter_request_var('sort_direction');
+
+		unset_request_var('sort_column');
+		unset_request_var('sort_direction');
+	}
+
+	validate_store_request_vars($filters, 'sess_hmib_proc');
+	/* ================= input validation ================= */
+
+	if (isset_request_var('area') && get_nfilter_request_var('area') != 'processes') {
+		if ($sort_column != '') {
+			set_request_var('sort_column', $sort_column);
+			set_request_var('sort_direction', $sort_direction);
 		}
 	}
 
-	load_current_session_value('ptop',    'sess_hmib_proc_top', read_config_option('hmib_top_processes'));
-	load_current_session_value('htop',    'sess_hmib_host_top', read_config_option('hmib_top_types'));
-	load_current_session_value('filter',  'sess_hmib_proc_filter', '');
+	if ($clear_area == 'hosts') {
+		set_request_var('clear', true);
+	} else {
+		unset_request_var('clear');
+	}
+
+	if (!isset_request_var('area') || get_nfilter_request_var('area') !== 'hosts') {
+		unset_request_var('sort_column');
+		unset_request_var('sort_direction');
+	}
+
+	$filters = array(
+		'htop' => array(
+			'filter' => FILTER_VALIDATE_INT,
+			'pageset' => true,
+			'default' => read_config_option('hmib_top_types')
+		),
+		'sort_column' => array(
+			'filter' => FILTER_CALLBACK,
+			'default' => 'upHosts',
+			'options' => array('options' => 'sanitize_search_string')
+		),
+		'sort_direction' => array(
+			'filter' => FILTER_CALLBACK,
+			'default' => 'DESC',
+			'options' => array('options' => 'sanitize_search_string')
+		)
+	);
+
+	/* if we are operating on the processes area, don't reset the sort data */
+	if (isset_request_var('area') && get_nfilter_request_var('area') != 'hosts') {
+		unset($filters['sort_column']);
+		unset($filters['sort_direction']);
+	}
+
+	validate_store_request_vars($filters, 'sess_hmib_host');
+	/* ================= input validation ================= */
 
 	/* set some defaults */
 	$url     = $config['url_path'] . 'plugins/hmib/hmib.php';
@@ -2403,53 +2581,50 @@ function hmib_summary() {
 		$templates_missing = false;
 	}
 
-	?>
-	<script type='text/javascript'>
-	function applyFilter() {
-		strURL  = '?action=summary&area=hosts&header=false';
-		strURL += '&htop=' + $('#htop').val();
-		loadPageNoHeader(strURL);
-	}
-
-	function clearFilter() {
-		strURL = '?area=hosts&clear=true&header=false';
-		loadPageNoHeader(strURL);
-	}
-	</script>
-	<?php
-
 	html_start_box(__('Summary Filter', 'hmib'), '100%', '', '3', 'center', '');
 
 	?>
 	<tr class='even'>
 		<td>
 			<form name='host_summary'>
-			<table class='filterTable'>
-				<tr>
-					<td>
-						<?php print __('Top', 'hmib');?>
-					</td>
-					<td>
-						<select id='htop' onChange='applyFilter()'>
-							<option value='-1'<?php if (get_request_var('htop') == '-1') {?> selected<?php }?>><?php print __('All Records', 'hmib');?></option>
-							<option value='5'<?php if (get_request_var('htop') == '5') {?> selected<?php }?>><?php print __('%d Records', 5, 'hmib');?></option>
-							<option value='10'<?php if (get_request_var('htop') == '10') {?> selected<?php }?>><?php print __('%d Record', 10, 'hmib');?>s</option>
-							<option value='15'<?php if (get_request_var('htop') == '15') {?> selected<?php }?>><?php print __('%d Record', 15, 'hmib');?>s</option>
-							<option value='20'<?php if (get_request_var('htop') == '20') {?> selected<?php }?>><?php print __('%d Record', 20, 'hmib');?>s</option>
-						</select>
-					</td>
-					<td>
-						<span>
-							<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
-							<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
-						</span>
-					</td>
-					<td>
-						<?php print $templates_missing ? '<strong>' . __('NOTE: Import the Host MIB Device Package to view Graphs.', 'hmib') . '</strong>':'';?>
-					</td>
-				</tr>
-			</table>
+				<table class='filterTable'>
+					<tr>
+						<td>
+							<?php print __('Types', 'hmib');?>
+						</td>
+						<td>
+							<select id='htop' onChange='applyHostFilter()'>
+								<option value='-1'<?php if (get_request_var('htop') == '-1') {?> selected<?php }?>><?php print __('All Records', 'hmib');?></option>
+								<option value='5'<?php if (get_request_var('htop') == '5') {?> selected<?php }?>><?php print __('%d Records', 5, 'hmib');?></option>
+								<option value='10'<?php if (get_request_var('htop') == '10') {?> selected<?php }?>><?php print __('%d Record', 10, 'hmib');?>s</option>
+								<option value='15'<?php if (get_request_var('htop') == '15') {?> selected<?php }?>><?php print __('%d Record', 15, 'hmib');?>s</option>
+								<option value='20'<?php if (get_request_var('htop') == '20') {?> selected<?php }?>><?php print __('%d Record', 20, 'hmib');?>s</option>
+							</select>
+						</td>
+						<td>
+							<span>
+								<input id='refresh' type='button' onClick='applyHostFilter()' value='<?php print __('Go', 'hmib');?>'>
+								<input id='clear' type='button' onClick='clearHostFilter()' value='<?php print __('Clear', 'hmib');?>'>
+							</span>
+						</td>
+						<td>
+							<?php print $templates_missing ? '<strong>' . __('NOTE: Import the Host MIB Device Package to view Graphs.', 'hmib') . '</strong>':'';?>
+						</td>
+					</tr>
+				</table>
 			</form>
+			<script type='text/javascript'>
+			function applyHostFilter() {
+				var strURL = 'hmib.php?action=summary&area=hosts&header=false';
+				strURL += '&htop=' + $('#htop').val();
+				loadPageNoHeader(strURL);
+			}
+
+			function clearHostFilter() {
+				var strURL = 'hmib.php?action=summary&area=hosts&clear=true&header=false';
+				loadPageNoHeader(strURL);
+			}
+			</script>
 		</td>
 	</tr>
 	<?php
@@ -2458,12 +2633,10 @@ function hmib_summary() {
 
 	html_start_box(__('Device Type Summary Statistics', 'hmib'), '100%', '', '3', 'center', '');
 
-	if (!isset($_SESSION['sess_hmib_host_top'])) {
-		$limit = 'LIMIT ' . read_config_option('hmib_top_types');
-	} elseif ($_SESSION['sess_hmib_host_top'] == '-1') {
-		$limit = '';
-	} else {
-		$limit = 'LIMIT ' . $_SESSION['sess_hmib_host_top'];
+	if (get_request_var('htop') > 0) {
+		$limit = 'LIMIT ' . get_request_var('htop');
+	} elseif (get_request_var('htop') == '-1') {
+		$limit = 'LIMIT 20';
 	}
 
 	$sql = 'SELECT
@@ -2494,23 +2667,91 @@ function hmib_summary() {
 	$rows = db_fetch_assoc($sql);
 
 	$display_text = array(
-		'nosort'        => array('display' => __('Actions', 'hmib'),     'sort' => 'ASC',  'align' => 'left'),
-		'name'          => array('display' => __('Type', 'hmib'),        'sort' => 'ASC',  'align' => 'left'),
-		'(version/1)'   => array('display' => __('Version', 'hmib'),     'sort' => 'ASC',  'align' => 'right'),
-		'upHosts'       => array('display' => __('Up', 'hmib'),          'sort' => 'DESC', 'align' => 'right'),
-		'recHosts'      => array('display' => __('Recovering', 'hmib'),  'sort' => 'DESC', 'align' => 'right'),
-		'downHosts'     => array('display' => __('Down', 'hmib'),        'sort' => 'DESC', 'align' => 'right'),
-		'disabledHosts' => array('display' => __('Disabled', 'hmib'),    'sort' => 'DESC', 'align' => 'right'),
-		'users'         => array('display' => __('Logins', 'hmib'),      'sort' => 'DESC', 'align' => 'right'),
-		'cpus'          => array('display' => __('CPUS', 'hmib'),        'sort' => 'DESC', 'align' => 'right'),
-		'avgCpuPercent' => array('display' => __('Avg CPU', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
-		'maxCpuPercent' => array('display' => __('Max CPU', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
-		'avgMem'        => array('display' => __('Avg Mem', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
-		'maxMem'        => array('display' => __('Max Mem', 'hmib'),     'sort' => 'DESC', 'align' => 'right'),
-		'avgSwap'       => array('display' => __('Avg Swap', 'hmib'),    'sort' => 'DESC', 'align' => 'right'),
-		'maxSwap'       => array('display' => __('Max Swap', 'hmib'),    'sort' => 'DESC', 'align' => 'right'),
-		'avgProcesses'  => array('display' => __('Avg Proc', 'hmib'),    'sort' => 'DESC', 'align' => 'right'),
-		'maxProcesses'  => array('display' => __('Max Proc', 'hmib'),    'sort' => 'DESC', 'align' => 'right')
+		'nosort' => array(
+			'display' => __('Actions', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'name' => array(
+			'display' => __('Type', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'(version/1)' => array(
+			'display' => __('Version', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'right'
+		),
+		'upHosts' => array(
+			'display' => __('Up', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'recHosts' => array(
+			'display' => __('Recovering', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'downHosts' => array(
+			'display' => __('Down', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'disabledHosts' => array(
+			'display' => __('Disabled', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'users' => array(
+			'display' => __('Logins', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'cpus' => array(
+			'display' => __('CPUS', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'avgCpuPercent' => array(
+			'display' => __('Avg CPU', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'maxCpuPercent' => array(
+			'display' => __('Max CPU', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'avgMem' => array(
+			'display' => __('Avg Mem', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'maxMem' => array(
+			'display' => __('Max Mem', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'avgSwap' => array(
+			'display' => __('Avg Swap', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'maxSwap' => array(
+			'display' => __('Max Swap', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'avgProcesses' => array(
+			'display' => __('Avg Proc', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'maxProcesses' => array(
+			'display' => __('Max Proc', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		)
 	);
 
 	html_header_sort($display_text, $_SESSION['sess_hmib_host_sort_column'], $_SESSION['sess_hmib_host_sort_direction'], false, 'hmib.php?action=summary&area=hosts');
@@ -2530,12 +2771,12 @@ function hmib_summary() {
 			$graph_url   = hmib_get_graph_url($htdq, 0, $host_id, $row['id']);
 
 			$graph_ncpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', $row['cpus'], false);
-			$graph_acpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', round($row['avgCpuPercent'],2), false);
-			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', round($row['maxCpuPercent'],2), false);
+			$graph_acpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', round($row['avgCpuPercent'], 2), false);
+			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', round($row['maxCpuPercent'], 2), false);
 
-			$graph_users = hmib_get_graph_template_url($hugt, $row['id'], 0, $row['users'], false);
-			$graph_aproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['avgProcesses'],0), false);
-			$graph_mproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['maxProcesses'],0), false);
+			$graph_users = hmib_get_graph_template_url($hugt, $row['id'], 0, number_format_i18n($row['users'], 0), false);
+			$graph_aproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['avgProcesses'], 0), false);
+			$graph_mproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['maxProcesses'], 0), false);
 
 			$aurl  = "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&ostype=" . $row['host_type']) . "'><i class='fas fa-server deviceUp' title='" . __('View Devices', 'hmib') . "'></i></a>";
 
@@ -2587,80 +2828,75 @@ function hmib_summary() {
 	html_start_box(__('Process Summary Filter', 'hmib'), '100%', '', '3', 'center', '');
 
 	?>
-	<script type='text/javascript'>
-	function applyProcFilter() {
-		strURL  = '?action=summary&area=processes';
-		strURL += '&filter='  + $('#filter').val();
-		strURL += '&ptop='    + $('#ptop').val();
-		strURL += '&header=false';
-		loadPageNoHeader(strURL);
-	}
-
-	function clearProc() {
-		strURL = '?action=summary&area=processes&clear=true&header=false';
-		loadPageNoHeader(strURL);
-	}
-
-	$(function() {
-		$('#proc_summary').submit(function(event) {
-			event.preventDefault();
-			applyProcFilter();
-		});
-	});
-	</script>
-	<?php
-
-	?>
 	<tr class='even'>
 		<td>
 			<form id='proc_summary'>
-			<table class='filterTable'>
-				<tr>
-					<td>
-						<?php print __('Search', 'hmib');?>
-					</td>
-					<td>
-						<input type='text' size='25' id='filter' value='<?php print html_escape_request_var('filter');?>'>
-					</td>
-					<td>
-						<?php print __('Top', 'hmib');?>
-					</td>
-					<td>
-						<select id='ptop' onChange='applyProcFilter()'>
-							<option value='-1'<?php if (get_request_var('ptop') == '-1') {?> selected<?php }?>><?php print __('All Records', 'hmib');?></option>
-							<option value='5'<?php if (get_request_var('ptop') == '5') {?> selected<?php }?>><?php print __('%d Records', 5, 'hmib');?></option>
-							<option value='10'<?php if (get_request_var('ptop') == '10') {?> selected<?php }?>><?php print __('%d Records', 10, 'hmib');?></option>
-							<option value='15'<?php if (get_request_var('ptop') == '15') {?> selected<?php }?>><?php print __('%d Records', 15, 'hmib');?></option>
-							<option value='20'<?php if (get_request_var('ptop') == '20') {?> selected<?php }?>><?php print __('%d Records', 20, 'hmib');?></option>
-						</select>
-					</td>
-					<td>
-						<span>
-							<input id='refresh' type='button' onClick='applyProcFilter()' value='<?php print __('Go', 'hmib');?>'>
-							<input id='clear' type='button' onClick='clearProc()' value='<?php print __('Clear', 'hmib');?>'>
-						</span>
-					</td>
-					<td>
-						&nbsp;&nbsp;<?php print $templates_missing ? '<strong>' . __('NOTE: Import the Host MIB Device Package to view Graphs.', 'hmib') . '</strong>':'';?>
-					</td>
-				</tr>
-			</table>
+				<table class='filterTable'>
+					<tr>
+						<td>
+							<?php print __('Search', 'hmib');?>
+						</td>
+						<td>
+							<input type='text' size='30' id='filter' value='<?php print html_escape_request_var('filter');?>'>
+						</td>
+						<td>
+							<?php print __('Processes', 'hmib');?>
+						</td>
+						<td>
+							<select id='ptop' onChange='applyProcFilter()'>
+								<option value='5'<?php if (get_request_var('ptop') == '5') {?> selected<?php }?>><?php print __('%d Records', 5, 'hmib');?></option>
+								<option value='10'<?php if (get_request_var('ptop') == '10') {?> selected<?php }?>><?php print __('%d Records', 10, 'hmib');?></option>
+								<option value='15'<?php if (get_request_var('ptop') == '15') {?> selected<?php }?>><?php print __('%d Records', 15, 'hmib');?></option>
+								<option value='20'<?php if (get_request_var('ptop') == '20') {?> selected<?php }?>><?php print __('%d Records', 20, 'hmib');?></option>
+							</select>
+						</td>
+						<td>
+							<span>
+								<input id='refresh' type='button' onClick='applyProcFilter()' value='<?php print __('Go', 'hmib');?>'>
+								<input id='clear' type='button' onClick='clearProcFilter()' value='<?php print __('Clear', 'hmib');?>'>
+							</span>
+						</td>
+						<td>
+							&nbsp;&nbsp;<?php print $templates_missing ? '<strong>' . __('NOTE: Import the Host MIB Device Package to view Graphs.', 'hmib') . '</strong>':'';?>
+						</td>
+					</tr>
+				</table>
 			</form>
+			<script type='text/javascript'>
+			function applyProcFilter() {
+				var strURL = 'hmib.php?action=summary&area=processes';
+				strURL += '&filter='  + $('#filter').val();
+				strURL += '&ptop='    + $('#ptop').val();
+				strURL += '&header=false';
+				loadPageNoHeader(strURL);
+			}
+
+			function clearProcFilter() {
+				var strURL = 'hmib.php?action=summary&area=processes&clear=true&header=false';
+				loadPageNoHeader(strURL);
+			}
+
+			$(function() {
+				$('#proc_summary').submit(function(event) {
+					event.preventDefault();
+					applyProcFilter();
+				});
+			});
+			</script>
 		</td>
 	</tr>
 	<?php
 
 	html_end_box(false);
 
-	html_start_box(__('Process Summary Statistics', 'hmib'), '100%', '', '3', 'center', '');
-
-	if (!isset($_SESSION['sess_hmib_proc_top'])) {
-		$limit = 'LIMIT ' . read_config_option('hmib_top_processes');
-	} elseif ($_SESSION['sess_hmib_proc_top'] == '-1') {
-		$limit = '';
+	if (get_request_var('ptop') > 0) {
+		$num_rows = get_request_var('ptop');
 	} else {
-		$limit = 'LIMIT ' . $_SESSION['sess_hmib_proc_top'];
+		$num_rows = 20;
 	}
+
+	$sql_limit = 'LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
+	$sql_order = 'ORDER BY ' . $_SESSION['sess_hmib_proc_sort_column'] . ' ' . $_SESSION['sess_hmib_proc_sort_direction'];
 
 	if (strlen(get_request_var('filter'))) {
 		$sql_where = 'AND (
@@ -2684,23 +2920,68 @@ function hmib_summary() {
 		WHERE hrswr.name!='System Idle Process' AND hrswr.name!=''
 		$sql_where
 		GROUP BY hrswr.name
-		ORDER BY " . $_SESSION['sess_hmib_proc_sort_column'] . ' ' . $_SESSION['sess_hmib_proc_sort_direction'] . ' ' . $limit;
+		$sql_order
+		$sql_limit";
 
 	$rows = db_fetch_assoc($sql);
 
-	//print $sql;
+	$total_rows = db_fetch_cell("SELECT COUNT(DISTINCT name)
+		FROM plugin_hmib_hrSWRun
+		$sql_where");
 
 	$display_text = array(
-		'nosort'       => array('display' => __('Actions', 'hmib'),      'sort' => 'ASC',  'align' => 'left'),
-		'name'         => array('display' => __('Process Name', 'hmib'), 'sort' => 'ASC',  'align' => 'left'),
-		'paths'        => array('display' => __('Num Paths', 'hmib'),    'sort' => 'DESC', 'align' => 'right'),
-		'numHosts'     => array('display' => __('Hosts', 'hmib'),        'sort' => 'DESC', 'align' => 'right'),
-		'numProcesses' => array('display' => __('Processes', 'hmib'),    'sort' => 'DESC', 'align' => 'right'),
-		'avgCpu'       => array('display' => __('Avg CPU', 'hmib'),      'sort' => 'DESC', 'align' => 'right'),
-		'maxCpu'       => array('display' => __('Max CPU', 'hmib'),      'sort' => 'DESC', 'align' => 'right'),
-		'avgMemory'    => array('display' => __('Avg Memory', 'hmib'),   'sort' => 'DESC', 'align' => 'right'),
-		'maxMemory'    => array('display' => __('Max Memory', 'hmib'),   'sort' => 'DESC', 'align' => 'right')
+		'nosort' => array(
+			'display' => __('Actions', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'name' => array(
+			'display' => __('Process Name', 'hmib'),
+			'sort'    => 'ASC',
+			'align'   => 'left'
+		),
+		'paths' => array(
+			'display' => __('Num Paths', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'numHosts' => array(
+			'display' => __('Hosts', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'numProcesses' => array(
+			'display' => __('Processes', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'avgCpu' => array(
+			'display' => __('Avg CPU', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'maxCpu' => array(
+			'display' => __('Max CPU', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'avgMemory' => array(
+			'display' => __('Avg Memory', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		),
+		'maxMemory' => array(
+			'display' => __('Max Memory', 'hmib'),
+			'sort'    => 'DESC',
+			'align'   => 'right'
+		)
 	);
+
+	$nav = html_nav_bar('hmib.php?action=summary', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('Summary Stats', 'hmib'), 'page', 'main');
+
+	print $nav;
+
+	html_start_box('Process Summary Statistics', '100%', '', '3', 'center', '');
 
 	html_header_sort($display_text, $_SESSION['sess_hmib_proc_sort_column'], $_SESSION['sess_hmib_proc_sort_direction'], false, 'hmib.php?action=summary&area=processes');
 
@@ -2732,9 +3013,9 @@ function hmib_summary() {
 			form_selectable_cell($url, $id, '1%');
 			form_selectable_cell(html_escape($row['name']), $id);
 
-			form_selectable_cell($row['paths'], $id, '', 'right');
-			form_selectable_cell($row['numHosts'], $id, '', 'right');
-			form_selectable_cell($row['numProcesses'], $id, '', 'right');
+			form_selectable_cell(number_format_i18n($row['paths']), $id, '', 'right');
+			form_selectable_cell(number_format_i18n($row['numHosts']), $id, '', 'right');
+			form_selectable_cell(number_format_i18n($row['numProcesses']), $id, '', 'right');
 
 			form_selectable_cell(__('%s Hrs', number_format_i18n($row['avgCpu']/3600,0), 'hmib'), $id, '', 'right');
 			form_selectable_cell(__('%s Hrs', number_format_i18n($row['maxCpu']/3600,0), 'hmib'), $id, '', 'right');
@@ -2750,6 +3031,10 @@ function hmib_summary() {
 	}
 
 	html_end_box();
+
+	if (cacti_sizeof($rows)) {
+		print $nav;
+	}
 }
 
 function hmib_get_device_status_url($count, $host_type, $status) {

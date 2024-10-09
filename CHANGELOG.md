@@ -1,5 +1,9 @@
 ChangeLog
 
+--- develop ---
+* feature: Add page counter to the processes filter for the Summary tab
+* issue#35: Hmib tab produces fatal memory error no matter the amount of memory allocated
+
 --- 3.5 ---
 * feature: Add new Data Query to track Application statistics at the Device Level
 * issue#33: Escaping issues with SQL arguments
