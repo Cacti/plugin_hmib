@@ -2844,10 +2844,13 @@ function hmib_summary() {
 						</td>
 						<td>
 							<select id='ptop' onChange='applyProcFilter()'>
-								<option value='5'<?php if (get_request_var('ptop') == '5') {?> selected<?php }?>><?php print __('%d Records', 5, 'hmib');?></option>
-								<option value='10'<?php if (get_request_var('ptop') == '10') {?> selected<?php }?>><?php print __('%d Records', 10, 'hmib');?></option>
-								<option value='15'<?php if (get_request_var('ptop') == '15') {?> selected<?php }?>><?php print __('%d Records', 15, 'hmib');?></option>
-								<option value='20'<?php if (get_request_var('ptop') == '20') {?> selected<?php }?>><?php print __('%d Records', 20, 'hmib');?></option>
+								<?php
+								$processes = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50);
+
+								foreach($processes as $p) {
+									print "<option value='$p'" . (get_request_var('ptop') == $p ? ' selected':'') . '>' . __('%d Records', $p, 'hmib') . '</option>';
+								}
+								?>
 							</select>
 						</td>
 						<td>
@@ -3003,14 +3006,14 @@ function hmib_summary() {
 
 			form_alternate_row();
 
-			$url = "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&process=" . $row['name']) . "'>
+			$furl = "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&process=" . $row['name']) . "'>
 				<i class='fas fa-server deviceUp' title='" . __('View Devices', 'hmib') . "'></i>
 			</a>" .
 			"<a class='pic' href='" . html_escape("$url?reset=1&action=running&process=" . $row['name']) . "'>
 				<i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i>
 			</a>" . $graph_url;
 
-			form_selectable_cell($url, $id, '1%');
+			form_selectable_cell($furl, $id, '1%');
 			form_selectable_cell(html_escape($row['name']), $id);
 
 			form_selectable_cell(number_format_i18n($row['paths']), $id, '', 'right');
