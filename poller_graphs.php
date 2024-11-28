@@ -374,7 +374,7 @@ function add_summary_graphs($host_id, $host_template) {
 					if (cacti_sizeof($output)) {
 						print implode(PHP_EOL, $output);
 					} else {
-						print 'Graph command completed sucessfully without returning any data.' . PHP_EOL;
+						print 'Graph command completed successfully without returning any data.' . PHP_EOL;
 					}
 				} else {
 					print 'Graph command completed with errors.' . PHP_EOL;
