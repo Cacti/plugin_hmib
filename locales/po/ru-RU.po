@@ -4,19 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr ""
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2024-06-08 09:44-0400\n"
-"PO-Revision-Date: 2024-06-08 10:00-0400\n"
-"Last-Translator: Vladyslav V. Prodan <akapulko@gmail.com>\n"
-"Language-Team: Russian <http://translate.cacti.net/projects/cacti/hmib/ru/>\n"
-"Language: ru_RU\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 3.4.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2024-12-06 19:24+0000\nLast-Translator: Anton Zhuravlev <baka109g@gmail.com>\nLanguage-Team: Russian <http://translate.cacti.net/projects/cacti/hmib/ru/>\nLanguage: ru-RU\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\nX-Generator: Weblate 4.8.1\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -288,7 +276,7 @@ msgstr "Действия"
 
 #: hmib.php:1760
 msgid "Uptime(d:h:m)"
-msgstr "Время безотказной работы (d:h:m)"
+msgstr "Время работы(d:h:m)"
 
 #: hmib.php:1761
 msgid "Users"
@@ -300,15 +288,15 @@ msgstr "CPU %"
 
 #: hmib.php:1763
 msgid "CPUs"
-msgstr "процессоры"
+msgstr "Процессоры"
 
 #: hmib.php:1765
 msgid "Total Mem"
-msgstr "Всего Мем"
+msgstr "Всего памяти"
 
 #: hmib.php:1766
 msgid "Used Mem"
-msgstr "Бывшая в употреблении память"
+msgstr "Используемая память"
 
 #: hmib.php:1767
 msgid "Total Swap"
@@ -340,7 +328,7 @@ msgstr "Просмотр графиков"
 
 #: hmib.php:1849
 msgid "No Graphs Defined"
-msgstr "Нет Определенных графиков"
+msgstr "Графики не определены"
 
 #: hmib.php:1884
 msgid "No Devices Found"
@@ -430,7 +418,7 @@ msgstr "Логины"
 
 #: hmib.php:2505
 msgid "CPUS"
-msgstr "ПРОЦЕССОР"
+msgstr "Процессоры"
 
 #: hmib.php:2506 hmib.php:2699
 msgid "Avg CPU"
@@ -759,7 +747,7 @@ msgstr "Отметьте это поле, если вы хотите, чтоб�
 
 #: setup.php:392
 msgid "Automatically Discover Cacti Devices"
-msgstr "Автоматически открывать для себя кактусовые устройства"
+msgstr "Автоматически обнаруживать устройства Cacti"
 
 #: setup.php:393
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
@@ -816,7 +804,7 @@ msgstr "Какое максимальное количество одновре�
 #: setup.php:438
 #, php-format
 msgid "%d Process"
-msgstr "Процесс %d"
+msgstr "%d Процесс"
 
 #: setup.php:450
 msgid "Host Auto Discovery Frequency"
@@ -824,11 +812,11 @@ msgstr "Частота автоматического обнаружения х�
 
 #: setup.php:454
 msgid "Auto Discovery Frequency"
-msgstr "Частота автоматического обнаружения"
+msgstr "Настройка частоты автоматического обнаружения"
 
 #: setup.php:455
 msgid "How often do you want to look for new Cacti Devices?"
-msgstr "Как часто вы хотите искать новые устройства Cacti Devices?"
+msgstr "Как часто вы хотите искать новые устройства Cacti?"
 
 #: setup.php:461
 msgid "Host Graph Automation"
@@ -840,7 +828,7 @@ msgstr "Автоматически добавлять новые графики"
 
 #: setup.php:466
 msgid "How often do you want to check for new objects to graph?"
-msgstr "Как часто вы хотите проверять новые объекты для графов?"
+msgstr "Как часто вы хотите проверять новые объекты для графиков?"
 
 #: setup.php:470
 msgid "Never"
@@ -854,7 +842,7 @@ msgstr "%d Час"
 #: setup.php:472 setup.php:536 setup.php:537 setup.php:538
 #, php-format
 msgid "%d Hours"
-msgstr "%d Часа(ов)"
+msgstr "%d Часов"
 
 #: setup.php:473 setup.php:539
 #, php-format
@@ -864,7 +852,7 @@ msgstr "%d День"
 #: setup.php:474
 #, php-format
 msgid "%d Days"
-msgstr "%d Дня(ей)"
+msgstr "%d Дней"
 
 #: setup.php:477
 msgid "Host MIB Table Collection Frequencies"
@@ -896,7 +884,7 @@ msgstr "Как часто вы хотите сканировать на нали
 
 #: setup.php:502
 msgid "Storage Frequency"
-msgstr "Частота хранения Периодичность хранения"
+msgstr "Частота хранения"
 
 #: setup.php:503
 msgid "How often do you want to scan for Storage performance data?"
@@ -912,7 +900,7 @@ msgstr "Как часто требуется сканирование для п�
 
 #: setup.php:516
 msgid "Processor Frequency"
-msgstr "Частота процессора Частота процессора"
+msgstr "Частота процессора"
 
 #: setup.php:517
 msgid "How often do you want to scan for Processor performance data?"
