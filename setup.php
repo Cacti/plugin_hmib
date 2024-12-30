@@ -653,6 +653,10 @@ function hmib_show_tab() {
 function hmib_get_cpu($host_index) {
 	global $called_by_script_server;
 
+	if (!db_table_exists('plugin_hmib_hrProcessor')) {
+		return $host_index;
+	}
+
 	$host_id = $host_index['host_id'];
 	$index   = $host_index['index'];
 
@@ -683,6 +687,10 @@ function hmib_get_cpu($host_index) {
 function hmib_get_cpu_indexes($host_index) {
 	global $called_by_script_server;
 
+	if (!db_table_exists('plugin_hmib_hrProcessor')) {
+		return $host_index;
+	}
+
 	$host_id = $host_index['host_id'];
 	$rarray  = array();
 
@@ -705,6 +713,10 @@ function hmib_get_cpu_indexes($host_index) {
 
 function hmib_get_disk($host_index) {
 	global $called_by_script_server;
+
+	if (!db_table_exists('plugin_hmib_hrStorage')) {
+		return $host_index;
+	}
 
 	$host_id = $host_index['host_id'];
 	$index   = $host_index['index'];
