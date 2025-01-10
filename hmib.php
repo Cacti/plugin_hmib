@@ -3107,18 +3107,20 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
 
 	if (!empty($graph_template)) {
 		if ($host_type > 0) {
-			$sql_join  = 'INNER JOIN plugin_hmib_hrSystem AS hrs ON hrs.host_id = gl.host_id';
-			$sql_where .= ' AND hrs.host_type = ?';
+			$sql_join     = 'INNER JOIN plugin_hmib_hrSystem AS hrs ON hrs.host_id = gl.host_id';
+			$sql_where   .= ' AND hrs.host_type = ?';
 			$sql_params[] = $host_type;
 
 			if ($host_id > 0) {
-				$sql_where .= ' AND gl.host_id = ?';
+				$sql_where   .= ' AND gl.host_id = ?';
 				$sql_params[] = $host_id;
 			}
 		} elseif ($host_id > 0) {
-			$sql_join  = '';
-			$sql_where .= ' AND gl.host_id = ?';
+			$sql_join     = '';
+			$sql_where   .= ' AND gl.host_id = ?';
 			$sql_params[] = $host_id;
+		} else {
+			$sql_join     = '';
 		}
 
 		$graphs = db_fetch_assoc_prepared("SELECT gl.*
