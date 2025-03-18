@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-03-14 13:09+0000\nLast-Translator: Daniel Nylander <weblate@danielnylander.se>\nLanguage-Team: Swedish <http://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 4.8.1\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-03-18 09:57+0000\nLast-Translator: Daniel Nylander <weblate@danielnylander.se>\nLanguage-Team: Swedish <http://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 4.8.1\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -22,11 +22,11 @@ msgstr "Operativsystem"
 
 #: hmib.php:39
 msgid "Device Driver"
-msgstr "Drivrutin"
+msgstr "Enhetsdrivrutin"
 
 #: hmib.php:40
 msgid "Application"
-msgstr "Ansökning"
+msgstr "Applikation"
 
 #: hmib.php:44 hmib.php:53
 msgid "Running"
@@ -38,7 +38,7 @@ msgstr "Runnable"
 
 #: hmib.php:46
 msgid "Not Runnable"
-msgstr "Ej Runnable"
+msgstr "Inte körbar"
 
 #: hmib.php:47
 msgid "Invalid"
@@ -155,7 +155,7 @@ msgstr "Parametrar"
 
 #: hmib.php:738
 msgid "CPU (Hrs)"
-msgstr "CPU (Hrs)"
+msgstr "CPU (tim)"
 
 #: hmib.php:739
 msgid "Memory (MB)"
@@ -188,11 +188,11 @@ msgstr "Total storlek [MB]:"
 
 #: hmib.php:799
 msgid "Avg. CPU [h]:"
-msgstr "Avg. CPU [h]:"
+msgstr "Genom. CPU [h]:"
 
 #: hmib.php:800
 msgid "Avg. Size [MB]:"
-msgstr "Avg. Storlek [MB]:"
+msgstr "Genom. storlek [MB]:"
 
 #: hmib.php:895
 msgid "Hardware Inventory"
@@ -224,7 +224,7 @@ msgstr "Lagringsutrymme"
 
 #: hmib.php:1334 hmib.php:1421
 msgid "Volumes"
-msgstr "volymerna"
+msgstr "Volymer"
 
 #: hmib.php:1412
 msgid "Storage Description"
@@ -296,7 +296,7 @@ msgstr "Totalt Mem"
 
 #: hmib.php:1766
 msgid "Used Mem"
-msgstr "Används Mem"
+msgstr "Använt minne"
 
 #: hmib.php:1767
 msgid "Total Swap"
@@ -304,7 +304,7 @@ msgstr "Totalt byte"
 
 #: hmib.php:1768
 msgid "Used Swap"
-msgstr "Använd byte"
+msgstr "Använd växling"
 
 #: hmib.php:1825 hmib.php:2542
 msgid "View Storage"
@@ -340,7 +340,7 @@ msgstr "Programvaru Inventory"
 
 #: hmib.php:2126 hmib.php:2209
 msgid "Applications"
-msgstr "Ansökningar"
+msgstr "Applikationer"
 
 #: hmib.php:2204
 msgid "Package"
@@ -368,7 +368,7 @@ msgstr "Hårdvara"
 
 #: hmib.php:2260
 msgid "Use History"
-msgstr "Använd historia"
+msgstr "Användningshistorik"
 
 #: hmib.php:2261
 msgid "Inventory"
@@ -393,12 +393,12 @@ msgstr "Alla poster"
 #: hmib.php:2435 hmib.php:2631 hmib.php:2632 hmib.php:2633 hmib.php:2634
 #, php-format
 msgid "%d Records"
-msgstr "% d poster"
+msgstr "%d poster"
 
 #: hmib.php:2436 hmib.php:2437 hmib.php:2438
 #, php-format
 msgid "%d Record"
-msgstr "% d Record"
+msgstr "%d post"
 
 #: hmib.php:2448 hmib.php:2644
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
@@ -406,7 +406,7 @@ msgstr "OBS: Importera värd MIB-enhetspaketet för att visa grafer."
 
 #: hmib.php:2459
 msgid "Device Type Summary Statistics"
-msgstr "Enhetstyp Sammanfattning Statistik"
+msgstr "Sammanfattande statistik för enhetstyp"
 
 #: hmib.php:2499 hmib_types.php:754
 msgid "Version"
@@ -438,7 +438,7 @@ msgstr "Max Mem"
 
 #: hmib.php:2510
 msgid "Avg Swap"
-msgstr "Avgväxling"
+msgstr "Genom. växling"
 
 #: hmib.php:2511
 msgid "Max Swap"
@@ -478,7 +478,7 @@ msgstr "Num vägar"
 
 #: hmib.php:2697 hmib_types.php:881
 msgid "Hosts"
-msgstr "Adresser"
+msgstr "Värdar"
 
 #: hmib.php:2701
 msgid "Avg Memory"
@@ -508,7 +508,7 @@ msgstr "Anpassad graflista tillämpad - Filtrering från lista"
 
 #: hmib.php:2895
 msgid "Graph Preview Filters"
-msgstr "Graph Preview Filters"
+msgstr "Förhandsvisa graffilter"
 
 #: hmib_types.php:30
 msgid "Delete"
@@ -553,7 +553,7 @@ msgstr "Ny typ"
 #: hmib_types.php:413
 #, php-format
 msgid "There were %d Device Types Added!"
-msgstr "Det fanns% d Enhetstyper tillagda!"
+msgstr "Det lades till %d enhetstyper!"
 
 #: hmib_types.php:416
 msgid "No New Host Types Found!"
@@ -650,7 +650,7 @@ msgstr "Systembeskrivning Match"
 #: hmib_types.php:763 hmib_types.php:770
 #, php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr "Tillhandahåller nyckelinformation som hjälper HMIB att upptäcka typen av värd.  SQL Where-uttryck stöds.  SQL Where jokertecken är tecknet ”%”. Reguljära uttryck har tagits bort på grund av kompatibilitetsproblem."
+msgstr "Tillhandahåller nyckelinformation som hjälper HMIB att upptäcka typen av värd.  SQL Where-uttryck stöds.  SQL Where jokertecken är tecknet '%'. Reguljära uttryck har tagits bort på grund av kompatibilitetsproblem."
 
 #: hmib_types.php:769
 msgid "Vendor snmp Object ID"
@@ -695,7 +695,7 @@ msgstr "Inga värdsetyper hittades"
 
 #: hmib_types.php:928
 msgid "Choose an action:"
-msgstr "Välj en åtgärd"
+msgstr "Välj en åtgärd:"
 
 #: hmib_types.php:1015
 msgid "Rescan"
@@ -723,11 +723,11 @@ msgstr "Exportera värdtyper att dela med andra"
 
 #: setup.php:37
 msgid "Host MIB Viewer"
-msgstr "Plugin -> Host MIB Viewer"
+msgstr "Tillägg -> MIB-visare för värd"
 
 #: setup.php:38
 msgid "Host MIB Admin"
-msgstr "Plugin -> Host MIB Admin"
+msgstr "Tillägg -> MIB-admin för värd"
 
 #: setup.php:379
 msgid "Host MIB"
@@ -780,7 +780,7 @@ msgstr "Hur många processer vill du se på HMIB Dashboard som standard?"
 #: setup.php:416 setup.php:417 setup.php:418 setup.php:419
 #, php-format
 msgid "%d Types"
-msgstr "% d typer"
+msgstr "%d typer"
 
 #: setup.php:422
 msgid "Default Top Processes"
@@ -791,7 +791,7 @@ msgstr "Standardprocesser"
 #: setup.php:445 setup.php:446 setup.php:447
 #, php-format
 msgid "%d Processes"
-msgstr "% d Processer"
+msgstr "%d processer"
 
 #: setup.php:433
 msgid "Maximum Concurrent Collectors"
@@ -804,7 +804,7 @@ msgstr "Vad är det maximala antalet samtidiga samlarprocesser som du vill köra
 #: setup.php:438
 #, php-format
 msgid "%d Process"
-msgstr "% d Process"
+msgstr "%d process"
 
 #: setup.php:450
 msgid "Host Auto Discovery Frequency"
@@ -847,12 +847,12 @@ msgstr "%d timmar"
 #: setup.php:473 setup.php:539
 #, php-format
 msgid "%d Day"
-msgstr "%d Dag"
+msgstr "%d dygn"
 
 #: setup.php:474
 #, php-format
 msgid "%d Days"
-msgstr "%d Dagar"
+msgstr "%d dygn"
 
 #: setup.php:477
 msgid "Host MIB Table Collection Frequencies"
@@ -909,7 +909,7 @@ msgstr "Hur ofta vill du skanna efter processorns prestationsdata?"
 #: setup.php:531
 #, php-format
 msgid "%d Minute"
-msgstr "% d minut"
+msgstr "%d minut"
 
 #: setup.php:532 setup.php:533 setup.php:534
 #, php-format
