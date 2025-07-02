@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-07-01 15:51+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-07-02 18:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -38,7 +38,7 @@ msgstr "გაშვებადი"
 
 #: hmib.php:46
 msgid "Not Runnable"
-msgstr ""
+msgstr "გაშვებადი არაა"
 
 #: hmib.php:47
 msgid "Invalid"
@@ -122,7 +122,7 @@ msgstr "ჰოსტის სახელი"
 
 #: hmib.php:377
 msgid "Last Seen"
-msgstr ""
+msgstr "ბოლოს ნანახია"
 
 #: hmib.php:378
 msgid "Use Time (d:h:m)"
@@ -135,7 +135,7 @@ msgstr "ისტორია"
 #: hmib.php:398 hmib.php:761 hmib.php:1107 hmib.php:1438 hmib.php:1862
 #: hmib.php:2226
 msgid "Edit Device"
-msgstr ""
+msgstr "მოწყობილობის ჩასწორება"
 
 #: hmib.php:412
 msgid "No Process History Found"
@@ -159,7 +159,7 @@ msgstr ""
 
 #: hmib.php:739
 msgid "Memory (MB)"
-msgstr ""
+msgstr "მეხსიერება (მბ)"
 
 #: hmib.php:740 hmib.php:987 hmib.php:1315 hmib.php:2107 hmib.php:2205
 #: hmib.php:2498
@@ -200,7 +200,7 @@ msgstr ""
 
 #: hmib.php:1084
 msgid "Hardware Description"
-msgstr ""
+msgstr "აპარატურის აღწერა"
 
 #: hmib.php:1085
 msgid "Hardware Type"
@@ -208,7 +208,7 @@ msgstr "აპარატურის ტიპი"
 
 #: hmib.php:1087 hmib.php:1414
 msgid "Errors"
-msgstr "შედომები"
+msgstr "შეცდომები"
 
 #: hmib.php:1090 hmib.php:1681 hmib.php:1772 hmib.php:2256
 msgid "Devices"
@@ -228,7 +228,7 @@ msgstr "ტომები"
 
 #: hmib.php:1412
 msgid "Storage Description"
-msgstr ""
+msgstr "საცავის აღწერა"
 
 #: hmib.php:1413
 msgid "Storage Type"
@@ -240,11 +240,11 @@ msgstr ""
 
 #: hmib.php:1416
 msgid "Used (MB)"
-msgstr ""
+msgstr "გამოყენებულია (მბ)"
 
 #: hmib.php:1417
 msgid "Total (MB)"
-msgstr ""
+msgstr "სულ (მბ)"
 
 #: hmib.php:1418
 msgid "Alloc (KB)"
@@ -256,7 +256,7 @@ msgstr ""
 
 #: hmib.php:1552
 msgid "Device Filter"
-msgstr ""
+msgstr "მოწყობილობის ფილტრი"
 
 #: hmib.php:1665 hmib.php:2501
 msgid "Recovering"
@@ -296,7 +296,7 @@ msgstr "მეხსიერება სულ"
 
 #: hmib.php:1766
 msgid "Used Mem"
-msgstr ""
+msgstr "გამოყენებული მეხსიერება"
 
 #: hmib.php:1767
 msgid "Total Swap"
@@ -308,15 +308,15 @@ msgstr ""
 
 #: hmib.php:1825 hmib.php:2542
 msgid "View Storage"
-msgstr ""
+msgstr "საცავის ნახვა"
 
 #: hmib.php:1830 hmib.php:2544
 msgid "View Hardware"
-msgstr ""
+msgstr "აპარატურის ნახვა"
 
 #: hmib.php:1835 hmib.php:2546 hmib.php:2729
 msgid "View Processes"
-msgstr ""
+msgstr "პროცესების ნახვა"
 
 #: hmib.php:1840 hmib.php:2548
 msgid "View Software Inventory"
@@ -324,7 +324,7 @@ msgstr ""
 
 #: hmib.php:1846 hmib.php:2802 hmib.php:2804 hmib.php:2850 hmib.php:2852
 msgid "View Graphs"
-msgstr ""
+msgstr "გრაფიკების ნახვა"
 
 #: hmib.php:1849
 msgid "No Graphs Defined"
@@ -332,7 +332,7 @@ msgstr ""
 
 #: hmib.php:1884
 msgid "No Devices Found"
-msgstr ""
+msgstr "მოწყობილობების პოვნა ვერ მოხერხდა"
 
 #: hmib.php:2015
 msgid "Software Inventory"
@@ -356,7 +356,7 @@ msgstr ""
 
 #: hmib.php:2255
 msgid "Summary"
-msgstr "შეჯამება"
+msgstr "ჯამში"
 
 #: hmib.php:2257
 msgid "Storage"
@@ -368,7 +368,7 @@ msgstr "აპარატურა"
 
 #: hmib.php:2260
 msgid "Use History"
-msgstr ""
+msgstr "გამოყენების ისტორია"
 
 #: hmib.php:2261
 msgid "Inventory"
@@ -388,7 +388,7 @@ msgstr "ზემო"
 
 #: hmib.php:2434 hmib.php:2630
 msgid "All Records"
-msgstr ""
+msgstr "ყველა ჩანაწერი"
 
 #: hmib.php:2435 hmib.php:2631 hmib.php:2632 hmib.php:2633 hmib.php:2634
 #, php-format
@@ -398,7 +398,7 @@ msgstr "%d ჩანაწერი"
 #: hmib.php:2436 hmib.php:2437 hmib.php:2438
 #, php-format
 msgid "%d Record"
-msgstr ""
+msgstr "%d ჩანაწერი"
 
 #: hmib.php:2448 hmib.php:2644
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
@@ -430,7 +430,7 @@ msgstr ""
 
 #: hmib.php:2508
 msgid "Avg Mem"
-msgstr ""
+msgstr "საშ მეხსიერება"
 
 #: hmib.php:2509
 msgid "Max Mem"
@@ -438,15 +438,15 @@ msgstr ""
 
 #: hmib.php:2510
 msgid "Avg Swap"
-msgstr ""
+msgstr "საშ. სვოპი"
 
 #: hmib.php:2511
 msgid "Max Swap"
-msgstr ""
+msgstr "მაქს. სვოპი"
 
 #: hmib.php:2512
 msgid "Avg Proc"
-msgstr ""
+msgstr "საშ. პროც"
 
 #: hmib.php:2513
 msgid "Max Proc"
@@ -454,7 +454,7 @@ msgstr ""
 
 #: hmib.php:2540 hmib.php:2726 hmib.php:2759
 msgid "View Devices"
-msgstr ""
+msgstr "მოწყობილობების ნახვა"
 
 #: hmib.php:2582
 msgid "No Device Types"
@@ -470,7 +470,7 @@ msgstr ""
 
 #: hmib.php:2695
 msgid "Process Name"
-msgstr ""
+msgstr "პროცესის სახელი"
 
 #: hmib.php:2696
 msgid "Num Paths"
@@ -500,7 +500,7 @@ msgstr ""
 
 #: hmib.php:2749
 msgid "No Processes"
-msgstr ""
+msgstr "პროცესების გარეშე"
 
 #: hmib.php:2895
 msgid "Custom Graph List Applied - Filtering from List"
@@ -548,7 +548,7 @@ msgstr ""
 
 #: hmib_types.php:368
 msgid "New Type"
-msgstr ""
+msgstr "ახალი ტიპი"
 
 #: hmib_types.php:413
 #, php-format
@@ -561,7 +561,7 @@ msgstr ""
 
 #: hmib_types.php:427
 msgid "Import Results"
-msgstr ""
+msgstr "შემოტანის შედეგები"
 
 #: hmib_types.php:429
 msgid "Cacti has imported the following items:"
@@ -791,7 +791,7 @@ msgstr ""
 #: setup.php:445 setup.php:446 setup.php:447
 #, php-format
 msgid "%d Processes"
-msgstr ""
+msgstr "%d პროცესი"
 
 #: setup.php:433
 msgid "Maximum Concurrent Collectors"
@@ -804,7 +804,7 @@ msgstr ""
 #: setup.php:438
 #, php-format
 msgid "%d Process"
-msgstr ""
+msgstr "%d პროცესი"
 
 #: setup.php:450
 msgid "Host Auto Discovery Frequency"
@@ -847,12 +847,12 @@ msgstr "%d საათი"
 #: setup.php:473 setup.php:539
 #, php-format
 msgid "%d Day"
-msgstr ""
+msgstr "%d დღე"
 
 #: setup.php:474
 #, php-format
 msgid "%d Days"
-msgstr ""
+msgstr "%d დღე"
 
 #: setup.php:477
 msgid "Host MIB Table Collection Frequencies"
@@ -884,7 +884,7 @@ msgstr ""
 
 #: setup.php:502
 msgid "Storage Frequency"
-msgstr ""
+msgstr "შენახვის სიხშირე"
 
 #: setup.php:503
 msgid "How often do you want to scan for Storage performance data?"
@@ -900,7 +900,7 @@ msgstr ""
 
 #: setup.php:516
 msgid "Processor Frequency"
-msgstr ""
+msgstr "პროცესორის სიხშირე"
 
 #: setup.php:517
 msgid "How often do you want to scan for Processor performance data?"
@@ -922,7 +922,7 @@ msgstr "მართვა"
 
 #: setup.php:616
 msgid "Normal User"
-msgstr ""
+msgstr "ნორმალური მომხმარებელი"
 
 #: setup.php:617
 msgid "General Administration"
