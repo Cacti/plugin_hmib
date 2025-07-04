@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-07-02 18:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-07-04 04:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -18,7 +18,7 @@ msgstr "უცნობი"
 
 #: hmib.php:38
 msgid "Operating System"
-msgstr ""
+msgstr "ოპერაციული სისტემა"
 
 #: hmib.php:39
 msgid "Device Driver"
@@ -143,7 +143,7 @@ msgstr ""
 
 #: hmib.php:527
 msgid "Running Processes"
-msgstr ""
+msgstr "გაშვებული პროცესები"
 
 #: hmib.php:736
 msgid "Path"
@@ -196,7 +196,7 @@ msgstr ""
 
 #: hmib.php:895
 msgid "Hardware Inventory"
-msgstr ""
+msgstr "აპარატურის ინვენტარი"
 
 #: hmib.php:1084
 msgid "Hardware Description"
@@ -220,7 +220,7 @@ msgstr ""
 
 #: hmib.php:1223
 msgid "Storage Inventory"
-msgstr ""
+msgstr "საცავის ინვენტარი"
 
 #: hmib.php:1334 hmib.php:1421
 msgid "Volumes"
@@ -232,11 +232,11 @@ msgstr "საცავის აღწერა"
 
 #: hmib.php:1413
 msgid "Storage Type"
-msgstr ""
+msgstr "საცავის ტიპი"
 
 #: hmib.php:1415
 msgid "Percent Used"
-msgstr ""
+msgstr "გამოყენებული პროცენტი"
 
 #: hmib.php:1416
 msgid "Used (MB)"
@@ -248,7 +248,7 @@ msgstr "სულ (მბ)"
 
 #: hmib.php:1418
 msgid "Alloc (KB)"
-msgstr ""
+msgstr "გამოყ (კბ)"
 
 #: hmib.php:1457
 msgid "No Storage Devices Found"
@@ -284,7 +284,7 @@ msgstr "მომხმარებლები"
 
 #: hmib.php:1762
 msgid "CPU %%%"
-msgstr ""
+msgstr "CPU %%%"
 
 #: hmib.php:1763
 msgid "CPUs"
@@ -304,7 +304,7 @@ msgstr "სვოპი სულ"
 
 #: hmib.php:1768
 msgid "Used Swap"
-msgstr ""
+msgstr "გამოყენებული სვოპი"
 
 #: hmib.php:1825 hmib.php:2542
 msgid "View Storage"
@@ -328,7 +328,7 @@ msgstr "გრაფიკების ნახვა"
 
 #: hmib.php:1849
 msgid "No Graphs Defined"
-msgstr ""
+msgstr "გრაფიკები აღწერილი არაა"
 
 #: hmib.php:1884
 msgid "No Devices Found"
@@ -336,7 +336,7 @@ msgstr "მოწყობილობების პოვნა ვერ მ
 
 #: hmib.php:2015
 msgid "Software Inventory"
-msgstr ""
+msgstr "პროგრამების ინვენტარი"
 
 #: hmib.php:2126 hmib.php:2209
 msgid "Applications"
@@ -380,7 +380,7 @@ msgstr "გრაფიკები"
 
 #: hmib.php:2421
 msgid "Summary Filter"
-msgstr ""
+msgstr "შეჯამების ფილტრი"
 
 #: hmib.php:2430 hmib.php:2626
 msgid "Top"
@@ -426,7 +426,7 @@ msgstr "საშ. CPU"
 
 #: hmib.php:2507 hmib.php:2700
 msgid "Max CPU"
-msgstr ""
+msgstr "მაქს CPU"
 
 #: hmib.php:2508
 msgid "Avg Mem"
@@ -434,7 +434,7 @@ msgstr "საშ მეხსიერება"
 
 #: hmib.php:2509
 msgid "Max Mem"
-msgstr ""
+msgstr "მაქს. მეხს"
 
 #: hmib.php:2510
 msgid "Avg Swap"
@@ -450,7 +450,7 @@ msgstr "საშ. პროც"
 
 #: hmib.php:2513
 msgid "Max Proc"
-msgstr ""
+msgstr "მაქს. პროც"
 
 #: hmib.php:2540 hmib.php:2726 hmib.php:2759
 msgid "View Devices"
@@ -474,7 +474,7 @@ msgstr "პროცესის სახელი"
 
 #: hmib.php:2696
 msgid "Num Paths"
-msgstr ""
+msgstr "ბილიკების რიცხვი"
 
 #: hmib.php:2697 hmib_types.php:881
 msgid "Hosts"
@@ -486,17 +486,17 @@ msgstr "საშ. მეხსიერება"
 
 #: hmib.php:2702
 msgid "Max Memory"
-msgstr ""
+msgstr "მაქს მეხსიერება"
 
 #: hmib.php:2739 hmib.php:2740
 #, php-format
 msgid "%s Hrs"
-msgstr ""
+msgstr "%s სთ"
 
 #: hmib.php:2741 hmib.php:2742
 #, php-format
 msgid "%s MB"
-msgstr ""
+msgstr "%s მბ"
 
 #: hmib.php:2749
 msgid "No Processes"
@@ -671,7 +671,7 @@ msgstr ""
 
 #: hmib_types.php:870 setup.php:613
 msgid "OS Types"
-msgstr ""
+msgstr "ოს-ის ტიპები"
 
 #: hmib_types.php:879
 msgid "Host Type Name"
@@ -683,7 +683,7 @@ msgstr ""
 
 #: hmib_types.php:882
 msgid "SNMP ObjectID"
-msgstr ""
+msgstr "SNMP ObjectID"
 
 #: hmib_types.php:883
 msgid "SNMP Sys Description Match"
