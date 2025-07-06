@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-07-04 17:36+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-07-06 03:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -22,7 +22,7 @@ msgstr "ოპერაციული სისტემა"
 
 #: hmib.php:39
 msgid "Device Driver"
-msgstr ""
+msgstr "მოწყობილობის დრაივერი"
 
 #: hmib.php:40
 msgid "Application"
@@ -155,7 +155,7 @@ msgstr "პარამეტრები"
 
 #: hmib.php:738
 msgid "CPU (Hrs)"
-msgstr ""
+msgstr "CPU (სთ)"
 
 #: hmib.php:739
 msgid "Memory (MB)"
@@ -216,7 +216,7 @@ msgstr "მოწყობილობები"
 
 #: hmib.php:1123
 msgid "No Hardware Found"
-msgstr ""
+msgstr "აპარატურა აღმოჩენილი არაა"
 
 #: hmib.php:1223
 msgid "Storage Inventory"
@@ -508,7 +508,7 @@ msgstr ""
 
 #: hmib.php:2895
 msgid "Graph Preview Filters"
-msgstr ""
+msgstr "გრაფიკის მინიატურის ფილტრები"
 
 #: hmib_types.php:30
 msgid "Delete"
@@ -540,11 +540,11 @@ msgstr ""
 
 #: hmib_types.php:255
 msgid "Host Type Prefix:"
-msgstr ""
+msgstr "ჰოსტის ტიპის პრეფიქსი:"
 
 #: hmib_types.php:259
 msgid "Duplicate Host Type(s)"
-msgstr ""
+msgstr "ჰოსტის ტიპების დუბლირება"
 
 #: hmib_types.php:368
 msgid "New Type"
@@ -581,7 +581,7 @@ msgstr ""
 
 #: hmib_types.php:452
 msgid "Overwrite Existing Data?"
-msgstr ""
+msgstr "გადავაწერო არსებულ მონაცემებს?"
 
 #: hmib_types.php:453
 msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
@@ -679,7 +679,7 @@ msgstr ""
 
 #: hmib_types.php:880
 msgid "OS Version"
-msgstr ""
+msgstr "ოს-ის ვერსია"
 
 #: hmib_types.php:882
 msgid "SNMP ObjectID"
@@ -755,7 +755,7 @@ msgstr ""
 
 #: setup.php:398
 msgid "Automatically Purge Devices"
-msgstr ""
+msgstr "მოწყობილობების ავტომატური გასუფთავება"
 
 #: setup.php:399
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
@@ -795,7 +795,7 @@ msgstr "%d პროცესი"
 
 #: setup.php:433
 msgid "Maximum Concurrent Collectors"
-msgstr ""
+msgstr "მაქსიმალური ერთდროული შემგროვებლები"
 
 #: setup.php:434
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
@@ -812,7 +812,7 @@ msgstr ""
 
 #: setup.php:454
 msgid "Auto Discovery Frequency"
-msgstr ""
+msgstr "ავტოაღმოჩენის სიხშირე"
 
 #: setup.php:455
 msgid "How often do you want to look for new Cacti Devices?"
@@ -942,7 +942,7 @@ msgstr ""
 
 #: setup.php:627
 msgid "Host MIB Hardware"
-msgstr ""
+msgstr "ჰოსტის MIB-ის აპარატურა"
 
 #: setup.php:628
 msgid "Host MIB Running Processes"
