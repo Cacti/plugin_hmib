@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-07-06 03:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-07-07 05:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -62,7 +62,7 @@ msgstr "გამორთ"
 
 #: hmib.php:179
 msgid "Running Process History"
-msgstr ""
+msgstr "გაშვებული პროცესების ისტორია"
 
 #: hmib.php:188 hmib.php:536 hmib.php:904 hmib.php:1232 hmib.php:1561
 #: hmib.php:2024 hmib_types.php:997
@@ -180,11 +180,11 @@ msgstr ""
 
 #: hmib.php:794
 msgid "Total CPU [h]:"
-msgstr ""
+msgstr "სულ CPU [სთ]:"
 
 #: hmib.php:795
 msgid "Total Size [MB]:"
-msgstr ""
+msgstr "სულ ზომა [მბ]:"
 
 #: hmib.php:799
 msgid "Avg. CPU [h]:"
@@ -466,7 +466,7 @@ msgstr ""
 
 #: hmib.php:2655
 msgid "Process Summary Statistics"
-msgstr ""
+msgstr "პროცესის შეჯამების სტატისტიკა"
 
 #: hmib.php:2695
 msgid "Process Name"
@@ -532,7 +532,7 @@ msgstr "გაგრძელება"
 
 #: hmib_types.php:249
 msgid "Delete Host Type(s)"
-msgstr ""
+msgstr "ჰოსტის ტიპების წაშლა"
 
 #: hmib_types.php:253
 msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
@@ -675,7 +675,7 @@ msgstr "ოს-ის ტიპები"
 
 #: hmib_types.php:879
 msgid "Host Type Name"
-msgstr ""
+msgstr "ჰოსტის ტიპის სახელი"
 
 #: hmib_types.php:880
 msgid "OS Version"
@@ -763,7 +763,7 @@ msgstr ""
 
 #: setup.php:404
 msgid "Default Row Count"
-msgstr ""
+msgstr "მწკრივების ნაგულისხმევი რაოდენობა"
 
 #: setup.php:405
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
@@ -784,7 +784,7 @@ msgstr "%d ტიპი"
 
 #: setup.php:422
 msgid "Default Top Processes"
-msgstr ""
+msgstr "ნაგულისხმევი საუკეთესო პროცესები"
 
 #: setup.php:427 setup.php:428 setup.php:429 setup.php:430 setup.php:439
 #: setup.php:440 setup.php:441 setup.php:442 setup.php:443 setup.php:444
@@ -820,7 +820,7 @@ msgstr ""
 
 #: setup.php:461
 msgid "Host Graph Automation"
-msgstr ""
+msgstr "ჰოსტის გრაფიკის ავტომატიზაცია"
 
 #: setup.php:465
 msgid "Automatically Add New Graphs"
@@ -860,7 +860,7 @@ msgstr ""
 
 #: setup.php:481
 msgid "Running Programs Frequency"
-msgstr ""
+msgstr "პროგრამების გაშვების სიხშირე"
 
 #: setup.php:482
 msgid "How often do you want to scan running software?"
