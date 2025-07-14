@@ -1012,11 +1012,11 @@ function hmib_host_type_filter() {
 					</td>
 					<td>
 						<span>
-							<input id='refresh' type='button' value='<?php print __('Go', 'hmib');?>' onClick='applyFilter()'>
-							<input id='clear' type='button' value='<?php print __('Clear', 'hmib');?>' onClick='clearFilter()'>
-							<input type='button' title='<?php print __('Scan for New or Unknown Device Types', 'hmib');?>' value='<?php print __('Rescan', 'hmib');?>' onClick='rescanTypes()'>
-							<input id='import' type='button' title='<?php print __('Import Host Types from a CSV File', 'hmib');?>' value='<?php print __('Import', 'hmib');?>' onClick='importTypes()'>
-							<input id='export' type='button' title='<?php print __('Export Host Types to Share with Others', 'hmib');?>' value='<?php print __('Export', 'hmib');?>' onClick='exportTypes()'>
+							<button id='refresh' type='submit' class='ui-button ui-corner-all ui-widget'><?php print __('Go', 'hmib');?></button>
+							<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib');?></button>
+							<button type='button' class='ui-button ui-corner-all ui-widget' title='<?php print __('Scan for New or Unknown Device Types', 'hmib');?>' onClick='rescanTypes()'><?php print __('Rescan', 'hmib');?></button>
+							<button id='import' type='button' class='ui-button ui-corner-all ui-widget' title='<?php print __('Import Host Types from a CSV File', 'hmib');?>' onClick='importTypes()'><?php print __('Import', 'hmib');?></button>
+							<button id='export' type='button' class='ui-button ui-corner-all ui-widget' title='<?php print __('Export Host Types to Share with Others', 'hmib');?>' onClick='exportTypes()'><?php print __('Export', 'hmib');?></button>
 						</span>
 					</td>
 				</tr>
