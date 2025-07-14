@@ -246,7 +246,8 @@ function form_actions() {
 				</td>
 			</tr>";
 
-			$save_html = "<input type='button' value='" . __('Cancel', 'hmib') . "' onClick='cactiReturnTo()'>&nbsp;<input type='submit' value='" . __('Continue', 'hmib') . "' title='" . __('Delete Host Type(s)', 'hmib') . "'>";
+			$save_html = "<button type='button' class='ui-button ui-corner-all ui-widget' onClick='cactiReturnTo()'>" . __('Cancel', 'hmib') . "</button>
+				<button type='submit' class='ui-button ui-corner-all ui-widget ui-state-active' title='" . __('Delete Host Type(s)', 'hmib') . "'>" . __(esc('Continue', 'hmib') . '</button>';
 		} elseif (get_filter_request_var('drp_action') == '2') { /* duplicate */
 			print "<tr>
 				<td class='textArea'>
@@ -256,7 +257,8 @@ function form_actions() {
 				</td>
 			</tr>";
 
-			$save_html = "<input type='button' value='" . __('Cancel', 'hmib') . "' onClick='cactiReturnTo()'>&nbsp;<input type='submit' value='" . __('Continue', 'hmib') . "' title='" . __('Duplicate Host Type(s)', 'hmib') . "'>";
+			$save_html = "<button type='button' class='ui-button ui-corner-all ui-widget' onClick='cactiReturnTo()'>" . __('Cancel', 'hmib') . "</button>
+				<button type='submit' class='ui-button ui-corner-all ui-widget ui-state-active' title='" . __('Duplicate Host Type(s)', 'hmib') . "'>" . __(esc('Continue', 'hmib') . '</button>';
 		}
 	} else {
 		raise_message(40);
@@ -291,38 +293,38 @@ function hmib_validate_request_vars() {
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-			),
+		),
 		'page' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-			),
+		),
 		'filter' => array(
 			'filter' => FILTER_DEFAULT,
 			'pageset' => true,
 			'default' => ''
-			),
+		),
 		'version' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => 'All',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'vendor' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'name',
 			'options' => array('options' => 'sanitize_search_string')
-			),
+		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
 			'options' => array('options' => 'sanitize_search_string')
-			)
+		)
 	);
 
 	validate_store_request_vars($filters, 'sess_hmib_ht');
@@ -929,7 +931,7 @@ function hmib_draw_actions_dropdown($actions_array, $include_form_end = true) {
 				<?php form_dropdown('drp_action',$actions_array,'','','1','','');?>
 			</td>
 			<td width='1' align='right'>
-				<input type='submit' name='go' value='<?php print __('Go', 'hmib');?>'>
+				<button type='submit' name='go' class='ui-button ui-corner-all ui-widget ui-state-active'><?php print __('Go', 'hmib');?></button>
 			</td>
 		</tr>
 	</table>

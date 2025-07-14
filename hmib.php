@@ -225,8 +225,8 @@ function hmib_history() {
 						</td>
 						<td>
 							<span>
-								<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
-								<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib');?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib');?></button>
 							</span>
 						</td>
 					</tr>
@@ -594,8 +594,8 @@ function hmib_running() {
 						</td>
 						<td>
 							<span>
-								<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
-								<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib');?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib');?></button>
 							</span>
 						</td>
 					</tr>
@@ -999,8 +999,8 @@ function hmib_hardware() {
 						</td>
 						<td>
 							<span>
-								<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
-								<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib');?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib');?></button>
 							</span>
 						</td>
 					</tr>
@@ -1355,8 +1355,8 @@ function hmib_storage() {
 						</td>
 						<td>
 							<span>
-								<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
-								<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib');?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib');?></button>
 							</span>
 						</td>
 					</tr>
@@ -1719,8 +1719,8 @@ function hmib_devices() {
 						</td>
 						<td>
 							<span>
-								<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
-								<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib');?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib');?></button>
 							</span>
 						</td>
 					</tr>
@@ -2242,8 +2242,8 @@ function hmib_software() {
 						</td>
 						<td>
 							<span>
-								<input id='refresh' type='button' onClick='applyFilter()' value='<?php print __('Go', 'hmib');?>'>
-								<input id='clear' type='button' onClick='clearFilter()' value='<?php print __('Clear', 'hmib');?>'>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib');?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib');?></button>
 							</span>
 						</td>
 					</tr>
@@ -2643,8 +2643,8 @@ function hmib_summary() {
 						</td>
 						<td>
 							<span>
-								<input id='refresh' type='button' onClick='applyHostFilter()' value='<?php print __('Go', 'hmib');?>'>
-								<input id='clear' type='button' onClick='clearHostFilter()' value='<?php print __('Clear', 'hmib');?>'>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib');?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib');?></button>
 							</span>
 						</td>
 						<td>
@@ -2898,8 +2898,8 @@ function hmib_summary() {
 						</td>
 						<td>
 							<span>
-								<input id='refresh' type='button' onClick='applyProcFilter()' value='<?php print __('Go', 'hmib');?>'>
-								<input id='clear' type='button' onClick='clearProcFilter()' value='<?php print __('Clear', 'hmib');?>'>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib');?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib');?></button>
 							</span>
 						</td>
 						<td>
