@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-08-25 12:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-09-23 05:09+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -458,7 +458,7 @@ msgstr "მოწყობილობების ნახვა"
 
 #: hmib.php:2582
 msgid "No Device Types"
-msgstr ""
+msgstr "მოწყობილობის ტიპების გარეშე"
 
 #: hmib.php:2587
 msgid "Process Summary Filter"
@@ -723,7 +723,7 @@ msgstr ""
 
 #: setup.php:37
 msgid "Host MIB Viewer"
-msgstr ""
+msgstr "ჰოსტის MIB-ების დამთვალიერებელი"
 
 #: setup.php:38
 msgid "Host MIB Admin"
@@ -876,7 +876,7 @@ msgstr ""
 
 #: setup.php:495
 msgid "Installed Software Frequency"
-msgstr ""
+msgstr "დაყენებული პროგრამების სიხშირე"
 
 #: setup.php:496
 msgid "How often do you want to scan for installed software?"
