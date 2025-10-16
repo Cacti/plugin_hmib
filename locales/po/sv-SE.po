@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-03-18 09:57+0000\nLast-Translator: Daniel Nylander <weblate@danielnylander.se>\nLanguage-Team: Swedish <http://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 4.8.1\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-10-16 18:18+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -95,7 +95,7 @@ msgstr "Start"
 #: hmib.php:257 hmib.php:605 hmib.php:973 hmib.php:1301 hmib.php:1628
 #: hmib.php:2093 hmib.php:2444 hmib.php:2640 hmib_types.php:1014
 msgid "Clear"
-msgstr "Rensa"
+msgstr "Töm"
 
 #: hmib.php:265 hmib.php:613 hmib.php:981 hmib.php:1309 hmib.php:1636
 #: hmib.php:2101 hmib.php:2620 hmib_types.php:991
@@ -268,7 +268,7 @@ msgstr "Uppe"
 
 #: hmib.php:1671 hmib.php:2503 setup.php:530
 msgid "Disabled"
-msgstr "Inaktiverad"
+msgstr "Inaktiverat"
 
 #: hmib.php:1757 hmib.php:2497 hmib.php:2694 setup.php:634
 msgid "Actions"
@@ -512,7 +512,7 @@ msgstr "Förhandsvisa graffilter"
 
 #: hmib_types.php:30
 msgid "Delete"
-msgstr "Radera"
+msgstr "Ta bort"
 
 #: hmib_types.php:31
 msgid "Duplicate"
@@ -699,7 +699,7 @@ msgstr "Välj en åtgärd:"
 
 #: hmib_types.php:1015
 msgid "Rescan"
-msgstr "Omsökning"
+msgstr "Sök igen"
 
 #: hmib_types.php:1015
 msgid "Scan for New or Unknown Device Types"
