@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-10-20 08:18+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-10-20 20:27+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -376,7 +376,7 @@ msgstr "Lager"
 
 #: hmib.php:2262 hmib.php:2969
 msgid "Graphs"
-msgstr "Grafer"
+msgstr "Diagram"
 
 #: hmib.php:2421
 msgid "Summary Filter"
@@ -926,7 +926,7 @@ msgstr "Normal användare"
 
 #: setup.php:617
 msgid "General Administration"
-msgstr "Allmän administration u Stöd till transaktioner Jürgen MOEHRKE"
+msgstr "Allmän administration"
 
 #: setup.php:624
 msgid "Host MIB Inventory Summary"
