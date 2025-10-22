@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-10-20 20:27+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-10-22 13:18+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -34,7 +34,7 @@ msgstr "Kör"
 
 #: hmib.php:45
 msgid "Runnable"
-msgstr "Runnable"
+msgstr "Körbar"
 
 #: hmib.php:46
 msgid "Not Runnable"
@@ -46,7 +46,7 @@ msgstr "Ogiltig"
 
 #: hmib.php:51
 msgid "Present"
-msgstr "Närrvarande"
+msgstr "Närvarande"
 
 #: hmib.php:54
 msgid "Warning"
@@ -62,12 +62,12 @@ msgstr "Nere"
 
 #: hmib.php:179
 msgid "Running Process History"
-msgstr "Running Process History"
+msgstr "Historik för körande process"
 
 #: hmib.php:188 hmib.php:536 hmib.php:904 hmib.php:1232 hmib.php:1561
 #: hmib.php:2024 hmib_types.php:997
 msgid "OS Type"
-msgstr "OS typ"
+msgstr "OS-typ"
 
 #: hmib.php:192 hmib.php:214 hmib.php:236 hmib.php:275 hmib.php:540
 #: hmib.php:562 hmib.php:584 hmib.php:623 hmib.php:908 hmib.php:930
@@ -126,7 +126,7 @@ msgstr "Sågs senast"
 
 #: hmib.php:378
 msgid "Use Time (d:h:m)"
-msgstr "Använd tid (d: h: m)"
+msgstr "Använd tid (d:h:m)"
 
 #: hmib.php:381
 msgid "History"
@@ -143,7 +143,7 @@ msgstr "Ingen processhistorik hittades"
 
 #: hmib.php:527
 msgid "Running Processes"
-msgstr "Löpande processer"
+msgstr "Körande processer"
 
 #: hmib.php:736
 msgid "Path"
@@ -176,7 +176,7 @@ msgstr "Processer"
 
 #: hmib.php:779
 msgid "No Running Software Found"
-msgstr "Ingen löpande programvara hittades"
+msgstr "Ingen körande programvara hittades"
 
 #: hmib.php:794
 msgid "Total CPU [h]:"
@@ -196,7 +196,7 @@ msgstr "Genom. storlek [MB]:"
 
 #: hmib.php:895
 msgid "Hardware Inventory"
-msgstr "Hårdvara Inventory"
+msgstr "Hårdvaruöversikt"
 
 #: hmib.php:1084
 msgid "Hardware Description"
@@ -220,7 +220,7 @@ msgstr "Ingen maskinvara funnen"
 
 #: hmib.php:1223
 msgid "Storage Inventory"
-msgstr "Lagringsutrymme"
+msgstr "Lagringsöversikt"
 
 #: hmib.php:1334 hmib.php:1421
 msgid "Volumes"
@@ -248,7 +248,7 @@ msgstr "Totalt (MB)"
 
 #: hmib.php:1418
 msgid "Alloc (KB)"
-msgstr "Alloc (KB)"
+msgstr "Allok (KB)"
 
 #: hmib.php:1457
 msgid "No Storage Devices Found"
@@ -260,7 +260,7 @@ msgstr "Enhetsfilter"
 
 #: hmib.php:1665 hmib.php:2501
 msgid "Recovering"
-msgstr "Påväg upp"
+msgstr "Återhämtar"
 
 #: hmib.php:1668 hmib.php:2500
 msgid "Up"
@@ -276,7 +276,7 @@ msgstr "Åtgärder"
 
 #: hmib.php:1760
 msgid "Uptime(d:h:m)"
-msgstr "Driftstid (d: t: m)"
+msgstr "Upptid (d:t:m)"
 
 #: hmib.php:1761
 msgid "Users"
@@ -284,15 +284,15 @@ msgstr "Användare"
 
 #: hmib.php:1762
 msgid "CPU %%%"
-msgstr "CPU%"
+msgstr "CPU %%%"
 
 #: hmib.php:1763
 msgid "CPUs"
-msgstr "processorer"
+msgstr "CPUer"
 
 #: hmib.php:1765
 msgid "Total Mem"
-msgstr "Totalt Mem"
+msgstr "Totalt minne"
 
 #: hmib.php:1766
 msgid "Used Mem"
@@ -300,7 +300,7 @@ msgstr "Använt minne"
 
 #: hmib.php:1767
 msgid "Total Swap"
-msgstr "Totalt byte"
+msgstr "Total växling"
 
 #: hmib.php:1768
 msgid "Used Swap"
@@ -320,15 +320,15 @@ msgstr "Visa processer"
 
 #: hmib.php:1840 hmib.php:2548
 msgid "View Software Inventory"
-msgstr "Visa programvaruinventariet"
+msgstr "Visa programvaruöversikt"
 
 #: hmib.php:1846 hmib.php:2802 hmib.php:2804 hmib.php:2850 hmib.php:2852
 msgid "View Graphs"
-msgstr "Se grafer"
+msgstr "Visa diagram"
 
 #: hmib.php:1849
 msgid "No Graphs Defined"
-msgstr "Inga grafer definierade"
+msgstr "Inga diagram definierade"
 
 #: hmib.php:1884
 msgid "No Devices Found"
@@ -336,7 +336,7 @@ msgstr "Inga enheter hittades"
 
 #: hmib.php:2015
 msgid "Software Inventory"
-msgstr "Programvaru Inventory"
+msgstr "Programvaruöversikt"
 
 #: hmib.php:2126 hmib.php:2209
 msgid "Applications"
@@ -348,7 +348,7 @@ msgstr "Paket"
 
 #: hmib.php:2206
 msgid "Installed"
-msgstr "Installerad"
+msgstr "Installerade"
 
 #: hmib.php:2240
 msgid "No Software Packages Found"
@@ -372,7 +372,7 @@ msgstr "Användningshistorik"
 
 #: hmib.php:2261
 msgid "Inventory"
-msgstr "Lager"
+msgstr "Översikt"
 
 #: hmib.php:2262 hmib.php:2969
 msgid "Graphs"
@@ -380,7 +380,7 @@ msgstr "Diagram"
 
 #: hmib.php:2421
 msgid "Summary Filter"
-msgstr "Sammanfattning Filter"
+msgstr "Sammanfattningsfilter"
 
 #: hmib.php:2430 hmib.php:2626
 msgid "Top"
@@ -402,7 +402,7 @@ msgstr "%d post"
 
 #: hmib.php:2448 hmib.php:2644
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
-msgstr "OBS: Importera värd MIB-enhetspaketet för att visa grafer."
+msgstr "OBS: Importera värd-MIB-enhetspaketet för att visa diagram."
 
 #: hmib.php:2459
 msgid "Device Type Summary Statistics"
@@ -418,7 +418,7 @@ msgstr "Inloggningar"
 
 #: hmib.php:2505
 msgid "CPUS"
-msgstr "processorer"
+msgstr "CPUer"
 
 #: hmib.php:2506 hmib.php:2699
 msgid "Avg CPU"
@@ -430,11 +430,11 @@ msgstr "Max CPU"
 
 #: hmib.php:2508
 msgid "Avg Mem"
-msgstr "Gem Mem"
+msgstr "Genoms. minne"
 
 #: hmib.php:2509
 msgid "Max Mem"
-msgstr "Max Mem"
+msgstr "Max minne"
 
 #: hmib.php:2510
 msgid "Avg Swap"
@@ -442,15 +442,15 @@ msgstr "Genom. växling"
 
 #: hmib.php:2511
 msgid "Max Swap"
-msgstr "Max byte"
+msgstr "Max växling"
 
 #: hmib.php:2512
 msgid "Avg Proc"
-msgstr "Gem Proc"
+msgstr "Genom. proc"
 
 #: hmib.php:2513
 msgid "Max Proc"
-msgstr "Max Proc"
+msgstr "Max proc"
 
 #: hmib.php:2540 hmib.php:2726 hmib.php:2759
 msgid "View Devices"
@@ -462,19 +462,19 @@ msgstr "Inga enhetstyper"
 
 #: hmib.php:2587
 msgid "Process Summary Filter"
-msgstr "Processöversiktfilter"
+msgstr "Filter för processammandrag"
 
 #: hmib.php:2655
 msgid "Process Summary Statistics"
-msgstr "Processöversiktstatistik"
+msgstr "Statistik för processammandrag"
 
 #: hmib.php:2695
 msgid "Process Name"
-msgstr "Process namn"
+msgstr "Processnamn"
 
 #: hmib.php:2696
 msgid "Num Paths"
-msgstr "Num vägar"
+msgstr "Num sökvägar"
 
 #: hmib.php:2697 hmib_types.php:881
 msgid "Hosts"
@@ -482,7 +482,7 @@ msgstr "Värdar"
 
 #: hmib.php:2701
 msgid "Avg Memory"
-msgstr "Gemminne"
+msgstr "Genom. minne"
 
 #: hmib.php:2702
 msgid "Max Memory"
@@ -500,15 +500,15 @@ msgstr "%s MB"
 
 #: hmib.php:2749
 msgid "No Processes"
-msgstr "Processer"
+msgstr "Inga processer"
 
 #: hmib.php:2895
 msgid "Custom Graph List Applied - Filtering from List"
-msgstr "Anpassad graflista tillämpad - Filtrering från lista"
+msgstr "Anpassad diagramlista tillämpad - Filtrering från lista"
 
 #: hmib.php:2895
 msgid "Graph Preview Filters"
-msgstr "Förhandsvisa graffilter"
+msgstr "Filter för diagramförhandsvisning"
 
 #: hmib_types.php:30
 msgid "Delete"
@@ -520,7 +520,7 @@ msgstr "Duplicera"
 
 #: hmib_types.php:244
 msgid "Click 'Continue' to Delete the following Host Type(s)"
-msgstr "Klicka på \"Fortsätt\" för att ta bort följande värdtyp (er)"
+msgstr "Klicka på \"Fortsätt\" för att ta bort följande värdtyp(er)"
 
 #: hmib_types.php:249 hmib_types.php:259
 msgid "Cancel"
@@ -532,19 +532,19 @@ msgstr "Fortsätt"
 
 #: hmib_types.php:249
 msgid "Delete Host Type(s)"
-msgstr "Ta bort värdtyp (er)"
+msgstr "Ta bort värdtyp(er)"
 
 #: hmib_types.php:253
 msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
-msgstr "Klicka på \"Fortsätt\" för att duplicera följande värdtyp (er). Du kan eventuellt ändra beskrivningen för den nya värdtypen. Annars ändras inte värdet under och originalnamnet replikeras med ett nytt suffix."
+msgstr "Klicka på \"Fortsätt\" för att duplicera följande värdtyp(er). Du kan eventuellt ändra beskrivningen för den nya värdtypen.  Annars ändras inte värdet under och originalnamnet replikeras med ett nytt suffix."
 
 #: hmib_types.php:255
 msgid "Host Type Prefix:"
-msgstr "Värden typ prefix:"
+msgstr "Prefix för värdtyp:"
 
 #: hmib_types.php:259
 msgid "Duplicate Host Type(s)"
-msgstr "Dubbla värdtyp (er)"
+msgstr "Duplicera värdtyp(er)"
 
 #: hmib_types.php:368
 msgid "New Type"
@@ -557,19 +557,19 @@ msgstr "Det lades till %d enhetstyper!"
 
 #: hmib_types.php:416
 msgid "No New Host Types Found!"
-msgstr "Inga nya värden hittades!"
+msgstr "Inga nya värdtyper hittades!"
 
 #: hmib_types.php:427
 msgid "Import Results"
-msgstr "Importera resultat"
+msgstr "Importresultat"
 
 #: hmib_types.php:429
 msgid "Cacti has imported the following items:"
-msgstr "Cacti har importerat följande:"
+msgstr "Cacti har importerat följande objekt:"
 
 #: hmib_types.php:441
 msgid "Import Host MIB OS Types"
-msgstr "Importera värd MIB OS-typer"
+msgstr "Importera värd-MIB-OS-typer"
 
 #: hmib_types.php:444
 msgid "Import Device Types from Local File"
@@ -585,7 +585,7 @@ msgstr "Skriv över befintliga data?"
 
 #: hmib_types.php:453
 msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
-msgstr "Bör importprocessen tillåtas att skriva över befintliga data? Observera att det här inte betyder att radera gammal rad, bara ersätta dubbla rader."
+msgstr "Ska importprocessen tillåtas att skriva över befintliga data?  Observera att det här inte betyder att radera gammal rad, bara ersätta dubbletta rader."
 
 #: hmib_types.php:456
 msgid "Allow Existing Rows to be Updated?"
@@ -593,7 +593,7 @@ msgstr "Tillåt befintliga rader att uppdateras?"
 
 #: hmib_types.php:461
 msgid "Required File Format Notes"
-msgstr "Obligatoriska filformat Notes"
+msgstr "Anteckningar för obligatoriska filformat"
 
 #: hmib_types.php:464
 msgid "The file must contain a header row with the following column headings."
@@ -601,7 +601,7 @@ msgstr "Filen måste innehålla en rubrikrad med följande kolumnrubriker."
 
 #: hmib_types.php:466
 msgid "A common name for the Host Type.  For example, Windows 7"
-msgstr "Ett vanligt namn för värdtypen. Till exempel Windows 7"
+msgstr "Ett vanligt namn för värdtypen.  Till exempel Windows 7"
 
 #: hmib_types.php:467
 msgid "The OS version for the Host Type"
@@ -613,7 +613,7 @@ msgstr "En unik uppsättning tecken från SNMP sysDescr som unikt identifierar d
 
 #: hmib_types.php:469
 msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
-msgstr "Säljaren specifika snmp sysObjectID som skiljer denna enhet från nästa"
+msgstr "Tillverkarens specifika snmp sysObjectID som skiljer denna enhet från nästa"
 
 #: hmib_types.php:471
 msgid "The primary key for this table is a combination of the following two fields:"
@@ -621,15 +621,15 @@ msgstr "Den primära nyckeln för denna tabell är en kombination av följande t
 
 #: hmib_types.php:475
 msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
-msgstr "Om du försöker importera dubbla enhetstyper uppdateras de befintliga uppgifterna med den nya informationen."
+msgstr "Om du försöker importera dubbletta enhetstyper uppdateras de befintliga uppgifterna med den nya informationen."
 
 #: hmib_types.php:477
 msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
-msgstr "Värdenstypen bestäms genom att skanna dess snmp-agent för sysObjectID och sysDescription och jämföra den med värden i värdtypdatabasen. Den första matchningen som hittas i databasen används som aggregat värddata. Därför är det mycket viktigt att du väljer giltigt sysObjectID, sysDescrMatch för dina värdar."
+msgstr "Värdtypen bestäms genom att söka av dess snmp-agent för sysObjectID och sysDescription och jämföra den med värden i värdtypdatabasen.  Den första matchningen som hittas i databasen används som aggregerat värddata.  Därför är det mycket viktigt att du väljer giltigt sysObjectID, sysDescrMatch för dina värdar."
 
 #: hmib_types.php:743
 msgid "Device Scanning Function Options"
-msgstr "Enhetssökning Funktionsalternativ"
+msgstr "Funktionsalternativ för enhetssökning"
 
 #: hmib_types.php:747
 msgid "Name"
@@ -645,33 +645,33 @@ msgstr "Fyll i namnet för versionen av denna värdtyp."
 
 #: hmib_types.php:762
 msgid "System Description Match"
-msgstr "Systembeskrivning Match"
+msgstr "Match för systembeskrivning"
 
 #: hmib_types.php:763 hmib_types.php:770
 #, php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr "Tillhandahåller nyckelinformation som hjälper HMIB att upptäcka typen av värd.  SQL Where-uttryck stöds.  SQL Where jokertecken är tecknet '%'. Reguljära uttryck har tagits bort på grund av kompatibilitetsproblem."
+msgstr "Tillhandahåller nyckelinformation som hjälper HMIB att upptäcka typen av värd.  SQL Where-uttryck stöds.  SQL Where-jokertecknet är '%'. Reguljära uttryck har tagits bort på grund av kompatibilitetsproblem."
 
 #: hmib_types.php:769
 msgid "Vendor snmp Object ID"
-msgstr "Försäljare snmp Objekt ID"
+msgstr "Tillverkarens snmp Objekt ID"
 
 #: hmib_types.php:790
 #, php-format
 msgid "Host MIB OS Types [edit: %s]"
-msgstr "Värd MIB OS-typer [redigera: %s]"
+msgstr "Värd-MIB-OS-typer [redigera: %s]"
 
 #: hmib_types.php:792
 msgid "Host MIB OS Types [new]"
-msgstr "Host MIB OS-typer [ny]"
+msgstr "Värd-MIB-OS-typer [ny]"
 
 #: hmib_types.php:858
 msgid "Host MIB OS Type Filters"
-msgstr "Host MIB OS typ filter"
+msgstr "Filter för värd-MIB-OS-typ"
 
 #: hmib_types.php:870 setup.php:613
 msgid "OS Types"
-msgstr "OS typer"
+msgstr "OS-typer"
 
 #: hmib_types.php:879
 msgid "Host Type Name"
@@ -687,11 +687,11 @@ msgstr "SNMP ObjectID"
 
 #: hmib_types.php:883
 msgid "SNMP Sys Description Match"
-msgstr "SNMP Sys Beskrivning Match"
+msgstr "Match för SNMP Sys-beskrivning"
 
 #: hmib_types.php:900
 msgid "No Host Types Found"
-msgstr "Inga värdsetyper hittades"
+msgstr "Inga värdtyper hittades"
 
 #: hmib_types.php:928
 msgid "Choose an action:"
@@ -703,7 +703,7 @@ msgstr "Sök igen"
 
 #: hmib_types.php:1015
 msgid "Scan for New or Unknown Device Types"
-msgstr "Skanna efter nya eller okända enhetstyper"
+msgstr "Sök igen efter nya eller okända enhetstyper"
 
 #: hmib_types.php:1016 setup.php:636
 msgid "Import"
@@ -723,59 +723,59 @@ msgstr "Exportera värdtyper att dela med andra"
 
 #: setup.php:37
 msgid "Host MIB Viewer"
-msgstr "Tillägg -> MIB-visare för värd"
+msgstr "Värd-MIB-visare"
 
 #: setup.php:38
 msgid "Host MIB Admin"
-msgstr "Tillägg -> MIB-admin för värd"
+msgstr "Värd-MIB-admin"
 
 #: setup.php:379
 msgid "Host MIB"
-msgstr "Värden MIB Grafer"
+msgstr "Värd-MIB"
 
 #: setup.php:382
 msgid "Host MIB General Settings"
-msgstr "Värd MIB Allmänna inställningar"
+msgstr "Allmänna inställningar för värd-MIB"
 
 #: setup.php:386
 msgid "Host MIB Poller Enabled"
-msgstr "Värd MIB Poller Aktiverad"
+msgstr "Värd-MIB-pollare aktiverad"
 
 #: setup.php:387
 msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
-msgstr "Markera den här rutan om du vill att Host MIB-omröstningen ska vara aktiverad. I annat fall fungerar pollen inte."
+msgstr "Markera den här rutan om du vill att värd-MIB-pollning ska vara aktiverad.  I annat fall fungerar pollaren inte."
 
 #: setup.php:392
 msgid "Automatically Discover Cacti Devices"
-msgstr "Upptäck automatiskt kaktusenheter"
+msgstr "Upptäck automatiskt Cacti-enheter"
 
 #: setup.php:393
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
-msgstr "Vill du automatiskt söka efter och lägga till enheter som stöder värdresursen MIB från värddatabasen Cacti?"
+msgstr "Vill du automatiskt söka efter och lägga till enheter som stöder värdresursens MIB från Cacti-värdtabellen?"
 
 #: setup.php:398
 msgid "Automatically Purge Devices"
-msgstr "Automatiskt rengöringsenheter"
+msgstr "Automatiskt rensa enheter"
 
 #: setup.php:399
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
-msgstr "Vill du automatiskt rensa enheter som tas bort från kaktisystemet?"
+msgstr "Vill du automatiskt rensa bort enheter som tas bort från Cacti-systemet?"
 
 #: setup.php:404
 msgid "Default Row Count"
-msgstr "Standard Row Count"
+msgstr "Standard radantal"
 
 #: setup.php:405
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
-msgstr "Hur många rader vill du se på HMIB OS typ som standard?"
+msgstr "Hur många rader vill du se på HMIB OS-typ som standard?"
 
 #: setup.php:411
 msgid "Default Top Host Types"
-msgstr "Standardvärda värdtyp"
+msgstr "Topp värdtyper som standard"
 
 #: setup.php:412 setup.php:423
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
-msgstr "Hur många processer vill du se på HMIB Dashboard som standard?"
+msgstr "Hur många processer vill du se på HMIB-kontrollpanelen som standard?"
 
 #: setup.php:416 setup.php:417 setup.php:418 setup.php:419
 #, php-format
@@ -784,7 +784,7 @@ msgstr "%d typer"
 
 #: setup.php:422
 msgid "Default Top Processes"
-msgstr "Standardprocesser"
+msgstr "Topprocesser som standard"
 
 #: setup.php:427 setup.php:428 setup.php:429 setup.php:430 setup.php:439
 #: setup.php:440 setup.php:441 setup.php:442 setup.php:443 setup.php:444
@@ -795,11 +795,11 @@ msgstr "%d processer"
 
 #: setup.php:433
 msgid "Maximum Concurrent Collectors"
-msgstr "Maximal samtidiga samlare"
+msgstr "Maximalt samtidiga insamlare"
 
 #: setup.php:434
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
-msgstr "Vad är det maximala antalet samtidiga samlarprocesser som du vill köra på en gång?"
+msgstr "Vad är det maximala antalet samtidiga insamlingsprocesser som du vill köra på en gång?"
 
 #: setup.php:438
 #, php-format
@@ -808,27 +808,27 @@ msgstr "%d process"
 
 #: setup.php:450
 msgid "Host Auto Discovery Frequency"
-msgstr "Host Auto Discovery Frequency"
+msgstr "Frekvens för automatisk värdupptäckt"
 
 #: setup.php:454
 msgid "Auto Discovery Frequency"
-msgstr "Auto Discovery Frequency"
+msgstr "Frekvens för automatisk upptäckt"
 
 #: setup.php:455
 msgid "How often do you want to look for new Cacti Devices?"
-msgstr "Hur ofta vill du leta efter nya kaktiska enheter?"
+msgstr "Hur ofta vill du leta efter nya Cacti-enheter?"
 
 #: setup.php:461
 msgid "Host Graph Automation"
-msgstr "Host Graph Automation"
+msgstr "Automation för värddiagram"
 
 #: setup.php:465
 msgid "Automatically Add New Graphs"
-msgstr "Lägg automatiskt till nya grafer"
+msgstr "Lägg automatiskt till nya diagram"
 
 #: setup.php:466
 msgid "How often do you want to check for new objects to graph?"
-msgstr "Hur ofta vill du söka efter nya objekt i diagrammet?"
+msgstr "Hur ofta vill du leta efter nya objekt att göra diagram för?"
 
 #: setup.php:470
 msgid "Never"
@@ -856,27 +856,27 @@ msgstr "%d dygn"
 
 #: setup.php:477
 msgid "Host MIB Table Collection Frequencies"
-msgstr "Värden MIB-tabelluppsamlingsfrekvenser"
+msgstr "Insamlingsfrekvenser för värd-MIB-tabell"
 
 #: setup.php:481
 msgid "Running Programs Frequency"
-msgstr "Running Program Frequency"
+msgstr "Frekvens för körande program"
 
 #: setup.php:482
 msgid "How often do you want to scan running software?"
-msgstr "Hur ofta vill du skanna kör programvara?"
+msgstr "Hur ofta vill du söka igenom körande programvara?"
 
 #: setup.php:488
 msgid "Running Programs CPU/Memory Frequency"
-msgstr "Körprogram CPU / Minnefrekvens"
+msgstr "Frekvens för körande programs CPU / Minne"
 
 #: setup.php:489
 msgid "How often do you want to scan running software for performance data?"
-msgstr "Hur ofta vill du skanna kör programvara för prestandadata?"
+msgstr "Hur ofta vill du söka igenom körande programvara för prestandadata?"
 
 #: setup.php:495
 msgid "Installed Software Frequency"
-msgstr "Installerad programvarufrekvens"
+msgstr "Frekvens för installerad programvara"
 
 #: setup.php:496
 msgid "How often do you want to scan for installed software?"
@@ -888,7 +888,7 @@ msgstr "Lagringsfrekvens"
 
 #: setup.php:503
 msgid "How often do you want to scan for Storage performance data?"
-msgstr "Hur ofta vill du skanna efter lagringsprestandata?"
+msgstr "Hur ofta vill du söka efter data om lagringsprestanda?"
 
 #: setup.php:509
 msgid "Device Frequency"
@@ -896,7 +896,7 @@ msgstr "Enhetsfrekvens"
 
 #: setup.php:510
 msgid "How often do you want to scan for Device performance data?"
-msgstr "Hur ofta vill du skanna efter Enhetsprestandata?"
+msgstr "Hur ofta vill du söka efter data om enhetsprestanda?"
 
 #: setup.php:516
 msgid "Processor Frequency"
@@ -904,7 +904,7 @@ msgstr "Processorfrekvens"
 
 #: setup.php:517
 msgid "How often do you want to scan for Processor performance data?"
-msgstr "Hur ofta vill du skanna efter processorns prestationsdata?"
+msgstr "Hur ofta vill du söka efter data om processorprestanda?"
 
 #: setup.php:531
 #, php-format
@@ -930,39 +930,39 @@ msgstr "Allmän administration"
 
 #: setup.php:624
 msgid "Host MIB Inventory Summary"
-msgstr "Värd MIB Inventory Summary"
+msgstr "Sammandrag för värd-MIB-översikt"
 
 #: setup.php:625
 msgid "Host MIB Details"
-msgstr "Värd MIB Detaljer"
+msgstr "Värd-MIB-detaljer"
 
 #: setup.php:626
 msgid "Host MIB Storage"
-msgstr "Värd MIB-lagring"
+msgstr "Värd-MIB-lagring"
 
 #: setup.php:627
 msgid "Host MIB Hardware"
-msgstr "Host MIB-hårdvara"
+msgstr "Värd-MIB-hårdvara"
 
 #: setup.php:628
 msgid "Host MIB Running Processes"
-msgstr "Host MIB Running Processes"
+msgstr "Värd-MIB körande processer"
 
 #: setup.php:629
 msgid "Host MIB Process Use History"
-msgstr "Host MIB Process Använd historia"
+msgstr "Värd-MIB Historik för processanvändning"
 
 #: setup.php:630
 msgid "Host MIB Software Inventory"
-msgstr "Host MIB Software Inventory"
+msgstr "Värd-MIB Programvaruöversikt"
 
 #: setup.php:631
 msgid "Host MIB Graphs"
-msgstr "Värden MIB Grafer"
+msgstr "Värd-MIB-diagram"
 
 #: setup.php:633
 msgid "Host MIB OS Types"
-msgstr "Värd MIB OS-typer"
+msgstr "Värd-MIB OS-typer"
 
 #: setup.php:635
 msgid "(Edit)"
