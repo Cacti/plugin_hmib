@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2026-03-14 12:18+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2026-03-16 13:18+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -95,7 +95,7 @@ msgstr "Start"
 #: hmib.php:257 hmib.php:605 hmib.php:973 hmib.php:1301 hmib.php:1628
 #: hmib.php:2093 hmib.php:2444 hmib.php:2640 hmib_types.php:1014
 msgid "Clear"
-msgstr "Töm"
+msgstr "Rensa"
 
 #: hmib.php:265 hmib.php:613 hmib.php:981 hmib.php:1309 hmib.php:1636
 #: hmib.php:2101 hmib.php:2620 hmib_types.php:991
