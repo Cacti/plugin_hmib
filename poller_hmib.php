@@ -678,7 +678,7 @@ function hmib_dateParse($value) {
 		$value[1] = substr($value[1], 0, strpos($value[1], '.'));
 	}
 
-	$date1 = trim($value[0] . ' ' . (isset($value[1]) ? $value[1]:''));
+	$date1 = trim($value[0] . ' ' . ($value[1] ?? ''));
 	if (strtotime($date1) === false) {
 		$value = date('Y-m-d H:i:s');
 	} else {

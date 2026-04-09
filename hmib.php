@@ -3203,18 +3203,15 @@ function hmib_view_graphs() {
 
 	html_graph_validate_preview_request_vars();
 
-	if (!isset($_SESSION['sess_hmib_gt'])) {
-		$_SESSION['sess_hmib_gt'] = implode(',', array_rekey(db_fetch_assoc('SELECT DISTINCT gl.graph_template_id
+	$_SESSION['sess_hmib_gt'] ??= implode(',', array_rekey(db_fetch_assoc('SELECT DISTINCT gl.graph_template_id
 			FROM graph_local AS gl
 			WHERE gl.host_id IN(
 				SELECT host_id
 				FROM plugin_hmib_hrSystem
 			)'), 'graph_template_id', 'graph_template_id'));
-	}
 	$gt = $_SESSION['sess_hmib_gt'];
 
-	if (!isset($_SESSION['sess_hmib_hosts'])) {
-		$_SESSION['sess_hmib_hosts'] = implode(',', array_rekey(db_fetch_assoc('SELECT h.id
+	$_SESSION['sess_hmib_hosts'] ??= implode(',', array_rekey(db_fetch_assoc('SELECT h.id
 			FROM host AS h
 			WHERE h.id IN (
 				SELECT host_id
@@ -3226,7 +3223,6 @@ function hmib_view_graphs() {
 			INNER JOIN host_template AS ht
 			ON h.host_template_id=ht.id
 			WHERE hash="7c13344910097cc599f0d0485305361d" ORDER BY id DESC'), 'id', 'id'));
-	}
 	$hosts = $_SESSION['sess_hmib_hosts'];
 
 	/* include graph view filter selector */

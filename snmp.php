@@ -27,12 +27,10 @@ define('REGEXP_SNMP_TRIM', '/(hex|counter(32|64)|gauge|gauge(32|64)|float|ipaddr
 define('SNMP_METHOD_PHP', 1);
 define('SNMP_METHOD_BINARY', 2);
 
-if (!isset($banned_snmp_strings)) {
-	$banned_snmp_strings = array(
+$banned_snmp_strings ??= array(
 		'End of MIB',
 		'No Such'
 	);
-}
 
 /* we must use an apostrophe to escape community names under Unix in case the user uses
 characters that the shell might interpret. */
@@ -130,6 +128,11 @@ function cacti_snmp_get($hostname, $community, $oid, $version, $username, $passw
 
 		/* no valid snmp version has been set, get out */
 		if (empty($snmp_auth)) { return; }
+
+		/* cast numeric args to int — prevents shell injection if the host record is tampered */
+		$version = (int) $version;
+		$timeout = (int) $timeout;
+		$retries = (int) $retries;
 
 		exec(cacti_escapeshellcmd(read_config_option('path_snmpget')) . ' -O fntevU ' . $snmp_auth . " -v $version -t $timeout -r $retries " . cacti_escapeshellarg($hostname) . ":$port " . cacti_escapeshellarg($oid), $snmp_value);
 

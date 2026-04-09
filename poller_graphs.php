@@ -306,8 +306,8 @@ function hmib_gt_graph($host_id, $graph_template_id) {
 function add_summary_graphs($host_id, $host_template) {
 	global $config;
 
-	$php_bin = read_config_option('path_php_binary');
-	$base    = $config['base_path'];
+	$php_bin = cacti_escapeshellcmd(read_config_option('path_php_binary'));
+	$base    = cacti_escapeshellarg($config['base_path']);
 
 	$return_code = 0;
 	if (empty($host_id)) {

@@ -801,7 +801,7 @@ function hmib_host_type_edit() {
 	draw_edit_form(
 		array(
 			'config' => array('form_name' => 'chk'),
-			'fields' => inject_form_variables($fields_host_type_edit, (isset($host_type) ? $host_type : array()))
+			'fields' => inject_form_variables($fields_host_type_edit, ($host_type ?? array()))
 		)
 	);
 
