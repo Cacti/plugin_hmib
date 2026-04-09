@@ -221,12 +221,12 @@ function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = 
 		FROM host_snmp_query
 		WHERE host_id = ?
 		AND snmp_query_id = ?",
-		array($host_id, $dq));
+		[$host_id, $dq]);
 
 	if (!$exists) {
 		db_execute_prepared("REPLACE INTO host_snmp_query
 			(host_id, snmp_query_id, reindex_method) VALUES (?, ?, ?)",
-			array($host_id, $dq, 1));
+			[$host_id, $dq, 1]);
 	}
 
 	/* recache snmp data */
@@ -236,7 +236,7 @@ function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = 
 	$graph_templates = db_fetch_assoc_prepared('SELECT *
 		FROM snmp_query_graph
 		WHERE snmp_query_id = ?',
-		array($dq));
+		[$dq]);
 
 	debug('Adding Graphs');
 	if (cacti_sizeof($graph_templates)) {
@@ -255,25 +255,25 @@ function hmib_gt_graph($host_id, $graph_template_id) {
 	$name = db_fetch_cell_prepared("SELECT name
 		FROM graph_templates
 		WHERE id = ?",
-		array($graph_template_id));
+		[$graph_template_id]);
 
 	$assoc = db_fetch_cell_prepared("SELECT count(*)
 		FROM host_graph
 		WHERE graph_template_id = ?
 		AND host_id = ?",
-		array($graph_template_id, $host_id));
+		[$graph_template_id, $host_id]);
 
 	if (!$assoc) {
 		db_execute_prepared("INSERT INTO host_graph
 			(host_id, graph_template_id) VALUES (?, ?)",
-			array($host_id, $graph_template_id));
+			[$host_id, $graph_template_id]);
 	}
 
 	$exists = db_fetch_cell_prepared("SELECT count(*)
 		FROM graph_local
 		WHERE host_id = ?
 		AND graph_template_id = ?",
-		array($host_id, $graph_template_id));
+		[$host_id, $graph_template_id]);
 
 	if (!$exists) {
 		print "NOTE: Adding Graph: '$name' for Host: " . $host_id;
@@ -284,7 +284,7 @@ function hmib_gt_graph($host_id, $graph_template_id) {
 			' --host-id=' . $host_id;
 
 		$return_code = 0;
-		$output      = array();
+		$output      = [];
 		$timeout     = 20;
 
 		exec_with_timeout($command, $output, $return_code, $timeout);
@@ -324,14 +324,14 @@ function add_summary_graphs($host_id, $host_template) {
 	$data_queries = db_fetch_assoc_prepared("SELECT *
 		FROM host_snmp_query
 		WHERE host_id = ?",
-		array($host_id));
+		[$host_id]);
 
 	if (cacti_sizeof($data_queries)) {
 		foreach($data_queries as $dq) {
 			$graph_templates = db_fetch_assoc_prepared('SELECT *
 				FROM snmp_query_graph
 				WHERE snmp_query_id = ?',
-				array($dq['snmp_query_id']));
+				[$dq['snmp_query_id']]);
 
 			if (cacti_sizeof($graph_templates)) {
 				foreach($graph_templates as $gt) {
@@ -345,7 +345,7 @@ function add_summary_graphs($host_id, $host_template) {
 	$graph_templates = db_fetch_assoc_prepared("SELECT *
 		FROM host_graph
 		WHERE host_id = ?",
-		array($host_id));
+		[$host_id]);
 
 	if (cacti_sizeof($graph_templates)) {
 		foreach($graph_templates as $gt) {
@@ -354,7 +354,7 @@ function add_summary_graphs($host_id, $host_template) {
 				FROM graph_local
 				WHERE host_id = ?
 				AND graph_template_id = ?",
-				array($host_id, $gt['graph_template_id']));
+				[$host_id, $gt['graph_template_id']]);
 
 			if (!$exists) {
 				print "NOTE: Adding item: '" . $gt['graph_template_id'] . "' for Host: " . $host_id;
@@ -364,7 +364,7 @@ function add_summary_graphs($host_id, $host_template) {
 					' --graph-type=cg' .
 					' --host-id=' . $host_id;
 
-				$output      = array();
+				$output      = [];
 				$return_code = 0;
 				$timeout     = 20;
 
@@ -401,7 +401,7 @@ function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
 			FROM host_snmp_query
 			WHERE host_id = ?
 			AND snmp_query_id= ?",
-			array($host_id, $query_id));
+			[$host_id, $query_id]);
 	}
 
 	$items = db_fetch_assoc_prepared("SELECT *
@@ -409,7 +409,7 @@ function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
 		WHERE field_name = ?
 		AND host_id = ?
 		AND snmp_query_id = ?",
-		array($field, $host_id, $query_id));
+		[$field, $host_id, $query_id]);
 
 	if (cacti_sizeof($items)) {
 		foreach($items as $item) {
@@ -433,7 +433,7 @@ function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
 				AND snmp_query_id = ?
 				AND graph_template_id = ?
 				AND snmp_index = ?",
-				array($host_id, $query_id, $graph_template_id, $index));
+				[$host_id, $query_id, $graph_template_id, $index]);
 
 			if (!$exists) {
 				$command = "$php_bin -q $base/cli/add_graphs.php" .

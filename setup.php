@@ -81,7 +81,7 @@ function hmib_check_upgrade() {
 	include_once($config['library_path'] . '/functions.php');
 
 	// Let's only run this check if we are on a page that actually needs the data
-	$files = array('plugins.php', 'hmib.php');
+	$files = ['plugins.php', 'hmib.php'];
 	if (!in_array(get_current_page(), $files)) {
 		return;
 	}
@@ -541,7 +541,7 @@ function hmib_config_arrays() {
 		86400 => __('%d Day', 1, 'hmib')
 	);
 
-	$hrSystem = array(
+	$hrSystem = [
 		'baseOID'        => '.1.3.6.1.2.1.25.1.',
 		'uptime'         => '.1.3.6.1.2.1.25.1.1.0',
 		'date'           => '.1.3.6.1.2.1.25.1.2.0',
@@ -557,9 +557,9 @@ function hmib_config_arrays() {
 		'sysContact'     => '.1.3.6.1.2.1.1.4.0',
 		'sysName'        => '.1.3.6.1.2.1.1.5.0',
 		'sysLocation'    => '.1.3.6.1.2.1.1.6.0'
-	);
+	];
 
-	$hrSWRun = array(
+	$hrSWRun = [
 		'baseOID'    => '.1.3.6.1.2.1.25.4.2.1',
 		'index'      => '.1.3.6.1.2.1.25.4.2.1.1',
 		'name'       => '.1.3.6.1.2.1.25.4.2.1.2',
@@ -567,23 +567,23 @@ function hmib_config_arrays() {
 		'parameters' => '.1.3.6.1.2.1.25.4.2.1.5',
 		'type'       => '.1.3.6.1.2.1.25.4.2.1.6',
 		'status'     => '.1.3.6.1.2.1.25.4.2.1.7'
-	);
+	];
 
-	$hrSWRunPerf = array(
+	$hrSWRunPerf = [
 		'baseOID'    => '.1.3.6.1.2.1.25.5.1.1',
 		'perfCPU'    => '.1.3.6.1.2.1.25.5.1.1.1',
 		'perfMemory' => '.1.3.6.1.2.1.25.5.1.1.2'
-	);
+	];
 
-	$hrSWInstalled = array(
+	$hrSWInstalled = [
 		'baseOID' => '.1.3.6.1.2.1.25.6.3.1',
 		'index'   => '.1.3.6.1.2.1.25.6.3.1.1',
 		'name'    => '.1.3.6.1.2.1.25.6.3.1.2',
 		'type'    => '.1.3.6.1.2.1.25.6.3.1.4',
 		'date'    => '.1.3.6.1.2.1.25.6.3.1.5'
-	);
+	];
 
-	$hrStorage = array(
+	$hrStorage = [
 		'baseOID'         => '.1.3.6.1.2.1.25.2.3',
 		'index'           => '.1.3.6.1.2.1.25.2.3.1.1',
 		'type'            => '.1.3.6.1.2.1.25.2.3.1.2',
@@ -592,31 +592,31 @@ function hmib_config_arrays() {
 		'size'            => '.1.3.6.1.2.1.25.2.3.1.5',
 		'used'            => '.1.3.6.1.2.1.25.2.3.1.6',
 		'failures'        => '.1.3.6.1.2.1.25.2.3.1.7'
-	);
+	];
 
-	$hrDevices = array(
+	$hrDevices = [
 		'baseOID'         => '.1.3.6.1.2.1.25.3.2.1',
 		'index'           => '.1.3.6.1.2.1.25.3.2.1.1',
 		'type'            => '.1.3.6.1.2.1.25.3.2.1.2',
 		'description'     => '.1.3.6.1.2.1.25.3.2.1.3',
 		'status'          => '.1.3.6.1.2.1.25.3.2.1.5',
 		'errors'          => '.1.3.6.1.2.1.25.3.2.1.6',
-	);
+	];
 
-	$hrProcessor = array(
+	$hrProcessor = [
 		'baseOID' => '.1.3.6.1.2.1.25.3.3.1',
 		'load'    => '.1.3.6.1.2.1.25.3.3.1.2'
-	);
+	];
 
 	if (isset($_SESSION['hmib_message']) && $_SESSION['hmib_message'] != '') {
-		$messages['hmib_message'] = array('message' => $_SESSION['hmib_message'], 'type' => 'info');
+		$messages['hmib_message'] = ['message' => $_SESSION['hmib_message'], 'type' => 'info'];
 	}
 
 	$menu[__('Management')]['plugins/hmib/hmib_types.php'] = __('OS Types', 'hmib');
 
 	if (function_exists('auth_augment_roles')) {
-		auth_augment_roles(__('Normal User'), array('hmib.php'));
-		auth_augment_roles(__('General Administration'), array('hmib_types.php'));
+		auth_augment_roles(__('Normal User'), ['hmib.php']);
+		auth_augment_roles(__('General Administration'), ['hmib_types.php']);
 	}
 
 	hmib_check_upgrade();
@@ -694,7 +694,7 @@ function hmib_get_cpu_indexes($host_index) {
 	}
 
 	$host_id = $host_index['host_id'];
-	$rarray  = array();
+	$rarray  = [];
 
 	$indexes = db_fetch_assoc("SELECT `index`
 		FROM plugin_hmib_hrProcessor

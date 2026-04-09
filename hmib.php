@@ -100,50 +100,50 @@ function hmib_history() {
 
     /* ================= input validation and session storage ================= */
     $filters = array(
-		'rows' => array(
+		'rows' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-		),
-		'page' => array(
+		],
+		'page' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-		),
-		'template' => array(
+		],
+		'template' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
-		'device' => array(
+		],
+		'device' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
-		'ostype' => array(
+		],
+		'ostype' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
+		],
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '-1',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
-		'filter' => array(
+		'filter' => [
 			'filter' => FILTER_DEFAULT,
 			'pageset' => true,
 			'default' => ''
-		),
+		],
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'name',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		)
 	);
 
@@ -317,7 +317,7 @@ function hmib_history() {
 	}
 
 	$sql_where  = "WHERE hrswls.name!='' AND hrswls.name!='System Idle Process'";
-	$sql_params = array();
+	$sql_params = [];
 	$sql_limit  = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
 	$sql_order  = get_order_string();
 
@@ -468,51 +468,51 @@ function hmib_running() {
 
     /* ================= input validation and session storage ================= */
     $filters = array(
-		'rows' => array(
+		'rows' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-		),
-		'page' => array(
+		],
+		'page' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-		),
-		'template' => array(
+		],
+		'template' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
-		'device' => array(
+		],
+		'device' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
-		'ostype' => array(
+		],
+		'ostype' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
+		],
 		'filter' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '-1',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'name',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		)
 	);
 
@@ -687,7 +687,7 @@ function hmib_running() {
 
 	$sql_limit  = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
 	$sql_where  = "WHERE hrswr.name != '' AND hrswr.name != 'System Idle Process'";
-	$sql_params = array();
+	$sql_params = [];
 	$sql_order  = get_order_string();
 
 	if (get_request_var('template') != '-1') {
@@ -868,56 +868,56 @@ function hmib_hardware() {
 
     /* ================= input validation and session storage ================= */
     $filters = array(
-		'rows' => array(
+		'rows' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-		),
-		'page' => array(
+		],
+		'page' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-		),
-		'template' => array(
+		],
+		'template' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
-		'device' => array(
+		],
+		'device' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
-		'type' => array(
+		],
+		'type' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
-		'ostype' => array(
+		],
+		'ostype' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
+		],
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '-1',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'filter' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'hrd.description',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		)
 	);
 
@@ -1090,7 +1090,7 @@ function hmib_hardware() {
 	}
 
 	$sql_where  = "WHERE (hrd.description IS NOT NULL AND hrd.description!='')";
-	$sql_params = array();
+	$sql_params = [];
 	$sql_limit  = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
 	$sql_order  = get_order_string();
 
@@ -1221,56 +1221,56 @@ function hmib_storage() {
 
     /* ================= input validation and session storage ================= */
     $filters = array(
-		'rows' => array(
+		'rows' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-		),
-		'page' => array(
+		],
+		'page' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-		),
-		'template' => array(
+		],
+		'template' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
-		'device' => array(
+		],
+		'device' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
-		'type' => array(
+		],
+		'type' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
-		'ostype' => array(
+		],
+		'ostype' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
+		],
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '-1',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'filter' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'hrsto.description',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		)
 	);
 
@@ -1446,7 +1446,7 @@ function hmib_storage() {
 	}
 
 	$sql_where  = "WHERE (hrsto.description IS NOT NULL AND hrsto.description!='')";
-	$sql_params = array();
+	$sql_params = [];
 	$sql_limit  = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
 	$sql_order  = get_order_string();
 
@@ -1595,51 +1595,51 @@ function hmib_devices() {
 
     /* ================= input validation and session storage ================= */
     $filters = array(
-		'rows' => array(
+		'rows' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-		),
-		'page' => array(
+		],
+		'page' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-		),
-		'template' => array(
+		],
+		'template' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
+		],
 		'process' => array(
 			'filter' => FILTER_CALLBACK,
-			'options' => array('options' => 'sanitize_search_string'),
+			'options' => ['options' => 'sanitize_search_string'],
 			'pageset' => true,
 			'default' => '-1',
 		),
-		'status' => array(
+		'status' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
-		'ostype' => array(
+		],
+		'ostype' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
+		],
 		'filter' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'description',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		)
 	);
 
@@ -1747,7 +1747,7 @@ function hmib_devices() {
 									INNER JOIN plugin_hmib_hrSystem
 									ON host.id=plugin_hmib_hrSystem.host_id');
 
-								$statuses = array_merge($statuses, array('-2' => array('status' => '-2')));
+								$statuses = array_merge($statuses, array('-2' => ['status' => '-2']));
 
 								if (cacti_sizeof($statuses)) {
 									foreach($statuses AS $s) {
@@ -1831,7 +1831,7 @@ function hmib_devices() {
 
 	$sql_limit  = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
 	$sql_where  = '';
-	$sql_params = array();
+	$sql_params = [];
 	$sql_order  = get_order_string();
 
 	if (get_request_var('template') != '-1') {
@@ -2114,50 +2114,50 @@ function hmib_software() {
 
     /* ================= input validation and session storage ================= */
     $filters = array(
-		'rows' => array(
+		'rows' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-		),
-		'page' => array(
+		],
+		'page' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-		),
-		'template' => array(
+		],
+		'template' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
-		'device' => array(
+		],
+		'device' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
-		'type' => array(
+		],
+		'type' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
-		'ostype' => array(
+		],
+		'ostype' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1',
-		),
+		],
 		'filter' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'name',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		)
 	);
 
@@ -2334,7 +2334,7 @@ function hmib_software() {
 
 	$sql_limit  = ' LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
 	$sql_where  = '';
-	$sql_params = array();
+	$sql_params = [];
 	$sql_order  = get_order_string();
 
 	if (get_request_var('template') != '-1') {
@@ -2508,24 +2508,24 @@ function hmib_summary() {
 			'pageset' => true,
 			'default' => read_config_option('hmib_top_processes')
 		),
-		'page' => array(
+		'page' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-		),
-		'filter' => array(
+		],
+		'filter' => [
 			'filter' => FILTER_DEFAULT,
 			'pageset' => true,
 			'default' => ''
-		),
+		],
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'maxCpu',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'DESC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		)
 	);
 
@@ -2571,12 +2571,12 @@ function hmib_summary() {
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'upHosts',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'DESC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		)
 	);
 
@@ -2890,7 +2890,7 @@ function hmib_summary() {
 						<td>
 							<select id='ptop' onChange='applyProcFilter()'>
 								<?php
-								$processes = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50);
+								$processes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
 
 								foreach($processes as $p) {
 									print "<option value='$p'" . (get_request_var('ptop') == $p ? ' selected':'') . '>' . __('%d Records', $p, 'hmib') . '</option>';
@@ -2944,7 +2944,7 @@ function hmib_summary() {
 	}
 
 	$sql_where  = '';
-	$sql_params = array();
+	$sql_params = [];
 	$sql_limit  = 'LIMIT ' . ($num_rows*(get_request_var('page')-1)) . ',' . $num_rows;
 	$sql_order  = 'ORDER BY ' . $_SESSION['sess_hmib_proc_sort_column'] . ' ' . $_SESSION['sess_hmib_proc_sort_direction'];
 
@@ -3249,7 +3249,7 @@ function hmib_view_graphs() {
 					$graph_list[$item] = 1;
 				}
 			} else {
-				$graph_list = array();
+				$graph_list = [];
 			}
 
 			if (!isempty_request_var('graph_add')) {

@@ -558,7 +558,7 @@ function checkHost($host_id) {
 	/* obtain host information */
 	$host = db_fetch_row_prepared('SELECT *
 		FROM host WHERE id = ?',
-		array($host_id));
+		[$host_id]);
 
 	if (cacti_sizeof($host)) {
 		// Run the collectors
@@ -608,7 +608,7 @@ function checkHost($host_id) {
 			ON DUPLICATE KEY UPDATE
 				last_seen=NOW(),
 				total_time=total_time+VALUES(total_time)",
-			array($host['id']));
+			[$host['id']]);
 
 		/* remove the process lock */
 		db_execute_prepared('DELETE FROM plugin_hmib_processes
@@ -689,13 +689,13 @@ function hmib_dateParse($value) {
 }
 
 function hmib_splitBaseIndex($oid) {
-	$splitIndex = array();
+	$splitIndex = [];
 	$oid        = strrev($oid);
 	$pos        = strpos($oid, '.');
 	if ($pos !== false) {
 		$index = strrev(substr($oid, 0, $pos));
 		$base  = strrev(substr($oid, $pos+1));
-		return array($base, $index);
+		return [$base, $index];
 	} else {
 		return $splitIndex;
 	}
@@ -708,7 +708,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 	debug("Beginning Processing for '" . $host['description'] . '[' . $host['hostname'] . "]', Table '$name'");
 
 	if (!cacti_sizeof($types)) {
-		$types = array_rekey(db_fetch_assoc('SELECT id, oid, description FROM plugin_hmib_types'), 'oid', array('id', 'description'));
+		$types = array_rekey(db_fetch_assoc('SELECT id, oid, description FROM plugin_hmib_types'), 'oid', ['id', 'description']);
 	}
 
 	$cols = db_get_table_column_types($table);
@@ -718,7 +718,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 		db_execute("UPDATE $table SET present=0 WHERE host_id=" . $host['id']);
 
 		debug("Polling $name from '" . $host['description'] . '[' . $host['hostname'] . "]'");
-		$hostMib   = array();
+		$hostMib   = [];
 		foreach($tree AS $mname => $oid) {
 			if ($name == 'hrProcessor') {
 				$retrieval = SNMP_VALUE_PLAIN;
@@ -758,7 +758,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 
 		// Locate the values names
 		$prevIndex    = '';
-		$new_array    = array();
+		$new_array    = [];
 		$wonky        = false;
 		$hrProcValid  = false;
 		$effective    = 0;
@@ -892,7 +892,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 
 		/* dump the output to the database */
 		$sql_insert = '';
-		$sql_params = array();
+		$sql_params = [];
 		$count      = 0;
 		if (cacti_sizeof($new_array)) {
 			foreach($new_array as $index => $item) {
@@ -962,7 +962,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 			if (($count % 100) == 0) {
 				db_execute_prepared($sql_prefix . $sql_insert . $sql_suffix, $sql_params);
 				$sql_insert = '';
-				$sql_params = array();
+				$sql_params = [];
 			}
 		}
 
