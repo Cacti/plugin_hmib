@@ -427,7 +427,7 @@ function hmib_host_type_import() {
 
 	?><form method='post' action='hmib_types.php?action=import' enctype='multipart/form-data'><?php
 
-	if ((isset($_SESSION['import_debug_info'])) && (is_array($_SESSION['import_debug_info')])) {
+	if ((isset($_SESSION['import_debug_info'])) && (is_array($_SESSION['import_debug_info']))) {
 		html_start_box(__('Import Results', 'hmib'), '100%', '', '3', 'center', '');
 
 		print "<tr class='odd'><td><p class='textArea'>" . __('Cacti has imported the following items:', 'hmib') . "</p>";
