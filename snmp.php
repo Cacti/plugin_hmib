@@ -136,14 +136,14 @@ function cacti_snmp_get($hostname, $community, $oid, $version, $username, $passw
 		exec(cacti_escapeshellcmd(read_config_option('path_snmpget')) . ' -O fntevU ' . $snmp_auth . " -v $version -t $timeout -r $retries " . cacti_escapeshellarg($hostname) . ":$port " . cacti_escapeshellarg($oid), $snmp_value);
 
 		/* fix for multi-line snmp output */
-		if (is_[$snmp_value]) {
+		if (is_array($snmp_value)) {
 			$snmp_value = implode(' ', $snmp_value);
 		}
 	}
 
 	/* fix for multi-line snmp output */
 	if (isset($snmp_value)) {
-		if (is_[$snmp_value]) {
+		if (is_array($snmp_value)) {
 			$snmp_value = implode(' ', $snmp_value);
 		}
 	}
@@ -251,7 +251,7 @@ function cacti_snmp_getnext($hostname, $community, $oid, $version, $username, $p
 
 	if (isset($snmp_value)) {
 		/* fix for multi-line snmp output */
-		if (is_[$snmp_value]) {
+		if (is_array($snmp_value)) {
 			$snmp_value = implode(' ', $snmp_value);
 		}
 	}
@@ -331,7 +331,7 @@ function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $pass
 		}
 
 		/* check for bad entries */
-		if (is_[$temp_array] && sizeof($temp_array)) {
+		if (is_array($temp_array) && sizeof($temp_array)) {
 			foreach($temp_array as $key => $value) {
 				foreach($banned_snmp_strings as $item) {
 					if (strstr($value, $item) != '') {
@@ -399,7 +399,7 @@ function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $pass
 		}
 
 		/* check for bad entries */
-		if (is_[$temp_array] && sizeof($temp_array)) {
+		if (is_array($temp_array) && sizeof($temp_array)) {
 			foreach($temp_array as $key => $value) {
 				foreach($banned_snmp_strings as $item) {
 					if (strstr($value, $item) != '') {
