@@ -194,7 +194,7 @@ function hmib_history() {
 
 								if (cacti_sizeof($hosts)) {
 									foreach($hosts AS $h) {
-										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . html_escape($h['description']) . '</option>';
 									}
 								}
 								?>
@@ -563,7 +563,7 @@ function hmib_running() {
 
 								if (cacti_sizeof($hosts)) {
 									foreach($hosts AS $h) {
-										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . html_escape($h['description']) . '</option>';
 									}
 								}
 								?>
@@ -968,7 +968,7 @@ function hmib_hardware() {
 
 								if (cacti_sizeof($hosts)) {
 									foreach($hosts AS $h) {
-										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . html_escape($h['description']) . '</option>';
 									}
 								}
 								?>
@@ -1026,7 +1026,7 @@ function hmib_hardware() {
 								ORDER BY description');
 								if (cacti_sizeof($types)) {
 									foreach($types AS $t) {
-										print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . $t['description'] . '</option>';
+										print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . html_escape($t['description']) . '</option>';
 									}
 								}
 							?>
@@ -1324,7 +1324,7 @@ function hmib_storage() {
 
 								if (cacti_sizeof($hosts)) {
 									foreach($hosts AS $h) {
-										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . html_escape($h['description']) . '</option>';
 									}
 								}
 								?>
@@ -1382,7 +1382,7 @@ function hmib_storage() {
 									ORDER BY description');
 									if (cacti_sizeof($types)) {
 										foreach($types AS $t) {
-											print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . $t['description'] . '</option>';
+											print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected':'') . '>' . html_escape($t['description']) . '</option>';
 										}
 									}
 								?>
@@ -2211,7 +2211,7 @@ function hmib_software() {
 
 								if (cacti_sizeof($hosts)) {
 									foreach($hosts AS $h) {
-										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . $h['description'] . '</option>';
+										print "<option value='" . $h['id'] . "' " . (get_request_var('device') == $h['id'] ? 'selected':'') . '>' . html_escape($h['description']) . '</option>';
 									}
 								}
 								?>
@@ -3323,4 +3323,3 @@ function hmib_view_graphs() {
 
 	bottom_footer();
 }
-
