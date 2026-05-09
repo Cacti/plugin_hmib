@@ -4,19 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr ""
-"Project-Id-Version: Cacti\n"
-"Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2024-06-08 09:44-0400\n"
-"PO-Revision-Date: 2024-06-08 09:56-0400\n"
-"Last-Translator: Coool (github.com/Coool) <coool@mail.lv>\n"
-"Language-Team: Latvian <http://translate.cacti.net/projects/cacti/hmib/lv/>\n"
-"Language: lv_LV\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2026-05-09 07:18+0000\nLast-Translator: \"Coool (github.com/Coool)\" <coool@mail.lv>\nLanguage-Team: Latvian <https://translate.cacti.net/projects/cacti/hmib/lv/>\nLanguage: lv-LV\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -414,7 +402,7 @@ msgstr "%d ieraksts"
 
 #: hmib.php:2448 hmib.php:2644
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
-msgstr "PIEZĪME: Lai skatītu grafikus, importējiet resursdatora MIB ierīces pakotni."
+msgstr "PIEZĪME: Lai skatītu grafikus, ievietojiet resursdatora MIB ierīces pakotni."
 
 #: hmib.php:2459
 msgid "Device Type Summary Statistics"
@@ -573,7 +561,7 @@ msgstr "Nav atrasti jauni resursdatora tipi!"
 
 #: hmib_types.php:427
 msgid "Import Results"
-msgstr "Importēt rezultātus"
+msgstr "Ievietot rezultātus"
 
 #: hmib_types.php:429
 msgid "Cacti has imported the following items:"
@@ -581,11 +569,11 @@ msgstr "Cacti importēja sekojošus elementus:"
 
 #: hmib_types.php:441
 msgid "Import Host MIB OS Types"
-msgstr "Importēt resursdatora MIB operētājsistēmas tipus"
+msgstr "Ievietot resursdatora MIB operētājsistēmas tipus"
 
 #: hmib_types.php:444
 msgid "Import Device Types from Local File"
-msgstr "Importēt ierīču veidus no lokālā faila"
+msgstr "Ievietot ierīču veidus no lokālās datnes"
 
 #: hmib_types.php:445
 msgid "Please specify the location of the CSV file containing your device type information."
@@ -597,7 +585,7 @@ msgstr "Pārrakstīt esošos datus?"
 
 #: hmib_types.php:453
 msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
-msgstr "Vai ļaut importēšanas procesam pārrakstīt esošos datus?  Lūdzu, ņemiet vērā, ka tas nenozīmē izdzēst veco rindu, tikai nomainīt dublikātu rindas."
+msgstr "Vai ļaut ievietošanas procesam pārrakstīt esošos datus?  Lūdzu, ņemiet vērā, ka tas nenozīmē izdzēst veco rindu, tikai nomainīt dublikātu rindas."
 
 #: hmib_types.php:456
 msgid "Allow Existing Rows to be Updated?"
@@ -633,7 +621,7 @@ msgstr "Šīs tabulas primārā atslēga ir divu sekojošu lauku kombinācija:"
 
 #: hmib_types.php:475
 msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
-msgstr "Tāpēc, ja jūs mēģināt importēt ierīču tipu dublikātus, esošie dati tiks aizstāti ar jauno informāciju."
+msgstr "Tāpēc, ja jūs mēģiniet ievietot ierīču tipu dublikātus, esošie dati tiks aizstāti ar jauno informāciju."
 
 #: hmib_types.php:477
 msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
@@ -719,15 +707,15 @@ msgstr "Skenēt jaunus vai nezināmus ierīču tipus"
 
 #: hmib_types.php:1016 setup.php:636
 msgid "Import"
-msgstr "Importēt"
+msgstr "Ievietot"
 
 #: hmib_types.php:1016
 msgid "Import Host Types from a CSV File"
-msgstr "Importēt resursdatora tipus no CSV faila"
+msgstr "Ievietot resursdatora tipus no CSV datnes"
 
 #: hmib_types.php:1017
 msgid "Export"
-msgstr "Eksportēt"
+msgstr "Izgūt"
 
 #: hmib_types.php:1017
 msgid "Export Host Types to Share with Others"
@@ -759,7 +747,7 @@ msgstr "Atķeksējiet, ja vēlaties, lai resursdatora MIB aptaujāšana būtu ie
 
 #: setup.php:392
 msgid "Automatically Discover Cacti Devices"
-msgstr "Automātiski atrast Cacti ierīces"
+msgstr "Automātiski atklāt Cacti ierīces"
 
 #: setup.php:393
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
