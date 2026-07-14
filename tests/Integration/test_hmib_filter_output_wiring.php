@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$path = __DIR__ . '/../../hmib.php';
+$path     = __DIR__ . '/../../hmib.php';
 $contents = file_get_contents($path);
 
 if ($contents === false) {
@@ -15,10 +15,10 @@ if ($contents === false) {
 	exit(1);
 }
 
-$checks = array(
+$checks = [
 	"html_escape(\$h['description'])",
 	"html_escape(\$t['description'])",
-);
+];
 
 foreach ($checks as $check) {
 	if (strpos($contents, $check) === false) {

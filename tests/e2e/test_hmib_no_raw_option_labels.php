@@ -7,7 +7,7 @@
  +-------------------------------------------------------------------------+
 */
 
-$path = __DIR__ . '/../../hmib.php';
+$path     = __DIR__ . '/../../hmib.php';
 $contents = file_get_contents($path);
 
 if ($contents === false) {
@@ -15,10 +15,10 @@ if ($contents === false) {
 	exit(1);
 }
 
-$forbidden = array(
+$forbidden = [
 	". '>' . \$h['description'] . '</option>'",
 	". '>' . \$t['description'] . '</option>'",
-);
+];
 
 foreach ($forbidden as $pattern) {
 	if (strpos($contents, $pattern) !== false) {

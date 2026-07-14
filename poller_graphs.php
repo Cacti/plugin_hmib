@@ -23,7 +23,7 @@
  +-------------------------------------------------------------------------+
 */
 
-chdir(dirname(__FILE__));
+chdir(__DIR__);
 chdir('../..');
 
 require('./include/cli_check.php');
@@ -39,7 +39,7 @@ require_once($config['base_path'] . '/lib/sort.php');
 require_once($config['base_path'] . '/lib/template.php');
 require_once($config['base_path'] . '/lib/utility.php');
 
-/* process calling arguments */
+// process calling arguments
 $parms = $_SERVER['argv'];
 array_shift($parms);
 
@@ -50,11 +50,11 @@ $forcerun = false;
 $start    = time();
 
 if (cacti_sizeof($parms)) {
-	foreach($parms as $parameter) {
+	foreach ($parms as $parameter) {
 		if (strpos($parameter, '=')) {
-			list($arg, $value) = explode('=', $parameter);
+			[$arg, $value] = explode('=', $parameter);
 		} else {
-			$arg = $parameter;
+			$arg   = $parameter;
 			$value = '';
 		}
 
@@ -62,10 +62,12 @@ if (cacti_sizeof($parms)) {
 			case '-d':
 			case '--debug':
 				$debug = true;
+
 				break;
 			case '-f':
 			case '--force':
 				$forcerun = true;
+
 				break;
 			case '--version':
 			case '-V':
@@ -85,17 +87,17 @@ if (cacti_sizeof($parms)) {
 	}
 }
 
-/* Do not process if not enabled */
+// Do not process if not enabled
 if (read_config_option('hmib_enabled') == '' || !api_plugin_is_enabled('hmib')) {
 	print 'WARNING: The Host Mib Collection is Down!  Exiting' . PHP_EOL;
 	exit(0);
 }
 
-/* see if its time to run */
+// see if its time to run
 $last_run  = read_config_option('hmib_automation_lastrun');
 $frequency = read_config_option('hmib_automation_frequency') * 86400;
 
-debug("Last Run Was '" . date('Y-m-d H:i:s', $last_run) . "', Frequency is '" . ($frequency/86400) . "' Hours");
+debug("Last Run Was '" . date('Y-m-d H:i:s', $last_run) . "', Frequency is '" . ($frequency / 86400) . "' Hours");
 
 if ($frequency == 0 && !$forcerun) {
 	print "NOTE:  Graph Automation is Disabled\n";
@@ -112,7 +114,7 @@ exit(0);
 function add_graphs() {
 	global $config;
 
-	/* check for summary changes first */
+	// check for summary changes first
 	$host_template = db_fetch_cell("SELECT id
 		FROM host_template
 		WHERE hash='7c13344910097cc599f0d0485305361d'");
@@ -126,19 +128,19 @@ function add_graphs() {
 		WHERE hash='137aeab842986a76cf5bdef41b96c9a3'");
 
 	if (!empty($host_template)) {
-		/* check to see if the template exists */
+		// check to see if the template exists
 		debug('Host Template Set');
 
 		if (db_fetch_cell("SELECT count(*) FROM host_template WHERE id=$host_template")) {
 			debug('Host Template Exists');
 
 			$host_id = db_fetch_cell("SELECT id FROM host WHERE host_template_id=$host_template");
+
 			if (empty($host_id)) {
 				debug('Host MIB Summary Device Not Found, Adding');
 			} else {
-				debug("Host Exists Hostname is '" . db_fetch_cell("SELECT description FROM host WHERE id=$host_id"). "'");
+				debug("Host Exists Hostname is '" . db_fetch_cell("SELECT description FROM host WHERE id=$host_id") . "'");
 			}
-
 
 			add_summary_graphs($host_id, $host_template);
 		} else {
@@ -156,7 +158,7 @@ function add_host_based_graphs() {
 
 	debug('Adding Host Based Graphs');
 
-	/* check for host level graphs next data queries */
+	// check for host level graphs next data queries
 	$host_cpu_dq   = db_fetch_cell("SELECT id
 		FROM snmp_query
 		WHERE hash='0d1ab53fe37487a5d0b9e1d3ee8c1d0d'");
@@ -179,8 +181,9 @@ function add_host_based_graphs() {
 		WHERE host_status=3 AND host.disabled=''");
 
 	if (cacti_sizeof($hosts)) {
-		foreach($hosts as $h) {
+		foreach ($hosts as $h) {
 			debug("Processing Host '" . $h['description'] . '[' . $h['host_id'] . "]'");
+
 			if ($host_users_gt) {
 				debug('Processing Users');
 				hmib_gt_graph($h['host_id'], $host_users_gt);
@@ -196,8 +199,9 @@ function add_host_based_graphs() {
 			}
 
 			debug('Processing Disks');
+
 			if ($host_disk_dq) {
-				/* only numeric > 0 */
+				// only numeric > 0
 				$regex = '^[1-9][0-9]*';
 				$field = 'hrStorageSizeInput';
 				add_host_dq_graphs($h['host_id'], $host_disk_dq, $field, $regex);
@@ -216,31 +220,32 @@ function add_host_based_graphs() {
 function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = true) {
 	global $config;
 
-	/* add entry if it does not exist */
-	$exists = db_fetch_cell_prepared("SELECT COUNT(*)
+	// add entry if it does not exist
+	$exists = db_fetch_cell_prepared('SELECT COUNT(*)
 		FROM host_snmp_query
 		WHERE host_id = ?
-		AND snmp_query_id = ?",
-		array($host_id, $dq));
+		AND snmp_query_id = ?',
+		[$host_id, $dq]);
 
 	if (!$exists) {
-		db_execute_prepared("REPLACE INTO host_snmp_query
-			(host_id, snmp_query_id, reindex_method) VALUES (?, ?, ?)",
-			array($host_id, $dq, 1));
+		db_execute_prepared('REPLACE INTO host_snmp_query
+			(host_id, snmp_query_id, reindex_method) VALUES (?, ?, ?)',
+			[$host_id, $dq, 1]);
 	}
 
-	/* recache snmp data */
+	// recache snmp data
 	debug('Reindexing Host');
 	run_data_query($host_id, $dq);
 
 	$graph_templates = db_fetch_assoc_prepared('SELECT *
 		FROM snmp_query_graph
 		WHERE snmp_query_id = ?',
-		array($dq));
+		[$dq]);
 
 	debug('Adding Graphs');
+
 	if (cacti_sizeof($graph_templates)) {
-		foreach($graph_templates as $gt) {
+		foreach ($graph_templates as $gt) {
 			hmib_dq_graphs($host_id, $dq, $gt['graph_template_id'], $gt['id'], $field, $regex, $include);
 		}
 	}
@@ -252,28 +257,28 @@ function hmib_gt_graph($host_id, $graph_template_id) {
 	$php_bin = read_config_option('path_php_binary');
 	$base    = $config['base_path'];
 
-	$name = db_fetch_cell_prepared("SELECT name
+	$name = db_fetch_cell_prepared('SELECT name
 		FROM graph_templates
-		WHERE id = ?",
-		array($graph_template_id));
+		WHERE id = ?',
+		[$graph_template_id]);
 
-	$assoc = db_fetch_cell_prepared("SELECT count(*)
+	$assoc = db_fetch_cell_prepared('SELECT count(*)
 		FROM host_graph
 		WHERE graph_template_id = ?
-		AND host_id = ?",
-		array($graph_template_id, $host_id));
+		AND host_id = ?',
+		[$graph_template_id, $host_id]);
 
 	if (!$assoc) {
-		db_execute_prepared("INSERT INTO host_graph
-			(host_id, graph_template_id) VALUES (?, ?)",
-			array($host_id, $graph_template_id));
+		db_execute_prepared('INSERT INTO host_graph
+			(host_id, graph_template_id) VALUES (?, ?)',
+			[$host_id, $graph_template_id]);
 	}
 
-	$exists = db_fetch_cell_prepared("SELECT count(*)
+	$exists = db_fetch_cell_prepared('SELECT count(*)
 		FROM graph_local
 		WHERE host_id = ?
-		AND graph_template_id = ?",
-		array($host_id, $graph_template_id));
+		AND graph_template_id = ?',
+		[$host_id, $graph_template_id]);
 
 	if (!$exists) {
 		print "NOTE: Adding Graph: '$name' for Host: " . $host_id;
@@ -284,7 +289,7 @@ function hmib_gt_graph($host_id, $graph_template_id) {
 			' --host-id=' . $host_id;
 
 		$return_code = 0;
-		$output      = array();
+		$output      = [];
 		$timeout     = 20;
 
 		exec_with_timeout($command, $output, $return_code, $timeout);
@@ -294,7 +299,7 @@ function hmib_gt_graph($host_id, $graph_template_id) {
 				print "WARNING: add_graphs.php CLI returned a non-zero return code of $return_code" . PHP_EOL;
 			}
 
-			foreach($output as $l) {
+			foreach ($output as $l) {
 				print trim($l) . PHP_EOL;
 			}
 		} else {
@@ -310,8 +315,9 @@ function add_summary_graphs($host_id, $host_template) {
 	$base    = cacti_escapeshellarg($config['base_path']);
 
 	$return_code = 0;
+
 	if (empty($host_id)) {
-		/* add the host */
+		// add the host
 		debug('Adding Host');
 		$result = exec("$php_bin -q $base/cli/add_device.php --description='Summary Device' --ip=summary --template=$host_template --version=0 --avail=none", $return_code);
 	} else {
@@ -319,22 +325,22 @@ function add_summary_graphs($host_id, $host_template) {
 		$result = exec("$php_bin -q $base/cli/poller_reindex_hosts.php -id=$host_id -qid=All", $return_code);
 	}
 
-	/* data query graphs first */
+	// data query graphs first
 	debug('Processing Data Queries');
-	$data_queries = db_fetch_assoc_prepared("SELECT *
+	$data_queries = db_fetch_assoc_prepared('SELECT *
 		FROM host_snmp_query
-		WHERE host_id = ?",
-		array($host_id));
+		WHERE host_id = ?',
+		[$host_id]);
 
 	if (cacti_sizeof($data_queries)) {
-		foreach($data_queries as $dq) {
+		foreach ($data_queries as $dq) {
 			$graph_templates = db_fetch_assoc_prepared('SELECT *
 				FROM snmp_query_graph
 				WHERE snmp_query_id = ?',
-				array($dq['snmp_query_id']));
+				[$dq['snmp_query_id']]);
 
 			if (cacti_sizeof($graph_templates)) {
-				foreach($graph_templates as $gt) {
+				foreach ($graph_templates as $gt) {
 					hmib_dq_graphs($host_id, $dq['snmp_query_id'], $gt['graph_template_id'], $gt['id']);
 				}
 			}
@@ -342,19 +348,19 @@ function add_summary_graphs($host_id, $host_template) {
 	}
 
 	debug('Processing Graph Templates');
-	$graph_templates = db_fetch_assoc_prepared("SELECT *
+	$graph_templates = db_fetch_assoc_prepared('SELECT *
 		FROM host_graph
-		WHERE host_id = ?",
-		array($host_id));
+		WHERE host_id = ?',
+		[$host_id]);
 
 	if (cacti_sizeof($graph_templates)) {
-		foreach($graph_templates as $gt) {
-			/* see if the graph exists already */
-			$exists = db_fetch_cell_prepared("SELECT COUNT(*)
+		foreach ($graph_templates as $gt) {
+			// see if the graph exists already
+			$exists = db_fetch_cell_prepared('SELECT COUNT(*)
 				FROM graph_local
 				WHERE host_id = ?
-				AND graph_template_id = ?",
-				array($host_id, $gt['graph_template_id']));
+				AND graph_template_id = ?',
+				[$host_id, $gt['graph_template_id']]);
 
 			if (!$exists) {
 				print "NOTE: Adding item: '" . $gt['graph_template_id'] . "' for Host: " . $host_id;
@@ -364,7 +370,7 @@ function add_summary_graphs($host_id, $host_template) {
 					' --graph-type=cg' .
 					' --host-id=' . $host_id;
 
-				$output      = array();
+				$output      = [];
 				$return_code = 0;
 				$timeout     = 20;
 
@@ -390,55 +396,55 @@ function add_summary_graphs($host_id, $host_template) {
 
 function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
 	$field = '', $regex = '', $include = true) {
-
 	global $config, $php_bin, $path_grid;
 
 	$php_bin = read_config_option('path_php_binary');
 	$base    = $config['base_path'];
 
 	if ($field == '') {
-		$field = db_fetch_cell_prepared("SELECT sort_field
+		$field = db_fetch_cell_prepared('SELECT sort_field
 			FROM host_snmp_query
 			WHERE host_id = ?
-			AND snmp_query_id= ?",
-			array($host_id, $query_id));
+			AND snmp_query_id= ?',
+			[$host_id, $query_id]);
 	}
 
-	$items = db_fetch_assoc_prepared("SELECT *
+	$items = db_fetch_assoc_prepared('SELECT *
 		FROM host_snmp_cache
 		WHERE field_name = ?
 		AND host_id = ?
-		AND snmp_query_id = ?",
-		array($field, $host_id, $query_id));
+		AND snmp_query_id = ?',
+		[$field, $host_id, $query_id]);
 
 	if (cacti_sizeof($items)) {
-		foreach($items as $item) {
+		foreach ($items as $item) {
 			$field_value = $item['field_value'];
 			$index       = $item['snmp_index'];
 
 			if ($regex == '') {
-				/* add graph below */
+				// add graph below
 			} elseif ((($include == true) && (preg_match('/' . $regex . '/', $field_value))) ||
 				(($include != true) && (!preg_match('/' . $regex . '/', $field_value)))) {
-				/* add graph below */
+				// add graph below
 			} else {
 				print "NOTE: Bypassig item due to Regex rule: '" . $field_value . "' for Host: " . $host_id . "\n";
+
 				continue;
 			}
 
-			/* check to see if the graph exists or not */
-			$exists = db_fetch_cell_prepared("SELECT id
+			// check to see if the graph exists or not
+			$exists = db_fetch_cell_prepared('SELECT id
 				FROM graph_local
 				WHERE host_id = ?
 				AND snmp_query_id = ?
 				AND graph_template_id = ?
-				AND snmp_index = ?",
-				array($host_id, $query_id, $graph_template_id, $index));
+				AND snmp_index = ?',
+				[$host_id, $query_id, $graph_template_id, $index]);
 
 			if (!$exists) {
 				$command = "$php_bin -q $base/cli/add_graphs.php" .
 					' --graph-template-id=' . $graph_template_id .
-					' --graph-type=ds'     .
+					' --graph-type=ds' .
 					' --snmp-query-type-id=' . $query_type_id .
 					' --host-id=' . $host_id .
 					' --snmp-query-id=' . $query_id .
@@ -473,7 +479,7 @@ function display_version() {
 	}
 
 	$info = plugin_hmib_version();
-	print "Host MIB Graph Automator, Version " . $info['version'] . ", " . COPYRIGHT_YEARS . "\n";
+	print 'Host MIB Graph Automator, Version ' . $info['version'] . ', ' . COPYRIGHT_YEARS . "\n";
 }
 
 function display_help() {
@@ -482,4 +488,3 @@ function display_help() {
 	print "\nThe Host MIB process that creates graphs for Cacti.\n\n";
 	print "usage: poller_graphs.php [--force] [--debug]\n";
 }
-
