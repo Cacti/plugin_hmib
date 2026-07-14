@@ -934,11 +934,11 @@ function hmib_host_type() {
 }
 
 /** hmib_draw_actions_dropdown - draws a table the allows the user to select an action to perform
-	 on one or more data elements
-   @arg $actions_array - an array that contains a list of possible actions. this array should
-	 * @param mixed $actions_array
-	 * @param mixed $include_form_end
-	 be compatible with the form_dropdown() function */
+ * on one or more data elements
+ * @arg $actions_array - an array that contains a list of possible actions. this array should
+ * @param mixed $actions_array
+ * @param mixed $include_form_end
+ * be compatible with the form_dropdown() function */
 function hmib_draw_actions_dropdown($actions_array, $include_form_end = true) {
 	global $config;
 	?>
