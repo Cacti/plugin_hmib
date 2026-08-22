@@ -2,6 +2,11 @@
 /*
  +-------------------------------------------------------------------------+
  | Copyright (C) 2004-2026 The Cacti Group                                 |
+ |                                                                         |
+ | This program is free software; you can redistribute it and/or           |
+ | modify it under the terms of the GNU General Public License             |
+ | as published by the Free Software Foundation; either version 2          |
+ | of the License, or (at your option) any later version.                  |
  +-------------------------------------------------------------------------+
  | Cacti: The Complete RRDtool-based Graphing Solution                     |
  +-------------------------------------------------------------------------+
@@ -12,7 +17,6 @@
  * Cacti 1.2.x plugins must remain compatible with PHP 7.4.
  */
 
-describe('PHP 7.4 compatibility in hmib', function () {
 	$files = array(
 		'associate_os_type.php',
 		'hmib.php',
@@ -27,14 +31,14 @@ describe('PHP 7.4 compatibility in hmib', function () {
 			$path = realpath(__DIR__ . '/../../' . $relativeFile);
 
 			if ($path === false) {
-				continue;
-			}
+			throw new RuntimeException("Unable to resolve required plugin source");
+		}
 
 			$contents = file_get_contents($path);
 
 			if ($contents === false) {
-				continue;
-			}
+			throw new RuntimeException("Unable to read required plugin source");
+		}
 
 			expect(preg_match('/\bstr_contains\s*\(/', $contents))->toBe(0,
 				"{$relativeFile} uses str_contains() which requires PHP 8.0"
@@ -47,14 +51,14 @@ describe('PHP 7.4 compatibility in hmib', function () {
 			$path = realpath(__DIR__ . '/../../' . $relativeFile);
 
 			if ($path === false) {
-				continue;
-			}
+			throw new RuntimeException("Unable to resolve required plugin source");
+		}
 
 			$contents = file_get_contents($path);
 
 			if ($contents === false) {
-				continue;
-			}
+			throw new RuntimeException("Unable to read required plugin source");
+		}
 
 			expect(preg_match('/\bstr_starts_with\s*\(/', $contents))->toBe(0,
 				"{$relativeFile} uses str_starts_with() which requires PHP 8.0"
@@ -67,14 +71,14 @@ describe('PHP 7.4 compatibility in hmib', function () {
 			$path = realpath(__DIR__ . '/../../' . $relativeFile);
 
 			if ($path === false) {
-				continue;
-			}
+			throw new RuntimeException("Unable to resolve required plugin source");
+		}
 
 			$contents = file_get_contents($path);
 
 			if ($contents === false) {
-				continue;
-			}
+			throw new RuntimeException("Unable to read required plugin source");
+		}
 
 			expect(preg_match('/\bstr_ends_with\s*\(/', $contents))->toBe(0,
 				"{$relativeFile} uses str_ends_with() which requires PHP 8.0"
@@ -87,18 +91,17 @@ describe('PHP 7.4 compatibility in hmib', function () {
 			$path = realpath(__DIR__ . '/../../' . $relativeFile);
 
 			if ($path === false) {
-				continue;
-			}
+			throw new RuntimeException("Unable to resolve required plugin source");
+		}
 
 			$contents = file_get_contents($path);
 
 			if ($contents === false) {
-				continue;
-			}
+			throw new RuntimeException("Unable to read required plugin source");
+		}
 
 			expect(preg_match('/\?->/', $contents))->toBe(0,
 				"{$relativeFile} uses nullsafe operator which requires PHP 8.0"
 			);
 		}
 	});
-});
