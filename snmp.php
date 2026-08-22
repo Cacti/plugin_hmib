@@ -133,10 +133,10 @@ function cacti_snmp_get($hostname, $community, $oid, $version, $username, $passw
 			return;
 		}
 
-		// cast numeric args to int — prevents shell injection if the host record is tampered
-		$version = (int) $version;
+		// Cast numeric arguments while preserving net-snmp's validated v2c spelling.
 		$timeout = (int) $timeout;
 		$retries = (int) $retries;
+		$port    = (int) $port;
 
 		exec(cacti_escapeshellcmd(read_config_option('path_snmpget')) . ' -O fntevU ' . $snmp_auth . " -v $version -t $timeout -r $retries " . cacti_escapeshellarg($hostname) . ":$port " . cacti_escapeshellarg($oid), $snmp_value);
 
