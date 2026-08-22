@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2025-10-13 01:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2024-06-08 09:44-0400\nPO-Revision-Date: 2026-08-04 05:18+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php:36
 msgid "Error"
@@ -816,7 +816,7 @@ msgstr "ავტოაღმოჩენის სიხშირე"
 
 #: setup.php:455
 msgid "How often do you want to look for new Cacti Devices?"
-msgstr ""
+msgstr "რამდენად ხშირად გნებავთ ახალი Cacti-ის მოწყობილობების ძებნა?"
 
 #: setup.php:461
 msgid "Host Graph Automation"
@@ -824,11 +824,11 @@ msgstr "ჰოსტის გრაფიკის ავტომატიზ�
 
 #: setup.php:465
 msgid "Automatically Add New Graphs"
-msgstr ""
+msgstr "ახალი გრაფიკების ავტომატური დამატება"
 
 #: setup.php:466
 msgid "How often do you want to check for new objects to graph?"
-msgstr ""
+msgstr "რამდენად ხშირად გნებავთ დასახატად ახალი ობიექტების ძებნა?"
 
 #: setup.php:470
 msgid "Never"
