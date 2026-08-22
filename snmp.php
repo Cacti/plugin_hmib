@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  +-------------------------------------------------------------------------+
  | Copyright (C) 2004-2026 The Cacti Group                                 |
@@ -28,10 +30,10 @@ define('SNMP_METHOD_PHP', 1);
 define('SNMP_METHOD_BINARY', 2);
 
 if (!isset($banned_snmp_strings)) {
-	$banned_snmp_strings = array(
+	$banned_snmp_strings = [
 		'End of MIB',
 		'No Such'
-	);
+	];
 }
 
 /* we must use an apostrophe to escape community names under Unix in case the user uses
@@ -270,8 +272,8 @@ function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $pass
 
 	$snmp_oid_included = true;
 	$snmp_auth	       = '';
-	$snmp_array        = array();
-	$temp_array        = array();
+	$snmp_array        = [];
+	$temp_array        = [];
 
 	/* determine default retries */
 	if (($retries == 0) || (!is_numeric($retries))) {
@@ -287,7 +289,7 @@ function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $pass
 		(!is_numeric($timeout)) ||
 		(($community == '') && ($version != 3))
 		) {
-		return array();
+		return [];
 	}
 
 	$path_snmpbulkwalk = read_config_option('path_snmpbulkwalk');

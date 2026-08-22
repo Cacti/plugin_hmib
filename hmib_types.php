@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  +-------------------------------------------------------------------------+
  | Copyright (C) 2004-2026 The Cacti Group                                 |
@@ -110,12 +112,12 @@ function form_save() {
 function api_hmib_host_type_remove($host_type_id) {
 	db_execute_prepared('DELETE FROM plugin_hmib_hrSystemTypes
 		WHERE id = ?',
-		array($host_type_id));
+		[$host_type_id]);
 
 	db_execute_prepared('UPDATE plugin_hmib_hrSystem
 		SET host_type=0
 		WHERE host_type = ?',
-		array($host_type_id));
+		[$host_type_id]);
 }
 
 function hmib_host_type_save($host_type_id, $name, $version, $sysDescrMatch, $sysObjectID) {
@@ -141,7 +143,7 @@ function hmib_host_type_save($host_type_id, $name, $version, $sysDescrMatch, $sy
 		db_execute_prepared('UPDATE plugin_hmib_hrSystemTypes
 			SET name = ?, version = ?, sysDescrMatch = ?, sysObjectID = ?
 			WHERE id = ?',
-			array($name, $version, $sysDescrMatch, $sysObjectID, $host_type_id));
+			[$name, $version, $sysDescrMatch, $sysObjectID, $host_type_id]);
 
 		raise_message(1);
 	}
@@ -154,7 +156,7 @@ function hmib_duplicate_host_type($host_type_id, $dup_id, $host_type_title) {
 		$host_type = db_fetch_row_prepared('SELECT *
 			FROM plugin_hmib_hrSystemTypes
 			WHERE id = ?',
-			array($host_type_id));
+			[$host_type_id]);
 
 		/* create new entry: graph_local */
 		$save['id'] = 0;
@@ -221,7 +223,7 @@ function form_actions() {
 				$host_types_info = db_fetch_row_prepared('SELECT name
 					FROM plugin_hmib_hrSystemTypes
 					WHERE id = ?',
-					array($matches[1]));
+					[$matches[1]]);
 
 				$host_types_list .= '<li>' . html_escape($host_types_info['name']) . '</li>';
 				$host_types_array[$i] = $matches[1];
@@ -289,41 +291,41 @@ function form_actions() {
 function hmib_validate_request_vars() {
     /* ================= input validation and session storage ================= */
     $filters = array(
-		'rows' => array(
+		'rows' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-		),
-		'page' => array(
+		],
+		'page' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-		),
-		'filter' => array(
+		],
+		'filter' => [
 			'filter' => FILTER_DEFAULT,
 			'pageset' => true,
 			'default' => ''
-		),
+		],
 		'version' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => 'All',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'vendor' => array(
 			'filter' => FILTER_CALLBACK,
 			'pageset' => true,
 			'default' => '',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'name',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		)
 	);
 
@@ -340,7 +342,7 @@ function hmib_host_type_export() {
 
 	$host_types = hmib_get_host_types($sql_where, 0, false);
 
-	$xport_array = array();
+	$xport_array = [];
 	array_push($xport_array, '"id","name","version",' .
 		'"sysDescrMatch","sysObjectID"');
 
@@ -366,7 +368,7 @@ function rescan_types() {
 	global $cnn_id;
 
 	/* let's allocate an array for results */
-	$insert_array = array();
+	$insert_array = [];
 	$new_name     = __('New Type', 'hmib');
 	$new_version  = __('Unknown', 'hmib');
 
@@ -499,8 +501,8 @@ function hmib_host_type_import_processor(&$host_types) {
 	$save_name_id			= -1;
 	$save_order				= '';
 	$update_suffix			= '';
-	$return_array   = array();
-	$insert_columns = array();
+	$return_array   = [];
+	$insert_columns = [];
 
 	foreach($host_types as $host_type) {
 		/* parse line */
@@ -773,18 +775,18 @@ function hmib_host_type_edit() {
 		'value' => '|arg1:sysObjectID|',
 		'max_length' => '250'
 		),
-	'id' => array(
+	'id' => [
 		'method' => 'hidden_zero',
 		'value' => '|arg1:id|'
-		),
-	'_id' => array(
+		],
+	'_id' => [
 		'method' => 'hidden_zero',
 		'value' => '|arg1:id|'
-		),
-	'save_component_host_type' => array(
+		],
+	'save_component_host_type' => [
 		'method' => 'hidden',
 		'value' => '1'
-		)
+		]
 	);
 
 	if (!isempty_request_var('id')) {
@@ -800,8 +802,8 @@ function hmib_host_type_edit() {
 
 	draw_edit_form(
 		array(
-			'config' => array('form_name' => 'chk'),
-			'fields' => inject_form_variables($fields_host_type_edit, (isset($host_type) ? $host_type : array()))
+			'config' => ['form_name' => 'chk'],
+			'fields' => inject_form_variables($fields_host_type_edit, (isset($host_type) ? $host_type : []))
 		)
 	);
 
