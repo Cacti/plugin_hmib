@@ -23,11 +23,11 @@
  +-------------------------------------------------------------------------+
 */
 
-chdir(dirname(__FILE__));
+chdir(__DIR__);
 chdir('../..');
 include('./include/cli_check.php');
 
-/* process calling arguments */
+// process calling arguments
 $parms = $_SERVER['argv'];
 array_shift($parms);
 
@@ -36,11 +36,11 @@ global $debug, $start, $seed, $forcerun;
 $debug = false;
 
 if (cacti_sizeof($parms)) {
-	foreach($parms as $parameter) {
+	foreach ($parms as $parameter) {
 		if (strpos($parameter, '=')) {
-			list($arg, $value) = explode('=', $parameter);
+			[$arg, $value] = explode('=', $parameter);
 		} else {
-			$arg = $parameter;
+			$arg   = $parameter;
 			$value = '';
 		}
 
@@ -48,6 +48,7 @@ if (cacti_sizeof($parms)) {
 			case '-d':
 			case '--debug':
 				$debug = true;
+
 				break;
 			case '--version':
 			case '-V':
@@ -87,8 +88,8 @@ function process_hosts() {
 	$types = db_fetch_assoc('SELECT * FROM plugin_hmib_hrSystemTypes');
 
 	if (cacti_sizeof($types)) {
-		foreach($types as $t) {
-			db_execute('UPDATE plugin_hmib_hrSystem AS hrs SET host_type='. $t['id'] . "
+		foreach ($types as $t) {
+			db_execute('UPDATE plugin_hmib_hrSystem AS hrs SET host_type=' . $t['id'] . "
 				WHERE hrs.sysDescr LIKE '%" . $t['sysDescrMatch'] . "%'
 				AND hrs.sysObjectID LIKE '" . $t['sysObjectID'] . "%'");
 		}
@@ -105,7 +106,7 @@ function display_version() {
 	}
 
 	$version = plugin_hmib_version();
-	print "Host MIB Associate OS Type, Version " . $version['version'] . ", " . COPYRIGHT_YEARS . "\n";
+	print 'Host MIB Associate OS Type, Version ' . $version['version'] . ', ' . COPYRIGHT_YEARS . "\n";
 }
 
 function display_help() {
@@ -113,4 +114,3 @@ function display_help() {
 
 	print "\nusage: call without any parameter\n";
 }
-
