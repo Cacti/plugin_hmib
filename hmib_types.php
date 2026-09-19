@@ -719,24 +719,24 @@ function hmib_host_type_import_processor(&$host_types) {
 						' VALUES' . $save_value . $update_suffix;
 
 					if (db_execute($sql_execute)) {
-						array_push($return_array,"INSERT SUCCEEDED: Name: $name, Version: $version, sysDescr: $sysDescrMatch, sysObjectID: $sysObjectID");
+						array_push($return_array,'INSERT SUCCEEDED: Name: ' . html_escape($name) . ', Version: ' . html_escape($version) . ', sysDescr: ' . html_escape($sysDescrMatch) . ', sysObjectID: ' . html_escape($sysObjectID));
 					} else {
-						array_push($return_array,"<strong>INSERT FAILED:</strong> Name: $name, Version: $version, sysDescr: $sysDescrMatch, sysObjectID: $sysObjectID");
+						array_push($return_array,'<strong>INSERT FAILED:</strong> Name: ' . html_escape($name) . ', Version: ' . html_escape($version) . ', sysDescr: ' . html_escape($sysDescrMatch) . ', sysObjectID: ' . html_escape($sysObjectID));
 					}
 				} else {
 					// perform check to see if the row exists
 					$existing_row = db_fetch_row("SELECT * FROM plugin_hmib_hrSystemTypes $sql_where");
 
 					if (cacti_sizeof($existing_row)) {
-						array_push($return_array,"<strong>INSERT SKIPPED, EXISTING:</strong> Name: $name, Vendor: $vendor, sysDescr: $sysDescrMatch, sysObjectID: $sysObjectID");
+						array_push($return_array,'<strong>INSERT SKIPPED, EXISTING:</strong> Name: ' . html_escape($name) . ', Vendor: ' . html_escape($vendor) . ', sysDescr: ' . html_escape($sysDescrMatch) . ', sysObjectID: ' . html_escape($sysObjectID));
 					} else {
 						$sql_execute = 'INSERT INTO plugin_hmib_hrSystemTypes ' . $save_order .
 							' VALUES' . $save_value;
 
 						if (db_execute($sql_execute)) {
-							array_push($return_array,"INSERT SUCCEEDED: Name: $name, Version: $version, sysDescr: $sysDescrMatch, sysObjectID: $sysObjectID");
+							array_push($return_array,'INSERT SUCCEEDED: Name: ' . html_escape($name) . ', Version: ' . html_escape($version) . ', sysDescr: ' . html_escape($sysDescrMatch) . ', sysObjectID: ' . html_escape($sysObjectID));
 						} else {
-							array_push($return_array,"<strong>INSERT FAILED:</strong> Name: $name, Version: $version, sysDescr: $sysDescrMatch, sysObjectID: $sysObjectID");
+							array_push($return_array,'<strong>INSERT FAILED:</strong> Name: ' . html_escape($name) . ', Version: ' . html_escape($version) . ', sysDescr: ' . html_escape($sysDescrMatch) . ', sysObjectID: ' . html_escape($sysObjectID));
 						}
 					}
 				}

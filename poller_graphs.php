@@ -448,7 +448,7 @@ function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
 					' --snmp-query-type-id=' . $query_type_id .
 					' --host-id=' . $host_id .
 					' --snmp-query-id=' . $query_id .
-					' --snmp-field=' . $field .
+					' --snmp-field=' . cacti_escapeshellarg($field) .
 					' --snmp-value=' . cacti_escapeshellarg($field_value);
 
 				$results = shell_exec($command);
