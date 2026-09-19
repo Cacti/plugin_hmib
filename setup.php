@@ -365,7 +365,7 @@ function hmib_setup_table() {
 		db_execute('ALTER TABLE snmp_query_graph ADD INDEX graph_template_id(graph_template_id)');
 	}
 
-	if (!db_index_exists('snmp_query_graph', 'graph_query_id')) {
+	if (!db_index_exists('snmp_query_graph', 'snmp_query_id')) {
 		db_execute('ALTER TABLE snmp_query_graph ADD INDEX snmp_query_id(snmp_query_id)');
 	}
 }
