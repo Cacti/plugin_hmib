@@ -17,7 +17,7 @@
 /*
  * Test bootstrap.
  *
- * Evidence's sources expect to be included by Cacti, which has already
+ * HMIB's sources expect to be included by Cacti, which has already
  * defined the db_*, request-variable, and logging helpers as plain global
  * functions. Nothing here talks to a database or a network: each Cacti
  * function is declared as a stub that records the call in
@@ -71,7 +71,7 @@ require_once __DIR__ . '/TestCase.php';
 
 /*
  * base_path has to point at the Cacti root two levels above this plugin:
- * evidence's source files build include paths from it at runtime.
+ * hmib's source files build include paths from it at runtime.
  */
 $GLOBALS['config'] = array(
 	'base_path'       => $cacti_root,
@@ -296,7 +296,7 @@ if (!function_exists('plugin_test_read_source')) {
  *
  * @return void
  */
-function evidence_test_load($path) {
+function hmib_test_load($path) {
 	global $config;
 
 	$__before = get_defined_vars();

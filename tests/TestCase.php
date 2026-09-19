@@ -15,7 +15,7 @@
 */
 
 /**
- * Base class for Evidence tests.
+ * Base class for HMIB tests.
  *
  * Pest's functional tests do not need this directly, but any test that
  * prefers a class-based fixture can `uses(TestCase::class)` to get a clean
@@ -39,6 +39,6 @@ abstract class TestCase extends PHPUnit\Framework\TestCase {
 	 * @return void
 	 */
 	protected static function loadPluginSource($file) {
-		evidence_test_load(dirname(__DIR__) . '/' . $file);
+		hmib_test_load(dirname(__DIR__) . '/' . $file);
 	}
 }

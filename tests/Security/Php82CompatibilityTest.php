@@ -52,7 +52,7 @@ it('does not use the #[Override] attribute (PHP 8.3)', function () use ($files) 
 	foreach ($files as $relativeFile) {
 		$contents = plugin_test_read_source($relativeFile);
 
-		expect(preg_match('/#\[\s*Override\s*\]/i', $contents))->toBe(0,
+		expect(preg_match('/#\[\s*\\\\?Override\s*\]/i', $contents))->toBe(0,
 			"{$relativeFile} uses #[Override] which requires PHP 8.3"
 		);
 	}
@@ -62,7 +62,7 @@ it('does not use the #[Deprecated] attribute (PHP 8.4)', function () use ($files
 	foreach ($files as $relativeFile) {
 		$contents = plugin_test_read_source($relativeFile);
 
-		expect(preg_match('/#\[\s*Deprecated\b/i', $contents))->toBe(0,
+		expect(preg_match('/#\[\s*\\\\?Deprecated\b/i', $contents))->toBe(0,
 			"{$relativeFile} uses #[Deprecated] which requires PHP 8.4"
 		);
 	}

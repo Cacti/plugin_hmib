@@ -486,9 +486,10 @@ function process_hosts() {
 
 	if (cacti_sizeof($types)) {
 		foreach ($types as $t) {
-			db_execute('UPDATE plugin_hmib_hrSystem AS hrs SET host_type=' . $t['id'] . "
-				WHERE hrs.sysDescr LIKE '%" . $t['sysDescrMatch'] . "%'
-				AND hrs.sysObjectID LIKE '" . $t['sysObjectID'] . "%'");
+			db_execute_prepared('UPDATE plugin_hmib_hrSystem AS hrs SET host_type = ?
+				WHERE hrs.sysDescr LIKE ?
+				AND hrs.sysObjectID LIKE ?',
+				[$t['id'], '%' . $t['sysDescrMatch'] . '%', $t['sysObjectID'] . '%']);
 		}
 	}
 
