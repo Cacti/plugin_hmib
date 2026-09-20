@@ -254,8 +254,8 @@ function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = 
 function hmib_gt_graph($host_id, $graph_template_id) {
 	global $config;
 
-	$php_bin = read_config_option('path_php_binary');
-	$base    = $config['base_path'];
+	$php_bin = cacti_escapeshellcmd(read_config_option('path_php_binary'));
+	$base    = cacti_escapeshellarg($config['base_path']);
 
 	$name = db_fetch_cell_prepared('SELECT name
 		FROM graph_templates
@@ -398,8 +398,8 @@ function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
 	$field = '', $regex = '', $include = true) {
 	global $config, $php_bin, $path_grid;
 
-	$php_bin = read_config_option('path_php_binary');
-	$base    = $config['base_path'];
+	$php_bin = cacti_escapeshellcmd(read_config_option('path_php_binary'));
+	$base    = cacti_escapeshellarg($config['base_path']);
 
 	if ($field == '') {
 		$field = db_fetch_cell_prepared('SELECT sort_field
