@@ -503,15 +503,15 @@ function hmib_host_type_import() {
 
 function hmib_host_type_import_processor(&$host_types) {
 	$i                    = 0;
-	$sysDescrMatch_id		   = -1;
-	$sysObjectID_id			    = -1;
-	$host_type_id			      = -1;
-	$save_vendor_id			    = -1;
-	$save_description_id	 = -1;
-	$save_version_id		    = -1;
-	$save_name_id			      = -1;
-	$save_order				       = '';
-	$update_suffix			     = '';
+	$sysDescrMatch_id     = -1;
+	$sysObjectID_id       = -1;
+	$host_type_id         = -1;
+	$save_vendor_id       = -1;
+	$save_description_id  = -1;
+	$save_version_id      = -1;
+	$save_name_id         = -1;
+	$save_order           = '';
+	$update_suffix        = '';
 	$return_array         = [];
 	$insert_columns       = [];
 
