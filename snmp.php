@@ -590,6 +590,14 @@ function format_snmp_string($string, $snmp_oid_included) {
 }
 
 function snmp_escape_string($string) {
+	if (SNMP_ESCAPE_CHARACTER == "'") {
+		// POSIX single-quoted strings have no escape character, so a
+		// backslash in front of an embedded apostrophe has no effect and
+		// lets the quote close early (shell injection). Close the quote,
+		// emit a literal escaped apostrophe, then reopen the quote.
+		return "'" . str_replace("'", "'\\''", $string) . "'";
+	}
+
 	if (substr_count($string, SNMP_ESCAPE_CHARACTER)) {
 		$string = str_replace(SNMP_ESCAPE_CHARACTER, '\\' . SNMP_ESCAPE_CHARACTER, $string);
 	}
