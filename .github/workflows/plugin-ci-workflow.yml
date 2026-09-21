@@ -91,7 +91,7 @@ jobs:
       run: sudo apt-get update
 
     - name: Install System Dependencies
-      run: sudo apt-get install -y apache2 snmp snmpd rrdtool fping
+      run: sudo apt-get install -y snmp snmpd rrdtool fping
 
     - name: Start SNMPD Agent and Test
       run: |
@@ -141,6 +141,13 @@ jobs:
           sudo composer install --dev --no-progress
         fi
 
+    - name: Restore vendor ownership for Pest
+      run: |
+        cd ${{ github.workspace }}/cacti
+        if [ -d include/vendor ]; then
+          sudo chown -R runner:runner include/vendor composer.lock
+        fi
+
     - name: Create Cacti config.php
       run: |
         cat ${{ github.workspace }}/cacti/include/config.php.dist | \
@@ -149,26 +156,6 @@ jobs:
         sed -r "s/'cactiuser'/'cactiuser'/g" | \
         sed -r "s/'cactiuser'/'cactiuser'/g" > ${{ github.workspace }}/cacti/include/config.php
         sudo chmod 664 ${{ github.workspace }}/cacti/include/config.php
-
-    - name: Configure Apache
-      run: |
-        cat << 'EOF' | sed 's#GITHUB_WORKSPACE#${{ github.workspace }}#g' > /tmp/cacti.conf
-        <VirtualHost *:80>
-          ServerAdmin webmaster@localhost
-          DocumentRoot GITHUB_WORKSPACE/cacti
-
-          <Directory GITHUB_WORKSPACE/cacti>
-            Options Indexes FollowSymLinks
-            AllowOverride All
-            Require all granted
-          </Directory>
-
-          ErrorLog ${APACHE_LOG_DIR}/error.log
-          CustomLog ${APACHE_LOG_DIR}/access.log combined
-        </VirtualHost>
-        EOF
-        sudo cp /tmp/cacti.conf /etc/apache2/sites-available/000-default.conf
-        sudo systemctl restart apache2
 
     - name: Install Cacti via CLI
       run: |
@@ -194,8 +181,7 @@ jobs:
       run: |
         cd ${{ github.workspace }}/cacti
         include/vendor/bin/pest --configuration=plugins/hmib/phpunit.xml \
-          --coverage-clover=plugins/hmib/coverage/clover.xml \
-          plugins/hmib/tests/Security plugins/hmib/tests/Unit plugins/hmib/tests/Integration plugins/hmib/tests/e2e
+          --coverage-clover=plugins/hmib/coverage/clover.xml
 
     - name: Upload coverage report
       if: always()
