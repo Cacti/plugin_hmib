@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-09-21 13:13-0400\n"
+"POT-Creation-Date: 2026-09-24 09:29-0400\n"
 "PO-Revision-Date: 2024-06-08 09:48-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,9 +21,9 @@ msgstr ""
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: hmib.php:37 hmib.php:52 hmib.php:173 hmib.php:541 hmib.php:837 hmib.php:946
-#: hmib.php:1205 hmib.php:1302 hmib.php:1576 hmib.php:1669 hmib.php:1762
-#: hmib.php:2194 hmib.php:2448 hmib.php:2855 hmib_types.php:381
+#: hmib.php:37 hmib.php:52 hmib.php:197 hmib.php:596 hmib.php:892 hmib.php:1039
+#: hmib.php:1298 hmib.php:1416 hmib.php:1690 hmib.php:1797 hmib.php:1890
+#: hmib.php:2370 hmib.php:2624 hmib.php:3060 hmib_types.php:499
 msgid "Unknown"
 msgstr "Άγνωστο"
 
@@ -67,465 +67,465 @@ msgstr "Προσοχή"
 msgid "Testing"
 msgstr "Δοκιμή"
 
-#: hmib.php:56 hmib.php:1766 hmib.php:2751
+#: hmib.php:56 hmib.php:1894 hmib.php:2956
 msgid "Down"
 msgstr "Πεσμένος"
 
-#: hmib.php:159
+#: hmib.php:183
 msgid "Running Process History"
 msgstr "Ιστορικό διεξαγωγής διαδικασίας"
 
-#: hmib.php:168 hmib.php:536 hmib.php:941 hmib.php:1297 hmib.php:1664
-#: hmib.php:2189 hmib_types.php:1020
+#: hmib.php:192 hmib.php:591 hmib.php:1034 hmib.php:1411 hmib.php:1792
+#: hmib.php:2365 hmib_types.php:1247
 msgid "OS Type"
 msgstr "Τύπος λειτουργικού συστήματος"
 
-#: hmib.php:172 hmib.php:194 hmib.php:216 hmib.php:255 hmib.php:540
-#: hmib.php:562 hmib.php:584 hmib.php:623 hmib.php:945 hmib.php:967
-#: hmib.php:989 hmib.php:1028 hmib.php:1301 hmib.php:1323 hmib.php:1345
-#: hmib.php:1384 hmib.php:1668 hmib.php:1690 hmib.php:1713 hmib.php:1749
-#: hmib.php:2193 hmib.php:2215 hmib.php:2237 hmib.php:2276
+#: hmib.php:196 hmib.php:218 hmib.php:240 hmib.php:279 hmib.php:595
+#: hmib.php:617 hmib.php:639 hmib.php:678 hmib.php:1038 hmib.php:1060
+#: hmib.php:1082 hmib.php:1121 hmib.php:1415 hmib.php:1437 hmib.php:1459
+#: hmib.php:1498 hmib.php:1796 hmib.php:1818 hmib.php:1841 hmib.php:1877
+#: hmib.php:2369 hmib.php:2391 hmib.php:2413 hmib.php:2452
 msgid "All"
 msgstr "Όλα"
 
-#: hmib.php:190 hmib.php:558 hmib.php:963 hmib.php:1319 hmib.php:2211
+#: hmib.php:214 hmib.php:613 hmib.php:1056 hmib.php:1433 hmib.php:2387
 msgid "Device"
 msgstr "Συσκευή"
 
-#: hmib.php:212 hmib.php:580 hmib.php:985 hmib.php:1341 hmib.php:1686
-#: hmib.php:2233
+#: hmib.php:236 hmib.php:635 hmib.php:1078 hmib.php:1455 hmib.php:1814
+#: hmib.php:2409
 msgid "Template"
 msgstr "Πρότυπο"
 
-#: hmib.php:236 hmib.php:604 hmib.php:1009 hmib.php:1365 hmib.php:1730
-#: hmib.php:2257 hmib.php:2658 hmib.php:2913 hmib_types.php:955
-#: hmib_types.php:1040
+#: hmib.php:260 hmib.php:659 hmib.php:1102 hmib.php:1479 hmib.php:1858
+#: hmib.php:2433 hmib.php:2863 hmib.php:3118 hmib_types.php:1170
+#: hmib_types.php:1267
 msgid "Go"
 msgstr "Πήγαινε"
 
-#: hmib.php:237 hmib.php:605 hmib.php:1010 hmib.php:1366 hmib.php:1731
-#: hmib.php:2258 hmib.php:2659 hmib.php:2914 hmib_types.php:1041
+#: hmib.php:261 hmib.php:660 hmib.php:1103 hmib.php:1480 hmib.php:1859
+#: hmib.php:2434 hmib.php:2864 hmib.php:3119 hmib_types.php:1268
 msgid "Clear"
 msgstr "Καθαρισμός"
 
-#: hmib.php:245 hmib.php:613 hmib.php:1018 hmib.php:1374 hmib.php:1739
-#: hmib.php:2266 hmib.php:2892 hmib_types.php:1014
+#: hmib.php:269 hmib.php:668 hmib.php:1111 hmib.php:1488 hmib.php:1867
+#: hmib.php:2442 hmib.php:3097 hmib_types.php:1241
 msgid "Search"
 msgstr "Αναζήτηση"
 
-#: hmib.php:251 hmib.php:394 hmib.php:619 hmib.php:774 hmib.php:1709
+#: hmib.php:275 hmib.php:418 hmib.php:674 hmib.php:829 hmib.php:1837
 msgid "Process"
 msgstr "Διεργασία"
 
-#: hmib.php:271 hmib.php:639 hmib.php:1044
+#: hmib.php:295 hmib.php:694 hmib.php:1137
 msgid "Entries"
 msgstr "Εγγραφές"
 
-#: hmib.php:275 hmib.php:643 hmib.php:1048 hmib.php:1404 hmib.php:1793
-#: hmib.php:2295 hmib_types.php:1024
+#: hmib.php:299 hmib.php:698 hmib.php:1141 hmib.php:1518 hmib.php:1921
+#: hmib.php:2471 hmib_types.php:1251
 msgid "Default"
 msgstr "Προεπιλογή"
 
-#: hmib.php:389 hmib.php:769 hmib.php:1156 hmib.php:1512 hmib.php:1908
-#: hmib.php:2404
+#: hmib.php:413 hmib.php:824 hmib.php:1249 hmib.php:1626 hmib.php:2036
+#: hmib.php:2580
 msgid "Hostname"
 msgstr "Νέο όνομα φιλοξενίας"
 
-#: hmib.php:399
+#: hmib.php:423
 msgid "Last Seen"
 msgstr "Τελευταία Σύνδεση"
 
-#: hmib.php:404
+#: hmib.php:428
 msgid "Use Time (d:h:m)"
 msgstr "Χρόνος χρήσης (d: h: m)"
 
-#: hmib.php:410
+#: hmib.php:434
 msgid "History"
 msgstr "Ιστορικό"
 
-#: hmib.php:427 hmib.php:827 hmib.php:1199 hmib.php:1570 hmib.php:2054
-#: hmib.php:2442
+#: hmib.php:451 hmib.php:882 hmib.php:1292 hmib.php:1684 hmib.php:2182
+#: hmib.php:2618
 msgid "Edit Device"
 msgstr "Επεξεργασία συσκευής"
 
-#: hmib.php:441
+#: hmib.php:465
 msgid "No Process History Found"
 msgstr "Δεν βρέθηκε κανένα ιστορικό διεργασίας"
 
-#: hmib.php:527
+#: hmib.php:582
 msgid "Running Processes"
 msgstr "Εκτελούμενες Διεργασίες"
 
-#: hmib.php:779
+#: hmib.php:834
 msgid "Path"
 msgstr "Διαδρομή"
 
-#: hmib.php:784
+#: hmib.php:839
 msgid "Parameters"
 msgstr "Παράμετροι"
 
-#: hmib.php:789
+#: hmib.php:844
 msgid "CPU (Hrs)"
 msgstr "CPU (ώρες)"
 
-#: hmib.php:794
+#: hmib.php:849
 msgid "Memory (MB)"
 msgstr "Μνήμη (MB)"
 
-#: hmib.php:799 hmib.php:1024 hmib.php:1380 hmib.php:2272 hmib.php:2414
-#: hmib.php:2731
+#: hmib.php:854 hmib.php:1117 hmib.php:1494 hmib.php:2448 hmib.php:2590
+#: hmib.php:2936
 msgid "Type"
 msgstr "Τύπος"
 
-#: hmib.php:804 hmib.php:1171 hmib.php:1745 hmib.php:1913
+#: hmib.php:859 hmib.php:1264 hmib.php:1873 hmib.php:2041
 msgid "Status"
 msgstr "Κατάσταση"
 
-#: hmib.php:810 hmib.php:1938 hmib.php:2475 hmib.php:2898 hmib.php:3014
+#: hmib.php:865 hmib.php:2066 hmib.php:2662 hmib.php:3103 hmib.php:3219
 msgid "Processes"
 msgstr "Διαδικασίες"
 
-#: hmib.php:845
+#: hmib.php:900
 msgid "No Running Software Found"
 msgstr "Δεν βρέθηκε τρέχον λογισμικό"
 
-#: hmib.php:860
+#: hmib.php:928
 msgid "Total CPU [h]:"
 msgstr "Συνολική CPU [h]:"
 
-#: hmib.php:861
+#: hmib.php:929
 msgid "Total Size [MB]:"
 msgstr "Συνολικό μέγεθος [MB]:"
 
-#: hmib.php:865
+#: hmib.php:933
 msgid "Avg. CPU [h]:"
 msgstr "Μέγ. CPU [h]:"
 
-#: hmib.php:866
+#: hmib.php:934
 msgid "Avg. Size [MB]:"
 msgstr "Μέγ. Μέγεθος [MB]:"
 
-#: hmib.php:932
+#: hmib.php:1025
 msgid "Hardware Inventory"
 msgstr "Απογραφή υλικού"
 
-#: hmib.php:1161
+#: hmib.php:1254
 msgid "Hardware Description"
 msgstr "Περιγραφή υλικού"
 
-#: hmib.php:1166
+#: hmib.php:1259
 msgid "Hardware Type"
 msgstr "Τύπος υλικού"
 
-#: hmib.php:1176 hmib.php:1527
+#: hmib.php:1269 hmib.php:1641
 msgid "Errors"
 msgstr "Σφάλματα"
 
-#: hmib.php:1182 hmib.php:1789 hmib.php:1964 hmib.php:2472
+#: hmib.php:1275 hmib.php:1917 hmib.php:2092 hmib.php:2659
 msgid "Devices"
 msgstr "Τύπος Συσκευής"
 
-#: hmib.php:1214
+#: hmib.php:1307
 msgid "No Hardware Found"
 msgstr "Δεν βρέθηκε υλικό"
 
-#: hmib.php:1288
+#: hmib.php:1402
 msgid "Storage Inventory"
 msgstr "Απογραφή αποθήκευσης"
 
-#: hmib.php:1400 hmib.php:1553
+#: hmib.php:1514 hmib.php:1667
 msgid "Volumes"
 msgstr "Τόμοι"
 
-#: hmib.php:1517
+#: hmib.php:1631
 msgid "Storage Description"
 msgstr "Περιγραφή αποθήκευσης"
 
-#: hmib.php:1522
+#: hmib.php:1636
 msgid "Storage Type"
 msgstr "Τύπος αποθήκευσης"
 
-#: hmib.php:1532
+#: hmib.php:1646
 msgid "Percent Used"
 msgstr "Ποσοστό χρησιμοποιείται"
 
-#: hmib.php:1537
+#: hmib.php:1651
 msgid "Used (MB)"
 msgstr "Χρησιμοποιείται (MB)"
 
-#: hmib.php:1542
+#: hmib.php:1656
 msgid "Total (MB)"
 msgstr "Σύνολο (MB)"
 
-#: hmib.php:1547
+#: hmib.php:1661
 msgid "Alloc (KB)"
 msgstr "Alloc (KB)"
 
-#: hmib.php:1589
+#: hmib.php:1703
 msgid "No Storage Devices Found"
 msgstr "Δεν βρέθηκαν συσκευές αποθήκευσης"
 
-#: hmib.php:1655
+#: hmib.php:1783
 msgid "Device Filter"
 msgstr "Φίλτρο συσκευής"
 
-#: hmib.php:1770 hmib.php:2746
+#: hmib.php:1898 hmib.php:2951
 msgid "Recovering"
 msgstr "αναληπτικό"
 
-#: hmib.php:1774 hmib.php:2741
+#: hmib.php:1902 hmib.php:2946
 msgid "Up"
 msgstr "Πάνω"
 
-#: hmib.php:1778 hmib.php:2756 setup.php:534
+#: hmib.php:1906 hmib.php:2961 setup.php:682
 msgid "Disabled"
 msgstr "Απενεργοποιημένο"
 
-#: hmib.php:1903 hmib.php:2726 hmib.php:2994 setup.php:638
+#: hmib.php:2031 hmib.php:2931 hmib.php:3199 setup.php:796
 msgid "Actions"
 msgstr "Ενέργειες"
 
-#: hmib.php:1918
+#: hmib.php:2046
 msgid "Uptime(d:h:m)"
 msgstr "Ώρα λειτουργίας (d: h: m)"
 
-#: hmib.php:1923
+#: hmib.php:2051
 msgid "Users"
 msgstr "Χρήστες"
 
-#: hmib.php:1928
+#: hmib.php:2056
 msgid "CPU %%%"
 msgstr "ΕΠΕΞΕΡΓΑΣΤΗΣ %"
 
-#: hmib.php:1933
+#: hmib.php:2061
 msgid "CPUs"
 msgstr "CPU"
 
-#: hmib.php:1943
+#: hmib.php:2071
 msgid "Total Mem"
 msgstr "Σύνολο Μετ"
 
-#: hmib.php:1948
+#: hmib.php:2076
 msgid "Used Mem"
 msgstr "Χρησιμοποιημένος Mem"
 
-#: hmib.php:1953
+#: hmib.php:2081
 msgid "Total Swap"
 msgstr "Σύνολο ανταλλαγής"
 
-#: hmib.php:1958
+#: hmib.php:2086
 msgid "Used Swap"
 msgstr "Χρησιμοποιημένος Ανταλλαγή"
 
-#: hmib.php:2017 hmib.php:2838
+#: hmib.php:2145 hmib.php:3043
 msgid "View Storage"
 msgstr "Προβολή αποθήκευσης"
 
-#: hmib.php:2022 hmib.php:2840
+#: hmib.php:2150 hmib.php:3045
 msgid "View Hardware"
 msgstr "Προβολή υλικού"
 
-#: hmib.php:2027 hmib.php:2842 hmib.php:3070
+#: hmib.php:2155 hmib.php:3047 hmib.php:3275
 msgid "View Processes"
 msgstr "Προβολή διεργασιών"
 
-#: hmib.php:2032 hmib.php:2844
+#: hmib.php:2160 hmib.php:3049
 msgid "View Software Inventory"
 msgstr "Προβολή αποθέματος λογισμικού"
 
-#: hmib.php:2038 hmib.php:3153 hmib.php:3155 hmib.php:3204 hmib.php:3206
+#: hmib.php:2166 hmib.php:3399 hmib.php:3401 hmib.php:3474 hmib.php:3476
 msgid "View Graphs"
 msgstr "Προβολή γραφημάτων"
 
-#: hmib.php:2041
+#: hmib.php:2169
 msgid "No Graphs Defined"
 msgstr "Δεν ορίζονται γραφήματα"
 
-#: hmib.php:2048 hmib.php:2049
+#: hmib.php:2176 hmib.php:2177
 msgid "N/A"
 msgstr ""
 
-#: hmib.php:2075
+#: hmib.php:2203
 msgid "No Devices Found"
 msgstr "Δεν βρέθηκαν συσκευές"
 
-#: hmib.php:2180
+#: hmib.php:2356
 msgid "Software Inventory"
 msgstr "Απογραφή λογισμικού"
 
-#: hmib.php:2291 hmib.php:2425
+#: hmib.php:2467 hmib.php:2601
 msgid "Applications"
 msgstr "Αιτήσεις"
 
-#: hmib.php:2409
+#: hmib.php:2585
 msgid "Package"
 msgstr "Πακέτο"
 
-#: hmib.php:2419
+#: hmib.php:2595
 msgid "Installed"
 msgstr "Εγκατεστημένο"
 
-#: hmib.php:2456
+#: hmib.php:2632
 msgid "No Software Packages Found"
 msgstr "Δεν βρέθηκαν πακέτα λογισμικού"
 
-#: hmib.php:2471
+#: hmib.php:2658
 msgid "Summary"
 msgstr "Περίληψη"
 
-#: hmib.php:2473
+#: hmib.php:2660
 msgid "Storage"
 msgstr "Αποθήκη"
 
-#: hmib.php:2474
+#: hmib.php:2661
 msgid "Hardware"
 msgstr "Σκεύη, εξαρτήματα"
 
-#: hmib.php:2476
+#: hmib.php:2663
 msgid "Use History"
 msgstr "Χρήση ιστορικού"
 
-#: hmib.php:2477
+#: hmib.php:2664
 msgid "Inventory"
 msgstr "Εμπόρευμα"
 
-#: hmib.php:2478 hmib.php:3322
+#: hmib.php:2665 hmib.php:3621
 msgid "Graphs"
 msgstr "Γραφήματα"
 
-#: hmib.php:2636
+#: hmib.php:2841
 msgid "Summary Filter"
 msgstr "Σύνοψη φίλτρου"
 
-#: hmib.php:2645
+#: hmib.php:2850
 #, fuzzy
 #| msgid "Type"
 msgid "Types"
 msgstr "Τύπος"
 
-#: hmib.php:2649
+#: hmib.php:2854
 msgid "All Records"
 msgstr "Όλα τα αρχεία"
 
-#: hmib.php:2650 hmib.php:2906
+#: hmib.php:2855 hmib.php:3111
 #, php-format
 msgid "%d Records"
 msgstr "% d Αρχεία"
 
-#: hmib.php:2651 hmib.php:2652 hmib.php:2653
+#: hmib.php:2856 hmib.php:2857 hmib.php:2858
 #, php-format
 msgid "%d Record"
 msgstr "% d Εγγραφή"
 
-#: hmib.php:2663 hmib.php:2918
+#: hmib.php:2868 hmib.php:3123
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
 msgstr "ΣΗΜΕΙΩΣΗ: Εισαγάγετε το πακέτο συσκευής Host MIB για προβολή γραφημάτων."
 
-#: hmib.php:2686
+#: hmib.php:2891
 msgid "Device Type Summary Statistics"
 msgstr "Συγκεντρωτικά στατιστικά στοιχεία τύπου συσκευής"
 
-#: hmib.php:2736 hmib_types.php:774
+#: hmib.php:2941 hmib_types.php:936
 msgid "Version"
 msgstr "Έκδοση"
 
-#: hmib.php:2761
+#: hmib.php:2966
 msgid "Logins"
 msgstr "Συνδεθείτε"
 
-#: hmib.php:2766
+#: hmib.php:2971
 msgid "CPUS"
 msgstr "CPUS"
 
-#: hmib.php:2771 hmib.php:3019
+#: hmib.php:2976 hmib.php:3224
 msgid "Avg CPU"
 msgstr "Μέση CPU"
 
-#: hmib.php:2776 hmib.php:3024
+#: hmib.php:2981 hmib.php:3229
 msgid "Max CPU"
 msgstr "Μέγιστη CPU"
 
-#: hmib.php:2781
+#: hmib.php:2986
 msgid "Avg Mem"
 msgstr "Avg Mem"
 
-#: hmib.php:2786
+#: hmib.php:2991
 msgid "Max Mem"
 msgstr "Max Mem"
 
-#: hmib.php:2791
+#: hmib.php:2996
 msgid "Avg Swap"
 msgstr "Μέση Ανταλλαγή"
 
-#: hmib.php:2796
+#: hmib.php:3001
 msgid "Max Swap"
 msgstr "Max Swap"
 
-#: hmib.php:2801
+#: hmib.php:3006
 msgid "Avg Proc"
 msgstr "Avg Proc"
 
-#: hmib.php:2806
+#: hmib.php:3011
 msgid "Max Proc"
 msgstr "Max Proc"
 
-#: hmib.php:2836 hmib.php:3067 hmib.php:3104
+#: hmib.php:3041 hmib.php:3272 hmib.php:3327
 msgid "View Devices"
 msgstr "Προβολή συσκευών"
 
-#: hmib.php:2878
+#: hmib.php:3083
 msgid "No Device Types"
 msgstr "Δεν υπάρχουν τύποι συσκευών"
 
-#: hmib.php:2883
+#: hmib.php:3088
 msgid "Process Summary Filter"
 msgstr "Φίλτρο περίληψης διαδικασιών"
 
-#: hmib.php:2999
+#: hmib.php:3204
 msgid "Process Name"
 msgstr "Όνομα διαδικασίας"
 
-#: hmib.php:3004
+#: hmib.php:3209
 msgid "Num Paths"
 msgstr "Αριθμητικά μονοπάτια"
 
-#: hmib.php:3009 hmib_types.php:902
+#: hmib.php:3214 hmib_types.php:1105
 msgid "Hosts"
 msgstr "Διακομιστές"
 
-#: hmib.php:3029
+#: hmib.php:3234
 msgid "Avg Memory"
 msgstr "Μέση μνήμη"
 
-#: hmib.php:3034
+#: hmib.php:3239
 msgid "Max Memory"
 msgstr "Μέγιστη μνήμη"
 
-#: hmib.php:3040
+#: hmib.php:3245
 #, fuzzy
 #| msgid "Summary"
 msgid "Summary Stats"
 msgstr "Περίληψη"
 
-#: hmib.php:3080 hmib.php:3081
+#: hmib.php:3285 hmib.php:3286
 #, php-format
 msgid "%s Hrs"
 msgstr "%s ώρες"
 
-#: hmib.php:3082 hmib.php:3083
+#: hmib.php:3287 hmib.php:3288
 #, php-format
 msgid "%s MB"
 msgstr "%s MB"
 
-#: hmib.php:3090
+#: hmib.php:3295
 msgid "No Processes"
 msgstr "Διαδικασίες"
 
-#: hmib.php:3245
+#: hmib.php:3544
 msgid "Custom Graph List Applied - Filtering from List"
 msgstr "Προσαρμοσμένη λίστα προσαρμοσμένων γραφημάτων - Φιλτράρισμα από τη λίστα"
 
-#: hmib.php:3245
+#: hmib.php:3544
 msgid "Graph Preview Filters"
 msgstr "Φίλτρα προεπισκόπησης γραφημάτων"
 
@@ -537,453 +537,453 @@ msgstr "Διαγραφή"
 msgid "Duplicate"
 msgstr "Αντιγραφή"
 
-#: hmib_types.php:251
+#: hmib_types.php:329
 msgid "Click 'Continue' to Delete the following Host Type(s)"
 msgstr "Κάντε κλικ στο κουμπί \"Συνέχεια\" για να διαγράψετε τους ακόλουθους τύπους κεντρικών υπολογιστών"
 
-#: hmib_types.php:256 hmib_types.php:269
+#: hmib_types.php:334 hmib_types.php:347
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: hmib_types.php:257 hmib_types.php:270
+#: hmib_types.php:335 hmib_types.php:348
 msgid "Continue"
 msgstr "Συνέχεια"
 
-#: hmib_types.php:257
+#: hmib_types.php:335
 msgid "Delete Host Type(s)"
 msgstr "Διαγραφή τύπων κεντρικών υπολογιστών"
 
-#: hmib_types.php:261
+#: hmib_types.php:339
 msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
 msgstr "Κάντε κλικ στο κουμπί \"Συνέχεια\" για να αντιγράψετε τον ακόλουθο τύπο κεντρικού υπολογιστή. Μπορείτε να αλλάξετε προαιρετικά την περιγραφή για τους νέους τύπους κεντρικών υπολογιστών. Διαφορετικά, μην αλλάξετε την τιμή παρακάτω και το αρχικό όνομα θα αναπαραχθεί με μια νέα κατάληξη."
 
-#: hmib_types.php:263
+#: hmib_types.php:341
 msgid "Host Type Prefix:"
 msgstr "Πρόθεμα τύπου κεντρικού υπολογιστή:"
 
-#: hmib_types.php:270
+#: hmib_types.php:348
 msgid "Duplicate Host Type(s)"
 msgstr "Διπλότυποι τύποι κεντρικών υπολογιστών"
 
-#: hmib_types.php:380
+#: hmib_types.php:498
 msgid "New Type"
 msgstr "Νέος Τύπος Εxpert"
 
-#: hmib_types.php:427
+#: hmib_types.php:545
 #, php-format
 msgid "There were %d Device Types Added!"
 msgstr "Υπήρχαν% d Τύποι συσκευών που προστέθηκαν!"
 
-#: hmib_types.php:430
+#: hmib_types.php:548
 msgid "No New Host Types Found!"
 msgstr "Δεν βρέθηκαν νέοι τύποι κεντρικών υπολογιστών!"
 
-#: hmib_types.php:441
+#: hmib_types.php:571
 msgid "Import Results"
 msgstr "Εισαγωγή Αποτελεσμάτων"
 
-#: hmib_types.php:443
+#: hmib_types.php:573
 msgid "Cacti has imported the following items:"
 msgstr "Ο Cacti εισήγαγε τα ακόλουθα στοιχεία:"
 
-#: hmib_types.php:456
+#: hmib_types.php:586
 msgid "Import Host MIB OS Types"
 msgstr "Εισαγωγή τύπων λειτουργικών συστημάτων MIB OS"
 
-#: hmib_types.php:459
+#: hmib_types.php:589
 msgid "Import Device Types from Local File"
 msgstr "Εισαγωγή τύπων συσκευών από το τοπικό αρχείο"
 
-#: hmib_types.php:460
+#: hmib_types.php:590
 msgid "Please specify the location of the CSV file containing your device type information."
 msgstr "Καθορίστε τη θέση του αρχείου CSV που περιέχει τις πληροφορίες τύπου συσκευής σας."
 
-#: hmib_types.php:467
+#: hmib_types.php:597
 msgid "Overwrite Existing Data?"
 msgstr "Να αντικαταστήσετε υπάρχοντα δεδομένα;"
 
-#: hmib_types.php:468
+#: hmib_types.php:598
 msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
 msgstr "Πρέπει να επιτραπεί στη διαδικασία εισαγωγής να αντικαταστήσει υπάρχοντα δεδομένα; Σημειώστε ότι αυτό δεν σημαίνει διαγραφή παλιάς σειράς, αντικαταστήστε μόνο τις διπλές σειρές."
 
-#: hmib_types.php:471
+#: hmib_types.php:601
 msgid "Allow Existing Rows to be Updated?"
 msgstr "Να επιτρέπεται η ενημέρωση υφιστάμενων σειρών;"
 
-#: hmib_types.php:476
+#: hmib_types.php:606
 msgid "Required File Format Notes"
 msgstr "Απαιτούμενες σημειώσεις μορφοτύπου αρχείου"
 
-#: hmib_types.php:479
+#: hmib_types.php:609
 msgid "The file must contain a header row with the following column headings."
 msgstr "Το αρχείο πρέπει να περιέχει μια σειρά κεφαλίδας με τις ακόλουθες επικεφαλίδες στηλών."
 
-#: hmib_types.php:481
+#: hmib_types.php:611
 msgid "A common name for the Host Type.  For example, Windows 7"
 msgstr "Ένα κοινό όνομα για τον τύπο κεντρικού υπολογιστή. Για παράδειγμα, τα Windows 7"
 
-#: hmib_types.php:482
+#: hmib_types.php:612
 msgid "The OS version for the Host Type"
 msgstr "Η έκδοση λειτουργικού συστήματος για τον τύπο κεντρικού υπολογιστή"
 
-#: hmib_types.php:483
+#: hmib_types.php:613
 msgid "A unique set of characters from the snmp sysDescr that uniquely identify this device"
 msgstr "Ένα μοναδικό σύνολο χαρακτήρων από το snms sysDescr που αναγνωρίζει μοναδικά αυτή τη συσκευή"
 
-#: hmib_types.php:484
+#: hmib_types.php:614
 msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
 msgstr "Ο συγκεκριμένος προμηθευτής smsObjectID snmp που διακρίνει αυτή τη συσκευή από την επόμενη"
 
-#: hmib_types.php:486
+#: hmib_types.php:616
 msgid "The primary key for this table is a combination of the following two fields:"
 msgstr "Το πρωτεύον κλειδί για αυτόν τον πίνακα είναι ένας συνδυασμός των ακόλουθων δύο πεδίων:"
 
-#: hmib_types.php:490
+#: hmib_types.php:620
 msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
 msgstr "Επομένως, αν επιχειρήσετε να εισαγάγετε τύπους συσκευών διπλότυπων, τα υπάρχοντα δεδομένα θα ενημερωθούν με τις νέες πληροφορίες."
 
-#: hmib_types.php:492
+#: hmib_types.php:622
 msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
 msgstr "Ο τύπος κεντρικού υπολογιστή καθορίζεται από τη σάρωση του παράγοντα snmp του sysObjectID και sysDescription και τη σύγκρισή του με τις τιμές στη βάση δεδομένων του Host Type. Η πρώτη αντιστοιχία που βρίσκεται στη βάση δεδομένων χρησιμοποιείται συνολικά δεδομένα Host. Ως εκ τούτου, είναι πολύ σημαντικό να επιλέξετε έγκυρο sysObjectID, sysDescrMatch για τους κεντρικούς υπολογιστές σας."
 
-#: hmib_types.php:763
+#: hmib_types.php:925
 msgid "Device Scanning Function Options"
 msgstr "Επιλογές λειτουργιών σάρωσης συσκευής"
 
-#: hmib_types.php:767
+#: hmib_types.php:929
 msgid "Name"
 msgstr "Όνομα"
 
-#: hmib_types.php:768
+#: hmib_types.php:930
 msgid "Give this Host Type a meaningful name."
 msgstr "Δώστε στον Host Type ένα όνομα με νόημα."
 
-#: hmib_types.php:775
+#: hmib_types.php:937
 msgid "Fill in the name for the version of this Host Type."
 msgstr "Συμπληρώστε το όνομα για την έκδοση αυτού του τύπου κεντρικού υπολογιστή."
 
-#: hmib_types.php:782
+#: hmib_types.php:944
 msgid "System Description Match"
 msgstr "Περιγραφή συστήματος Συσχέτιση"
 
-#: hmib_types.php:783 hmib_types.php:790
+#: hmib_types.php:945 hmib_types.php:952
 #, fuzzy, php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
 msgstr "Παρέχετε βασικές πληροφορίες για να βοηθήσετε την HMIB να ανιχνεύσει τον τύπο του Host. SQL όπου υποστηρίζονται εκφράσεις. SQL όπου το χαρακτήρα μπαλαντέρ είναι το σύμβολο '%'. Οι κανονικές εκφράσεις έχουν καταργηθεί λόγω ζητημάτων συμβατότητας."
 
-#: hmib_types.php:789
+#: hmib_types.php:951
 msgid "Vendor snmp Object ID"
 msgstr "Αναγνωριστικό αντικειμένου snmp προμηθευτή"
 
-#: hmib_types.php:810
+#: hmib_types.php:972
 #, php-format
 msgid "Host MIB OS Types [edit: %s]"
 msgstr "Υποστηρίξτε τους τύπους OS MIB [επεξεργασία: %s]"
 
-#: hmib_types.php:812
+#: hmib_types.php:974
 msgid "Host MIB OS Types [new]"
 msgstr "Τύποι τύπων λειτουργιών υποδοχής MIB [νέο]"
 
-#: hmib_types.php:879
+#: hmib_types.php:1082
 msgid "Host MIB OS Type Filters"
 msgstr "Φίλτρο τύπου εξυπηρέτησης MIB υποδοχής"
 
-#: hmib_types.php:891 setup.php:617
+#: hmib_types.php:1094 setup.php:765
 msgid "OS Types"
 msgstr "Τύποι OS"
 
-#: hmib_types.php:900
+#: hmib_types.php:1103
 msgid "Host Type Name"
 msgstr "Όνομα τύπου κεντρικού υπολογιστή"
 
-#: hmib_types.php:901
+#: hmib_types.php:1104
 msgid "OS Version"
 msgstr "Έκδοση OS"
 
-#: hmib_types.php:903
+#: hmib_types.php:1106
 msgid "SNMP ObjectID"
 msgstr "ΑντικείμενοID SNMP"
 
-#: hmib_types.php:904
+#: hmib_types.php:1107
 msgid "SNMP Sys Description Match"
 msgstr "SNMP Sys Περιγραφή Αγώνα"
 
-#: hmib_types.php:921
+#: hmib_types.php:1124
 msgid "No Host Types Found"
 msgstr "Δεν βρέθηκαν τύποι υποδοχής"
 
-#: hmib_types.php:951
+#: hmib_types.php:1166
 msgid "Choose an action:"
 msgstr "Επιλέξτε μια ενέργεια"
 
-#: hmib_types.php:1042
+#: hmib_types.php:1269
 msgid "Rescan"
 msgstr "Εκ νέου Σάρωση"
 
-#: hmib_types.php:1042
+#: hmib_types.php:1269
 msgid "Scan for New or Unknown Device Types"
 msgstr "Σάρωση για νέους ή άγνωστους τύπους συσκευών"
 
-#: hmib_types.php:1043 setup.php:640
+#: hmib_types.php:1270 setup.php:798
 msgid "Import"
 msgstr "Εισαγωγή"
 
-#: hmib_types.php:1043
+#: hmib_types.php:1270
 msgid "Import Host Types from a CSV File"
 msgstr "Εισαγωγή τύπων κεντρικών υπολογιστών από αρχείο CSV"
 
-#: hmib_types.php:1044
+#: hmib_types.php:1271
 msgid "Export"
 msgstr "Εξαγωγή"
 
-#: hmib_types.php:1044
+#: hmib_types.php:1271
 msgid "Export Host Types to Share with Others"
 msgstr "Εξαγωγή τύπων υποδοχής για κοινή χρήση με άλλους"
 
-#: setup.php:37
+#: setup.php:47
 msgid "Host MIB Viewer"
 msgstr "Plugin -> Host MIB Viewer"
 
-#: setup.php:38
+#: setup.php:48
 msgid "Host MIB Admin"
 msgstr "Plugin -> Host MIB Admin"
 
-#: setup.php:383
+#: setup.php:497
 msgid "Host MIB"
 msgstr "Υπολογιστές MIB"
 
-#: setup.php:386
+#: setup.php:500
 msgid "Host MIB General Settings"
 msgstr "Υποστηρίξτε τις γενικές ρυθμίσεις του MIB"
 
-#: setup.php:390
+#: setup.php:504
 msgid "Host MIB Poller Enabled"
 msgstr "Ο διακομιστής MIB Poller είναι ενεργοποιημένος"
 
-#: setup.php:391
+#: setup.php:505
 msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
 msgstr "Επιλέξτε αυτό το πλαίσιο, αν θέλετε να ενεργοποιηθεί η δημοσκόπηση MIB του κεντρικού υπολογιστή. Διαφορετικά, ο σάρωθρος δεν θα λειτουργήσει."
 
-#: setup.php:396
+#: setup.php:510
 msgid "Automatically Discover Cacti Devices"
 msgstr "Αυτόματη αναζήτηση συσκευών Cacti"
 
-#: setup.php:397
+#: setup.php:511
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
 msgstr "Θέλετε να σαρώσετε αυτόματα και να προσθέσετε συσκευές που υποστηρίζουν το Host Resource MIB από τον πίνακα υποδοχής Cacti;"
 
-#: setup.php:402
+#: setup.php:516
 msgid "Automatically Purge Devices"
 msgstr "Αυτόματες συσκευές καθαρισμού"
 
-#: setup.php:403
+#: setup.php:517
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
 msgstr "Θέλετε να καθαρίσετε αυτόματα τις συσκευές που έχουν αφαιρεθεί από το σύστημα Cacti;"
 
-#: setup.php:408
+#: setup.php:522
 msgid "Default Row Count"
 msgstr "Προεπιλεγμένος αριθμός γραμμών"
 
-#: setup.php:409
+#: setup.php:523
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
 msgstr "Πόσες σειρές θέλετε να δείτε στο HMIB OS Type από προεπιλογή;"
 
-#: setup.php:415
+#: setup.php:529
 msgid "Default Top Host Types"
 msgstr "Προεπιλεγμένοι τύποι κεντρικών υπολογιστών"
 
-#: setup.php:416 setup.php:427
+#: setup.php:530 setup.php:541
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
 msgstr "Πόσες διαδικασίες θέλετε να δείτε στον Πίνακα ελέγχου HMIB από προεπιλογή;"
 
-#: setup.php:420 setup.php:421 setup.php:422 setup.php:423
+#: setup.php:534 setup.php:535 setup.php:536 setup.php:537
 #, php-format
 msgid "%d Types"
 msgstr "% d Τύποι"
 
-#: setup.php:426
+#: setup.php:540
 msgid "Default Top Processes"
 msgstr "Προεπιλεγμένες κορυφαίες διεργασίες"
 
-#: setup.php:431 setup.php:432 setup.php:433 setup.php:434 setup.php:443
-#: setup.php:444 setup.php:445 setup.php:446 setup.php:447 setup.php:448
-#: setup.php:449 setup.php:450 setup.php:451
+#: setup.php:545 setup.php:546 setup.php:547 setup.php:548 setup.php:557
+#: setup.php:558 setup.php:559 setup.php:560 setup.php:561 setup.php:562
+#: setup.php:563 setup.php:564 setup.php:565
 #, php-format
 msgid "%d Processes"
 msgstr "% d Διαδικασίες"
 
-#: setup.php:437
+#: setup.php:551
 msgid "Maximum Concurrent Collectors"
 msgstr "Μέγιστες ταυτόχρονες συλλογές"
 
-#: setup.php:438
+#: setup.php:552
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
 msgstr "Ποιος είναι ο μέγιστος αριθμός ταυτόχρονων διαδικασιών συλλογής που θέλετε να τρέξετε ταυτόχρονα;"
 
-#: setup.php:442
+#: setup.php:556
 #, php-format
 msgid "%d Process"
 msgstr "% d Διαδικασία"
 
-#: setup.php:454
+#: setup.php:568
 msgid "Host Auto Discovery Frequency"
 msgstr "Συχνότητα αυτόματης ανεύρεσης υποδοχής"
 
-#: setup.php:458
+#: setup.php:572
 msgid "Auto Discovery Frequency"
 msgstr "Συχνότητα αυτόματης ανεύρεσης"
 
-#: setup.php:459
+#: setup.php:573
 msgid "How often do you want to look for new Cacti Devices?"
 msgstr "Πόσο συχνά θέλετε να αναζητήσετε νέες συσκευές Cacti;"
 
-#: setup.php:465
+#: setup.php:579
 msgid "Host Graph Automation"
 msgstr "Αυτοματοποίηση γραφικών υποδοχής"
 
-#: setup.php:469
+#: setup.php:583
 msgid "Automatically Add New Graphs"
 msgstr "Αυτόματη προσθήκη νέων γραφημάτων"
 
-#: setup.php:470
+#: setup.php:584
 msgid "How often do you want to check for new objects to graph?"
 msgstr "Πόσο συχνά θέλετε να ελέγξετε για νέα γραφικά;"
 
-#: setup.php:474
+#: setup.php:588
 msgid "Never"
 msgstr "Ποτέ"
 
-#: setup.php:475 setup.php:539
+#: setup.php:589 setup.php:687
 #, php-format
 msgid "%d Hour"
 msgstr "%d ώρα"
 
-#: setup.php:476 setup.php:540 setup.php:541 setup.php:542
+#: setup.php:590 setup.php:688 setup.php:689 setup.php:690
 #, php-format
 msgid "%d Hours"
 msgstr "%d ώρες"
 
-#: setup.php:477 setup.php:543
+#: setup.php:591 setup.php:691
 #, php-format
 msgid "%d Day"
 msgstr "% d Ημέρα"
 
-#: setup.php:478
+#: setup.php:592
 #, php-format
 msgid "%d Days"
 msgstr "%d Ημέρες"
 
-#: setup.php:481
+#: setup.php:595
 msgid "Host MIB Table Collection Frequencies"
 msgstr "Συγκρίνετε τις συχνότητες συλλογής πίνακα MIB"
 
-#: setup.php:485
+#: setup.php:599
 msgid "Running Programs Frequency"
 msgstr "Συχνότητα λειτουργίας προγραμμάτων"
 
-#: setup.php:486
+#: setup.php:600
 msgid "How often do you want to scan running software?"
 msgstr "Πόσο συχνά θέλετε να σαρώσετε τρέχον λογισμικό;"
 
-#: setup.php:492
+#: setup.php:606
 msgid "Running Programs CPU/Memory Frequency"
 msgstr "Εκτελούμενα προγράμματα CPU / συχνότητα μνήμης"
 
-#: setup.php:493
+#: setup.php:607
 msgid "How often do you want to scan running software for performance data?"
 msgstr "Πόσο συχνά θέλετε να σαρώσετε τρέχον λογισμικό για δεδομένα απόδοσης;"
 
-#: setup.php:499
+#: setup.php:613
 msgid "Installed Software Frequency"
 msgstr "Εγκατεστημένη συχνότητα λογισμικού"
 
-#: setup.php:500
+#: setup.php:614
 msgid "How often do you want to scan for installed software?"
 msgstr "Πόσο συχνά θέλετε να σαρώσετε για εγκατεστημένο λογισμικό;"
 
-#: setup.php:506
+#: setup.php:620
 msgid "Storage Frequency"
 msgstr "Συχνότητα αποθήκευσης"
 
-#: setup.php:507
+#: setup.php:621
 msgid "How often do you want to scan for Storage performance data?"
 msgstr "Πόσο συχνά θέλετε να σαρώσετε δεδομένα απόδοσης αποθήκευσης;"
 
-#: setup.php:513
+#: setup.php:627
 msgid "Device Frequency"
 msgstr "Συχνότητα Συσκευής"
 
-#: setup.php:514
+#: setup.php:628
 msgid "How often do you want to scan for Device performance data?"
 msgstr "Πόσο συχνά θέλετε να σαρώσετε δεδομένα απόδοσης συσκευών;"
 
-#: setup.php:520
+#: setup.php:634
 msgid "Processor Frequency"
 msgstr "Συχνότητα επεξεργαστή"
 
-#: setup.php:521
+#: setup.php:635
 msgid "How often do you want to scan for Processor performance data?"
 msgstr "Πόσο συχνά θέλετε να σαρώσετε δεδομένα απόδοσης επεξεργαστή;"
 
-#: setup.php:535
+#: setup.php:683
 #, php-format
 msgid "%d Minute"
 msgstr "% d λεπτά"
 
-#: setup.php:536 setup.php:537 setup.php:538
+#: setup.php:684 setup.php:685 setup.php:686
 #, php-format
 msgid "%d Minutes"
 msgstr "%d λεπτά"
 
-#: setup.php:617
+#: setup.php:765
 msgid "Management"
 msgstr "Διοίκηση"
 
-#: setup.php:620
+#: setup.php:768
 msgid "Normal User"
 msgstr "Απλός Χρήστης"
 
-#: setup.php:621
+#: setup.php:769
 msgid "General Administration"
 msgstr "Γενική Διοίκηση"
 
-#: setup.php:628
+#: setup.php:786
 msgid "Host MIB Inventory Summary"
 msgstr "Σύνοψη αποθέματος MIB"
 
-#: setup.php:629
+#: setup.php:787
 msgid "Host MIB Details"
 msgstr "Υποστήριξη λεπτομερειών MIB"
 
-#: setup.php:630
+#: setup.php:788
 msgid "Host MIB Storage"
 msgstr "Υποδοχή αποθήκευσης MIB"
 
-#: setup.php:631
+#: setup.php:789
 msgid "Host MIB Hardware"
 msgstr "Υποστηρίξτε το υλικό MIB"
 
-#: setup.php:632
+#: setup.php:790
 msgid "Host MIB Running Processes"
 msgstr "Διεργασίες λειτουργίας MIB υποδοχής"
 
-#: setup.php:633
+#: setup.php:791
 msgid "Host MIB Process Use History"
 msgstr "Διαδικασία υποδοχής MIB Χρήση ιστορικού"
 
-#: setup.php:634
+#: setup.php:792
 msgid "Host MIB Software Inventory"
 msgstr "Φιλοξενία απογραφής λογισμικού MIB"
 
-#: setup.php:635
+#: setup.php:793
 msgid "Host MIB Graphs"
 msgstr "Υπολογιστές MIB"
 
-#: setup.php:637
+#: setup.php:795
 msgid "Host MIB OS Types"
 msgstr "Υποστηρίξτε τους τύπους OS MIB"
 
-#: setup.php:639
+#: setup.php:797
 msgid "(Edit)"
 msgstr "(Eπεξεργασία)"
 
