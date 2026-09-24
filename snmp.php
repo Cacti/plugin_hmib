@@ -40,6 +40,45 @@ if ($config['cacti_server_os'] == 'unix') {
 	define('SNMP_ESCAPE_CHARACTER', '"');
 }
 
+/**
+ * Performs a single SNMP GET, using either the PHP SNMP extension or the
+ * net-snmp command-line binary depending on the SNMP version and what's
+ * available (see snmp_get_method()), with sane defaults for
+ * retries/timeouts and validation to avoid polling with an invalid
+ * combination of parameters. Called throughout this plugin's poller
+ * scripts wherever a single OID needs to be queried.
+ *
+ * @param string $hostname   The target host/IP to query.
+ * @param string $community  The SNMPv1/v2 community string.
+ * @param string $oid        The OID to query.
+ * @param int    $version    The SNMP version: 1, 2, or 3.
+ * @param string $username   The SNMPv3 security username.
+ * @param string $password   The SNMPv3 auth passphrase.
+ * @param string $auth_proto The SNMPv3 auth protocol.
+ * @param string $priv_pass  The SNMPv3 privacy passphrase.
+ * @param string $priv_proto The SNMPv3 privacy protocol.
+ * @param string $context    The SNMPv3 context name.
+ * @param int    $port       The SNMP UDP port; defaults to 161.
+ * @param int    $timeout    The per-request timeout in milliseconds;
+ *                          defaults to 500.
+ * @param int    $retries    The number of retries on failure; 0 uses the
+ *                          'snmp_retries' Cacti setting (or 3);
+ *                          defaults to 0.
+ * @param int    $max_oids   Reserved for parity with
+ *                          cacti_snmp_walk()'s signature; not used for a
+ *                          single GET. Defaults to 10.
+ * @param int    $method     The value-formatting method to use; defaults
+ *                          to SNMP_VALUE_LIBRARY.
+ * @param int    $environ    The polling environment context; defaults to
+ *                          SNMP_POLLER.
+ *
+ * @return string The retrieved value (formatted per $method), or 'U' if
+ *                the query failed or the parameters were invalid.
+ *
+ * @global array $config      Cacti global configuration array.
+ * @global int   $snmp_errors Counter incremented for each SNMP error
+ *                            encountered during the query.
+ */
 function cacti_snmp_get($hostname, $community, $oid, $version, $username, $password, $auth_proto, $priv_pass,
 	$priv_proto, $context, $port = 161, $timeout = 500, $retries = 0, $max_oids = 10, $method = SNMP_VALUE_LIBRARY, $environ = SNMP_POLLER) {
 	global $config, $snmp_errors;
@@ -164,6 +203,40 @@ function cacti_snmp_get($hostname, $community, $oid, $version, $username, $passw
 	return $snmp_value;
 }
 
+/**
+ * Performs a single SNMP GETNEXT, using either the PHP SNMP extension or
+ * the net-snmp command-line binary depending on the SNMP version and
+ * what's available (see snmp_get_method()). Called throughout this
+ * plugin's poller scripts wherever the next OID in sequence needs to be
+ * queried.
+ *
+ * @param string $hostname   The target host/IP to query.
+ * @param string $community  The SNMPv1/v2 community string.
+ * @param string $oid        The OID to query the next entry after.
+ * @param int    $version    The SNMP version: 1, 2, or 3.
+ * @param string $username   The SNMPv3 security username.
+ * @param string $password   The SNMPv3 auth passphrase.
+ * @param string $auth_proto The SNMPv3 auth protocol.
+ * @param string $priv_pass  The SNMPv3 privacy passphrase.
+ * @param string $priv_proto The SNMPv3 privacy protocol.
+ * @param string $context    The SNMPv3 context name.
+ * @param int    $port       The SNMP UDP port; defaults to 161.
+ * @param int    $timeout    The per-request timeout in milliseconds;
+ *                          defaults to 500.
+ * @param int    $retries    The number of retries on failure; defaults
+ *                          to 0.
+ * @param int    $method     The value-formatting method to use; defaults
+ *                          to SNMP_VALUE_LIBRARY.
+ * @param int    $environ    The polling environment context; defaults to
+ *                          SNMP_POLLER.
+ *
+ * @return string The next OID's value (formatted per $method), or 'U' if
+ *                the query failed.
+ *
+ * @global array $config      Cacti global configuration array.
+ * @global int   $snmp_errors Counter incremented for each SNMP error
+ *                            encountered during the query.
+ */
 function cacti_snmp_getnext($hostname, $community, $oid, $version, $username, $password, $auth_proto, $priv_pass, $priv_proto, $context, $port = 161, $timeout = 500, $retries = 0, $method = SNMP_VALUE_LIBRARY, $environ = SNMP_POLLER) {
 	global $config, $snmp_errors;
 
@@ -277,6 +350,47 @@ function cacti_snmp_getnext($hostname, $community, $oid, $version, $username, $p
 	return $snmp_value;
 }
 
+/**
+ * Performs an SNMP WALK over a subtree, using either the PHP SNMP
+ * extension or the net-snmp command-line binary depending on the SNMP
+ * version and what's available (see snmp_get_method()), chunking the
+ * walk into batches of at most $max_oids entries per underlying request.
+ * Called throughout this plugin's poller scripts wherever a table/
+ * subtree of OIDs needs to be enumerated.
+ *
+ * @param string $hostname   The target host/IP to query.
+ * @param string $community  The SNMPv1/v2 community string.
+ * @param string $oid        The root OID to walk.
+ * @param int    $version    The SNMP version: 1, 2, or 3.
+ * @param string $username   The SNMPv3 security username.
+ * @param string $password   The SNMPv3 auth passphrase.
+ * @param string $auth_proto The SNMPv3 auth protocol.
+ * @param string $priv_pass  The SNMPv3 privacy passphrase.
+ * @param string $priv_proto The SNMPv3 privacy protocol.
+ * @param string $context    The SNMPv3 context name.
+ * @param int    $port       The SNMP UDP port; defaults to 161.
+ * @param int    $timeout    The per-request timeout in milliseconds;
+ *                          defaults to 500.
+ * @param int    $retries    The number of retries on failure; defaults
+ *                          to 0.
+ * @param int    $max_oids   The maximum number of OIDs to request per
+ *                          underlying SNMP call; defaults to 10.
+ * @param int    $method     The value-formatting method to use; defaults
+ *                          to SNMP_VALUE_LIBRARY.
+ * @param int    $environ    The polling environment context; defaults to
+ *                          SNMP_POLLER.
+ *
+ * @return array An array of ['oid' => ..., 'value' => ...] entries for
+ *               every OID found under $oid.
+ *
+ * @global array $config              Cacti global configuration array.
+ * @global array $banned_snmp_strings List of substrings that mark a
+ *                                    response as invalid/banned; matching
+ *                                    entries are discarded from the
+ *                                    result.
+ * @global int   $snmp_errors         Counter incremented for each SNMP
+ *                                    error encountered during the walk.
+ */
 function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $password, $auth_proto, $priv_pass, $priv_proto, $context, $port = 161, $timeout = 500, $retries = 0, $max_oids = 10, $method = SNMP_VALUE_LIBRARY, $environ = SNMP_POLLER) {
 	global $config, $banned_snmp_strings, $snmp_errors;
 
@@ -437,6 +551,27 @@ function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $pass
 	return $snmp_array;
 }
 
+/**
+ * Cleans up a raw SNMP command-line-binary output line: strips the
+ * net-snmp type prefix (hex/counter/gauge/float/etc.), detects and
+ * blanks 'No Such ...' responses, and optionally strips the leading OID
+ * portion of a '.oid = value' formatted line. Called from
+ * cacti_snmp_get()/cacti_snmp_getnext()/cacti_snmp_walk() when parsing
+ * output from the net-snmp binaries.
+ *
+ * @param string $string             The raw SNMP output line to clean.
+ * @param bool   $snmp_oid_included  Whether $string includes a leading
+ *                                   'oid =' portion to strip.
+ *
+ * @return string The cleaned value, or '' for a 'No Such ...' response
+ *                or a value matching one of the $banned_snmp_strings
+ *                entries.
+ *
+ * @global array $banned_snmp_strings List of substrings that mark a
+ *                                    response as invalid/banned; the
+ *                                    cleaned value is blanked out if it
+ *                                    contains any of them.
+ */
 function format_snmp_string($string, $snmp_oid_included) {
 	global $banned_snmp_strings;
 
@@ -589,6 +724,22 @@ function format_snmp_string($string, $snmp_oid_included) {
 	return $string;
 }
 
+/**
+ * Escapes a string (e.g. an SNMP community name) for safe inclusion as a
+ * single quoted shell argument, using SNMP_ESCAPE_CHARACTER (an
+ * apostrophe on Unix, a double quote elsewhere). For the POSIX
+ * single-quote case, an embedded apostrophe is handled by closing the
+ * quote, emitting a literal escaped apostrophe, and reopening the quote
+ * - since POSIX single-quoted strings have no escape character, and a
+ * backslash in front of an embedded apostrophe would otherwise let the
+ * quote close early (shell injection). Called throughout this plugin's
+ * poller scripts wherever an SNMP command-line argument needs to be
+ * safely quoted.
+ *
+ * @param string $string The string to escape.
+ *
+ * @return string The quoted, escaped string.
+ */
 function snmp_escape_string($string) {
 	if (SNMP_ESCAPE_CHARACTER == "'") {
 		// POSIX single-quoted strings have no escape character, so a
@@ -605,6 +756,17 @@ function snmp_escape_string($string) {
 	return SNMP_ESCAPE_CHARACTER . $string . SNMP_ESCAPE_CHARACTER;
 }
 
+/**
+ * Determines whether to use the PHP SNMP extension or the net-snmp
+ * command-line binary for a given SNMP version, based on which
+ * extension functions/binaries are actually available on this system.
+ * Called from cacti_snmp_get()/cacti_snmp_getnext()/cacti_snmp_walk()
+ * to select the query implementation.
+ *
+ * @param int $version The SNMP version: 1, 2, or 3; defaults to 1.
+ *
+ * @return int SNMP_METHOD_PHP or SNMP_METHOD_BINARY.
+ */
 function snmp_get_method($version = 1) {
 	if ((function_exists('snmpget')) && ($version == 1)) {
 		return SNMP_METHOD_PHP;

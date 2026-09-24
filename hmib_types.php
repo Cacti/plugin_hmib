@@ -83,6 +83,15 @@ switch (get_nfilter_request_var('action')) {
 	The Save Function
    -------------------------- */
 
+/**
+ * Top-level POST handler for this page: saves a host type's fields (or
+ * creates a new one) when the edit form is submitted, or processes an
+ * uploaded CSV host-type import file when the import form is
+ * submitted, redirecting back to the appropriate view afterward. Called
+ * from this script's main request-dispatch switch when action=save.
+ *
+ * @return void
+ */
 function form_save() {
 	if ((isset_request_var('save_component_host_type')) && (isempty_request_var('add_dq_y'))) {
 		$host_type_id = hmib_host_type_save(get_filter_request_var('id'), get_nfilter_request_var('name'),
@@ -112,6 +121,15 @@ function form_save() {
 	}
 }
 
+/**
+ * Deletes a host type and clears its assignment from any devices
+ * currently classified under it. Called from form_actions() for each
+ * selected item when the bulk 'delete' action is submitted.
+ *
+ * @param int $host_type_id The plugin_hmib_hrSystemTypes id to remove.
+ *
+ * @return void
+ */
 function api_hmib_host_type_remove($host_type_id) {
 	db_execute_prepared('DELETE FROM plugin_hmib_hrSystemTypes
 		WHERE id = ?',
@@ -123,6 +141,22 @@ function api_hmib_host_type_remove($host_type_id) {
 		[$host_type_id]);
 }
 
+/**
+ * Creates a new host type or updates an existing one's fields. Called
+ * from form_save() when the host type edit form is submitted.
+ *
+ * @param int    $host_type_id  The plugin_hmib_hrSystemTypes id to
+ *                              update, or empty to create a new entry.
+ * @param string $name          The host type's descriptive name.
+ * @param string $version       The host type's version identifier.
+ * @param string $sysDescrMatch The sysDescr substring pattern used to
+ *                              match devices to this type.
+ * @param string $sysObjectID   The sysObjectID prefix used to match
+ *                              devices to this type.
+ *
+ * @return int The new or existing host type id (0 if creation failed
+ *             validation).
+ */
 function hmib_host_type_save($host_type_id, $name, $version, $sysDescrMatch, $sysObjectID) {
 	if (empty($host_type_id)) {
 		$save['id']            = $host_type_id;
@@ -154,6 +188,26 @@ function hmib_host_type_save($host_type_id, $name, $version, $sysDescrMatch, $sy
 	return $host_type_id;
 }
 
+/**
+ * Duplicates an existing host type as a new entry, substituting a
+ * '<description>' placeholder in the given title format with the
+ * original's name (or appending a numeric suffix), and prefixing the
+ * match patterns with '--dup--' so the copy doesn't immediately match
+ * live devices. Called from form_actions() for each selected item when
+ * the bulk 'duplicate' action is submitted.
+ *
+ * @param int    $host_type_id    The plugin_hmib_hrSystemTypes id to
+ *                                duplicate.
+ * @param int    $dup_id          A sequence number used to make the
+ *                                new name unique when no
+ *                                '<description>' placeholder is
+ *                                present.
+ * @param string $host_type_title The title format for the new entry's
+ *                                name, optionally containing a
+ *                                '<description>' placeholder.
+ *
+ * @return void
+ */
 function hmib_duplicate_host_type($host_type_id, $dup_id, $host_type_title) {
 	if (!empty($host_type_id)) {
 		$host_type = db_fetch_row_prepared('SELECT *
@@ -183,6 +237,30 @@ function hmib_duplicate_host_type($host_type_id, $dup_id, $host_type_title) {
 	The 'actions' function
    ------------------------ */
 
+/**
+ * Handles the bulk-action confirmation page/submission for the host
+ * type list (delete or duplicate): on first display, renders a
+ * confirmation box listing the selected host types (with a title-format
+ * input for duplicate); on confirmed submission, performs the delete or
+ * duplicate for each selected item and redirects back to the list.
+ * Called from this script's main request-dispatch switch when
+ * action=actions.
+ *
+ * @return void
+ *
+ * @global array $config                       Cacti global
+ *                                             configuration array
+ *                                             (declared but not
+ *                                             directly used here).
+ * @global array $host_types_actions           Map of drp_action value
+ *                                             => action label, used as
+ *                                             the confirmation box
+ *                                             title.
+ * @global array $fields_hmib_host_types_edit  Reserved/declared for
+ *                                             parity with other
+ *                                             functions in this file;
+ *                                             not used directly here.
+ */
 function form_actions() {
 	global $config, $host_types_actions, $fields_hmib_host_types_edit;
 
@@ -295,6 +373,15 @@ function form_actions() {
 	HMIB Device Type Functions
    --------------------- */
 
+/**
+ * Validates and stores this page's list/filter request variables
+ * (rows, page, filter text, version, vendor, sort column/direction)
+ * into the user's session under 'sess_hmib_ht'. Called from
+ * hmib_host_type(), hmib_host_type_export(), and other list views
+ * before rendering or exporting.
+ *
+ * @return void
+ */
 function hmib_validate_request_vars() {
 	// ================= input validation and session storage =================
 	$filters = [
@@ -340,6 +427,23 @@ function hmib_validate_request_vars() {
 	// ================= input validation =================
 }
 
+/**
+ * Exports all host types matching the current filter as a downloadable
+ * CSV file. Called from this script's main request-dispatch switch
+ * when action=export.
+ *
+ * @return void
+ *
+ * @global array $device_actions   Reserved/declared for parity with
+ *                                other functions in this file; not
+ *                                used directly here.
+ * @global array $hmib_host_types Reserved/declared for parity with
+ *                                other functions in this file; not
+ *                                used directly here.
+ * @global array $config          Reserved/declared for parity with
+ *                                other functions in this file; not
+ *                                used directly here.
+ */
 function hmib_host_type_export() {
 	global $device_actions, $hmib_host_types, $config;
 
@@ -372,6 +476,20 @@ function hmib_host_type_export() {
 	}
 }
 
+/**
+ * Attempts to classify devices with an unrecognized host type
+ * (host_type=0) against the known host type table by matching
+ * sysObjectID/sysDescr (via LIKE and regex), then registers any
+ * still-unmatched devices as new placeholder 'New Type'/'Unknown' host
+ * types, storing a summary result message in the session. Called from
+ * this script's main request-dispatch switch when action=rescan.
+ *
+ * @return void
+ *
+ * @global mixed $cnn_id Reserved/declared for parity with other
+ *                       functions in this file; not used directly
+ *                       here.
+ */
 function rescan_types() {
 	global $cnn_id;
 
@@ -432,6 +550,18 @@ function rescan_types() {
 	}
 }
 
+/**
+ * Renders the Host Type CSV import form, including any import-result
+ * messages left over from a prior submission and a summary of the
+ * required file format. Called from this script's main
+ * request-dispatch switch when action=import.
+ *
+ * @return void
+ *
+ * @global array $config Reserved/declared for parity with other
+ *                       functions in this file; not used directly
+ *                       here.
+ */
 function hmib_host_type_import() {
 	global $config;
 
@@ -501,6 +631,26 @@ function hmib_host_type_import() {
 	form_save_button('return', 'import');
 }
 
+/**
+ * Parses an uploaded Host Type CSV import file (array of raw lines,
+ * header row plus data rows), recognizing only the id/sysDescrMatch/
+ * sysObjectID/version/name column headings (any other heading,
+ * including 'vendor'/'description', is ignored). When the
+ * 'allow_update' request variable is set, every row is
+ * inserted/upserted (ON DUPLICATE KEY UPDATE) into the legacy
+ * mac_track_device_types table; otherwise, each row is inserted into
+ * plugin_hmib_hrSystemTypes only if no existing row matches its id/
+ * sysDescrMatch/sysObjectID (existing rows are skipped, not updated).
+ * Called from form_save() when a Host Type CSV file is uploaded via
+ * the import form.
+ *
+ * @param array $host_types Reference, the raw CSV file lines (including
+ *                          the header row) to import.
+ *
+ * @return array A list of human-readable per-row result/debug messages
+ *              describing what was imported, for display on the next
+ *              page load.
+ */
 function hmib_host_type_import_processor(&$host_types) {
 	$i                    = 0;
 	$sysDescrMatch_id     = -1;
@@ -749,6 +899,18 @@ function hmib_host_type_import_processor(&$host_types) {
 	return $return_array;
 }
 
+/**
+ * Renders the add/edit form for a single host type (name, version,
+ * sysDescr/sysObjectID match patterns), pre-populated from the database
+ * when editing an existing entry. Called from this script's main
+ * request-dispatch switch when action=edit.
+ *
+ * @return void
+ *
+ * @global array $config Reserved/declared for parity with other
+ *                       functions in this file; not used directly
+ *                       here.
+ */
 function hmib_host_type_edit() {
 	global $config;
 
@@ -832,6 +994,25 @@ function hmib_host_type_edit() {
 	}
 }
 
+/**
+ * Fetches host types matching the current text filter, each annotated
+ * with a count of devices currently assigned to it, sorted and
+ * optionally paginated per the current sort/page request variables.
+ * Called from hmib_host_type() to populate the list view, and from
+ * hmib_host_type_export() to gather all matching rows for CSV export.
+ *
+ * @param string $sql_where    Reference, receives the generated SQL
+ *                             WHERE clause for the current filter (for
+ *                             reuse in a matching COUNT(*) query).
+ * @param int    $rows         The number of rows per page to return
+ *                             when $apply_limits is true.
+ * @param bool   $apply_limits Whether to apply pagination (LIMIT); pass
+ *                             false to fetch all matching rows (e.g.
+ *                             for export).
+ *
+ * @return array The matching plugin_hmib_hrSystemTypes rows, each with
+ *              an added 'totals' column (assigned device count).
+ */
 function hmib_get_host_types(&$sql_where, $rows, $apply_limits = true) {
 	if (get_request_var('filter') != '') {
 		$sql_where = ' WHERE (
@@ -863,6 +1044,28 @@ function hmib_get_host_types(&$sql_where, $rows, $apply_limits = true) {
 	return db_fetch_assoc($query_string);
 }
 
+/**
+ * Renders the main Host Type list page: the filter box, a sortable/
+ * paginated table of host types with their assigned device counts, and
+ * the bulk-actions dropdown. Called from this script's main
+ * request-dispatch switch as the default view (no action, or
+ * action=ajax_hosttypes not matched elsewhere).
+ *
+ * @return void
+ *
+ * @global array $host_types_actions Map of drp_action value => action
+ *                                   label, used for the bulk-actions
+ *                                   dropdown.
+ * @global array $hmib_host_types   Reserved/declared for parity with
+ *                                   other functions in this file; not
+ *                                   used directly here.
+ * @global array $config            Reserved/declared for parity with
+ *                                   other functions in this file; not
+ *                                   used directly here.
+ * @global array $item_rows         Reserved/declared for parity with
+ *                                   other functions in this file; not
+ *                                   used directly here.
+ */
 function hmib_host_type() {
 	global $host_types_actions, $hmib_host_types, $config, $item_rows;
 
@@ -933,12 +1136,24 @@ function hmib_host_type() {
 	form_end();
 }
 
-/** hmib_draw_actions_dropdown - draws a table the allows the user to select an action to perform
- * on one or more data elements
- * @arg $actions_array - an array that contains a list of possible actions. this array should
- * @param mixed $actions_array
- * @param mixed $include_form_end
- * be compatible with the form_dropdown() function */
+/**
+ * Renders the bulk-actions dropdown (with a 'Go' submit button) that
+ * allows the user to select an action to perform on one or more
+ * selected data elements, at the bottom of the host type list form.
+ * Called from hmib_host_type() after rendering the list table.
+ *
+ * @param array $actions_array    An array of possible actions,
+ *                                compatible with form_dropdown().
+ * @param bool  $include_form_end Whether to close the enclosing
+ *                                &lt;form&gt; tag after this dropdown;
+ *                                pass false when the caller will
+ *                                close it itself.
+ *
+ * @return void
+ *
+ * @global array $config Cacti global configuration array; used to
+ *                       build the arrow icon's image path.
+ */
 function hmib_draw_actions_dropdown($actions_array, $include_form_end = true) {
 	global $config;
 	?>
@@ -964,6 +1179,18 @@ function hmib_draw_actions_dropdown($actions_array, $include_form_end = true) {
 	}
 }
 
+/**
+ * Renders the Host Type list's filter box (row-count selector and text
+ * filter input) along with its supporting client-side JS handlers for
+ * applying/clearing the filter, rescanning types, and
+ * importing/exporting. Called from hmib_host_type() before rendering
+ * the list table.
+ *
+ * @return void
+ *
+ * @global array $item_rows Cacti's standard row-count option list,
+ *                         used to populate the rows-per-page dropdown.
+ */
 function hmib_host_type_filter() {
 	global $item_rows;
 

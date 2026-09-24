@@ -101,6 +101,30 @@ switch(get_nfilter_request_var('action')) {
 
 bottom_footer();
 
+/**
+ * Renders the Running Process History view: validates/stores this
+ * view's filter request variables (rows, page, template, device,
+ * ostype, process, text filter, sort), renders the filter box (OS
+ * type/device/template/process selectors and search field), then
+ * queries and displays a sortable/paginated table of historical
+ * running-process records matching the selected filters. Called from
+ * this script's main request-dispatch switch when action=history.
+ *
+ * @return void
+ *
+ * @global array $config              Reserved/declared for parity with
+ *                                    other functions in this file; not
+ *                                    used directly here.
+ * @global array $item_rows           Cacti's standard row-count option
+ *                                    list, used to populate the rows
+ *                                    dropdown.
+ * @global array $hmib_hrSWTypes      Reserved/declared for parity with
+ *                                    other functions in this file; not
+ *                                    used directly here.
+ * @global array $hmib_hrSWRunStatus  Reserved/declared for parity with
+ *                                    other functions in this file; not
+ *                                    used directly here.
+ */
 function hmib_history() {
 	global $config, $item_rows, $hmib_hrSWTypes, $hmib_hrSWRunStatus;
 
@@ -448,6 +472,15 @@ function hmib_history() {
 	}
 }
 
+/**
+ * Formats a duration in seconds as an unpadded 'days:hours:minutes'
+ * string (omitting seconds). Called from hmib_history() to display
+ * each process's accumulated total run time.
+ *
+ * @param int $time The duration in seconds to format.
+ *
+ * @return string The formatted 'D:H:M' runtime string.
+ */
 function hmib_get_runtime($time) {
 	if ($time > 86400) {
 		$days  = floor($time / 86400);
@@ -468,6 +501,28 @@ function hmib_get_runtime($time) {
 	return $days . ':' . $hours . ':' . $minutes;
 }
 
+/**
+ * Renders the Running Processes view: validates/stores this view's
+ * filter request variables (rows, page, template, device, ostype,
+ * process, text filter, sort), renders the filter box, then queries and
+ * displays a sortable/paginated table of currently running processes
+ * across devices matching the selected filters. Called from this
+ * script's main request-dispatch switch when action=running.
+ *
+ * @return void
+ *
+ * @global array $config              Cacti global configuration array;
+ *                                    used to build device edit links.
+ * @global array $item_rows           Cacti's standard row-count option
+ *                                    list, used to populate the rows
+ *                                    dropdown.
+ * @global array $hmib_hrSWTypes      Reserved/declared for parity with
+ *                                    other functions in this file; not
+ *                                    used directly here.
+ * @global array $hmib_hrSWRunStatus  Reserved/declared for parity with
+ *                                    other functions in this file; not
+ *                                    used directly here.
+ */
 function hmib_running() {
 	global $config, $item_rows, $hmib_hrSWTypes, $hmib_hrSWRunStatus;
 
@@ -854,6 +909,19 @@ function hmib_running() {
 	running_legend($totals, $total_rows);
 }
 
+/**
+ * Renders a small summary box showing total and average CPU time and
+ * memory usage across the currently displayed running-process rows.
+ * Called from hmib_running() after the process table has been built.
+ *
+ * @param array $totals     Associative array with 'cpu' (total seconds)
+ *                          and 'memory' (total KB) sums across the
+ *                          displayed rows.
+ * @param int   $total_rows The number of rows the totals were computed
+ *                          over, used to compute averages.
+ *
+ * @return void
+ */
 function running_legend($totals, $total_rows) {
 	html_start_box('', '100%', '', '3', 'center', '');
 	print '<tr>';
@@ -868,6 +936,31 @@ function running_legend($totals, $total_rows) {
 	html_end_box(false);
 }
 
+/**
+ * Renders the Hardware view: validates/stores this view's filter
+ * request variables (rows, page, template, device, type, ostype,
+ * process, sort), renders the filter box, then queries and displays a
+ * sortable/paginated table of detected hardware devices (per
+ * hrDevices) across devices matching the selected filters. Called from
+ * this script's main request-dispatch switch when action=hardware.
+ *
+ * @return void
+ *
+ * @global array $config             Cacti global configuration array;
+ *                                   used to build device edit links.
+ * @global array $item_rows          Cacti's standard row-count option
+ *                                   list, used to populate the rows
+ *                                   dropdown.
+ * @global array $hmib_hrSWTypes     Reserved/declared for parity with
+ *                                   other functions in this file; not
+ *                                   used directly here.
+ * @global array $hmib_hrDeviceStatus Map of device status code =>
+ *                                   display label, used to render each
+ *                                   device's status.
+ * @global array $hmib_types         Reserved/declared for parity with
+ *                                   other functions in this file; not
+ *                                   used directly here.
+ */
 function hmib_hardware() {
 	global $config, $item_rows, $hmib_hrSWTypes, $hmib_hrDeviceStatus, $hmib_types;
 
@@ -1221,6 +1314,27 @@ function hmib_hardware() {
 	}
 }
 
+/**
+ * Renders the Storage view: validates/stores this view's filter
+ * request variables, renders the filter box, then queries and displays
+ * a sortable/paginated table of detected storage (per hrStorage)
+ * across devices matching the selected filters. Called from this
+ * script's main request-dispatch switch when action=storage.
+ *
+ * @return void
+ *
+ * @global array $config          Cacti global configuration array;
+ *                                used to build device edit links.
+ * @global array $item_rows       Cacti's standard row-count option
+ *                                list, used to populate the rows
+ *                                dropdown.
+ * @global array $hmib_hrSWTypes  Reserved/declared for parity with
+ *                                other functions in this file; not
+ *                                used directly here.
+ * @global array $hmib_types      Reserved/declared for parity with
+ *                                other functions in this file; not
+ *                                used directly here.
+ */
 function hmib_storage() {
 	global $config, $item_rows, $hmib_hrSWTypes, $hmib_types;
 
@@ -1596,6 +1710,20 @@ function hmib_storage() {
 	}
 }
 
+/**
+ * Renders the Details view: validates/stores this view's filter
+ * request variables, renders the filter box, then queries and displays
+ * a sortable/paginated table of Host MIB-monitored devices matching the
+ * selected filters. Called from this script's main request-dispatch
+ * switch when action=devices.
+ *
+ * @return void
+ *
+ * @global array $config    Cacti global configuration array; used to
+ *                          build device edit links.
+ * @global array $item_rows Cacti's standard row-count option list, used
+ *                          to populate the rows dropdown.
+ */
 function hmib_devices() {
 	global $config, $item_rows;
 
@@ -2082,14 +2210,44 @@ function hmib_devices() {
 	}
 }
 
+/**
+ * Formats a days/hours/minutes uptime triple into a zero-padded
+ * 'DDD:HH:MM' display string. Called when rendering a device's uptime
+ * in the Host MIB views.
+ *
+ * @param int $d Days.
+ * @param int $h Hours.
+ * @param int $m Minutes.
+ *
+ * @return string The formatted 'DDD:HH:MM' uptime string.
+ */
 function hmib_format_uptime($d, $h, $m) {
 	return hmib_right('000' . $d, 3) . ':' . hmib_right('000' . $h, 2) . ':' . hmib_right('000' . $m, 2);
 }
 
+/**
+ * Returns the rightmost $chars characters of a string, used to truncate
+ * a zero-padded number to a fixed width. Called from
+ * hmib_format_uptime() to pad each uptime component.
+ *
+ * @param string $string The string to truncate.
+ * @param int    $chars  The number of trailing characters to keep.
+ *
+ * @return string The rightmost $chars characters of $string.
+ */
 function hmib_right($string, $chars) {
 	return strrev(substr(strrev($string), 0, $chars));
 }
 
+/**
+ * Formats a byte count as a human-readable size string with the
+ * appropriate unit suffix (B/K/M/G/T/P). Called when rendering
+ * memory/storage sizes in the Host MIB views.
+ *
+ * @param float $mem The size in bytes to format.
+ *
+ * @return string The formatted size string with unit suffix.
+ */
 function hmib_memory($mem) {
 	if ($mem < 1024) {
 		return $mem . 'B';
@@ -2119,6 +2277,24 @@ function hmib_memory($mem) {
 	return number_format_i18n($mem,2) . 'P';
 }
 
+/**
+ * Renders the Software Inventory view: validates/stores this view's
+ * filter request variables, renders the filter box, then queries and
+ * displays a sortable/paginated table of installed software (per
+ * hrSWInstalled) across devices matching the selected filters. Called
+ * from this script's main request-dispatch switch when
+ * action=software.
+ *
+ * @return void
+ *
+ * @global array $config         Cacti global configuration array; used
+ *                               to build device edit links.
+ * @global array $item_rows      Cacti's standard row-count option list,
+ *                               used to populate the rows dropdown.
+ * @global array $hmib_hrSWTypes Reserved/declared for parity with other
+ *                               functions in this file; not used
+ *                               directly here.
+ */
 function hmib_software() {
 	global $config, $item_rows, $hmib_hrSWTypes;
 
@@ -2463,6 +2639,17 @@ function hmib_software() {
 	}
 }
 
+/**
+ * Renders the top tabbed navigation bar for this page's views
+ * (summary/devices/storage/hardware/running/history/software/graphs),
+ * highlighting whichever tab corresponds to the current action. Called
+ * from this script's main flow at the top of every rendered view.
+ *
+ * @return void
+ *
+ * @global array $config Cacti global configuration array; used to
+ *                       build each tab's URL.
+ */
 function hmib_tabs() {
 	global $config;
 
@@ -2495,6 +2682,24 @@ function hmib_tabs() {
 	print '</ul></nav></div>';
 }
 
+/**
+ * Renders the Host MIB dashboard/summary view: an overview of monitored
+ * device counts by status/OS type, top running processes, and other
+ * aggregate statistics, driven by this view's filter request
+ * variables. Called from this script's main request-dispatch switch as
+ * the default view (action=summary or no action).
+ *
+ * @return void
+ *
+ * @global array $device_actions Reserved/declared for parity with
+ *                               other functions in this file; not used
+ *                               directly here.
+ * @global array $item_rows      Cacti's standard row-count/top-N option
+ *                               list, used to populate display-count
+ *                               dropdowns.
+ * @global array $config         Cacti global configuration array; used
+ *                               to build device/graph links.
+ */
 function hmib_summary() {
 	global $device_actions, $item_rows, $config;
 
@@ -3097,6 +3302,24 @@ function hmib_summary() {
 	}
 }
 
+/**
+ * Builds a link to the Devices view filtered by OS type and device
+ * status, displaying a count as its label (or the plain count if zero,
+ * with no link). Called from hmib_summary() when rendering per-status
+ * device counts.
+ *
+ * @param int $count     The device count to display as the link label.
+ * @param int $host_type The OS type id to filter the Devices view by.
+ * @param int $status    The device status to filter the Devices view
+ *                       by.
+ *
+ * @return string|int An HTML anchor linking to the filtered Devices
+ *                    view when $count is greater than zero, otherwise
+ *                    the plain int $count.
+ *
+ * @global array $config Cacti global configuration array; used to
+ *                       build the link URL.
+ */
 function hmib_get_device_status_url($count, $host_type, $status) {
 	global $config;
 
@@ -3107,6 +3330,29 @@ function hmib_get_device_status_url($count, $host_type, $status) {
 	}
 }
 
+/**
+ * Builds a link (icon or titled text) to the selective Graphs view for
+ * all graphs using a given graph template, optionally restricted to a
+ * specific OS type and/or device. Called from summary/list views when
+ * rendering a 'view graphs' action for a graph template.
+ *
+ * @param int    $graph_template The graph_templates id to find graphs
+ *                              for.
+ * @param int    $host_type     Optional OS type id to restrict the
+ *                              search to devices of that type.
+ * @param int    $host_id       Optional host id to restrict the search
+ *                              to a single device.
+ * @param string $title         The link text to use when $image is
+ *                              false.
+ * @param bool   $image         Whether to render an icon link (true) or
+ *                              a titled text link (false).
+ *
+ * @return string An HTML anchor linking to the matching graphs, or
+ *               $title unchanged if no matching graphs are found.
+ *
+ * @global array $config Cacti global configuration array; used to build
+ *                       the link URL and image paths.
+ */
 function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id = 0, $title = '', $image = true) {
 	global $config;
 
@@ -3160,6 +3406,30 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
 	return $title;
 }
 
+/**
+ * Builds a link (icon or titled text) to the selective Graphs view for
+ * graphs from a given data query, optionally restricted to a specific
+ * SNMP index, device, and/or OS type. Called from summary/list views
+ * when rendering a 'view graphs' action for a data-query-driven metric
+ * (e.g. a specific storage or processor entry).
+ *
+ * @param int    $data_query The snmp_query id to find graphs for.
+ * @param int    $host_type  Optional OS type id to restrict the search
+ *                          to devices of that type.
+ * @param int    $host_id    Optional host id to restrict the search to
+ *                          a single device.
+ * @param string $index      Optional SNMP index to restrict the search
+ *                          to a specific data query row.
+ * @param string $title      The link text to use when $image is false.
+ * @param bool   $image      Whether to render an icon link (true) or a
+ *                          titled text link (false).
+ *
+ * @return string An HTML anchor linking to the matching graphs, or
+ *               $title unchanged if no matching graphs are found.
+ *
+ * @global array $config Cacti global configuration array; used to build
+ *                       the link URL and image paths.
+ */
 function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = '', $image = true) {
 	global $config;
 
@@ -3211,6 +3481,35 @@ function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = 
 	return $title;
 }
 
+/**
+ * Renders the Graphs view: reuses Cacti's standard graph-view rendering
+ * (graph list/selective/tree modes, thumbnails, filters) to display
+ * graphs, typically invoked already scoped to a selective set of graph
+ * ids via one of the hmib_get_graph_*_url() helpers. Called from this
+ * script's main request-dispatch switch when action=graphs.
+ *
+ * @return void
+ *
+ * @global object $current_user           Reserved/declared for parity
+ *                                        with Cacti's graph-view
+ *                                        rendering; not used directly
+ *                                        here.
+ * @global array  $colors                 Reserved/declared for parity
+ *                                        with Cacti's graph-view
+ *                                        rendering; not used directly
+ *                                        here.
+ * @global array  $config                 Cacti global configuration
+ *                                        array; used throughout graph
+ *                                        rendering.
+ * @global array  $host_template_hashes   Reserved/declared for parity
+ *                                        with Cacti's graph-view
+ *                                        rendering; not used directly
+ *                                        here.
+ * @global array  $graph_template_hashes  Reserved/declared for parity
+ *                                        with Cacti's graph-view
+ *                                        rendering; not used directly
+ *                                        here.
+ */
 function hmib_view_graphs() {
 	global $current_user, $colors, $config, $host_template_hashes, $graph_template_hashes;
 
