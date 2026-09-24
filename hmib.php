@@ -473,13 +473,13 @@ function hmib_history() {
 }
 
 /**
- * Formats a duration in seconds as a human-readable 'Nd Nh Nm Ns'-style
- * runtime string, omitting leading zero-valued units. Called from
- * hmib_history() to display each process's accumulated total run time.
+ * Formats a duration in seconds as an unpadded 'days:hours:minutes'
+ * string (omitting seconds). Called from hmib_history() to display
+ * each process's accumulated total run time.
  *
  * @param int $time The duration in seconds to format.
  *
- * @return string The formatted runtime string.
+ * @return string The formatted 'D:H:M' runtime string.
  */
 function hmib_get_runtime($time) {
 	if ($time > 86400) {
@@ -2240,11 +2240,11 @@ function hmib_right($string, $chars) {
 }
 
 /**
- * Formats a byte count (given in KB) as a human-readable size string
- * with the appropriate unit suffix (B/K/M/G/T/P). Called when rendering
+ * Formats a byte count as a human-readable size string with the
+ * appropriate unit suffix (B/K/M/G/T/P). Called when rendering
  * memory/storage sizes in the Host MIB views.
  *
- * @param float $mem The size in kilobytes to format.
+ * @param float $mem The size in bytes to format.
  *
  * @return string The formatted size string with unit suffix.
  */
@@ -3313,8 +3313,9 @@ function hmib_summary() {
  * @param int $status    The device status to filter the Devices view
  *                       by.
  *
- * @return string An HTML anchor linking to the filtered Devices view,
- *               or the plain $count if it is not greater than zero.
+ * @return string|int An HTML anchor linking to the filtered Devices
+ *                    view when $count is greater than zero, otherwise
+ *                    the plain int $count.
  *
  * @global array $config Cacti global configuration array; used to
  *                       build the link URL.

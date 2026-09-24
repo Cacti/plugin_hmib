@@ -76,8 +76,8 @@ if ($config['cacti_server_os'] == 'unix') {
  *                the query failed or the parameters were invalid.
  *
  * @global array $config      Cacti global configuration array.
- * @global array $snmp_errors Accumulates SNMP error messages encountered
- *                            during the query.
+ * @global int   $snmp_errors Counter incremented for each SNMP error
+ *                            encountered during the query.
  */
 function cacti_snmp_get($hostname, $community, $oid, $version, $username, $password, $auth_proto, $priv_pass,
 	$priv_proto, $context, $port = 161, $timeout = 500, $retries = 0, $max_oids = 10, $method = SNMP_VALUE_LIBRARY, $environ = SNMP_POLLER) {
@@ -232,6 +232,10 @@ function cacti_snmp_get($hostname, $community, $oid, $version, $username, $passw
  *
  * @return string The next OID's value (formatted per $method), or 'U' if
  *                the query failed.
+ *
+ * @global array $config      Cacti global configuration array.
+ * @global int   $snmp_errors Counter incremented for each SNMP error
+ *                            encountered during the query.
  */
 function cacti_snmp_getnext($hostname, $community, $oid, $version, $username, $password, $auth_proto, $priv_pass, $priv_proto, $context, $port = 161, $timeout = 500, $retries = 0, $method = SNMP_VALUE_LIBRARY, $environ = SNMP_POLLER) {
 	global $config, $snmp_errors;
@@ -378,6 +382,14 @@ function cacti_snmp_getnext($hostname, $community, $oid, $version, $username, $p
  *
  * @return array An array of ['oid' => ..., 'value' => ...] entries for
  *               every OID found under $oid.
+ *
+ * @global array $config              Cacti global configuration array.
+ * @global array $banned_snmp_strings List of substrings that mark a
+ *                                    response as invalid/banned; matching
+ *                                    entries are discarded from the
+ *                                    result.
+ * @global int   $snmp_errors         Counter incremented for each SNMP
+ *                                    error encountered during the walk.
  */
 function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $password, $auth_proto, $priv_pass, $priv_proto, $context, $port = 161, $timeout = 500, $retries = 0, $max_oids = 10, $method = SNMP_VALUE_LIBRARY, $environ = SNMP_POLLER) {
 	global $config, $banned_snmp_strings, $snmp_errors;
@@ -551,11 +563,14 @@ function cacti_snmp_walk($hostname, $community, $oid, $version, $username, $pass
  * @param bool   $snmp_oid_included  Whether $string includes a leading
  *                                   'oid =' portion to strip.
  *
- * @return string The cleaned value, or '' for a 'No Such ...' response.
+ * @return string The cleaned value, or '' for a 'No Such ...' response
+ *                or a value matching one of the $banned_snmp_strings
+ *                entries.
  *
- * @global array $banned_snmp_strings Reserved/declared for parity with
- *                                    the rest of this file; not used
- *                                    directly here.
+ * @global array $banned_snmp_strings List of substrings that mark a
+ *                                    response as invalid/banned; the
+ *                                    cleaned value is blanked out if it
+ *                                    contains any of them.
  */
 function format_snmp_string($string, $snmp_oid_included) {
 	global $banned_snmp_strings;

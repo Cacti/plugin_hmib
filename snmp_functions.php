@@ -53,14 +53,10 @@ function cacti_escapeshellcmd($string) {
 }
 
 /**
- * mimics escapeshellarg, even for windows
- * @param  $string - the string to be escaped
- * @param  $quote  - true: do NOT remove quotes from result; false: do remove quotes
- * @return  - the escaped [quoted|unquoted] string
- *
- * Called throughout this plugin wherever a single shell argument (e.g.
- * an SNMP community string or command parameter) needs to be safely
- * quoted for exec_background()/exec().
+ * Mimics escapeshellarg(), even on Windows. Called throughout this
+ * plugin wherever a single shell argument (e.g. an SNMP community
+ * string or command parameter) needs to be safely quoted for
+ * exec_background()/exec().
  *
  * @param string $string The argument string to escape.
  * @param bool   $quote  Whether to keep the surrounding quote characters

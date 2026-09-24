@@ -633,12 +633,16 @@ function hmib_host_type_import() {
 
 /**
  * Parses an uploaded Host Type CSV import file (array of raw lines,
- * header row plus data rows), maps recognized column headings
- * (id/name/version/sysDescrMatch/sysObjectID/vendor/description) to
- * their database columns, and bulk-inserts/updates the resulting rows
- * into plugin_hmib_hrSystemTypes (upserting on duplicate
- * sysDescrMatch/sysObjectID keys). Called from form_save() when a Host
- * Type CSV file is uploaded via the import form.
+ * header row plus data rows), recognizing only the id/sysDescrMatch/
+ * sysObjectID/version/name column headings (any other heading,
+ * including 'vendor'/'description', is ignored). When the
+ * 'allow_update' request variable is set, every row is
+ * inserted/upserted (ON DUPLICATE KEY UPDATE) into the legacy
+ * mac_track_device_types table; otherwise, each row is inserted into
+ * plugin_hmib_hrSystemTypes only if no existing row matches its id/
+ * sysDescrMatch/sysObjectID (existing rows are skipped, not updated).
+ * Called from form_save() when a Host Type CSV file is uploaded via
+ * the import form.
  *
  * @param array $host_types Reference, the raw CSV file lines (including
  *                          the header row) to import.
@@ -1133,19 +1137,17 @@ function hmib_host_type() {
 }
 
 /**
- * hmib_draw_actions_dropdown - draws a table the allows the user to select an action to perform
- * on one or more data elements
+ * Renders the bulk-actions dropdown (with a 'Go' submit button) that
+ * allows the user to select an action to perform on one or more
+ * selected data elements, at the bottom of the host type list form.
+ * Called from hmib_host_type() after rendering the list table.
  *
- * Renders the bulk-actions dropdown (with a 'Go' submit button) at the
- * bottom of the host type list form. Called from hmib_host_type() after
- * rendering the list table.
- *
- * @param array $actions_array      an array that contains a list of possible actions. this array should
- * be compatible with the form_dropdown() function
- * @param bool  $include_form_end   Whether to close the enclosing
- *                                  &lt;form&gt; tag after this dropdown;
- *                                  pass false when the caller will
- *                                  close it itself.
+ * @param array $actions_array    An array of possible actions,
+ *                                compatible with form_dropdown().
+ * @param bool  $include_form_end Whether to close the enclosing
+ *                                &lt;form&gt; tag after this dropdown;
+ *                                pass false when the caller will
+ *                                close it itself.
  *
  * @return void
  *
