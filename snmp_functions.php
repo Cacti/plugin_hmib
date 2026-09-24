@@ -22,6 +22,20 @@
  +-------------------------------------------------------------------------+
 */
 
+/**
+ * Escapes a command string for safe shell execution, using PHP's native
+ * escapeshellcmd() on Unix, or replacing shell-metacharacters with
+ * spaces on Windows (where escapeshellcmd()'s behavior is unreliable for
+ * this plugin's SNMP command-line construction). Called throughout this
+ * plugin wherever an external command string is built for exec_background()/exec().
+ *
+ * @param string $string The command string to escape.
+ *
+ * @return string The escaped command string.
+ *
+ * @global array $config Cacti global configuration array; used to
+ *                       detect the server OS.
+ */
 function cacti_escapeshellcmd($string) {
 	global $config;
 
@@ -43,6 +57,19 @@ function cacti_escapeshellcmd($string) {
  * @param  $string - the string to be escaped
  * @param  $quote  - true: do NOT remove quotes from result; false: do remove quotes
  * @return  - the escaped [quoted|unquoted] string
+ *
+ * Called throughout this plugin wherever a single shell argument (e.g.
+ * an SNMP community string or command parameter) needs to be safely
+ * quoted for exec_background()/exec().
+ *
+ * @param string $string The argument string to escape.
+ * @param bool   $quote  Whether to keep the surrounding quote characters
+ *                       in the result; defaults to true.
+ *
+ * @return string The escaped [quoted|unquoted] argument string.
+ *
+ * @global array $config Cacti global configuration array; used to
+ *                       detect the server OS.
  */
 function cacti_escapeshellarg($string, $quote = true) {
 	global $config;

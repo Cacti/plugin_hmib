@@ -22,6 +22,16 @@
  +-------------------------------------------------------------------------+
 */
 
+/**
+ * Plugin install hook: registers all of this plugin's Cacti hooks
+ * (config arrays/settings, navigation text, poller_bottom, header tabs,
+ * and its CPU/disk/CPU-index data-provider hooks used by other
+ * plugins), registers its two admin realms, and creates its database
+ * tables. Called by Cacti's plugin architecture when the plugin is
+ * installed.
+ *
+ * @return void
+ */
 function plugin_hmib_install() {
 	// graph setup all arrays needed for automation
 	api_plugin_register_hook('hmib', 'config_arrays',         'hmib_config_arrays',         'setup.php');
@@ -40,6 +50,13 @@ function plugin_hmib_install() {
 	hmib_setup_table();
 }
 
+/**
+ * Plugin uninstall hook: drops all of this plugin's database tables.
+ * Called by Cacti's plugin architecture when the plugin is
+ * uninstalled.
+ *
+ * @return void
+ */
 function plugin_hmib_uninstall() {
 	// Do any extra Uninstall stuff here
 	db_execute('DROP TABLE IF EXISTS `plugin_hmib_hrDevices`');
@@ -55,6 +72,13 @@ function plugin_hmib_uninstall() {
 	db_execute('DROP TABLE IF EXISTS `plugin_hmib_types`');
 }
 
+/**
+ * Plugin config-check hook: ensures the plugin's schema/hooks are up to
+ * date by delegating to hmib_check_upgrade(). Called by Cacti's plugin
+ * architecture on relevant page loads.
+ *
+ * @return bool Always true.
+ */
 function plugin_hmib_check_config() {
 	// Here we will check to ensure everything is configured
 	hmib_check_upgrade();
@@ -62,6 +86,13 @@ function plugin_hmib_check_config() {
 	return true;
 }
 
+/**
+ * Plugin upgrade hook: brings the plugin's schema/hooks up to date by
+ * delegating to hmib_check_upgrade(). Called by Cacti's plugin
+ * architecture when the plugin is upgraded to a new version.
+ *
+ * @return bool Always true.
+ */
 function plugin_hmib_upgrade() {
 	// Here we will upgrade to the newest version
 	hmib_check_upgrade();
@@ -69,6 +100,18 @@ function plugin_hmib_upgrade() {
 	return true;
 }
 
+/**
+ * Reads and returns this plugin's version/author/metadata info from its
+ * INFO file. Called throughout this plugin (e.g. display_version() in
+ * the poller scripts, hmib_check_upgrade()) wherever plugin metadata is
+ * needed.
+ *
+ * @return array The plugin's info array, as parsed from the INFO file's
+ *               '[info]' section.
+ *
+ * @global array $config Cacti global configuration array; used to
+ *                       locate the plugin's INFO file.
+ */
 function plugin_hmib_version() {
 	global $config;
 	$info = parse_ini_file($config['base_path'] . '/plugins/hmib/INFO', true);
@@ -76,6 +119,23 @@ function plugin_hmib_version() {
 	return $info['info'];
 }
 
+/**
+ * Checks whether the plugin's recorded database version differs from
+ * its actual (INFO file) version and, if so, re-enables its hooks,
+ * updates the plugin_config record, applies any needed incremental
+ * schema changes (e.g. adding the hrSWRun_last_seen.total_time column),
+ * and clears a stale config_form hook registration. Only runs on
+ * plugins.php/hmib.php page loads. Called from
+ * plugin_hmib_check_config() and plugin_hmib_upgrade().
+ *
+ * @return void
+ *
+ * @global array  $config           Cacti global configuration array;
+ *                                  used to include required libraries.
+ * @global mixed  $database_default Reserved/declared for parity with
+ *                                  other setup functions; not used
+ *                                  directly here.
+ */
 function hmib_check_upgrade() {
 	global $config, $database_default;
 	include_once($config['library_path'] . '/database.php');
@@ -115,10 +175,32 @@ function hmib_check_upgrade() {
 	}
 }
 
+/**
+ * Reports whether this plugin's dependencies are satisfied. Called by
+ * Cacti's plugin architecture when checking whether the plugin can be
+ * enabled.
+ *
+ * @return bool Always true (this plugin declares no extra
+ *              dependencies).
+ */
 function hmib_check_dependencies() {
 	return true;
 }
 
+/**
+ * Creates (if not already present) all of this plugin's database
+ * tables: plugin_hmib_hrDevices and the other Host Resources data
+ * tables, type/system tables, and the process-lock table. Called from
+ * plugin_hmib_install().
+ *
+ * @return void
+ *
+ * @global array $config           Cacti global configuration array;
+ *                                 used to include the database library.
+ * @global mixed $database_default Reserved/declared for parity with
+ *                                 other setup functions; not used
+ *                                 directly here.
+ */
 function hmib_setup_table() {
 	global $config, $database_default;
 	include_once($config['library_path'] . '/database.php');
@@ -370,6 +452,18 @@ function hmib_setup_table() {
 	}
 }
 
+/**
+ * Poller_bottom hook: launches the main Host MIB poller process
+ * (poller_hmib.php -M) as a background process at the end of each
+ * Cacti polling cycle. Called by Cacti's poller via the
+ * 'poller_bottom' hook.
+ *
+ * @return void
+ *
+ * @global array $config Cacti global configuration array; used to
+ *                       locate the PHP binary and this plugin's poller
+ *                       script.
+ */
 function hmib_poller_bottom() {
 	global $config;
 	include_once($config['base_path'] . '/lib/poller.php');
@@ -377,6 +471,26 @@ function hmib_poller_bottom() {
 	exec_background(read_config_option('path_php_binary'), ' -q ' . $config['base_path'] . '/plugins/hmib/poller_hmib.php -M');
 }
 
+/**
+ * Config_settings hook: registers this plugin's 'Host MIB' settings tab
+ * and all of its configuration fields (poller enable/autodiscovery/
+ * autopurge toggles, row-count/top-N display defaults, concurrency
+ * limit, and per-table collection frequencies). Called by Cacti's
+ * settings framework via the 'config_settings' hook.
+ *
+ * @return void
+ *
+ * @global array $tabs             Cacti's settings tabs registry;
+ *                                 appended with this plugin's tab.
+ * @global array $settings         Cacti's settings fields registry;
+ *                                 appended with this plugin's fields.
+ * @global array $hmib_frequencies Map of frequency (seconds) => display
+ *                                 label, used as the option list for
+ *                                 the frequency drop-downs.
+ * @global array $item_rows        Cacti's standard row-count option
+ *                                 list, used for the default row-count
+ *                                 setting.
+ */
 function hmib_config_settings() {
 	global $tabs, $settings, $hmib_frequencies, $item_rows;
 
@@ -526,6 +640,40 @@ function hmib_config_settings() {
 		];
 }
 
+/**
+ * Config_arrays hook: initializes the plugin's collection-frequency
+ * option list and the SNMP OID tree maps (hrSystem, hrSWRun,
+ * hrSWRunPerf, hrSWInstalled, hrStorage, hrDevices, hrProcessor) used
+ * by the poller collectors, surfaces any pending session message,
+ * registers the OS Types management menu entry and user-realm role
+ * augmentations, and triggers a schema/hooks upgrade check. Called by
+ * Cacti's plugin framework via the 'config_arrays' hook on every page
+ * load.
+ *
+ * @return void
+ *
+ * @global array $menu             Cacti's admin menu registry;
+ *                                appended with this plugin's OS Types
+ *                                entry.
+ * @global array $messages         Cacti's session-message display
+ *                                registry.
+ * @global array $hmib_frequencies Populated here with the map of
+ *                                frequency (seconds) => display label.
+ * @global array $hrSystem        Populated here with the hrSystem SNMP
+ *                                OID tree map.
+ * @global array $hrSWRun         Populated here with the hrSWRun SNMP
+ *                                OID tree map.
+ * @global array $hrSWRunPerf     Populated here with the hrSWRunPerf
+ *                                SNMP OID tree map.
+ * @global array $hrSWInstalled   Populated here with the hrSWInstalled
+ *                                SNMP OID tree map.
+ * @global array $hrStorage       Populated here with the hrStorage SNMP
+ *                                OID tree map.
+ * @global array $hrDevices       Populated here with the hrDevices SNMP
+ *                                OID tree map.
+ * @global array $hrProcessor     Populated here with the hrProcessor
+ *                                SNMP OID tree map.
+ */
 function hmib_config_arrays() {
 	global $menu, $messages, $hmib_frequencies;
 	global $hrSystem, $hrSWRun, $hrSWRunPerf, $hrSWInstalled, $hrStorage, $hrDevices, $hrProcessor;
@@ -624,6 +772,16 @@ function hmib_config_arrays() {
 	hmib_check_upgrade();
 }
 
+/**
+ * Draw_navigation_text hook: registers the breadcrumb/navigation title
+ * entries for this plugin's hmib.php and hmib_types.php pages and their
+ * sub-views. Called by Cacti's navigation framework via the
+ * 'draw_navigation_text' hook.
+ *
+ * @param array $nav The navigation entries array being built up.
+ *
+ * @return array The $nav array with this plugin's entries added.
+ */
 function hmib_draw_navigation_text($nav) {
 	$nav['hmib.php:summary']   = ['title' => __('Host MIB Inventory Summary', 'hmib'), 'mapping' => '', 'url' => 'hmib.php', 'level' => '0'];
 	$nav['hmib.php:devices']   = ['title' => __('Host MIB Details', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0'];
@@ -642,6 +800,17 @@ function hmib_draw_navigation_text($nav) {
 	return $nav;
 }
 
+/**
+ * Top_header_tabs/top_graph_header_tabs hook: prints the Host MIB tab
+ * icon/link in Cacti's page header, using the 'down' (active) icon when
+ * currently viewing hmib.php. Called by Cacti's header rendering via
+ * the 'top_header_tabs'/'top_graph_header_tabs' hooks.
+ *
+ * @return void
+ *
+ * @global array $config Cacti global configuration array; used to
+ *                       build the tab's URL and image paths.
+ */
 function hmib_show_tab() {
 	global $config;
 
@@ -654,6 +823,26 @@ function hmib_show_tab() {
 	}
 }
 
+/**
+ * Data-provider hook returning a device's processor load value(s) for
+ * use by Cacti's script server, either a single processor's load (by
+ * index) or the average load across all processors (index 4000).
+ * Called via the 'hmib_get_cpu' hook from script-server-backed data
+ * queries/graph templates.
+ *
+ * @param array $host_index The script-server argument array containing
+ *                          'host_id' and 'index'.
+ *
+ * @return array|string The unmodified $host_index array when not
+ *                      called by the script server or when the table
+ *                      doesn't exist, otherwise the CPU load value (or
+ *                      '0' if none found).
+ *
+ * @global bool $called_by_script_server Whether this call originated
+ *                                      from Cacti's script server;
+ *                                      when false, $host_index is
+ *                                      returned unmodified.
+ */
 function hmib_get_cpu($host_index) {
 	global $called_by_script_server;
 
@@ -688,6 +877,25 @@ function hmib_get_cpu($host_index) {
 	}
 }
 
+/**
+ * Data-provider hook returning the list of available processor indexes
+ * for a device, plus a synthetic 'Total' (index 4000) entry for the
+ * average-load option, for use by Cacti's script server when building
+ * data query index selection lists. Called via the
+ * 'hmib_get_cpu_indexes' hook.
+ *
+ * @param array $host_index The script-server argument array containing
+ *                          'host_id'.
+ *
+ * @return array|mixed The unmodified $host_index argument when the
+ *                     plugin_hmib_hrProcessor table doesn't exist,
+ *                     otherwise an array of available processor
+ *                     indexes plus the 'Total' entry.
+ *
+ * @global bool $called_by_script_server Reserved/declared for parity
+ *                                      with hmib_get_cpu(); not used
+ *                                      directly here.
+ */
 function hmib_get_cpu_indexes($host_index) {
 	global $called_by_script_server;
 
@@ -716,6 +924,27 @@ function hmib_get_cpu_indexes($host_index) {
 	return $rarray;
 }
 
+/**
+ * Data-provider hook returning a device's storage size/used value
+ * (handling signed 32-bit overflow wraparound per the Host Resources
+ * MIB convention) for use by Cacti's script server. Called via the
+ * 'hmib_get_disk' hook from script-server-backed data queries/graph
+ * templates.
+ *
+ * @param array $host_index The script-server argument array containing
+ *                          'host_id', 'index', and 'arg' ('total' for
+ *                          size, otherwise used space).
+ *
+ * @return array|string The unmodified $host_index array when not
+ *                      called by the script server or when the table
+ *                      doesn't exist, otherwise the requested storage
+ *                      value (or '0' if none found).
+ *
+ * @global bool $called_by_script_server Whether this call originated
+ *                                      from Cacti's script server;
+ *                                      when false, $host_index is
+ *                                      returned unmodified.
+ */
 function hmib_get_disk($host_index) {
 	global $called_by_script_server;
 
