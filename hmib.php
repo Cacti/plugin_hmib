@@ -309,7 +309,7 @@ function hmib_history() {
 					</tr>
 				</table>
 			</form>
-			<script type='text/javascript'>
+			<script type='text/javascript' <?php print plugin_hmib_csp_nonce(); ?>>
 			function applyFilter() {
 				var strURL = 'hmib.php?action=history';
 				strURL += '&template=' + $('#template').val();
@@ -708,7 +708,7 @@ function hmib_running() {
 					</tr>
 				</table>
 			</form>
-			<script type='text/javascript'>
+			<script type='text/javascript' <?php print plugin_hmib_csp_nonce(); ?>>
 			function applyFilter() {
 				var strURL = 'hmib.php?action=running';
 				strURL += '&template=' + $('#template').val();
@@ -1151,7 +1151,7 @@ function hmib_hardware() {
 					</tr>
 				</table>
 			</form>
-			<script type='text/javascript'>
+			<script type='text/javascript' <?php print plugin_hmib_csp_nonce(); ?>>
 			function applyFilter() {
 				var strURL = 'hmib.php?action=hardware';
 				strURL += '&template=' + $('#template').val();
@@ -1528,7 +1528,7 @@ function hmib_storage() {
 					</tr>
 				</table>
 			</form>
-			<script type='text/javascript'>
+			<script type='text/javascript' <?php print plugin_hmib_csp_nonce(); ?>>
 			function applyFilter() {
 				var strURL = 'hmib.php?action=storage';
 				strURL += '&template=' + $('#template').val();
@@ -1931,7 +1931,7 @@ function hmib_devices() {
 					</tr>
 				</table>
 			</form>
-			<script type='text/javascript'>
+			<script type='text/javascript' <?php print plugin_hmib_csp_nonce(); ?>>
 			function applyFilter() {
 				var strURL  = 'hmib.php?action=devices';
 				strURL += '&ostype='   + $('#ostype').val();
@@ -2481,7 +2481,7 @@ function hmib_software() {
 					</tr>
 				</table>
 			</form>
-			<script type='text/javascript'>
+			<script type='text/javascript' <?php print plugin_hmib_csp_nonce(); ?>>
 			function applyFilter() {
 				var strURL = 'hmib.php?action=software';
 				strURL += '&template=' + $('#template').val();
@@ -2870,7 +2870,7 @@ function hmib_summary() {
 					</tr>
 				</table>
 			</form>
-			<script type='text/javascript'>
+			<script type='text/javascript' <?php print plugin_hmib_csp_nonce(); ?>>
 			function applyHostFilter() {
 				var strURL = 'hmib.php?action=summary&area=hosts&header=false';
 				strURL += '&htop=' + $('#htop').val();
@@ -3125,7 +3125,7 @@ function hmib_summary() {
 					</tr>
 				</table>
 			</form>
-			<script type='text/javascript'>
+			<script type='text/javascript' <?php print plugin_hmib_csp_nonce(); ?>>
 			function applyProcFilter() {
 				var strURL = 'hmib.php?action=summary&area=processes';
 				strURL += '&filter='  + $('#filter').val();

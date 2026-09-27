@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* security: Add a version-safe CSP nonce (`plugin_hmib_csp_nonce()`) to every inline `<script>` tag so pages stay compatible with Cacti's Content-Security-Policy nonce enforcement, while falling back cleanly on older Cacti releases that lack the `CactiSecureHeaders` class
 * feature: Add page counter to the processes filter for the Summary tab
 * feature: Move the main hmib interface to prepared statements where possible
 * issue#35: Hmib tab produces fatal memory error no matter the amount of memory allocated
