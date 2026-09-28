@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hmib on cacti 1.1.34\n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-09-24 09:29-0400\n"
+"POT-Creation-Date: 2026-09-27 11:09-0400\n"
 "PO-Revision-Date: 2024-06-23 04:08+0000\n"
 "Last-Translator: tql <fttx31@126.com>\n"
 "Language-Team: Chinese (Simplified) <http://translate.cacti.net/projects/cacti/hmib/zh_Hans/>\n"
@@ -278,11 +278,11 @@ msgstr "恢复"
 msgid "Up"
 msgstr "在线"
 
-#: hmib.php:1906 hmib.php:2961 setup.php:682
+#: hmib.php:1906 hmib.php:2961 setup.php:698
 msgid "Disabled"
 msgstr "已禁用"
 
-#: hmib.php:2031 hmib.php:2931 hmib.php:3199 setup.php:796
+#: hmib.php:2031 hmib.php:2931 hmib.php:3199 setup.php:812
 msgid "Actions"
 msgstr "操作"
 
@@ -690,7 +690,7 @@ msgstr "主机MIB操作系统类型[新建]"
 msgid "Host MIB OS Type Filters"
 msgstr "Host MIB OS Type Filters"
 
-#: hmib_types.php:1094 setup.php:765
+#: hmib_types.php:1094 setup.php:781
 msgid "OS Types"
 msgstr "OS类型"
 
@@ -726,7 +726,7 @@ msgstr "重新扫描"
 msgid "Scan for New or Unknown Device Types"
 msgstr "扫描新的或未知的设备类型"
 
-#: hmib_types.php:1270 setup.php:798
+#: hmib_types.php:1270 setup.php:814
 msgid "Import"
 msgstr "导入"
 
@@ -742,251 +742,251 @@ msgstr "导出"
 msgid "Export Host Types to Share with Others"
 msgstr "导出主机类型以与其他人共享"
 
-#: setup.php:47
+#: setup.php:63
 msgid "Host MIB Viewer"
 msgstr "主机 MIB 查看器"
 
-#: setup.php:48
+#: setup.php:64
 msgid "Host MIB Admin"
 msgstr "主机 MIB 管理员"
 
-#: setup.php:497
+#: setup.php:513
 #, fuzzy
 msgid "Host MIB"
 msgstr "导入主机MIB操作系统类型"
 
-#: setup.php:500
+#: setup.php:516
 msgid "Host MIB General Settings"
 msgstr "主机MIB常规设置"
 
-#: setup.php:504
+#: setup.php:520
 msgid "Host MIB Poller Enabled"
 msgstr "主机MIB轮询器已启用"
 
-#: setup.php:505
+#: setup.php:521
 msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
 msgstr "如果希望启用主机MIB轮询，请选中此框。 否则，轮询器将无法运行。"
 
-#: setup.php:510
+#: setup.php:526
 msgid "Automatically Discover Cacti Devices"
 msgstr "自动发现 Cacti设备"
 
-#: setup.php:511
+#: setup.php:527
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
 msgstr "您是否希望自动扫描并添加支持来自Cacti主机表的主机资源MIB的设备？"
 
-#: setup.php:516
+#: setup.php:532
 msgid "Automatically Purge Devices"
 msgstr "自动清除设备"
 
-#: setup.php:517
+#: setup.php:533
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
 msgstr "您是否希望自动清除从Cacti系统中移除的设备？"
 
-#: setup.php:522
+#: setup.php:538
 msgid "Default Row Count"
 msgstr "默认行数"
 
-#: setup.php:523
+#: setup.php:539
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
 msgstr "默认情况下，您希望在HMIB OS类型上看到多少行？"
 
-#: setup.php:529
+#: setup.php:545
 msgid "Default Top Host Types"
 msgstr "默认顶级主机类型"
 
-#: setup.php:530 setup.php:541
+#: setup.php:546 setup.php:557
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
 msgstr "默认情况下，您希望在HMIB仪表板上看到多少个进程？"
 
-#: setup.php:534 setup.php:535 setup.php:536 setup.php:537
+#: setup.php:550 setup.php:551 setup.php:552 setup.php:553
 #, php-format
 msgid "%d Types"
 msgstr "%d 类型"
 
-#: setup.php:540
+#: setup.php:556
 msgid "Default Top Processes"
 msgstr "默认顶部流程"
 
-#: setup.php:545 setup.php:546 setup.php:547 setup.php:548 setup.php:557
-#: setup.php:558 setup.php:559 setup.php:560 setup.php:561 setup.php:562
-#: setup.php:563 setup.php:564 setup.php:565
+#: setup.php:561 setup.php:562 setup.php:563 setup.php:564 setup.php:573
+#: setup.php:574 setup.php:575 setup.php:576 setup.php:577 setup.php:578
+#: setup.php:579 setup.php:580 setup.php:581
 #, php-format
 msgid "%d Processes"
 msgstr "%d进程"
 
-#: setup.php:551
+#: setup.php:567
 msgid "Maximum Concurrent Collectors"
 msgstr "最大并发收集器"
 
-#: setup.php:552
+#: setup.php:568
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
 msgstr "您想同时运行的并发收集器进程的最大数量是多少？"
 
-#: setup.php:556
+#: setup.php:572
 #, php-format
 msgid "%d Process"
 msgstr "%d 进程"
 
-#: setup.php:568
+#: setup.php:584
 msgid "Host Auto Discovery Frequency"
 msgstr "主机自动发现频率"
 
-#: setup.php:572
+#: setup.php:588
 msgid "Auto Discovery Frequency"
 msgstr "自动发现频率"
 
-#: setup.php:573
+#: setup.php:589
 msgid "How often do you want to look for new Cacti Devices?"
 msgstr "您想多久查找一次新的Cacti 设备？"
 
-#: setup.php:579
+#: setup.php:595
 msgid "Host Graph Automation"
 msgstr "主机图形自动化"
 
-#: setup.php:583
+#: setup.php:599
 msgid "Automatically Add New Graphs"
 msgstr "自动添加新图"
 
-#: setup.php:584
+#: setup.php:600
 msgid "How often do you want to check for new objects to graph?"
 msgstr "你想多久检查一次新的对象来绘制图表？"
 
-#: setup.php:588
+#: setup.php:604
 msgid "Never"
 msgstr "从不"
 
-#: setup.php:589 setup.php:687
+#: setup.php:605 setup.php:703
 #, php-format
 msgid "%d Hour"
 msgstr "%d 小时"
 
-#: setup.php:590 setup.php:688 setup.php:689 setup.php:690
+#: setup.php:606 setup.php:704 setup.php:705 setup.php:706
 #, php-format
 msgid "%d Hours"
 msgstr "%d 小时"
 
-#: setup.php:591 setup.php:691
+#: setup.php:607 setup.php:707
 #, php-format
 msgid "%d Day"
 msgstr "%d 天"
 
-#: setup.php:592
+#: setup.php:608
 #, php-format
 msgid "%d Days"
 msgstr "%d 天"
 
-#: setup.php:595
+#: setup.php:611
 msgid "Host MIB Table Collection Frequencies"
 msgstr "主机MIB表收集频率"
 
-#: setup.php:599
+#: setup.php:615
 msgid "Running Programs Frequency"
 msgstr "运行程序频率"
 
-#: setup.php:600
+#: setup.php:616
 msgid "How often do you want to scan running software?"
 msgstr "你想多久扫描一次正在运行的软件？"
 
-#: setup.php:606
+#: setup.php:622
 msgid "Running Programs CPU/Memory Frequency"
 msgstr "运行程序CPU /内存频率"
 
-#: setup.php:607
+#: setup.php:623
 msgid "How often do you want to scan running software for performance data?"
 msgstr "您希望扫描正在运行的软件以获得性能数据的频率？"
 
-#: setup.php:613
+#: setup.php:629
 msgid "Installed Software Frequency"
 msgstr "安装软件频率"
 
-#: setup.php:614
+#: setup.php:630
 msgid "How often do you want to scan for installed software?"
 msgstr "您想多久扫描一次安装的软件？"
 
-#: setup.php:620
+#: setup.php:636
 msgid "Storage Frequency"
 msgstr "存储频率"
 
-#: setup.php:621
+#: setup.php:637
 msgid "How often do you want to scan for Storage performance data?"
 msgstr "您希望扫描存储性能数据的频率如何？"
 
-#: setup.php:627
+#: setup.php:643
 msgid "Device Frequency"
 msgstr "设备频率数据？"
 
-#: setup.php:628
+#: setup.php:644
 msgid "How often do you want to scan for Device performance data?"
 msgstr "您希望扫描设备性能数据的频率如何？"
 
-#: setup.php:634
+#: setup.php:650
 msgid "Processor Frequency"
 msgstr "处理器频率"
 
-#: setup.php:635
+#: setup.php:651
 msgid "How often do you want to scan for Processor performance data?"
 msgstr "您希望扫描处理器性能数据的频率如何？"
 
-#: setup.php:683
+#: setup.php:699
 #, php-format
 msgid "%d Minute"
 msgstr "%d分钟"
 
-#: setup.php:684 setup.php:685 setup.php:686
+#: setup.php:700 setup.php:701 setup.php:702
 #, php-format
 msgid "%d Minutes"
 msgstr "%d分钟"
 
-#: setup.php:765
+#: setup.php:781
 msgid "Management"
 msgstr "管理"
 
-#: setup.php:768
+#: setup.php:784
 msgid "Normal User"
 msgstr "普通用户"
 
-#: setup.php:769
+#: setup.php:785
 msgid "General Administration"
 msgstr "基本管理"
 
-#: setup.php:786
+#: setup.php:802
 msgid "Host MIB Inventory Summary"
 msgstr "主机MIB清单摘要"
 
-#: setup.php:787
+#: setup.php:803
 msgid "Host MIB Details"
 msgstr "主机MIB详细信息"
 
-#: setup.php:788
+#: setup.php:804
 msgid "Host MIB Storage"
 msgstr "主机MIB存储"
 
-#: setup.php:789
+#: setup.php:805
 msgid "Host MIB Hardware"
 msgstr "主机MIB硬件"
 
-#: setup.php:790
+#: setup.php:806
 msgid "Host MIB Running Processes"
 msgstr "主机MIB运行进程"
 
-#: setup.php:791
+#: setup.php:807
 msgid "Host MIB Process Use History"
 msgstr "主机MIB进程使用历史"
 
-#: setup.php:792
+#: setup.php:808
 msgid "Host MIB Software Inventory"
 msgstr "主机MIB软件清单"
 
-#: setup.php:793
+#: setup.php:809
 msgid "Host MIB Graphs"
 msgstr "主机MIB图形"
 
-#: setup.php:795
+#: setup.php:811
 msgid "Host MIB OS Types"
 msgstr "主机MIB OS类型"
 
-#: setup.php:797
+#: setup.php:813
 msgid "(Edit)"
 msgstr "(编辑)"
 
