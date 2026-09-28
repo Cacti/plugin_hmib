@@ -736,11 +736,11 @@ msgstr ""
 msgid "Export Host Types to Share with Others"
 msgstr ""
 
-#: setup.php:47
+#: setup.php:63
 msgid "Host MIB Viewer"
 msgstr ""
 
-#: setup.php:48
+#: setup.php:64
 msgid "Host MIB Admin"
 msgstr ""
 

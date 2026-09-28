@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-09-24 09:29-0400\n"
+"POT-Creation-Date: 2026-09-27 11:09-0400\n"
 "PO-Revision-Date: 2024-06-08 09:50-0400\n"
 "Last-Translator: Larry Adams <thewitness@cacti.net>\n"
 "Language-Team: French <http://translate.cacti.net/projects/cacti/hmib/fr/>\n"
@@ -278,11 +278,11 @@ msgstr "En cours de récupération"
 msgid "Up"
 msgstr "Up"
 
-#: hmib.php:1906 hmib.php:2961 setup.php:682
+#: hmib.php:1906 hmib.php:2961 setup.php:698
 msgid "Disabled"
 msgstr "Désactivé"
 
-#: hmib.php:2031 hmib.php:2931 hmib.php:3199 setup.php:796
+#: hmib.php:2031 hmib.php:2931 hmib.php:3199 setup.php:812
 msgid "Actions"
 msgstr "Actions"
 
@@ -689,7 +689,7 @@ msgstr "Types de systèmes d'exploitation MIB hôtes[nouveau]"
 msgid "Host MIB OS Type Filters"
 msgstr "Filtres de type MIB OS hôte"
 
-#: hmib_types.php:1094 setup.php:765
+#: hmib_types.php:1094 setup.php:781
 msgid "OS Types"
 msgstr "Types de systèmes d'exploitation"
 
@@ -725,7 +725,7 @@ msgstr "Scanner à nouveau"
 msgid "Scan for New or Unknown Device Types"
 msgstr "Recherche de nouveaux types d'appareils ou de types d'appareils inconnus"
 
-#: hmib_types.php:1270 setup.php:798
+#: hmib_types.php:1270 setup.php:814
 msgid "Import"
 msgstr "Importer"
 
@@ -741,250 +741,250 @@ msgstr "Exporter"
 msgid "Export Host Types to Share with Others"
 msgstr "Exporter les types d'hôtes pour les partager avec d'autres"
 
-#: setup.php:47
+#: setup.php:63
 msgid "Host MIB Viewer"
 msgstr "Plugin -> Visionneuse MIB hôte"
 
-#: setup.php:48
+#: setup.php:64
 msgid "Host MIB Admin"
 msgstr "Plugin -> Admin MIB hôte"
 
-#: setup.php:497
+#: setup.php:513
 msgid "Host MIB"
 msgstr "Graphiques MIB de l'hôte"
 
-#: setup.php:500
+#: setup.php:516
 msgid "Host MIB General Settings"
 msgstr "Paramètres généraux du MIB hôte"
 
-#: setup.php:504
+#: setup.php:520
 msgid "Host MIB Poller Enabled"
 msgstr "Host MIB Poller Activé"
 
-#: setup.php:505
+#: setup.php:521
 msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
 msgstr "Cochez cette case si vous voulez que l'interrogation du MIB hôte soit activée.  Sinon, le sélecteur ne fonctionnera pas."
 
-#: setup.php:510
+#: setup.php:526
 msgid "Automatically Discover Cacti Devices"
 msgstr "Découvrez automatiquement les appareils Cacti"
 
-#: setup.php:511
+#: setup.php:527
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
 msgstr "Souhaitez-vous rechercher et ajouter automatiquement les périphériques qui prennent en charge la MIB de ressources hôte à partir de la table hôte Cacti ?"
 
-#: setup.php:516
+#: setup.php:532
 msgid "Automatically Purge Devices"
 msgstr "Purge automatique des appareils"
 
-#: setup.php:517
+#: setup.php:533
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
 msgstr "Souhaitez-vous purger automatiquement les appareils qui sont retirés du système Cacti ?"
 
-#: setup.php:522
+#: setup.php:538
 msgid "Default Row Count"
 msgstr "Nombre de lignes par défaut"
 
-#: setup.php:523
+#: setup.php:539
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
 msgstr "Combien de lignes souhaitez-vous voir par défaut sur le HMIB OS Type ?"
 
-#: setup.php:529
+#: setup.php:545
 msgid "Default Top Host Types"
 msgstr "Types d'hôtes supérieurs par défaut"
 
-#: setup.php:530 setup.php:541
+#: setup.php:546 setup.php:557
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
 msgstr "Combien de processus souhaitez-vous voir sur le tableau de bord HMIB par défaut ?"
 
-#: setup.php:534 setup.php:535 setup.php:536 setup.php:537
+#: setup.php:550 setup.php:551 setup.php:552 setup.php:553
 #, php-format
 msgid "%d Types"
 msgstr "Types %d"
 
-#: setup.php:540
+#: setup.php:556
 msgid "Default Top Processes"
 msgstr "Processus supérieurs par défaut"
 
-#: setup.php:545 setup.php:546 setup.php:547 setup.php:548 setup.php:557
-#: setup.php:558 setup.php:559 setup.php:560 setup.php:561 setup.php:562
-#: setup.php:563 setup.php:564 setup.php:565
+#: setup.php:561 setup.php:562 setup.php:563 setup.php:564 setup.php:573
+#: setup.php:574 setup.php:575 setup.php:576 setup.php:577 setup.php:578
+#: setup.php:579 setup.php:580 setup.php:581
 #, php-format
 msgid "%d Processes"
 msgstr "Processus %d"
 
-#: setup.php:551
+#: setup.php:567
 msgid "Maximum Concurrent Collectors"
 msgstr "Maximum de capteurs simultanés"
 
-#: setup.php:552
+#: setup.php:568
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
 msgstr "Quel est le nombre maximum de processus de collecte simultanée que vous voulez exécuter en même temps ?"
 
-#: setup.php:556
+#: setup.php:572
 #, php-format
 msgid "%d Process"
 msgstr "Processus %d"
 
-#: setup.php:568
+#: setup.php:584
 msgid "Host Auto Discovery Frequency"
 msgstr "Fréquence de découverte automatique de l'hôte"
 
-#: setup.php:572
+#: setup.php:588
 msgid "Auto Discovery Frequency"
 msgstr "Fréquence de découverte automatique"
 
-#: setup.php:573
+#: setup.php:589
 msgid "How often do you want to look for new Cacti Devices?"
 msgstr "A quelle fréquence souhaitez-vous rechercher de nouveaux Cacti Devices ?"
 
-#: setup.php:579
+#: setup.php:595
 msgid "Host Graph Automation"
 msgstr "Automatisation des graphiques d'hôte"
 
-#: setup.php:583
+#: setup.php:599
 msgid "Automatically Add New Graphs"
 msgstr "Ajout automatique de nouveaux graphiques"
 
-#: setup.php:584
+#: setup.php:600
 msgid "How often do you want to check for new objects to graph?"
 msgstr "À quelle fréquence voulez-vous vérifier la présence de nouveaux objets à représenter graphiquement ?"
 
-#: setup.php:588
+#: setup.php:604
 msgid "Never"
 msgstr "Jamais"
 
-#: setup.php:589 setup.php:687
+#: setup.php:605 setup.php:703
 #, php-format
 msgid "%d Hour"
 msgstr "%d heure"
 
-#: setup.php:590 setup.php:688 setup.php:689 setup.php:690
+#: setup.php:606 setup.php:704 setup.php:705 setup.php:706
 #, php-format
 msgid "%d Hours"
 msgstr "%d heures"
 
-#: setup.php:591 setup.php:691
+#: setup.php:607 setup.php:707
 #, php-format
 msgid "%d Day"
 msgstr "%d jour"
 
-#: setup.php:592
+#: setup.php:608
 #, php-format
 msgid "%d Days"
 msgstr "%d jours"
 
-#: setup.php:595
+#: setup.php:611
 msgid "Host MIB Table Collection Frequencies"
 msgstr "Fréquences de la collection de tables de la MIB hôte"
 
-#: setup.php:599
+#: setup.php:615
 msgid "Running Programs Frequency"
 msgstr "Fréquence d'exécution des programmes"
 
-#: setup.php:600
+#: setup.php:616
 msgid "How often do you want to scan running software?"
 msgstr "A quelle fréquence voulez-vous scanner les logiciels en cours d'exécution ?"
 
-#: setup.php:606
+#: setup.php:622
 msgid "Running Programs CPU/Memory Frequency"
 msgstr "Exécution de programmes Fréquence CPU/Mémoire"
 
-#: setup.php:607
+#: setup.php:623
 msgid "How often do you want to scan running software for performance data?"
 msgstr "À quelle fréquence voulez-vous scanner les logiciels en cours d'exécution pour obtenir des données de performance ?"
 
-#: setup.php:613
+#: setup.php:629
 msgid "Installed Software Frequency"
 msgstr "Fréquence d'installation du logiciel"
 
-#: setup.php:614
+#: setup.php:630
 msgid "How often do you want to scan for installed software?"
 msgstr "À quelle fréquence voulez-vous rechercher les logiciels installés ?"
 
-#: setup.php:620
+#: setup.php:636
 msgid "Storage Frequency"
 msgstr "Fréquence de stockage"
 
-#: setup.php:621
+#: setup.php:637
 msgid "How often do you want to scan for Storage performance data?"
 msgstr "À quelle fréquence souhaitez-vous analyser les données de performance de stockage ?"
 
-#: setup.php:627
+#: setup.php:643
 msgid "Device Frequency"
 msgstr "Fréquence de l'appareil"
 
-#: setup.php:628
+#: setup.php:644
 msgid "How often do you want to scan for Device performance data?"
 msgstr "A quelle fréquence souhaitez-vous rechercher les données de performance de l'appareil ?"
 
-#: setup.php:634
+#: setup.php:650
 msgid "Processor Frequency"
 msgstr "Fréquence du processeur"
 
-#: setup.php:635
+#: setup.php:651
 msgid "How often do you want to scan for Processor performance data?"
 msgstr "À quelle fréquence voulez-vous analyser les données de performance des processeurs ?"
 
-#: setup.php:683
+#: setup.php:699
 #, php-format
 msgid "%d Minute"
 msgstr "%d Minute"
 
-#: setup.php:684 setup.php:685 setup.php:686
+#: setup.php:700 setup.php:701 setup.php:702
 #, php-format
 msgid "%d Minutes"
 msgstr "%d minutes"
 
-#: setup.php:765
+#: setup.php:781
 msgid "Management"
 msgstr "Gestion"
 
-#: setup.php:768
+#: setup.php:784
 msgid "Normal User"
 msgstr "Utilisateur normal"
 
-#: setup.php:769
+#: setup.php:785
 msgid "General Administration"
 msgstr "Administration générale"
 
-#: setup.php:786
+#: setup.php:802
 msgid "Host MIB Inventory Summary"
 msgstr "Résumé de l'inventaire du MIB hôte"
 
-#: setup.php:787
+#: setup.php:803
 msgid "Host MIB Details"
 msgstr "Détails du MIB hôte"
 
-#: setup.php:788
+#: setup.php:804
 msgid "Host MIB Storage"
 msgstr "Stockage MIB hôte"
 
-#: setup.php:789
+#: setup.php:805
 msgid "Host MIB Hardware"
 msgstr "Matériel MIB hôte"
 
-#: setup.php:790
+#: setup.php:806
 msgid "Host MIB Running Processes"
 msgstr "Processus d'exécution du MIB hôte"
 
-#: setup.php:791
+#: setup.php:807
 msgid "Host MIB Process Use History"
 msgstr "Historique d'utilisation du processus MIB hôte"
 
-#: setup.php:792
+#: setup.php:808
 msgid "Host MIB Software Inventory"
 msgstr "Inventaire des logiciels du MIB hôte"
 
-#: setup.php:793
+#: setup.php:809
 msgid "Host MIB Graphs"
 msgstr "Graphiques MIB de l'hôte"
 
-#: setup.php:795
+#: setup.php:811
 msgid "Host MIB OS Types"
 msgstr "Types d'OS MIB hôte"
 
-#: setup.php:797
+#: setup.php:813
 msgid "(Edit)"
 msgstr "(Editer)"
 
