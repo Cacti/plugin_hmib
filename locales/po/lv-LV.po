@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cacti\n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-09-24 09:29-0400\n"
+"POT-Creation-Date: 2026-09-27 11:09-0400\n"
 "PO-Revision-Date: 2026-05-09 07:18+0000\n"
 "Last-Translator: \"Coool (github.com/Coool)\" <coool@mail.lv>\n"
 "Language-Team: Latvian <https://translate.cacti.net/projects/cacti/hmib/lv/>\n"
@@ -278,11 +278,11 @@ msgstr "Atgūstas"
 msgid "Up"
 msgstr "Aktīva (darbojoša, tiešsaistē, ieslēgta)"
 
-#: hmib.php:1906 hmib.php:2961 setup.php:682
+#: hmib.php:1906 hmib.php:2961 setup.php:698
 msgid "Disabled"
 msgstr "Atspējots"
 
-#: hmib.php:2031 hmib.php:2931 hmib.php:3199 setup.php:796
+#: hmib.php:2031 hmib.php:2931 hmib.php:3199 setup.php:812
 msgid "Actions"
 msgstr "Darbības"
 
@@ -689,7 +689,7 @@ msgstr "Resursdatora MIB operētājsistēmas tipi [jauns]"
 msgid "Host MIB OS Type Filters"
 msgstr "Resursdatora MIB operētājsistēmas tipi filtrēšana"
 
-#: hmib_types.php:1094 setup.php:765
+#: hmib_types.php:1094 setup.php:781
 msgid "OS Types"
 msgstr "Operētājsistēmas tipi"
 
@@ -725,7 +725,7 @@ msgstr "Pārskenēt"
 msgid "Scan for New or Unknown Device Types"
 msgstr "Skenēt jaunus vai nezināmus ierīču tipus"
 
-#: hmib_types.php:1270 setup.php:798
+#: hmib_types.php:1270 setup.php:814
 msgid "Import"
 msgstr "Ievietot"
 
@@ -741,250 +741,250 @@ msgstr "Izgūt"
 msgid "Export Host Types to Share with Others"
 msgstr "Eksportēt resursdatora tipus, lai dalītos ar citiem"
 
-#: setup.php:47
+#: setup.php:63
 msgid "Host MIB Viewer"
 msgstr "Resursdatora MIB skatītājs"
 
-#: setup.php:48
+#: setup.php:64
 msgid "Host MIB Admin"
 msgstr "Resursdatora MIB administrators"
 
-#: setup.php:497
+#: setup.php:513
 msgid "Host MIB"
 msgstr "Resursdatora MIB"
 
-#: setup.php:500
+#: setup.php:516
 msgid "Host MIB General Settings"
 msgstr "Resursdatora MIB pamatiestatījumi"
 
-#: setup.php:504
+#: setup.php:520
 msgid "Host MIB Poller Enabled"
 msgstr "Resursdatora MIB aptaujāšana iespējota"
 
-#: setup.php:505
+#: setup.php:521
 msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
 msgstr "Atķeksējiet, ja vēlaties, lai resursdatora MIB aptaujāšana būtu iespējota.  Pretējā gadījumā aptaujātajs nedarbosies."
 
-#: setup.php:510
+#: setup.php:526
 msgid "Automatically Discover Cacti Devices"
 msgstr "Automātiski atklāt Cacti ierīces"
 
-#: setup.php:511
+#: setup.php:527
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
 msgstr "Vai vēlaties automātiski meklēt un pievienot ierīces, kas atbalsta resursdatora resursa MIB, no Cacti resursdatora tabulas?"
 
-#: setup.php:516
+#: setup.php:532
 msgid "Automatically Purge Devices"
 msgstr "Automātiski tīrīt ierīces"
 
-#: setup.php:517
+#: setup.php:533
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
 msgstr "Vai vēlaties automātiski tīrīt ierīces, kuras tiek dzēstas no Cacti sistēmas?"
 
-#: setup.php:522
+#: setup.php:538
 msgid "Default Row Count"
 msgstr "Noklusējuma ierakstus skaits"
 
-#: setup.php:523
+#: setup.php:539
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
 msgstr "Cik ierakstus pēc noklusējuma vēlaties redzēt HMIB Operētājsistēmas tips?"
 
-#: setup.php:529
+#: setup.php:545
 msgid "Default Top Host Types"
 msgstr "Noklusējuma labākie resursdatora tipi"
 
-#: setup.php:530 setup.php:541
+#: setup.php:546 setup.php:557
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
 msgstr "Cik procesus pēc noklusējuma vēlaties redzēt HMIB informācijas panelī?"
 
-#: setup.php:534 setup.php:535 setup.php:536 setup.php:537
+#: setup.php:550 setup.php:551 setup.php:552 setup.php:553
 #, php-format
 msgid "%d Types"
 msgstr "%d tipi"
 
-#: setup.php:540
+#: setup.php:556
 msgid "Default Top Processes"
 msgstr "Noklusējuma labākie procesi"
 
-#: setup.php:545 setup.php:546 setup.php:547 setup.php:548 setup.php:557
-#: setup.php:558 setup.php:559 setup.php:560 setup.php:561 setup.php:562
-#: setup.php:563 setup.php:564 setup.php:565
+#: setup.php:561 setup.php:562 setup.php:563 setup.php:564 setup.php:573
+#: setup.php:574 setup.php:575 setup.php:576 setup.php:577 setup.php:578
+#: setup.php:579 setup.php:580 setup.php:581
 #, php-format
 msgid "%d Processes"
 msgstr "%d procesi"
 
-#: setup.php:551
+#: setup.php:567
 msgid "Maximum Concurrent Collectors"
 msgstr "Maksimālais vienlaicīgo savācēju skaits"
 
-#: setup.php:552
+#: setup.php:568
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
 msgstr "Kāds ir maksimālais vienlaicīgo savācēju procesu skaits, ko vēlaties palaist vienā reizē?"
 
-#: setup.php:556
+#: setup.php:572
 #, php-format
 msgid "%d Process"
 msgstr "%d process"
 
-#: setup.php:568
+#: setup.php:584
 msgid "Host Auto Discovery Frequency"
 msgstr "Resursdatora automātiskais atklāšanas biežums"
 
-#: setup.php:572
+#: setup.php:588
 msgid "Auto Discovery Frequency"
 msgstr "Automātiskās atklāšanas biežums"
 
-#: setup.php:573
+#: setup.php:589
 msgid "How often do you want to look for new Cacti Devices?"
 msgstr "Cik bieži meklēt jaunas Cacti ierīces?"
 
-#: setup.php:579
+#: setup.php:595
 msgid "Host Graph Automation"
 msgstr "Resursdatora grafika automatizācija"
 
-#: setup.php:583
+#: setup.php:599
 msgid "Automatically Add New Graphs"
 msgstr "Automātiski pievienot jaunus grafikus"
 
-#: setup.php:584
+#: setup.php:600
 msgid "How often do you want to check for new objects to graph?"
 msgstr "Cik bieži vēlaties pārbaudīt, vai ir jauni objekti, ko attēlot?"
 
-#: setup.php:588
+#: setup.php:604
 msgid "Never"
 msgstr "Nekad"
 
-#: setup.php:589 setup.php:687
+#: setup.php:605 setup.php:703
 #, php-format
 msgid "%d Hour"
 msgstr "%d stunda"
 
-#: setup.php:590 setup.php:688 setup.php:689 setup.php:690
+#: setup.php:606 setup.php:704 setup.php:705 setup.php:706
 #, php-format
 msgid "%d Hours"
 msgstr "%d stundas"
 
-#: setup.php:591 setup.php:691
+#: setup.php:607 setup.php:707
 #, php-format
 msgid "%d Day"
 msgstr "%d diena"
 
-#: setup.php:592
+#: setup.php:608
 #, php-format
 msgid "%d Days"
 msgstr "%d dienas"
 
-#: setup.php:595
+#: setup.php:611
 msgid "Host MIB Table Collection Frequencies"
 msgstr "Resursdatora MIB tabulu ievākšanas biežumi"
 
-#: setup.php:599
+#: setup.php:615
 msgid "Running Programs Frequency"
 msgstr "Darbojošās programmas biežums"
 
-#: setup.php:600
+#: setup.php:616
 msgid "How often do you want to scan running software?"
 msgstr "Cik bieži jūs vēlaties skenēt darbojošās programmas?"
 
-#: setup.php:606
+#: setup.php:622
 msgid "Running Programs CPU/Memory Frequency"
 msgstr "Darbojošās programmas procesors/atmiņa biežums"
 
-#: setup.php:607
+#: setup.php:623
 msgid "How often do you want to scan running software for performance data?"
 msgstr "Cik bieži jūs vēlaties skenēt darbojošās programmas veiktspējas datus?"
 
-#: setup.php:613
+#: setup.php:629
 msgid "Installed Software Frequency"
 msgstr "Uzstādītās programmas biežums"
 
-#: setup.php:614
+#: setup.php:630
 msgid "How often do you want to scan for installed software?"
 msgstr "Cik bieži jūs vēlaties skenēt uzstādītās programmas?"
 
-#: setup.php:620
+#: setup.php:636
 msgid "Storage Frequency"
 msgstr "Krātuves biežums"
 
-#: setup.php:621
+#: setup.php:637
 msgid "How often do you want to scan for Storage performance data?"
 msgstr "Cik bieži jūs vēlaties skenēt krātuves veiktspējas datus?"
 
-#: setup.php:627
+#: setup.php:643
 msgid "Device Frequency"
 msgstr "Ierīces biežums"
 
-#: setup.php:628
+#: setup.php:644
 msgid "How often do you want to scan for Device performance data?"
 msgstr "Cik bieži vēlaties skenēt ierīces veiktspējas datus?"
 
-#: setup.php:634
+#: setup.php:650
 msgid "Processor Frequency"
 msgstr "Procesora biežums"
 
-#: setup.php:635
+#: setup.php:651
 msgid "How often do you want to scan for Processor performance data?"
 msgstr "Cik bieži jūs vēlaties skenēt procesora veiktspējas datus?"
 
-#: setup.php:683
+#: setup.php:699
 #, php-format
 msgid "%d Minute"
 msgstr "%d minūte"
 
-#: setup.php:684 setup.php:685 setup.php:686
+#: setup.php:700 setup.php:701 setup.php:702
 #, php-format
 msgid "%d Minutes"
 msgstr "%d minūtes"
 
-#: setup.php:765
+#: setup.php:781
 msgid "Management"
 msgstr "Vadība"
 
-#: setup.php:768
+#: setup.php:784
 msgid "Normal User"
 msgstr "Parasts lietotājs"
 
-#: setup.php:769
+#: setup.php:785
 msgid "General Administration"
 msgstr "Pamatadministrācija"
 
-#: setup.php:786
+#: setup.php:802
 msgid "Host MIB Inventory Summary"
 msgstr "Resursdatora MIB uzskaites kopsavilkums"
 
-#: setup.php:787
+#: setup.php:803
 msgid "Host MIB Details"
 msgstr "Resursdatora MIB detalizēta informācija"
 
-#: setup.php:788
+#: setup.php:804
 msgid "Host MIB Storage"
 msgstr "Resursdatora MIB krātuve"
 
-#: setup.php:789
+#: setup.php:805
 msgid "Host MIB Hardware"
 msgstr "Resursdatora MIB aparatūra"
 
-#: setup.php:790
+#: setup.php:806
 msgid "Host MIB Running Processes"
 msgstr "Resursdatora MIB darbojošies procesi"
 
-#: setup.php:791
+#: setup.php:807
 msgid "Host MIB Process Use History"
 msgstr "Resursdatora MIB procesa izmantošanas vēsture"
 
-#: setup.php:792
+#: setup.php:808
 msgid "Host MIB Software Inventory"
 msgstr "Resursdatora MIB programmatūras uzskaite"
 
-#: setup.php:793
+#: setup.php:809
 msgid "Host MIB Graphs"
 msgstr "Resursdatora MIB grafiki"
 
-#: setup.php:795
+#: setup.php:811
 msgid "Host MIB OS Types"
 msgstr "Resursdatora MIB Operētājsistēmas tipi"
 
-#: setup.php:797
+#: setup.php:813
 msgid "(Edit)"
 msgstr "(Rediģēt)"
 
