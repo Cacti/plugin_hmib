@@ -1195,7 +1195,7 @@ function hmib_host_type_filter() {
 	global $item_rows;
 
 	?>
-	<script type='text/javascript'>
+	<script type='text/javascript' <?php print plugin_hmib_csp_nonce(); ?>>
 	$(function() {
 		$('#types').submit(function(event) {
 			event.preventDefault();
