@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-09-27 11:09-0400\n"
+"POT-Creation-Date: 2026-09-28 09:06-0400\n"
 "PO-Revision-Date: 2024-06-08 09:51-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,8 +22,8 @@ msgid "Error"
 msgstr "שגיאה"
 
 #: hmib.php:37 hmib.php:52 hmib.php:197 hmib.php:596 hmib.php:892 hmib.php:1039
-#: hmib.php:1298 hmib.php:1416 hmib.php:1690 hmib.php:1797 hmib.php:1890
-#: hmib.php:2370 hmib.php:2624 hmib.php:3060 hmib_types.php:499
+#: hmib.php:1298 hmib.php:1416 hmib.php:1690 hmib.php:1797 hmib.php:1892
+#: hmib.php:2372 hmib.php:2626 hmib.php:3067 hmib_types.php:505
 msgid "Unknown"
 msgstr "לא ידוע"
 
@@ -67,7 +67,7 @@ msgstr "אזהרה"
 msgid "Testing"
 msgstr "בדיקה"
 
-#: hmib.php:56 hmib.php:1894 hmib.php:2956
+#: hmib.php:56 hmib.php:1896 hmib.php:2963
 msgid "Down"
 msgstr "למטה"
 
@@ -76,7 +76,7 @@ msgid "Running Process History"
 msgstr "הפעלת היסטוריית תהליכים"
 
 #: hmib.php:192 hmib.php:591 hmib.php:1034 hmib.php:1411 hmib.php:1792
-#: hmib.php:2365 hmib_types.php:1247
+#: hmib.php:2367 hmib_types.php:1255
 msgid "OS Type"
 msgstr "סוג מערכת הפעלה"
 
@@ -84,32 +84,32 @@ msgstr "סוג מערכת הפעלה"
 #: hmib.php:617 hmib.php:639 hmib.php:678 hmib.php:1038 hmib.php:1060
 #: hmib.php:1082 hmib.php:1121 hmib.php:1415 hmib.php:1437 hmib.php:1459
 #: hmib.php:1498 hmib.php:1796 hmib.php:1818 hmib.php:1841 hmib.php:1877
-#: hmib.php:2369 hmib.php:2391 hmib.php:2413 hmib.php:2452
+#: hmib.php:2371 hmib.php:2393 hmib.php:2415 hmib.php:2454
 msgid "All"
 msgstr "הכל"
 
-#: hmib.php:214 hmib.php:613 hmib.php:1056 hmib.php:1433 hmib.php:2387
+#: hmib.php:214 hmib.php:613 hmib.php:1056 hmib.php:1433 hmib.php:2389
 msgid "Device"
 msgstr "התקן"
 
 #: hmib.php:236 hmib.php:635 hmib.php:1078 hmib.php:1455 hmib.php:1814
-#: hmib.php:2409
+#: hmib.php:2411
 msgid "Template"
 msgstr "תבנית"
 
 #: hmib.php:260 hmib.php:659 hmib.php:1102 hmib.php:1479 hmib.php:1858
-#: hmib.php:2433 hmib.php:2863 hmib.php:3118 hmib_types.php:1170
-#: hmib_types.php:1267
+#: hmib.php:2435 hmib.php:2868 hmib.php:3125 hmib_types.php:1178
+#: hmib_types.php:1275
 msgid "Go"
 msgstr "עבור"
 
 #: hmib.php:261 hmib.php:660 hmib.php:1103 hmib.php:1480 hmib.php:1859
-#: hmib.php:2434 hmib.php:2864 hmib.php:3119 hmib_types.php:1268
+#: hmib.php:2436 hmib.php:2869 hmib.php:3126 hmib_types.php:1276
 msgid "Clear"
 msgstr "נקה"
 
 #: hmib.php:269 hmib.php:668 hmib.php:1111 hmib.php:1488 hmib.php:1867
-#: hmib.php:2442 hmib.php:3097 hmib_types.php:1241
+#: hmib.php:2444 hmib.php:3104 hmib_types.php:1249
 msgid "Search"
 msgstr "חיפוש"
 
@@ -121,13 +121,13 @@ msgstr "תהליך"
 msgid "Entries"
 msgstr "רשומות"
 
-#: hmib.php:299 hmib.php:698 hmib.php:1141 hmib.php:1518 hmib.php:1921
-#: hmib.php:2471 hmib_types.php:1251
+#: hmib.php:299 hmib.php:698 hmib.php:1141 hmib.php:1518 hmib.php:1923
+#: hmib.php:2473 hmib_types.php:1259
 msgid "Default"
 msgstr "ברירת מחדל"
 
-#: hmib.php:413 hmib.php:824 hmib.php:1249 hmib.php:1626 hmib.php:2036
-#: hmib.php:2580
+#: hmib.php:413 hmib.php:824 hmib.php:1249 hmib.php:1626 hmib.php:2038
+#: hmib.php:2582
 msgid "Hostname"
 msgstr "Hostname"
 
@@ -143,8 +143,8 @@ msgstr "השתמש בזמן (d: h: m)"
 msgid "History"
 msgstr "היסטוריה"
 
-#: hmib.php:451 hmib.php:882 hmib.php:1292 hmib.php:1684 hmib.php:2182
-#: hmib.php:2618
+#: hmib.php:451 hmib.php:882 hmib.php:1292 hmib.php:1684 hmib.php:2184
+#: hmib.php:2620
 msgid "Edit Device"
 msgstr "ערוך את המכשיר"
 
@@ -172,16 +172,16 @@ msgstr "CPU (שעות)"
 msgid "Memory (MB)"
 msgstr "זיכרון (MB)"
 
-#: hmib.php:854 hmib.php:1117 hmib.php:1494 hmib.php:2448 hmib.php:2590
-#: hmib.php:2936
+#: hmib.php:854 hmib.php:1117 hmib.php:1494 hmib.php:2450 hmib.php:2592
+#: hmib.php:2943
 msgid "Type"
 msgstr "סוג"
 
-#: hmib.php:859 hmib.php:1264 hmib.php:1873 hmib.php:2041
+#: hmib.php:859 hmib.php:1264 hmib.php:1873 hmib.php:2043
 msgid "Status"
 msgstr "סטטוס"
 
-#: hmib.php:865 hmib.php:2066 hmib.php:2662 hmib.php:3103 hmib.php:3219
+#: hmib.php:865 hmib.php:2068 hmib.php:2664 hmib.php:3110 hmib.php:3226
 msgid "Processes"
 msgstr "לא הצלחנו לעבד את התרומה  שלך, אנא נסה שוב."
 
@@ -221,7 +221,7 @@ msgstr "סוג חומרה"
 msgid "Errors"
 msgstr "שגיאות"
 
-#: hmib.php:1275 hmib.php:1917 hmib.php:2092 hmib.php:2659
+#: hmib.php:1275 hmib.php:1919 hmib.php:2094 hmib.php:2661
 msgid "Devices"
 msgstr "ניתן להתנתק מכל ההתקנים האחרים, כגון טלפון נייד או מחשב ציבורי, על ידי לחיצה על כפתור התנתקות מכל ההתקנים האחרים."
 
@@ -269,263 +269,263 @@ msgstr "לא נמצאו התקני אחסון"
 msgid "Device Filter"
 msgstr "מסנן התקנים"
 
-#: hmib.php:1898 hmib.php:2951
+#: hmib.php:1900 hmib.php:2958
 msgid "Recovering"
 msgstr "שחזור"
 
-#: hmib.php:1902 hmib.php:2946
+#: hmib.php:1904 hmib.php:2953
 msgid "Up"
 msgstr "למעלה"
 
-#: hmib.php:1906 hmib.php:2961 setup.php:698
+#: hmib.php:1908 hmib.php:2968 setup.php:702
 msgid "Disabled"
 msgstr "לא זמין"
 
-#: hmib.php:2031 hmib.php:2931 hmib.php:3199 setup.php:812
+#: hmib.php:2033 hmib.php:2938 hmib.php:3206 setup.php:816
 msgid "Actions"
 msgstr "פעולות"
 
-#: hmib.php:2046
+#: hmib.php:2048
 msgid "Uptime(d:h:m)"
 msgstr "Uptime (d: h: m)"
 
-#: hmib.php:2051
+#: hmib.php:2053
 msgid "Users"
 msgstr "משתמשים"
 
-#: hmib.php:2056
+#: hmib.php:2058
 msgid "CPU %%%"
 msgstr "מעבד %"
 
-#: hmib.php:2061
+#: hmib.php:2063
 msgid "CPUs"
 msgstr "מעבדים"
 
-#: hmib.php:2071
+#: hmib.php:2073
 msgid "Total Mem"
 msgstr "סך הכל"
 
-#: hmib.php:2076
+#: hmib.php:2078
 msgid "Used Mem"
 msgstr "זיכרון משומש"
 
-#: hmib.php:2081
+#: hmib.php:2083
 msgid "Total Swap"
 msgstr "סה\"כ החלפה"
 
-#: hmib.php:2086
+#: hmib.php:2088
 msgid "Used Swap"
 msgstr "החלפה משומשת"
 
-#: hmib.php:2145 hmib.php:3043
+#: hmib.php:2147 hmib.php:3050
 msgid "View Storage"
 msgstr "הצג אחסון"
 
-#: hmib.php:2150 hmib.php:3045
+#: hmib.php:2152 hmib.php:3052
 msgid "View Hardware"
 msgstr "הצג חומרה"
 
-#: hmib.php:2155 hmib.php:3047 hmib.php:3275
+#: hmib.php:2157 hmib.php:3054 hmib.php:3282
 msgid "View Processes"
 msgstr "הצג תהליכים"
 
-#: hmib.php:2160 hmib.php:3049
+#: hmib.php:2162 hmib.php:3056
 msgid "View Software Inventory"
 msgstr "הצג מלאי תוכנה"
 
-#: hmib.php:2166 hmib.php:3399 hmib.php:3401 hmib.php:3474 hmib.php:3476
+#: hmib.php:2168 hmib.php:3406 hmib.php:3408 hmib.php:3481 hmib.php:3483
 msgid "View Graphs"
 msgstr "הצג גרפים"
 
-#: hmib.php:2169
+#: hmib.php:2171
 msgid "No Graphs Defined"
 msgstr "לא הוגדרו גרפים"
 
-#: hmib.php:2176 hmib.php:2177
+#: hmib.php:2178 hmib.php:2179
 msgid "N/A"
 msgstr ""
 
-#: hmib.php:2203
+#: hmib.php:2205
 msgid "No Devices Found"
 msgstr "לא נמצאו התקנים"
 
-#: hmib.php:2356
+#: hmib.php:2358
 msgid "Software Inventory"
 msgstr "מלאי תוכנה"
 
-#: hmib.php:2467 hmib.php:2601
+#: hmib.php:2469 hmib.php:2603
 msgid "Applications"
 msgstr "בקשות עבודה"
 
-#: hmib.php:2585
+#: hmib.php:2587
 msgid "Package"
 msgstr "חבילה"
 
-#: hmib.php:2595
+#: hmib.php:2597
 msgid "Installed"
 msgstr "מותקן"
 
-#: hmib.php:2632
+#: hmib.php:2634
 msgid "No Software Packages Found"
 msgstr "לא נמצאו חבילות תוכנה"
 
-#: hmib.php:2658
+#: hmib.php:2660
 msgid "Summary"
 msgstr "סיכום"
 
-#: hmib.php:2660
+#: hmib.php:2662
 msgid "Storage"
 msgstr "אחסון"
 
-#: hmib.php:2661
+#: hmib.php:2663
 msgid "Hardware"
 msgstr "חומרה"
 
-#: hmib.php:2663
+#: hmib.php:2665
 msgid "Use History"
 msgstr "השתמש בהיסטוריה"
 
-#: hmib.php:2664
+#: hmib.php:2666
 msgid "Inventory"
 msgstr "מלאי"
 
-#: hmib.php:2665 hmib.php:3621
+#: hmib.php:2667 hmib.php:3628
 msgid "Graphs"
 msgstr "גרפים"
 
-#: hmib.php:2841
+#: hmib.php:2846
 msgid "Summary Filter"
 msgstr "מסנן סיכום"
 
-#: hmib.php:2850
+#: hmib.php:2855
 #, fuzzy
 #| msgid "Type"
 msgid "Types"
 msgstr "סוג"
 
-#: hmib.php:2854
+#: hmib.php:2859
 msgid "All Records"
 msgstr "כל הרשומות"
 
-#: hmib.php:2855 hmib.php:3111
+#: hmib.php:2860 hmib.php:3118
 #, php-format
 msgid "%d Records"
 msgstr "% d רשומות"
 
-#: hmib.php:2856 hmib.php:2857 hmib.php:2858
+#: hmib.php:2861 hmib.php:2862 hmib.php:2863
 #, php-format
 msgid "%d Record"
 msgstr "% d רשומה"
 
-#: hmib.php:2868 hmib.php:3123
+#: hmib.php:2873 hmib.php:3130
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
 msgstr "הערה: ייבא את חבילת ההתקנים המארחת MIB לצפייה בתרשימים."
 
-#: hmib.php:2891
+#: hmib.php:2896
 msgid "Device Type Summary Statistics"
 msgstr "נתונים סטטיסטיים סיכום סוג התקן"
 
-#: hmib.php:2941 hmib_types.php:936
+#: hmib.php:2948 hmib_types.php:944
 msgid "Version"
 msgstr "גרסה"
 
-#: hmib.php:2966
+#: hmib.php:2973
 msgid "Logins"
 msgstr "התחברויות"
 
-#: hmib.php:2971
+#: hmib.php:2978
 msgid "CPUS"
 msgstr "CPUS"
 
-#: hmib.php:2976 hmib.php:3224
+#: hmib.php:2983 hmib.php:3231
 msgid "Avg CPU"
 msgstr "מעבד ממוצע"
 
-#: hmib.php:2981 hmib.php:3229
+#: hmib.php:2988 hmib.php:3236
 msgid "Max CPU"
 msgstr "מעבד מקסימלי"
 
-#: hmib.php:2986
+#: hmib.php:2993
 msgid "Avg Mem"
 msgstr "זיכרון ממוצע"
 
-#: hmib.php:2991
+#: hmib.php:2998
 msgid "Max Mem"
 msgstr "מקס ממ"
 
-#: hmib.php:2996
+#: hmib.php:3003
 msgid "Avg Swap"
 msgstr "החלפה ממוצעת"
 
-#: hmib.php:3001
+#: hmib.php:3008
 msgid "Max Swap"
 msgstr "החלפה מקסימלית"
 
-#: hmib.php:3006
+#: hmib.php:3013
 msgid "Avg Proc"
 msgstr "עיבוד ממוצע"
 
-#: hmib.php:3011
+#: hmib.php:3018
 msgid "Max Proc"
 msgstr "מקס Proc"
 
-#: hmib.php:3041 hmib.php:3272 hmib.php:3327
+#: hmib.php:3048 hmib.php:3279 hmib.php:3334
 msgid "View Devices"
 msgstr "הצג מכשירים"
 
-#: hmib.php:3083
+#: hmib.php:3090
 msgid "No Device Types"
 msgstr "אין סוגי מכשירים"
 
-#: hmib.php:3088
+#: hmib.php:3095
 msgid "Process Summary Filter"
 msgstr "מסנן סיכום התהליך"
 
-#: hmib.php:3204
+#: hmib.php:3211
 msgid "Process Name"
 msgstr "שם תהליך"
 
-#: hmib.php:3209
+#: hmib.php:3216
 msgid "Num Paths"
 msgstr "נתיבים"
 
-#: hmib.php:3214 hmib_types.php:1105
+#: hmib.php:3221 hmib_types.php:1113
 msgid "Hosts"
 msgstr "מארחים"
 
-#: hmib.php:3234
+#: hmib.php:3241
 msgid "Avg Memory"
 msgstr "זיכרון ממוצע"
 
-#: hmib.php:3239
+#: hmib.php:3246
 msgid "Max Memory"
 msgstr "זיכרון מרבי"
 
-#: hmib.php:3245
+#: hmib.php:3252
 #, fuzzy
 #| msgid "Summary"
 msgid "Summary Stats"
 msgstr "סיכום"
 
-#: hmib.php:3285 hmib.php:3286
+#: hmib.php:3292 hmib.php:3293
 #, php-format
 msgid "%s Hrs"
 msgstr "%s שעות"
 
-#: hmib.php:3287 hmib.php:3288
+#: hmib.php:3294 hmib.php:3295
 #, php-format
 msgid "%s MB"
 msgstr "%s מגה בייט"
 
-#: hmib.php:3295
+#: hmib.php:3302
 msgid "No Processes"
 msgstr "לא הצלחנו לעבד את התרומה  שלך, אנא נסה שוב."
 
-#: hmib.php:3544
+#: hmib.php:3551
 msgid "Custom Graph List Applied - Filtering from List"
 msgstr "רשימת גרפים מותאמים אישית - מסננים מהרשימה"
 
-#: hmib.php:3544
+#: hmib.php:3551
 msgid "Graph Preview Filters"
 msgstr "מסננים תצוגה מקדימה של גרף"
 
@@ -537,206 +537,206 @@ msgstr "מחק"
 msgid "Duplicate"
 msgstr "שכפל"
 
-#: hmib_types.php:329
+#: hmib_types.php:335
 msgid "Click 'Continue' to Delete the following Host Type(s)"
 msgstr "לחץ על 'המשך' כדי למחוק את סוגי המארחים הבאים:"
 
-#: hmib_types.php:334 hmib_types.php:347
+#: hmib_types.php:340 hmib_types.php:353
 msgid "Cancel"
 msgstr "ביטול"
 
-#: hmib_types.php:335 hmib_types.php:348
+#: hmib_types.php:341 hmib_types.php:354
 msgid "Continue"
 msgstr "המשך"
 
-#: hmib_types.php:335
+#: hmib_types.php:341
 msgid "Delete Host Type(s)"
 msgstr "מחיקת סוגי מארחים"
 
-#: hmib_types.php:339
+#: hmib_types.php:345
 msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
 msgstr "לחץ על 'המשך' לשכפל את סוגי המארחים הבאים. ניתן לשנות את התיאור עבור סוג המארח החדש (ים). אחרת, אל תשנה ערך למטה והשם המקורי ישוכפל עם סיומת חדשה."
 
-#: hmib_types.php:341
+#: hmib_types.php:347
 msgid "Host Type Prefix:"
 msgstr "קידומת סוג מארח:"
 
-#: hmib_types.php:348
+#: hmib_types.php:354
 msgid "Duplicate Host Type(s)"
 msgstr "שכפל סוג מארח (ים)"
 
-#: hmib_types.php:498
+#: hmib_types.php:504
 msgid "New Type"
 msgstr "סוג חדש"
 
-#: hmib_types.php:545
+#: hmib_types.php:551
 #, php-format
 msgid "There were %d Device Types Added!"
 msgstr "היו% d סוגי התקנים שנוספו!"
 
-#: hmib_types.php:548
+#: hmib_types.php:554
 msgid "No New Host Types Found!"
 msgstr "לא נמצאו סוגי מארח חדשים!"
 
-#: hmib_types.php:571
+#: hmib_types.php:577
 msgid "Import Results"
 msgstr "תוצאות ייבוא"
 
-#: hmib_types.php:573
+#: hmib_types.php:579
 msgid "Cacti has imported the following items:"
 msgstr "Cacti ייבאה את הפריטים הבאים:"
 
-#: hmib_types.php:586
+#: hmib_types.php:592
 msgid "Import Host MIB OS Types"
 msgstr "ייבוא המארח MIB OS סוגי"
 
-#: hmib_types.php:589
+#: hmib_types.php:595
 msgid "Import Device Types from Local File"
 msgstr "ייבוא סוגי התקנים מקובץ מקומי"
 
-#: hmib_types.php:590
+#: hmib_types.php:596
 msgid "Please specify the location of the CSV file containing your device type information."
 msgstr "ציין את המיקום של קובץ ה- CSV שמכיל את פרטי סוג המכשיר שלך."
 
-#: hmib_types.php:597
+#: hmib_types.php:603
 msgid "Overwrite Existing Data?"
 msgstr "להחליף נתונים קיימים?"
 
-#: hmib_types.php:598
+#: hmib_types.php:604
 msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
 msgstr "האם יש לאפשר לתהליך הייבוא להחליף נתונים קיימים? שים לב, זה לא אומר למחוק שורה ישנה, רק להחליף שורות כפולות."
 
-#: hmib_types.php:601
+#: hmib_types.php:607
 msgid "Allow Existing Rows to be Updated?"
 msgstr "האם לאפשר שורות קיימות להתעדכן?"
 
-#: hmib_types.php:606
+#: hmib_types.php:612
 msgid "Required File Format Notes"
 msgstr "פורמט קובץ חובה הערות"
 
-#: hmib_types.php:609
+#: hmib_types.php:615
 msgid "The file must contain a header row with the following column headings."
 msgstr "על הקובץ להכיל שורת כותרת עם כותרות העמודות הבאות."
 
-#: hmib_types.php:611
+#: hmib_types.php:617
 msgid "A common name for the Host Type.  For example, Windows 7"
 msgstr "שם נפוץ עבור סוג המארח. לדוגמה, Windows 7"
 
-#: hmib_types.php:612
+#: hmib_types.php:618
 msgid "The OS version for the Host Type"
 msgstr "גירסת מערכת ההפעלה עבור סוג המארח"
 
-#: hmib_types.php:613
+#: hmib_types.php:619
 msgid "A unique set of characters from the snmp sysDescr that uniquely identify this device"
 msgstr "קבוצה ייחודית של תווים מן snmp sysDescr כי ייחודי לזהות את המכשיר הזה"
 
-#: hmib_types.php:614
+#: hmib_types.php:620
 msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
 msgstr "הספק הספציפי snmp sysObjectID שמבדיל את המכשיר הבא"
 
-#: hmib_types.php:616
+#: hmib_types.php:622
 msgid "The primary key for this table is a combination of the following two fields:"
 msgstr "המפתח הראשי לטבלה זו הוא שילוב של שני השדות הבאים:"
 
-#: hmib_types.php:620
+#: hmib_types.php:626
 msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
 msgstr "לכן, אם תנסה לייבא סוגי מכשירים כפולים, הנתונים הקיימים יעודכנו במידע החדש."
 
-#: hmib_types.php:622
+#: hmib_types.php:628
 msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
 msgstr "סוג המארח נקבע על ידי סריקת סוכן snmp שלו עבור sysObjectID ו- sysDescription ולהשוות אותו לערכים במאגר סוגי המארחים. ההתאמה הראשונה שנמצאת במסד הנתונים משמשת לנתוני המארח המצטברים. לכן, חשוב מאוד שתבחר sysObjectID חוקי, sysDescrMat עבור המארחים שלך."
 
-#: hmib_types.php:925
+#: hmib_types.php:933
 msgid "Device Scanning Function Options"
 msgstr "אפשרויות פונקציית סריקה של ההתקן"
 
-#: hmib_types.php:929
+#: hmib_types.php:937
 msgid "Name"
 msgstr "שם"
 
-#: hmib_types.php:930
+#: hmib_types.php:938
 msgid "Give this Host Type a meaningful name."
 msgstr "תן זה מארח סוג שם משמעותי."
 
-#: hmib_types.php:937
+#: hmib_types.php:945
 msgid "Fill in the name for the version of this Host Type."
 msgstr "מלא את השם עבור הגירסה של סוג מארח זה."
 
-#: hmib_types.php:944
+#: hmib_types.php:952
 msgid "System Description Match"
 msgstr "תיאור המערכת התאמה"
 
-#: hmib_types.php:945 hmib_types.php:952
+#: hmib_types.php:953 hmib_types.php:960
 #, fuzzy, php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
 msgstr "לספק מידע מפתח כדי לעזור HMIB לזהות את סוג המארח. SQL שבו נתמכים ביטויים. SQL כאשר תו כלליים הוא הסימן '%'. ביטויים רגילים הוסרו עקב בעיות תאימות."
 
-#: hmib_types.php:951
+#: hmib_types.php:959
 msgid "Vendor snmp Object ID"
 msgstr "מזהה אובייקט snmp של ספק"
 
-#: hmib_types.php:972
+#: hmib_types.php:980
 #, php-format
 msgid "Host MIB OS Types [edit: %s]"
 msgstr "מארח MIB OS סוגי [עריכה: %s]"
 
-#: hmib_types.php:974
+#: hmib_types.php:982
 msgid "Host MIB OS Types [new]"
 msgstr "מארח MIB OS סוגי [חדש]"
 
-#: hmib_types.php:1082
+#: hmib_types.php:1090
 msgid "Host MIB OS Type Filters"
 msgstr "מארח MIB OS סוג מסננים"
 
-#: hmib_types.php:1094 setup.php:781
+#: hmib_types.php:1102 setup.php:785
 msgid "OS Types"
 msgstr "סוגי מערכת הפעלה"
 
-#: hmib_types.php:1103
+#: hmib_types.php:1111
 msgid "Host Type Name"
 msgstr "שם סוג מארח"
 
-#: hmib_types.php:1104
+#: hmib_types.php:1112
 msgid "OS Version"
 msgstr "גרסת מערכת ההפעלה"
 
-#: hmib_types.php:1106
+#: hmib_types.php:1114
 msgid "SNMP ObjectID"
 msgstr "אובייקט אובייקט SNMP"
 
-#: hmib_types.php:1107
+#: hmib_types.php:1115
 msgid "SNMP Sys Description Match"
 msgstr "SNMP Sys תיאור התאמה"
 
-#: hmib_types.php:1124
+#: hmib_types.php:1132
 msgid "No Host Types Found"
 msgstr "לא נמצאו סוגי מארחים"
 
-#: hmib_types.php:1166
+#: hmib_types.php:1174
 msgid "Choose an action:"
 msgstr "נא לבחור פעולה"
 
-#: hmib_types.php:1269
+#: hmib_types.php:1277
 msgid "Rescan"
 msgstr "×¢×§××£ ××ª ×¨×©×××ª ××§×××××× (×××××× \"hextile raw\")"
 
-#: hmib_types.php:1269
+#: hmib_types.php:1277
 msgid "Scan for New or Unknown Device Types"
 msgstr "סריקה עבור סוגי התקנים חדשים או לא ידועים"
 
-#: hmib_types.php:1270 setup.php:814
+#: hmib_types.php:1278 setup.php:818
 msgid "Import"
 msgstr "ייבוא"
 
-#: hmib_types.php:1270
+#: hmib_types.php:1278
 msgid "Import Host Types from a CSV File"
 msgstr "ייבא סוגי מארח מקובץ CSV"
 
-#: hmib_types.php:1271
+#: hmib_types.php:1279
 msgid "Export"
 msgstr "ייצא"
 
-#: hmib_types.php:1271
+#: hmib_types.php:1279
 msgid "Export Host Types to Share with Others"
 msgstr "ייצוא סוגי מארח כדי לשתף עם אחרים"
 
@@ -748,242 +748,242 @@ msgstr "- מארח MIB Viewer"
 msgid "Host MIB Admin"
 msgstr "- מארח MIB מנהל"
 
-#: setup.php:513
+#: setup.php:517
 msgid "Host MIB"
 msgstr "מארח MIB גרפים"
 
-#: setup.php:516
+#: setup.php:520
 msgid "Host MIB General Settings"
 msgstr "הגדרות כלליות MIB מארח"
 
-#: setup.php:520
+#: setup.php:524
 msgid "Host MIB Poller Enabled"
 msgstr "מארח MIB Poller זמין"
 
-#: setup.php:521
+#: setup.php:525
 msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
 msgstr "סמן תיבה זו, אם ברצונך שהסקירה של MIB מאופשרת תהיה זמינה. אחרת, הסוקר לא יפעל."
 
-#: setup.php:526
+#: setup.php:530
 msgid "Automatically Discover Cacti Devices"
 msgstr "אוטומטית לגלות התקנים קקטוסים"
 
-#: setup.php:527
+#: setup.php:531
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
 msgstr "האם אתה רוצה באופן אוטומטי לסרוק ולהוסיף התקנים התומכים משאבים מארח MIB מהטבלה מארח Cacti?"
 
-#: setup.php:532
+#: setup.php:536
 msgid "Automatically Purge Devices"
 msgstr "באופן אוטומטי לטהר התקנים"
 
-#: setup.php:533
+#: setup.php:537
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
 msgstr "האם אתה רוצה לטהר באופן אוטומטי התקנים מוסרים ממערכת Cacti?"
 
-#: setup.php:538
+#: setup.php:542
 msgid "Default Row Count"
 msgstr "ספירת שורה ברירת מחדל"
 
-#: setup.php:539
+#: setup.php:543
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
 msgstr "כמה שורות אתה רוצה לראות על סוג HMIB OS כברירת מחדל?"
 
-#: setup.php:545
+#: setup.php:549
 msgid "Default Top Host Types"
 msgstr "ברירת המחדל של סוגי מארח מובילים"
 
-#: setup.php:546 setup.php:557
+#: setup.php:550 setup.php:561
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
 msgstr "כמה תהליכים אתה רוצה לראות על לוח המחוונים HMIB כברירת מחדל?"
 
-#: setup.php:550 setup.php:551 setup.php:552 setup.php:553
+#: setup.php:554 setup.php:555 setup.php:556 setup.php:557
 #, php-format
 msgid "%d Types"
 msgstr "% d סוגים"
 
-#: setup.php:556
+#: setup.php:560
 msgid "Default Top Processes"
 msgstr "תהליכי ברירת מחדל מובילים"
 
-#: setup.php:561 setup.php:562 setup.php:563 setup.php:564 setup.php:573
-#: setup.php:574 setup.php:575 setup.php:576 setup.php:577 setup.php:578
-#: setup.php:579 setup.php:580 setup.php:581
+#: setup.php:565 setup.php:566 setup.php:567 setup.php:568 setup.php:577
+#: setup.php:578 setup.php:579 setup.php:580 setup.php:581 setup.php:582
+#: setup.php:583 setup.php:584 setup.php:585
 #, php-format
 msgid "%d Processes"
 msgstr "% d תהליכים"
 
-#: setup.php:567
+#: setup.php:571
 msgid "Maximum Concurrent Collectors"
 msgstr "מקסימום מקביל אספנים"
 
-#: setup.php:568
+#: setup.php:572
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
 msgstr "מהו המספר המקסימלי של תהליך אספן בו זמנית שברצונך להפעיל בו-זמנית?"
 
-#: setup.php:572
+#: setup.php:576
 #, php-format
 msgid "%d Process"
 msgstr "תהליך% d"
 
-#: setup.php:584
+#: setup.php:588
 msgid "Host Auto Discovery Frequency"
 msgstr "מארח גילוי אוטומטי תדר"
 
-#: setup.php:588
+#: setup.php:592
 msgid "Auto Discovery Frequency"
 msgstr "גילוי אוטומטי של תדר"
 
-#: setup.php:589
+#: setup.php:593
 msgid "How often do you want to look for new Cacti Devices?"
 msgstr "כמה פעמים אתה רוצה לחפש חדש Cacti התקנים?"
 
-#: setup.php:595
+#: setup.php:599
 msgid "Host Graph Automation"
 msgstr "גרף מארח אוטומציה"
 
-#: setup.php:599
+#: setup.php:603
 msgid "Automatically Add New Graphs"
 msgstr "הוסף אוטומטית גרפים חדשים"
 
-#: setup.php:600
+#: setup.php:604
 msgid "How often do you want to check for new objects to graph?"
 msgstr "באיזו תדירות אתה רוצה לבדוק אובייקטים חדשים גרף?"
 
-#: setup.php:604
+#: setup.php:608
 msgid "Never"
 msgstr "לעולם לא"
 
-#: setup.php:605 setup.php:703
+#: setup.php:609 setup.php:707
 #, php-format
 msgid "%d Hour"
 msgstr "‫%d שעה"
 
-#: setup.php:606 setup.php:704 setup.php:705 setup.php:706
+#: setup.php:610 setup.php:708 setup.php:709 setup.php:710
 #, php-format
 msgid "%d Hours"
 msgstr "%d לפני מספר ימים"
 
-#: setup.php:607 setup.php:707
+#: setup.php:611 setup.php:711
 #, php-format
 msgid "%d Day"
 msgstr "% d יום"
 
-#: setup.php:608
+#: setup.php:612
 #, php-format
 msgid "%d Days"
 msgstr "%d ימים"
 
-#: setup.php:611
+#: setup.php:615
 msgid "Host MIB Table Collection Frequencies"
 msgstr "מארח MIB טבלה אוסף תדרים"
 
-#: setup.php:615
+#: setup.php:619
 msgid "Running Programs Frequency"
 msgstr "תדירות הפעלת תוכניות"
 
-#: setup.php:616
+#: setup.php:620
 msgid "How often do you want to scan running software?"
 msgstr "באיזו תדירות ברצונך לסרוק תוכנות ריצה?"
 
-#: setup.php:622
+#: setup.php:626
 msgid "Running Programs CPU/Memory Frequency"
 msgstr "הפעלת תוכניות מעבד / תדר זיכרון"
 
-#: setup.php:623
+#: setup.php:627
 msgid "How often do you want to scan running software for performance data?"
 msgstr "באיזו תדירות אתה רוצה לסרוק תוכנות פועלות עבור נתוני ביצועים?"
 
-#: setup.php:629
+#: setup.php:633
 msgid "Installed Software Frequency"
 msgstr "תדירות תוכנה מותקנת"
 
-#: setup.php:630
+#: setup.php:634
 msgid "How often do you want to scan for installed software?"
 msgstr "באיזו תדירות ברצונך לסרוק את התוכנה המותקנת?"
 
-#: setup.php:636
+#: setup.php:640
 msgid "Storage Frequency"
 msgstr "תדר אחסון"
 
-#: setup.php:637
+#: setup.php:641
 msgid "How often do you want to scan for Storage performance data?"
 msgstr "באיזו תדירות ברצונך לסרוק נתוני ביצועים של אחסון?"
 
-#: setup.php:643
+#: setup.php:647
 msgid "Device Frequency"
 msgstr "תדירות מכשירים"
 
-#: setup.php:644
+#: setup.php:648
 msgid "How often do you want to scan for Device performance data?"
 msgstr "באיזו תדירות ברצונך לסרוק את נתוני ביצועי המכשיר?"
 
-#: setup.php:650
+#: setup.php:654
 msgid "Processor Frequency"
 msgstr "תדר המעבד"
 
-#: setup.php:651
+#: setup.php:655
 msgid "How often do you want to scan for Processor performance data?"
 msgstr "באיזו תדירות ברצונך לסרוק את נתוני הביצועים של המעבד?"
 
-#: setup.php:699
+#: setup.php:703
 #, php-format
 msgid "%d Minute"
 msgstr "‫%d דקה"
 
-#: setup.php:700 setup.php:701 setup.php:702
+#: setup.php:704 setup.php:705 setup.php:706
 #, php-format
 msgid "%d Minutes"
 msgstr "דקות %d"
 
-#: setup.php:781
+#: setup.php:785
 msgid "Management"
 msgstr "ניהול"
 
-#: setup.php:784
+#: setup.php:788
 msgid "Normal User"
 msgstr "משתמש רגיל"
 
-#: setup.php:785
+#: setup.php:789
 msgid "General Administration"
 msgstr "מינהל כללי"
 
-#: setup.php:802
+#: setup.php:806
 msgid "Host MIB Inventory Summary"
 msgstr "המארח סיכום מלאי MIB"
 
-#: setup.php:803
+#: setup.php:807
 msgid "Host MIB Details"
 msgstr "MIB מארח פרטים"
 
-#: setup.php:804
+#: setup.php:808
 msgid "Host MIB Storage"
 msgstr "אחסון MIB מארח"
 
-#: setup.php:805
+#: setup.php:809
 msgid "Host MIB Hardware"
 msgstr "מארח חומרה MIB"
 
-#: setup.php:806
+#: setup.php:810
 msgid "Host MIB Running Processes"
 msgstr "מארח MIB הפעלת תהליכים"
 
-#: setup.php:807
+#: setup.php:811
 msgid "Host MIB Process Use History"
 msgstr "תהליך MIB מארח שימוש בהיסטוריה"
 
-#: setup.php:808
+#: setup.php:812
 msgid "Host MIB Software Inventory"
 msgstr "מארח MIB מלאי תוכנה"
 
-#: setup.php:809
+#: setup.php:813
 msgid "Host MIB Graphs"
 msgstr "מארח MIB גרפים"
 
-#: setup.php:811
+#: setup.php:815
 msgid "Host MIB OS Types"
 msgstr "מארח MIB OS סוגי"
 
-#: setup.php:813
+#: setup.php:817
 msgid "(Edit)"
 msgstr "(עריכה)"
 
