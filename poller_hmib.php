@@ -187,6 +187,45 @@ function debug(string $message): void {
 }
 
 /**
+ * Determines whether an SNMP request performed through Cacti core's SNMP
+ * library failed. Combines the failure signals core exposes: an exception
+ * recorded in the global $snmp_error, the 'U' unavailable marker (or
+ * false/null) returned by a failed GET or by a walk called with invalid
+ * parameters, and 'Timeout' text core may leave in a GET result without
+ * setting $snmp_error. A walk returns a parsed (possibly empty) array;
+ * an empty array is a successful empty result and is not treated as a
+ * failure. Used by the poller's collectors to count SNMP failures for
+ * their summary warning logs.
+ *
+ * @param mixed $result The value returned by cacti_snmp_get() or
+ *                      cacti_snmp_walk().
+ *
+ * @return bool True if the request failed, false otherwise.
+ *
+ * @global string $snmp_error The last SNMP error message set by Cacti
+ *                            core's SNMP library.
+ */
+function hmib_snmp_request_failed($result): bool {
+	global $snmp_error;
+
+	if (!empty($snmp_error)) {
+		return true;
+	}
+
+	if ($result === false || $result === null || $result === 'U') {
+		return true;
+	}
+
+	// A GET can return timeout text without setting $snmp_error; a walk
+	// returns a parsed array where empty means a successful empty result.
+	if (is_string($result)) {
+		return stripos($result, 'Timeout') !== false;
+	}
+
+	return false;
+}
+
+/**
  * Scans every enabled, SNMP-capable Cacti host to detect which ones
  * support the Host Resources MIB, registering each supported host in
  * plugin_hmib_hrSystem. Acquires a simple process lock (via
@@ -204,7 +243,7 @@ function debug(string $message): void {
  *                           the summary warning logged at the end.
  */
 function autoDiscoverHosts(): bool {
-	global $debug, $snmp_errors, $snmp_error;
+	global $debug, $snmp_errors;
 
 	$hosts = db_fetch_assoc("SELECT *
 		FROM host
@@ -228,7 +267,7 @@ function autoDiscoverHosts(): bool {
 				$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 				read_config_option('snmp_retries'), $host['max_oids']);
 
-			if (!empty($snmp_error)) {
+			if (hmib_snmp_request_failed($hostMib)) {
 				$snmp_errors++;
 			}
 
@@ -238,7 +277,7 @@ function autoDiscoverHosts(): bool {
 				$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 				read_config_option('snmp_retries'));
 
-			if (!empty($snmp_error)) {
+			if (hmib_snmp_request_failed($system)) {
 				$snmp_errors++;
 			}
 
@@ -794,7 +833,7 @@ function checkHost(int $host_id): void {
  *                            directly here.
  */
 function collect_hrSystem(array &$host): void {
-	global $hrSystem, $cnn_id, $snmp_errors, $snmp_error;
+	global $hrSystem, $cnn_id, $snmp_errors;
 
 	if (cacti_sizeof($host)) {
 		debug("Polling hrSystem from '" . $host['description'] . '[' . $host['hostname'] . "]'");
@@ -804,7 +843,7 @@ function collect_hrSystem(array &$host): void {
 			$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 			read_config_option('snmp_retries'), $host['max_oids']);
 
-		if (!empty($snmp_error)) {
+		if (hmib_snmp_request_failed($hostMib)) {
 			$snmp_errors++;
 		}
 
@@ -814,7 +853,7 @@ function collect_hrSystem(array &$host): void {
 			$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 			read_config_option('snmp_retries'), $host['max_oids']);
 
-		if (!empty($snmp_error)) {
+		if (hmib_snmp_request_failed($systemMib)) {
 			$snmp_errors++;
 		}
 
@@ -934,7 +973,7 @@ function hmib_splitBaseIndex(string $oid): array {
  *                       directly here.
  */
 function collectHostIndexedOid(array &$host, array $tree, string $table, string $name): void {
-	global $cnn_id, $snmp_errors, $snmp_error;
+	global $cnn_id, $snmp_errors;
 	static $types;
 
 	debug("Beginning Processing for '" . $host['description'] . '[' . $host['hostname'] . "]', Table '$name'");
@@ -964,7 +1003,7 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 				$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 				read_config_option('snmp_retries'), $host['max_oids']);
 
-			if (!empty($snmp_error)) {
+			if (hmib_snmp_request_failed($walk)) {
 				$snmp_errors++;
 			}
 
@@ -1036,7 +1075,7 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 										$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 										read_config_option('snmp_retries'));
 
-									if (!empty($snmp_error)) {
+									if (hmib_snmp_request_failed($user)) {
 										$snmp_errors++;
 									}
 
@@ -1046,7 +1085,7 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 										$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 										read_config_option('snmp_retries'));
 
-									if (!empty($snmp_error)) {
+									if (hmib_snmp_request_failed($system)) {
 										$snmp_errors++;
 									}
 
