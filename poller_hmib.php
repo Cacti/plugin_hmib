@@ -847,6 +847,11 @@ function collect_hrSystem(array &$host): void {
 			$snmp_errors++;
 		}
 
+		// A failed walk can return false/null; keep the merge operands arrays.
+		if (!is_array($hostMib)) {
+			$hostMib = array();
+		}
+
 		$systemMib = cacti_snmp_walk($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.1', $host['snmp_version'],
 			$host['snmp_username'], $host['snmp_password'],
 			$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
@@ -855,6 +860,10 @@ function collect_hrSystem(array &$host): void {
 
 		if (hmib_snmp_request_failed($systemMib)) {
 			$snmp_errors++;
+		}
+
+		if (!is_array($systemMib)) {
+			$systemMib = array();
 		}
 
 		$hostMib = array_merge($hostMib, $systemMib);
@@ -1005,6 +1014,11 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 
 			if (hmib_snmp_request_failed($walk)) {
 				$snmp_errors++;
+			}
+
+			// A failed walk can return false/null; keep the merge operand an array.
+			if (!is_array($walk)) {
+				$walk = array();
 			}
 
 			$hostMib = array_merge($hostMib, $walk);
