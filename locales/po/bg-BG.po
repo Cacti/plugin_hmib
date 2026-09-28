@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-09-24 09:29-0400\n"
+"POT-Creation-Date: 2026-09-27 11:09-0400\n"
 "PO-Revision-Date: 2024-06-08 09:47-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -277,11 +277,11 @@ msgstr "Възстановяване"
 msgid "Up"
 msgstr "Нагоре"
 
-#: hmib.php:1906 hmib.php:2961 setup.php:682
+#: hmib.php:1906 hmib.php:2961 setup.php:698
 msgid "Disabled"
 msgstr "Изключен"
 
-#: hmib.php:2031 hmib.php:2931 hmib.php:3199 setup.php:796
+#: hmib.php:2031 hmib.php:2931 hmib.php:3199 setup.php:812
 msgid "Actions"
 msgstr "Действия"
 
@@ -688,7 +688,7 @@ msgstr "Типове OS MIB на хост [ново]"
 msgid "Host MIB OS Type Filters"
 msgstr "Хост MIB OS Тип Филтри"
 
-#: hmib_types.php:1094 setup.php:765
+#: hmib_types.php:1094 setup.php:781
 msgid "OS Types"
 msgstr "Типове ОС"
 
@@ -724,7 +724,7 @@ msgstr "Претърсване"
 msgid "Scan for New or Unknown Device Types"
 msgstr "Сканиране за нови или неизвестни типове устройства"
 
-#: hmib_types.php:1270 setup.php:798
+#: hmib_types.php:1270 setup.php:814
 msgid "Import"
 msgstr "Импорт"
 
@@ -740,250 +740,250 @@ msgstr "Експортиране"
 msgid "Export Host Types to Share with Others"
 msgstr "Експортиране на типове хост за споделяне с други хора"
 
-#: setup.php:47
+#: setup.php:63
 msgid "Host MIB Viewer"
 msgstr "Plugin -> Хост MIB Viewer"
 
-#: setup.php:48
+#: setup.php:64
 msgid "Host MIB Admin"
 msgstr "Plugin -> Администратор на MIB хост"
 
-#: setup.php:497
+#: setup.php:513
 msgid "Host MIB"
 msgstr "Хост MIB графики"
 
-#: setup.php:500
+#: setup.php:516
 msgid "Host MIB General Settings"
 msgstr "Хост MIB Общи настройки"
 
-#: setup.php:504
+#: setup.php:520
 msgid "Host MIB Poller Enabled"
 msgstr "Хост MIB Poller Enabled"
 
-#: setup.php:505
+#: setup.php:521
 msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
 msgstr "Поставете отметка в това квадратче, ако желаете да бъде активиран анкетата на MIB за хост. В противен случай полерът няма да функционира."
 
-#: setup.php:510
+#: setup.php:526
 msgid "Automatically Discover Cacti Devices"
 msgstr "Автоматично откриване на устройства Cacti"
 
-#: setup.php:511
+#: setup.php:527
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
 msgstr "Искате ли да сканирате автоматично и да добавяте устройства, които поддържат MIB от ресурса на хоста от хоста на Cacti?"
 
-#: setup.php:516
+#: setup.php:532
 msgid "Automatically Purge Devices"
 msgstr "Автоматично почистване на устройствата"
 
-#: setup.php:517
+#: setup.php:533
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
 msgstr "Искате ли автоматично да почистите устройства, които са премахнати от системата Cacti?"
 
-#: setup.php:522
+#: setup.php:538
 msgid "Default Row Count"
 msgstr "Подразбиращ се брой редове"
 
-#: setup.php:523
+#: setup.php:539
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
 msgstr "Колко реда искате да видите в HMIB OS Type по подразбиране?"
 
-#: setup.php:529
+#: setup.php:545
 msgid "Default Top Host Types"
 msgstr "По подразбиране видовете на водещите хостове"
 
-#: setup.php:530 setup.php:541
+#: setup.php:546 setup.php:557
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
 msgstr "Колко процеси искате да видите на таблото за управление на HMIB по подразбиране?"
 
-#: setup.php:534 setup.php:535 setup.php:536 setup.php:537
+#: setup.php:550 setup.php:551 setup.php:552 setup.php:553
 #, php-format
 msgid "%d Types"
 msgstr "% d Видове"
 
-#: setup.php:540
+#: setup.php:556
 msgid "Default Top Processes"
 msgstr "Основни процеси по подразбиране"
 
-#: setup.php:545 setup.php:546 setup.php:547 setup.php:548 setup.php:557
-#: setup.php:558 setup.php:559 setup.php:560 setup.php:561 setup.php:562
-#: setup.php:563 setup.php:564 setup.php:565
+#: setup.php:561 setup.php:562 setup.php:563 setup.php:564 setup.php:573
+#: setup.php:574 setup.php:575 setup.php:576 setup.php:577 setup.php:578
+#: setup.php:579 setup.php:580 setup.php:581
 #, php-format
 msgid "%d Processes"
 msgstr "% d Процеси"
 
-#: setup.php:551
+#: setup.php:567
 msgid "Maximum Concurrent Collectors"
 msgstr "Максимални едновременни колектори"
 
-#: setup.php:552
+#: setup.php:568
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
 msgstr "Какъв е максималният брой едновременно събирателен процес, който искате да стартирате едновременно?"
 
-#: setup.php:556
+#: setup.php:572
 #, php-format
 msgid "%d Process"
 msgstr "% d Процес"
 
-#: setup.php:568
+#: setup.php:584
 msgid "Host Auto Discovery Frequency"
 msgstr "Честота за автоматично откриване на хост"
 
-#: setup.php:572
+#: setup.php:588
 msgid "Auto Discovery Frequency"
 msgstr "Честота на автоматично откриване"
 
-#: setup.php:573
+#: setup.php:589
 msgid "How often do you want to look for new Cacti Devices?"
 msgstr "Колко често искате да търсите нови Cacti устройства?"
 
-#: setup.php:579
+#: setup.php:595
 msgid "Host Graph Automation"
 msgstr "Автоматизация на графиките на хоста"
 
-#: setup.php:583
+#: setup.php:599
 msgid "Automatically Add New Graphs"
 msgstr "Автоматично добавяне на нови графики"
 
-#: setup.php:584
+#: setup.php:600
 msgid "How often do you want to check for new objects to graph?"
 msgstr "Колко често искате да проверявате за нови обекти в графиката?"
 
-#: setup.php:588
+#: setup.php:604
 msgid "Never"
 msgstr "Никога"
 
-#: setup.php:589 setup.php:687
+#: setup.php:605 setup.php:703
 #, php-format
 msgid "%d Hour"
 msgstr "%d час"
 
-#: setup.php:590 setup.php:688 setup.php:689 setup.php:690
+#: setup.php:606 setup.php:704 setup.php:705 setup.php:706
 #, php-format
 msgid "%d Hours"
 msgstr "%d часа"
 
-#: setup.php:591 setup.php:691
+#: setup.php:607 setup.php:707
 #, php-format
 msgid "%d Day"
 msgstr "% d ден"
 
-#: setup.php:592
+#: setup.php:608
 #, php-format
 msgid "%d Days"
 msgstr "% d дни"
 
-#: setup.php:595
+#: setup.php:611
 msgid "Host MIB Table Collection Frequencies"
 msgstr "Хост MIB Честоти за събиране на таблици"
 
-#: setup.php:599
+#: setup.php:615
 msgid "Running Programs Frequency"
 msgstr "Честота на стартираните програми"
 
-#: setup.php:600
+#: setup.php:616
 msgid "How often do you want to scan running software?"
 msgstr "Колко често искате да сканирате работещ софтуер?"
 
-#: setup.php:606
+#: setup.php:622
 msgid "Running Programs CPU/Memory Frequency"
 msgstr "Работещи програми Честота на процесора / паметта"
 
-#: setup.php:607
+#: setup.php:623
 msgid "How often do you want to scan running software for performance data?"
 msgstr "Колко често искате да сканирате работещ софтуер за данни за ефективността?"
 
-#: setup.php:613
+#: setup.php:629
 msgid "Installed Software Frequency"
 msgstr "Честота на инсталирания софтуер"
 
-#: setup.php:614
+#: setup.php:630
 msgid "How often do you want to scan for installed software?"
 msgstr "Колко често искате да сканирате за инсталиран софтуер?"
 
-#: setup.php:620
+#: setup.php:636
 msgid "Storage Frequency"
 msgstr "Честота на съхранение"
 
-#: setup.php:621
+#: setup.php:637
 msgid "How often do you want to scan for Storage performance data?"
 msgstr "Колко често искате да сканирате за данни за ефективността на хранилището?"
 
-#: setup.php:627
+#: setup.php:643
 msgid "Device Frequency"
 msgstr "Честота на устройството"
 
-#: setup.php:628
+#: setup.php:644
 msgid "How often do you want to scan for Device performance data?"
 msgstr "Колко често искате да сканирате за данните за производителността на устройството?"
 
-#: setup.php:634
+#: setup.php:650
 msgid "Processor Frequency"
 msgstr "Честота на процесора"
 
-#: setup.php:635
+#: setup.php:651
 msgid "How often do you want to scan for Processor performance data?"
 msgstr "Колко често искате да сканирате данните за производителността на процесора?"
 
-#: setup.php:683
+#: setup.php:699
 #, php-format
 msgid "%d Minute"
 msgstr "%d минута"
 
-#: setup.php:684 setup.php:685 setup.php:686
+#: setup.php:700 setup.php:701 setup.php:702
 #, php-format
 msgid "%d Minutes"
 msgstr "%d минути"
 
-#: setup.php:765
+#: setup.php:781
 msgid "Management"
 msgstr "управление"
 
-#: setup.php:768
+#: setup.php:784
 msgid "Normal User"
 msgstr "Обикновен потребител"
 
-#: setup.php:769
+#: setup.php:785
 msgid "General Administration"
 msgstr "Обща администрация"
 
-#: setup.php:786
+#: setup.php:802
 msgid "Host MIB Inventory Summary"
 msgstr "Обобщена информация за инвентара на MIB"
 
-#: setup.php:787
+#: setup.php:803
 msgid "Host MIB Details"
 msgstr "Детайли на MIB на хоста"
 
-#: setup.php:788
+#: setup.php:804
 msgid "Host MIB Storage"
 msgstr "Съхранение на MIB на хоста"
 
-#: setup.php:789
+#: setup.php:805
 msgid "Host MIB Hardware"
 msgstr "Хост MIB хардуер"
 
-#: setup.php:790
+#: setup.php:806
 msgid "Host MIB Running Processes"
 msgstr "Хост MIB процеси на изпълнение"
 
-#: setup.php:791
+#: setup.php:807
 msgid "Host MIB Process Use History"
 msgstr "История на използване на MIB процеса на хоста"
 
-#: setup.php:792
+#: setup.php:808
 msgid "Host MIB Software Inventory"
 msgstr "Хост MIB Software Inventory"
 
-#: setup.php:793
+#: setup.php:809
 msgid "Host MIB Graphs"
 msgstr "Хост MIB графики"
 
-#: setup.php:795
+#: setup.php:811
 msgid "Host MIB OS Types"
 msgstr "Типове хост MIB OS"
 
-#: setup.php:797
+#: setup.php:813
 msgid "(Edit)"
 msgstr "(Редактирай)"
 
