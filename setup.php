@@ -48,7 +48,7 @@ function plugin_hmib_csp_nonce(): string {
  *
  * @return void
  */
-function plugin_hmib_install() {
+function plugin_hmib_install(): void {
 	// graph setup all arrays needed for automation
 	api_plugin_register_hook('hmib', 'config_arrays',         'hmib_config_arrays',         'setup.php');
 	api_plugin_register_hook('hmib', 'config_settings',       'hmib_config_settings',       'setup.php');
@@ -73,7 +73,7 @@ function plugin_hmib_install() {
  *
  * @return void
  */
-function plugin_hmib_uninstall() {
+function plugin_hmib_uninstall(): void {
 	// Do any extra Uninstall stuff here
 	db_execute('DROP TABLE IF EXISTS `plugin_hmib_hrDevices`');
 	db_execute('DROP TABLE IF EXISTS `plugin_hmib_hrSWInstalled`');
@@ -95,7 +95,7 @@ function plugin_hmib_uninstall() {
  *
  * @return bool Always true.
  */
-function plugin_hmib_check_config() {
+function plugin_hmib_check_config(): bool {
 	// Here we will check to ensure everything is configured
 	hmib_check_upgrade();
 
@@ -109,7 +109,7 @@ function plugin_hmib_check_config() {
  *
  * @return bool Always true.
  */
-function plugin_hmib_upgrade() {
+function plugin_hmib_upgrade(): bool {
 	// Here we will upgrade to the newest version
 	hmib_check_upgrade();
 
@@ -128,9 +128,13 @@ function plugin_hmib_upgrade() {
  * @global array $config Cacti global configuration array; used to
  *                       locate the plugin's INFO file.
  */
-function plugin_hmib_version() {
+function plugin_hmib_version(): array {
 	global $config;
 	$info = parse_ini_file($config['base_path'] . '/plugins/hmib/INFO', true);
+
+	if (!is_array($info) || !isset($info['info']) || !is_array($info['info'])) {
+		return [];
+	}
 
 	return $info['info'];
 }
@@ -152,7 +156,7 @@ function plugin_hmib_version() {
  *                                  other setup functions; not used
  *                                  directly here.
  */
-function hmib_check_upgrade() {
+function hmib_check_upgrade(): void {
 	global $config, $database_default;
 	include_once($config['library_path'] . '/database.php');
 	include_once($config['library_path'] . '/functions.php');
@@ -199,7 +203,7 @@ function hmib_check_upgrade() {
  * @return bool Always true (this plugin declares no extra
  *              dependencies).
  */
-function hmib_check_dependencies() {
+function hmib_check_dependencies(): bool {
 	return true;
 }
 
@@ -217,7 +221,7 @@ function hmib_check_dependencies() {
  *                                 other setup functions; not used
  *                                 directly here.
  */
-function hmib_setup_table() {
+function hmib_setup_table(): void {
 	global $config, $database_default;
 	include_once($config['library_path'] . '/database.php');
 
@@ -480,7 +484,7 @@ function hmib_setup_table() {
  *                       locate the PHP binary and this plugin's poller
  *                       script.
  */
-function hmib_poller_bottom() {
+function hmib_poller_bottom(): void {
 	global $config;
 	include_once($config['base_path'] . '/lib/poller.php');
 
@@ -507,7 +511,7 @@ function hmib_poller_bottom() {
  *                                 list, used for the default row-count
  *                                 setting.
  */
-function hmib_config_settings() {
+function hmib_config_settings(): void {
 	global $tabs, $settings, $hmib_frequencies, $item_rows;
 
 	$tabs['hmib']     = __('Host MIB', 'hmib');
@@ -690,7 +694,7 @@ function hmib_config_settings() {
  * @global array $hrProcessor     Populated here with the hrProcessor
  *                                SNMP OID tree map.
  */
-function hmib_config_arrays() {
+function hmib_config_arrays(): void {
 	global $menu, $messages, $hmib_frequencies;
 	global $hrSystem, $hrSWRun, $hrSWRunPerf, $hrSWInstalled, $hrStorage, $hrDevices, $hrProcessor;
 
@@ -798,7 +802,7 @@ function hmib_config_arrays() {
  *
  * @return array The $nav array with this plugin's entries added.
  */
-function hmib_draw_navigation_text($nav) {
+function hmib_draw_navigation_text($nav): array {
 	$nav['hmib.php:summary']   = ['title' => __('Host MIB Inventory Summary', 'hmib'), 'mapping' => '', 'url' => 'hmib.php', 'level' => '0'];
 	$nav['hmib.php:devices']   = ['title' => __('Host MIB Details', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0'];
 	$nav['hmib.php:storage']   = ['title' => __('Host MIB Storage', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0'];
@@ -827,7 +831,7 @@ function hmib_draw_navigation_text($nav) {
  * @global array $config Cacti global configuration array; used to
  *                       build the tab's URL and image paths.
  */
-function hmib_show_tab() {
+function hmib_show_tab(): void {
 	global $config;
 
 	if (api_user_realm_auth('hmib.php')) {
@@ -859,7 +863,7 @@ function hmib_show_tab() {
  *                                      when false, $host_index is
  *                                      returned unmodified.
  */
-function hmib_get_cpu($host_index) {
+function hmib_get_cpu(array $host_index): array|string {
 	global $called_by_script_server;
 
 	if (!db_table_exists('plugin_hmib_hrProcessor')) {
@@ -912,7 +916,7 @@ function hmib_get_cpu($host_index) {
  *                                      with hmib_get_cpu(); not used
  *                                      directly here.
  */
-function hmib_get_cpu_indexes($host_index) {
+function hmib_get_cpu_indexes(array $host_index) {
 	global $called_by_script_server;
 
 	if (!db_table_exists('plugin_hmib_hrProcessor')) {
@@ -961,7 +965,7 @@ function hmib_get_cpu_indexes($host_index) {
  *                                      when false, $host_index is
  *                                      returned unmodified.
  */
-function hmib_get_disk($host_index) {
+function hmib_get_disk(array $host_index): array|string {
 	global $called_by_script_server;
 
 	if (!db_table_exists('plugin_hmib_hrStorage')) {

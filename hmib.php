@@ -125,7 +125,7 @@ bottom_footer();
  *                                    other functions in this file; not
  *                                    used directly here.
  */
-function hmib_history() {
+function hmib_history(): void {
 	global $config, $item_rows, $hmib_hrSWTypes, $hmib_hrSWRunStatus;
 
 	// ================= input validation and session storage =================
@@ -180,7 +180,7 @@ function hmib_history() {
 	validate_store_request_vars($filters, 'sess_hmib_hist');
 	// ================= input validation =================
 
-	html_start_box(__('Running Process History', 'hmib'), '100%', '', '3', 'center', '');
+	html_start_box(__('Running Process History', 'hmib'), '100%', false, 3, 'center', '');
 
 	?>
 	<tr class='even'>
@@ -435,9 +435,9 @@ function hmib_history() {
 
 	print $nav;
 
-	html_start_box('', '100%', '', '3', 'center', '');
+	html_start_box('', '100%', false, 3, 'center', '');
 
-	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=history');
+	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), 1, 'hmib.php?action=history');
 
 	if (cacti_sizeof($rows)) {
 		$id = 0;
@@ -481,7 +481,7 @@ function hmib_history() {
  *
  * @return string The formatted 'D:H:M' runtime string.
  */
-function hmib_get_runtime($time) {
+function hmib_get_runtime(int $time): string {
 	if ($time > 86400) {
 		$days  = floor($time / 86400);
 		$time %= 86400;
@@ -523,7 +523,7 @@ function hmib_get_runtime($time) {
  *                                    other functions in this file; not
  *                                    used directly here.
  */
-function hmib_running() {
+function hmib_running(): void {
 	global $config, $item_rows, $hmib_hrSWTypes, $hmib_hrSWRunStatus;
 
 	// ================= input validation and session storage =================
@@ -579,7 +579,7 @@ function hmib_running() {
 	validate_store_request_vars($filters, 'sess_hmib_run');
 	// ================= input validation =================
 
-	html_start_box(__('Running Processes', 'hmib'), '100%', '', '3', 'center', '');
+	html_start_box(__('Running Processes', 'hmib'), '100%', false, 3, 'center', '');
 
 	?>
 	<tr class='even'>
@@ -866,9 +866,9 @@ function hmib_running() {
 
 	print $nav;
 
-	html_start_box('', '100%', '', '3', 'center', '');
+	html_start_box('', '100%', false, 3, 'center', '');
 
-	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=running', 'page', 'main');
+	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), 1, 'hmib.php?action=running', 'page');
 
 	if (cacti_sizeof($rows)) {
 		$id = 0;
@@ -906,7 +906,7 @@ function hmib_running() {
 		print $nav;
 	}
 
-	running_legend($totals, $total_rows);
+	running_legend(is_array($totals) ? $totals : [], $total_rows);
 }
 
 /**
@@ -922,8 +922,8 @@ function hmib_running() {
  *
  * @return void
  */
-function running_legend($totals, $total_rows) {
-	html_start_box('', '100%', '', '3', 'center', '');
+function running_legend(array $totals, int $total_rows): void {
+	html_start_box('', '100%', false, 3, 'center', '');
 	print '<tr>';
 	print '<td><b>' . __('Total CPU [h]:', 'hmib') . '</b> ' . number_format_i18n($totals['cpu'] / 3600,0) . '</td>';
 	print '<td><b>' . __('Total Size [MB]:', 'hmib') . '</b> ' . number_format_i18n($totals['memory'] / 1024,2) . '</td>';
@@ -961,7 +961,7 @@ function running_legend($totals, $total_rows) {
  *                                   other functions in this file; not
  *                                   used directly here.
  */
-function hmib_hardware() {
+function hmib_hardware(): void {
 	global $config, $item_rows, $hmib_hrSWTypes, $hmib_hrDeviceStatus, $hmib_types;
 
 	// ================= input validation and session storage =================
@@ -1022,7 +1022,7 @@ function hmib_hardware() {
 	validate_store_request_vars($filters, 'sess_hmib_hw');
 	// ================= input validation =================
 
-	html_start_box(__('Hardware Inventory', 'hmib'), '100%', '', '3', 'center', '');
+	html_start_box(__('Hardware Inventory', 'hmib'), '100%', false, 3, 'center', '');
 
 	?>
 	<tr class='even'>
@@ -1276,9 +1276,9 @@ function hmib_hardware() {
 
 	print $nav;
 
-	html_start_box('', '100%', '', '3', 'center', '');
+	html_start_box('', '100%', false, 3, 'center', '');
 
-	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=hardware');
+	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), 1, 'hmib.php?action=hardware');
 
 	if (cacti_sizeof($rows)) {
 		$id = 0;
@@ -1335,7 +1335,7 @@ function hmib_hardware() {
  *                                other functions in this file; not
  *                                used directly here.
  */
-function hmib_storage() {
+function hmib_storage(): void {
 	global $config, $item_rows, $hmib_hrSWTypes, $hmib_types;
 
 	// ================= input validation and session storage =================
@@ -1399,7 +1399,7 @@ function hmib_storage() {
 	?>
 	<?php
 
-	html_start_box(__('Storage Inventory', 'hmib'), '100%', '', '3', 'center', '');
+	html_start_box(__('Storage Inventory', 'hmib'), '100%', false, 3, 'center', '');
 
 	?>
 	<tr class='even'>
@@ -1668,9 +1668,9 @@ function hmib_storage() {
 
 	print $nav;
 
-	html_start_box('', '100%', '', '3', 'center', '');
+	html_start_box('', '100%', false, 3, 'center', '');
 
-	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=storage');
+	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), 1, 'hmib.php?action=storage');
 
 	if (cacti_sizeof($rows)) {
 		$id = 0;
@@ -1724,7 +1724,7 @@ function hmib_storage() {
  * @global array $item_rows Cacti's standard row-count option list, used
  *                          to populate the rows dropdown.
  */
-function hmib_devices() {
+function hmib_devices(): void {
 	global $config, $item_rows;
 
 	// ================= input validation and session storage =================
@@ -1780,7 +1780,7 @@ function hmib_devices() {
 	validate_store_request_vars($filters, 'sess_hmib_devices');
 	// ================= input validation =================
 
-	html_start_box(__('Device Filter', 'hmib'), '100%', '', '3', 'center', '');
+	html_start_box(__('Device Filter', 'hmib'), '100%', false, 3, 'center', '');
 
 	?>
 	<tr class='even'>
@@ -1885,6 +1885,8 @@ function hmib_devices() {
 
 	if (cacti_sizeof($statuses)) {
 		foreach ($statuses as $s) {
+			$status = '';
+
 			switch($s['status']) {
 				case '0':
 					$status = __('Unknown', 'hmib');
@@ -2093,9 +2095,9 @@ function hmib_devices() {
 
 	print $nav;
 
-	html_start_box('', '100%', '', '3', 'center', '');
+	html_start_box('', '100%', false, 3, 'center', '');
 
-	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=devices');
+	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), 1, 'hmib.php?action=devices');
 
 	// set some defaults
 	$url       = $config['url_path'] . 'plugins/hmib/hmib.php';
@@ -2221,7 +2223,7 @@ function hmib_devices() {
  *
  * @return string The formatted 'DDD:HH:MM' uptime string.
  */
-function hmib_format_uptime($d, $h, $m) {
+function hmib_format_uptime(int $d, int $h, int $m): string {
 	return hmib_right('000' . $d, 3) . ':' . hmib_right('000' . $h, 2) . ':' . hmib_right('000' . $m, 2);
 }
 
@@ -2235,7 +2237,7 @@ function hmib_format_uptime($d, $h, $m) {
  *
  * @return string The rightmost $chars characters of $string.
  */
-function hmib_right($string, $chars) {
+function hmib_right(string $string, int $chars): string {
 	return strrev(substr(strrev($string), 0, $chars));
 }
 
@@ -2248,7 +2250,7 @@ function hmib_right($string, $chars) {
  *
  * @return string The formatted size string with unit suffix.
  */
-function hmib_memory($mem) {
+function hmib_memory(float $mem): string {
 	if ($mem < 1024) {
 		return $mem . 'B';
 	}
@@ -2295,7 +2297,7 @@ function hmib_memory($mem) {
  *                               functions in this file; not used
  *                               directly here.
  */
-function hmib_software() {
+function hmib_software(): void {
 	global $config, $item_rows, $hmib_hrSWTypes;
 
 	// ================= input validation and session storage =================
@@ -2353,7 +2355,7 @@ function hmib_software() {
 	?>
 	<?php
 
-	html_start_box(__('Software Inventory', 'hmib'), '100%', '', '3', 'center', '');
+	html_start_box(__('Software Inventory', 'hmib'), '100%', false, 3, 'center', '');
 
 	?>
 	<tr class='even'>
@@ -2602,9 +2604,9 @@ function hmib_software() {
 
 	print $nav;
 
-	html_start_box('', '100%', '', '3', 'center', '');
+	html_start_box('', '100%', false, 3, 'center', '');
 
-	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), false, 'hmib.php?action=software');
+	html_header_sort($display_text, get_request_var('sort_column'), get_request_var('sort_direction'), 1, 'hmib.php?action=software');
 
 	if (cacti_sizeof($rows)) {
 		$id = 0;
@@ -2650,7 +2652,7 @@ function hmib_software() {
  * @global array $config Cacti global configuration array; used to
  *                       build each tab's URL.
  */
-function hmib_tabs() {
+function hmib_tabs(): void {
 	global $config;
 
 	// present a tabbed interface
@@ -2700,7 +2702,7 @@ function hmib_tabs() {
  * @global array $config         Cacti global configuration array; used
  *                               to build device/graph links.
  */
-function hmib_summary() {
+function hmib_summary(): void {
 	global $device_actions, $item_rows, $config;
 
 	// ================= input validation and session storage =================
@@ -2743,6 +2745,9 @@ function hmib_summary() {
 			'options' => ['options' => 'sanitize_search_string']
 		]
 	];
+
+	$sort_column    = '';
+	$sort_direction = '';
 
 	// if we are operating on the hosts area, don't reset the sort data
 	if (isset_request_var('area') && get_nfilter_request_var('area') != 'processes') {
@@ -2838,7 +2843,7 @@ function hmib_summary() {
 		$templates_missing = false;
 	}
 
-	html_start_box(__('Summary Filter', 'hmib'), '100%', '', '3', 'center', '');
+	html_start_box(__('Summary Filter', 'hmib'), '100%', false, 3, 'center', '');
 
 	?>
 	<tr class='even'>
@@ -2888,7 +2893,9 @@ function hmib_summary() {
 
 	html_end_box(false);
 
-	html_start_box(__('Device Type Summary Statistics', 'hmib'), '100%', '', '3', 'center', '');
+	html_start_box(__('Device Type Summary Statistics', 'hmib'), '100%', false, 3, 'center', '');
+
+	$sql_limit = '';
 
 	if (get_request_var('htop') > 0) {
 		$sql_limit = 'LIMIT ' . get_request_var('htop');
@@ -3014,7 +3021,7 @@ function hmib_summary() {
 		]
 	];
 
-	html_header_sort($display_text, $_SESSION['sess_hmib_host_sort_column'], $_SESSION['sess_hmib_host_sort_direction'], false, 'hmib.php?action=summary&area=hosts');
+	html_header_sort($display_text, $_SESSION['sess_hmib_host_sort_column'], $_SESSION['sess_hmib_host_sort_direction'], 1, 'hmib.php?action=summary&area=hosts');
 
 	if (cacti_sizeof($rows)) {
 		$id = 0;
@@ -3031,8 +3038,8 @@ function hmib_summary() {
 			$graph_url   = hmib_get_graph_url($htdq, 0, $host_id, $row['id']);
 
 			$graph_ncpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', $row['cpus'], false);
-			$graph_acpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', round($row['avgCpuPercent'], 2), false);
-			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', round($row['maxCpuPercent'], 2), false);
+			$graph_acpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', (string) round($row['avgCpuPercent'], 2), false);
+			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', (string) round($row['maxCpuPercent'], 2), false);
 
 			$graph_users = hmib_get_graph_template_url($hugt, $row['id'], 0, number_format_i18n($row['users'], 0), false);
 			$graph_aproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['avgProcesses'], 0), false);
@@ -3085,7 +3092,7 @@ function hmib_summary() {
 
 	html_end_box();
 
-	html_start_box(__('Process Summary Filter', 'hmib'), '100%', '', '3', 'center', '');
+	html_start_box(__('Process Summary Filter', 'hmib'), '100%', false, 3, 'center', '');
 
 	?>
 	<tr class='even'>
@@ -3246,9 +3253,9 @@ function hmib_summary() {
 
 	print $nav;
 
-	html_start_box('Process Summary Statistics', '100%', '', '3', 'center', '');
+	html_start_box('Process Summary Statistics', '100%', false, 3, 'center', '');
 
-	html_header_sort($display_text, $_SESSION['sess_hmib_proc_sort_column'], $_SESSION['sess_hmib_proc_sort_direction'], false, 'hmib.php?action=summary&area=processes');
+	html_header_sort($display_text, $_SESSION['sess_hmib_proc_sort_column'], $_SESSION['sess_hmib_proc_sort_direction'], 1, 'hmib.php?action=summary&area=processes');
 
 	// set some defaults
 	$url  = $config['url_path'] . 'plugins/hmib/hmib.php';
@@ -3320,7 +3327,7 @@ function hmib_summary() {
  * @global array $config Cacti global configuration array; used to
  *                       build the link URL.
  */
-function hmib_get_device_status_url($count, $host_type, $status) {
+function hmib_get_device_status_url(int $count, int $host_type, int $status): string|int {
 	global $config;
 
 	if ($count > 0) {
@@ -3337,23 +3344,23 @@ function hmib_get_device_status_url($count, $host_type, $status) {
  * rendering a 'view graphs' action for a graph template.
  *
  * @param int    $graph_template The graph_templates id to find graphs
- *                              for.
- * @param int    $host_type     Optional OS type id to restrict the
- *                              search to devices of that type.
- * @param int    $host_id       Optional host id to restrict the search
- *                              to a single device.
- * @param string $title         The link text to use when $image is
- *                              false.
- * @param bool   $image         Whether to render an icon link (true) or
- *                              a titled text link (false).
+ *                               for.
+ * @param int    $host_type      Optional OS type id to restrict the
+ *                               search to devices of that type.
+ * @param int    $host_id        Optional host id to restrict the search
+ *                               to a single device.
+ * @param string $title          The link text to use when $image is
+ *                               false.
+ * @param bool   $image          Whether to render an icon link (true) or
+ *                               a titled text link (false).
  *
  * @return string An HTML anchor linking to the matching graphs, or
- *               $title unchanged if no matching graphs are found.
+ *                $title unchanged if no matching graphs are found.
  *
  * @global array $config Cacti global configuration array; used to build
  *                       the link URL and image paths.
  */
-function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id = 0, $title = '', $image = true) {
+function hmib_get_graph_template_url(int $graph_template, int $host_type = 0, int $host_id = 0, string $title = '', bool $image = true): string {
 	global $config;
 
 	$url     = $config['url_path'] . 'plugins/hmib/hmib.php';
@@ -3415,22 +3422,22 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
  *
  * @param int    $data_query The snmp_query id to find graphs for.
  * @param int    $host_type  Optional OS type id to restrict the search
- *                          to devices of that type.
+ *                           to devices of that type.
  * @param int    $host_id    Optional host id to restrict the search to
- *                          a single device.
+ *                           a single device.
  * @param string $index      Optional SNMP index to restrict the search
- *                          to a specific data query row.
+ *                           to a specific data query row.
  * @param string $title      The link text to use when $image is false.
  * @param bool   $image      Whether to render an icon link (true) or a
- *                          titled text link (false).
+ *                           titled text link (false).
  *
  * @return string An HTML anchor linking to the matching graphs, or
- *               $title unchanged if no matching graphs are found.
+ *                $title unchanged if no matching graphs are found.
  *
  * @global array $config Cacti global configuration array; used to build
  *                       the link URL and image paths.
  */
-function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = '', $image = true) {
+function hmib_get_graph_url(int $data_query, int $host_type, int $host_id, string $index, string $title = '', bool $image = true): string {
 	global $config;
 
 	$url     = $config['url_path'] . 'plugins/hmib/hmib.php';
@@ -3510,7 +3517,7 @@ function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = 
  *                                        rendering; not used directly
  *                                        here.
  */
-function hmib_view_graphs() {
+function hmib_view_graphs(): void {
 	global $current_user, $colors, $config, $host_template_hashes, $graph_template_hashes;
 
 	include('./lib/timespan_settings.php');
@@ -3541,7 +3548,7 @@ function hmib_view_graphs() {
 	$hosts = $_SESSION['sess_hmib_hosts'];
 
 	// include graph view filter selector
-	html_start_box(__('Graph Preview Filters', 'hmib') . (isset_request_var('style') && strlen(get_request_var('style')) ? ' [ ' . __('Custom Graph List Applied - Filtering from List', 'hmib') . ' ]' : ''), '100%', '', '3', 'center', '');
+	html_start_box(__('Graph Preview Filters', 'hmib') . (isset_request_var('style') && strlen(get_request_var('style')) ? ' [ ' . __('Custom Graph List Applied - Filtering from List', 'hmib') . ' ]' : ''), '100%', false, 3, 'center', '');
 
 	html_graph_preview_filter('hmib.php', 'graphs', "h.id IN ($hosts)", "gt.id IN ($gt)");
 
@@ -3616,13 +3623,13 @@ function hmib_view_graphs() {
 		$nav_url = get_browser_query_string() . '&host_id=' . get_request_var('host_id');
 	}
 
-	$nav_url = preg_replace('/((\?|&)host_id=[0-9]+|(\?|&)filter=[a-zA-Z0-9]*)/', '', $nav_url);
+	$nav_url = preg_replace('/((\?|&)host_id=[0-9]+|(\?|&)filter=[a-zA-Z0-9]*)/', '', $nav_url) ?? '';
 
 	$nav = html_nav_bar($nav_url, MAX_DISPLAY_PAGES, get_request_var('page'), get_request_var('graphs'), $total_graphs, get_request_var('columns'), __('Graphs', 'hmib'), 'page', 'main');
 
 	print $nav;
 
-	html_start_box('', '100%', '', '3', 'center', '');
+	html_start_box('', '100%', false, 3, 'center', '');
 
 	if (get_request_var('thumbnails') == 'true') {
 		html_graph_thumbnail_area($graphs, '', 'graph_start=' . get_current_graph_start() . '&graph_end=' . get_current_graph_end(), '', get_request_var('columns'));

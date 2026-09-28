@@ -29,17 +29,7 @@ chdir('../..');
 include('./include/cli_check.php');
 include_once('./lib/poller.php');
 
-if (!function_exists('cacti_escapeshellcmd')) {
-	include_once('./plugins/hmib/snmp_functions.php');
-}
-
-if (!defined('SNMP_VALUE_LIBRARY')) {
-	define('SNMP_VALUE_LIBRARY', 0);
-	define('SNMP_VALUE_PLAIN', 1);
-	define('SNMP_VALUE_OBJECT', 2);
-}
-
-include_once('./plugins/hmib/snmp.php');
+include_once('./lib/snmp.php');
 include_once('./lib/ping.php');
 
 // process calling arguments
@@ -144,7 +134,7 @@ if ($start == '') {
 if ($mainrun) {
 	process_hosts();
 } else {
-	checkHost($host_id);
+	checkHost((int) $host_id);
 }
 
 exit(0);
@@ -157,17 +147,17 @@ exit(0);
  * cycle.
  *
  * @param float $start     The current run's start time (from
- *                        microtime(true)).
+ *                         microtime(true)).
  * @param int   $lastrun   The Unix timestamp of the task's last run.
  * @param int   $frequency The task's configured run frequency in
- *                        seconds; 0 disables the task.
+ *                         seconds; 0 disables the task.
  *
  * @return bool True if the task is due to run, false otherwise.
  *
  * @global bool $forcerun Whether this run was started with '--force',
  *                        in which case the task always runs.
  */
-function runCollector($start, $lastrun, $frequency) {
+function runCollector(float $start, int $lastrun, int $frequency): bool {
 	global $forcerun;
 
 	if ((empty($lastrun) || ($start - $lastrun) > $frequency) && $frequency > 0 || $forcerun) {
@@ -188,12 +178,51 @@ function runCollector($start, $lastrun, $frequency) {
  * @global bool $debug Whether debug output ('--debug' CLI flag) is
  *                     enabled; when false, this function is a no-op.
  */
-function debug($message) {
+function debug(string $message): void {
 	global $debug;
 
 	if ($debug) {
 		print 'DEBUG: ' . trim($message) . "\n";
 	}
+}
+
+/**
+ * Determines whether an SNMP request performed through Cacti core's SNMP
+ * library failed. Combines the failure signals core exposes: an exception
+ * recorded in the global $snmp_error, the 'U' unavailable marker (or
+ * false/null) returned by a failed GET or by a walk called with invalid
+ * parameters, and 'Timeout' text core may leave in a GET result without
+ * setting $snmp_error. A walk returns a parsed (possibly empty) array;
+ * an empty array is a successful empty result and is not treated as a
+ * failure. Used by the poller's collectors to count SNMP failures for
+ * their summary warning logs.
+ *
+ * @param mixed $result The value returned by cacti_snmp_get() or
+ *                      cacti_snmp_walk().
+ *
+ * @return bool True if the request failed, false otherwise.
+ *
+ * @global string $snmp_error The last SNMP error message set by Cacti
+ *                            core's SNMP library.
+ */
+function hmib_snmp_request_failed($result): bool {
+	global $snmp_error;
+
+	if (!empty($snmp_error)) {
+		return true;
+	}
+
+	if ($result === false || $result === null || $result === 'U') {
+		return true;
+	}
+
+	// A GET can return timeout text without setting $snmp_error; a walk
+	// returns a parsed array where empty means a successful empty result.
+	if (is_string($result)) {
+		return stripos($result, 'Timeout') !== false;
+	}
+
+	return false;
 }
 
 /**
@@ -213,7 +242,7 @@ function debug($message) {
  *                           failures encountered during the scan, for
  *                           the summary warning logged at the end.
  */
-function autoDiscoverHosts() {
+function autoDiscoverHosts(): bool {
 	global $debug, $snmp_errors;
 
 	$hosts = db_fetch_assoc("SELECT *
@@ -236,13 +265,21 @@ function autoDiscoverHosts() {
 				$host['snmp_username'], $host['snmp_password'],
 				$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
 				$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
-				read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
+				read_config_option('snmp_retries'), $host['max_oids']);
+
+			if (hmib_snmp_request_failed($hostMib)) {
+				$snmp_errors++;
+			}
 
 			$system   = cacti_snmp_get($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.1.1.0', $host['snmp_version'],
 				$host['snmp_username'], $host['snmp_password'],
 				$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
 				$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
-				read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
+				read_config_option('snmp_retries'));
+
+			if (hmib_snmp_request_failed($system)) {
+				$snmp_errors++;
+			}
 
 			if (cacti_sizeof($hostMib)) {
 				$add = true;
@@ -289,7 +326,7 @@ function autoDiscoverHosts() {
  *                      and track the per-host collector processes it
  *                      launches.
  */
-function process_hosts() {
+function process_hosts(): void {
 	global $start, $seed;
 
 	print "NOTE: Processing Hosts Begins\n";
@@ -611,7 +648,7 @@ function process_hosts() {
  * @global bool  $forcerun Whether this run was forced, propagated to
  *                         the worker via '--force'.
  */
-function process_host($host_id, $seed, $key) {
+function process_host(int $host_id, $seed, $key): void {
 	global $config, $debug, $start, $forcerun;
 
 	exec_background(read_config_option('path_php_binary'),' -q ' .
@@ -641,7 +678,7 @@ function process_host($host_id, $seed, $key) {
  * @global bool  $forcerun Whether this run was forced, propagated via
  *                         '--force'.
  */
-function process_graphs() {
+function process_graphs(): void {
 	global $config, $debug, $start, $forcerun;
 
 	exec_background(read_config_option('path_php_binary'),' -q ' .
@@ -675,7 +712,7 @@ function process_graphs() {
  *                            query failures during this host's
  *                            collection.
  */
-function checkHost($host_id) {
+function checkHost(int $host_id): void {
 	global $config, $start, $seed, $key, $snmp_errors;
 
 	$snmp_errors = 0;
@@ -709,7 +746,7 @@ function checkHost($host_id) {
 		FROM host WHERE id = ?',
 		[$host_id]);
 
-	if (cacti_sizeof($host)) {
+	if (is_array($host) && cacti_sizeof($host)) {
 		// Run the collectors
 		cacti_log(sprintf('Running Device System Info Collection for Device[%s]', $host['id']), false, 'HMIB', POLLER_VERBOSITY_MEDIUM);
 
@@ -746,7 +783,7 @@ function checkHost($host_id) {
 		}
 
 		// compensate for batch systems
-		$time = substr(time(), 0, 3);
+		$time = substr((string) time(), 0, 3);
 
 		// update the most recent table
 		db_execute_prepared('INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name, total_time)
@@ -795,7 +832,7 @@ function checkHost($host_id) {
  *                            collector functions in this file; not used
  *                            directly here.
  */
-function collect_hrSystem(&$host) {
+function collect_hrSystem(array &$host): void {
 	global $hrSystem, $cnn_id, $snmp_errors;
 
 	if (cacti_sizeof($host)) {
@@ -804,13 +841,30 @@ function collect_hrSystem(&$host) {
 			$host['snmp_username'], $host['snmp_password'],
 			$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
 			$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
-			read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
+			read_config_option('snmp_retries'), $host['max_oids']);
+
+		if (hmib_snmp_request_failed($hostMib)) {
+			$snmp_errors++;
+		}
+
+		// A failed walk can return false/null; keep the merge operands arrays.
+		if (!is_array($hostMib)) {
+			$hostMib = array();
+		}
 
 		$systemMib = cacti_snmp_walk($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.1', $host['snmp_version'],
 			$host['snmp_username'], $host['snmp_password'],
 			$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
 			$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
-			read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
+			read_config_option('snmp_retries'), $host['max_oids']);
+
+		if (hmib_snmp_request_failed($systemMib)) {
+			$snmp_errors++;
+		}
+
+		if (!is_array($systemMib)) {
+			$systemMib = array();
+		}
 
 		$hostMib = array_merge($hostMib, $systemMib);
 
@@ -858,19 +912,20 @@ function collect_hrSystem(&$host) {
  *
  * @return string The normalized 'Y-m-d H:i:s' date/time string.
  */
-function hmib_dateParse($value) {
+function hmib_dateParse(string $value): string {
 	$value = explode(',', $value);
 
 	if (isset($value[1]) && strpos($value[1], '.')) {
-		$value[1] = substr($value[1], 0, strpos($value[1], '.'));
+		$value[1] = substr($value[1], 0, (int) strpos($value[1], '.'));
 	}
 
 	$date1 = trim($value[0] . ' ' . ($value[1] ?? ''));
+	$time1 = strtotime($date1);
 
-	if (strtotime($date1) === false) {
+	if ($time1 === false) {
 		$value = date('Y-m-d H:i:s');
 	} else {
-		$value = date('Y-m-d H:i:s', strtotime($date1));
+		$value = date('Y-m-d H:i:s', $time1);
 	}
 
 	return $value;
@@ -886,7 +941,7 @@ function hmib_dateParse($value) {
  * @return array A two-element [base, index] array, or an empty array if
  *               $oid has no '.' separator.
  */
-function hmib_splitBaseIndex($oid) {
+function hmib_splitBaseIndex(string $oid): array {
 	$splitIndex = [];
 	$oid        = strrev($oid);
 	$pos        = strpos($oid, '.');
@@ -926,8 +981,8 @@ function hmib_splitBaseIndex($oid) {
  *                       collector functions in this file; not used
  *                       directly here.
  */
-function collectHostIndexedOid(&$host, $tree, $table, $name) {
-	global $cnn_id;
+function collectHostIndexedOid(array &$host, array $tree, string $table, string $name): void {
+	global $cnn_id, $snmp_errors;
 	static $types;
 
 	debug("Beginning Processing for '" . $host['description'] . '[' . $host['hostname'] . "]', Table '$name'");
@@ -946,13 +1001,8 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 		$hostMib   = [];
 
 		foreach ($tree as $mname => $oid) {
-			if ($name == 'hrProcessor') {
-				$retrieval = SNMP_VALUE_PLAIN;
-			} elseif ($mname == 'date') {
-				$retrieval = SNMP_VALUE_LIBRARY;
-			} elseif ($mname != 'baseOID') {
-				$retrieval = SNMP_VALUE_PLAIN;
-			} else {
+			// baseOID is a container node, not a pollable branch.
+			if ($mname == 'baseOID' && $name != 'hrProcessor') {
 				continue;
 			}
 
@@ -960,7 +1010,16 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 				$host['snmp_username'], $host['snmp_password'],
 				$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
 				$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
-				read_config_option('snmp_retries'), $host['max_oids'], $retrieval, SNMP_WEBUI);
+				read_config_option('snmp_retries'), $host['max_oids']);
+
+			if (hmib_snmp_request_failed($walk)) {
+				$snmp_errors++;
+			}
+
+			// A failed walk can return false/null; keep the merge operand an array.
+			if (!is_array($walk)) {
+				$walk = array();
+			}
 
 			$hostMib = array_merge($hostMib, $walk);
 		}
@@ -1028,13 +1087,21 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 										$host['snmp_username'], $host['snmp_password'],
 										$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
 										$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
-										read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
+										read_config_option('snmp_retries'));
+
+									if (hmib_snmp_request_failed($user)) {
+										$snmp_errors++;
+									}
 
 									$system = cacti_snmp_get($host['hostname'], $host['snmp_community'], '.1.3.6.1.4.1.2021.11.10.0', $host['snmp_version'],
 										$host['snmp_username'], $host['snmp_password'],
 										$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
 										$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
-										read_config_option('snmp_retries'), $host['max_oids'], SNMP_VALUE_LIBRARY, SNMP_WEBUI);
+										read_config_option('snmp_retries'));
+
+									if (hmib_snmp_request_failed($system)) {
+										$snmp_errors++;
+									}
 
 									if (is_numeric($user) && is_numeric($system) && sizeof($mib)) {
 										$effective = (($user + $system) * 2) / (cacti_sizeof($mib));
@@ -1124,7 +1191,6 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 		// dump the output to the database
 		$sql_insert = '';
 		$sql_params = [];
-		$count      = 0;
 
 		if (cacti_sizeof($new_array)) {
 			foreach ($new_array as $index => $item) {
@@ -1188,13 +1254,6 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 			}
 
 			$sql_insert .= ')';
-			$count++;
-
-			if (($count % 100) == 0) {
-				db_execute_prepared($sql_prefix . $sql_insert . $sql_suffix, $sql_params);
-				$sql_insert = '';
-				$sql_params = [];
-			}
 		}
 
 		if ($sql_insert != '') {
@@ -1217,7 +1276,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
  *
  * @global array $hrSWRun The hrSWRun SNMP tree map (column => OID).
  */
-function collect_hrSWRun(&$host) {
+function collect_hrSWRun(array &$host): void {
 	global $hrSWRun;
 	collectHostIndexedOid($host, $hrSWRun, 'plugin_hmib_hrSWRun', 'hrSWRun');
 }
@@ -1234,7 +1293,7 @@ function collect_hrSWRun(&$host) {
  * @global array $hrSWRunPerf The hrSWRunPerf SNMP tree map (column =>
  *                            OID).
  */
-function collect_hrSWRunPerf(&$host) {
+function collect_hrSWRunPerf(array &$host): void {
 	global $hrSWRunPerf;
 	collectHostIndexedOid($host, $hrSWRunPerf, 'plugin_hmib_hrSWRun', 'hrSWRunPref');
 }
@@ -1251,7 +1310,7 @@ function collect_hrSWRunPerf(&$host) {
  * @global array $hrSWInstalled The hrSWInstalled SNMP tree map (column
  *                              => OID).
  */
-function collect_hrSWInstalled(&$host) {
+function collect_hrSWInstalled(array &$host): void {
 	global $hrSWInstalled;
 	collectHostIndexedOid($host, $hrSWInstalled, 'plugin_hmib_hrSWInstalled', 'hrSWInstalled');
 }
@@ -1267,7 +1326,7 @@ function collect_hrSWInstalled(&$host) {
  *
  * @global array $hrStorage The hrStorage SNMP tree map (column => OID).
  */
-function collect_hrStorage(&$host) {
+function collect_hrStorage(array &$host): void {
 	global $hrStorage;
 	collectHostIndexedOid($host, $hrStorage, 'plugin_hmib_hrStorage', 'hrStorage');
 }
@@ -1284,7 +1343,7 @@ function collect_hrStorage(&$host) {
  * @global array $hrProcessor The hrProcessor SNMP tree map (column =>
  *                            OID).
  */
-function collect_hrProcessor(&$host) {
+function collect_hrProcessor(array &$host): void {
 	global $hrProcessor;
 	collectHostIndexedOid($host, $hrProcessor, 'plugin_hmib_hrProcessor', 'hrProcessor');
 }
@@ -1300,7 +1359,7 @@ function collect_hrProcessor(&$host) {
  *
  * @global array $hrDevices The hrDevices SNMP tree map (column => OID).
  */
-function collect_hrDevices(&$host) {
+function collect_hrDevices(array &$host): void {
 	global $hrDevices;
 	collectHostIndexedOid($host, $hrDevices, 'plugin_hmib_hrDevices', 'hrDevices');
 }
@@ -1315,7 +1374,7 @@ function collect_hrDevices(&$host) {
  * @global array $config Cacti global configuration array; used to
  *                       locate and include setup.php.
  */
-function display_version() {
+function display_version(): void {
 	global $config;
 
 	if (!function_exists('plugin_hmib_version')) {
@@ -1333,7 +1392,7 @@ function display_version() {
  *
  * @return void
  */
-function display_help() {
+function display_help(): void {
 	display_version();
 
 	print "\nThe main Host MIB poller process script for Cacti.\n\n";

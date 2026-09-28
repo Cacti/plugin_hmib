@@ -27,6 +27,9 @@ chdir(__DIR__);
 chdir('../..');
 
 require('./include/cli_check.php');
+
+// expose Cacti's global $config to this top-level script scope
+global $config;
 require_once($config['base_path'] . '/lib/api_automation_tools.php');
 require_once($config['base_path'] . '/lib/api_automation.php');
 require_once($config['base_path'] . '/lib/api_data_source.php');
@@ -123,7 +126,7 @@ exit(0);
  * @global array $config Cacti global configuration array (declared but
  *                       not directly used here).
  */
-function add_graphs() {
+function add_graphs(): void {
 	global $config;
 
 	// check for summary changes first
@@ -176,7 +179,7 @@ function add_graphs() {
  * @global array $config Cacti global configuration array (declared but
  *                       not directly used here).
  */
-function add_host_based_graphs() {
+function add_host_based_graphs(): void {
 	global $config;
 
 	debug('Adding Host Based Graphs');
@@ -250,21 +253,21 @@ function add_host_based_graphs() {
  *
  * @param int    $host_id The host id to add graphs for.
  * @param int    $dq      The snmp_query.id (data query) to associate
- *                       and graph.
+ *                        and graph.
  * @param string $field   The host_snmp_cache field name to filter on
- *                       when $regex is supplied; defaults to '' (use
- *                       the data query's configured sort field).
+ *                        when $regex is supplied; defaults to '' (use
+ *                        the data query's configured sort field).
  * @param string $regex   A regex to filter which data query items get
- *                       graphed; defaults to '' (graph every item).
+ *                        graphed; defaults to '' (graph every item).
  * @param bool   $include Whether $regex is an inclusion filter (true)
- *                       or exclusion filter (false); defaults to true.
+ *                        or exclusion filter (false); defaults to true.
  *
  * @return void
  *
  * @global array $config Cacti global configuration array (declared but
  *                       not directly used here).
  */
-function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = true) {
+function add_host_dq_graphs(int $host_id, int $dq, string $field = '', string $regex = '', bool $include = true): void {
 	global $config;
 
 	// add entry if it does not exist
@@ -306,7 +309,7 @@ function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = 
  *
  * @param int $host_id           The host id to add the graph for.
  * @param int $graph_template_id The graph_templates.id to create a
- *                              graph from.
+ *                               graph from.
  *
  * @return void Outputs progress/status messages directly.
  *
@@ -314,7 +317,7 @@ function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = 
  *                       resolve the PHP binary and add_graphs.php CLI
  *                       path.
  */
-function hmib_gt_graph($host_id, $graph_template_id) {
+function hmib_gt_graph(int $host_id, int $graph_template_id): void {
 	global $config;
 
 	$php_bin = cacti_escapeshellcmd(read_config_option('path_php_binary'));
@@ -377,17 +380,17 @@ function hmib_gt_graph($host_id, $graph_template_id) {
  * graph templates that don't already exist. Called from add_graphs()
  * when a summary host template is configured.
  *
- * @param int $host_id      The summary device's host id, or empty to
- *                         create a new summary device first.
+ * @param int $host_id       The summary device's host id, or empty to
+ *                           create a new summary device first.
  * @param int $host_template The host_template.id to use when creating a
- *                          new summary device.
+ *                           new summary device.
  *
  * @return void Outputs progress/status messages directly.
  *
  * @global array $config Cacti global configuration array; used to
  *                       resolve the PHP binary and CLI utility paths.
  */
-function add_summary_graphs($host_id, $host_template) {
+function add_summary_graphs(int $host_id, int $host_template): void {
 	global $config;
 
 	$php_bin = cacti_escapeshellcmd(read_config_option('path_php_binary'));
@@ -482,21 +485,21 @@ function add_summary_graphs($host_id, $host_template) {
  *
  * @param int    $host_id           The host id to add graphs for.
  * @param int    $query_id          The snmp_query.id (data query) the
- *                                 items belong to.
+ *                                  items belong to.
  * @param int    $graph_template_id The graph_templates.id to create
- *                                 graphs from.
+ *                                  graphs from.
  * @param int    $query_type_id     The snmp_query_graph.id identifying
- *                                 this graph template's data query
- *                                 association.
+ *                                  this graph template's data query
+ *                                  association.
  * @param string $field             The host_snmp_cache field name to
- *                                 filter on; defaults to '' (use the
- *                                 data query's configured sort field).
+ *                                  filter on; defaults to '' (use the
+ *                                  data query's configured sort field).
  * @param string $regex             A regex to filter which items get
- *                                 graphed; defaults to '' (graph every
- *                                 item).
+ *                                  graphed; defaults to '' (graph every
+ *                                  item).
  * @param bool   $include           Whether $regex is an inclusion
- *                                 filter (true) or exclusion filter
- *                                 (false); defaults to true.
+ *                                  filter (true) or exclusion filter
+ *                                  (false); defaults to true.
  *
  * @return void Outputs progress/status messages directly.
  *
@@ -508,8 +511,8 @@ function add_summary_graphs($host_id, $host_template) {
  *                          functions in this file; not used directly
  *                          here.
  */
-function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
-	$field = '', $regex = '', $include = true) {
+function hmib_dq_graphs(int $host_id, int $query_id, int $graph_template_id, int $query_type_id,
+	string $field = '', string $regex = '', bool $include = true): void {
 	global $config, $php_bin, $path_grid;
 
 	$php_bin = cacti_escapeshellcmd(read_config_option('path_php_binary'));
@@ -589,7 +592,7 @@ function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
  * @global bool $debug Whether debug output ('--debug' CLI flag) is
  *                     enabled; when false, this function is a no-op.
  */
-function debug($message) {
+function debug(string $message): void {
 	global $debug;
 
 	if ($debug) {
@@ -608,7 +611,7 @@ function debug($message) {
  *                       locate and load setup.php for the version
  *                       lookup.
  */
-function display_version() {
+function display_version(): void {
 	global $config;
 
 	if (!function_exists('plugin_hmib_version')) {
@@ -626,7 +629,7 @@ function display_version() {
  *
  * @return void
  */
-function display_help() {
+function display_help(): void {
 	display_version();
 
 	print "\nThe Host MIB process that creates graphs for Cacti.\n\n";
