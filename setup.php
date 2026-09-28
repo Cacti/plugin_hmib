@@ -116,6 +116,10 @@ function plugin_hmib_version() {
 	global $config;
 	$info = parse_ini_file($config['base_path'] . '/plugins/hmib/INFO', true);
 
+	if (!is_array($info) || !isset($info['info']) || !is_array($info['info'])) {
+		return [];
+	}
+
 	return $info['info'];
 }
 

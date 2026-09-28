@@ -1,6 +1,10 @@
 ChangeLog
 
 --- develop ---
+* dev: Bring all plugin code to PHPStan level 8 with accurate parameter and return types
+* dev: Adopt Cacti core's SNMP library and remove the bundled snmp.php/snmp_functions.php copies
+* issue: Fix Host Type CSV import (undefined name/version values and header-row parsing)
+* issue: Correct stale html_header_sort() and form_save_button() argument order
 * feature: Add page counter to the processes filter for the Summary tab
 * feature: Move the main hmib interface to prepared statements where possible
 * issue#35: Hmib tab produces fatal memory error no matter the amount of memory allocated

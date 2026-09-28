@@ -32,8 +32,6 @@
             <file>hmib_types.php</file>
             <file>poller_hmib.php</file>
             <file>poller_graphs.php</file>
-            <file>snmp.php</file>
-            <file>snmp_functions.php</file>
             <file>associate_os_type.php</file>
         </include>
     </source>

@@ -27,6 +27,9 @@ chdir(__DIR__);
 chdir('../..');
 
 require('./include/cli_check.php');
+
+// expose Cacti's global $config to this top-level script scope
+global $config;
 require_once($config['base_path'] . '/lib/api_automation_tools.php');
 require_once($config['base_path'] . '/lib/api_automation.php');
 require_once($config['base_path'] . '/lib/api_data_source.php');
@@ -250,14 +253,14 @@ function add_host_based_graphs() {
  *
  * @param int    $host_id The host id to add graphs for.
  * @param int    $dq      The snmp_query.id (data query) to associate
- *                       and graph.
+ *                        and graph.
  * @param string $field   The host_snmp_cache field name to filter on
- *                       when $regex is supplied; defaults to '' (use
- *                       the data query's configured sort field).
+ *                        when $regex is supplied; defaults to '' (use
+ *                        the data query's configured sort field).
  * @param string $regex   A regex to filter which data query items get
- *                       graphed; defaults to '' (graph every item).
+ *                        graphed; defaults to '' (graph every item).
  * @param bool   $include Whether $regex is an inclusion filter (true)
- *                       or exclusion filter (false); defaults to true.
+ *                        or exclusion filter (false); defaults to true.
  *
  * @return void
  *
@@ -306,7 +309,7 @@ function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = 
  *
  * @param int $host_id           The host id to add the graph for.
  * @param int $graph_template_id The graph_templates.id to create a
- *                              graph from.
+ *                               graph from.
  *
  * @return void Outputs progress/status messages directly.
  *
@@ -377,10 +380,10 @@ function hmib_gt_graph($host_id, $graph_template_id) {
  * graph templates that don't already exist. Called from add_graphs()
  * when a summary host template is configured.
  *
- * @param int $host_id      The summary device's host id, or empty to
- *                         create a new summary device first.
+ * @param int $host_id       The summary device's host id, or empty to
+ *                           create a new summary device first.
  * @param int $host_template The host_template.id to use when creating a
- *                          new summary device.
+ *                           new summary device.
  *
  * @return void Outputs progress/status messages directly.
  *
@@ -482,21 +485,21 @@ function add_summary_graphs($host_id, $host_template) {
  *
  * @param int    $host_id           The host id to add graphs for.
  * @param int    $query_id          The snmp_query.id (data query) the
- *                                 items belong to.
+ *                                  items belong to.
  * @param int    $graph_template_id The graph_templates.id to create
- *                                 graphs from.
+ *                                  graphs from.
  * @param int    $query_type_id     The snmp_query_graph.id identifying
- *                                 this graph template's data query
- *                                 association.
+ *                                  this graph template's data query
+ *                                  association.
  * @param string $field             The host_snmp_cache field name to
- *                                 filter on; defaults to '' (use the
- *                                 data query's configured sort field).
+ *                                  filter on; defaults to '' (use the
+ *                                  data query's configured sort field).
  * @param string $regex             A regex to filter which items get
- *                                 graphed; defaults to '' (graph every
- *                                 item).
+ *                                  graphed; defaults to '' (graph every
+ *                                  item).
  * @param bool   $include           Whether $regex is an inclusion
- *                                 filter (true) or exclusion filter
- *                                 (false); defaults to true.
+ *                                  filter (true) or exclusion filter
+ *                                  (false); defaults to true.
  *
  * @return void Outputs progress/status messages directly.
  *
