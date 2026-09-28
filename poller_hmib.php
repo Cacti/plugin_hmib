@@ -157,7 +157,7 @@ exit(0);
  * @global bool $forcerun Whether this run was started with '--force',
  *                        in which case the task always runs.
  */
-function runCollector($start, $lastrun, $frequency) {
+function runCollector(float $start, int $lastrun, int $frequency): bool {
 	global $forcerun;
 
 	if ((empty($lastrun) || ($start - $lastrun) > $frequency) && $frequency > 0 || $forcerun) {
@@ -178,7 +178,7 @@ function runCollector($start, $lastrun, $frequency) {
  * @global bool $debug Whether debug output ('--debug' CLI flag) is
  *                     enabled; when false, this function is a no-op.
  */
-function debug($message) {
+function debug(string $message): void {
 	global $debug;
 
 	if ($debug) {
@@ -203,7 +203,7 @@ function debug($message) {
  *                           failures encountered during the scan, for
  *                           the summary warning logged at the end.
  */
-function autoDiscoverHosts() {
+function autoDiscoverHosts(): bool {
 	global $debug, $snmp_errors, $snmp_error;
 
 	$hosts = db_fetch_assoc("SELECT *
@@ -287,7 +287,7 @@ function autoDiscoverHosts() {
  *                      and track the per-host collector processes it
  *                      launches.
  */
-function process_hosts() {
+function process_hosts(): void {
 	global $start, $seed;
 
 	print "NOTE: Processing Hosts Begins\n";
@@ -609,7 +609,7 @@ function process_hosts() {
  * @global bool  $forcerun Whether this run was forced, propagated to
  *                         the worker via '--force'.
  */
-function process_host($host_id, $seed, $key) {
+function process_host(int $host_id, $seed, $key): void {
 	global $config, $debug, $start, $forcerun;
 
 	exec_background(read_config_option('path_php_binary'),' -q ' .
@@ -639,7 +639,7 @@ function process_host($host_id, $seed, $key) {
  * @global bool  $forcerun Whether this run was forced, propagated via
  *                         '--force'.
  */
-function process_graphs() {
+function process_graphs(): void {
 	global $config, $debug, $start, $forcerun;
 
 	exec_background(read_config_option('path_php_binary'),' -q ' .
@@ -673,7 +673,7 @@ function process_graphs() {
  *                            query failures during this host's
  *                            collection.
  */
-function checkHost($host_id) {
+function checkHost(int $host_id): void {
 	global $config, $start, $seed, $key, $snmp_errors;
 
 	$snmp_errors = 0;
@@ -793,7 +793,7 @@ function checkHost($host_id) {
  *                            collector functions in this file; not used
  *                            directly here.
  */
-function collect_hrSystem(&$host) {
+function collect_hrSystem(array &$host): void {
 	global $hrSystem, $cnn_id, $snmp_errors, $snmp_error;
 
 	if (cacti_sizeof($host)) {
@@ -864,7 +864,7 @@ function collect_hrSystem(&$host) {
  *
  * @return string The normalized 'Y-m-d H:i:s' date/time string.
  */
-function hmib_dateParse($value) {
+function hmib_dateParse(string $value): string {
 	$value = explode(',', $value);
 
 	if (isset($value[1]) && strpos($value[1], '.')) {
@@ -893,7 +893,7 @@ function hmib_dateParse($value) {
  * @return array A two-element [base, index] array, or an empty array if
  *               $oid has no '.' separator.
  */
-function hmib_splitBaseIndex($oid) {
+function hmib_splitBaseIndex(string $oid): array {
 	$splitIndex = [];
 	$oid        = strrev($oid);
 	$pos        = strpos($oid, '.');
@@ -933,7 +933,7 @@ function hmib_splitBaseIndex($oid) {
  *                       collector functions in this file; not used
  *                       directly here.
  */
-function collectHostIndexedOid(&$host, $tree, $table, $name) {
+function collectHostIndexedOid(array &$host, array $tree, string $table, string $name): void {
 	global $cnn_id, $snmp_errors, $snmp_error;
 	static $types;
 
@@ -1223,7 +1223,7 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
  *
  * @global array $hrSWRun The hrSWRun SNMP tree map (column => OID).
  */
-function collect_hrSWRun(&$host) {
+function collect_hrSWRun(array &$host): void {
 	global $hrSWRun;
 	collectHostIndexedOid($host, $hrSWRun, 'plugin_hmib_hrSWRun', 'hrSWRun');
 }
@@ -1240,7 +1240,7 @@ function collect_hrSWRun(&$host) {
  * @global array $hrSWRunPerf The hrSWRunPerf SNMP tree map (column =>
  *                            OID).
  */
-function collect_hrSWRunPerf(&$host) {
+function collect_hrSWRunPerf(array &$host): void {
 	global $hrSWRunPerf;
 	collectHostIndexedOid($host, $hrSWRunPerf, 'plugin_hmib_hrSWRun', 'hrSWRunPref');
 }
@@ -1257,7 +1257,7 @@ function collect_hrSWRunPerf(&$host) {
  * @global array $hrSWInstalled The hrSWInstalled SNMP tree map (column
  *                              => OID).
  */
-function collect_hrSWInstalled(&$host) {
+function collect_hrSWInstalled(array &$host): void {
 	global $hrSWInstalled;
 	collectHostIndexedOid($host, $hrSWInstalled, 'plugin_hmib_hrSWInstalled', 'hrSWInstalled');
 }
@@ -1273,7 +1273,7 @@ function collect_hrSWInstalled(&$host) {
  *
  * @global array $hrStorage The hrStorage SNMP tree map (column => OID).
  */
-function collect_hrStorage(&$host) {
+function collect_hrStorage(array &$host): void {
 	global $hrStorage;
 	collectHostIndexedOid($host, $hrStorage, 'plugin_hmib_hrStorage', 'hrStorage');
 }
@@ -1290,7 +1290,7 @@ function collect_hrStorage(&$host) {
  * @global array $hrProcessor The hrProcessor SNMP tree map (column =>
  *                            OID).
  */
-function collect_hrProcessor(&$host) {
+function collect_hrProcessor(array &$host): void {
 	global $hrProcessor;
 	collectHostIndexedOid($host, $hrProcessor, 'plugin_hmib_hrProcessor', 'hrProcessor');
 }
@@ -1306,7 +1306,7 @@ function collect_hrProcessor(&$host) {
  *
  * @global array $hrDevices The hrDevices SNMP tree map (column => OID).
  */
-function collect_hrDevices(&$host) {
+function collect_hrDevices(array &$host): void {
 	global $hrDevices;
 	collectHostIndexedOid($host, $hrDevices, 'plugin_hmib_hrDevices', 'hrDevices');
 }
@@ -1321,7 +1321,7 @@ function collect_hrDevices(&$host) {
  * @global array $config Cacti global configuration array; used to
  *                       locate and include setup.php.
  */
-function display_version() {
+function display_version(): void {
 	global $config;
 
 	if (!function_exists('plugin_hmib_version')) {
@@ -1339,7 +1339,7 @@ function display_version() {
  *
  * @return void
  */
-function display_help() {
+function display_help(): void {
 	display_version();
 
 	print "\nThe main Host MIB poller process script for Cacti.\n\n";

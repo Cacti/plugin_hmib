@@ -126,7 +126,7 @@ exit(0);
  * @global array $config Cacti global configuration array (declared but
  *                       not directly used here).
  */
-function add_graphs() {
+function add_graphs(): void {
 	global $config;
 
 	// check for summary changes first
@@ -179,7 +179,7 @@ function add_graphs() {
  * @global array $config Cacti global configuration array (declared but
  *                       not directly used here).
  */
-function add_host_based_graphs() {
+function add_host_based_graphs(): void {
 	global $config;
 
 	debug('Adding Host Based Graphs');
@@ -267,7 +267,7 @@ function add_host_based_graphs() {
  * @global array $config Cacti global configuration array (declared but
  *                       not directly used here).
  */
-function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = true) {
+function add_host_dq_graphs(int $host_id, int $dq, string $field = '', string $regex = '', bool $include = true): void {
 	global $config;
 
 	// add entry if it does not exist
@@ -317,7 +317,7 @@ function add_host_dq_graphs($host_id, $dq, $field = '', $regex = '', $include = 
  *                       resolve the PHP binary and add_graphs.php CLI
  *                       path.
  */
-function hmib_gt_graph($host_id, $graph_template_id) {
+function hmib_gt_graph(int $host_id, int $graph_template_id): void {
 	global $config;
 
 	$php_bin = cacti_escapeshellcmd(read_config_option('path_php_binary'));
@@ -390,7 +390,7 @@ function hmib_gt_graph($host_id, $graph_template_id) {
  * @global array $config Cacti global configuration array; used to
  *                       resolve the PHP binary and CLI utility paths.
  */
-function add_summary_graphs($host_id, $host_template) {
+function add_summary_graphs(int $host_id, int $host_template): void {
 	global $config;
 
 	$php_bin = cacti_escapeshellcmd(read_config_option('path_php_binary'));
@@ -511,8 +511,8 @@ function add_summary_graphs($host_id, $host_template) {
  *                          functions in this file; not used directly
  *                          here.
  */
-function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
-	$field = '', $regex = '', $include = true) {
+function hmib_dq_graphs(int $host_id, int $query_id, int $graph_template_id, int $query_type_id,
+	string $field = '', string $regex = '', bool $include = true): void {
 	global $config, $php_bin, $path_grid;
 
 	$php_bin = cacti_escapeshellcmd(read_config_option('path_php_binary'));
@@ -592,7 +592,7 @@ function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id,
  * @global bool $debug Whether debug output ('--debug' CLI flag) is
  *                     enabled; when false, this function is a no-op.
  */
-function debug($message) {
+function debug(string $message): void {
 	global $debug;
 
 	if ($debug) {
@@ -611,7 +611,7 @@ function debug($message) {
  *                       locate and load setup.php for the version
  *                       lookup.
  */
-function display_version() {
+function display_version(): void {
 	global $config;
 
 	if (!function_exists('plugin_hmib_version')) {
@@ -629,7 +629,7 @@ function display_version() {
  *
  * @return void
  */
-function display_help() {
+function display_help(): void {
 	display_version();
 
 	print "\nThe Host MIB process that creates graphs for Cacti.\n\n";

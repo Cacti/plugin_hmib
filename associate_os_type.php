@@ -84,7 +84,7 @@ exit(0);
  * @global bool $debug Whether debug output ('--debug' CLI flag) is
  *                     enabled; when false, this function is a no-op.
  */
-function debug($message) {
+function debug(string $message): void {
 	global $debug;
 
 	if ($debug) {
@@ -107,7 +107,7 @@ function debug($message) {
  * @global mixed $seed  Reserved/declared for parity with other CLI
  *                      scripts in this plugin; not used directly here.
  */
-function process_hosts() {
+function process_hosts(): void {
 	global $start, $seed;
 
 	print "NOTE: Processing OS Types Begins\n";
@@ -137,7 +137,7 @@ function process_hosts() {
  *                       locate and load setup.php for the version
  *                       lookup.
  */
-function display_version() {
+function display_version(): void {
 	global $config;
 
 	if (!function_exists('plugin_hmib_version')) {
@@ -155,7 +155,7 @@ function display_version() {
  *
  * @return void
  */
-function display_help() {
+function display_help(): void {
 	display_version();
 
 	print "\nusage: call without any parameter\n";

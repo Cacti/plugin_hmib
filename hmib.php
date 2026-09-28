@@ -125,7 +125,7 @@ bottom_footer();
  *                                    other functions in this file; not
  *                                    used directly here.
  */
-function hmib_history() {
+function hmib_history(): void {
 	global $config, $item_rows, $hmib_hrSWTypes, $hmib_hrSWRunStatus;
 
 	// ================= input validation and session storage =================
@@ -481,7 +481,7 @@ function hmib_history() {
  *
  * @return string The formatted 'D:H:M' runtime string.
  */
-function hmib_get_runtime($time) {
+function hmib_get_runtime(int $time): string {
 	if ($time > 86400) {
 		$days  = floor($time / 86400);
 		$time %= 86400;
@@ -523,7 +523,7 @@ function hmib_get_runtime($time) {
  *                                    other functions in this file; not
  *                                    used directly here.
  */
-function hmib_running() {
+function hmib_running(): void {
 	global $config, $item_rows, $hmib_hrSWTypes, $hmib_hrSWRunStatus;
 
 	// ================= input validation and session storage =================
@@ -922,7 +922,7 @@ function hmib_running() {
  *
  * @return void
  */
-function running_legend($totals, $total_rows) {
+function running_legend(array $totals, int $total_rows): void {
 	html_start_box('', '100%', false, 3, 'center', '');
 	print '<tr>';
 	print '<td><b>' . __('Total CPU [h]:', 'hmib') . '</b> ' . number_format_i18n($totals['cpu'] / 3600,0) . '</td>';
@@ -961,7 +961,7 @@ function running_legend($totals, $total_rows) {
  *                                   other functions in this file; not
  *                                   used directly here.
  */
-function hmib_hardware() {
+function hmib_hardware(): void {
 	global $config, $item_rows, $hmib_hrSWTypes, $hmib_hrDeviceStatus, $hmib_types;
 
 	// ================= input validation and session storage =================
@@ -1335,7 +1335,7 @@ function hmib_hardware() {
  *                                other functions in this file; not
  *                                used directly here.
  */
-function hmib_storage() {
+function hmib_storage(): void {
 	global $config, $item_rows, $hmib_hrSWTypes, $hmib_types;
 
 	// ================= input validation and session storage =================
@@ -1724,7 +1724,7 @@ function hmib_storage() {
  * @global array $item_rows Cacti's standard row-count option list, used
  *                          to populate the rows dropdown.
  */
-function hmib_devices() {
+function hmib_devices(): void {
 	global $config, $item_rows;
 
 	// ================= input validation and session storage =================
@@ -2223,7 +2223,7 @@ function hmib_devices() {
  *
  * @return string The formatted 'DDD:HH:MM' uptime string.
  */
-function hmib_format_uptime($d, $h, $m) {
+function hmib_format_uptime(int $d, int $h, int $m): string {
 	return hmib_right('000' . $d, 3) . ':' . hmib_right('000' . $h, 2) . ':' . hmib_right('000' . $m, 2);
 }
 
@@ -2237,7 +2237,7 @@ function hmib_format_uptime($d, $h, $m) {
  *
  * @return string The rightmost $chars characters of $string.
  */
-function hmib_right($string, $chars) {
+function hmib_right(string $string, int $chars): string {
 	return strrev(substr(strrev($string), 0, $chars));
 }
 
@@ -2250,7 +2250,7 @@ function hmib_right($string, $chars) {
  *
  * @return string The formatted size string with unit suffix.
  */
-function hmib_memory($mem) {
+function hmib_memory(float $mem): string {
 	if ($mem < 1024) {
 		return $mem . 'B';
 	}
@@ -2297,7 +2297,7 @@ function hmib_memory($mem) {
  *                               functions in this file; not used
  *                               directly here.
  */
-function hmib_software() {
+function hmib_software(): void {
 	global $config, $item_rows, $hmib_hrSWTypes;
 
 	// ================= input validation and session storage =================
@@ -2652,7 +2652,7 @@ function hmib_software() {
  * @global array $config Cacti global configuration array; used to
  *                       build each tab's URL.
  */
-function hmib_tabs() {
+function hmib_tabs(): void {
 	global $config;
 
 	// present a tabbed interface
@@ -2702,7 +2702,7 @@ function hmib_tabs() {
  * @global array $config         Cacti global configuration array; used
  *                               to build device/graph links.
  */
-function hmib_summary() {
+function hmib_summary(): void {
 	global $device_actions, $item_rows, $config;
 
 	// ================= input validation and session storage =================
@@ -3327,7 +3327,7 @@ function hmib_summary() {
  * @global array $config Cacti global configuration array; used to
  *                       build the link URL.
  */
-function hmib_get_device_status_url($count, $host_type, $status) {
+function hmib_get_device_status_url(int $count, int $host_type, int $status): string|int {
 	global $config;
 
 	if ($count > 0) {
@@ -3360,7 +3360,7 @@ function hmib_get_device_status_url($count, $host_type, $status) {
  * @global array $config Cacti global configuration array; used to build
  *                       the link URL and image paths.
  */
-function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id = 0, $title = '', $image = true) {
+function hmib_get_graph_template_url(int $graph_template, int $host_type = 0, int $host_id = 0, string $title = '', bool $image = true): string {
 	global $config;
 
 	$url     = $config['url_path'] . 'plugins/hmib/hmib.php';
@@ -3437,7 +3437,7 @@ function hmib_get_graph_template_url($graph_template, $host_type = 0, $host_id =
  * @global array $config Cacti global configuration array; used to build
  *                       the link URL and image paths.
  */
-function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = '', $image = true) {
+function hmib_get_graph_url(int $data_query, int $host_type, int $host_id, string $index, string $title = '', bool $image = true): string {
 	global $config;
 
 	$url     = $config['url_path'] . 'plugins/hmib/hmib.php';
@@ -3517,7 +3517,7 @@ function hmib_get_graph_url($data_query, $host_type, $host_id, $index, $title = 
  *                                        rendering; not used directly
  *                                        here.
  */
-function hmib_view_graphs() {
+function hmib_view_graphs(): void {
 	global $current_user, $colors, $config, $host_template_hashes, $graph_template_hashes;
 
 	include('./lib/timespan_settings.php');

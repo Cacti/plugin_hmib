@@ -92,7 +92,7 @@ switch (get_nfilter_request_var('action')) {
  *
  * @return void
  */
-function form_save() {
+function form_save(): void {
 	if ((isset_request_var('save_component_host_type')) && (isempty_request_var('add_dq_y'))) {
 		$host_type_id = hmib_host_type_save(get_filter_request_var('id'), get_nfilter_request_var('name'),
 			get_nfilter_request_var('version'), get_nfilter_request_var('sysDescrMatch'), get_nfilter_request_var('sysObjectID'));
@@ -130,7 +130,7 @@ function form_save() {
  *
  * @return void
  */
-function api_hmib_host_type_remove($host_type_id) {
+function api_hmib_host_type_remove(int $host_type_id): void {
 	db_execute_prepared('DELETE FROM plugin_hmib_hrSystemTypes
 		WHERE id = ?',
 		[$host_type_id]);
@@ -157,7 +157,7 @@ function api_hmib_host_type_remove($host_type_id) {
  * @return int The new or existing host type id (0 if creation failed
  *             validation).
  */
-function hmib_host_type_save($host_type_id, $name, $version, $sysDescrMatch, $sysObjectID) {
+function hmib_host_type_save(int $host_type_id, string $name, string $version, string $sysDescrMatch, string $sysObjectID): int {
 	if (empty($host_type_id)) {
 		$save['id']            = $host_type_id;
 		$save['name']          = form_input_validate($name, 'name', '', false, 3);
@@ -208,7 +208,7 @@ function hmib_host_type_save($host_type_id, $name, $version, $sysDescrMatch, $sy
  *
  * @return void
  */
-function hmib_duplicate_host_type($host_type_id, $dup_id, $host_type_title) {
+function hmib_duplicate_host_type(int $host_type_id, int $dup_id, string $host_type_title): void {
 	if (!empty($host_type_id)) {
 		$host_type = db_fetch_row_prepared('SELECT *
 			FROM plugin_hmib_hrSystemTypes
@@ -265,7 +265,7 @@ function hmib_duplicate_host_type($host_type_id, $dup_id, $host_type_title) {
  *                                             functions in this file;
  *                                             not used directly here.
  */
-function form_actions() {
+function form_actions(): void {
 	global $config, $host_types_actions, $fields_hmib_host_types_edit;
 
 	// ================= input validation =================
@@ -388,7 +388,7 @@ function form_actions() {
  *
  * @return void
  */
-function hmib_validate_request_vars() {
+function hmib_validate_request_vars(): void {
 	// ================= input validation and session storage =================
 	$filters = [
 		'rows' => [
@@ -450,7 +450,7 @@ function hmib_validate_request_vars() {
  *                                other functions in this file; not
  *                                used directly here.
  */
-function hmib_host_type_export() {
+function hmib_host_type_export(): void {
 	global $device_actions, $hmib_host_types, $config;
 
 	hmib_validate_request_vars();
@@ -496,7 +496,7 @@ function hmib_host_type_export() {
  *                       functions in this file; not used directly
  *                       here.
  */
-function rescan_types() {
+function rescan_types(): void {
 	global $cnn_id;
 
 	// let's allocate an array for results
@@ -568,7 +568,7 @@ function rescan_types() {
  *                       functions in this file; not used directly
  *                       here.
  */
-function hmib_host_type_import() {
+function hmib_host_type_import(): void {
 	global $config;
 
 	?><form method='post' action='hmib_types.php?action=import' enctype='multipart/form-data'><?php
@@ -657,7 +657,7 @@ function hmib_host_type_import() {
  *               describing what was imported, for display on the next
  *               page load.
  */
-function hmib_host_type_import_processor(&$host_types) {
+function hmib_host_type_import_processor(array &$host_types): array {
 	$sysDescrMatch_id    = -1;
 	$sysObjectID_id      = -1;
 	$host_type_id        = -1;
@@ -919,7 +919,7 @@ function hmib_host_type_import_processor(&$host_types) {
  *                       functions in this file; not used directly
  *                       here.
  */
-function hmib_host_type_edit() {
+function hmib_host_type_edit(): void {
 	global $config;
 
 	// ================= input validation =================
@@ -1021,7 +1021,7 @@ function hmib_host_type_edit() {
  * @return array The matching plugin_hmib_hrSystemTypes rows, each with
  *               an added 'totals' column (assigned device count).
  */
-function hmib_get_host_types(&$sql_where, $rows, $apply_limits = true) {
+function hmib_get_host_types(string &$sql_where, int $rows, bool $apply_limits = true): array {
 	if (get_request_var('filter') != '') {
 		$sql_where = ' WHERE (
 			plugin_hmib_hrSystemTypes.name LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . '
@@ -1074,7 +1074,7 @@ function hmib_get_host_types(&$sql_where, $rows, $apply_limits = true) {
  *                                   other functions in this file; not
  *                                   used directly here.
  */
-function hmib_host_type() {
+function hmib_host_type(): void {
 	global $host_types_actions, $hmib_host_types, $config, $item_rows;
 
 	hmib_validate_request_vars();
@@ -1162,7 +1162,7 @@ function hmib_host_type() {
  * @global array $config Cacti global configuration array; used to
  *                       build the arrow icon's image path.
  */
-function hmib_draw_actions_dropdown($actions_array, $include_form_end = true) {
+function hmib_draw_actions_dropdown(array $actions_array, bool $include_form_end = true): void {
 	global $config;
 	?>
 	<table align='center' width='100%'>
@@ -1199,7 +1199,7 @@ function hmib_draw_actions_dropdown($actions_array, $include_form_end = true) {
  * @global array $item_rows Cacti's standard row-count option list,
  *                         used to populate the rows-per-page dropdown.
  */
-function hmib_host_type_filter() {
+function hmib_host_type_filter(): void {
 	global $item_rows;
 
 	?>
