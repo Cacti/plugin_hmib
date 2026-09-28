@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cacti \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-09-27 23:30-0400\n"
+"POT-Creation-Date: 2026-09-27 23:43-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Cacti Developers <developers@cacti.net>>\n"
 "Language-Team: Cacti Developers <developers@cacti.net>\n"
@@ -76,7 +76,7 @@ msgid "Running Process History"
 msgstr ""
 
 #: hmib.php:192 hmib.php:591 hmib.php:1034 hmib.php:1411 hmib.php:1792
-#: hmib.php:2367 hmib_types.php:1257
+#: hmib.php:2367 hmib_types.php:1255
 msgid "OS Type"
 msgstr ""
 
@@ -98,18 +98,18 @@ msgid "Template"
 msgstr ""
 
 #: hmib.php:260 hmib.php:659 hmib.php:1102 hmib.php:1479 hmib.php:1858
-#: hmib.php:2435 hmib.php:2868 hmib.php:3125 hmib_types.php:1180
-#: hmib_types.php:1277
+#: hmib.php:2435 hmib.php:2868 hmib.php:3125 hmib_types.php:1178
+#: hmib_types.php:1275
 msgid "Go"
 msgstr ""
 
 #: hmib.php:261 hmib.php:660 hmib.php:1103 hmib.php:1480 hmib.php:1859
-#: hmib.php:2436 hmib.php:2869 hmib.php:3126 hmib_types.php:1278
+#: hmib.php:2436 hmib.php:2869 hmib.php:3126 hmib_types.php:1276
 msgid "Clear"
 msgstr ""
 
 #: hmib.php:269 hmib.php:668 hmib.php:1111 hmib.php:1488 hmib.php:1867
-#: hmib.php:2444 hmib.php:3104 hmib_types.php:1251
+#: hmib.php:2444 hmib.php:3104 hmib_types.php:1249
 msgid "Search"
 msgstr ""
 
@@ -122,7 +122,7 @@ msgid "Entries"
 msgstr ""
 
 #: hmib.php:299 hmib.php:698 hmib.php:1141 hmib.php:1518 hmib.php:1923
-#: hmib.php:2473 hmib_types.php:1261
+#: hmib.php:2473 hmib_types.php:1259
 msgid "Default"
 msgstr ""
 
@@ -423,7 +423,7 @@ msgstr ""
 msgid "Device Type Summary Statistics"
 msgstr ""
 
-#: hmib.php:2948 hmib_types.php:946
+#: hmib.php:2948 hmib_types.php:944
 msgid "Version"
 msgstr ""
 
@@ -487,7 +487,7 @@ msgstr ""
 msgid "Num Paths"
 msgstr ""
 
-#: hmib.php:3221 hmib_types.php:1115
+#: hmib.php:3221 hmib_types.php:1113
 msgid "Hosts"
 msgstr ""
 
@@ -642,97 +642,97 @@ msgstr ""
 msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
 msgstr ""
 
-#: hmib_types.php:935
+#: hmib_types.php:933
 msgid "Device Scanning Function Options"
 msgstr ""
 
-#: hmib_types.php:939
+#: hmib_types.php:937
 msgid "Name"
 msgstr ""
 
-#: hmib_types.php:940
+#: hmib_types.php:938
 msgid "Give this Host Type a meaningful name."
 msgstr ""
 
-#: hmib_types.php:947
+#: hmib_types.php:945
 msgid "Fill in the name for the version of this Host Type."
 msgstr ""
 
-#: hmib_types.php:954
+#: hmib_types.php:952
 msgid "System Description Match"
 msgstr ""
 
-#: hmib_types.php:955 hmib_types.php:962
+#: hmib_types.php:953 hmib_types.php:960
 #, php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
 msgstr ""
 
-#: hmib_types.php:961
+#: hmib_types.php:959
 msgid "Vendor snmp Object ID"
 msgstr ""
 
-#: hmib_types.php:982
+#: hmib_types.php:980
 #, php-format
 msgid "Host MIB OS Types [edit: %s]"
 msgstr ""
 
-#: hmib_types.php:984
+#: hmib_types.php:982
 msgid "Host MIB OS Types [new]"
 msgstr ""
 
-#: hmib_types.php:1092
+#: hmib_types.php:1090
 msgid "Host MIB OS Type Filters"
 msgstr ""
 
-#: hmib_types.php:1104 setup.php:769
+#: hmib_types.php:1102 setup.php:769
 msgid "OS Types"
 msgstr ""
 
-#: hmib_types.php:1113
+#: hmib_types.php:1111
 msgid "Host Type Name"
 msgstr ""
 
-#: hmib_types.php:1114
+#: hmib_types.php:1112
 msgid "OS Version"
 msgstr ""
 
-#: hmib_types.php:1116
+#: hmib_types.php:1114
 msgid "SNMP ObjectID"
 msgstr ""
 
-#: hmib_types.php:1117
+#: hmib_types.php:1115
 msgid "SNMP Sys Description Match"
 msgstr ""
 
-#: hmib_types.php:1134
+#: hmib_types.php:1132
 msgid "No Host Types Found"
 msgstr ""
 
-#: hmib_types.php:1176
+#: hmib_types.php:1174
 msgid "Choose an action:"
 msgstr ""
 
-#: hmib_types.php:1279
+#: hmib_types.php:1277
 msgid "Rescan"
 msgstr ""
 
-#: hmib_types.php:1279
+#: hmib_types.php:1277
 msgid "Scan for New or Unknown Device Types"
 msgstr ""
 
-#: hmib_types.php:1280 setup.php:802
+#: hmib_types.php:1278 setup.php:802
 msgid "Import"
 msgstr ""
 
-#: hmib_types.php:1280
+#: hmib_types.php:1278
 msgid "Import Host Types from a CSV File"
 msgstr ""
 
-#: hmib_types.php:1281
+#: hmib_types.php:1279
 msgid "Export"
 msgstr ""
 
-#: hmib_types.php:1281
+#: hmib_types.php:1279
 msgid "Export Host Types to Share with Others"
 msgstr ""
 

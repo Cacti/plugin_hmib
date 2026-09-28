@@ -803,8 +803,6 @@ function hmib_host_type_import_processor(&$host_types) {
 		$sql_where     = '';
 		$name          = '';
 		$version       = '';
-		$vendor        = '';
-		$description   = '';
 		$sysDescrMatch = '';
 		$sysObjectID   = '';
 
@@ -863,11 +861,11 @@ function hmib_host_type_import_processor(&$host_types) {
 				}
 
 				if ($j == $save_vendor_id) {
-					$vendor = $line_item;
+					$version = $line_item;
 				}
 
 				if ($j == $save_description_id) {
-					$description = $line_item;
+					$name = $line_item;
 				}
 
 				$save_value .= db_qstr($line_item);
@@ -879,7 +877,7 @@ function hmib_host_type_import_processor(&$host_types) {
 		$save_value .= ')';
 
 		if (isset_request_var('allow_update')) {
-			$sql_execute = 'INSERT INTO mac_track_device_types ' . $save_order .
+			$sql_execute = 'INSERT INTO plugin_hmib_hrSystemTypes ' . $save_order .
 				' VALUES' . $save_value . $update_suffix;
 
 			if (db_execute($sql_execute)) {
@@ -892,7 +890,7 @@ function hmib_host_type_import_processor(&$host_types) {
 			$existing_row = db_fetch_row("SELECT * FROM plugin_hmib_hrSystemTypes $sql_where");
 
 			if (cacti_sizeof($existing_row)) {
-				array_push($return_array,'<strong>INSERT SKIPPED, EXISTING:</strong> Name: ' . html_escape($name) . ', Vendor: ' . html_escape($vendor) . ', sysDescr: ' . html_escape($sysDescrMatch) . ', sysObjectID: ' . html_escape($sysObjectID));
+				array_push($return_array,'<strong>INSERT SKIPPED, EXISTING:</strong> Name: ' . html_escape($name) . ', Version: ' . html_escape($version) . ', sysDescr: ' . html_escape($sysDescrMatch) . ', sysObjectID: ' . html_escape($sysObjectID));
 			} else {
 				$sql_execute = 'INSERT INTO plugin_hmib_hrSystemTypes ' . $save_order .
 					' VALUES' . $save_value;

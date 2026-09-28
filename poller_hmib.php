@@ -204,7 +204,7 @@ function debug($message) {
  *                           the summary warning logged at the end.
  */
 function autoDiscoverHosts() {
-	global $debug, $snmp_errors;
+	global $debug, $snmp_errors, $snmp_error;
 
 	$hosts = db_fetch_assoc("SELECT *
 		FROM host
@@ -228,11 +228,19 @@ function autoDiscoverHosts() {
 				$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 				read_config_option('snmp_retries'), $host['max_oids']);
 
+			if (!empty($snmp_error)) {
+				$snmp_errors++;
+			}
+
 			$system   = cacti_snmp_get($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.1.1.0', $host['snmp_version'],
 				$host['snmp_username'], $host['snmp_password'],
 				$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
 				$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 				read_config_option('snmp_retries'));
+
+			if (!empty($snmp_error)) {
+				$snmp_errors++;
+			}
 
 			if (cacti_sizeof($hostMib)) {
 				$add = true;
@@ -786,7 +794,7 @@ function checkHost($host_id) {
  *                            directly here.
  */
 function collect_hrSystem(&$host) {
-	global $hrSystem, $cnn_id, $snmp_errors;
+	global $hrSystem, $cnn_id, $snmp_errors, $snmp_error;
 
 	if (cacti_sizeof($host)) {
 		debug("Polling hrSystem from '" . $host['description'] . '[' . $host['hostname'] . "]'");
@@ -796,11 +804,19 @@ function collect_hrSystem(&$host) {
 			$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 			read_config_option('snmp_retries'), $host['max_oids']);
 
+		if (!empty($snmp_error)) {
+			$snmp_errors++;
+		}
+
 		$systemMib = cacti_snmp_walk($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.1', $host['snmp_version'],
 			$host['snmp_username'], $host['snmp_password'],
 			$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
 			$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 			read_config_option('snmp_retries'), $host['max_oids']);
+
+		if (!empty($snmp_error)) {
+			$snmp_errors++;
+		}
 
 		$hostMib = array_merge($hostMib, $systemMib);
 
@@ -918,7 +934,7 @@ function hmib_splitBaseIndex($oid) {
  *                       directly here.
  */
 function collectHostIndexedOid(&$host, $tree, $table, $name) {
-	global $cnn_id;
+	global $cnn_id, $snmp_errors, $snmp_error;
 	static $types;
 
 	debug("Beginning Processing for '" . $host['description'] . '[' . $host['hostname'] . "]', Table '$name'");
@@ -947,6 +963,10 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 				$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
 				$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 				read_config_option('snmp_retries'), $host['max_oids']);
+
+			if (!empty($snmp_error)) {
+				$snmp_errors++;
+			}
 
 			$hostMib = array_merge($hostMib, $walk);
 		}
@@ -1016,11 +1036,19 @@ function collectHostIndexedOid(&$host, $tree, $table, $name) {
 										$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 										read_config_option('snmp_retries'));
 
+									if (!empty($snmp_error)) {
+										$snmp_errors++;
+									}
+
 									$system = cacti_snmp_get($host['hostname'], $host['snmp_community'], '.1.3.6.1.4.1.2021.11.10.0', $host['snmp_version'],
 										$host['snmp_username'], $host['snmp_password'],
 										$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
 										$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
 										read_config_option('snmp_retries'));
+
+									if (!empty($snmp_error)) {
+										$snmp_errors++;
+									}
 
 									if (is_numeric($user) && is_numeric($system) && sizeof($mib)) {
 										$effective = (($user + $system) * 2) / (cacti_sizeof($mib));
