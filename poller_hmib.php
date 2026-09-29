@@ -148,7 +148,9 @@ exit(0);
  *
  * @param float $start     The current run's start time (from
  *                         microtime(true)).
- * @param int   $lastrun   The Unix timestamp of the task's last run.
+ * @param float $lastrun   The task's last-run time as a Unix timestamp; may
+ *                         carry fractional seconds when sourced from
+ *                         microtime(true).
  * @param int   $frequency The task's configured run frequency in
  *                         seconds; 0 disables the task.
  *
@@ -157,7 +159,7 @@ exit(0);
  * @global bool $forcerun Whether this run was started with '--force',
  *                        in which case the task always runs.
  */
-function runCollector(float $start, int $lastrun, int $frequency): bool {
+function runCollector(float $start, float $lastrun, int $frequency): bool {
 	global $forcerun;
 
 	if ((empty($lastrun) || ($start - $lastrun) > $frequency) && $frequency > 0 || $forcerun) {
