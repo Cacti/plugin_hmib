@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* dev: Enforce patch coverage of changed lines in CI and remove the inert COMPOSER_ROOT_VERSION env from the Pest step
 * dev: Bring all plugin code to PHPStan level 8 with accurate parameter and return types
 * dev: Adopt Cacti core's SNMP library and remove the bundled snmp.php/snmp_functions.php copies
 * issue: Fix Host Type CSV import (undefined name/version values and header-row parsing)
