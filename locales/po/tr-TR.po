@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-09-28 09:06-0400\n"
+"POT-Creation-Date: 2026-09-28 16:05-0400\n"
 "PO-Revision-Date: 2024-06-08 10:02-0400\n"
 "Last-Translator: San IPE <sanipe1949@krunsea.com>\n"
 "Language-Team: Turkish <http://translate.cacti.net/projects/cacti/hmib/tr/>\n"
@@ -18,973 +18,955 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#: hmib.php:36
+#: hmib.php
 msgid "Error"
 msgstr "Hata"
 
-#: hmib.php:37 hmib.php:52 hmib.php:197 hmib.php:596 hmib.php:892 hmib.php:1039
-#: hmib.php:1298 hmib.php:1416 hmib.php:1690 hmib.php:1797 hmib.php:1892
-#: hmib.php:2372 hmib.php:2626 hmib.php:3067 hmib_types.php:505
+#: hmib.php hmib_types.php
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: hmib.php:38
+#: hmib.php
 msgid "Operating System"
 msgstr "İşletim Sistemi"
 
-#: hmib.php:39
+#: hmib.php
 msgid "Device Driver"
 msgstr "Aygıt sürücüsü"
 
-#: hmib.php:40
+#: hmib.php
 msgid "Application"
 msgstr "Uygulama"
 
-#: hmib.php:44 hmib.php:53
+#: hmib.php
 msgid "Running"
 msgstr "Çalışıyor"
 
-#: hmib.php:45
+#: hmib.php
 msgid "Runnable"
 msgstr "Runnable"
 
-#: hmib.php:46
+#: hmib.php
 msgid "Not Runnable"
 msgstr "Çalıştırılamaz"
 
-#: hmib.php:47
+#: hmib.php
 msgid "Invalid"
 msgstr "Geçersiz"
 
-#: hmib.php:51
+#: hmib.php
 msgid "Present"
 msgstr "Mevcut"
 
-#: hmib.php:54
+#: hmib.php
 msgid "Warning"
 msgstr "Uyarı"
 
-#: hmib.php:55
+#: hmib.php
 msgid "Testing"
 msgstr "Test"
 
-#: hmib.php:56 hmib.php:1896 hmib.php:2963
+#: hmib.php
 msgid "Down"
 msgstr "Aşağı"
 
-#: hmib.php:183
+#: hmib.php
 msgid "Running Process History"
 msgstr "İşlem Geçmişini Çalıştırma"
 
-#: hmib.php:192 hmib.php:591 hmib.php:1034 hmib.php:1411 hmib.php:1792
-#: hmib.php:2367 hmib_types.php:1255
+#: hmib.php hmib_types.php
 msgid "OS Type"
 msgstr "Os türü"
 
-#: hmib.php:196 hmib.php:218 hmib.php:240 hmib.php:279 hmib.php:595
-#: hmib.php:617 hmib.php:639 hmib.php:678 hmib.php:1038 hmib.php:1060
-#: hmib.php:1082 hmib.php:1121 hmib.php:1415 hmib.php:1437 hmib.php:1459
-#: hmib.php:1498 hmib.php:1796 hmib.php:1818 hmib.php:1841 hmib.php:1877
-#: hmib.php:2371 hmib.php:2393 hmib.php:2415 hmib.php:2454
+#: hmib.php
 msgid "All"
 msgstr "Tümü"
 
-#: hmib.php:214 hmib.php:613 hmib.php:1056 hmib.php:1433 hmib.php:2389
+#: hmib.php
 msgid "Device"
 msgstr "Cihaz"
 
-#: hmib.php:236 hmib.php:635 hmib.php:1078 hmib.php:1455 hmib.php:1814
-#: hmib.php:2411
+#: hmib.php
 msgid "Template"
 msgstr "Şablon"
 
-#: hmib.php:260 hmib.php:659 hmib.php:1102 hmib.php:1479 hmib.php:1858
-#: hmib.php:2435 hmib.php:2868 hmib.php:3125 hmib_types.php:1178
-#: hmib_types.php:1275
+#: hmib.php hmib_types.php
 msgid "Go"
 msgstr "Git"
 
-#: hmib.php:261 hmib.php:660 hmib.php:1103 hmib.php:1480 hmib.php:1859
-#: hmib.php:2436 hmib.php:2869 hmib.php:3126 hmib_types.php:1276
+#: hmib.php hmib_types.php
 msgid "Clear"
 msgstr "Temizle"
 
-#: hmib.php:269 hmib.php:668 hmib.php:1111 hmib.php:1488 hmib.php:1867
-#: hmib.php:2444 hmib.php:3104 hmib_types.php:1249
+#: hmib.php hmib_types.php
 msgid "Search"
 msgstr "Ara"
 
-#: hmib.php:275 hmib.php:418 hmib.php:674 hmib.php:829 hmib.php:1837
+#: hmib.php
 msgid "Process"
 msgstr "Süreç"
 
-#: hmib.php:295 hmib.php:694 hmib.php:1137
+#: hmib.php
 msgid "Entries"
 msgstr "Kayıtlar"
 
-#: hmib.php:299 hmib.php:698 hmib.php:1141 hmib.php:1518 hmib.php:1923
-#: hmib.php:2473 hmib_types.php:1259
+#: hmib.php hmib_types.php
 msgid "Default"
 msgstr "Varsayılan"
 
-#: hmib.php:413 hmib.php:824 hmib.php:1249 hmib.php:1626 hmib.php:2038
-#: hmib.php:2582
+#: hmib.php
 msgid "Hostname"
 msgstr "Sunucu Adı"
 
-#: hmib.php:423
+#: hmib.php
 msgid "Last Seen"
 msgstr "Son Görülme"
 
-#: hmib.php:428
+#: hmib.php
 msgid "Use Time (d:h:m)"
 msgstr "Kullanım Süresi (d: h: m)"
 
-#: hmib.php:434
+#: hmib.php
 msgid "History"
 msgstr "Geçmiş"
 
-#: hmib.php:451 hmib.php:882 hmib.php:1292 hmib.php:1684 hmib.php:2184
-#: hmib.php:2620
+#: hmib.php
 msgid "Edit Device"
 msgstr "Cihazı Düzenle"
 
-#: hmib.php:465
+#: hmib.php
 msgid "No Process History Found"
 msgstr "İşlem Geçmişi Bulunamadı"
 
-#: hmib.php:582
+#: hmib.php
 msgid "Running Processes"
 msgstr "Çalışan İşlemler"
 
-#: hmib.php:834
+#: hmib.php
 msgid "Path"
 msgstr "Yol"
 
-#: hmib.php:839
+#: hmib.php
 msgid "Parameters"
 msgstr "Parametreler"
 
-#: hmib.php:844
+#: hmib.php
 msgid "CPU (Hrs)"
 msgstr "CPU (Saat)"
 
-#: hmib.php:849
+#: hmib.php
 msgid "Memory (MB)"
 msgstr "Hafıza (MB)"
 
-#: hmib.php:854 hmib.php:1117 hmib.php:1494 hmib.php:2450 hmib.php:2592
-#: hmib.php:2943
+#: hmib.php
 msgid "Type"
 msgstr "Tip"
 
-#: hmib.php:859 hmib.php:1264 hmib.php:1873 hmib.php:2043
+#: hmib.php
 msgid "Status"
 msgstr "Durum"
 
-#: hmib.php:865 hmib.php:2068 hmib.php:2664 hmib.php:3110 hmib.php:3226
+#: hmib.php
 msgid "Processes"
 msgstr "Süreçler"
 
-#: hmib.php:900
+#: hmib.php
 msgid "No Running Software Found"
 msgstr "Çalışan Yazılım Bulunamadı"
 
-#: hmib.php:928
+#: hmib.php
 msgid "Total CPU [h]:"
 msgstr "Toplam CPU [h]:"
 
-#: hmib.php:929
+#: hmib.php
 msgid "Total Size [MB]:"
 msgstr "Toplam Boyut [MB]:"
 
-#: hmib.php:933
+#: hmib.php
 msgid "Avg. CPU [h]:"
 msgstr "Ort. CPU [h]:"
 
-#: hmib.php:934
+#: hmib.php
 msgid "Avg. Size [MB]:"
 msgstr "Ort. Boyut [MB]:"
 
-#: hmib.php:1025
+#: hmib.php
 msgid "Hardware Inventory"
 msgstr "Donanım Envanteri"
 
-#: hmib.php:1254
+#: hmib.php
 msgid "Hardware Description"
 msgstr "Donanım Açıklaması"
 
-#: hmib.php:1259
+#: hmib.php
 msgid "Hardware Type"
 msgstr "Donanım türü"
 
-#: hmib.php:1269 hmib.php:1641
+#: hmib.php
 msgid "Errors"
 msgstr "Hatalar"
 
-#: hmib.php:1275 hmib.php:1919 hmib.php:2094 hmib.php:2661
+#: hmib.php
 msgid "Devices"
 msgstr "Cihazlar"
 
-#: hmib.php:1307
+#: hmib.php
 msgid "No Hardware Found"
 msgstr "Donanım bulunamadı"
 
-#: hmib.php:1402
+#: hmib.php
 msgid "Storage Inventory"
 msgstr "Depolama Envanteri"
 
-#: hmib.php:1514 hmib.php:1667
+#: hmib.php
 msgid "Volumes"
 msgstr "Birimler"
 
-#: hmib.php:1631
+#: hmib.php
 msgid "Storage Description"
 msgstr "Depolama açıklaması"
 
-#: hmib.php:1636
+#: hmib.php
 msgid "Storage Type"
 msgstr "Depolama türü"
 
-#: hmib.php:1646
+#: hmib.php
 msgid "Percent Used"
 msgstr "Kullanılan Yüzde"
 
-#: hmib.php:1651
+#: hmib.php
 msgid "Used (MB)"
 msgstr "Kullanılmış (MB)"
 
-#: hmib.php:1656
+#: hmib.php
 msgid "Total (MB)"
 msgstr "Toplam (MB)"
 
-#: hmib.php:1661
+#: hmib.php
 msgid "Alloc (KB)"
 msgstr "Alloc (KB)"
 
-#: hmib.php:1703
+#: hmib.php
 msgid "No Storage Devices Found"
 msgstr "Depolama Aygıtı Bulunamadı"
 
-#: hmib.php:1783
+#: hmib.php
 msgid "Device Filter"
 msgstr "Cihaz filtresi"
 
-#: hmib.php:1900 hmib.php:2958
+#: hmib.php
 msgid "Recovering"
 msgstr "kurtarma"
 
-#: hmib.php:1904 hmib.php:2953
+#: hmib.php
 msgid "Up"
 msgstr "Yukarı"
 
-#: hmib.php:1908 hmib.php:2968 setup.php:702
+#: hmib.php setup.php
 msgid "Disabled"
 msgstr "Devre dışı"
 
-#: hmib.php:2033 hmib.php:2938 hmib.php:3206 setup.php:816
+#: hmib.php setup.php
 msgid "Actions"
 msgstr "Eylemler"
 
-#: hmib.php:2048
+#: hmib.php
 msgid "Uptime(d:h:m)"
 msgstr "Çalışma süresi (d: s: d)"
 
-#: hmib.php:2053
+#: hmib.php
 msgid "Users"
 msgstr "Kullanıcılar"
 
-#: hmib.php:2058
+#: hmib.php
 msgid "CPU %%%"
 msgstr "İŞLEMCİ %"
 
-#: hmib.php:2063
+#: hmib.php
 msgid "CPUs"
 msgstr "CPU'lar"
 
-#: hmib.php:2073
+#: hmib.php
 msgid "Total Mem"
 msgstr "Toplam Mem"
 
-#: hmib.php:2078
+#: hmib.php
 msgid "Used Mem"
 msgstr "Kullanılan Mem"
 
-#: hmib.php:2083
+#: hmib.php
 msgid "Total Swap"
 msgstr "Toplam takas"
 
-#: hmib.php:2088
+#: hmib.php
 msgid "Used Swap"
 msgstr "Kullanılan Swap"
 
-#: hmib.php:2147 hmib.php:3050
+#: hmib.php
 msgid "View Storage"
 msgstr "Depolamayı görüntüle"
 
-#: hmib.php:2152 hmib.php:3052
+#: hmib.php
 msgid "View Hardware"
 msgstr "Donanımı Görüntüle"
 
-#: hmib.php:2157 hmib.php:3054 hmib.php:3282
+#: hmib.php
 msgid "View Processes"
 msgstr "İşlemleri Görüntüle"
 
-#: hmib.php:2162 hmib.php:3056
+#: hmib.php
 msgid "View Software Inventory"
 msgstr "Yazılım Envanterini Görüntüleyin"
 
-#: hmib.php:2168 hmib.php:3406 hmib.php:3408 hmib.php:3481 hmib.php:3483
+#: hmib.php
 msgid "View Graphs"
 msgstr "Grafikleri Görüntüle"
 
-#: hmib.php:2171
+#: hmib.php
 msgid "No Graphs Defined"
 msgstr "Tanımlanmış Grafik Yok"
 
-#: hmib.php:2178 hmib.php:2179
+#: hmib.php
 msgid "N/A"
 msgstr ""
 
-#: hmib.php:2205
+#: hmib.php
 msgid "No Devices Found"
 msgstr "Hiç Aygıtı Bulunamadı"
 
-#: hmib.php:2358
+#: hmib.php
 msgid "Software Inventory"
 msgstr "Yazılım Envanteri"
 
-#: hmib.php:2469 hmib.php:2603
+#: hmib.php
 msgid "Applications"
 msgstr "Uygulamalar"
 
-#: hmib.php:2587
+#: hmib.php
 msgid "Package"
 msgstr "Paket"
 
-#: hmib.php:2597
+#: hmib.php
 msgid "Installed"
 msgstr "Yüklü"
 
-#: hmib.php:2634
+#: hmib.php
 msgid "No Software Packages Found"
 msgstr "Yazılım Paketi Bulunamadı"
 
-#: hmib.php:2660
+#: hmib.php
 msgid "Summary"
 msgstr "Özet"
 
-#: hmib.php:2662
+#: hmib.php
 msgid "Storage"
 msgstr "Depolama"
 
-#: hmib.php:2663
+#: hmib.php
 msgid "Hardware"
 msgstr "Donanım"
 
-#: hmib.php:2665
+#: hmib.php
 msgid "Use History"
 msgstr "Geçmişi Kullan"
 
-#: hmib.php:2666
+#: hmib.php
 msgid "Inventory"
 msgstr "Envanter"
 
-#: hmib.php:2667 hmib.php:3628
+#: hmib.php
 msgid "Graphs"
 msgstr "Grafikler"
 
-#: hmib.php:2846
+#: hmib.php
 msgid "Summary Filter"
 msgstr "Özet Filtresi"
 
-#: hmib.php:2855
+#: hmib.php
 #, fuzzy
 #| msgid "Type"
 msgid "Types"
 msgstr "Tip"
 
-#: hmib.php:2859
+#: hmib.php
 msgid "All Records"
 msgstr "Tüm Kayıtlar"
 
-#: hmib.php:2860 hmib.php:3118
+#: hmib.php
 #, php-format
 msgid "%d Records"
 msgstr "% d Kayıt"
 
-#: hmib.php:2861 hmib.php:2862 hmib.php:2863
+#: hmib.php
 #, php-format
 msgid "%d Record"
 msgstr "% d Kayıt"
 
-#: hmib.php:2873 hmib.php:3130
+#: hmib.php
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
 msgstr "NOT: Grafikleri görüntülemek için Ana Bilgisayar MIB Aygıt Paketini içe aktarın."
 
-#: hmib.php:2896
+#: hmib.php
 msgid "Device Type Summary Statistics"
 msgstr "Cihaz Türü Özet İstatistikleri"
 
-#: hmib.php:2948 hmib_types.php:944
+#: hmib.php hmib_types.php
 msgid "Version"
 msgstr "Versiyon"
 
-#: hmib.php:2973
+#: hmib.php
 msgid "Logins"
 msgstr "Oturumlar"
 
-#: hmib.php:2978
+#: hmib.php
 msgid "CPUS"
 msgstr "CPU'lar"
 
-#: hmib.php:2983 hmib.php:3231
+#: hmib.php
 msgid "Avg CPU"
 msgstr "Ort. CPU"
 
-#: hmib.php:2988 hmib.php:3236
+#: hmib.php
 msgid "Max CPU"
 msgstr "Maksimum işlemci"
 
-#: hmib.php:2993
+#: hmib.php
 msgid "Avg Mem"
 msgstr "Ort. Mem"
 
-#: hmib.php:2998
+#: hmib.php
 msgid "Max Mem"
 msgstr "Max Mem"
 
-#: hmib.php:3003
+#: hmib.php
 msgid "Avg Swap"
 msgstr "Ort. Swap"
 
-#: hmib.php:3008
+#: hmib.php
 msgid "Max Swap"
 msgstr "Max Swap"
 
-#: hmib.php:3013
+#: hmib.php
 msgid "Avg Proc"
 msgstr "Ort. İşlem"
 
-#: hmib.php:3018
+#: hmib.php
 msgid "Max Proc"
 msgstr "Max Proc"
 
-#: hmib.php:3048 hmib.php:3279 hmib.php:3334
+#: hmib.php
 msgid "View Devices"
 msgstr "Cihazları Görüntüle"
 
-#: hmib.php:3090
+#: hmib.php
 msgid "No Device Types"
 msgstr "Aygıt Türü Yok"
 
-#: hmib.php:3095
+#: hmib.php
 msgid "Process Summary Filter"
 msgstr "İşlem Özeti Filtresi"
 
-#: hmib.php:3211
+#: hmib.php
 msgid "Process Name"
 msgstr "İşlem adı"
 
-#: hmib.php:3216
+#: hmib.php
 msgid "Num Paths"
 msgstr "Num Yolları"
 
-#: hmib.php:3221 hmib_types.php:1113
+#: hmib.php hmib_types.php
 msgid "Hosts"
 msgstr "Ana makineler"
 
-#: hmib.php:3241
+#: hmib.php
 msgid "Avg Memory"
 msgstr "Ort. Hafıza"
 
-#: hmib.php:3246
+#: hmib.php
 msgid "Max Memory"
 msgstr "Maksimum bellek"
 
-#: hmib.php:3252
+#: hmib.php
 #, fuzzy
 #| msgid "Summary"
 msgid "Summary Stats"
 msgstr "Özet"
 
-#: hmib.php:3292 hmib.php:3293
+#: hmib.php
 #, php-format
 msgid "%s Hrs"
 msgstr "%s Saat"
 
-#: hmib.php:3294 hmib.php:3295
+#: hmib.php
 #, php-format
 msgid "%s MB"
 msgstr "%s MB"
 
-#: hmib.php:3302
+#: hmib.php
 msgid "No Processes"
 msgstr "Süreçler"
 
-#: hmib.php:3551
+#: hmib.php
 msgid "Custom Graph List Applied - Filtering from List"
 msgstr "Uygulanan Özel Grafik Listesi - Listeden Filtreleme"
 
-#: hmib.php:3551
+#: hmib.php
 msgid "Graph Preview Filters"
 msgstr "Grafik Önizleme Filtreleri"
 
-#: hmib_types.php:30
+#: hmib_types.php
 msgid "Delete"
 msgstr "Sil"
 
-#: hmib_types.php:31
+#: hmib_types.php
 msgid "Duplicate"
 msgstr "Kopyala"
 
-#: hmib_types.php:335
+#: hmib_types.php
 msgid "Click 'Continue' to Delete the following Host Type(s)"
 msgstr "Aşağıdaki Ana Bilgisayar Türlerini silmek için 'Devam Et'i tıklayın."
 
-#: hmib_types.php:340 hmib_types.php:353
+#: hmib_types.php
 msgid "Cancel"
 msgstr "İptal"
 
-#: hmib_types.php:341 hmib_types.php:354
+#: hmib_types.php
 msgid "Continue"
 msgstr "Devam et"
 
-#: hmib_types.php:341
+#: hmib_types.php
 msgid "Delete Host Type(s)"
 msgstr "Ana Bilgisayar Türlerini Sil"
 
-#: hmib_types.php:345
+#: hmib_types.php
 msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
 msgstr "Aşağıdaki Ana Bilgisayar Türlerini Çoğaltmak için 'Devam Et'i tıklayın. İsteğe bağlı olarak yeni Ana Bilgisayar Türleri için açıklamasını değiştirebilirsiniz. Aksi takdirde, aşağıdaki değeri değiştirmeyin; orijinal ad yeni bir sonek ile çoğaltılır."
 
-#: hmib_types.php:347
+#: hmib_types.php
 msgid "Host Type Prefix:"
 msgstr "Ana Bilgisayar Türü Öneki:"
 
-#: hmib_types.php:354
+#: hmib_types.php
 msgid "Duplicate Host Type(s)"
 msgstr "Yinelenen Ana Bilgisayar Türleri"
 
-#: hmib_types.php:504
+#: hmib_types.php
 msgid "New Type"
 msgstr "Yeni Tür"
 
-#: hmib_types.php:551
+#: hmib_types.php
 #, php-format
 msgid "There were %d Device Types Added!"
 msgstr "%d Cihaz Türü Eklendi!"
 
-#: hmib_types.php:554
+#: hmib_types.php
 msgid "No New Host Types Found!"
 msgstr "Yeni Konak Tipi Bulunamadı!"
 
-#: hmib_types.php:577
+#: hmib_types.php
 msgid "Import Results"
 msgstr "İçeri Aktarma Sonuçları"
 
-#: hmib_types.php:579
+#: hmib_types.php
 msgid "Cacti has imported the following items:"
 msgstr "Cacti aşağıdakileri ithal etti:"
 
-#: hmib_types.php:592
+#: hmib_types.php
 msgid "Import Host MIB OS Types"
 msgstr "Ana Bilgisayar MIB İşletim Sistemi Türlerini İçe Aktar"
 
-#: hmib_types.php:595
+#: hmib_types.php
 msgid "Import Device Types from Local File"
 msgstr "Aygıt Dosyalarını Yerel Dosyadan İçe Aktar"
 
-#: hmib_types.php:596
+#: hmib_types.php
 msgid "Please specify the location of the CSV file containing your device type information."
 msgstr "Lütfen cihaz türü bilgilerinizi içeren CSV dosyasının konumunu belirtin."
 
-#: hmib_types.php:603
+#: hmib_types.php
 msgid "Overwrite Existing Data?"
 msgstr "Mevcut Verilerin Üzerine Yazılsın mı?"
 
-#: hmib_types.php:604
+#: hmib_types.php
 msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
 msgstr "İçe aktarma işleminin mevcut verilerin üzerine yazmasına izin verilmeli midir? Lütfen dikkat, bu eski satırı silmek anlamına gelmez, sadece tekrarlanan satırları değiştir."
 
-#: hmib_types.php:607
+#: hmib_types.php
 msgid "Allow Existing Rows to be Updated?"
 msgstr "Mevcut Satırların Güncellenmesine İzin Verilsin mi?"
 
-#: hmib_types.php:612
+#: hmib_types.php
 msgid "Required File Format Notes"
 msgstr "Gerekli Dosya Biçimi Notları"
 
-#: hmib_types.php:615
+#: hmib_types.php
 msgid "The file must contain a header row with the following column headings."
 msgstr "Dosya, aşağıdaki sütun başlıklarına sahip bir başlık satırı içermelidir."
 
-#: hmib_types.php:617
+#: hmib_types.php
 msgid "A common name for the Host Type.  For example, Windows 7"
 msgstr "Ana Bilgisayar Türü için ortak bir ad. Örneğin, Windows 7"
 
-#: hmib_types.php:618
+#: hmib_types.php
 msgid "The OS version for the Host Type"
 msgstr "Ana Bilgisayar Türü için işletim sistemi sürümü"
 
-#: hmib_types.php:619
+#: hmib_types.php
 msgid "A unique set of characters from the snmp sysDescr that uniquely identify this device"
 msgstr "Bu aygıtı benzersiz şekilde tanımlayan snmp sysDescr öğesinden benzersiz bir karakter kümesi"
 
-#: hmib_types.php:620
+#: hmib_types.php
 msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
 msgstr "Bu cihazı diğerinden ayıran satıcıya özgü snmp sysObjectID"
 
-#: hmib_types.php:622
+#: hmib_types.php
 msgid "The primary key for this table is a combination of the following two fields:"
 msgstr "Bu tablonun birincil anahtarı, aşağıdaki iki alanın birleşimidir:"
 
-#: hmib_types.php:626
+#: hmib_types.php
 msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
 msgstr "Bu nedenle, yinelenen aygıt türlerini içe aktarmayı denerseniz, mevcut veriler yeni bilgilerle güncellenir."
 
-#: hmib_types.php:628
+#: hmib_types.php
 msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
 msgstr "Ana Bilgisayar Türü, snmp aracısını sysObjectID ve sysDescription için tarayarak ve Ana Bilgisayar Türleri veritabanındaki değerlerle karşılaştırarak belirlenir. Veritabanında bulunan ilk eşleme, toplu Ana Bilgisayar verileri kullanılır. Bu nedenle, Ana Bilgisayarlarınız için geçerli sysObjectID, sysDescrMatch seçmeniz çok önemlidir."
 
-#: hmib_types.php:933
+#: hmib_types.php
 msgid "Device Scanning Function Options"
 msgstr "Cihaz Tarama Fonksiyonu Seçenekleri"
 
-#: hmib_types.php:937
+#: hmib_types.php
 msgid "Name"
 msgstr "İsim"
 
-#: hmib_types.php:938
+#: hmib_types.php
 msgid "Give this Host Type a meaningful name."
 msgstr "Bu Ana Bilgisayarı Ver'e anlamlı bir ad verin."
 
-#: hmib_types.php:945
+#: hmib_types.php
 msgid "Fill in the name for the version of this Host Type."
 msgstr "Bu Ana Bilgisayar Türü sürümünün adını girin."
 
-#: hmib_types.php:952
+#: hmib_types.php
 msgid "System Description Match"
 msgstr "Sistem Açıklaması Eşleşmesi"
 
-#: hmib_types.php:953 hmib_types.php:960
+#: hmib_types.php
 #, fuzzy, php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
 msgstr "HMIB'ın Ana Bilgisayar türünü algılamasına yardımcı olacak temel bilgileri girin. SQL Where ifadeleri desteklenir. SQL Joker karakter '%' işaretidir. Uyumluluk sorunları nedeniyle normal İfadeler kaldırıldı."
 
-#: hmib_types.php:959
+#: hmib_types.php
 msgid "Vendor snmp Object ID"
 msgstr "Satıcı snmp Nesne Kimliği"
 
-#: hmib_types.php:980
+#: hmib_types.php
 #, php-format
 msgid "Host MIB OS Types [edit: %s]"
 msgstr "Ana Bilgisayar MIB OS Tipleri [değiştir: %s]"
 
-#: hmib_types.php:982
+#: hmib_types.php
 msgid "Host MIB OS Types [new]"
 msgstr "Ana Bilgisayar MIB İşletim Sistemi Türleri [yeni]"
 
-#: hmib_types.php:1090
+#: hmib_types.php
 msgid "Host MIB OS Type Filters"
 msgstr "Ana Bilgisayar MIB OS Tipi Filtreler"
 
-#: hmib_types.php:1102 setup.php:785
+#: hmib_types.php setup.php
 msgid "OS Types"
 msgstr "İşletim Sistemi Türleri"
 
-#: hmib_types.php:1111
+#: hmib_types.php
 msgid "Host Type Name"
 msgstr "Ana Bilgisayar Türü Adı"
 
-#: hmib_types.php:1112
+#: hmib_types.php
 msgid "OS Version"
 msgstr "OS sürümü"
 
-#: hmib_types.php:1114
+#: hmib_types.php
 msgid "SNMP ObjectID"
 msgstr "SNMP Nesne Kimliği"
 
-#: hmib_types.php:1115
+#: hmib_types.php
 msgid "SNMP Sys Description Match"
 msgstr "SNMP Sys Açıklama Eşleşme"
 
-#: hmib_types.php:1132
+#: hmib_types.php
 msgid "No Host Types Found"
 msgstr "Ana Bilgisayar Türü Bulunamadı"
 
-#: hmib_types.php:1174
+#: hmib_types.php
 msgid "Choose an action:"
 msgstr "Eylem Seçiniz..."
 
-#: hmib_types.php:1277
+#: hmib_types.php
 msgid "Rescan"
 msgstr "Yeniden Tara"
 
-#: hmib_types.php:1277
+#: hmib_types.php
 msgid "Scan for New or Unknown Device Types"
 msgstr "Yeni veya Bilinmeyen Aygıt Türlerini Tara"
 
-#: hmib_types.php:1278 setup.php:818
+#: hmib_types.php setup.php
 msgid "Import"
 msgstr "İçe Aktar"
 
-#: hmib_types.php:1278
+#: hmib_types.php
 msgid "Import Host Types from a CSV File"
 msgstr "CSV Dosyasından Ana Bilgisayar Türlerini İçe Aktar"
 
-#: hmib_types.php:1279
+#: hmib_types.php
 msgid "Export"
 msgstr "Dışa Aktar"
 
-#: hmib_types.php:1279
+#: hmib_types.php
 msgid "Export Host Types to Share with Others"
 msgstr "Başkalarıyla Paylaşmak için Ana Bilgisayar Türlerini Dışa Aktar"
 
-#: setup.php:63
+#: setup.php
 msgid "Host MIB Viewer"
 msgstr "Eklentisi -> Host MIB Viewer"
 
-#: setup.php:64
+#: setup.php
 msgid "Host MIB Admin"
 msgstr "Eklentisi -> Host MIB Admin"
 
-#: setup.php:517
+#: setup.php
 msgid "Host MIB"
 msgstr "Konak MIB Grafikleri"
 
-#: setup.php:520
+#: setup.php
 msgid "Host MIB General Settings"
 msgstr "Ana Bilgisayar MIB Genel Ayarları"
 
-#: setup.php:524
+#: setup.php
 msgid "Host MIB Poller Enabled"
 msgstr "Ana Bilgisayar MIB Poller Etkin"
 
-#: setup.php:525
+#: setup.php
 msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
 msgstr "Host MIB sorgulamanın etkin olmasını istiyorsanız bu kutuyu işaretleyin. Aksi takdirde, yoklayıcı çalışmayacaktır."
 
-#: setup.php:530
+#: setup.php
 msgid "Automatically Discover Cacti Devices"
 msgstr "Cacti Cihazlarını Otomatik Olarak Keşfedin"
 
-#: setup.php:531
+#: setup.php
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
 msgstr "Cacti ana bilgisayar tablosundan Ana Bilgisayar Kaynak MIB'sini destekleyen cihazları otomatik olarak taramak ve eklemek ister misiniz?"
 
-#: setup.php:536
+#: setup.php
 msgid "Automatically Purge Devices"
 msgstr "Cihazları Otomatik Olarak Temizle"
 
-#: setup.php:537
+#: setup.php
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
 msgstr "Cacti sisteminden kaldırılan cihazları otomatik olarak temizlemek istiyor musunuz?"
 
-#: setup.php:542
+#: setup.php
 msgid "Default Row Count"
 msgstr "Varsayılan Satır Sayısı"
 
-#: setup.php:543
+#: setup.php
 msgid "How many rows do you wish to see on the HMIB OS Type by default?"
 msgstr "HMIB OS Tipinde varsayılan olarak kaç satır görmek istiyorsunuz?"
 
-#: setup.php:549
+#: setup.php
 msgid "Default Top Host Types"
 msgstr "Varsayılan Üst Ana Bilgisayar Türleri"
 
-#: setup.php:550 setup.php:561
+#: setup.php
 msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
 msgstr "HMIB Panosunda varsayılan olarak kaç işlem görmek istiyorsunuz?"
 
-#: setup.php:554 setup.php:555 setup.php:556 setup.php:557
+#: setup.php
 #, php-format
 msgid "%d Types"
 msgstr "% d Türleri"
 
-#: setup.php:560
+#: setup.php
 msgid "Default Top Processes"
 msgstr "Varsayılan Üst İşlemler"
 
-#: setup.php:565 setup.php:566 setup.php:567 setup.php:568 setup.php:577
-#: setup.php:578 setup.php:579 setup.php:580 setup.php:581 setup.php:582
-#: setup.php:583 setup.php:584 setup.php:585
+#: setup.php
 #, php-format
 msgid "%d Processes"
 msgstr "% d İşlemler"
 
-#: setup.php:571
+#: setup.php
 msgid "Maximum Concurrent Collectors"
 msgstr "Maksimum Eşzamanlı Koleksiyoner"
 
-#: setup.php:572
+#: setup.php
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
 msgstr "Bir kerede çalıştırmak istediğiniz maksimum eşzamanlı toplayıcı işlem sayısı nedir?"
 
-#: setup.php:576
+#: setup.php
 #, php-format
 msgid "%d Process"
 msgstr "% d Süreç"
 
-#: setup.php:588
+#: setup.php
 msgid "Host Auto Discovery Frequency"
 msgstr "Ana Bilgisayar Otomatik Bulma Frekansı"
 
-#: setup.php:592
+#: setup.php
 msgid "Auto Discovery Frequency"
 msgstr "Otomatik Keşif Frekansı"
 
-#: setup.php:593
+#: setup.php
 msgid "How often do you want to look for new Cacti Devices?"
 msgstr "Ne kadar sıklıkla yeni Cacti Cihazları aramak istersiniz?"
 
-#: setup.php:599
+#: setup.php
 msgid "Host Graph Automation"
 msgstr "Ana Bilgisayar Grafiği Otomasyonu"
 
-#: setup.php:603
+#: setup.php
 msgid "Automatically Add New Graphs"
 msgstr "Yeni Grafikleri Otomatik Olarak Ekle"
 
-#: setup.php:604
+#: setup.php
 msgid "How often do you want to check for new objects to graph?"
 msgstr "Yeni nesnelerin grafiğini ne sıklıkla kontrol etmek istiyorsunuz?"
 
-#: setup.php:608
+#: setup.php
 msgid "Never"
 msgstr "Asla"
 
-#: setup.php:609 setup.php:707
+#: setup.php
 #, php-format
 msgid "%d Hour"
 msgstr "%d Saat"
 
-#: setup.php:610 setup.php:708 setup.php:709 setup.php:710
+#: setup.php
 #, php-format
 msgid "%d Hours"
 msgstr "%d Saat"
 
-#: setup.php:611 setup.php:711
+#: setup.php
 #, php-format
 msgid "%d Day"
 msgstr "%d Gün"
 
-#: setup.php:612
+#: setup.php
 #, php-format
 msgid "%d Days"
 msgstr "%d Gün"
 
-#: setup.php:615
+#: setup.php
 msgid "Host MIB Table Collection Frequencies"
 msgstr "Host MIB Masa Toplama Frekansları"
 
-#: setup.php:619
+#: setup.php
 msgid "Running Programs Frequency"
 msgstr "Çalışan Programlar Frekansı"
 
-#: setup.php:620
+#: setup.php
 msgid "How often do you want to scan running software?"
 msgstr "Çalışan yazılımı ne sıklıkla taramak istiyorsunuz?"
 
-#: setup.php:626
+#: setup.php
 msgid "Running Programs CPU/Memory Frequency"
 msgstr "Çalışan Programlar CPU / Bellek Frekansı"
 
-#: setup.php:627
+#: setup.php
 msgid "How often do you want to scan running software for performance data?"
 msgstr "Çalışan yazılımları performans verileri için ne sıklıkla taramak istiyorsunuz?"
 
-#: setup.php:633
+#: setup.php
 msgid "Installed Software Frequency"
 msgstr "Kurulu Yazılım Frekansı"
 
-#: setup.php:634
+#: setup.php
 msgid "How often do you want to scan for installed software?"
 msgstr "Yüklü yazılımı ne sıklıkla taramak istiyorsunuz?"
 
-#: setup.php:640
+#: setup.php
 msgid "Storage Frequency"
 msgstr "Depolama frekansı"
 
-#: setup.php:641
+#: setup.php
 msgid "How often do you want to scan for Storage performance data?"
 msgstr "Depolama performansı verilerini ne sıklıkla taramak istiyorsunuz?"
 
-#: setup.php:647
+#: setup.php
 msgid "Device Frequency"
 msgstr "Cihaz Frekansı"
 
-#: setup.php:648
+#: setup.php
 msgid "How often do you want to scan for Device performance data?"
 msgstr "Cihaz performans verilerini ne sıklıkla taramak istiyorsunuz?"
 
-#: setup.php:654
+#: setup.php
 msgid "Processor Frequency"
 msgstr "İşlemci Frekansı"
 
-#: setup.php:655
+#: setup.php
 msgid "How often do you want to scan for Processor performance data?"
 msgstr "İşlemci performans verilerini ne sıklıkla taramak istiyorsunuz?"
 
-#: setup.php:703
+#: setup.php
 #, php-format
 msgid "%d Minute"
 msgstr "% d dakika"
 
-#: setup.php:704 setup.php:705 setup.php:706
+#: setup.php
 #, php-format
 msgid "%d Minutes"
 msgstr "%d Dakika"
 
-#: setup.php:785
+#: setup.php
 msgid "Management"
 msgstr "Kullanıcı Yonetimi"
 
-#: setup.php:788
+#: setup.php
 msgid "Normal User"
 msgstr "Normal Kullanıcı"
 
-#: setup.php:789
+#: setup.php
 msgid "General Administration"
 msgstr "Genel Yönetim"
 
-#: setup.php:806
+#: setup.php
 msgid "Host MIB Inventory Summary"
 msgstr "Ana Bilgisayar MIB Envanter Özeti"
 
-#: setup.php:807
+#: setup.php
 msgid "Host MIB Details"
 msgstr "Ev sahibi MIB Details"
 
-#: setup.php:808
+#: setup.php
 msgid "Host MIB Storage"
 msgstr "Ana Bilgisayar MIB Depolama"
 
-#: setup.php:809
+#: setup.php
 msgid "Host MIB Hardware"
 msgstr "Ana Bilgisayar MIB Donanımı"
 
-#: setup.php:810
+#: setup.php
 msgid "Host MIB Running Processes"
 msgstr "Ana Bilgisayar MIB Koşu İşlemleri"
 
-#: setup.php:811
+#: setup.php
 msgid "Host MIB Process Use History"
 msgstr "Ana Bilgisayar MIB İşlemi Kullanımı Geçmişi"
 
-#: setup.php:812
+#: setup.php
 msgid "Host MIB Software Inventory"
 msgstr "Host MIB Yazılım Envanteri"
 
-#: setup.php:813
+#: setup.php
 msgid "Host MIB Graphs"
 msgstr "Konak MIB Grafikleri"
 
-#: setup.php:815
+#: setup.php
 msgid "Host MIB OS Types"
 msgstr "Ana Bilgisayar MIB İşletim Sistemi Türleri"
 
-#: setup.php:817
+#: setup.php
 msgid "(Edit)"
 msgstr "(Düzenle)"
 
