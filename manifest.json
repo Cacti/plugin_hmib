@@ -13,7 +13,6 @@
         "index.php",
         "locales/",
         "manifest.json",
-        "phpunit.xml",
         "poller_graphs.php",
         "poller_hmib.php",
         "setup.php",
