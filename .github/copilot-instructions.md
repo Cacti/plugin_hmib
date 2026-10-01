@@ -25,20 +25,20 @@ When generating code for this repository:
 ## Project Structure
 
 ```
-hmib/                       # Repository root (install to plugins/hmib/ in Cacti)
-├── images/                  # UI icons
-├── locales/                  # Internationalization files
-├── templates/                 # Device/graph template XML
-├── associate_os_type.php        # Maps discovered devices to Host MIB types
-├── hmib.php                      # Main viewer (summary, hardware, storage, software, running, devices)
-├── hmib_types.php                  # Host MIB type administration
-├── poller_graphs.php                # Graph URL helper output
-├── poller_hmib.php                   # Background poller entry point (CLI)
-├── snmp.php                           # SNMP collection routines
-├── snmp_functions.php                  # SNMP helper/formatting functions
-├── INFO                                 # Plugin metadata (name, version, compat)
+hmib/                     # Repository root (install to plugins/hmib/ in Cacti)
+├── images/               # UI icons
+├── locales/              # Internationalization files
+├── templates/            # Device/graph template XML
+├── associate_os_type.php # Maps discovered devices to Host MIB types
+├── hmib.php              # Main viewer (summary, hardware, storage, software, running, devices)
+├── hmib_types.php        # Host MIB type administration
+├── poller_graphs.php     # Graph URL helper output
+├── poller_hmib.php       # Background poller entry point (CLI)
+├── snmp.php              # SNMP collection routines
+├── snmp_functions.php    # SNMP helper/formatting functions
+├── INFO                  # Plugin metadata (name, version, compat)
 ├── README.md
-└── setup.php                             # Plugin install/uninstall/upgrade hooks
+└── setup.php             # Plugin install/uninstall/upgrade hooks
 ```
 
 ## Naming Conventions
