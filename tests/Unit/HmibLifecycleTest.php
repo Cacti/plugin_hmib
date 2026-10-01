@@ -38,7 +38,7 @@ beforeEach(function () {
 	test_set_current_page('hmib.php');
 
 	// Sandbox base_path so any upgrade-path test (hmib_check_upgrade drifts and
-	// runs plugin_hmib_prune_files) operates on a throwaway tree with a minimal
+	// runs hmib_prune_files) operates on a throwaway tree with a minimal
 	// INFO, never the real checkout.
 	$GLOBALS['__hmib_base_restore'] = $GLOBALS['config']['base_path'];
 	$base = sys_get_temp_dir() . '/hmib-test-' . uniqid();

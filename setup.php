@@ -181,7 +181,7 @@ function hmib_check_upgrade(): void {
 		}
 
 		// Remove files tombstoned in manifest.json plus the dev-only tests/ tree.
-		plugin_hmib_prune_files();
+		hmib_prune_files();
 
 		db_execute("UPDATE plugin_config SET version='$current' WHERE directory='hmib'");
 		db_execute("UPDATE plugin_config SET
@@ -756,7 +756,7 @@ function hmib_get_disk(array $host_index): array|string {
  * @global array $config Cacti global configuration array; used to resolve
  *                       the plugin directory.
  */
-function plugin_hmib_prune_files(): void {
+function hmib_prune_files(): void {
 	global $config;
 
 	$plugin_dir    = $config['base_path'] . '/plugins/hmib';
@@ -842,7 +842,7 @@ function plugin_hmib_prune_files(): void {
 		}
 
 		if (is_dir($path) && !is_link($path)) {
-			$removed = plugin_hmib_rmtree($path);
+			$removed = hmib_rmtree($path);
 		} else {
 			$removed = @unlink($path);
 		}
@@ -876,14 +876,14 @@ function plugin_hmib_prune_files(): void {
 
 /**
  * Recursively deletes a directory and its contents. Symlinks are removed
- * without being followed. Helper for plugin_hmib_prune_files().
+ * without being followed. Helper for hmib_prune_files().
  *
  * @param string $dir Absolute path to the directory to remove.
  *
  * @return bool True if the directory and everything under it was removed;
  *              false if any entry could not be deleted.
  */
-function plugin_hmib_rmtree(string $dir): bool {
+function hmib_rmtree(string $dir): bool {
 	$entries = scandir($dir);
 	$ok      = true;
 
@@ -895,7 +895,7 @@ function plugin_hmib_rmtree(string $dir): bool {
 		$path = $dir . '/' . $entry;
 
 		if (is_dir($path) && !is_link($path)) {
-			if (!plugin_hmib_rmtree($path)) {
+			if (!hmib_rmtree($path)) {
 				$ok = false;
 			}
 		} elseif (!@unlink($path)) {
