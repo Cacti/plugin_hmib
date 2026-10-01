@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* dev: Relocate schema provisioning into includes/database.php (loaded from setup.php) and add the fleet manifest.json with upgrade-time file pruning
 * dev: Enforce patch coverage of changed lines in CI and remove the inert COMPOSER_ROOT_VERSION env from the Pest step, and measure coverage with xdebug so the plugin's own sources are instrumented
 * issue: Fix PHP 8.1+ 'float-string to int loses precision' deprecation from runCollector() by typing the last-run timestamp parameter as float
 * dev: Bring all plugin code to PHPStan level 8 with accurate parameter and return types

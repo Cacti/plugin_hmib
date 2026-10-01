@@ -22,6 +22,8 @@
  +-------------------------------------------------------------------------+
 */
 
+require_once(__DIR__ . '/includes/database.php');
+
 /**
  * Return the CSP nonce attribute for inline <script> tags, safely across
  * Cacti versions. Newer Cacti releases enforce a Content-Security-Policy that
@@ -178,6 +180,9 @@ function hmib_check_upgrade(): void {
 			api_plugin_enable_hooks('hmib');
 		}
 
+		// Remove files tombstoned in manifest.json plus the dev-only tests/ tree.
+		hmib_prune_files();
+
 		db_execute("UPDATE plugin_config SET version='$current' WHERE directory='hmib'");
 		db_execute("UPDATE plugin_config SET
 			version='" . $info['version'] . "',
@@ -207,270 +212,6 @@ function hmib_check_dependencies(): bool {
 	return true;
 }
 
-/**
- * Creates (if not already present) all of this plugin's database
- * tables: plugin_hmib_hrDevices and the other Host Resources data
- * tables, type/system tables, and the process-lock table. Called from
- * plugin_hmib_install().
- *
- * @return void
- *
- * @global array $config           Cacti global configuration array;
- *                                 used to include the database library.
- * @global mixed $database_default Reserved/declared for parity with
- *                                 other setup functions; not used
- *                                 directly here.
- */
-function hmib_setup_table(): void {
-	global $config, $database_default;
-	include_once($config['library_path'] . '/database.php');
-
-	db_execute("CREATE TABLE IF NOT EXISTS `plugin_hmib_hrDevices` (
-		`host_id` int(10) unsigned NOT NULL,
-		`index` int(10) unsigned NOT NULL,
-		`type` int(10) unsigned NOT NULL DEFAULT '1',
-		`description` varchar(255) NOT NULL DEFAULT '',
-		`status` int(10) unsigned NOT NULL DEFAULT '0',
-		`errors` int(10) unsigned NOT NULL DEFAULT '0',
-		`present` tinyint(3) unsigned NOT NULL DEFAULT '1',
-		PRIMARY KEY (`host_id`,`index`),
-		INDEX `description` (`description`),
-		INDEX `index` (`index`))
-		ENGINE=MyISAM
-		COMMENT='Stores Device Information';");
-
-	db_execute("CREATE TABLE IF NOT EXISTS `plugin_hmib_hrSWInstalled` (
-		`host_id` int(10) unsigned NOT NULL,
-		`index` int(10) unsigned NOT NULL,
-		`name` varchar(255) NOT NULL default '',
-		`type` int(10) unsigned NOT NULL default '1',
-		`date` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-		`present` tinyint(3) unsigned NOT NULL default '1',
-		PRIMARY KEY  (`host_id`,`index`),
-		INDEX `name` (`name`),
-		INDEX `index` (`index`))
-		ENGINE=MyISAM
-		COMMENT='Catalogue of Installed Software';");
-
-	db_execute("CREATE TABLE IF NOT EXISTS `plugin_hmib_hrProcessor` (
-		`host_id` int(10) unsigned NOT NULL,
-		`index` int(10) unsigned NOT NULL,
-		`load` int(10) unsigned NOT NULL default '0',
-		`present` tinyint(3) unsigned NOT NULL default '1',
-		PRIMARY KEY  (`host_id`,`index`),
-		INDEX `index` (`index`))
-		ENGINE=MyISAM
-		COMMENT='Stores Processor Information';");
-
-	db_execute("CREATE TABLE IF NOT EXISTS `plugin_hmib_hrStorage` (
-		`host_id` int(10) unsigned NOT NULL,
-		`index` int(10) unsigned NOT NULL,
-		`type` int(10) unsigned NOT NULL default '1',
-		`description` varchar(255) NOT NULL default '',
-		`allocationUnits` int(10) unsigned NOT NULL default '0',
-		`size` int(10) unsigned NOT NULL default '0',
-		`used` int(10) unsigned NOT NULL default '0',
-		`failures` int(10) unsigned NOT NULL default '0',
-		`present` tinyint(3) unsigned NOT NULL default '1',
-		PRIMARY KEY  (`host_id`,`index`),
-		INDEX `description` (`description`),
-		INDEX `index` (`index`))
-		ENGINE=MyISAM
-		COMMENT='Stores the Storage Information';");
-
-	db_execute("CREATE TABLE IF NOT EXISTS `plugin_hmib_hrSWRun` (
-		`host_id` int(10) unsigned NOT NULL,
-		`index` int(10) unsigned NOT NULL,
-		`name` varchar(64) NOT NULL default '',
-		`path` varchar(255) NOT NULL default '',
-		`parameters` varchar(255) NOT NULL default '',
-		`type` int(10) unsigned NOT NULL default '1',
-		`status` int(10) unsigned NOT NULL default '0',
-		`perfCPU` int(10) unsigned NOT NULL default '0',
-		`perfMemory` int(10) unsigned NOT NULL default '0',
-		`present` tinyint(3) unsigned NOT NULL default '1',
-		PRIMARY KEY  (`index`,`host_id`),
-		INDEX `name` (`name`),
-		INDEX `index` (`index`))
-		ENGINE=MyISAM
-		COMMENT='Displays Running Process Information';");
-
-	db_execute("CREATE TABLE IF NOT EXISTS `plugin_hmib_hrSWRun_last_seen` (
-		`host_id` int(10) unsigned NOT NULL,
-		`name` varchar(64) NOT NULL,
-		`total_time` bigint(20) unsigned NOT NULL default '0',
-		`last_seen` timestamp NOT NULL default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-		PRIMARY KEY  (`host_id`, `name`),
-		INDEX `name` (`name`))
-		ENGINE=MyISAM
-		COMMENT='Displays when a binary was last seen running on the host';");
-
-	db_execute("CREATE TABLE IF NOT EXISTS `plugin_hmib_hrSystem` (
-		`host_id` int(10) unsigned NOT NULL,
-		`host_type` int(10) unsigned NOT NULL default '0',
-		`host_status` int(10) unsigned NOT NULL default '0',
-		`uptime` int(10) unsigned NOT NULL default '0',
-		`date` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-		`initLoadDevice` int(10) unsigned NOT NULL default '0',
-		`initLoadParams` varchar(255) NOT NULL default '',
-		`users` int(10) unsigned NOT NULL default '0',
-		`cpuPercent` int(10) unsigned NOT NULL default '0',
-		`numCpus` int(10) unsigned NOT NULL default '0',
-		`processes` int(10) unsigned NOT NULL default '0',
-		`maxProcesses` int(10) unsigned NOT NULL default '0',
-		`memSize` BIGINT unsigned NOT NULL default '0',
-		`memUsed` FLOAT NOT NULL default '0',
-		`swapSize` BIGINT UNSIGNED NOT NULL default '0',
-		`swapUsed` FLOAT NOT NULL default '0',
-		`sysDescr` varchar(255) NOT NULL default '',
-		`sysObjectID` varchar(128) NOT NULL default '',
-		`sysUptime` int(10) unsigned NOT NULL default '0',
-		`sysName` varchar(64) NOT NULL default '',
-		`sysContact` varchar(128) NOT NULL default '',
-		`sysLocation` varchar(255) NOT NULL default '',
-		PRIMARY KEY  (`host_id`),
-		INDEX `host_type` (`host_type`),
-		INDEX `host_status` (`host_status`))
-		ENGINE=MyISAM
-		COMMENT='Contains all Hosts that support hostMib';");
-
-	db_execute("CREATE TABLE IF NOT EXISTS `plugin_hmib_processes` (
-		`pid` int(10) unsigned NOT NULL,
-		`taskid` int(10) unsigned NOT NULL,
-		`started` timestamp NOT NULL default CURRENT_TIMESTAMP,
-		PRIMARY KEY  (`pid`))
-		ENGINE=MEMORY
-		COMMENT='Running collector processes';");
-
-	db_execute("CREATE TABLE `plugin_hmib_types` (
-		`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-		`oid` varchar(40) NOT NULL,
-		`description` varchar(30) NOT NULL,
-		PRIMARY KEY (`oid`),
-		INDEX `id`(`id`))
-		ENGINE=MyISAM
-		COMMENT='OID Types for the Host MIB Resources';");
-
-	db_execute("CREATE TABLE `plugin_hmib_hrSystemTypes` (
-		`id` INT(10) unsigned NOT NULL AUTO_INCREMENT,
-		`sysObjectID` VARCHAR(100) NOT NULL,
-		`sysDescrMatch` VARCHAR(100) NOT NULL,
-		`name` VARCHAR(40) NOT NULL,
-		`version` VARCHAR(10) NOT NULL,
-		PRIMARY KEY (`sysObjectID`, `sysDescrMatch`),
-		INDEX `name`(`name`),
-		INDEX `id`(`id`))
-		ENGINE = MyISAM
-		COMMENT='Maps OS Names and Versions to Object ID';");
-
-	db_execute("CREATE TABLE `plugin_hmib_hrSWRun_ignore` (
-		`name` varchar(64) NOT NULL,
-		`enabled` char(2) NOT NULL default '',
-		`notes` varchar(255) NOT NULL default '',
-		PRIMARY KEY  (`name`))
-		ENGINE=MyISAM
-		COMMENT='The process names that we are interested in tracking at the host level';");
-
-	db_execute("INSERT INTO `plugin_hmib_hrSystemTypes` VALUES
-		(1,'.1.3.6.1.4.1.311.1.1.3.1.1',  'Version 6.1','Windows 7','7'),
-		(2,'.1.3.6.1.4.1.311.1.1.3.1.2',  'Version 6.1','Windows 2008 Server','2008'),
-		(3,'.1.3.6.1.4.1.311.1.1.3.1.3',  'Version 6.1','Windows 2008 Domain Contr','2008'),
-		(4,'.1.3',                        'Linux NAS%armv5tejl','DNS-321',''),
-		(5,'.1.3.6.1.4.1.2.3.1.2.1.1.3',  'IBM%AIX%05.03','AIX','5.3'),
-		(6,'.1.3.6.1.4.1.8072.3.2.10',    'Linux%2.6.16.21-0.8%','SUSE','10.2'),
-		(7,'.1.3.6.1.4.1.311.1.1.3.1.1',  'EM64T%Windows Version 5.2','Windows XP x64','5.2'),
-		(8,'.1.3.6.1.4.1.311.1.1.3.1.1',  'Windows 2000 Version 5.0','Windows 2000','5.0'),
-		(9,'.1.3.6.1.4.1.311.1.1.3.1.1',  'Windows 2000 Version 5.1','Windows XP','5.1'),
-		(10,'.1.3.6.1.4.1.8072.3.2.10',   'Linux%2.6.16.60','SUSE','9.0'),
-		(11,'.1.3.6.1.4.1.311.1.1.3.1.2', 'Windows 2000 Version 5.0','Windows 2000 Server','2000'),
-		(12,'.1.3.6.1.4.1.311.1.1.3.1.2', 'Windows 2000 Version 5.1','Windows 2000 Server','2000'),
-		(13,'.1.3.6.1.4.1.311.1.1.3.1.3', 'Windows Version 5.2','Windows 2003 DC','2003'),
-		(14,'.1.3.6.1.4.1.311.1.1.3.1.2', 'Windows Version 5.2','Windows 2003 Server','2003'),
-		(16,'.1.3.6.1.4.1.311.1.1.3.1.2', 'Windows Version 6.2','Windows 2012 Server','2012'),
-		(17,'.1.3.6.1.4.1.311.1.1.3.1.2', 'Windows Version 6.3','Windows 2016 Server','2016'),
-		(18,'.1.3.6.1.4.1.8072.3.2.10', 'Linux','Linux','Linux'),
-		(19,'.1.3.6.1.4.1.8072.3.2.10', 'Linux%gentoo%','Gentoo Linux','Gentoo'),
-		(20,'.1.3.6.1.4.1.8072.3.2.10', 'Linux%ubuntu%','Ubuntu','ubuntu'),
-		(21,'.1.3.6.1.4.1.8072.3.2.10', 'Linux%centos%','CentOS','CentOS'),
-		(22,'.1.3.6.1.4.1.8072.3.2.10', 'Linux%ndlp%','McAfee Network DLP','DLP'),
-		(23,'.1.3', 'Linux%PAE%','Cisco UCM or CCX','UCM'),
-		(24,'.1.3', 'Identity Services Engine','Cisco ISE','ISE'),
-		(25,'.1.3', 'Cisco Prime Infrastructure','Cisco Prime Infrastructure','Prime'),
-		(26,'.1.3', 'AsyncOS','Cisco Web Security Appliance','WSA'),
-		(27,'.1.3', 'UCOS','Cisco Unity','CUC'),
-		(28,'.1.3.6.1.4.1.2.3.1.2.1.1.3', 'IBM%AIX%06.01%','AIX','6.1'),
-		(29,'', 'VMware ESXi','VMware ESXi','ESXi');");
-
-	db_execute("INSERT INTO `plugin_hmib_types` VALUES
-		(1,'.1.3.6.1.2.1.25.3.1.12','Co-Processor'),
-		(2,'.1.3.6.1.2.1.25.3.1.11','Audio'),
-		(3,'.1.3.6.1.2.1.25.3.1.10','Video'),
-		(4,'.1.3.6.1.2.1.25.3.1.2','Unknown'),
-		(5,'.1.3.6.1.2.1.25.3.1.1','Other'),
-		(6,'.1.3.6.1.2.1.25.3.1.13','Keyboard'),
-		(7,'.1.3.6.1.2.1.25.3.1.3','Processor'),
-		(8,'.1.3.6.1.2.1.25.3.1.4','Network'),
-		(9,'.1.3.6.1.2.1.25.3.1.5','Printer'),
-		(10,'.1.3.6.1.2.1.25.3.1.6','Disk'),
-		(11,'.1.3.6.1.2.1.25.2.1.1','Other Storage'),
-		(12,'.1.3.6.1.2.1.25.2.1.2','Ram Memory'),
-		(13,'.1.3.6.1.2.1.25.2.1.3','Virtual Memory'),
-		(14,'.1.3.6.1.2.1.25.2.1.4','Fixed Disk'),
-		(15,'.1.3.6.1.2.1.25.2.1.5','Removable Disk'),
-		(16,'.1.3.6.1.2.1.25.2.1.6','Floppy Disk'),
-		(17,'.1.3.6.1.2.1.25.2.1.7','Compact Disk'),
-		(18,'.1.3.6.1.2.1.25.2.1.8','Ram Disk'),
-		(19,'.1.3.6.1.2.1.25.2.1.9','Flash Memory'),
-		(20,'.1.3.6.1.2.1.25.2.1.10','Network Disk'),
-		(21,'.1.3.6.1.2.1.25.3.1.14','Modem'),
-		(22,'.1.3.6.1.2.1.25.3.1.18','Tape'),
-		(23,'.1.3.6.1.2.1.25.3.1.15','Parllel Port'),
-		(24,'.1.3.6.1.2.1.25.3.1.16','Pointing'),
-		(25,'.1.3.6.1.2.1.25.3.1.17','Serial Port'),
-		(26,'.1.3.6.1.2.1.25.3.1.19','Clock'),
-		(27,'.1.3.6.1.2.1.25.3.1.20','Volatile Memory'),
-		(28,'.1.3.6.1.2.1.25.3.1.21','Non Volatile Memory'),
-		(29,'.1.3.6.1.2.1.25.3.9.1','Other'),
-		(30,'.1.3.6.1.2.1.25.3.9.2','Unknown'),
-		(31,'.1.3.6.1.2.1.25.3.9.3','BerkleyFS'),
-		(32,'.1.3.6.1.2.1.25.3.9.4','Sys5FS'),
-		(33,'.1.3.6.1.2.1.25.3.9.6','HPFS'),
-		(34,'.1.3.6.1.2.1.25.3.9.7','HFS'),
-		(35,'.1.3.6.1.2.1.25.3.9.8','MFS'),
-		(36,'.1.3.6.1.2.1.25.3.9.10','VNode'),
-		(37,'.1.3.6.1.2.1.25.3.9.11','Journaled'),
-		(38,'.1.3.6.1.2.1.25.3.9.12','iso9660'),
-		(39,'.1.3.6.1.2.1.25.3.9.13','RockRidge'),
-		(40,'.1.3.6.1.2.1.25.3.9.14','NFS'),
-		(41,'.1.3.6.1.2.1.25.3.9.15','Netware'),
-		(42,'.1.3.6.1.2.1.25.3.9.16','AFS'),
-		(43,'.1.3.6.1.2.1.25.3.9.17','DFS'),
-		(44,'.1.3.6.1.2.1.25.3.9.18','AppleShare'),
-		(45,'.1.3.6.1.2.1.25.3.9.19','RFS'),
-		(46,'.1.3.6.1.2.1.25.3.9.20','DGCFS'),
-		(47,'.1.3.6.1.2.1.25.3.9.21','BFS'),
-		(48,'.1.3.6.1.2.1.25.3.9.22','FAT32'),
-		(49,'.1.3.6.1.2.1.25.3.9.23','Ext2'),
-		(50,'.1.3.6.1.2.1.25.3.9.5','FAT'),
-		(51,'.1.3.6.1.2.1.25.3.9.9','NTFS')");
-
-	// optimizations
-	if (!db_index_exists('data_input_data', 'data_template_data_id')) {
-		db_execute('ALTER TABLE data_input_data ADD INDEX data_template_data_id(data_template_data_id)');
-	}
-
-	if (!db_index_exists('data_input_data', 'data_input_field_id')) {
-		db_execute('ALTER TABLE data_input_data ADD INDEX data_input_field_id(data_input_field_id)');
-	}
-
-	if (!db_index_exists('snmp_query_graph', 'graph_template_id')) {
-		db_execute('ALTER TABLE snmp_query_graph ADD INDEX graph_template_id(graph_template_id)');
-	}
-
-	if (!db_index_exists('snmp_query_graph', 'snmp_query_id')) {
-		db_execute('ALTER TABLE snmp_query_graph ADD INDEX snmp_query_id(snmp_query_id)');
-	}
-}
 
 /**
  * Poller_bottom hook: launches the main Host MIB poller process
@@ -997,4 +738,174 @@ function hmib_get_disk(array $host_index): array|string {
 			return $value;
 		}
 	}
+}
+
+/**
+ * Removes files and directories that a previous version of this plugin
+ * shipped but that have since moved or been deleted, using the tombstone
+ * and whitelist lists in manifest.json. Whitelisted (user-data) paths and
+ * any VCS metadata (.git*) are never touched; the dev-only tests/ tree is
+ * removed. Any path that resolves outside the plugin directory (a tampered
+ * manifest.json) is refused, and any file/directory that cannot be removed
+ * (e.g. read-only) is reported to the Cacti log. Any top-level entry that is
+ * neither expected nor a tombstone nor whitelisted is logged to the Cacti
+ * log and left in place. Called on a plugin version change.
+ *
+ * @return void
+ *
+ * @global array $config Cacti global configuration array; used to resolve
+ *                       the plugin directory.
+ */
+function hmib_prune_files(): void {
+	global $config;
+
+	$plugin_dir    = $config['base_path'] . '/plugins/hmib';
+	$manifest_path = $plugin_dir . '/manifest.json';
+
+	if (!is_readable($manifest_path)) {
+		return;
+	}
+
+	$manifest = json_decode((string) file_get_contents($manifest_path), true);
+
+	if (!is_array($manifest)) {
+		cacti_log('WARNING: hmib manifest.json could not be parsed; skipping file prune', false, 'HMIB');
+
+		return;
+	}
+
+	$tombstones = isset($manifest['tombstones']) && is_array($manifest['tombstones']) ? $manifest['tombstones'] : [];
+	$expected   = isset($manifest['expected'])   && is_array($manifest['expected'])   ? $manifest['expected']   : [];
+	$whitelist  = isset($manifest['whitelist'])  && is_array($manifest['whitelist'])  ? $manifest['whitelist']  : [];
+
+	$protected = function (string $rel) use ($whitelist): bool {
+		if (strncmp($rel, '.git', 4) === 0 || strncmp($rel, '.md', 3) === 0) {
+			return true;
+		}
+
+		foreach ($whitelist as $entry) {
+			$entry = trim((string) $entry, '/');
+
+			if ($entry !== '' && ($rel === $entry
+				|| strncmp($rel, $entry . '/', strlen($entry) + 1) === 0
+				|| strncmp($entry, $rel . '/', strlen($rel) + 1) === 0)) {
+				return true;
+			}
+		}
+
+		return false;
+	};
+
+	// Security: resolve the plugin directory so a tampered manifest.json
+	// cannot steer the prune outside of it.
+	$plugin_real = realpath($plugin_dir);
+
+	// Remove tombstoned (moved/deleted) paths plus the dev-only tests/
+	// tree and the phpunit.xml test configuration.
+	$remove   = $tombstones;
+	$remove[] = 'tests/';
+	$remove[] = 'phpunit.xml';
+
+	foreach ($remove as $rel) {
+		$rel = trim((string) $rel, '/');
+
+		if ($rel === '' || $protected($rel)) {
+			continue;
+		}
+
+		// A tombstone must never contain '.'/'..' segments; a tampered manifest
+		// could use them to escape the plugin directory or target its root.
+		$segments = explode('/', $rel);
+
+		if (in_array('.', $segments, true) || in_array('..', $segments, true)) {
+			cacti_log(sprintf('WARNING: hmib prune refused to remove %s: path contains a traversal segment (tampered manifest.json?)', $rel), false, 'HMIB');
+
+			continue;
+		}
+
+		$path = $plugin_dir . '/' . $rel;
+
+		if (!is_link($path) && !file_exists($path)) {
+			continue;
+		}
+
+		// Refuse any path that, after resolving symlinks and ../ segments,
+		// escapes the plugin directory (protects user data from a tampered
+		// manifest.json).
+		$anchor = is_link($path) ? dirname($path) : $path;
+		$real   = realpath($anchor);
+
+		if ($real === false || ($real !== $plugin_real && strncmp($real, $plugin_real . DIRECTORY_SEPARATOR, strlen((string) $plugin_real) + 1) !== 0)) {
+			cacti_log(sprintf('WARNING: hmib prune refused to remove %s: path resolves outside the plugin directory (tampered manifest.json?)', $rel), false, 'HMIB');
+
+			continue;
+		}
+
+		if (is_dir($path) && !is_link($path)) {
+			$removed = hmib_rmtree($path);
+		} else {
+			$removed = @unlink($path);
+		}
+
+		if (!$removed) {
+			cacti_log(sprintf('WARNING: hmib upgrade could not remove %s (check file/directory permissions)', $rel), false, 'HMIB');
+		}
+	}
+
+	// Surface any top-level entry the manifest does not account for.
+	$known = [];
+
+	foreach (array_merge($expected, $tombstones) as $entry) {
+		$top = explode('/', trim((string) $entry, '/'))[0];
+
+		if ($top !== '') {
+			$known[$top] = true;
+		}
+	}
+
+	$entries = scandir($plugin_dir);
+
+	foreach (($entries !== false ? $entries : []) as $entry) {
+		if ($entry === '.' || $entry === '..' || $entry === 'tests' || $entry === 'phpunit.xml' || $protected($entry) || isset($known[$entry])) {
+			continue;
+		}
+
+		cacti_log(sprintf('WARNING: hmib upgrade found a file/directory not described in manifest.json: %s (left in place)', $entry), false, 'HMIB');
+	}
+}
+
+/**
+ * Recursively deletes a directory and its contents. Symlinks are removed
+ * without being followed. Helper for hmib_prune_files().
+ *
+ * @param string $dir Absolute path to the directory to remove.
+ *
+ * @return bool True if the directory and everything under it was removed;
+ *              false if any entry could not be deleted.
+ */
+function hmib_rmtree(string $dir): bool {
+	$entries = scandir($dir);
+	$ok      = true;
+
+	foreach (($entries !== false ? $entries : []) as $entry) {
+		if ($entry === '.' || $entry === '..') {
+			continue;
+		}
+
+		$path = $dir . '/' . $entry;
+
+		if (is_dir($path) && !is_link($path)) {
+			if (!hmib_rmtree($path)) {
+				$ok = false;
+			}
+		} elseif (!@unlink($path)) {
+			$ok = false;
+		}
+	}
+
+	if (!@rmdir($dir)) {
+		$ok = false;
+	}
+
+	return $ok;
 }

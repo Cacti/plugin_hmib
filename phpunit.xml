@@ -28,6 +28,7 @@
     <source>
         <include>
             <file>setup.php</file>
+            <file>includes/database.php</file>
             <file>hmib.php</file>
             <file>hmib_types.php</file>
             <file>poller_hmib.php</file>

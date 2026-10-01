@@ -23,7 +23,7 @@
  */
 
 it('checks the same index name it creates for every guarded ADD INDEX in hmib_setup_table()', function () {
-	$source = plugin_test_read_source('setup.php');
+	$source = plugin_test_read_source('includes/database.php');
 
 	preg_match('/function hmib_setup_table\(\).*?\n}/s', $source, $function_match);
 	expect($function_match[0] ?? null)->not->toBeNull();

@@ -36,6 +36,21 @@ beforeEach(function () {
 	$GLOBALS['__test_db_calls']            = array();
 	$GLOBALS['__test_enabled_hooks_calls'] = array();
 	test_set_current_page('hmib.php');
+
+	// Sandbox base_path so any upgrade-path test (hmib_check_upgrade drifts and
+	// runs hmib_prune_files) operates on a throwaway tree with a minimal
+	// INFO, never the real checkout.
+	$GLOBALS['__hmib_base_restore'] = $GLOBALS['config']['base_path'];
+	$base = sys_get_temp_dir() . '/hmib-test-' . uniqid();
+	mkdir($base . '/plugins/hmib', 0777, true);
+	file_put_contents($base . '/plugins/hmib/INFO', "[info]\nversion = 9.9.9\nname = hmib\nlongname = Host MIB\nauthor = x\nhomepage = x\n");
+	$GLOBALS['config']['base_path'] = $base;
+});
+
+afterEach(function () {
+	if (isset($GLOBALS['__hmib_base_restore'])) {
+		$GLOBALS['config']['base_path'] = $GLOBALS['__hmib_base_restore'];
+	}
 });
 
 it('reports the config as always valid', function () {
