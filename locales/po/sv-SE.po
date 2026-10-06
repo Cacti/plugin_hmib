@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-09-28 16:05-0400\nPO-Revision-Date: 2026-10-05 08:50+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-09-28 16:05-0400\nPO-Revision-Date: 2026-10-06 09:18+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -80,7 +80,7 @@ msgstr "Mall"
 
 #: hmib.php hmib_types.php
 msgid "Go"
-msgstr "Utför"
+msgstr "Start"
 
 #: hmib.php hmib_types.php
 msgid "Clear"
@@ -316,7 +316,7 @@ msgstr "Inga grafer definierade"
 
 #: hmib.php
 msgid "N/A"
-msgstr ""
+msgstr "Ej tillämpligt"
 
 #: hmib.php
 msgid "No Devices Found"
@@ -371,10 +371,8 @@ msgid "Summary Filter"
 msgstr "Sammanfattning Filter"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Type"
 msgid "Types"
-msgstr "Typ"
+msgstr "Typer"
 
 #: hmib.php
 msgid "All Records"
@@ -475,10 +473,8 @@ msgid "Max Memory"
 msgstr "Max minne"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Summary"
 msgid "Summary Stats"
-msgstr "Sammanfattning"
+msgstr "Sammanfattande statistik"
 
 #: hmib.php
 #, php-format
@@ -504,7 +500,7 @@ msgstr "Graph Preview Filters"
 
 #: hmib_types.php
 msgid "Delete"
-msgstr "Ta bort"
+msgstr "Radera"
 
 #: hmib_types.php
 msgid "Duplicate"
