@@ -1017,6 +1017,11 @@ function hmib_hardware(): void {
 			'default' => '',
 			'options' => ['options' => 'sanitize_search_string']
 		],
+		'status' => [
+			'filter'  => FILTER_VALIDATE_INT,
+			'pageset' => true,
+			'default' => '-1'
+		],
 		'sort_column' => [
 			'filter'  => FILTER_CALLBACK,
 			'default' => 'hrd.description',
@@ -1144,6 +1149,19 @@ function hmib_hardware(): void {
 							</select>
 						</td>
 						<td>
+							<?php print __('Status', 'hmib'); ?>
+						</td>
+						<td>
+							<select id='status' onChange='applyFilter()'>
+								<option value='-1'<?php if (get_request_var('status') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
+								<?php
+	foreach ($hmib_hrDeviceStatus as $skey => $sval) {
+		print "<option value='" . $skey . "'" . (get_request_var('status') == $skey ? ' selected' : '') . '>' . html_escape($sval) . '</option>';
+	}
+	?>
+							</select>
+						</td>
+						<td>
 							<?php print __('Entries', 'hmib'); ?>
 						</td>
 						<td>
@@ -1170,8 +1188,14 @@ function hmib_hardware(): void {
 				strURL += '&device='   + $('#device').val();
 				strURL += '&ostype='   + $('#ostype').val();
 				strURL += '&type='     + $('#type').val();
+				strURL += '&status='   + $('#status').val();
 				strURL += '&header=false';
 				loadPageNoHeader(strURL);
+			}
+
+			function hmibSetStatus(status) {
+				$('#status').val(status);
+				applyFilter();
 			}
 
 			function clearFilter() {
@@ -1225,6 +1249,11 @@ function hmib_hardware(): void {
 		$sql_params[] = get_request_var('type');
 	}
 
+	if (get_request_var('status') != '-1') {
+		$sql_where .= ($sql_where != '' ? ' AND' : 'WHERE') . ' hrd.status = ?';
+		$sql_params[] = get_request_var('status');
+	}
+
 	if (get_request_var('filter') != '') {
 		$sql_where .= ($sql_where != '' ? ' AND' : 'WHERE') .
 			' (host.description LIKE ? OR hrd.description LIKE ? OR host.hostname LIKE ?)';
@@ -1273,7 +1302,7 @@ function hmib_hardware(): void {
 		'status' => [
 			'display' => __('Status', 'hmib'),
 			'sort'    => 'DESC',
-			'align'   => 'right'
+			'align'   => 'center'
 		],
 		'errors' => [
 			'display' => __('Errors', 'hmib'),
@@ -1281,6 +1310,8 @@ function hmib_hardware(): void {
 			'align'   => 'right'
 		]
 	];
+
+	hmib_device_status_legend();
 
 	$nav = html_nav_bar('hmib.php?action=hardware', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('Devices', 'hmib'), 'page', 'main');
 
@@ -1306,7 +1337,7 @@ function hmib_hardware(): void {
 
 			form_selectable_cell(filter_value($row['description'], get_request_var('filter')), $id);
 			form_selectable_cell((isset($hmib_types[$row['type']]) ? $hmib_types[$row['type']] : __('Unknown', 'hmib')), $id);
-			form_selectable_cell((isset($hmib_hrDeviceStatus[$row['status']]) ? $hmib_hrDeviceStatus[$row['status']] : __('Unknown', 'hmib')), $id, '', 'right');
+			form_selectable_cell(hmib_device_status_pill((int) $row['status']), $id, '', 'center');
 			form_selectable_cell($row['errors'], $id, '', 'right');
 
 			$id++;
@@ -1322,6 +1353,78 @@ function hmib_hardware(): void {
 	if (cacti_sizeof($rows)) {
 		print $nav;
 	}
+}
+
+/**
+ * Maps an hrDeviceStatus code to the CSS pill class used to colour it.
+ * Codes follow the Host Resources MIB (RFC 2790) hrDeviceStatus
+ * enumeration (unknown/running/warning/testing/down = 1-5) plus this
+ * plugin's 0 => Present default.
+ *
+ * @param int $status The hrDeviceStatus code.
+ *
+ * @return string The hmibStatus* CSS class name for that status.
+ */
+function hmib_device_status_class(int $status): string {
+	switch ($status) {
+		case 0:
+			return 'hmibStatusPresent';
+		case 2:
+			return 'hmibStatusRunning';
+		case 3:
+			return 'hmibStatusWarning';
+		case 4:
+			return 'hmibStatusTesting';
+		case 5:
+			return 'hmibStatusDown';
+		case 1:
+		default:
+			return 'hmibStatusUnknown';
+	}
+}
+
+/**
+ * Renders a single hrDeviceStatus value as a coloured, clickable status
+ * pill. Clicking the pill sets the Hardware tab's Status filter to that
+ * value (via hmibSetStatus()) and reapplies the filter.
+ *
+ * @param int $status The hrDeviceStatus code for the row.
+ *
+ * @return string The pill's HTML.
+ *
+ * @global array $hmib_hrDeviceStatus Map of status code => display label.
+ */
+function hmib_device_status_pill(int $status): string {
+	global $hmib_hrDeviceStatus;
+
+	$label = isset($hmib_hrDeviceStatus[$status]) ? $hmib_hrDeviceStatus[$status] : __('Unknown', 'hmib');
+	$class = hmib_device_status_class($status);
+
+	return "<a class='hmibStatus $class' href='#' onClick='hmibSetStatus(" . $status . "); return false;' title='" . __esc('Click to filter by this status', 'hmib') . "'>" . html_escape($label) . '</a>';
+}
+
+/**
+ * Renders the Hardware tab status legend: one clickable pill per
+ * hrDeviceStatus value (Host Resources MIB, RFC 2790, plus this plugin's
+ * Present default). Clicking a legend pill sets the Status filter to that
+ * value and reapplies the filter.
+ *
+ * @return void
+ *
+ * @global array $hmib_hrDeviceStatus Map of status code => display label.
+ */
+function hmib_device_status_legend(): void {
+	global $hmib_hrDeviceStatus;
+
+	print "<div class='hmibLegend'>";
+
+	foreach ($hmib_hrDeviceStatus as $skey => $sval) {
+		$class = hmib_device_status_class((int) $skey);
+
+		print "<a class='hmibStatus $class' href='#' onClick='hmibSetStatus(" . (int) $skey . "); return false;'>" . html_escape($sval) . '</a>';
+	}
+
+	print '</div>';
 }
 
 /**

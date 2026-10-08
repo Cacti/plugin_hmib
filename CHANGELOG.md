@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* feature: Add Host Resources MIB (hrDeviceStatus) device-status pills, a clickable status legend, and a Status filter dropdown to the Hardware tab; clicking a pill sets the dropdown and filters
 * issue: Fix 'Undefined array key' PHP warnings on the Processes and Hardware tabs when a run-status or device-status code falls outside the known set
 * issue: Center the device Status pills on the Devices tab
 * feature: Theme-align the action glyph colors on the Host MIB views via per-theme CSS instead of hardcoded inline colors

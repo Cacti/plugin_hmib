@@ -34,3 +34,62 @@
 .hmibGraph {
 	color: #cc6600;
 }
+
+/*
+ * Hardware status pills + legend (Host Resources MIB hrDeviceStatus).
+ * Solid pills carry their own background and white text, so a single
+ * palette reads correctly on every theme (no per-theme override needed).
+ * Colours follow Cacti's device-status family: Running = deviceUp green,
+ * Down = deviceDown red, Warning amber, Testing orange, Unknown grey,
+ * Present muted blue.
+ */
+
+.hmibLegend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	justify-content: center;
+	padding: 6px 0;
+}
+
+.hmibStatus {
+	display: inline-block;
+	min-width: 68px;
+	padding: 1px 10px;
+	border-radius: 10px;
+	color: #ffffff !important;
+	font-size: 0.85em;
+	line-height: 1.6;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.hmibStatus:hover {
+	filter: brightness(1.12);
+	text-decoration: none;
+}
+
+.hmibStatusPresent {
+	background-color: #3f6a8a;
+}
+
+.hmibStatusUnknown {
+	background-color: #5f5f57;
+}
+
+.hmibStatusRunning {
+	background-color: #2e7d32;
+}
+
+.hmibStatusWarning {
+	background-color: #8a6d12;
+}
+
+.hmibStatusTesting {
+	background-color: #a1540f;
+}
+
+.hmibStatusDown {
+	background-color: #a12820;
+}
