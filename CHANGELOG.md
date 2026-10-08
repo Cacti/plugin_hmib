@@ -1,6 +1,9 @@
 ChangeLog
 
 --- develop ---
+* issue: Fix 'Undefined array key' PHP warnings on the Processes and Hardware tabs when a run-status or device-status code falls outside the known set
+* issue: Center the device Status pills on the Devices tab
+* feature: Theme-align the action glyph colors on the Host MIB views via per-theme CSS instead of hardcoded inline colors
 * dev: Replace the translation-template CI check that regenerated locales/po/cacti.pot and compared it with a diff-based gate (tests/bin/check-i18n-pot.php) requiring cacti.pot to be updated only when a pull request adds, removes, or modifies an i18n function call
 * dev: Relocate schema provisioning into includes/database.php (loaded from setup.php) and add the fleet manifest.json with upgrade-time file pruning
 * dev: Enforce patch coverage of changed lines in CI and remove the inert COMPOSER_ROOT_VERSION env from the Pest step, and measure coverage with xdebug so the plugin's own sources are instrumented

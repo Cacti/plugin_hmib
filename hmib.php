@@ -62,6 +62,16 @@ $hmib_types = array_rekey(db_fetch_assoc('SELECT *
 
 general_header();
 
+// Load this plugin's per-theme glyph styling: base rules plus the active
+// theme's override file when one is shipped (see plugins/hmib/css/).
+print get_md5_include_css('plugins/hmib/css/hmib.css');
+
+$hmib_theme_css = 'plugins/hmib/css/' . get_selected_theme() . '.css';
+
+if (file_exists($config['base_path'] . '/' . $hmib_theme_css)) {
+	print get_md5_include_css($hmib_theme_css);
+}
+
 hmib_tabs();
 
 switch(get_nfilter_request_var('action')) {
@@ -890,7 +900,7 @@ function hmib_running(): void {
 			form_selectable_cell(number_format_i18n($row['perfCPU'] / 3600,0), $id, '', 'right');
 			form_selectable_cell(number_format_i18n($row['perfMemory'] / 1024,2), $id, '', 'right');
 			form_selectable_cell((isset($hmib_hrSWTypes[$row['type']]) ? $hmib_hrSWTypes[$row['type']] : __('Unknown', 'hmib')), $id, '', 'right');
-			form_selectable_cell($hmib_hrSWRunStatus[$row['status']], $id, '', 'right');
+			form_selectable_cell((isset($hmib_hrSWRunStatus[$row['status']]) ? $hmib_hrSWRunStatus[$row['status']] : __('Unknown', 'hmib')), $id, '', 'right');
 
 			$id++;
 
@@ -1296,7 +1306,7 @@ function hmib_hardware(): void {
 
 			form_selectable_cell(filter_value($row['description'], get_request_var('filter')), $id);
 			form_selectable_cell((isset($hmib_types[$row['type']]) ? $hmib_types[$row['type']] : __('Unknown', 'hmib')), $id);
-			form_selectable_cell($hmib_hrDeviceStatus[$row['status']], $id, '', 'right');
+			form_selectable_cell((isset($hmib_hrDeviceStatus[$row['status']]) ? $hmib_hrDeviceStatus[$row['status']] : __('Unknown', 'hmib')), $id, '', 'right');
 			form_selectable_cell($row['errors'], $id, '', 'right');
 
 			$id++;
@@ -2042,7 +2052,7 @@ function hmib_devices(): void {
 		'host_status' => [
 			'display' => __('Status', 'hmib'),
 			'sort'    => 'DESC',
-			'align'   => 'right'
+			'align'   => 'center'
 		],
 		'uptime' => [
 			'display' => __('Uptime(d:h:m)', 'hmib'),
@@ -2149,12 +2159,12 @@ function hmib_devices(): void {
 
 			$aurl .= "<a class='pic'
 				href='" . html_escape("$url?action=hardware&reset=1&device=" . $row['host_id']) . "'>
-				<i class='fas fa-microchip' style='color:lightblue' title='" . __('View Hardware', 'hmib') . "'></i>
+				<i class='fas fa-microchip hmibHardware' title='" . __('View Hardware', 'hmib') . "'></i>
 			</a>";
 
 			$aurl .= "<a class='pic'
 				href='" . html_escape("$url?action=running%action=running&reset=1&device=" . $row['host_id']) . "'>
-				<i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i>
+				<i class='fas fa-cog hmibProcess' title='" . __('View Processes', 'hmib') . "'></i>
 			</a>";
 
 			$aurl .= "<a class='pic'
@@ -2165,7 +2175,7 @@ function hmib_devices(): void {
 			if ($found) {
 				$aurl .= "<a class='pic'
 					href='" . html_escape("$url?action=graphs&action=graphs&reset=1&host_id=" . $row['host_id'] . '&style=selective&graph_add=&graph_list=&graph_template_id=0&filter=') . "'>
-					<i class='fas fa-chart-line' style='color:orange;' title='" . __('View Graphs', 'hmib') . "'></i>
+					<i class='fas fa-chart-line hmibGraph' title='" . __('View Graphs', 'hmib') . "'></i>
 				</a>";
 			} else {
 				$aurl .= "<i class='fas fa-chart-line' title='" . __('No Graphs Defined', 'hmib') . "'></i>";
@@ -2186,7 +2196,7 @@ function hmib_devices(): void {
 				form_selectable_cell(html_escape($row['description']), $id);
 			}
 
-			form_selectable_cell(get_colored_device_status(($row['disabled'] == 'on' ? true : false), $row['host_status']), $id, '', 'right');
+			form_selectable_cell(get_colored_device_status(($row['disabled'] == 'on' ? true : false), $row['host_status']), $id, '', 'center');
 			form_selectable_cell(hmib_format_uptime($days, $hours, $minutes), $id, '', 'right');
 			form_selectable_cell($graph_users, $id, '', 'right');
 			form_selectable_cell(($row['host_status'] < 2 ? 'N/A' : $graph_cpup), $id, '', 'right');
@@ -3049,11 +3059,11 @@ function hmib_summary(): void {
 
 			$aurl .= "<a class='pic' href='" . html_escape("$url?reset=1&action=storage&ostype=" . $row['host_type']) . "'><i class='fas fa-database' title='" . __('View Storage', 'hmib') . "'></i></a>";
 
-			$aurl .= "<a class='pic' href='" . html_escape("$url?reset=1&action=hardware&ostype=" . $row['host_type']) . "'><i class='fas fa-microchip' style='color:lightblue;' title='" . __('View Hardware', 'hmib') . "'></i></a>";
+			$aurl .= "<a class='pic' href='" . html_escape("$url?reset=1&action=hardware&ostype=" . $row['host_type']) . "'><i class='fas fa-microchip hmibHardware' title='" . __('View Hardware', 'hmib') . "'></i></a>";
 
-			$aurl .= "<a class='pic' href='" . html_escape("$url?reset=1&action=running&ostype=" . $row['host_type']) . "'><i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i></a>";
+			$aurl .= "<a class='pic' href='" . html_escape("$url?reset=1&action=running&ostype=" . $row['host_type']) . "'><i class='fas fa-cog hmibProcess' title='" . __('View Processes', 'hmib') . "'></i></a>";
 
-			$aurl .= "<a class='pic' href='" . html_escape("$url?reset=1&action=software&ostype=" . $row['host_type']) . "'><i class='fas fa-archive title='" . __('View Software Inventory', 'hmib') . "'></i></a>";
+			$aurl .= "<a class='pic' href='" . html_escape("$url?reset=1&action=software&ostype=" . $row['host_type']) . "'><i class='fas fa-archive' title='" . __('View Software Inventory', 'hmib') . "'></i></a>";
 
 			$aurl .= $graph_url;
 
@@ -3279,7 +3289,7 @@ function hmib_summary(): void {
 				<i class='fas fa-server deviceUp' title='" . __('View Devices', 'hmib') . "'></i>
 			</a>" .
 			"<a class='pic' href='" . html_escape("$url?reset=1&action=running&process=" . $row['name']) . "'>
-				<i class='fas fa-cog' style='color:orange;' title='" . __('View Processes', 'hmib') . "'></i>
+				<i class='fas fa-cog hmibProcess' title='" . __('View Processes', 'hmib') . "'></i>
 			</a>" . $graph_url;
 
 			form_selectable_cell($furl, $id, '1%');
@@ -3403,7 +3413,7 @@ function hmib_get_graph_template_url(int $graph_template, int $host_type = 0, in
 
 		if (cacti_sizeof($graphs)) {
 			if ($image) {
-				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'><i class='fas fa-chart-line' style='color:orange;'></i></a>";
+				return "<a class='pic' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'><i class='fas fa-chart-line hmibGraph'></i></a>";
 			} else {
 				return "<a class='pic linkEditMain' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'>$title</a>";
 			}
@@ -3478,7 +3488,7 @@ function hmib_get_graph_url(int $data_query, int $host_type, int $host_id, strin
 
 		if (cacti_sizeof($graphs)) {
 			if ($image) {
-				return "<a class='pic linkEditMain' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'><i class='fas fa-chart-line' style='color:orange;' src='" . $graph . "'></i></a>";
+				return "<a class='pic linkEditMain' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'><i class='fas fa-chart-line hmibGraph' src='" . $graph . "'></i></a>";
 			} else {
 				return "<a class='pic linkEditMain' href='" . html_escape($url . "?action=graphs&reset=1&style=selective&graph_add=$graph_add&graph_list=&graph_template_id=0&filter=") . "' title='" . __('View Graphs', 'hmib') . "'>$title</a>";
 			}

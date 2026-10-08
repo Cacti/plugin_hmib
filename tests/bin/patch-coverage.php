@@ -163,6 +163,9 @@ $unmeasured_allowlist = [
 	// Web page controller: chdir()s and includes auth.php at the top level with a
 	// request-dispatch switch, so it cannot be loaded into the isolated unit process.
 	'hmib_types.php',
+	// Web page controller: renders general_header()/tabs/footer at the top level and
+	// dispatches on ?action, so it cannot be loaded into the isolated unit process.
+	'hmib.php',
 ];
 $unmeasured            = array_values(array_diff(array_keys($changed), array_keys($measured)));
 $unexpected_unmeasured = array_values(array_diff($unmeasured, $unmeasured_allowlist));
