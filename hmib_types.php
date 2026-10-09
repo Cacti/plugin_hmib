@@ -337,7 +337,7 @@ function form_actions(): void {
 				</td>
 			</tr>";
 
-			$save_html = "<button type='button' class='ui-button ui-corner-all ui-widget' onClick='cactiReturnTo()'>" . __('Cancel', 'hmib') . "</button>
+			$save_html = "<button type='button' class='ui-button ui-corner-all ui-widget cactiReturnTo'>" . __('Cancel', 'hmib') . "</button>
 				<button type='submit' class='ui-button ui-corner-all ui-widget ui-state-active' title='" . __('Delete Host Type(s)', 'hmib') . "'>" . __esc('Continue', 'hmib') . '</button>';
 		} elseif (get_filter_request_var('drp_action') == '2') { // duplicate
 			print "<tr>
@@ -350,7 +350,7 @@ function form_actions(): void {
 				</td>
 			</tr>';
 
-			$save_html = "<button type='button' class='ui-button ui-corner-all ui-widget' onClick='cactiReturnTo()'>" . __('Cancel', 'hmib') . "</button>
+			$save_html = "<button type='button' class='ui-button ui-corner-all ui-widget cactiReturnTo'>" . __('Cancel', 'hmib') . "</button>
 				<button type='submit' class='ui-button ui-corner-all ui-widget ui-state-active' title='" . __('Duplicate Host Type(s)', 'hmib') . "'>" . __esc('Continue', 'hmib') . '</button>';
 		}
 	} else {
