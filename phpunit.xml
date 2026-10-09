@@ -29,7 +29,6 @@
         <include>
             <file>setup.php</file>
             <file>includes/database.php</file>
-            <file>hmib.php</file>
             <file>poller_hmib.php</file>
             <file>poller_graphs.php</file>
             <file>associate_os_type.php</file>

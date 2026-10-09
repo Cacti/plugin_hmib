@@ -6,6 +6,7 @@
         "LICENSE",
         "README.md",
         "associate_os_type.php",
+        "css/",
         "hmib.php",
         "hmib_types.php",
         "images/",
