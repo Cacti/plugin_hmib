@@ -32,3 +32,52 @@
 .hmibGraph {
 	color: #d6a13a;
 }
+
+/*
+ * Midwinter-theme Hardware status palette: solid pills drawn from this theme's
+ * device-status hues (green/red/amber/orange/grey/blue), darkened enough to keep
+ * white label text legible, so the Hardware status pills and footer legend chips
+ * match the solid Midwinter device badges.
+ */
+
+.hmibStatus.hmibStatusRunning,
+.hmibLegend .hmibLegendItem.hmibStatusRunning {
+	background-color: #007a00;
+	border-color: #007a00;
+	color: #ffffff;
+}
+
+.hmibStatus.hmibStatusDown,
+.hmibLegend .hmibLegendItem.hmibStatusDown {
+	background-color: #cc0000;
+	border-color: #cc0000;
+	color: #ffffff;
+}
+
+.hmibStatus.hmibStatusWarning,
+.hmibLegend .hmibLegendItem.hmibStatusWarning {
+	background-color: #aa7807;
+	border-color: #aa7807;
+	color: #ffffff;
+}
+
+.hmibStatus.hmibStatusTesting,
+.hmibLegend .hmibLegendItem.hmibStatusTesting {
+	background-color: #b5651d;
+	border-color: #b5651d;
+	color: #ffffff;
+}
+
+.hmibStatus.hmibStatusUnknown,
+.hmibLegend .hmibLegendItem.hmibStatusUnknown {
+	background-color: #6d6d6d;
+	border-color: #6d6d6d;
+	color: #ffffff;
+}
+
+.hmibStatus.hmibStatusPresent,
+.hmibLegend .hmibLegendItem.hmibStatusPresent {
+	background-color: #2130c0;
+	border-color: #2130c0;
+	color: #ffffff;
+}

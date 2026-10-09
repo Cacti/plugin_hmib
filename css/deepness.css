@@ -32,3 +32,51 @@
 .hmibGraph {
 	color: #d6a13a;
 }
+
+/*
+ * Deepness-theme Hardware status palette: mirrors this theme's native
+ * .deviceStatus.device* emerald/accent pills so the Hardware status pills and
+ * footer legend chips match the rest of the Deepness UI.
+ */
+
+.hmibStatus.hmibStatusRunning,
+.hmibLegend .hmibLegendItem.hmibStatusRunning {
+	background-color: rgba(24, 185, 129, 0.15);
+	border-color: rgba(24, 185, 129, 0.55);
+	color: #3dd9a1;
+}
+
+.hmibStatus.hmibStatusDown,
+.hmibLegend .hmibLegendItem.hmibStatusDown {
+	background-color: rgba(255, 64, 64, 0.15);
+	border-color: rgba(255, 64, 64, 0.55);
+	color: #ff6b6b;
+}
+
+.hmibStatus.hmibStatusWarning,
+.hmibLegend .hmibLegendItem.hmibStatusWarning {
+	background-color: rgba(255, 143, 30, 0.15);
+	border-color: rgba(255, 143, 30, 0.55);
+	color: #ffab52;
+}
+
+.hmibStatus.hmibStatusTesting,
+.hmibLegend .hmibLegendItem.hmibStatusTesting {
+	background-color: rgba(176, 90, 230, 0.15);
+	border-color: rgba(176, 90, 230, 0.5);
+	color: #c792ea;
+}
+
+.hmibStatus.hmibStatusUnknown,
+.hmibLegend .hmibLegendItem.hmibStatusUnknown {
+	background-color: rgba(161, 161, 161, 0.12);
+	border-color: rgba(161, 161, 161, 0.45);
+	color: #b8b8b8;
+}
+
+.hmibStatus.hmibStatusPresent,
+.hmibLegend .hmibLegendItem.hmibStatusPresent {
+	background-color: rgba(96, 140, 210, 0.15);
+	border-color: rgba(96, 140, 210, 0.5);
+	color: #8fb6e8;
+}
