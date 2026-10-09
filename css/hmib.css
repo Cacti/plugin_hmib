@@ -36,14 +36,12 @@
 }
 
 /*
- * Hardware status pills + legend (Host Resources MIB hrDeviceStatus).
- * Solid pills/chips carry their own background and white text, so a single
- * palette reads correctly on every theme (no per-theme override needed).
- * Colours follow Cacti's device-status family: Running = deviceUp green,
- * Down = deviceDown red, Warning amber, Testing orange, Unknown grey,
- * Present muted blue. The footer legend chips fill the row equally, sized
- * to the longest label via --hmib-chip-min, matching the thold/mactrack/
- * servcheck legends.
+ * Hardware status pills + footer legend chips (Host Resources MIB
+ * hrDeviceStatus). This base palette is the default for light themes; each
+ * dark/accent theme ships a same-named override in this directory that
+ * recolours these states to that theme's own device-status palette. The
+ * legend chips fill the row equally, sized to the longest label via
+ * --hmib-chip-min, matching the thold/mactrack/servcheck legends.
  */
 
 .hmibLegend {
@@ -60,9 +58,11 @@
 }
 
 .hmibLegend .hmibLegendItem {
+	box-sizing: border-box;
 	text-align: center;
 	white-space: nowrap;
 	padding: 4px 6px;
+	border: 1px solid transparent;
 	border-radius: 3px;
 	color: #ffffff;
 }
@@ -71,8 +71,9 @@
 	display: inline-block;
 	min-width: 68px;
 	padding: 1px 10px;
+	border: 1px solid transparent;
 	border-radius: 10px;
-	color: #ffffff !important;
+	color: #ffffff;
 	font-size: 0.85em;
 	line-height: 1.6;
 	text-align: center;

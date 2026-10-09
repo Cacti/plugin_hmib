@@ -32,3 +32,51 @@
 .hmibGraph {
 	color: #d6a13a;
 }
+
+/*
+ * Paper-plane-theme Hardware status palette: mirrors this theme's native
+ * .deviceStatus.device* pills (light tint + border + dark text) so the Hardware
+ * status pills and footer legend chips match the rest of the Paper-plane UI.
+ */
+
+.hmibStatus.hmibStatusRunning,
+.hmibLegend .hmibLegendItem.hmibStatusRunning {
+	background-color: rgba(46, 125, 50, 0.16);
+	border-color: rgba(46, 125, 50, 0.55);
+	color: #1b5e20;
+}
+
+.hmibStatus.hmibStatusDown,
+.hmibLegend .hmibLegendItem.hmibStatusDown {
+	background-color: rgba(198, 40, 40, 0.16);
+	border-color: rgba(198, 40, 40, 0.55);
+	color: #b71c1c;
+}
+
+.hmibStatus.hmibStatusWarning,
+.hmibLegend .hmibLegendItem.hmibStatusWarning {
+	background-color: rgba(230, 126, 34, 0.16);
+	border-color: rgba(230, 126, 34, 0.55);
+	color: #d35400;
+}
+
+.hmibStatus.hmibStatusTesting,
+.hmibLegend .hmibLegendItem.hmibStatusTesting {
+	background-color: rgba(123, 31, 162, 0.16);
+	border-color: rgba(123, 31, 162, 0.5);
+	color: #6a1b9a;
+}
+
+.hmibStatus.hmibStatusUnknown,
+.hmibLegend .hmibLegendItem.hmibStatusUnknown {
+	background-color: rgba(97, 97, 97, 0.16);
+	border-color: rgba(97, 97, 97, 0.5);
+	color: #424242;
+}
+
+.hmibStatus.hmibStatusPresent,
+.hmibLegend .hmibLegendItem.hmibStatusPresent {
+	background-color: rgba(21, 101, 192, 0.16);
+	border-color: rgba(21, 101, 192, 0.5);
+	color: #0d47a1;
+}

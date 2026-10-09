@@ -32,3 +32,51 @@
 .hmibGraph {
 	color: #d6a13a;
 }
+
+/*
+ * Sunrise-theme Hardware status palette: light tinted pills with dark, colour-
+ * matched label text drawn from this theme's device-status hues, so the
+ * Hardware status pills and footer legend chips match the light Sunrise UI.
+ */
+
+.hmibStatus.hmibStatusRunning,
+.hmibLegend .hmibLegendItem.hmibStatusRunning {
+	background-color: rgba(60, 138, 60, 0.15);
+	border-color: rgba(60, 138, 60, 0.55);
+	color: #2f6e2f;
+}
+
+.hmibStatus.hmibStatusDown,
+.hmibLegend .hmibLegendItem.hmibStatusDown {
+	background-color: rgba(209, 42, 42, 0.14);
+	border-color: rgba(209, 42, 42, 0.5);
+	color: #b71c1c;
+}
+
+.hmibStatus.hmibStatusWarning,
+.hmibLegend .hmibLegendItem.hmibStatusWarning {
+	background-color: rgba(170, 120, 7, 0.15);
+	border-color: rgba(170, 120, 7, 0.5);
+	color: #86600a;
+}
+
+.hmibStatus.hmibStatusTesting,
+.hmibLegend .hmibLegendItem.hmibStatusTesting {
+	background-color: rgba(255, 170, 0, 0.18);
+	border-color: rgba(210, 140, 0, 0.55);
+	color: #955f00;
+}
+
+.hmibStatus.hmibStatusUnknown,
+.hmibLegend .hmibLegendItem.hmibStatusUnknown {
+	background-color: rgba(161, 161, 161, 0.16);
+	border-color: rgba(161, 161, 161, 0.5);
+	color: #595959;
+}
+
+.hmibStatus.hmibStatusPresent,
+.hmibLegend .hmibLegendItem.hmibStatusPresent {
+	background-color: rgba(30, 52, 200, 0.1);
+	border-color: rgba(30, 52, 200, 0.45);
+	color: #1e34c8;
+}
