@@ -1247,7 +1247,7 @@ function hmib_hardware(): void {
 					clearFilter();
 				});
 
-				$(document).on('click', '.hmibStatusFilter', function(event) {
+				$(document).off('click.hmibStatus', '.hmibStatusFilter').on('click.hmibStatus', '.hmibStatusFilter', function(event) {
 					event.preventDefault();
 					hmibSetStatus($(this).data('status'));
 				});
@@ -3350,8 +3350,8 @@ function hmib_summary(): void {
 						</td>
 						<td>
 							<span>
-								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active'><?php print __('Go', 'hmib'); ?></button>
-								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget'><?php print __('Clear', 'hmib'); ?></button>
+								<button id='ps_refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active'><?php print __('Go', 'hmib'); ?></button>
+								<button id='ps_clear' type='button' class='ui-button ui-corner-all ui-widget'><?php print __('Clear', 'hmib'); ?></button>
 							</span>
 						</td>
 						<td>
@@ -3379,11 +3379,11 @@ function hmib_summary(): void {
 					applyProcFilter();
 				});
 
-				$('#refresh').click(function() {
+				$('#ps_refresh').click(function() {
 					applyProcFilter();
 				});
 
-				$('#clear').click(function() {
+				$('#ps_clear').click(function() {
 					clearProcFilter();
 				});
 
