@@ -66,10 +66,17 @@ general_header();
 // theme's override file when one is shipped (see plugins/hmib/css/).
 print get_md5_include_css('plugins/hmib/css/hmib.css');
 
-$hmib_theme_css = 'plugins/hmib/css/' . get_selected_theme() . '.css';
+// Validate the theme against the shipped override list before using it in a
+// path: get_selected_theme() can return an unvalidated session value on older
+// Cacti releases, which must not reach the filesystem/URL unchecked.
+$hmib_theme = get_selected_theme();
 
-if (file_exists($config['base_path'] . '/' . $hmib_theme_css)) {
-	print get_md5_include_css($hmib_theme_css);
+if (in_array($hmib_theme, ['dark', 'deepness', 'midwinter', 'paper-plane', 'sunrise'], true)) {
+	$hmib_theme_css = 'plugins/hmib/css/' . $hmib_theme . '.css';
+
+	if (file_exists($config['base_path'] . '/' . $hmib_theme_css)) {
+		print get_md5_include_css($hmib_theme_css);
+	}
 }
 
 hmib_tabs();
