@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-09-28 16:05-0400\n"
+"POT-Creation-Date: 2026-10-08 19:19-0400\n"
 "PO-Revision-Date: 2024-12-06 19:24+0000\n"
 "Last-Translator: Anton Zhuravlev <baka109g@gmail.com>\n"
 "Language-Team: Russian <http://translate.cacti.net/projects/cacti/hmib/ru/>\n"
@@ -213,6 +213,10 @@ msgstr "Устройства"
 #: hmib.php
 msgid "No Hardware Found"
 msgstr "Нет аппаратных средств не найдено"
+
+#: hmib.php
+msgid "Click to filter by this status"
+msgstr ""
 
 #: hmib.php
 msgid "Storage Inventory"
