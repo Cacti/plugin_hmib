@@ -1318,8 +1318,6 @@ function hmib_hardware(): void {
 		]
 	];
 
-	hmib_device_status_legend();
-
 	$nav = html_nav_bar('hmib.php?action=hardware', MAX_DISPLAY_PAGES, get_request_var('page'), $num_rows, $total_rows, sizeof($display_text), __('Devices', 'hmib'), 'page', 'main');
 
 	print $nav;
@@ -1360,6 +1358,12 @@ function hmib_hardware(): void {
 	if (cacti_sizeof($rows)) {
 		print $nav;
 	}
+
+	print '<div class="center hmibLegendFooter">';
+
+	hmib_device_status_legend();
+
+	print '</div>';
 }
 
 /**
@@ -1411,10 +1415,11 @@ function hmib_device_status_pill(int $status): string {
 }
 
 /**
- * Renders the Hardware tab status legend: one clickable pill per
- * hrDeviceStatus value (Host Resources MIB, RFC 2790, plus this plugin's
- * Present default). Clicking a legend pill sets the Status filter to that
- * value and reapplies the filter.
+ * Renders the Hardware tab status legend as a row of equal-width colour
+ * chips, one per hrDeviceStatus value (Host Resources MIB, RFC 2790, plus
+ * this plugin's Present default), matching the footer legend pattern used
+ * by the thold/mactrack/servcheck views. The clickable filter drill-down
+ * lives on the Status column pills, not the legend.
  *
  * @return void
  *
@@ -1423,15 +1428,27 @@ function hmib_device_status_pill(int $status): string {
 function hmib_device_status_legend(): void {
 	global $hmib_hrDeviceStatus;
 
-	print "<div class='hmibLegend'>";
+	html_start_box('', '100%', false, 3, 'center', '');
+
+	$chip_min = 0;
+
+	foreach ($hmib_hrDeviceStatus as $label) {
+		$chip_min = max($chip_min, mb_strlen($label));
+	}
+
+	print '<tr class="tableRow"><td>';
+	print '<div class="hmibLegend" style="--hmib-chip-min: calc(' . $chip_min . 'ch + 1.5rem)">';
 
 	foreach ($hmib_hrDeviceStatus as $skey => $sval) {
 		$class = hmib_device_status_class((int) $skey);
 
-		print "<a class='hmibStatus $class' href='#' onClick='hmibSetStatus(" . (int) $skey . "); return false;'>" . html_escape($sval) . '</a>';
+		print '<div class="hmibLegendItem ' . $class . '">' . html_escape($sval) . '</div>';
 	}
 
 	print '</div>';
+	print '</td></tr>';
+
+	html_end_box(false);
 }
 
 /**
