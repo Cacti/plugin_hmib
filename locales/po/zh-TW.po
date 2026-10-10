@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-10 09:10-0400\n"
+"POT-Creation-Date: 2026-10-10 09:47-0400\n"
 "PO-Revision-Date: 2026-10-06 09:18+0000\n"
 "Last-Translator: YU HAO HUANG <mix@b51.tw>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.cacti.net/projects/cacti/hmib/zh_Hant/>\n"
@@ -593,6 +593,12 @@ msgstr "商品/物料的流動程序"
 
 #: hmib.php
 #, fuzzy
+#| msgid "Host MIB Process Use History"
+msgid "Process Use History"
+msgstr "主機MIB進程使用歷史記錄"
+
+#: hmib.php
+#, fuzzy
 #| msgid "Hardware Type"
 msgid "Hardware Devices"
 msgstr "硬件類型"
@@ -772,6 +778,12 @@ msgstr "名稱"
 #: hmib.php
 msgid "No installed software inventory collected."
 msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Running Processes"
+msgid "No process use history recorded."
+msgstr "並發進程"
 
 #: hmib.php
 msgid "Show more"
