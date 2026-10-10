@@ -146,21 +146,27 @@ exit(0);
  * decide whether autodiscovery/other periodic subtasks should run this
  * cycle.
  *
- * @param float $start     The current run's start time (from
- *                         microtime(true)).
- * @param float $lastrun   The task's last-run time as a Unix timestamp; may
- *                         carry fractional seconds when sourced from
- *                         microtime(true).
- * @param int   $frequency The task's configured run frequency in
- *                         seconds; 0 disables the task.
+ * @param float    $start     The current run's start time (from
+ *                            microtime(true)).
+ * @param float|null $lastrun The task's last-run time as a Unix timestamp; may
+ *                            carry fractional seconds when sourced from
+ *                            microtime(true). Null (an unset settings row, e.g.
+ *                            a task's first run) is treated as 0.
+ * @param int|null $frequency The task's configured run frequency in
+ *                            seconds; 0/null disables the task.
  *
  * @return bool True if the task is due to run, false otherwise.
  *
  * @global bool $forcerun Whether this run was started with '--force',
  *                        in which case the task always runs.
  */
-function runCollector(float $start, float $lastrun, int $frequency): bool {
+function runCollector(float $start, ?float $lastrun, ?int $frequency): bool {
 	global $forcerun;
+
+	// read_config_option() returns null for an unset lastrun/frequency setting
+	// (e.g. a task's very first run); normalize so the typed comparison is safe.
+	$lastrun   = (float) $lastrun;
+	$frequency = (int) $frequency;
 
 	if ((empty($lastrun) || ($start - $lastrun) > $frequency) && $frequency > 0 || $forcerun) {
 		return true;
