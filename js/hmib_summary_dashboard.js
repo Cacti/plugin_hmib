@@ -246,7 +246,18 @@ function hmibSumRefreshCard(grid, card, done) {
 		} else {
 			fresh.classList.remove('hmibDashCardExpanded');
 		}
+		// Preserve keyboard focus: if a tool button in THIS card was focused, move
+		// focus to the same tool on the replacement. (Refresh-all focuses a toolbar
+		// button outside the card, so it is not captured here.)
+		var active = document.activeElement;
+		var focusedTool = (active && card.contains(active) && active.classList && active.classList.contains('hmibDashCardTool')) ? active.dataset.tool : null;
 		card.parentNode.replaceChild(fresh, card);
+		if (focusedTool) {
+			var toolEl = fresh.querySelector('.hmibDashCardTool[data-tool="' + focusedTool + '"]');
+			if (toolEl) {
+				toolEl.focus();
+			}
+		}
 		hmibSumBindCard(grid, fresh);
 		if (done) {
 			done();
@@ -313,7 +324,8 @@ function hmibSumPrepSortHeaders(container) {
 		if (!th.hasAttribute('tabindex')) {
 			th.setAttribute('tabindex', '0');
 		}
-		th.setAttribute('role', 'button');
+		// Keep the native columnheader role: aria-sort is only valid there, and the
+		// tabindex + Enter/Space keydown handler already makes it operable.
 		if (!th.hasAttribute('aria-sort')) {
 			th.setAttribute('aria-sort', 'none');
 		}

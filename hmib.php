@@ -4820,6 +4820,13 @@ function hmib_summary_resolve_type(bool $persist = false): int {
 		$ostype = ($stored !== '' && preg_match('/^-?[0-9]+$/', (string) $stored) && (int) $stored >= -1) ? (int) $stored : -1;
 	}
 
+	// A remembered positive type can become unselectable (its last device left, or
+	// an admin deleted the type); the picker only lists populated types, so fall
+	// back to all-types instead of silently showing an empty, mislabelled scope.
+	if ($ostype > 0 && db_fetch_cell_prepared('SELECT COUNT(*) FROM plugin_hmib_hrSystem WHERE host_type = ?', [$ostype]) == 0) {
+		$ostype = -1;
+	}
+
 	return $ostype;
 }
 
