@@ -1,6 +1,8 @@
 ChangeLog
 
 --- develop ---
+* issue: Make the per-device Dashboard device picker an AJAX callback (a Cacti drop_callback that searches Host MIB devices server-side via ?action=ajax_hosts) instead of rendering every host as an <option>, so installs with tens of thousands of devices no longer bloat the page
+* issue: Stop the per-device Dashboard card header from resizing when hovering the drag handle or header tool buttons (reserve a transparent 1px border with box-sizing and give the header a min-height)
 * issue: Fix 'Uncaught TypeError: runCollector(): Argument #2 ($lastrun) must be of type float, null given' in the poller when a collector's *_lastrun/*_freq setting has never been written (e.g. a task's first run); runCollector() now accepts null and normalizes it
 * issue: Fix the per-device Dashboard Storage, Per-Processor Load, Hardware and Installed Software cards rendering empty because they filtered on 'present = 1' while the underlying Storage/Hardware/Inventory tabs never did, and add a Process Use History card
 * feature: Add a per-device Dashboard that drills into a single host with a draggable, add/remove card grid (CPU/memory/swap gauges, per-processor load, storage, top processes, hardware, installed software, logins and system information); card order, expanded state, the selected device and the auto-refresh interval persist per user, and a dashboard glyph on the Devices tab opens a stateful Dashboard tab that remembers the last host opened
