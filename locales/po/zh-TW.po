@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-08 19:19-0400\n"
+"POT-Creation-Date: 2026-10-10 09:10-0400\n"
 "PO-Revision-Date: 2026-10-06 09:18+0000\n"
 "Last-Translator: YU HAO HUANG <mix@b51.tw>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.cacti.net/projects/cacti/hmib/zh_Hant/>\n"
@@ -329,6 +329,10 @@ msgid "Used Swap"
 msgstr "使用交換"
 
 #: hmib.php
+msgid "View Dashboard"
+msgstr ""
+
+#: hmib.php
 msgid "View Storage"
 msgstr "查看存儲"
 
@@ -408,6 +412,10 @@ msgstr "在庫"
 #, fuzzy
 msgid "Graphs"
 msgstr "圖表"
+
+#: hmib.php
+msgid "Dashboard"
+msgstr ""
 
 #: hmib.php
 msgid "Summary Filter"
@@ -545,6 +553,308 @@ msgstr "[應用自定義圖表列表 - 從列表中過濾]"
 msgid "Graph Preview Filters"
 msgstr "圖形預覽過濾器"
 
+#: hmib.php
+msgid "System Information"
+msgstr ""
+
+#: hmib.php
+msgid "CPU Utilization"
+msgstr ""
+
+#: hmib.php
+msgid "Memory Utilization"
+msgstr ""
+
+#: hmib.php
+msgid "Swap Utilization"
+msgstr ""
+
+#: hmib.php
+msgid "Users and Logins"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Process Name"
+msgid "Per-Processor Load"
+msgstr "流程名稱"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Storage Type"
+msgid "Storage Volumes"
+msgstr "存儲類型(Storage Type)"
+
+#: hmib.php
+#, fuzzy
+#| msgid "No Processes"
+msgid "Top Processes"
+msgstr "商品/物料的流動程序"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Hardware Type"
+msgid "Hardware Devices"
+msgstr "硬件類型"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Installed Software Frequency"
+msgid "Installed Software"
+msgstr "已安裝的軟件頻率"
+
+#: hmib.php
+msgid "No system information has been collected for this device yet."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+msgid "Management Address"
+msgstr "管理"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Host Type Name"
+msgid "System Name"
+msgstr "主機類型名稱"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Storage Description"
+msgid "Description"
+msgstr "存儲說明"
+
+#: hmib.php
+msgid "Contact"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+msgid "Location"
+msgstr "動作"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Uptime(d:h:m)"
+msgid "Uptime"
+msgstr "的正常運行時間（d：H：M）"
+
+#: hmib.php
+msgid "System Time"
+msgstr ""
+
+#: hmib.php
+msgid "No processor data available."
+msgstr ""
+
+#: hmib.php
+#, php-format
+msgid "%d CPU(s)"
+msgstr ""
+
+#: hmib.php
+msgid "No memory data available."
+msgstr ""
+
+#: hmib.php
+#, php-format
+msgid "%s total"
+msgstr ""
+
+#: hmib.php
+msgid "No swap configured on this device."
+msgstr ""
+
+#: hmib.php
+msgid "No session data available."
+msgstr ""
+
+#: hmib.php
+msgid "Logged-in Users"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "View Processes"
+msgid "Maximum Processes"
+msgstr "查看流程"
+
+#: hmib.php
+msgid "Unlimited"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "CPUs"
+msgid "CPU"
+msgstr "CPU的"
+
+#: hmib.php
+msgid "Load"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Application"
+msgid "Utilization"
+msgstr "應用程式"
+
+#: hmib.php
+#, fuzzy, php-format
+#| msgid "CPU %%%"
+msgid "CPU %d"
+msgstr "中央處理器 ％"
+
+#: hmib.php
+msgid "No per-processor load reported."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Volumes"
+msgid "Volume"
+msgstr "容量"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Used Mem"
+msgid "Used"
+msgstr "二手Mem"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Total Mem"
+msgid "Total"
+msgstr "總記憶"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Used Mem"
+msgid "Used %"
+msgstr "二手Mem"
+
+#: hmib.php
+msgid "No storage volumes detected."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "CPU (Hrs)"
+msgid "CPU (s)"
+msgstr "CPU（小時）"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Avg Memory"
+msgid "Memory"
+msgstr "平均記憶"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Running Processes"
+msgid "No running processes recorded."
+msgstr "並發進程"
+
+#: hmib.php
+msgid "No hardware devices detected."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+msgid "Installed Packages"
+msgstr "已安裝"
+
+#: hmib.php hmib_types.php
+#, fuzzy
+msgid "Name"
+msgstr "名稱"
+
+#: hmib.php
+msgid "No installed software inventory collected."
+msgstr ""
+
+#: hmib.php
+msgid "Show more"
+msgstr ""
+
+#: hmib.php
+msgid "Show less"
+msgstr ""
+
+#: hmib.php
+msgid "Open in a dialog"
+msgstr ""
+
+#: hmib.php
+msgid "Refresh"
+msgstr ""
+
+#: hmib.php
+msgid "Remove from page"
+msgstr ""
+
+#: hmib.php
+msgid "Drag to reorder card"
+msgstr ""
+
+#: hmib.php
+msgid "Invalid request. Please try again."
+msgstr ""
+
+#: hmib.php
+msgid "Invalid refresh interval."
+msgstr ""
+
+#: hmib.php
+msgid "No device selected."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+msgid "Unknown card."
+msgstr "未知"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Dashboard"
+msgstr "主機MIB詳細信息"
+
+#: hmib.php
+msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
+msgstr ""
+
+#: hmib.php
+#, fuzzy, php-format
+msgid "Device %d"
+msgstr "裝置"
+
+#: hmib.php
+#, fuzzy
+msgid "1 Minute"
+msgstr "%d 分鐘"
+
+#: hmib.php
+msgid "30 Seconds"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+msgid "5 Minutes"
+msgstr "%d 分鐘"
+
+#: hmib.php
+msgid "No Refresh"
+msgstr ""
+
+#: hmib.php
+msgid "Add card"
+msgstr ""
+
+#: hmib.php
+msgid "Add a card…"
+msgstr ""
+
 #: hmib_types.php
 #, fuzzy
 msgid "Delete"
@@ -675,11 +985,6 @@ msgstr "通過掃描其snmp代理程序以查找sysObjectID和sysDescription並�
 #: hmib_types.php
 msgid "Device Scanning Function Options"
 msgstr "設備掃描功能選項"
-
-#: hmib_types.php
-#, fuzzy
-msgid "Name"
-msgstr "名稱"
 
 #: hmib_types.php
 msgid "Give this Host Type a meaningful name."
