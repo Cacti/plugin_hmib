@@ -3228,7 +3228,7 @@ function hmib_summary(): void {
 		FROM plugin_hmib_hrSystem AS hrs
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrs.host_type=hrst.id
-		GROUP BY name, version
+		GROUP BY hrs.host_type
 		$sql_order
 		$sql_limit";
 
@@ -4788,13 +4788,17 @@ function hmib_dashboard(): void {
 
 /**
  * Resolve the OS type the Fleet (Summary) Dashboard should scope to. A validated
- * 'ostype' request variable wins and is remembered. -1 = all types, 0 = Unknown
- * (untyped devices), a positive id = a specific OS type. Falls back to the
- * remembered scope, or -1 (all).
+ * 'ostype' request variable wins and, when $persist is set, is remembered. -1 =
+ * all types, 0 = Unknown (untyped devices), a positive id = a specific OS type.
+ * Falls back to the remembered scope, or -1 (all). Only the main navigation
+ * persists; AJAX card requests pass $persist = false so an older tab's refresh
+ * cannot overwrite another tab's remembered scope.
+ *
+ * @param bool $persist Whether a resolved request scope updates the saved preference.
  *
  * @return int The host_type scope: -1 (all), 0 (Unknown), or a positive type id.
  */
-function hmib_summary_resolve_type(): int {
+function hmib_summary_resolve_type(bool $persist = false): int {
 	$ostype   = -1;
 	$resolved = false;
 
@@ -4805,7 +4809,7 @@ function hmib_summary_resolve_type(): int {
 			$ostype   = (int) $candidate;
 			$resolved = true;
 
-			if ((string) read_user_setting('hmib_summary_type', '') !== (string) $ostype) {
+			if ($persist && (string) read_user_setting('hmib_summary_type', '') !== (string) $ostype) {
 				set_user_setting('hmib_summary_type', $ostype);
 			}
 		}
@@ -5430,7 +5434,7 @@ function hmib_summary_card_ajax(): string {
 function hmib_summary_dashboard(): void {
 	global $config, $page_refresh_interval;
 
-	$ostype = hmib_summary_resolve_type();
+	$ostype = hmib_summary_resolve_type(true);
 
 	$current_refresh = (int) read_user_setting('hmib_summary_refresh', 0);
 
