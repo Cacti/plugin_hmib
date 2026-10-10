@@ -166,6 +166,10 @@ $unmeasured_allowlist = [
 	// Web page controller: renders general_header()/tabs/footer at the top level and
 	// dispatches on ?action, so it cannot be loaded into the isolated unit process.
 	'hmib.php',
+	// CLI collector: chdir()s and includes cli_check.php then runs the poller at the
+	// top level (exits without --host-id/-M), so it cannot be loaded into the unit
+	// process; kept out of the coverage <source> set like the web controllers above.
+	'poller_hmib.php',
 ];
 $unmeasured            = array_values(array_diff(array_keys($changed), array_keys($measured)));
 $unexpected_unmeasured = array_values(array_diff($unmeasured, $unmeasured_allowlist));

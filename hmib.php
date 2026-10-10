@@ -4022,6 +4022,7 @@ function hmib_dashboard_card_meta(): array {
 		'processors' => ['title' => __('Per-Processor Load', 'hmib'),  'span' => 2, 'expandable' => true],
 		'storage'    => ['title' => __('Storage Volumes', 'hmib'),     'span' => 4, 'expandable' => true],
 		'processes'  => ['title' => __('Top Processes', 'hmib'),       'span' => 4, 'expandable' => true],
+		'use_history' => ['title' => __('Process Use History', 'hmib'), 'span' => 4, 'expandable' => true],
 		'hardware'   => ['title' => __('Hardware Devices', 'hmib'),    'span' => 2, 'expandable' => true],
 		'software'   => ['title' => __('Installed Software', 'hmib'),  'span' => 2, 'expandable' => true],
 	];
@@ -4247,7 +4248,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 		case 'processors':
 			$processors = db_fetch_assoc_prepared('SELECT `index`, `load`
 				FROM plugin_hmib_hrProcessor
-				WHERE host_id = ? AND present = 1
+				WHERE host_id = ?
 				ORDER BY `index`',
 				[$host_id]);
 
@@ -4277,7 +4278,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 			$volumes = db_fetch_assoc_prepared("SELECT description, type, allocationUnits, size, used, failures,
 				IF(size > 0, (used / size) * 100, 0) AS percent
 				FROM plugin_hmib_hrStorage
-				WHERE host_id = ? AND present = 1 AND description != ''
+				WHERE host_id = ? AND description != ''
 				ORDER BY description",
 				[$host_id]);
 
@@ -4350,7 +4351,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 		case 'hardware':
 			$devices = db_fetch_assoc_prepared('SELECT description, status, errors
 				FROM plugin_hmib_hrDevices
-				WHERE host_id = ? AND present = 1
+				WHERE host_id = ?
 				ORDER BY description',
 				[$host_id]);
 
@@ -4381,7 +4382,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 		case 'software':
 			$software = db_fetch_assoc_prepared("SELECT name, type, date
 				FROM plugin_hmib_hrSWInstalled
-				WHERE host_id = ? AND present = 1 AND name != ''
+				WHERE host_id = ? AND name != ''
 				ORDER BY name",
 				[$host_id]);
 
@@ -4402,6 +4403,34 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 				}
 			} else {
 				print '<tr class="hmibDashEmptyRow"><td colspan="2" class="hmibDashEmpty">' . __esc('No installed software inventory collected.', 'hmib') . '</td></tr>';
+			}
+
+			print '</tbody></table>';
+
+			break;
+		case 'use_history':
+			$history = db_fetch_assoc_prepared("SELECT name, total_time, last_seen
+				FROM plugin_hmib_hrSWRun_last_seen
+				WHERE host_id = ? AND name != '' AND name != 'System Idle Process'
+				ORDER BY total_time DESC",
+				[$host_id]);
+
+			print '<table class="hmibDashTable"><thead><tr>'
+				. '<th class="hmibDashSortable">' . __esc('Process', 'hmib') . '</th>'
+				. '<th class="hmibDashSortable">' . __esc('Last Seen', 'hmib') . '</th>'
+				. '<th class="hmibDashSortable hmibDashNum" data-sort="num">' . __esc('Use Time (d:h:m)', 'hmib') . '</th>'
+				. '</tr></thead><tbody>';
+
+			if (cacti_sizeof($history)) {
+				foreach ($history as $event) {
+					print '<tr>'
+						. '<td>' . html_escape($event['name']) . '</td>'
+						. '<td>' . html_escape((string) $event['last_seen']) . '</td>'
+						. '<td class="hmibDashNum" data-sort-value="' . (int) $event['total_time'] . '">' . hmib_get_runtime((int) $event['total_time']) . '</td>'
+						. '</tr>';
+				}
+			} else {
+				print '<tr class="hmibDashEmptyRow"><td colspan="3" class="hmibDashEmpty">' . __esc('No process use history recorded.', 'hmib') . '</td></tr>';
 			}
 
 			print '</tbody></table>';
