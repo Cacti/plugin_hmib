@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* security: Remove the inline onClick/onChange event handlers from the Host MIB views and bind the filter controls, status pills, and summary filters in jQuery ready handlers instead; convert the form Cancel buttons to the cactiReturnTo class (with a README note for Cacti below 1.2.31) so the pages work under a strict Content-Security-Policy
 * feature: Add Host Resources MIB (hrDeviceStatus) device-status pills, a clickable status legend, and a Status filter dropdown to the Hardware tab; clicking a pill sets the dropdown and filters
 * issue: Fix 'Undefined array key' PHP warnings on the Processes and Hardware tabs when a run-status or device-status code falls outside the known set
 * issue: Center the device Status pills on the Devices tab

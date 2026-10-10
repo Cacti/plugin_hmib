@@ -337,7 +337,7 @@ function form_actions(): void {
 				</td>
 			</tr>";
 
-			$save_html = "<button type='button' class='ui-button ui-corner-all ui-widget' onClick='cactiReturnTo()'>" . __('Cancel', 'hmib') . "</button>
+			$save_html = "<button type='button' class='ui-button ui-corner-all ui-widget cactiReturnTo'>" . __('Cancel', 'hmib') . "</button>
 				<button type='submit' class='ui-button ui-corner-all ui-widget ui-state-active' title='" . __('Delete Host Type(s)', 'hmib') . "'>" . __esc('Continue', 'hmib') . '</button>';
 		} elseif (get_filter_request_var('drp_action') == '2') { // duplicate
 			print "<tr>
@@ -350,7 +350,7 @@ function form_actions(): void {
 				</td>
 			</tr>';
 
-			$save_html = "<button type='button' class='ui-button ui-corner-all ui-widget' onClick='cactiReturnTo()'>" . __('Cancel', 'hmib') . "</button>
+			$save_html = "<button type='button' class='ui-button ui-corner-all ui-widget cactiReturnTo'>" . __('Cancel', 'hmib') . "</button>
 				<button type='submit' class='ui-button ui-corner-all ui-widget ui-state-active' title='" . __('Duplicate Host Type(s)', 'hmib') . "'>" . __esc('Continue', 'hmib') . '</button>';
 		}
 	} else {
@@ -371,6 +371,17 @@ function form_actions(): void {
 	html_end_box();
 
 	form_end();
+
+	// CSP-safe Cancel binding: Cacti core only auto-binds '.cactiReturnTo' as of
+	// 1.2.31, so provide the delegated handler here for the plugin's supported 1.2.25+ range.
+	print "<script type='text/javascript' " . plugin_hmib_csp_nonce() . ">
+		$(function() {
+			$(document).off('click.cactiReturnTo', '.cactiReturnTo').on('click.cactiReturnTo', '.cactiReturnTo', function(event) {
+				event.preventDefault();
+				cactiReturnTo($(this).attr('data-url'));
+			});
+		});
+		</script>";
 
 	bottom_footer();
 }

@@ -209,7 +209,7 @@ function hmib_history(): void {
 							<?php print __('OS Type', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='ostype' onChange='applyFilter()'>
+							<select id='ostype'>
 								<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib'); ?></option>
 								<?php
@@ -231,7 +231,7 @@ function hmib_history(): void {
 							<?php print __('Device', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='device' onChange='applyFilter()'>
+							<select id='device'>
 								<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
@@ -253,7 +253,7 @@ function hmib_history(): void {
 							<?php print __('Template', 'hmib'); ?>
 						</td>
 						<td>
-						<select id='template' onChange='applyFilter()'>
+						<select id='template'>
 								<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
@@ -274,8 +274,8 @@ function hmib_history(): void {
 						</td>
 						<td>
 							<span>
-								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib'); ?></button>
-								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib'); ?></button>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active'><?php print __('Go', 'hmib'); ?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget'><?php print __('Clear', 'hmib'); ?></button>
 							</span>
 						</td>
 					</tr>
@@ -292,7 +292,7 @@ function hmib_history(): void {
 							<?php print __('Process', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='process' onChange='applyFilter()'>
+							<select id='process'>
 								<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$procs = db_fetch_assoc("SELECT DISTINCT name
@@ -312,7 +312,7 @@ function hmib_history(): void {
 							<?php print __('Entries', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='rows' onChange='applyFilter()'>
+							<select id='rows'>
 								<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib'); ?></option>
 								<?php
 	if (cacti_sizeof($item_rows)) {
@@ -345,6 +345,18 @@ function hmib_history(): void {
 			}
 
 			$(function() {
+				$('#ostype, #device, #template, #process, #type, #status, #rows').change(function() {
+					applyFilter();
+				});
+
+				$('#refresh').click(function() {
+					applyFilter();
+				});
+
+				$('#clear').click(function() {
+					clearFilter();
+				});
+
 				$('#history').submit(function(event) {
 					event.preventDefault();
 					applyFilter();
@@ -608,7 +620,7 @@ function hmib_running(): void {
 							<?php print __('OS Type', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='ostype' onChange='applyFilter()'>
+							<select id='ostype'>
 								<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib'); ?></option>
 								<?php
@@ -630,7 +642,7 @@ function hmib_running(): void {
 							<?php print __('Device', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='device' onChange='applyFilter()'>
+							<select id='device'>
 								<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
@@ -652,7 +664,7 @@ function hmib_running(): void {
 						<?php print __('Template', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='template' onChange='applyFilter()'>
+							<select id='template'>
 								<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
@@ -673,8 +685,8 @@ function hmib_running(): void {
 						</td>
 						<td>
 							<span>
-								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib'); ?></button>
-								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib'); ?></button>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active'><?php print __('Go', 'hmib'); ?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget'><?php print __('Clear', 'hmib'); ?></button>
 							</span>
 						</td>
 					</tr>
@@ -691,7 +703,7 @@ function hmib_running(): void {
 							<?php print __('Process', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='process' onChange='applyFilter()'>
+							<select id='process'>
 								<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$procs = db_fetch_assoc("SELECT DISTINCT name
@@ -711,7 +723,7 @@ function hmib_running(): void {
 							<?php print __('Entries', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='rows' onChange='applyFilter()'>
+							<select id='rows'>
 								<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib'); ?></option>
 								<?php
 	if (cacti_sizeof($item_rows)) {
@@ -744,6 +756,18 @@ function hmib_running(): void {
 			}
 
 			$(function() {
+				$('#ostype, #device, #template, #process, #type, #status, #rows').change(function() {
+					applyFilter();
+				});
+
+				$('#refresh').click(function() {
+					applyFilter();
+				});
+
+				$('#clear').click(function() {
+					clearFilter();
+				});
+
 				$('#running').submit(function(event) {
 					event.preventDefault();
 					applyFilter();
@@ -1056,7 +1080,7 @@ function hmib_hardware(): void {
 							<?php print __('OS Type', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='ostype' onChange='applyFilter()'>
+							<select id='ostype'>
 								<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib'); ?></option>
 								<?php
@@ -1078,7 +1102,7 @@ function hmib_hardware(): void {
 							<?php print __('Device', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='device' onChange='applyFilter()'>
+							<select id='device'>
 								<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
@@ -1100,7 +1124,7 @@ function hmib_hardware(): void {
 							<?php print __('Template', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='template' onChange='applyFilter()'>
+							<select id='template'>
 								<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
@@ -1121,8 +1145,8 @@ function hmib_hardware(): void {
 						</td>
 						<td>
 							<span>
-								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib'); ?></button>
-								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib'); ?></button>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active'><?php print __('Go', 'hmib'); ?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget'><?php print __('Clear', 'hmib'); ?></button>
 							</span>
 						</td>
 					</tr>
@@ -1139,7 +1163,7 @@ function hmib_hardware(): void {
 							<?php print __('Type', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='type' onChange='applyFilter()'>
+							<select id='type'>
 							<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 							<?php
 	$types = db_fetch_assoc('SELECT DISTINCT hrd.type as type, ht.id as id, ht.description as description
@@ -1159,7 +1183,7 @@ function hmib_hardware(): void {
 							<?php print __('Status', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='status' onChange='applyFilter()'>
+							<select id='status'>
 								<option value='-1'<?php if (get_request_var('status') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	foreach ($hmib_hrDeviceStatus as $skey => $sval) {
@@ -1172,7 +1196,7 @@ function hmib_hardware(): void {
 							<?php print __('Entries', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='rows' onChange='applyFilter()'>
+							<select id='rows'>
 								<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib'); ?></option>
 								<?php
 		if (cacti_sizeof($item_rows)) {
@@ -1211,6 +1235,23 @@ function hmib_hardware(): void {
 			}
 
 			$(function() {
+				$('#ostype, #device, #template, #process, #type, #status, #rows').change(function() {
+					applyFilter();
+				});
+
+				$('#refresh').click(function() {
+					applyFilter();
+				});
+
+				$('#clear').click(function() {
+					clearFilter();
+				});
+
+				$(document).off('click.hmibStatus', '.hmibStatusFilter').on('click.hmibStatus', '.hmibStatusFilter', function(event) {
+					event.preventDefault();
+					hmibSetStatus($(this).data('status'));
+				});
+
 				$('#hardware').submit(function(event) {
 					event.preventDefault();
 					applyFilter();
@@ -1411,7 +1452,7 @@ function hmib_device_status_pill(int $status): string {
 	$label = isset($hmib_hrDeviceStatus[$status]) ? $hmib_hrDeviceStatus[$status] : __('Unknown', 'hmib');
 	$class = hmib_device_status_class($status);
 
-	return "<a class='hmibStatus $class' href='#' onClick='hmibSetStatus(" . $status . "); return false;' title='" . __esc('Click to filter by this status', 'hmib') . "'>" . html_escape($label) . '</a>';
+	return "<a class='hmibStatus $class hmibStatusFilter' href='#' data-status='" . $status . "' title='" . __esc('Click to filter by this status', 'hmib') . "'>" . html_escape($label) . '</a>';
 }
 
 /**
@@ -1548,7 +1589,7 @@ function hmib_storage(): void {
 							<?php print __('OS Type', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='ostype' onChange='applyFilter()'>
+							<select id='ostype'>
 								<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib'); ?></option>
 								<?php
@@ -1570,7 +1611,7 @@ function hmib_storage(): void {
 							<?php print __('Device', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='device' onChange='applyFilter()'>
+							<select id='device'>
 								<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
@@ -1592,7 +1633,7 @@ function hmib_storage(): void {
 							<?php print __('Template', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='template' onChange='applyFilter()'>
+							<select id='template'>
 								<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
@@ -1613,8 +1654,8 @@ function hmib_storage(): void {
 						</td>
 						<td>
 							<span>
-								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib'); ?></button>
-								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib'); ?></button>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active'><?php print __('Go', 'hmib'); ?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget'><?php print __('Clear', 'hmib'); ?></button>
 							</span>
 						</td>
 					</tr>
@@ -1631,7 +1672,7 @@ function hmib_storage(): void {
 							<?php print __('Type', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='type' onChange='applyFilter()'>
+							<select id='type'>
 								<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 		$types = db_fetch_assoc('SELECT DISTINCT hrsto.type as type, ht.id as id, ht.description as description
@@ -1651,7 +1692,7 @@ function hmib_storage(): void {
 							<?php print __('Volumes', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='rows' onChange='applyFilter()'>
+							<select id='rows'>
 								<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib'); ?></option>
 								<?php
 	if (cacti_sizeof($item_rows)) {
@@ -1684,6 +1725,18 @@ function hmib_storage(): void {
 			}
 
 			$(function() {
+				$('#ostype, #device, #template, #process, #type, #status, #rows').change(function() {
+					applyFilter();
+				});
+
+				$('#refresh').click(function() {
+					applyFilter();
+				});
+
+				$('#clear').click(function() {
+					clearFilter();
+				});
+
 				$('#storage').submit(function(event) {
 					event.preventDefault();
 					applyFilter();
@@ -1929,7 +1982,7 @@ function hmib_devices(): void {
 							<?php print __('OS Type', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='ostype' onChange='applyFilter()'>
+							<select id='ostype'>
 								<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib'); ?></option>
 								<?php
@@ -1951,7 +2004,7 @@ function hmib_devices(): void {
 							<?php print __('Template', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='template' onChange='applyFilter()'>
+							<select id='template'>
 								<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
@@ -1974,7 +2027,7 @@ function hmib_devices(): void {
 							<?php print __('Process', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='process' onChange='applyFilter()'>
+							<select id='process'>
 								<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$processes = db_fetch_assoc("SELECT DISTINCT name
@@ -1992,8 +2045,8 @@ function hmib_devices(): void {
 						</td>
 						<td>
 							<span>
-								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib'); ?></button>
-								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib'); ?></button>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active'><?php print __('Go', 'hmib'); ?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget'><?php print __('Clear', 'hmib'); ?></button>
 							</span>
 						</td>
 					</tr>
@@ -2010,7 +2063,7 @@ function hmib_devices(): void {
 							<?php print __('Status', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='status' onChange='applyFilter()'>
+							<select id='status'>
 								<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$statuses = db_fetch_assoc('SELECT DISTINCT status
@@ -2056,7 +2109,7 @@ function hmib_devices(): void {
 							<?php print __('Devices', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='rows' onChange='applyFilter()'>
+							<select id='rows'>
 								<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib'); ?></option>
 								<?php
 	if (cacti_sizeof($item_rows)) {
@@ -2089,6 +2142,18 @@ function hmib_devices(): void {
 			}
 
 			$(function() {
+				$('#ostype, #device, #template, #process, #type, #status, #rows').change(function() {
+					applyFilter();
+				});
+
+				$('#refresh').click(function() {
+					applyFilter();
+				});
+
+				$('#clear').click(function() {
+					clearFilter();
+				});
+
 				$('#devices').submit(function(event) {
 					event.preventDefault();
 					applyFilter();
@@ -2504,7 +2569,7 @@ function hmib_software(): void {
 							<?php print __('OS Type', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='ostype' onChange='applyFilter()'>
+							<select id='ostype'>
 								<option value='-1'<?php if (get_request_var('ostype') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<option value='0'<?php if (get_request_var('ostype') == '0') {?> selected<?php }?>><?php print __('Unknown', 'hmib'); ?></option>
 								<?php
@@ -2526,7 +2591,7 @@ function hmib_software(): void {
 							<?php print __('Device', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='device' onChange='applyFilter()'>
+							<select id='device'>
 								<option value='-1'<?php if (get_request_var('device') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$hosts = db_fetch_assoc('SELECT DISTINCT host.id, host.description
@@ -2548,7 +2613,7 @@ function hmib_software(): void {
 							<?php print __('Template', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='template' onChange='applyFilter()'>
+							<select id='template'>
 								<option value='-1'<?php if (get_request_var('template') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$templates = db_fetch_assoc('SELECT DISTINCT ht.id, ht.name
@@ -2569,8 +2634,8 @@ function hmib_software(): void {
 						</td>
 						<td>
 							<span>
-								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib'); ?></button>
-								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib'); ?></button>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active'><?php print __('Go', 'hmib'); ?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget'><?php print __('Clear', 'hmib'); ?></button>
 							</span>
 						</td>
 					</tr>
@@ -2587,7 +2652,7 @@ function hmib_software(): void {
 							<?php print __('Type', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='type' onChange='applyFilter()'>
+							<select id='type'>
 								<option value='-1'<?php if (get_request_var('type') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$types = db_fetch_assoc('SELECT DISTINCT type
@@ -2606,7 +2671,7 @@ function hmib_software(): void {
 							<?php print __('Applications', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='rows' onChange='applyFilter()'>
+							<select id='rows'>
 								<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib'); ?></option>
 								<?php
 	if (cacti_sizeof($item_rows)) {
@@ -2639,6 +2704,18 @@ function hmib_software(): void {
 			}
 
 			$(function() {
+				$('#ostype, #device, #template, #process, #type, #status, #rows').change(function() {
+					applyFilter();
+				});
+
+				$('#refresh').click(function() {
+					applyFilter();
+				});
+
+				$('#clear').click(function() {
+					clearFilter();
+				});
+
 				$('#software').submit(function(event) {
 					event.preventDefault();
 					applyFilter();
@@ -2992,7 +3069,7 @@ function hmib_summary(): void {
 							<?php print __('Types', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='htop' onChange='applyHostFilter()'>
+							<select id='htop'>
 								<option value='-1'<?php if (get_request_var('htop') == '-1') {?> selected<?php }?>><?php print __('All Records', 'hmib'); ?></option>
 								<option value='5'<?php if (get_request_var('htop') == '5') {?> selected<?php }?>><?php print __('%d Records', 5, 'hmib'); ?></option>
 								<option value='10'<?php if (get_request_var('htop') == '10') {?> selected<?php }?>><?php print __('%d Record', 10, 'hmib'); ?>s</option>
@@ -3002,8 +3079,8 @@ function hmib_summary(): void {
 						</td>
 						<td>
 							<span>
-								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib'); ?></button>
-								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib'); ?></button>
+								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active'><?php print __('Go', 'hmib'); ?></button>
+								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget'><?php print __('Clear', 'hmib'); ?></button>
 							</span>
 						</td>
 						<td>
@@ -3023,6 +3100,20 @@ function hmib_summary(): void {
 				var strURL = 'hmib.php?action=summary&area=hosts&clear=true&header=false';
 				loadPageNoHeader(strURL);
 			}
+
+			$(function() {
+				$('#htop').change(function() {
+					applyHostFilter();
+				});
+
+				$('#refresh').click(function() {
+					applyHostFilter();
+				});
+
+				$('#clear').click(function() {
+					clearHostFilter();
+				});
+			});
 			</script>
 		</td>
 	</tr>
@@ -3247,7 +3338,7 @@ function hmib_summary(): void {
 							<?php print __('Processes', 'hmib'); ?>
 						</td>
 						<td>
-							<select id='ptop' onChange='applyProcFilter()'>
+							<select id='ptop'>
 								<?php
 								$processes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
 
@@ -3259,8 +3350,8 @@ function hmib_summary(): void {
 						</td>
 						<td>
 							<span>
-								<button id='refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active' onClick='applyFilter()'><?php print __('Go', 'hmib'); ?></button>
-								<button id='clear' type='button' class='ui-button ui-corner-all ui-widget' onClick='clearFilter()'><?php print __('Clear', 'hmib'); ?></button>
+								<button id='ps_refresh' type='button' class='ui-button ui-corner-all ui-widget ui-state-active'><?php print __('Go', 'hmib'); ?></button>
+								<button id='ps_clear' type='button' class='ui-button ui-corner-all ui-widget'><?php print __('Clear', 'hmib'); ?></button>
 							</span>
 						</td>
 						<td>
@@ -3284,6 +3375,18 @@ function hmib_summary(): void {
 			}
 
 			$(function() {
+				$('#ptop').change(function() {
+					applyProcFilter();
+				});
+
+				$('#ps_refresh').click(function() {
+					applyProcFilter();
+				});
+
+				$('#ps_clear').click(function() {
+					clearProcFilter();
+				});
+
 				$('#proc_summary').submit(function(event) {
 					event.preventDefault();
 					applyProcFilter();
