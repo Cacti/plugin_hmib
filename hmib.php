@@ -32,18 +32,6 @@ if (get_request_var('action') == 'ajax_hosts') {
 	exit;
 }
 
-if (get_request_var('action') == 'dashboard_card') {
-	header('Content-Type: application/json; charset=UTF-8');
-	print hmib_dashboard_card_ajax();
-	exit;
-}
-
-if (get_request_var('action') == 'dashboard_layout') {
-	header('Content-Type: application/json; charset=UTF-8');
-	print hmib_dashboard_layout_save();
-	exit;
-}
-
 $hmib_hrSWTypes = [
 	0 => __('Error', 'hmib'),
 	1 => __('Unknown', 'hmib'),
@@ -71,6 +59,27 @@ $hmib_hrDeviceStatus = [
 $hmib_types = array_rekey(db_fetch_assoc('SELECT *
 	FROM plugin_hmib_types
 	ORDER BY description'), 'id', 'description');
+
+// Dashboard AJAX endpoints are dispatched here, after the status maps above are
+// initialized (the hardware card reads $hmib_hrDeviceStatus) but before any page
+// output, and exit without rendering the full page.
+if (get_request_var('action') == 'dashboard_card') {
+	header('Content-Type: application/json; charset=UTF-8');
+	print hmib_dashboard_card_ajax();
+	exit;
+}
+
+if (get_request_var('action') == 'dashboard_layout') {
+	header('Content-Type: application/json; charset=UTF-8');
+	print hmib_dashboard_layout_save();
+	exit;
+}
+
+if (get_request_var('action') == 'dashboard_refresh') {
+	header('Content-Type: application/json; charset=UTF-8');
+	print hmib_dashboard_refresh_save();
+	exit;
+}
 
 general_header();
 
@@ -4178,7 +4187,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 			$kv(__('Contact', 'hmib'), (string) $system['sysContact']);
 			$kv(__('Location', 'hmib'), (string) $system['sysLocation']);
 			$kv(__('Uptime', 'hmib'), hmib_dashboard_format_uptime((int) $system['uptime']));
-			$kv(__('Last Polled', 'hmib'), (string) $system['date']);
+			$kv(__('System Time', 'hmib'), (string) $system['date']);
 			print '</tbody></table>';
 
 			break;
@@ -4283,9 +4292,11 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 			if (cacti_sizeof($volumes)) {
 				foreach ($volumes as $volume) {
 					$percent = (float) $volume['percent'];
-					// hrStorage used/size are reported in KBytes (the Storage tab shows used/1024 as MB).
-					$used_bytes  = (float) $volume['used'] * 1024;
-					$total_bytes = (float) $volume['size'] * 1024;
+					// hrStorageSize/hrStorageUsed are counts of allocation units; the real
+					// byte size is the count multiplied by hrStorageAllocationUnits.
+					$unit        = (float) $volume['allocationUnits'];
+					$used_bytes  = (float) $volume['used'] * $unit;
+					$total_bytes = (float) $volume['size'] * $unit;
 
 					print '<tr>'
 						. '<td>' . html_escape($volume['description']) . '</td>'
@@ -4318,7 +4329,8 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 
 			if (cacti_sizeof($processes)) {
 				foreach ($processes as $process) {
-					$cpu_seconds = (int) $process['perfCPU'];
+					// hrSWRunPerfCPU is centiseconds of CPU consumed; convert to seconds.
+					$cpu_seconds = (int) round((float) $process['perfCPU'] / 100);
 					// hrSWRunPerfMem is reported in KBytes.
 					$mem_bytes = (float) $process['perfMemory'] * 1024;
 
@@ -4532,6 +4544,36 @@ function hmib_dashboard_layout_save(): string {
 }
 
 /**
+ * Persist the posted auto-refresh interval for the current user. Accepts only a
+ * CSRF-validated POST carrying a value the refresh picker offers (0 = off, or a
+ * key of $page_refresh_interval), so a drive-by GET cannot force a reload loop.
+ *
+ * @return string A JSON status document.
+ *
+ * @global array $page_refresh_interval Cacti's allowed refresh intervals.
+ */
+function hmib_dashboard_refresh_save(): string {
+	global $page_refresh_interval;
+
+	if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !function_exists('csrf_check') || !csrf_check(false)) {
+		return (string) json_encode(['error' => __('Invalid request. Please try again.', 'hmib')]);
+	}
+
+	$posted  = isset_request_var('refresh') ? (string) get_nfilter_request_var('refresh') : '';
+	$intervals = (is_array($page_refresh_interval) && cacti_sizeof($page_refresh_interval)) ? $page_refresh_interval : [30 => '', 60 => '', 300 => ''];
+	$allowed   = array_map('intval', array_keys($intervals));
+	$allowed[] = 0;
+
+	if (!preg_match('/^[0-9]+$/', $posted) || !in_array((int) $posted, $allowed, true)) {
+		return (string) json_encode(['error' => __('Invalid refresh interval.', 'hmib')]);
+	}
+
+	set_user_setting('hmib_dashboard_refresh', (int) $posted);
+
+	return (string) json_encode(['ok' => true]);
+}
+
+/**
  * AJAX: render a single Dashboard card, used when adding one from the catalogue
  * or refreshing one in place.
  *
@@ -4587,18 +4629,10 @@ function hmib_dashboard(): void {
 		return;
 	}
 
-	// Auto-refresh: the chosen interval persists per user and drives Cacti's
-	// standard page refresh on the dashboard's own URL.
+	// Auto-refresh: the chosen interval persists per user (set only through the
+	// CSRF-protected dashboard_refresh endpoint, never a drive-by GET) and drives
+	// Cacti's standard page refresh on the dashboard's own URL.
 	$current_refresh = (int) read_user_setting('hmib_dashboard_refresh', 0);
-
-	if (isset_request_var('refresh')) {
-		$posted_refresh = get_nfilter_request_var('refresh');
-
-		if (preg_match('/^[0-9]+$/', (string) $posted_refresh)) {
-			$current_refresh = (int) $posted_refresh;
-			set_user_setting('hmib_dashboard_refresh', $current_refresh);
-		}
-	}
 
 	if ($current_refresh > 0 && function_exists('set_page_refresh')) {
 		set_page_refresh([
@@ -4608,7 +4642,7 @@ function hmib_dashboard(): void {
 		]);
 	}
 
-	print '<script type="text/javascript" src="' . $config['url_path'] . 'plugins/hmib/js/hmib_dashboard.js?v=' . filemtime($config['base_path'] . '/plugins/hmib/js/hmib_dashboard.js') . '"></script>';
+	print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . ' src="' . $config['url_path'] . 'plugins/hmib/js/hmib_dashboard.js?v=' . filemtime($config['base_path'] . '/plugins/hmib/js/hmib_dashboard.js') . '"></script>';
 
 	$system = hmib_dashboard_system($host_id);
 	$name   = cacti_sizeof($system) ? (string) $system['host_description'] : __('Device %d', $host_id, 'hmib');
@@ -4683,5 +4717,5 @@ function hmib_dashboard(): void {
 	}
 
 	// JSON_HEX_* prevents a card title from breaking out of the inline <script>.
-	print '<script type="text/javascript">var hmibDashCatalog = ' . json_encode($catalog, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . '; initHmibDashboard();</script>';
+	print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . '>var hmibDashCatalog = ' . json_encode($catalog, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . '; initHmibDashboard();</script>';
 }

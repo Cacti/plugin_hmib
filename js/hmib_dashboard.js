@@ -63,9 +63,15 @@ function initHmibDashboard() {
 			}
 		});
 
-		// Client-side column sorting for card tables.
+		// Client-side column sorting for card tables (mouse and keyboard).
 		$(grid).off('click.hmibdashsort').on('click.hmibdashsort', 'th.hmibDashSortable', function() {
 			hmibDashSortTable(this);
+		});
+		$(grid).off('keydown.hmibdashsort').on('keydown.hmibdashsort', 'th.hmibDashSortable', function(event) {
+			if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+				event.preventDefault();
+				hmibDashSortTable(this);
+			}
 		});
 
 		var add = document.getElementById('hmib_dashboard_add');
@@ -88,12 +94,14 @@ function initHmibDashboard() {
 			});
 		}
 
-		// Changing the interval reloads the page so Cacti's page refresh picks up
-		// the new value; it persists in the session for subsequent auto-reloads.
+		// Changing the interval persists the preference through a CSRF-protected
+		// POST (never a drive-by GET), then reloads so Cacti's page refresh applies.
 		var interval = document.getElementById('hmib_dashboard_refresh');
 		if (interval) {
 			$(interval).off('change.hmibdash').on('change.hmibdash', function() {
-				window.location = 'hmib.php?action=dashboard&refresh=' + encodeURIComponent(this.value);
+				$.post('hmib.php', {action: 'dashboard_refresh', refresh: this.value, __csrf_magic: csrfMagicToken}, null, 'json').always(function() {
+					window.location = 'hmib.php?action=dashboard';
+				});
 			});
 		}
 
@@ -108,6 +116,8 @@ function initHmibDashboard() {
 
 /** Wire a single card's drag handle (mouse + keyboard) and drag events. */
 function hmibDashBindCard(grid, card) {
+	hmibDashPrepSortHeaders(card);
+
 	var handle = card.querySelector('.hmibDashCardDrag');
 	if (!handle) {
 		return;
@@ -280,11 +290,41 @@ function hmibDashMaximize(card) {
 	var title = card.querySelector('.hmibDashCardTitle');
 	var body  = card.querySelector('.hmibDashCardBody');
 	dialog.innerHTML = '<div class="hmibDashDialogBody">' + (body ? body.innerHTML : '') + '</div>';
+
+	// The dialog is a clone outside the grid, so wire its own sort handlers.
+	hmibDashPrepSortHeaders(dialog);
+	$(dialog).off('click.hmibdashsort').on('click.hmibdashsort', 'th.hmibDashSortable', function() {
+		hmibDashSortTable(this);
+	});
+	$(dialog).off('keydown.hmibdashsort').on('keydown.hmibdashsort', 'th.hmibDashSortable', function(event) {
+		if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+			event.preventDefault();
+			hmibDashSortTable(this);
+		}
+	});
+
 	$(dialog).dialog({
 		modal: true,
 		appendTo: 'body',
 		width: Math.min(900, $(window).width() - 40),
 		title: title ? title.textContent : ''
+	});
+}
+
+/** Make a container's sortable headers focusable and screen-reader friendly:
+ *  keyboard-operable (tabindex) with an initial aria-sort state. */
+function hmibDashPrepSortHeaders(container) {
+	if (!container) {
+		return;
+	}
+	container.querySelectorAll('th.hmibDashSortable').forEach(function(th) {
+		if (!th.hasAttribute('tabindex')) {
+			th.setAttribute('tabindex', '0');
+		}
+		th.setAttribute('role', 'button');
+		if (!th.hasAttribute('aria-sort')) {
+			th.setAttribute('aria-sort', 'none');
+		}
 	});
 }
 
@@ -338,8 +378,12 @@ function hmibDashSortTable(th) {
 
 	headers.forEach(function(header) {
 		header.classList.remove('hmibDashSortAsc', 'hmibDashSortDesc');
+		if (header.classList.contains('hmibDashSortable')) {
+			header.setAttribute('aria-sort', 'none');
+		}
 	});
 	th.classList.add(asc ? 'hmibDashSortAsc' : 'hmibDashSortDesc');
+	th.setAttribute('aria-sort', asc ? 'ascending' : 'descending');
 
 	var rows = Array.prototype.slice.call(tbody.rows).filter(function(row) {
 		return !row.classList.contains('hmibDashEmptyRow');
