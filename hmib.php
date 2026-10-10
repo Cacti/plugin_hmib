@@ -4882,12 +4882,15 @@ function hmib_summary_storage_stats(int $ostype): array {
 		$params = $ostype > 0 ? [$ostype] : [];
 
 		$row = db_fetch_row_prepared("SELECT
-			MIN(pct) AS minPct, AVG(pct) AS avgPct, MAX(pct) AS maxPct,
+			MIN(CASE WHEN host_status >= 2 THEN pct END) AS minPct,
+			AVG(CASE WHEN host_status >= 2 THEN pct END) AS avgPct,
+			MAX(CASE WHEN host_status >= 2 THEN pct END) AS maxPct,
 			SUM(total) AS totalBytes, SUM(usedBytes) AS usedBytes, COUNT(*) AS volumes
 			FROM (
 				SELECT (hrsto.used / hrsto.size) * 100 AS pct,
 					hrsto.size * hrsto.allocationUnits AS total,
-					hrsto.used * hrsto.allocationUnits AS usedBytes
+					hrsto.used * hrsto.allocationUnits AS usedBytes,
+					hrs.host_status AS host_status
 				FROM plugin_hmib_hrStorage AS hrsto
 				INNER JOIN plugin_hmib_hrSystem AS hrs ON hrs.host_id = hrsto.host_id
 				WHERE hrsto.size > 0 AND hrsto.description != '' $where
@@ -5063,19 +5066,19 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 
 			break;
 		case 'utilization':
-			$cpuSev = $stats['avgCpu'] !== null ? hmib_dashboard_severity((float) $stats['avgCpu']) : 'none';
-			$memSev = $stats['avgMem'] !== null ? hmib_dashboard_severity((float) $stats['avgMem']) : 'none';
-			$swSev  = $stats['avgSwap'] !== null ? hmib_dashboard_severity((float) $stats['avgSwap']) : 'none';
+			$cpu_sev  = $stats['avgCpu'] !== null ? hmib_dashboard_severity((float) $stats['avgCpu']) : 'none';
+			$mem_sev  = $stats['avgMem'] !== null ? hmib_dashboard_severity((float) $stats['avgMem']) : 'none';
+			$swap_sev = $stats['avgSwap'] !== null ? hmib_dashboard_severity((float) $stats['avgSwap']) : 'none';
 
-			print hmib_summary_bullet(__('CPU %', 'hmib'), $stats['minCpu'], $stats['avgCpu'], $stats['maxCpu'], 100.0, $cpuSev, 'percent');
-			print hmib_summary_bullet(__('Memory %', 'hmib'), $stats['minMem'], $stats['avgMem'], $stats['maxMem'], 100.0, $memSev, 'percent');
+			print hmib_summary_bullet(__('CPU %', 'hmib'), $stats['minCpu'], $stats['avgCpu'], $stats['maxCpu'], 100.0, $cpu_sev, 'percent');
+			print hmib_summary_bullet(__('Memory %', 'hmib'), $stats['minMem'], $stats['avgMem'], $stats['maxMem'], 100.0, $mem_sev, 'percent');
 
 			if ($stats['avgSwap'] !== null) {
-				print hmib_summary_bullet(__('Swap %', 'hmib'), $stats['minSwap'], $stats['avgSwap'], $stats['maxSwap'], 100.0, $swSev, 'percent');
+				print hmib_summary_bullet(__('Swap %', 'hmib'), $stats['minSwap'], $stats['avgSwap'], $stats['maxSwap'], 100.0, $swap_sev, 'percent');
 			}
 
-			$procScale = max(1.0, (float) ($stats['maxProc'] ?? 1));
-			print hmib_summary_bullet(__('Processes / host', 'hmib'), $stats['minProc'], $stats['avgProc'], $stats['maxProc'], $procScale, 'none', 'number');
+			$proc_scale = max(1.0, (float) ($stats['maxProc'] ?? 1));
+			print hmib_summary_bullet(__('Processes / host', 'hmib'), $stats['minProc'], $stats['avgProc'], $stats['maxProc'], $proc_scale, 'none', 'number');
 
 			break;
 		case 'status':
@@ -5111,8 +5114,8 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 				break;
 			}
 
-			$stoSev = $storage['avgPct'] !== null ? hmib_dashboard_severity((float) $storage['avgPct']) : 'none';
-			print hmib_summary_bullet(__('Used %', 'hmib'), $storage['minPct'], $storage['avgPct'], $storage['maxPct'], 100.0, $stoSev, 'percent');
+			$storage_sev = $storage['avgPct'] !== null ? hmib_dashboard_severity((float) $storage['avgPct']) : 'none';
+			print hmib_summary_bullet(__('Used %', 'hmib'), $storage['minPct'], $storage['avgPct'], $storage['maxPct'], 100.0, $storage_sev, 'percent');
 
 			print '<table class="hmibDashTable hmibDashKv"><tbody>';
 			print '<tr><th>' . __esc('Volumes', 'hmib') . '</th><td>' . number_format_i18n((int) $storage['volumes'], 0) . '</td></tr>';
@@ -5122,19 +5125,28 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 
 			break;
 		case 'uptime':
-			$upScale = max(1.0, (float) ($stats['maxUptime'] ?? 1));
-			print hmib_summary_bullet(__('Uptime', 'hmib'), $stats['minUptime'], $stats['avgUptime'], $stats['maxUptime'], $upScale, 'none', 'uptime');
+			$up_scale = max(1.0, (float) ($stats['maxUptime'] ?? 1));
+			print hmib_summary_bullet(__('Uptime', 'hmib'), $stats['minUptime'], $stats['avgUptime'], $stats['maxUptime'], $up_scale, 'none', 'uptime');
 
 			break;
 		case 'ostypes':
-			$types = db_fetch_assoc("SELECT
-				CONCAT_WS('', IF(hrst.name = '' OR hrst.name IS NULL, '" . __('Unknown', 'hmib') . "', hrst.name), IF(hrst.version = '' OR hrst.version IS NULL, '', CONCAT(' ', hrst.version))) AS name,
+			$unknown_label = __('Unknown', 'hmib');
+			$type_where    = $ostype > 0 ? 'WHERE hrs.host_type = ?' : '';
+			$type_params   = [$unknown_label];
+
+			if ($ostype > 0) {
+				$type_params[] = $ostype;
+			}
+
+			$types = db_fetch_assoc_prepared("SELECT
+				CONCAT_WS('', IF(hrst.name = '' OR hrst.name IS NULL, ?, hrst.name), IF(hrst.version = '' OR hrst.version IS NULL, '', CONCAT(' ', hrst.version))) AS name,
 				COUNT(*) AS devices
 				FROM plugin_hmib_hrSystem AS hrs
 				LEFT JOIN plugin_hmib_hrSystemTypes AS hrst ON hrs.host_type = hrst.id
+				$type_where
 				GROUP BY hrs.host_type
 				ORDER BY devices DESC
-				LIMIT 15");
+				LIMIT 15", $type_params);
 
 			if (!cacti_sizeof($types)) {
 				print '<p class="hmibDashEmpty">' . __esc('No OS types recorded.', 'hmib') . '</p>';
@@ -5161,7 +5173,6 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 		case 'top_memory':
 			$by_cpu = ($key === 'top_cpu');
 			$where  = $ostype > 0 ? 'AND hrs.host_type = ?' : '';
-			$join   = $ostype > 0 ? 'INNER JOIN plugin_hmib_hrSystem AS hrs ON hrs.host_id = hrswr.host_id' : '';
 			$params = $ostype > 0 ? [$ostype] : [];
 
 			$processes = db_fetch_assoc_prepared("SELECT hrswr.name AS name,
@@ -5169,8 +5180,8 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 				AVG(hrswr.perfCPU) AS avgCpu, MAX(hrswr.perfCPU) AS maxCpu,
 				AVG(hrswr.perfMemory) AS avgMem, MAX(hrswr.perfMemory) AS maxMem
 				FROM plugin_hmib_hrSWRun AS hrswr
-				$join
-				WHERE hrswr.name != '' AND hrswr.name != 'System Idle Process' $where
+				INNER JOIN plugin_hmib_hrSystem AS hrs ON hrs.host_id = hrswr.host_id
+				WHERE hrswr.name != '' AND hrswr.name != 'System Idle Process' AND hrs.host_status >= 2 $where
 				GROUP BY hrswr.name
 				ORDER BY " . ($by_cpu ? 'maxCpu' : 'maxMem') . " DESC
 				LIMIT 15", $params);
