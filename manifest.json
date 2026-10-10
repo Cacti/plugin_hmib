@@ -12,6 +12,7 @@
         "images/",
         "includes/",
         "index.php",
+        "js/",
         "locales/",
         "manifest.json",
         "poller_graphs.php",

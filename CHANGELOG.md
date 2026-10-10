@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* feature: Add a per-device Dashboard that drills into a single host with a draggable, add/remove card grid (CPU/memory/swap gauges, per-processor load, storage, top processes, hardware, installed software, logins and system information); card order, expanded state, the selected device and the auto-refresh interval persist per user, and a dashboard glyph on the Devices tab opens a stateful Dashboard tab that remembers the last host opened
 * security: Remove the inline onClick/onChange event handlers from the Host MIB views and bind the filter controls, status pills, and summary filters in jQuery ready handlers instead; convert the form Cancel buttons to the cactiReturnTo class (with a README note for Cacti below 1.2.31) so the pages work under a strict Content-Security-Policy
 * feature: Add Host Resources MIB (hrDeviceStatus) device-status pills, a clickable status legend, and a Status filter dropdown to the Hardware tab; clicking a pill sets the dropdown and filters
 * issue: Fix 'Undefined array key' PHP warnings on the Processes and Hardware tabs when a run-status or device-status code falls outside the known set
