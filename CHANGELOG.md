@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* feature: Add a Fleet (Summary) Dashboard reached by a dashboard glyph on the Summary tab's Device Type rows: a draggable, add/remove card grid scoped to all devices or one OS type, with min/avg/max bullet charts (CPU/memory/swap/processes/uptime), a device-status stacked bar, OS type distribution, storage utilization, fleet stat tiles, and top processes by CPU and by memory; scope, card order, expanded state and refresh interval persist per user
 * issue: Fix 'Uncaught TypeError: runCollector(): Argument #2 ($lastrun) must be of type float, null given' in the poller when a collector's *_lastrun/*_freq setting has never been written (e.g. a task's first run); runCollector() now accepts null and normalizes it
 * issue: Fix the per-device Dashboard Storage, Per-Processor Load, Hardware and Installed Software cards rendering empty because they filtered on 'present = 1' while the underlying Storage/Hardware/Inventory tabs never did, and add a Process Use History card
 * feature: Add a per-device Dashboard that drills into a single host with a draggable, add/remove card grid (CPU/memory/swap gauges, per-processor load, storage, top processes, hardware, installed software, logins and system information); card order, expanded state, the selected device and the auto-refresh interval persist per user, and a dashboard glyph on the Devices tab opens a stateful Dashboard tab that remembers the last host opened

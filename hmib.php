@@ -81,6 +81,24 @@ if (get_request_var('action') == 'dashboard_refresh') {
 	exit;
 }
 
+if (get_request_var('action') == 'summary_card') {
+	header('Content-Type: application/json; charset=UTF-8');
+	print hmib_summary_card_ajax();
+	exit;
+}
+
+if (get_request_var('action') == 'summary_layout') {
+	header('Content-Type: application/json; charset=UTF-8');
+	print hmib_summary_layout_save();
+	exit;
+}
+
+if (get_request_var('action') == 'summary_refresh') {
+	header('Content-Type: application/json; charset=UTF-8');
+	print hmib_summary_refresh_save();
+	exit;
+}
+
 general_header();
 
 // Load this plugin's per-theme glyph styling: base rules plus the active
@@ -125,6 +143,10 @@ switch(get_nfilter_request_var('action')) {
 		break;
 	case 'dashboard':
 		hmib_dashboard();
+
+		break;
+	case 'summary_dashboard':
+		hmib_summary_dashboard();
 
 		break;
 	case 'history':
@@ -2914,13 +2936,26 @@ function hmib_tabs(): void {
 	// set the default tab
 	$current_tab = get_request_var('action');
 
-	// The stateful per-device Dashboard tab only appears once a device has been
-	// opened from the Devices tab (it remembers the last device viewed).
-	if ($current_tab == 'dashboard' || (int) read_user_setting('hmib_dashboard_host', 0) > 0) {
-		$tabs = array_slice($tabs, 0, 2, true)
-			+ ['dashboard' => __esc('Dashboard', 'hmib')]
-			+ array_slice($tabs, 2, null, true);
+	// The stateful Dashboard tabs only appear once opened from their glyph: the
+	// Fleet Dashboard from the Summary tab, the per-device Dashboard from Devices.
+	$show_fleet  = ($current_tab == 'summary_dashboard' || read_user_setting('hmib_summary_type', '') !== '');
+	$show_device = ($current_tab == 'dashboard' || (int) read_user_setting('hmib_dashboard_host', 0) > 0);
+
+	$ordered = [];
+
+	foreach ($tabs as $tab_key => $tab_label) {
+		$ordered[$tab_key] = $tab_label;
+
+		if ($tab_key == 'summary' && $show_fleet) {
+			$ordered['summary_dashboard'] = __esc('Fleet Dashboard', 'hmib');
+		}
+
+		if ($tab_key == 'devices' && $show_device) {
+			$ordered['dashboard'] = __esc('Dashboard', 'hmib');
+		}
 	}
+
+	$tabs = $ordered;
 
 	// draw the tabs
 	print "<div class='tabs'><nav><ul>";
@@ -3311,7 +3346,9 @@ function hmib_summary(): void {
 			$graph_aproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['avgProcesses'], 0), false);
 			$graph_mproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['maxProcesses'], 0), false);
 
-			$aurl  = "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&ostype=" . $row['host_type']) . "'><i class='fas fa-server deviceUp' title='" . __('View Devices', 'hmib') . "'></i></a>";
+			$aurl  = "<a class='pic' href='" . html_escape("$url?action=summary_dashboard&reset=1&ostype=" . $row['host_type']) . "'><i class='fas fa-tachometer-alt hmibDashboard' title='" . __('View Fleet Dashboard', 'hmib') . "'></i></a>";
+
+			$aurl .= "<a class='pic' href='" . html_escape("$url?reset=1&action=devices&ostype=" . $row['host_type']) . "'><i class='fas fa-server deviceUp' title='" . __('View Devices', 'hmib') . "'></i></a>";
 
 			$aurl .= "<a class='pic' href='" . html_escape("$url?reset=1&action=storage&ostype=" . $row['host_type']) . "'><i class='fas fa-database' title='" . __('View Storage', 'hmib') . "'></i></a>";
 
@@ -4747,4 +4784,721 @@ function hmib_dashboard(): void {
 
 	// JSON_HEX_* prevents a card title from breaking out of the inline <script>.
 	print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . '>var hmibDashCatalog = ' . json_encode($catalog, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . '; initHmibDashboard();</script>';
+}
+
+/**
+ * Resolve the OS type the Fleet (Summary) Dashboard should scope to. A validated
+ * 'ostype' request variable wins and is remembered; 0 means "all types". Falls
+ * back to the remembered type, or 0.
+ *
+ * @return int The OS type id (host_type), or 0 for all types.
+ */
+function hmib_summary_resolve_type(): int {
+	$ostype = -1;
+
+	if (isset_request_var('ostype')) {
+		$candidate = get_nfilter_request_var('ostype');
+
+		if (preg_match('/^[0-9]+$/', (string) $candidate)) {
+			$ostype = (int) $candidate;
+
+			if ((string) read_user_setting('hmib_summary_type', '') !== (string) $ostype) {
+				set_user_setting('hmib_summary_type', $ostype);
+			}
+		}
+	}
+
+	if ($ostype < 0) {
+		$stored = read_user_setting('hmib_summary_type', '');
+		$ostype = ($stored !== '' && preg_match('/^[0-9]+$/', (string) $stored)) ? (int) $stored : 0;
+	}
+
+	return $ostype;
+}
+
+/**
+ * Memoized fleet system aggregates for an OS type scope (0 = all types). The
+ * utilization statistics (cpu/mem/swap/processes/uptime) consider only up or
+ * recovering devices so stale values from down devices do not skew them.
+ *
+ * @param int $ostype The host_type to scope to, or 0 for all types.
+ *
+ * @return array The aggregate row.
+ */
+function hmib_summary_stats(int $ostype): array {
+	static $cache = [];
+
+	if (!array_key_exists($ostype, $cache)) {
+		$where  = $ostype > 0 ? 'WHERE hrs.host_type = ?' : '';
+		$params = $ostype > 0 ? [$ostype] : [];
+
+		$row = db_fetch_row_prepared("SELECT
+			COUNT(*) AS devices,
+			SUM(host_status = 3) AS up,
+			SUM(host_status = 2) AS recovering,
+			SUM(host_status = 1) AS down,
+			SUM(host_status = 0) AS disabled,
+			SUM(numCpus) AS cpus,
+			SUM(users) AS users,
+			SUM(processes) AS processes,
+			SUM(memSize) AS memTotal,
+			MIN(CASE WHEN host_status >= 2 THEN cpuPercent END) AS minCpu,
+			AVG(CASE WHEN host_status >= 2 THEN cpuPercent END) AS avgCpu,
+			MAX(CASE WHEN host_status >= 2 THEN cpuPercent END) AS maxCpu,
+			MIN(CASE WHEN host_status >= 2 THEN memUsed END) AS minMem,
+			AVG(CASE WHEN host_status >= 2 THEN memUsed END) AS avgMem,
+			MAX(CASE WHEN host_status >= 2 THEN memUsed END) AS maxMem,
+			MIN(CASE WHEN host_status >= 2 AND swapSize > 0 THEN swapUsed END) AS minSwap,
+			AVG(CASE WHEN host_status >= 2 AND swapSize > 0 THEN swapUsed END) AS avgSwap,
+			MAX(CASE WHEN host_status >= 2 AND swapSize > 0 THEN swapUsed END) AS maxSwap,
+			MIN(CASE WHEN host_status >= 2 THEN processes END) AS minProc,
+			AVG(CASE WHEN host_status >= 2 THEN processes END) AS avgProc,
+			MAX(CASE WHEN host_status >= 2 THEN processes END) AS maxProc,
+			MIN(CASE WHEN host_status >= 2 THEN uptime END) AS minUptime,
+			AVG(CASE WHEN host_status >= 2 THEN uptime END) AS avgUptime,
+			MAX(CASE WHEN host_status >= 2 THEN uptime END) AS maxUptime
+			FROM plugin_hmib_hrSystem AS hrs
+			$where", $params);
+
+		$cache[$ostype] = is_array($row) ? $row : [];
+	}
+
+	return $cache[$ostype];
+}
+
+/**
+ * Memoized fleet storage aggregates (per-volume used% distribution and total
+ * capacity) for an OS type scope.
+ *
+ * @param int $ostype The host_type to scope to, or 0 for all types.
+ *
+ * @return array The aggregate row.
+ */
+function hmib_summary_storage_stats(int $ostype): array {
+	static $cache = [];
+
+	if (!array_key_exists($ostype, $cache)) {
+		$where  = $ostype > 0 ? 'AND hrs.host_type = ?' : '';
+		$params = $ostype > 0 ? [$ostype] : [];
+
+		$row = db_fetch_row_prepared("SELECT
+			MIN(pct) AS minPct, AVG(pct) AS avgPct, MAX(pct) AS maxPct,
+			SUM(total) AS totalBytes, SUM(usedBytes) AS usedBytes, COUNT(*) AS volumes
+			FROM (
+				SELECT (hrsto.used / hrsto.size) * 100 AS pct,
+					hrsto.size * hrsto.allocationUnits AS total,
+					hrsto.used * hrsto.allocationUnits AS usedBytes
+				FROM plugin_hmib_hrStorage AS hrsto
+				INNER JOIN plugin_hmib_hrSystem AS hrs ON hrs.host_id = hrsto.host_id
+				WHERE hrsto.size > 0 AND hrsto.description != '' $where
+			) AS v", $params);
+
+		$cache[$ostype] = is_array($row) ? $row : [];
+	}
+
+	return $cache[$ostype];
+}
+
+/**
+ * The Fleet Dashboard card registry: title, column span (out of 8) and whether
+ * the card clips with a "show more" control.
+ *
+ * @return array<string, array{title: string, span: int, expandable: bool}>
+ */
+function hmib_summary_card_meta(): array {
+	return [
+		'overview'    => ['title' => __('Fleet Overview', 'hmib'),            'span' => 4, 'expandable' => false],
+		'utilization' => ['title' => __('Resource Utilization', 'hmib'),      'span' => 4, 'expandable' => false],
+		'status'      => ['title' => __('Device Status', 'hmib'),             'span' => 2, 'expandable' => false],
+		'storage'     => ['title' => __('Storage Utilization', 'hmib'),       'span' => 2, 'expandable' => false],
+		'uptime'      => ['title' => __('Uptime Distribution', 'hmib'),       'span' => 2, 'expandable' => false],
+		'ostypes'     => ['title' => __('OS Type Distribution', 'hmib'),      'span' => 4, 'expandable' => true],
+		'top_cpu'     => ['title' => __('Top Processes by CPU', 'hmib'),      'span' => 4, 'expandable' => true],
+		'top_memory'  => ['title' => __('Top Processes by Memory', 'hmib'),   'span' => 4, 'expandable' => true],
+	];
+}
+
+/**
+ * The Fleet Dashboard card keys available in this scope, in default order.
+ *
+ * @param int $ostype The host_type scope (reserved for future per-scope rules).
+ *
+ * @return string[]
+ */
+function hmib_summary_available_cards(int $ostype): array {
+	return array_keys(hmib_summary_card_meta());
+}
+
+/**
+ * Render a min/avg/max bullet chart: a 0..scale track, a translucent band from
+ * min to max, and a strong marker at the average.
+ *
+ * @param string     $label    The metric label.
+ * @param float|null $min      The minimum value, or null when unavailable.
+ * @param float|null $avg      The average value, or null when unavailable.
+ * @param float|null $max      The maximum value, or null when unavailable.
+ * @param float      $scale    The axis maximum (full-width value).
+ * @param string     $severity 'up'/'recovering'/'down' to tint the band, else '' (neutral).
+ * @param string     $format   'percent', 'number' or 'uptime' value formatting.
+ *
+ * @return string The bullet HTML.
+ */
+function hmib_summary_bullet(string $label, ?float $min, ?float $avg, ?float $max, float $scale, string $severity, string $format): string {
+	$fmt = function(?float $value) use ($format): string {
+		if ($value === null) {
+			return __('N/A', 'hmib');
+		}
+
+		switch ($format) {
+			case 'percent':
+				return number_format_i18n($value, 1) . '%';
+			case 'uptime':
+				return hmib_dashboard_format_uptime((int) $value);
+			default:
+				return number_format_i18n($value, 0);
+		}
+	};
+
+	$head = '<div class="hmibBulletHead"><span class="hmibBulletLabel">' . html_escape($label) . '</span><span class="hmibBulletAvg">' . html_escape($fmt($avg)) . '</span></div>';
+
+	if ($avg === null || $scale <= 0) {
+		return '<div class="hmibBullet">' . $head . '<div class="hmibBulletTrack"></div></div>';
+	}
+
+	$lo = max(0.0, min($scale, (float) ($min ?? $avg)));
+	$hi = max(0.0, min($scale, (float) ($max ?? $avg)));
+	$av = max(0.0, min($scale, (float) $avg));
+
+	$left  = $lo / $scale * 100;
+	$width = max(0.75, ($hi - $lo) / $scale * 100);
+	$mark  = $av / $scale * 100;
+
+	$sev = in_array($severity, ['up', 'recovering', 'down'], true) ? $severity : 'none';
+
+	return '<div class="hmibBullet">' . $head
+		. '<div class="hmibBulletTrack">'
+		. '<div class="hmibBulletRange hmibBulletRange--' . $sev . '" style="left:' . number_format($left, 2, '.', '') . '%;width:' . number_format($width, 2, '.', '') . '%"></div>'
+		. '<div class="hmibBulletMarker" style="left:' . number_format($mark, 2, '.', '') . '%"></div>'
+		. '</div>'
+		. '<div class="hmibBulletScale"><span>' . html_escape($fmt($min)) . '</span><span>' . html_escape($fmt($max)) . '</span></div>'
+		. '</div>';
+}
+
+/**
+ * The header severity accent for a Fleet Dashboard card, or '' for neutral.
+ *
+ * @param string $key    The card identifier.
+ * @param int    $ostype The host_type scope.
+ *
+ * @return string One of 'up', 'recovering', 'down' or ''.
+ */
+function hmib_summary_card_state(string $key, int $ostype): string {
+	$stats = hmib_summary_stats($ostype);
+
+	if (!cacti_sizeof($stats)) {
+		return '';
+	}
+
+	switch ($key) {
+		case 'utilization':
+			return $stats['avgCpu'] !== null ? hmib_dashboard_severity((float) $stats['avgCpu']) : '';
+		case 'storage':
+			$storage = hmib_summary_storage_stats($ostype);
+
+			return isset($storage['avgPct']) && $storage['avgPct'] !== null ? hmib_dashboard_severity((float) $storage['avgPct']) : '';
+		case 'status':
+			if ((int) $stats['down'] > 0) {
+				return 'down';
+			}
+
+			if ((int) $stats['recovering'] > 0) {
+				return 'recovering';
+			}
+
+			return (int) $stats['up'] > 0 ? 'up' : '';
+	}
+
+	return '';
+}
+
+/**
+ * Render the inner body HTML of a single Fleet Dashboard card.
+ *
+ * @param string $key    The card identifier.
+ * @param int    $ostype The host_type scope (0 = all types).
+ *
+ * @return string The card body HTML.
+ */
+function hmib_summary_card_body(string $key, int $ostype): string {
+	$stats = hmib_summary_stats($ostype);
+
+	ob_start();
+
+	if (!cacti_sizeof($stats) || (int) $stats['devices'] === 0) {
+		print '<p class="hmibDashEmpty">' . __esc('No Host MIB devices in this scope yet.', 'hmib') . '</p>';
+
+		return (string) ob_get_clean();
+	}
+
+	switch ($key) {
+		case 'overview':
+			$tiles = [
+				['', number_format_i18n((int) $stats['devices'], 0), __('Devices', 'hmib')],
+				['up', number_format_i18n((int) $stats['up'], 0), __('Up', 'hmib')],
+				['rec', number_format_i18n((int) $stats['recovering'], 0), __('Recovering', 'hmib')],
+				['down', number_format_i18n((int) $stats['down'], 0), __('Down', 'hmib')],
+				['', number_format_i18n((int) $stats['disabled'], 0), __('Disabled', 'hmib')],
+				['', number_format_i18n((int) $stats['cpus'], 0), __('CPUs', 'hmib')],
+				['', number_format_i18n((int) $stats['users'], 0), __('Logins', 'hmib')],
+				['', number_format_i18n((int) $stats['processes'], 0), __('Processes', 'hmib')],
+				['', hmib_memory((float) $stats['memTotal']), __('Total RAM', 'hmib')]
+			];
+
+			print '<div class="hmibFleetTiles">';
+			foreach ($tiles as $tile) {
+				$mod = $tile[0] !== '' ? ' hmibFleetTile--' . $tile[0] : '';
+				print '<div class="hmibFleetTile' . $mod . '"><span class="hmibFleetTileValue">' . html_escape($tile[1]) . '</span><span class="hmibFleetTileLabel">' . html_escape($tile[2]) . '</span></div>';
+			}
+			print '</div>';
+
+			break;
+		case 'utilization':
+			$cpuSev = $stats['avgCpu'] !== null ? hmib_dashboard_severity((float) $stats['avgCpu']) : 'none';
+			$memSev = $stats['avgMem'] !== null ? hmib_dashboard_severity((float) $stats['avgMem']) : 'none';
+			$swSev  = $stats['avgSwap'] !== null ? hmib_dashboard_severity((float) $stats['avgSwap']) : 'none';
+
+			print hmib_summary_bullet(__('CPU %', 'hmib'), $stats['minCpu'], $stats['avgCpu'], $stats['maxCpu'], 100.0, $cpuSev, 'percent');
+			print hmib_summary_bullet(__('Memory %', 'hmib'), $stats['minMem'], $stats['avgMem'], $stats['maxMem'], 100.0, $memSev, 'percent');
+
+			if ($stats['avgSwap'] !== null) {
+				print hmib_summary_bullet(__('Swap %', 'hmib'), $stats['minSwap'], $stats['avgSwap'], $stats['maxSwap'], 100.0, $swSev, 'percent');
+			}
+
+			$procScale = max(1.0, (float) ($stats['maxProc'] ?? 1));
+			print hmib_summary_bullet(__('Processes / host', 'hmib'), $stats['minProc'], $stats['avgProc'], $stats['maxProc'], $procScale, 'none', 'number');
+
+			break;
+		case 'status':
+			$total = max(1, (int) $stats['devices']);
+			$segs  = [
+				['up', (int) $stats['up'], __('Up', 'hmib')],
+				['rec', (int) $stats['recovering'], __('Recovering', 'hmib')],
+				['down', (int) $stats['down'], __('Down', 'hmib')],
+				['dis', (int) $stats['disabled'], __('Disabled', 'hmib')]
+			];
+
+			print '<div class="hmibStackBar">';
+			foreach ($segs as $seg) {
+				if ($seg[1] > 0) {
+					print '<div class="hmibStackSeg hmibStackSeg--' . $seg[0] . '" style="width:' . number_format($seg[1] / $total * 100, 2, '.', '') . '%" title="' . html_escape($seg[2] . ': ' . $seg[1]) . '"></div>';
+				}
+			}
+			print '</div>';
+
+			print '<div class="hmibStackLegend">';
+			foreach ($segs as $seg) {
+				print '<span><span class="hmibStackChip hmibStackSeg--' . $seg[0] . '"></span>' . html_escape($seg[2]) . ' ' . number_format_i18n($seg[1], 0) . '</span>';
+			}
+			print '</div>';
+
+			break;
+		case 'storage':
+			$storage = hmib_summary_storage_stats($ostype);
+
+			if (!cacti_sizeof($storage) || (int) $storage['volumes'] === 0) {
+				print '<p class="hmibDashEmpty">' . __esc('No storage volumes detected in this scope.', 'hmib') . '</p>';
+
+				break;
+			}
+
+			$stoSev = $storage['avgPct'] !== null ? hmib_dashboard_severity((float) $storage['avgPct']) : 'none';
+			print hmib_summary_bullet(__('Used %', 'hmib'), $storage['minPct'], $storage['avgPct'], $storage['maxPct'], 100.0, $stoSev, 'percent');
+
+			print '<table class="hmibDashTable hmibDashKv"><tbody>';
+			print '<tr><th>' . __esc('Volumes', 'hmib') . '</th><td>' . number_format_i18n((int) $storage['volumes'], 0) . '</td></tr>';
+			print '<tr><th>' . __esc('Total Capacity', 'hmib') . '</th><td>' . html_escape(hmib_memory((float) $storage['totalBytes'])) . '</td></tr>';
+			print '<tr><th>' . __esc('Used', 'hmib') . '</th><td>' . html_escape(hmib_memory((float) $storage['usedBytes'])) . '</td></tr>';
+			print '</tbody></table>';
+
+			break;
+		case 'uptime':
+			$upScale = max(1.0, (float) ($stats['maxUptime'] ?? 1));
+			print hmib_summary_bullet(__('Uptime', 'hmib'), $stats['minUptime'], $stats['avgUptime'], $stats['maxUptime'], $upScale, 'none', 'uptime');
+
+			break;
+		case 'ostypes':
+			$types = db_fetch_assoc("SELECT
+				CONCAT_WS('', IF(hrst.name = '' OR hrst.name IS NULL, '" . __('Unknown', 'hmib') . "', hrst.name), IF(hrst.version = '' OR hrst.version IS NULL, '', CONCAT(' ', hrst.version))) AS name,
+				COUNT(*) AS devices
+				FROM plugin_hmib_hrSystem AS hrs
+				LEFT JOIN plugin_hmib_hrSystemTypes AS hrst ON hrs.host_type = hrst.id
+				GROUP BY hrs.host_type
+				ORDER BY devices DESC
+				LIMIT 15");
+
+			if (!cacti_sizeof($types)) {
+				print '<p class="hmibDashEmpty">' . __esc('No OS types recorded.', 'hmib') . '</p>';
+
+				break;
+			}
+
+			$peak = 1;
+			foreach ($types as $type) {
+				$peak = max($peak, (int) $type['devices']);
+			}
+
+			foreach ($types as $type) {
+				$width = (int) $type['devices'] / $peak * 100;
+				print '<div class="hmibDistRow">'
+					. '<span class="hmibDistLabel" title="' . html_escape($type['name']) . '">' . html_escape($type['name']) . '</span>'
+					. '<span class="hmibDistTrack"><span class="hmibDistFill" style="width:' . number_format($width, 2, '.', '') . '%"></span></span>'
+					. '<span class="hmibDistValue">' . number_format_i18n((int) $type['devices'], 0) . '</span>'
+					. '</div>';
+			}
+
+			break;
+		case 'top_cpu':
+		case 'top_memory':
+			$by_cpu = ($key === 'top_cpu');
+			$where  = $ostype > 0 ? 'AND hrs.host_type = ?' : '';
+			$join   = $ostype > 0 ? 'INNER JOIN plugin_hmib_hrSystem AS hrs ON hrs.host_id = hrswr.host_id' : '';
+			$params = $ostype > 0 ? [$ostype] : [];
+
+			$processes = db_fetch_assoc_prepared("SELECT hrswr.name AS name,
+				COUNT(DISTINCT hrswr.host_id) AS hosts,
+				AVG(hrswr.perfCPU) AS avgCpu, MAX(hrswr.perfCPU) AS maxCpu,
+				AVG(hrswr.perfMemory) AS avgMem, MAX(hrswr.perfMemory) AS maxMem
+				FROM plugin_hmib_hrSWRun AS hrswr
+				$join
+				WHERE hrswr.name != '' AND hrswr.name != 'System Idle Process' $where
+				GROUP BY hrswr.name
+				ORDER BY " . ($by_cpu ? 'maxCpu' : 'maxMem') . " DESC
+				LIMIT 15", $params);
+
+			$metric_head = $by_cpu ? __esc('Max CPU (s)', 'hmib') : __esc('Max Memory', 'hmib');
+
+			print '<table class="hmibDashTable"><thead><tr>'
+				. '<th class="hmibDashSortable">' . __esc('Process', 'hmib') . '</th>'
+				. '<th class="hmibDashSortable hmibDashNum" data-sort="num">' . __esc('Hosts', 'hmib') . '</th>'
+				. '<th class="hmibDashSortable hmibDashNum" data-sort="num">' . $metric_head . '</th>'
+				. '<th>' . __esc('Relative', 'hmib') . '</th>'
+				. '</tr></thead><tbody>';
+
+			if (cacti_sizeof($processes)) {
+				$peak = 1.0;
+				foreach ($processes as $process) {
+					$peak = max($peak, (float) ($by_cpu ? $process['maxCpu'] : $process['maxMem']));
+				}
+
+				foreach ($processes as $process) {
+					if ($by_cpu) {
+						$raw     = (float) $process['maxCpu'];
+						$display = number_format_i18n($raw / 100, 0);
+					} else {
+						$raw     = (float) $process['maxMem'];
+						$display = hmib_memory($raw * 1024);
+					}
+
+					$width = $raw / $peak * 100;
+
+					print '<tr>'
+						. '<td>' . html_escape($process['name']) . '</td>'
+						. '<td class="hmibDashNum" data-sort-value="' . (int) $process['hosts'] . '">' . number_format_i18n((int) $process['hosts'], 0) . '</td>'
+						. '<td class="hmibDashNum" data-sort-value="' . $raw . '">' . html_escape($display) . '</td>'
+						. '<td><span class="hmibMiniBar"><span class="hmibMiniBarFill" style="width:' . number_format($width, 2, '.', '') . '%"></span></span></td>'
+						. '</tr>';
+				}
+			} else {
+				print '<tr class="hmibDashEmptyRow"><td colspan="4" class="hmibDashEmpty">' . __esc('No process statistics recorded.', 'hmib') . '</td></tr>';
+			}
+
+			print '</tbody></table>';
+
+			break;
+	}
+
+	return (string) ob_get_clean();
+}
+
+/**
+ * Render a complete Fleet Dashboard card (section, header toolbar and body).
+ *
+ * @param string $key      The card identifier.
+ * @param int    $ostype   The host_type scope.
+ * @param bool   $expanded Whether the card opens expanded.
+ *
+ * @return string The card HTML, or '' for an unknown key.
+ */
+function hmib_summary_render_card(string $key, int $ostype, bool $expanded = false): string {
+	$meta = hmib_summary_card_meta();
+
+	if (!isset($meta[$key])) {
+		return '';
+	}
+
+	$def = $meta[$key];
+
+	$tools = '';
+
+	if ($def['expandable']) {
+		$tools .= '<button type="button" class="hmibDashCardTool" data-tool="expand" aria-label="' . __esc('Show more', 'hmib') . '" title="' . __esc('Show more', 'hmib') . '"><i class="fas fa-chevron-down" aria-hidden="true"></i></button>';
+		$tools .= '<button type="button" class="hmibDashCardTool" data-tool="collapse" aria-label="' . __esc('Show less', 'hmib') . '" title="' . __esc('Show less', 'hmib') . '"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>';
+	}
+
+	$tools .= '<button type="button" class="hmibDashCardTool" data-tool="maximize" aria-label="' . __esc('Open in a dialog', 'hmib') . '" title="' . __esc('Open in a dialog', 'hmib') . '"><i class="fas fa-window-maximize" aria-hidden="true"></i></button>';
+	$tools .= '<button type="button" class="hmibDashCardTool" data-tool="refresh" aria-label="' . __esc('Refresh', 'hmib') . '" title="' . __esc('Refresh', 'hmib') . '"><i class="fas fa-sync-alt" aria-hidden="true"></i></button>';
+	$tools .= '<button type="button" class="hmibDashCardTool" data-tool="remove" aria-label="' . __esc('Remove from page', 'hmib') . '" title="' . __esc('Remove from page', 'hmib') . '"><i class="fas fa-times" aria-hidden="true"></i></button>';
+
+	$classes = 'hmibDashCard hmibDashSpan' . (int) $def['span'];
+
+	if ($def['expandable']) {
+		$classes .= ' hmibDashCardExpandable';
+	}
+
+	if ($expanded) {
+		$classes .= ' hmibDashCardExpanded';
+	}
+
+	$state = hmib_summary_card_state($key, $ostype);
+	$header_class = 'hmibDashCardHeader' . ($state !== '' ? ' hmibDashCardHeader--' . $state : '');
+
+	return '<section class="' . $classes . '" data-card="' . html_escape($key) . '">'
+		. '<header class="' . $header_class . '">'
+		. '<button type="button" class="hmibDashCardDrag" aria-label="' . __esc('Drag to reorder card', 'hmib') . '"><i class="fas fa-bars" aria-hidden="true"></i></button>'
+		. '<h2 class="hmibDashCardTitle">' . html_escape($def['title']) . '</h2>'
+		. '<span class="hmibDashCardTools">' . $tools . '</span>'
+		. '</header>'
+		. '<div class="hmibDashCardBody">' . hmib_summary_card_body($key, $ostype) . '</div>'
+		. '</section>';
+}
+
+/**
+ * The current user's Fleet Dashboard layout (present cards in order + expanded
+ * state); defaults to every card in registry order.
+ *
+ * @param int $ostype The host_type scope.
+ *
+ * @return array{order: string[], expanded: array<string, bool>}
+ */
+function hmib_summary_layout(int $ostype): array {
+	$available = hmib_summary_available_cards($ostype);
+	$saved     = json_decode((string) read_user_setting('hmib_summary_layout', '', true), true);
+
+	if (!is_array($saved) || !isset($saved['order']) || !is_array($saved['order'])) {
+		return ['order' => $available, 'expanded' => []];
+	}
+
+	$order = [];
+
+	foreach ($saved['order'] as $key) {
+		if (is_string($key) && in_array($key, $available, true) && !in_array($key, $order, true)) {
+			$order[] = $key;
+		}
+	}
+
+	$expanded = [];
+
+	if (isset($saved['expanded']) && is_array($saved['expanded'])) {
+		foreach ($saved['expanded'] as $key => $on) {
+			if ($on && in_array($key, $available, true)) {
+				$expanded[(string) $key] = true;
+			}
+		}
+	}
+
+	return ['order' => $order, 'expanded' => $expanded];
+}
+
+/**
+ * Persist the posted Fleet Dashboard layout for the current user.
+ *
+ * @return string A JSON status document.
+ */
+function hmib_summary_layout_save(): string {
+	if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !function_exists('csrf_check') || !csrf_check(false)) {
+		return (string) json_encode(['error' => __('Invalid request. Please try again.', 'hmib')]);
+	}
+
+	$available = hmib_summary_available_cards(0);
+	$posted    = json_decode(isset_request_var('layout') ? (string) get_nfilter_request_var('layout') : '', true);
+
+	$order    = [];
+	$expanded = [];
+
+	if (is_array($posted)) {
+		if (isset($posted['order']) && is_array($posted['order'])) {
+			foreach ($posted['order'] as $key) {
+				if (is_string($key) && in_array($key, $available, true) && !in_array($key, $order, true)) {
+					$order[] = $key;
+				}
+			}
+		}
+
+		if (isset($posted['expanded']) && is_array($posted['expanded'])) {
+			foreach ($posted['expanded'] as $key => $on) {
+				if ($on && is_string($key) && in_array($key, $available, true)) {
+					$expanded[$key] = true;
+				}
+			}
+		}
+	}
+
+	set_user_setting('hmib_summary_layout', json_encode(['order' => $order, 'expanded' => $expanded]));
+
+	return (string) json_encode(['ok' => true]);
+}
+
+/**
+ * Persist the posted Fleet Dashboard auto-refresh interval for the current user
+ * (CSRF POST, validated against the refresh picker's options).
+ *
+ * @return string A JSON status document.
+ *
+ * @global array $page_refresh_interval Cacti's allowed refresh intervals.
+ */
+function hmib_summary_refresh_save(): string {
+	global $page_refresh_interval;
+
+	if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !function_exists('csrf_check') || !csrf_check(false)) {
+		return (string) json_encode(['error' => __('Invalid request. Please try again.', 'hmib')]);
+	}
+
+	$posted    = isset_request_var('refresh') ? (string) get_nfilter_request_var('refresh') : '';
+	$intervals = (is_array($page_refresh_interval) && cacti_sizeof($page_refresh_interval)) ? $page_refresh_interval : [30 => '', 60 => '', 300 => ''];
+	$allowed   = array_map('intval', array_keys($intervals));
+	$allowed[] = 0;
+
+	if (!preg_match('/^[0-9]+$/', $posted) || !in_array((int) $posted, $allowed, true)) {
+		return (string) json_encode(['error' => __('Invalid refresh interval.', 'hmib')]);
+	}
+
+	set_user_setting('hmib_summary_refresh', (int) $posted);
+
+	return (string) json_encode(['ok' => true]);
+}
+
+/**
+ * AJAX: render a single Fleet Dashboard card (adding from the catalogue or
+ * refreshing in place).
+ *
+ * @return string A JSON document with the card key and rendered HTML.
+ */
+function hmib_summary_card_ajax(): string {
+	if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !function_exists('csrf_check') || !csrf_check(false)) {
+		return (string) json_encode(['error' => __('Invalid request. Please try again.', 'hmib')]);
+	}
+
+	$ostype = hmib_summary_resolve_type();
+	$key    = isset_request_var('card') ? (string) get_nfilter_request_var('card') : '';
+
+	if (!in_array($key, hmib_summary_available_cards($ostype), true)) {
+		return (string) json_encode(['error' => __('Unknown card.', 'hmib')]);
+	}
+
+	$expanded = isset_request_var('expanded') && get_nfilter_request_var('expanded') === '1';
+
+	return (string) json_encode(['card' => $key, 'html' => hmib_summary_render_card($key, $ostype, $expanded)]);
+}
+
+/**
+ * Renders the Fleet (Summary) Dashboard: a draggable grid of aggregate cards
+ * (fleet overview, min/avg/max utilization bullet charts, device status, storage,
+ * uptime, OS type distribution and top processes by CPU/memory) scoped to all
+ * devices or a single OS type. Card order, expanded state, the selected OS type
+ * and the auto-refresh interval persist per user. Called from this script's main
+ * request-dispatch switch when action=summary_dashboard.
+ *
+ * @return void
+ *
+ * @global array $config                Cacti global configuration array.
+ * @global array $page_refresh_interval Cacti's refresh-interval option list.
+ */
+function hmib_summary_dashboard(): void {
+	global $config, $page_refresh_interval;
+
+	$ostype = hmib_summary_resolve_type();
+
+	$current_refresh = (int) read_user_setting('hmib_summary_refresh', 0);
+
+	if ($current_refresh > 0 && function_exists('set_page_refresh')) {
+		set_page_refresh([
+			'seconds' => $current_refresh,
+			'page'    => $config['url_path'] . 'plugins/hmib/hmib.php?action=summary_dashboard&header=false',
+			'logout'  => 'false'
+		]);
+	}
+
+	print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . ' src="' . $config['url_path'] . 'plugins/hmib/js/hmib_summary_dashboard.js?v=' . filemtime($config['base_path'] . '/plugins/hmib/js/hmib_summary_dashboard.js') . '"></script>';
+
+	$layout = hmib_summary_layout($ostype);
+	$meta   = hmib_summary_card_meta();
+	$absent = array_values(array_diff(hmib_summary_available_cards($ostype), $layout['order']));
+
+	if (empty($page_refresh_interval) || !is_array($page_refresh_interval)) {
+		$page_refresh_interval = [0 => __('No Refresh', 'hmib'), 30 => __('30 Seconds', 'hmib'), 60 => __('1 Minute', 'hmib'), 300 => __('5 Minutes', 'hmib')];
+	}
+
+	print '<div class="hmibDashToolbar">';
+	print '<label class="hmibDashToolbarLabel" for="hmib_summary_type">' . __esc('Scope', 'hmib') . '</label>';
+	print '<select id="hmib_summary_type" class="hmibDashAdd">';
+	print '<option value="0"' . ($ostype === 0 ? ' selected' : '') . '>' . __esc('All Types', 'hmib') . '</option>';
+
+	$types = db_fetch_assoc("SELECT DISTINCT hrst.id, CONCAT_WS('', hrst.name, ' [', hrst.version, ']') AS name
+		FROM plugin_hmib_hrSystemTypes AS hrst
+		INNER JOIN plugin_hmib_hrSystem AS hrs ON hrst.id = hrs.host_type
+		WHERE hrst.name != ''
+		ORDER BY name");
+
+	if (cacti_sizeof($types)) {
+		foreach ($types as $type) {
+			print '<option value="' . (int) $type['id'] . '"' . ((int) $type['id'] === $ostype ? ' selected' : '') . '>' . html_escape($type['name']) . '</option>';
+		}
+	}
+
+	print '</select>';
+
+	print '<label class="hmibDashToolbarLabel" for="hmib_summary_add">' . __esc('Add card', 'hmib') . '</label>';
+	print '<select id="hmib_summary_add" class="hmibDashAdd"><option value="">' . __esc('Add a card…', 'hmib') . '</option>';
+
+	foreach ($absent as $key) {
+		print '<option value="' . html_escape($key) . '">' . html_escape($meta[$key]['title']) . '</option>';
+	}
+
+	print '</select>';
+
+	print '<div class="hmibDashRefresh">';
+	print '<label class="hmibDashToolbarLabel" for="hmib_summary_refresh">' . __esc('Refresh', 'hmib') . '</label>';
+	print '<select id="hmib_summary_refresh" class="hmibDashRefreshInterval">';
+	print '<option value="0"' . ($current_refresh === 0 ? ' selected' : '') . '>' . __esc('No Refresh', 'hmib') . '</option>';
+
+	foreach ($page_refresh_interval as $seconds => $display_text) {
+		if ((int) $seconds === 0) {
+			continue;
+		}
+
+		print '<option value="' . (int) $seconds . '"' . ($current_refresh === (int) $seconds ? ' selected' : '') . '>' . html_escape($display_text) . '</option>';
+	}
+
+	print '</select>';
+	print '<button type="button" id="hmib_summary_refresh_now" class="hmibDashCardTool hmibDashRefreshNow" aria-label="' . __esc('Refresh', 'hmib') . '" title="' . __esc('Refresh', 'hmib') . '"><i class="fas fa-sync-alt" aria-hidden="true"></i></button>';
+	print '</div>';
+	print '</div>';
+
+	print '<div id="hmib_summary_dashboard" class="hmibDashGrid" data-ostype="' . $ostype . '">';
+
+	foreach ($layout['order'] as $key) {
+		print hmib_summary_render_card($key, $ostype, !empty($layout['expanded'][$key]));
+	}
+
+	print '</div>';
+
+	print '<div id="hmib_summary_dialog" class="hmibDashDialog" style="display:none"></div>';
+
+	$catalog = [];
+
+	foreach (hmib_summary_available_cards($ostype) as $key) {
+		$catalog[$key] = $meta[$key]['title'];
+	}
+
+	print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . '>var hmibSummaryCatalog = ' . json_encode($catalog, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . '; initHmibSummaryDashboard();</script>';
 }

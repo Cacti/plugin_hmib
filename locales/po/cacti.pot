@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cacti\n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-10 09:47-0400\n"
+"POT-Creation-Date: 2026-10-10 17:26-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Cacti Developers <developers@cacti.net>\n"
 "Language-Team: Cacti Developers <developers@cacti.net>\n"
@@ -386,6 +386,10 @@ msgid "Graphs"
 msgstr ""
 
 #: hmib.php
+msgid "Fleet Dashboard"
+msgstr ""
+
+#: hmib.php
 msgid "Dashboard"
 msgstr ""
 
@@ -461,6 +465,10 @@ msgstr ""
 
 #: hmib.php
 msgid "Max Proc"
+msgstr ""
+
+#: hmib.php
+msgid "View Fleet Dashboard"
 msgstr ""
 
 #: hmib.php
@@ -783,6 +791,94 @@ msgstr ""
 
 #: hmib.php
 msgid "Add a card…"
+msgstr ""
+
+#: hmib.php
+msgid "Fleet Overview"
+msgstr ""
+
+#: hmib.php
+msgid "Resource Utilization"
+msgstr ""
+
+#: hmib.php
+msgid "Device Status"
+msgstr ""
+
+#: hmib.php
+msgid "Storage Utilization"
+msgstr ""
+
+#: hmib.php
+msgid "Uptime Distribution"
+msgstr ""
+
+#: hmib.php
+msgid "OS Type Distribution"
+msgstr ""
+
+#: hmib.php
+msgid "Top Processes by CPU"
+msgstr ""
+
+#: hmib.php
+msgid "Top Processes by Memory"
+msgstr ""
+
+#: hmib.php
+msgid "No Host MIB devices in this scope yet."
+msgstr ""
+
+#: hmib.php
+msgid "Total RAM"
+msgstr ""
+
+#: hmib.php
+msgid "CPU %"
+msgstr ""
+
+#: hmib.php
+msgid "Memory %"
+msgstr ""
+
+#: hmib.php
+msgid "Swap %"
+msgstr ""
+
+#: hmib.php
+msgid "Processes / host"
+msgstr ""
+
+#: hmib.php
+msgid "No storage volumes detected in this scope."
+msgstr ""
+
+#: hmib.php
+msgid "Total Capacity"
+msgstr ""
+
+#: hmib.php
+msgid "No OS types recorded."
+msgstr ""
+
+#: hmib.php
+msgid "Max CPU (s)"
+msgstr ""
+
+#: hmib.php
+msgid "Relative"
+msgstr ""
+
+#: hmib.php
+msgid "No process statistics recorded."
+msgstr ""
+
+#: hmib.php
+msgid "Scope"
+msgstr ""
+
+#: hmib.php
+msgid "All Types"
 msgstr ""
 
 #: hmib_types.php
