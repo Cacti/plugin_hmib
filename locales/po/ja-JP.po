@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-10 09:47-0400\n"
+"POT-Creation-Date: 2026-10-10 17:47-0400\n"
 "PO-Revision-Date: 2024-11-22 02:12+0000\n"
 "Last-Translator: Nakayama Kito <nakayamakito@icloud.com>\n"
 "Language-Team: Japanese <http://translate.cacti.net/projects/cacti/hmib/ja/>\n"
@@ -387,6 +387,12 @@ msgid "Graphs"
 msgstr "グラフ"
 
 #: hmib.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Fleet Dashboard"
+msgstr "ホストMIBの詳細"
+
+#: hmib.php
 msgid "Dashboard"
 msgstr ""
 
@@ -465,6 +471,10 @@ msgstr "平均処理"
 #: hmib.php
 msgid "Max Proc"
 msgstr "マックスプロック"
+
+#: hmib.php
+msgid "View Fleet Dashboard"
+msgstr ""
 
 #: hmib.php
 msgid "View Devices"
@@ -844,6 +854,122 @@ msgstr ""
 #: hmib.php
 msgid "Add a card…"
 msgstr ""
+
+#: hmib.php
+msgid "Fleet Overview"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Application"
+msgid "Resource Utilization"
+msgstr "アプリケーション"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Devices"
+msgid "Device Status"
+msgstr "デバイス"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Application"
+msgid "Storage Utilization"
+msgstr "アプリケーション"
+
+#: hmib.php
+msgid "Uptime Distribution"
+msgstr ""
+
+#: hmib.php
+msgid "OS Type Distribution"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "No Processes"
+msgid "Top Processes by CPU"
+msgstr "プロセッサー"
+
+#: hmib.php
+#, fuzzy
+#| msgid "No Processes"
+msgid "Top Processes by Memory"
+msgstr "プロセッサー"
+
+#: hmib.php
+msgid "No Host MIB devices in this scope yet."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Total Mem"
+msgid "Total RAM"
+msgstr "合計メモリ"
+
+#: hmib.php
+#, fuzzy
+#| msgid "CPU %%%"
+msgid "CPU %"
+msgstr "CPU ％"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Avg Memory"
+msgid "Memory %"
+msgstr "平均メモリ"
+
+#: hmib.php
+msgid "Swap %"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Processes"
+msgid "Processes / host"
+msgstr "プロセッサー"
+
+#: hmib.php
+msgid "No storage volumes detected in this scope."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Total Swap"
+msgid "Total Capacity"
+msgstr "合計スワップ"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Running Processes"
+msgid "No OS types recorded."
+msgstr "実行中のプロセス"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Max CPU"
+msgid "Max CPU (s)"
+msgstr "最大CPU"
+
+#: hmib.php
+msgid "Relative"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Running Processes"
+msgid "No process statistics recorded."
+msgstr "実行中のプロセス"
+
+#: hmib.php
+msgid "Scope"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Type"
+msgid "All Types"
+msgstr "タイプ"
 
 #: hmib_types.php
 msgid "Delete"
