@@ -28,7 +28,9 @@ include('./include/auth.php');
 set_default_action('summary');
 
 if (get_request_var('action') == 'ajax_hosts') {
-	get_allowed_ajax_hosts(true, false, 'h.id IN (SELECT host_id FROM plugin_hmib_hrSystem)');
+	// Serves the dashboard's device drop_callback; no 'Any'/'None' entries since a
+	// dashboard always targets one real Host MIB device.
+	get_allowed_ajax_hosts(false, false, 'h.id IN (SELECT host_id FROM plugin_hmib_hrSystem)');
 	exit;
 }
 
@@ -4684,23 +4686,37 @@ function hmib_dashboard(): void {
 		$page_refresh_interval = [0 => __('No Refresh', 'hmib'), 30 => __('30 Seconds', 'hmib'), 60 => __('1 Minute', 'hmib'), 300 => __('5 Minutes', 'hmib')];
 	}
 
+	// Device picker: a Cacti drop_callback (select2 AJAX) that searches Host MIB
+	// devices server-side via ?action=ajax_hosts, so installs with tens of
+	// thousands of hosts never materialize the full option list in the DOM.
+	$host_name = db_fetch_cell_prepared('SELECT description FROM host WHERE id = ?', [$host_id]);
+
+	form_start('hmib.php', 'hmib_dashboard_device_form');
+
+	html_start_box('', '100%', '', '3', 'center', '');
+
+	draw_edit_form([
+		'config' => ['no_form_tag' => true],
+		'fields' => [
+			'hmib_dashboard_host' => [
+				'method'        => 'drop_callback',
+				'action'        => 'ajax_hosts',
+				'id'            => $host_id,
+				'sql'           => 'SELECT ' . db_qstr($host_id) . ' AS id, ' . db_qstr((string) $host_name) . ' AS name',
+				'friendly_name' => __('Device', 'hmib'),
+				'description'   => __('Search Host MIB devices as you type to open that device\'s dashboard.', 'hmib'),
+				'value'         => $host_id,
+				'size'          => 40,
+				'max_length'    => 64
+			]
+		]
+	]);
+
+	html_end_box(false);
+
+	form_end();
+
 	print '<div class="hmibDashToolbar">';
-	print '<label class="hmibDashToolbarLabel" for="hmib_dashboard_host">' . __esc('Device', 'hmib') . '</label>';
-	print '<select id="hmib_dashboard_host" class="hmibDashHost">';
-
-	$hosts = db_fetch_assoc("SELECT host.id, host.description
-		FROM plugin_hmib_hrSystem AS hrs
-		INNER JOIN host ON host.id = hrs.host_id
-		WHERE host.description != ''
-		ORDER BY host.description");
-
-	if (cacti_sizeof($hosts)) {
-		foreach ($hosts as $host) {
-			print '<option value="' . (int) $host['id'] . '"' . ((int) $host['id'] === $host_id ? ' selected' : '') . '>' . html_escape($host['description']) . '</option>';
-		}
-	}
-
-	print '</select>';
 
 	print '<label class="hmibDashToolbarLabel" for="hmib_dashboard_add">' . __esc('Add card', 'hmib') . '</label>';
 	print '<select id="hmib_dashboard_add" class="hmibDashAdd"><option value="">' . __esc('Add a card…', 'hmib') . '</option>';
