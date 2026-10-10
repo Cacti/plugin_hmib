@@ -496,3 +496,204 @@
 		grid-column: 1 / -1;
 	}
 }
+
+/*
+ * Fleet (Summary) Dashboard visuals: min/avg/max bullet charts, stat tiles, a
+ * status stacked bar and in-table mini bars. Theme-adaptive via
+ * color-mix(currentColor ...); severity accents use fixed colours.
+ */
+
+/* Min / avg / max bullet chart. The track is 0..scale; a translucent band spans
+   min..max; a strong marker sits at avg. */
+.hmibBullet {
+	margin: 9px 0;
+}
+
+.hmibBulletHead {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 8px;
+	margin-bottom: 4px;
+}
+
+.hmibBulletLabel {
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.hmibBulletAvg {
+	font-size: 12px;
+	font-variant-numeric: tabular-nums;
+	color: color-mix(in srgb, currentColor 78%, transparent);
+}
+
+.hmibBulletTrack {
+	position: relative;
+	height: 16px;
+	border-radius: 8px;
+	background: color-mix(in srgb, currentColor 12%, transparent);
+	overflow: hidden;
+}
+
+.hmibBulletRange {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	border-radius: 8px;
+}
+
+.hmibBulletRange--up         { background: color-mix(in srgb, #3c9a5f 55%, transparent); }
+.hmibBulletRange--recovering { background: color-mix(in srgb, #d9830f 55%, transparent); }
+.hmibBulletRange--down       { background: color-mix(in srgb, #cc0000 55%, transparent); }
+.hmibBulletRange--none       { background: color-mix(in srgb, currentColor 32%, transparent); }
+
+.hmibBulletMarker {
+	position: absolute;
+	top: -2px;
+	bottom: -2px;
+	width: 3px;
+	transform: translateX(-1px);
+	background: currentColor;
+	border-radius: 2px;
+}
+
+.hmibBulletScale {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 2px;
+	font-size: 10px;
+	font-variant-numeric: tabular-nums;
+	color: color-mix(in srgb, currentColor 60%, transparent);
+}
+
+/* Stat tiles for the fleet overview. */
+.hmibFleetTiles {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+	gap: 8px;
+}
+
+.hmibFleetTile {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2px;
+	padding: 8px 6px;
+	border-radius: 7px;
+	border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+	background: color-mix(in srgb, currentColor 4%, transparent);
+}
+
+.hmibFleetTileValue {
+	font-size: 22px;
+	font-weight: 700;
+	line-height: 1;
+	font-variant-numeric: tabular-nums;
+}
+
+.hmibFleetTileLabel {
+	font-size: 11px;
+	text-align: center;
+	color: color-mix(in srgb, currentColor 70%, transparent);
+}
+
+.hmibFleetTile--up    { border-color: color-mix(in srgb, #3c9a5f 55%, transparent); }
+.hmibFleetTile--rec   { border-color: color-mix(in srgb, #d9830f 55%, transparent); }
+.hmibFleetTile--down  { border-color: color-mix(in srgb, #cc0000 55%, transparent); }
+.hmibFleetTile--up .hmibFleetTileValue    { color: #3c9a5f; }
+.hmibFleetTile--rec .hmibFleetTileValue   { color: #d9830f; }
+.hmibFleetTile--down .hmibFleetTileValue  { color: #cc0000; }
+
+/* Horizontal status stacked bar (up / recovering / down / disabled). */
+.hmibStackBar {
+	display: flex;
+	height: 20px;
+	border-radius: 6px;
+	overflow: hidden;
+	background: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.hmibStackSeg {
+	height: 100%;
+}
+
+.hmibStackSeg--up    { background: #3c9a5f; }
+.hmibStackSeg--rec   { background: #d9830f; }
+.hmibStackSeg--down  { background: #cc0000; }
+.hmibStackSeg--dis   { background: color-mix(in srgb, currentColor 35%, transparent); }
+
+.hmibStackLegend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 8px;
+	font-size: 11px;
+}
+
+.hmibStackLegend span {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.hmibStackChip {
+	width: 10px;
+	height: 10px;
+	border-radius: 2px;
+	display: inline-block;
+}
+
+/* Horizontal distribution bars (OS type counts) and in-table mini bars. */
+.hmibDistRow {
+	display: grid;
+	grid-template-columns: minmax(80px, 34%) 1fr auto;
+	align-items: center;
+	gap: 8px;
+	margin: 6px 0;
+	font-size: 12px;
+}
+
+.hmibDistLabel {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.hmibDistTrack {
+	height: 12px;
+	border-radius: 6px;
+	background: color-mix(in srgb, currentColor 12%, transparent);
+	overflow: hidden;
+}
+
+.hmibDistFill {
+	display: block;
+	height: 100%;
+	border-radius: 6px;
+	background: color-mix(in srgb, currentColor 45%, transparent);
+}
+
+.hmibDistValue {
+	font-variant-numeric: tabular-nums;
+	color: color-mix(in srgb, currentColor 80%, transparent);
+}
+
+.hmibMiniBar {
+	display: block;
+	position: relative;
+	height: 10px;
+	min-width: 60px;
+	border-radius: 5px;
+	background: color-mix(in srgb, currentColor 12%, transparent);
+	overflow: hidden;
+}
+
+.hmibMiniBarFill {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	border-radius: 5px;
+	background: color-mix(in srgb, currentColor 45%, transparent);
+}
