@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-10 09:10-0400\n"
+"POT-Creation-Date: 2026-10-10 09:47-0400\n"
 "PO-Revision-Date: 2024-06-08 09:55-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -565,6 +565,12 @@ msgstr "프로세스"
 
 #: hmib.php
 #, fuzzy
+#| msgid "Host MIB Process Use History"
+msgid "Process Use History"
+msgstr "호스트 MIB 프로세스 사용 내역"
+
+#: hmib.php
+#, fuzzy
 #| msgid "Hardware Type"
 msgid "Hardware Devices"
 msgstr "하드웨어 유형"
@@ -746,6 +752,12 @@ msgstr "이름"
 #: hmib.php
 msgid "No installed software inventory collected."
 msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Running Processes"
+msgid "No process use history recorded."
+msgstr "프로세스 실행"
 
 #: hmib.php
 msgid "Show more"
