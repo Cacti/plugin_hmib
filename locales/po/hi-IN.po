@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-10 09:47-0400\n"
+"POT-Creation-Date: 2026-10-10 17:47-0400\n"
 "PO-Revision-Date: 2024-06-08 09:52-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -386,6 +386,12 @@ msgid "Graphs"
 msgstr "रेखांकन"
 
 #: hmib.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Fleet Dashboard"
+msgstr "होस्ट MIB विवरण"
+
+#: hmib.php
 msgid "Dashboard"
 msgstr ""
 
@@ -464,6 +470,10 @@ msgstr "औसत प्रोक"
 #: hmib.php
 msgid "Max Proc"
 msgstr "मैक्स प्रोक"
+
+#: hmib.php
+msgid "View Fleet Dashboard"
+msgstr ""
 
 #: hmib.php
 msgid "View Devices"
@@ -844,6 +854,122 @@ msgstr ""
 #: hmib.php
 msgid "Add a card…"
 msgstr ""
+
+#: hmib.php
+msgid "Fleet Overview"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Application"
+msgid "Resource Utilization"
+msgstr "अनुप्रयोग"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Devices"
+msgid "Device Status"
+msgstr "डिवाइस"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Application"
+msgid "Storage Utilization"
+msgstr "अनुप्रयोग"
+
+#: hmib.php
+msgid "Uptime Distribution"
+msgstr ""
+
+#: hmib.php
+msgid "OS Type Distribution"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "No Processes"
+msgid "Top Processes by CPU"
+msgstr "प्रक्रम"
+
+#: hmib.php
+#, fuzzy
+#| msgid "No Processes"
+msgid "Top Processes by Memory"
+msgstr "प्रक्रम"
+
+#: hmib.php
+msgid "No Host MIB devices in this scope yet."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Total Mem"
+msgid "Total RAM"
+msgstr "कुल मेम"
+
+#: hmib.php
+#, fuzzy
+#| msgid "CPU %%%"
+msgid "CPU %"
+msgstr "सी पी यू %"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Avg Memory"
+msgid "Memory %"
+msgstr "औसत मेमोरी"
+
+#: hmib.php
+msgid "Swap %"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Processes"
+msgid "Processes / host"
+msgstr "प्रक्रम"
+
+#: hmib.php
+msgid "No storage volumes detected in this scope."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Total Swap"
+msgid "Total Capacity"
+msgstr "कुल स्वैप"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Running Processes"
+msgid "No OS types recorded."
+msgstr "प्रक्रिया चल रही है"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Max CPU"
+msgid "Max CPU (s)"
+msgstr "मैक्स सीपीयू"
+
+#: hmib.php
+msgid "Relative"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Running Processes"
+msgid "No process statistics recorded."
+msgstr "प्रक्रिया चल रही है"
+
+#: hmib.php
+msgid "Scope"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Type"
+msgid "All Types"
+msgstr "प्रकार"
 
 #: hmib_types.php
 msgid "Delete"
