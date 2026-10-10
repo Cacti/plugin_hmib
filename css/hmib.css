@@ -109,3 +109,390 @@
 .hmibStatusDown {
 	background-color: #a12820;
 }
+
+/*
+ * Host Dashboard (per-device drilldown). The card grid, gauges, usage bars and
+ * tables are theme-adaptive: colours are derived from the surrounding text
+ * colour via color-mix(currentColor ...) so the same rules read correctly on
+ * both light and dark Cacti themes without a per-theme override file. Severity
+ * accents (good/warning/critical) use fixed, theme-independent colours.
+ */
+
+.hmibDashboard {
+	color: #1b6ca8;
+}
+
+/* "Add card" + refresh toolbar above the grid. */
+.hmibDashToolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	margin: 10px 4px 0;
+}
+
+.hmibDashToolbarLabel {
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.hmibDashHost,
+.hmibDashAdd,
+.hmibDashRefreshInterval {
+	box-sizing: border-box;
+	padding: 4px 8px;
+	border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+	border-radius: 7px;
+	background: color-mix(in srgb, currentColor 4%, transparent);
+	color: inherit;
+	font-size: 12px;
+}
+
+.hmibDashAdd {
+	min-width: 200px;
+}
+
+.hmibDashRefresh {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-left: auto;
+}
+
+/* The 8-column card grid; each card spans a number of columns via a span class. */
+.hmibDashGrid {
+	display: grid;
+	grid-template-columns: repeat(8, minmax(0, 1fr));
+	align-items: start;
+	gap: 14px;
+	margin: 10px 4px;
+	font-variant-numeric: tabular-nums;
+}
+
+.hmibDashSpan2 { grid-column: span 2; }
+.hmibDashSpan3 { grid-column: span 3; }
+.hmibDashSpan4 { grid-column: span 4; }
+.hmibDashSpan6 { grid-column: span 6; }
+.hmibDashSpan8 { grid-column: span 8; }
+
+.hmibDashCard {
+	box-sizing: border-box;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+	background: color-mix(in srgb, currentColor 4%, transparent);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+	overflow: hidden;
+}
+
+.hmibDashCardHeader {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 7px 10px;
+	border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+	background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+/* Header severity accents: a translucent colour wash keeps strength consistent
+   across light and dark surfaces. */
+.hmibDashCardHeader--up     { background: color-mix(in srgb, #94b36b 30%, transparent); }
+.hmibDashCardHeader--recovering { background: color-mix(in srgb, #ff8f1e 30%, transparent); }
+.hmibDashCardHeader--down   { background: color-mix(in srgb, #cc0000 30%, transparent); }
+
+.hmibDashCardDrag {
+	flex: 0 0 auto;
+	padding: 2px 5px;
+	border: 0;
+	border-radius: 4px;
+	background: transparent;
+	color: color-mix(in srgb, currentColor 50%, transparent);
+	font-size: 13px;
+	line-height: 1;
+	cursor: grab;
+}
+
+.hmibDashCardDrag:hover,
+.hmibDashCardDrag:focus-visible {
+	color: currentColor;
+	background: color-mix(in srgb, currentColor 12%, transparent);
+	outline: none;
+}
+
+.hmibDashCardDrag:active { cursor: grabbing; }
+
+.hmibDashCardTitle {
+	flex: 1 1 auto;
+	min-width: 0;
+	margin: 0;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.3;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.hmibDashCardDragging { opacity: 0.5; }
+
+.hmibDashCardTools {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	gap: 1px;
+}
+
+.hmibDashCardTool {
+	padding: 2px 5px;
+	border: 0;
+	border-radius: 4px;
+	background: transparent;
+	color: color-mix(in srgb, currentColor 50%, transparent);
+	font-size: 12px;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.hmibDashCardTool:hover,
+.hmibDashCardTool:focus-visible {
+	color: currentColor;
+	background: color-mix(in srgb, currentColor 12%, transparent);
+	outline: none;
+}
+
+.hmibDashRefreshNow { font-size: 14px; }
+
+.hmibDashCard:not(.hmibDashCardExpanded) .hmibDashCardTool[data-tool="collapse"],
+.hmibDashCardExpanded .hmibDashCardTool[data-tool="expand"] {
+	display: none;
+}
+
+.hmibDashCardExpandable:not(.hmibDashCardExpanded) .hmibDashCardBody {
+	position: relative;
+	max-height: 230px;
+	overflow: hidden;
+}
+
+.hmibDashCardExpandable:not(.hmibDashCardExpanded) .hmibDashCardBody::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 30px;
+	pointer-events: none;
+	background: linear-gradient(transparent, color-mix(in srgb, currentColor 4%, transparent));
+}
+
+.hmibDashCardBody {
+	padding: 10px 12px;
+	overflow-x: auto;
+}
+
+/* Semicircular SVG gauge used by the CPU / memory / swap cards. */
+.hmibDashGauge {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2px 0 4px;
+}
+
+.hmibDashGaugeSvg {
+	width: 100%;
+	max-width: 190px;
+	height: auto;
+}
+
+.hmibDashGaugeTrack {
+	stroke: color-mix(in srgb, currentColor 16%, transparent);
+	stroke-width: 11;
+	stroke-linecap: round;
+}
+
+.hmibDashGaugeValue {
+	stroke-width: 11;
+	stroke-linecap: round;
+	transition: stroke-dasharray 0.4s ease;
+}
+
+.hmibDashGaugeText {
+	margin-top: -22px;
+	text-align: center;
+	line-height: 1.2;
+}
+
+.hmibDashGaugeValueText {
+	display: block;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.hmibDashGaugeSub {
+	display: block;
+	font-size: 11px;
+	color: color-mix(in srgb, currentColor 65%, transparent);
+}
+
+/* Key/value and data tables inside cards. */
+.hmibDashTable {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 12px;
+}
+
+.hmibDashTable th,
+.hmibDashTable td {
+	padding: 6px 8px;
+	text-align: left;
+	vertical-align: middle;
+	overflow-wrap: anywhere;
+}
+
+.hmibDashTable thead th {
+	font-weight: 600;
+	white-space: nowrap;
+	border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.hmibDashTable tbody tr + tr > th,
+.hmibDashTable tbody tr + tr > td {
+	border-top: 1px solid color-mix(in srgb, currentColor 9%, transparent);
+}
+
+.hmibDashTable td.hmibDashNum,
+.hmibDashTable th.hmibDashNum {
+	text-align: right;
+	white-space: nowrap;
+}
+
+/* Sortable column headers. */
+.hmibDashTable th.hmibDashSortable {
+	cursor: pointer;
+	user-select: none;
+}
+
+.hmibDashTable th.hmibDashSortable:hover {
+	background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.hmibDashTable th.hmibDashSortable::after {
+	content: '\2195';
+	margin-left: 5px;
+	opacity: 0.4;
+	font-size: 10px;
+}
+
+.hmibDashTable th.hmibDashSortAsc::after  { content: '\2191'; opacity: 0.9; }
+.hmibDashTable th.hmibDashSortDesc::after { content: '\2193'; opacity: 0.9; }
+
+.hmibDashKv th {
+	width: 42%;
+	font-weight: normal;
+	color: color-mix(in srgb, currentColor 72%, transparent);
+}
+
+.hmibDashKv td { font-weight: 600; }
+
+/* Horizontal usage bar (storage volumes, per-processor load). */
+.hmibDashBar {
+	position: relative;
+	height: 14px;
+	min-width: 80px;
+	border-radius: 7px;
+	background: color-mix(in srgb, currentColor 14%, transparent);
+	overflow: hidden;
+}
+
+.hmibDashBarFill {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	border-radius: 7px;
+}
+
+.hmibDashBarFill--up         { background: #3c9a5f; }
+.hmibDashBarFill--recovering { background: #d9830f; }
+.hmibDashBarFill--down       { background: #cc0000; }
+
+.hmibDashBarLabel {
+	display: block;
+	margin-top: 2px;
+	font-size: 11px;
+	color: color-mix(in srgb, currentColor 70%, transparent);
+}
+
+.hmibDashStat {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2px;
+	padding: 6px 0;
+}
+
+.hmibDashStatValue {
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 1;
+}
+
+.hmibDashStatLabel {
+	font-size: 12px;
+	color: color-mix(in srgb, currentColor 70%, transparent);
+}
+
+.hmibDashEmpty {
+	color: color-mix(in srgb, currentColor 65%, transparent);
+	font-style: italic;
+}
+
+.hmibDashPill {
+	display: inline-block;
+	min-width: 56px;
+	padding: 1px 8px;
+	border-radius: 10px;
+	color: #fff;
+	font-size: 0.82em;
+	text-align: center;
+}
+
+.hmibDashDialog { font-variant-numeric: tabular-nums; }
+
+.hmibDashNote {
+	margin: 8px 2px 2px;
+	padding: 8px 10px;
+	border-radius: 6px;
+	border-inline-start: 3px solid color-mix(in srgb, currentColor 45%, transparent);
+	background: color-mix(in srgb, currentColor 8%, transparent);
+	font-size: 12px;
+}
+
+/* Narrow the grid before cards get cramped. */
+@media (max-width: 1200px) {
+	.hmibDashGrid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	.hmibDashSpan4,
+	.hmibDashSpan6,
+	.hmibDashSpan8 {
+		grid-column: 1 / -1;
+	}
+}
+
+@media (max-width: 760px) {
+	.hmibDashGrid {
+		grid-template-columns: 1fr;
+		gap: 10px;
+	}
+
+	.hmibDashSpan2,
+	.hmibDashSpan3,
+	.hmibDashSpan4,
+	.hmibDashSpan6,
+	.hmibDashSpan8 {
+		grid-column: 1 / -1;
+	}
+}
