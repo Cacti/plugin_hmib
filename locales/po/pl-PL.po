@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-08 19:19-0400\n"
+"POT-Creation-Date: 2026-10-10 09:10-0400\n"
 "PO-Revision-Date: 2024-06-08 09:57-0400\n"
 "Last-Translator: kaktus <kaktus_j_p@o2.pl>\n"
 "Language-Team: Polish <http://translate.cacti.net/projects/cacti/hmib/pl/>\n"
@@ -307,6 +307,10 @@ msgid "Used Swap"
 msgstr "Wykorzystana zamiana"
 
 #: hmib.php
+msgid "View Dashboard"
+msgstr ""
+
+#: hmib.php
 msgid "View Storage"
 msgstr "Wyświetlanie pamięci masowej"
 
@@ -381,6 +385,10 @@ msgstr "Magazyn"
 #: hmib.php
 msgid "Graphs"
 msgstr "Wykresy"
+
+#: hmib.php
+msgid "Dashboard"
+msgstr ""
 
 #: hmib.php
 msgid "Summary Filter"
@@ -518,6 +526,314 @@ msgstr "Niestandardowa lista stosowanych wykresów - filtrowanie z listy"
 msgid "Graph Preview Filters"
 msgstr "Filtry podglądu wykresów"
 
+#: hmib.php
+msgid "System Information"
+msgstr ""
+
+#: hmib.php
+msgid "CPU Utilization"
+msgstr ""
+
+#: hmib.php
+msgid "Memory Utilization"
+msgstr ""
+
+#: hmib.php
+msgid "Swap Utilization"
+msgstr ""
+
+#: hmib.php
+msgid "Users and Logins"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Process Name"
+msgid "Per-Processor Load"
+msgstr "Nazwa procesu"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Storage Type"
+msgid "Storage Volumes"
+msgstr "Typ magazynu"
+
+#: hmib.php
+#, fuzzy
+#| msgid "No Processes"
+msgid "Top Processes"
+msgstr "Procesy"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Hardware Type"
+msgid "Hardware Devices"
+msgstr "Typ sprzętu"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Installed Software Frequency"
+msgid "Installed Software"
+msgstr "Zainstalowane oprogramowanie Częstotliwość"
+
+#: hmib.php
+msgid "No system information has been collected for this device yet."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Management"
+msgid "Management Address"
+msgstr "Zarządzanie"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Host Type Name"
+msgid "System Name"
+msgstr "Typ hosta Nazwa typu hosta"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Storage Description"
+msgid "Description"
+msgstr "Opis przechowywania"
+
+#: hmib.php
+msgid "Contact"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Actions"
+msgid "Location"
+msgstr "Akcje"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Uptime(d:h:m)"
+msgid "Uptime"
+msgstr "Czas sprawności (d:h:m)"
+
+#: hmib.php
+msgid "System Time"
+msgstr ""
+
+#: hmib.php
+msgid "No processor data available."
+msgstr ""
+
+#: hmib.php
+#, php-format
+msgid "%d CPU(s)"
+msgstr ""
+
+#: hmib.php
+msgid "No memory data available."
+msgstr ""
+
+#: hmib.php
+#, php-format
+msgid "%s total"
+msgstr ""
+
+#: hmib.php
+msgid "No swap configured on this device."
+msgstr ""
+
+#: hmib.php
+msgid "No session data available."
+msgstr ""
+
+#: hmib.php
+msgid "Logged-in Users"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "View Processes"
+msgid "Maximum Processes"
+msgstr "Procesy wyświetlania"
+
+#: hmib.php
+msgid "Unlimited"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "CPUs"
+msgid "CPU"
+msgstr "Jednostki centralne"
+
+#: hmib.php
+msgid "Load"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Application"
+msgid "Utilization"
+msgstr "Aplikacja"
+
+#: hmib.php
+#, fuzzy, php-format
+#| msgid "CPU %%%"
+msgid "CPU %d"
+msgstr "CPU % CPU"
+
+#: hmib.php
+msgid "No per-processor load reported."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Volumes"
+msgid "Volume"
+msgstr "Wolumeny"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Used Mem"
+msgid "Used"
+msgstr "Używane Memory"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Total Mem"
+msgid "Total"
+msgstr "Pamięć ogółem"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Used Mem"
+msgid "Used %"
+msgstr "Używane Memory"
+
+#: hmib.php
+msgid "No storage volumes detected."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "CPU (Hrs)"
+msgid "CPU (s)"
+msgstr "CPU (godz.)"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Avg Memory"
+msgid "Memory"
+msgstr "Średnia pamięć"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Running Processes"
+msgid "No running processes recorded."
+msgstr "Procesy bieżące"
+
+#: hmib.php
+msgid "No hardware devices detected."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Installed"
+msgid "Installed Packages"
+msgstr "Zainstalowane"
+
+#: hmib.php hmib_types.php
+msgid "Name"
+msgstr "Nazwa"
+
+#: hmib.php
+msgid "No installed software inventory collected."
+msgstr ""
+
+#: hmib.php
+msgid "Show more"
+msgstr ""
+
+#: hmib.php
+msgid "Show less"
+msgstr ""
+
+#: hmib.php
+msgid "Open in a dialog"
+msgstr ""
+
+#: hmib.php
+msgid "Refresh"
+msgstr ""
+
+#: hmib.php
+msgid "Remove from page"
+msgstr ""
+
+#: hmib.php
+msgid "Drag to reorder card"
+msgstr ""
+
+#: hmib.php
+msgid "Invalid request. Please try again."
+msgstr ""
+
+#: hmib.php
+msgid "Invalid refresh interval."
+msgstr ""
+
+#: hmib.php
+msgid "No device selected."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Unknown"
+msgid "Unknown card."
+msgstr "Nieznany"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Dashboard"
+msgstr "Szczegóły dotyczące hosta MIB"
+
+#: hmib.php
+msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
+msgstr ""
+
+#: hmib.php
+#, fuzzy, php-format
+#| msgid "Device"
+msgid "Device %d"
+msgstr "Urządzenie"
+
+#: hmib.php
+#, fuzzy
+#| msgid "%d Minute"
+msgid "1 Minute"
+msgstr "%d minuta"
+
+#: hmib.php
+msgid "30 Seconds"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "%d Minutes"
+msgid "5 Minutes"
+msgstr "%d minut"
+
+#: hmib.php
+msgid "No Refresh"
+msgstr ""
+
+#: hmib.php
+msgid "Add card"
+msgstr ""
+
+#: hmib.php
+msgid "Add a card…"
+msgstr ""
+
 #: hmib_types.php
 msgid "Delete"
 msgstr "Usuń"
@@ -638,10 +954,6 @@ msgstr "Typ hosta jest określany poprzez skanowanie agenta snmp dla sysObjectID
 #: hmib_types.php
 msgid "Device Scanning Function Options"
 msgstr "Opcje funkcji skanowania urządzeń"
-
-#: hmib_types.php
-msgid "Name"
-msgstr "Nazwa"
 
 #: hmib_types.php
 msgid "Give this Host Type a meaningful name."
