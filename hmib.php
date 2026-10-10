@@ -4682,5 +4682,6 @@ function hmib_dashboard(): void {
 		$catalog[$key] = $meta[$key]['title'];
 	}
 
-	print '<script type="text/javascript">var hmibDashCatalog = ' . json_encode($catalog) . '; initHmibDashboard();</script>';
+	// JSON_HEX_* prevents a card title from breaking out of the inline <script>.
+	print '<script type="text/javascript">var hmibDashCatalog = ' . json_encode($catalog, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . '; initHmibDashboard();</script>';
 }
