@@ -668,6 +668,7 @@
 }
 
 .hmibDistFill {
+	display: block;
 	height: 100%;
 	border-radius: 6px;
 	background: color-mix(in srgb, currentColor 45%, transparent);
@@ -679,6 +680,7 @@
 }
 
 .hmibMiniBar {
+	display: block;
 	position: relative;
 	height: 10px;
 	min-width: 60px;

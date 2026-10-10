@@ -4788,19 +4788,22 @@ function hmib_dashboard(): void {
 
 /**
  * Resolve the OS type the Fleet (Summary) Dashboard should scope to. A validated
- * 'ostype' request variable wins and is remembered; 0 means "all types". Falls
- * back to the remembered type, or 0.
+ * 'ostype' request variable wins and is remembered. -1 = all types, 0 = Unknown
+ * (untyped devices), a positive id = a specific OS type. Falls back to the
+ * remembered scope, or -1 (all).
  *
- * @return int The OS type id (host_type), or 0 for all types.
+ * @return int The host_type scope: -1 (all), 0 (Unknown), or a positive type id.
  */
 function hmib_summary_resolve_type(): int {
-	$ostype = -1;
+	$ostype   = -1;
+	$resolved = false;
 
 	if (isset_request_var('ostype')) {
 		$candidate = get_nfilter_request_var('ostype');
 
-		if (preg_match('/^[0-9]+$/', (string) $candidate)) {
-			$ostype = (int) $candidate;
+		if (preg_match('/^-?[0-9]+$/', (string) $candidate) && (int) $candidate >= -1) {
+			$ostype   = (int) $candidate;
+			$resolved = true;
 
 			if ((string) read_user_setting('hmib_summary_type', '') !== (string) $ostype) {
 				set_user_setting('hmib_summary_type', $ostype);
@@ -4808,20 +4811,21 @@ function hmib_summary_resolve_type(): int {
 		}
 	}
 
-	if ($ostype < 0) {
+	if (!$resolved) {
 		$stored = read_user_setting('hmib_summary_type', '');
-		$ostype = ($stored !== '' && preg_match('/^[0-9]+$/', (string) $stored)) ? (int) $stored : 0;
+		$ostype = ($stored !== '' && preg_match('/^-?[0-9]+$/', (string) $stored) && (int) $stored >= -1) ? (int) $stored : -1;
 	}
 
 	return $ostype;
 }
 
 /**
- * Memoized fleet system aggregates for an OS type scope (0 = all types). The
- * utilization statistics (cpu/mem/swap/processes/uptime) consider only up or
- * recovering devices so stale values from down devices do not skew them.
+ * Memoized fleet system aggregates for an OS type scope (-1 = all types, 0 =
+ * Unknown). The utilization statistics (cpu/mem/swap/processes/uptime) consider
+ * only up or recovering devices so stale values from down devices do not skew
+ * them.
  *
- * @param int $ostype The host_type to scope to, or 0 for all types.
+ * @param int $ostype The host_type to scope to; -1 for all types.
  *
  * @return array The aggregate row.
  */
@@ -4829,8 +4833,8 @@ function hmib_summary_stats(int $ostype): array {
 	static $cache = [];
 
 	if (!array_key_exists($ostype, $cache)) {
-		$where  = $ostype > 0 ? 'WHERE hrs.host_type = ?' : '';
-		$params = $ostype > 0 ? [$ostype] : [];
+		$where  = $ostype >= 0 ? 'WHERE hrs.host_type = ?' : '';
+		$params = $ostype >= 0 ? [$ostype] : [];
 
 		$row = db_fetch_row_prepared("SELECT
 			COUNT(*) AS devices,
@@ -4868,9 +4872,9 @@ function hmib_summary_stats(int $ostype): array {
 
 /**
  * Memoized fleet storage aggregates (per-volume used% distribution and total
- * capacity) for an OS type scope.
+ * capacity) for an OS type scope (-1 = all types, 0 = Unknown).
  *
- * @param int $ostype The host_type to scope to, or 0 for all types.
+ * @param int $ostype The host_type to scope to; -1 for all types.
  *
  * @return array The aggregate row.
  */
@@ -4878,8 +4882,8 @@ function hmib_summary_storage_stats(int $ostype): array {
 	static $cache = [];
 
 	if (!array_key_exists($ostype, $cache)) {
-		$where  = $ostype > 0 ? 'AND hrs.host_type = ?' : '';
-		$params = $ostype > 0 ? [$ostype] : [];
+		$where  = $ostype >= 0 ? 'AND hrs.host_type = ?' : '';
+		$params = $ostype >= 0 ? [$ostype] : [];
 
 		$row = db_fetch_row_prepared("SELECT
 			MIN(CASE WHEN host_status >= 2 THEN pct END) AS minPct,
@@ -5028,7 +5032,7 @@ function hmib_summary_card_state(string $key, int $ostype): string {
  * Render the inner body HTML of a single Fleet Dashboard card.
  *
  * @param string $key    The card identifier.
- * @param int    $ostype The host_type scope (0 = all types).
+ * @param int    $ostype The host_type scope (-1 = all types).
  *
  * @return string The card body HTML.
  */
@@ -5131,10 +5135,10 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 			break;
 		case 'ostypes':
 			$unknown_label = __('Unknown', 'hmib');
-			$type_where    = $ostype > 0 ? 'WHERE hrs.host_type = ?' : '';
+			$type_where    = $ostype >= 0 ? 'WHERE hrs.host_type = ?' : '';
 			$type_params   = [$unknown_label];
 
-			if ($ostype > 0) {
+			if ($ostype >= 0) {
 				$type_params[] = $ostype;
 			}
 
@@ -5145,8 +5149,7 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 				LEFT JOIN plugin_hmib_hrSystemTypes AS hrst ON hrs.host_type = hrst.id
 				$type_where
 				GROUP BY hrs.host_type
-				ORDER BY devices DESC
-				LIMIT 15", $type_params);
+				ORDER BY devices DESC", $type_params);
 
 			if (!cacti_sizeof($types)) {
 				print '<p class="hmibDashEmpty">' . __esc('No OS types recorded.', 'hmib') . '</p>';
@@ -5172,8 +5175,8 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 		case 'top_cpu':
 		case 'top_memory':
 			$by_cpu = ($key === 'top_cpu');
-			$where  = $ostype > 0 ? 'AND hrs.host_type = ?' : '';
-			$params = $ostype > 0 ? [$ostype] : [];
+			$where  = $ostype >= 0 ? 'AND hrs.host_type = ?' : '';
+			$params = $ostype >= 0 ? [$ostype] : [];
 
 			$processes = db_fetch_assoc_prepared("SELECT hrswr.name AS name,
 				COUNT(DISTINCT hrswr.host_id) AS hosts,
@@ -5452,7 +5455,11 @@ function hmib_summary_dashboard(): void {
 	print '<div class="hmibDashToolbar">';
 	print '<label class="hmibDashToolbarLabel" for="hmib_summary_type">' . __esc('Scope', 'hmib') . '</label>';
 	print '<select id="hmib_summary_type" class="hmibDashAdd">';
-	print '<option value="0"' . ($ostype === 0 ? ' selected' : '') . '>' . __esc('All Types', 'hmib') . '</option>';
+	print '<option value="-1"' . ($ostype === -1 ? ' selected' : '') . '>' . __esc('All Types', 'hmib') . '</option>';
+
+	if (db_fetch_cell('SELECT COUNT(*) FROM plugin_hmib_hrSystem WHERE host_type = 0') > 0) {
+		print '<option value="0"' . ($ostype === 0 ? ' selected' : '') . '>' . __esc('Unknown', 'hmib') . '</option>';
+	}
 
 	$types = db_fetch_assoc("SELECT DISTINCT hrst.id, CONCAT_WS('', hrst.name, ' [', hrst.version, ']') AS name
 		FROM plugin_hmib_hrSystemTypes AS hrst

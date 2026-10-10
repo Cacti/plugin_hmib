@@ -239,6 +239,13 @@ function hmibSumRefreshCard(grid, card, done) {
 			settle();
 			return;
 		}
+		// Use the card's CURRENT expanded state (the user may have toggled it while
+		// the request was in flight) rather than the snapshot sent with the request.
+		if (card.classList.contains('hmibDashCardExpanded')) {
+			fresh.classList.add('hmibDashCardExpanded');
+		} else {
+			fresh.classList.remove('hmibDashCardExpanded');
+		}
 		card.parentNode.replaceChild(fresh, card);
 		hmibSumBindCard(grid, fresh);
 		if (done) {
