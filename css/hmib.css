@@ -190,6 +190,7 @@
 	display: flex;
 	align-items: center;
 	gap: 8px;
+	box-sizing: border-box;
 	min-height: 34px;
 	padding: 7px 10px;
 	border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
