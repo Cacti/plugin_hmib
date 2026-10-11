@@ -4224,7 +4224,8 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 			$kv(__('Description', 'hmib'), (string) $system['sysDescr']);
 			$kv(__('Contact', 'hmib'), (string) $system['sysContact']);
 			$kv(__('Location', 'hmib'), (string) $system['sysLocation']);
-			$kv(__('Uptime', 'hmib'), hmib_dashboard_format_uptime((int) $system['uptime']));
+			// hrSystemUptime (uptime) is often unreported by agents that still serve sysUpTime.
+			$kv(__('Uptime', 'hmib'), hmib_dashboard_format_uptime((int) $system['uptime'] > 0 ? (int) $system['uptime'] : (int) $system['sysUptime']));
 			$kv(__('System Time', 'hmib'), (string) $system['date']);
 			print '</tbody></table>';
 
@@ -4847,6 +4848,8 @@ function hmib_summary_stats(int $ostype): array {
 		$where  = $ostype >= 0 ? 'WHERE hrs.host_type = ?' : '';
 		$params = $ostype >= 0 ? [$ostype] : [];
 
+		// hrSystemUptime (uptime) is often unreported (0) by agents that still serve
+		// sysUpTime (sysUptime), so fall back to it for the uptime distribution.
 		$row = db_fetch_row_prepared("SELECT
 			COUNT(*) AS devices,
 			SUM(host_status = 3) AS up,
@@ -4869,9 +4872,9 @@ function hmib_summary_stats(int $ostype): array {
 			MIN(CASE WHEN host_status >= 2 THEN processes END) AS minProc,
 			AVG(CASE WHEN host_status >= 2 THEN processes END) AS avgProc,
 			MAX(CASE WHEN host_status >= 2 THEN processes END) AS maxProc,
-			MIN(CASE WHEN host_status >= 2 THEN uptime END) AS minUptime,
-			AVG(CASE WHEN host_status >= 2 THEN uptime END) AS avgUptime,
-			MAX(CASE WHEN host_status >= 2 THEN uptime END) AS maxUptime
+			MIN(CASE WHEN host_status >= 2 THEN IF(uptime > 0, uptime, sysUptime) END) AS minUptime,
+			AVG(CASE WHEN host_status >= 2 THEN IF(uptime > 0, uptime, sysUptime) END) AS avgUptime,
+			MAX(CASE WHEN host_status >= 2 THEN IF(uptime > 0, uptime, sysUptime) END) AS maxUptime
 			FROM plugin_hmib_hrSystem AS hrs
 			$where", $params);
 

@@ -190,6 +190,7 @@
 	display: flex;
 	align-items: center;
 	gap: 8px;
+	min-height: 34px;
 	padding: 7px 10px;
 	border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
 	background: color-mix(in srgb, currentColor 8%, transparent);
@@ -203,8 +204,9 @@
 
 .hmibDashCardDrag {
 	flex: 0 0 auto;
+	box-sizing: border-box;
 	padding: 2px 5px;
-	border: 0;
+	border: 1px solid transparent;
 	border-radius: 4px;
 	background: transparent;
 	color: color-mix(in srgb, currentColor 50%, transparent);
@@ -217,6 +219,7 @@
 .hmibDashCardDrag:focus-visible {
 	color: currentColor;
 	background: color-mix(in srgb, currentColor 12%, transparent);
+	border-color: transparent;
 	outline: none;
 }
 
@@ -244,8 +247,9 @@
 }
 
 .hmibDashCardTool {
+	box-sizing: border-box;
 	padding: 2px 5px;
-	border: 0;
+	border: 1px solid transparent;
 	border-radius: 4px;
 	background: transparent;
 	color: color-mix(in srgb, currentColor 50%, transparent);
@@ -258,6 +262,7 @@
 .hmibDashCardTool:focus-visible {
 	color: currentColor;
 	background: color-mix(in srgb, currentColor 12%, transparent);
+	border-color: transparent;
 	outline: none;
 }
 
