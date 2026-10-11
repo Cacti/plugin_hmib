@@ -2909,7 +2909,8 @@ function hmib_software(): void {
 
 /**
  * Renders the top tabbed navigation bar for this page's views
- * (summary/devices/storage/hardware/running/history/software/graphs),
+ * (summary_dashboard/summary/devices/storage/hardware/running/history/software/graphs,
+ * plus the conditional per-device dashboard tab),
  * highlighting whichever tab corresponds to the current action. Called
  * from this script's main flow at the top of every rendered view.
  *
