@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cacti\n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-10 09:47-0400\n"
+"POT-Creation-Date: 2026-10-10 17:47-0400\n"
 "PO-Revision-Date: 2026-05-09 07:18+0000\n"
 "Last-Translator: \"Coool (github.com/Coool)\" <coool@mail.lv>\n"
 "Language-Team: Latvian <https://translate.cacti.net/projects/cacti/hmib/lv/>\n"
@@ -387,6 +387,12 @@ msgid "Graphs"
 msgstr "Grafiki"
 
 #: hmib.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Fleet Dashboard"
+msgstr "Resursdatora MIB detalizēta informācija"
+
+#: hmib.php
 msgid "Dashboard"
 msgstr ""
 
@@ -465,6 +471,10 @@ msgstr "Vidējais procesu"
 #: hmib.php
 msgid "Max Proc"
 msgstr "Maksimālais procesu"
+
+#: hmib.php
+msgid "View Fleet Dashboard"
+msgstr ""
 
 #: hmib.php
 msgid "View Devices"
@@ -845,6 +855,122 @@ msgstr ""
 #: hmib.php
 msgid "Add a card…"
 msgstr ""
+
+#: hmib.php
+msgid "Fleet Overview"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Application"
+msgid "Resource Utilization"
+msgstr "Programmatūra"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Devices"
+msgid "Device Status"
+msgstr "Ierīces"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Application"
+msgid "Storage Utilization"
+msgstr "Programmatūra"
+
+#: hmib.php
+msgid "Uptime Distribution"
+msgstr ""
+
+#: hmib.php
+msgid "OS Type Distribution"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "No Processes"
+msgid "Top Processes by CPU"
+msgstr "Nav procesu"
+
+#: hmib.php
+#, fuzzy
+#| msgid "No Processes"
+msgid "Top Processes by Memory"
+msgstr "Nav procesu"
+
+#: hmib.php
+msgid "No Host MIB devices in this scope yet."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Total Mem"
+msgid "Total RAM"
+msgstr "Kopējā atmiņa"
+
+#: hmib.php
+#, fuzzy
+#| msgid "CPU %%%"
+msgid "CPU %"
+msgstr "CPU %%%"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Avg Memory"
+msgid "Memory %"
+msgstr "Vidējais atmiņas"
+
+#: hmib.php
+msgid "Swap %"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Processes"
+msgid "Processes / host"
+msgstr "Procesi"
+
+#: hmib.php
+msgid "No storage volumes detected in this scope."
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Total Swap"
+msgid "Total Capacity"
+msgstr "Kopējā apmaiņas vieta"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Running Processes"
+msgid "No OS types recorded."
+msgstr "Darbojošies procesi"
+
+#: hmib.php
+#, fuzzy
+#| msgid "Max CPU"
+msgid "Max CPU (s)"
+msgstr "Maksimālais CPU"
+
+#: hmib.php
+msgid "Relative"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Running Processes"
+msgid "No process statistics recorded."
+msgstr "Darbojošies procesi"
+
+#: hmib.php
+msgid "Scope"
+msgstr ""
+
+#: hmib.php
+#, fuzzy
+#| msgid "Type"
+msgid "All Types"
+msgstr "Tips"
 
 #: hmib_types.php
 msgid "Delete"
