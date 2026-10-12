@@ -1392,6 +1392,18 @@ msgid "Host MIB Inventory Summary"
 msgstr "Tóm tắt hàng tồn kho của MIB"
 
 #: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Device Dashboard"
+msgstr "Chi tiết máy chủ MIB"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Fleet Dashboard"
+msgstr "Chi tiết máy chủ MIB"
+
+#: setup.php
 msgid "Host MIB Details"
 msgstr "Chi tiết máy chủ MIB"
 
