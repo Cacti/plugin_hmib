@@ -1428,6 +1428,18 @@ msgid "Host MIB Inventory Summary"
 msgstr "主機MIB庫存摘要"
 
 #: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Device Dashboard"
+msgstr "主機MIB詳細信息"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Fleet Dashboard"
+msgstr "主機MIB詳細信息"
+
+#: setup.php
 msgid "Host MIB Details"
 msgstr "主機MIB詳細信息"
 
