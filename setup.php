@@ -536,16 +536,19 @@ function hmib_config_arrays(): void {
 /**
  * Draw_navigation_text hook: registers the breadcrumb/navigation title
  * entries for this plugin's hmib.php and hmib_types.php pages and their
- * sub-views. Called by Cacti's navigation framework via the
- * 'draw_navigation_text' hook.
+ * sub-views (including the Fleet Dashboard landing view
+ * summary_dashboard and the per-device dashboard). Called by Cacti's
+ * navigation framework via the 'draw_navigation_text' hook.
  *
  * @param array $nav The navigation entries array being built up.
  *
  * @return array The $nav array with this plugin's entries added.
  */
 function hmib_draw_navigation_text($nav): array {
+	$nav['hmib.php:summary_dashboard'] = ['title' => __('Host MIB Fleet Dashboard', 'hmib'), 'mapping' => '', 'url' => 'hmib.php', 'level' => '0'];
 	$nav['hmib.php:summary']   = ['title' => __('Host MIB Inventory Summary', 'hmib'), 'mapping' => '', 'url' => 'hmib.php', 'level' => '0'];
 	$nav['hmib.php:devices']   = ['title' => __('Host MIB Details', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0'];
+	$nav['hmib.php:dashboard'] = ['title' => __('Host MIB Device Dashboard', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0'];
 	$nav['hmib.php:storage']   = ['title' => __('Host MIB Storage', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0'];
 	$nav['hmib.php:hardware']  = ['title' => __('Host MIB Hardware', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0'];
 	$nav['hmib.php:running']   = ['title' => __('Host MIB Running Processes', 'hmib'), 'mapping' => '', 'url' => '', 'level' => '0'];

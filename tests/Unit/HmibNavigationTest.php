@@ -18,9 +18,10 @@ it('adds the hmib breadcrumb entries without disturbing existing ones', function
 
 	expect($nav)->toHaveKey('other.php:');
 
-	foreach (array('hmib.php:summary', 'hmib.php:devices', 'hmib_types.php:', 'hmib_types.php:edit') as $key) {
+	foreach (array('hmib.php:summary_dashboard', 'hmib.php:summary', 'hmib.php:devices', 'hmib.php:dashboard', 'hmib_types.php:', 'hmib_types.php:edit') as $key) {
 		expect($nav)->toHaveKey($key);
 	}
 
+	expect($nav['hmib.php:summary_dashboard']['url'])->toBe('hmib.php');
 	expect($nav['hmib_types.php:']['url'])->toBe('hmib_types.php');
 });
