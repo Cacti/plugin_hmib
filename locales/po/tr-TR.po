@@ -1393,6 +1393,18 @@ msgid "Host MIB Inventory Summary"
 msgstr "Ana Bilgisayar MIB Envanter Özeti"
 
 #: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Device Dashboard"
+msgstr "Ev sahibi MIB Details"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Fleet Dashboard"
+msgstr "Ev sahibi MIB Details"
+
+#: setup.php
 msgid "Host MIB Details"
 msgstr "Ev sahibi MIB Details"
 
