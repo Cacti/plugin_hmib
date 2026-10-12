@@ -1,6 +1,8 @@
 ChangeLog
 
 --- develop ---
+* issue: Fix the Fleet Dashboard Uptime Distribution showing all zeros by falling back to SNMP sysUpTime when the Host Resources hrSystemUptime is not reported, and apply the same fallback to the per-device Dashboard
+* issue: Stop the Dashboard card header from changing height when hovering the drag handle or tool buttons by reserving space for the theme's button hover border
 * feature: Make the Fleet Dashboard the first tab and the default landing view on the Host MIB interface
 * feature: Add a Fleet (Summary) Dashboard reached by a dashboard glyph on the Summary tab's Device Type rows: a draggable, add/remove card grid scoped to all devices or one OS type, with min/avg/max bullet charts (CPU/memory/swap/processes/uptime), a device-status stacked bar, OS type distribution, storage utilization, fleet stat tiles, and top processes by CPU and by memory; scope, card order, expanded state and refresh interval persist per user
 * issue: Make the per-device Dashboard device picker an AJAX callback (a Cacti drop_callback that searches Host MIB devices server-side via ?action=ajax_hosts) instead of rendering every host as an <option>, so installs with tens of thousands of devices no longer bloat the page
