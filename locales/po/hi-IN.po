@@ -1392,6 +1392,18 @@ msgid "Host MIB Inventory Summary"
 msgstr "होस्ट MIB इन्वेंटरी सारांश"
 
 #: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Device Dashboard"
+msgstr "होस्ट MIB विवरण"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Fleet Dashboard"
+msgstr "होस्ट MIB विवरण"
+
+#: setup.php
 msgid "Host MIB Details"
 msgstr "होस्ट MIB विवरण"
 
