@@ -1393,6 +1393,18 @@ msgid "Host MIB Inventory Summary"
 msgstr "Принимающая сторона MIB Сводка инвентаризации MIB"
 
 #: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Device Dashboard"
+msgstr "Данные MIB хоста"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Fleet Dashboard"
+msgstr "Данные MIB хоста"
+
+#: setup.php
 msgid "Host MIB Details"
 msgstr "Данные MIB хоста"
 
