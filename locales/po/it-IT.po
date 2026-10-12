@@ -1392,6 +1392,18 @@ msgid "Host MIB Inventory Summary"
 msgstr "Riepilogo dell'inventario del MIB ospitante"
 
 #: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Device Dashboard"
+msgstr "Dettagli MIB Host"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Fleet Dashboard"
+msgstr "Dettagli MIB Host"
+
+#: setup.php
 msgid "Host MIB Details"
 msgstr "Dettagli MIB Host"
 
