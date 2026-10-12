@@ -1393,6 +1393,18 @@ msgid "Host MIB Inventory Summary"
 msgstr "Resumen del inventario de MIB del host"
 
 #: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Device Dashboard"
+msgstr "Detalles de la MIB del host"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Fleet Dashboard"
+msgstr "Detalles de la MIB del host"
+
+#: setup.php
 msgid "Host MIB Details"
 msgstr "Detalles de la MIB del host"
 
