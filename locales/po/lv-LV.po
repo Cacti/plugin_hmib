@@ -1393,6 +1393,18 @@ msgid "Host MIB Inventory Summary"
 msgstr "Resursdatora MIB uzskaites kopsavilkums"
 
 #: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Device Dashboard"
+msgstr "Resursdatora MIB detalizēta informācija"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Fleet Dashboard"
+msgstr "Resursdatora MIB detalizēta informācija"
+
+#: setup.php
 msgid "Host MIB Details"
 msgstr "Resursdatora MIB detalizēta informācija"
 
