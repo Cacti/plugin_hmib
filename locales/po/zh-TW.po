@@ -870,6 +870,10 @@ msgid "No Refresh"
 msgstr ""
 
 #: hmib.php
+msgid "Search Host MIB devices as you type to open that device's dashboard."
+msgstr ""
+
+#: hmib.php
 msgid "Add card"
 msgstr ""
 
@@ -1422,6 +1426,18 @@ msgstr "總務局"
 #: setup.php
 msgid "Host MIB Inventory Summary"
 msgstr "主機MIB庫存摘要"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Device Dashboard"
+msgstr "主機MIB詳細信息"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Fleet Dashboard"
+msgstr "主機MIB詳細信息"
 
 #: setup.php
 msgid "Host MIB Details"

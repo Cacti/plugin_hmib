@@ -191,8 +191,8 @@
 	align-items: center;
 	gap: 8px;
 	box-sizing: border-box;
-	min-height: 34px;
 	padding: 7px 10px;
+	min-height: 34px;
 	border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
 	background: color-mix(in srgb, currentColor 8%, transparent);
 }
@@ -207,6 +207,7 @@
 	flex: 0 0 auto;
 	box-sizing: border-box;
 	padding: 2px 5px;
+	/* reserve a transparent border so an inherited button:hover border cannot reflow the header */
 	border: 1px solid transparent;
 	border-radius: 4px;
 	background: transparent;
@@ -219,8 +220,8 @@
 .hmibDashCardDrag:hover,
 .hmibDashCardDrag:focus-visible {
 	color: currentColor;
-	background: color-mix(in srgb, currentColor 12%, transparent);
 	border-color: transparent;
+	background: color-mix(in srgb, currentColor 12%, transparent);
 	outline: none;
 }
 
@@ -250,6 +251,7 @@
 .hmibDashCardTool {
 	box-sizing: border-box;
 	padding: 2px 5px;
+	/* reserve a transparent border so an inherited button:hover border cannot reflow the header */
 	border: 1px solid transparent;
 	border-radius: 4px;
 	background: transparent;
@@ -262,8 +264,8 @@
 .hmibDashCardTool:hover,
 .hmibDashCardTool:focus-visible {
 	color: currentColor;
-	background: color-mix(in srgb, currentColor 12%, transparent);
 	border-color: transparent;
+	background: color-mix(in srgb, currentColor 12%, transparent);
 	outline: none;
 }
 

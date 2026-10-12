@@ -25,10 +25,12 @@
 chdir('../../');
 include('./include/auth.php');
 
-set_default_action('summary');
+set_default_action('summary_dashboard');
 
 if (get_request_var('action') == 'ajax_hosts') {
-	get_allowed_ajax_hosts(true, false, 'h.id IN (SELECT host_id FROM plugin_hmib_hrSystem)');
+	// Serves the dashboard's device drop_callback; no 'Any'/'None' entries since a
+	// dashboard always targets one real Host MIB device.
+	get_allowed_ajax_hosts(false, false, 'h.id IN (SELECT host_id FROM plugin_hmib_hrSystem)');
 	exit;
 }
 
@@ -2909,7 +2911,8 @@ function hmib_software(): void {
 
 /**
  * Renders the top tabbed navigation bar for this page's views
- * (summary/devices/storage/hardware/running/history/software/graphs),
+ * (summary_dashboard/summary/devices/storage/hardware/running/history/software/graphs,
+ * plus the conditional per-device dashboard tab),
  * highlighting whichever tab corresponds to the current action. Called
  * from this script's main flow at the top of every rendered view.
  *
@@ -2923,6 +2926,7 @@ function hmib_tabs(): void {
 
 	// present a tabbed interface
 	$tabs = [
+		'summary_dashboard' => __esc('Fleet Dashboard', 'hmib'),
 		'summary'  => __esc('Summary', 'hmib'),
 		'devices'  => __esc('Devices', 'hmib'),
 		'storage'  => __esc('Storage', 'hmib'),
@@ -2936,19 +2940,14 @@ function hmib_tabs(): void {
 	// set the default tab
 	$current_tab = get_request_var('action');
 
-	// The stateful Dashboard tabs only appear once opened from their glyph: the
-	// Fleet Dashboard from the Summary tab, the per-device Dashboard from Devices.
-	$show_fleet  = ($current_tab == 'summary_dashboard' || read_user_setting('hmib_summary_type', '') !== '');
+	// The Fleet Dashboard is the landing tab and is always present. The per-device
+	// Dashboard tab only appears once opened from its glyph on the Devices tab.
 	$show_device = ($current_tab == 'dashboard' || (int) read_user_setting('hmib_dashboard_host', 0) > 0);
 
 	$ordered = [];
 
 	foreach ($tabs as $tab_key => $tab_label) {
 		$ordered[$tab_key] = $tab_label;
-
-		if ($tab_key == 'summary' && $show_fleet) {
-			$ordered['summary_dashboard'] = __esc('Fleet Dashboard', 'hmib');
-		}
 
 		if ($tab_key == 'devices' && $show_device) {
 			$ordered['dashboard'] = __esc('Dashboard', 'hmib');
@@ -2975,8 +2974,8 @@ function hmib_tabs(): void {
  * Renders the Host MIB dashboard/summary view: an overview of monitored
  * device counts by status/OS type, top running processes, and other
  * aggregate statistics, driven by this view's filter request
- * variables. Called from this script's main request-dispatch switch as
- * the default view (action=summary or no action).
+ * variables. Called from this script's main request-dispatch switch
+ * when action=summary.
  *
  * @return void
  *
@@ -4722,23 +4721,41 @@ function hmib_dashboard(): void {
 		$page_refresh_interval = [0 => __('No Refresh', 'hmib'), 30 => __('30 Seconds', 'hmib'), 60 => __('1 Minute', 'hmib'), 300 => __('5 Minutes', 'hmib')];
 	}
 
+	// Device picker: a Cacti drop_callback (select2 AJAX) that searches Host MIB
+	// devices server-side via ?action=ajax_hosts, so installs with tens of
+	// thousands of hosts never materialize the full option list in the DOM.
+	// select2 ignores the 'sql' and invokes 'on_change' (data-callback) by name
+	// on selection; the 'sql' only feeds the plain-<select> fallback used when
+	// the admin has set autocomplete > 0, so it must list every Host MIB device
+	// there (that mode already renders full option lists site-wide, so this does
+	// not regress the AJAX scaling path).
+	form_start('hmib.php', 'hmib_dashboard_device_form');
+
+	html_start_box('', '100%', '', '3', 'center', '');
+
+	draw_edit_form([
+		'config' => ['no_form_tag' => true],
+		'fields' => [
+			'hmib_dashboard_host' => [
+				'method'        => 'drop_callback',
+				'action'        => 'ajax_hosts',
+				'id'            => $host_id,
+				'sql'           => 'SELECT h.id, h.description AS name FROM host AS h WHERE h.id IN (SELECT host_id FROM plugin_hmib_hrSystem) ORDER BY h.description',
+				'on_change'     => 'hmibDashboardNavigate()',
+				'friendly_name' => __('Device', 'hmib'),
+				'description'   => __('Search Host MIB devices as you type to open that device\'s dashboard.', 'hmib'),
+				'value'         => $host_id,
+				'size'          => 40,
+				'max_length'    => 64
+			]
+		]
+	]);
+
+	html_end_box(false);
+
+	form_end();
+
 	print '<div class="hmibDashToolbar">';
-	print '<label class="hmibDashToolbarLabel" for="hmib_dashboard_host">' . __esc('Device', 'hmib') . '</label>';
-	print '<select id="hmib_dashboard_host" class="hmibDashHost">';
-
-	$hosts = db_fetch_assoc("SELECT host.id, host.description
-		FROM plugin_hmib_hrSystem AS hrs
-		INNER JOIN host ON host.id = hrs.host_id
-		WHERE host.description != ''
-		ORDER BY host.description");
-
-	if (cacti_sizeof($hosts)) {
-		foreach ($hosts as $host) {
-			print '<option value="' . (int) $host['id'] . '"' . ((int) $host['id'] === $host_id ? ' selected' : '') . '>' . html_escape($host['description']) . '</option>';
-		}
-	}
-
-	print '</select>';
 
 	print '<label class="hmibDashToolbarLabel" for="hmib_dashboard_add">' . __esc('Add card', 'hmib') . '</label>';
 	print '<select id="hmib_dashboard_add" class="hmibDashAdd"><option value="">' . __esc('Add a card…', 'hmib') . '</option>';
@@ -5434,7 +5451,8 @@ function hmib_summary_card_ajax(): string {
  * uptime, OS type distribution and top processes by CPU/memory) scoped to all
  * devices or a single OS type. Card order, expanded state, the selected OS type
  * and the auto-refresh interval persist per user. Called from this script's main
- * request-dispatch switch when action=summary_dashboard.
+ * request-dispatch switch when action=summary_dashboard, and as the default
+ * landing view when no action is supplied.
  *
  * @return void
  *

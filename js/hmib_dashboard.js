@@ -23,6 +23,18 @@
 
 var hmibDashDragging = null;
 
+/* Named navigation callback for the device picker. The select2 drop_callback
+ * invokes this by name (via the field's on_change/data-callback) on selection
+ * instead of emitting a change event, so it reads the picker value itself and
+ * opens that device's dashboard. Must stay global for executeFunctionByName(). */
+function hmibDashboardNavigate() {
+	var host = document.getElementById('hmib_dashboard_host');
+
+	if (host && host.value) {
+		window.location = 'hmib.php?action=dashboard&device=' + encodeURIComponent(host.value);
+	}
+}
+
 function initHmibDashboard() {
 	$(function() {
 		var grid = document.getElementById('hmib_dashboard');
@@ -87,10 +99,12 @@ function initHmibDashboard() {
 
 		var host = document.getElementById('hmib_dashboard_host');
 		if (host) {
+			// Native change covers the plain-<select> autocomplete fallback; the
+			// select2 AJAX control instead invokes the named hmibDashboardNavigate()
+			// callback (wired via the field's on_change/data-callback), which does
+			// not emit a change event on older Cacti, so both paths are handled.
 			$(host).off('change.hmibdash').on('change.hmibdash', function() {
-				if (this.value) {
-					window.location = 'hmib.php?action=dashboard&device=' + encodeURIComponent(this.value);
-				}
+				hmibDashboardNavigate();
 			});
 		}
 

@@ -848,6 +848,10 @@ msgid "No Refresh"
 msgstr ""
 
 #: hmib.php
+msgid "Search Host MIB devices as you type to open that device's dashboard."
+msgstr ""
+
+#: hmib.php
 msgid "Add card"
 msgstr ""
 
@@ -1386,6 +1390,18 @@ msgstr "Algemeen beheer"
 #: setup.php
 msgid "Host MIB Inventory Summary"
 msgstr "Samenvatting van de MIB-gastheerinventaris"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Device Dashboard"
+msgstr "Gastheer MIB Details"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Fleet Dashboard"
+msgstr "Gastheer MIB Details"
 
 #: setup.php
 msgid "Host MIB Details"

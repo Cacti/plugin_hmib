@@ -849,6 +849,10 @@ msgid "No Refresh"
 msgstr ""
 
 #: hmib.php
+msgid "Search Host MIB devices as you type to open that device's dashboard."
+msgstr ""
+
+#: hmib.php
 msgid "Add card"
 msgstr ""
 
@@ -1387,6 +1391,18 @@ msgstr "ზოგადი ადმინისტრირება"
 #: setup.php
 msgid "Host MIB Inventory Summary"
 msgstr ""
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Hardware"
+msgid "Host MIB Device Dashboard"
+msgstr "ჰოსტის MIB-ის აპარატურა"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Hardware"
+msgid "Host MIB Fleet Dashboard"
+msgstr "ჰოსტის MIB-ის აპარატურა"
 
 #: setup.php
 msgid "Host MIB Details"
