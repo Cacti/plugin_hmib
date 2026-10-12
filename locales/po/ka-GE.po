@@ -1393,6 +1393,18 @@ msgid "Host MIB Inventory Summary"
 msgstr ""
 
 #: setup.php
+#, fuzzy
+#| msgid "Host MIB Hardware"
+msgid "Host MIB Device Dashboard"
+msgstr "ჰოსტის MIB-ის აპარატურა"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Hardware"
+msgid "Host MIB Fleet Dashboard"
+msgstr "ჰოსტის MIB-ის აპარატურა"
+
+#: setup.php
 msgid "Host MIB Details"
 msgstr ""
 
