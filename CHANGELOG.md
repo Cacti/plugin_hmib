@@ -1,7 +1,6 @@
 ChangeLog
 
 --- develop ---
-* security: Pin CI fixtures and shared test dependencies, disable persisted checkout credentials, and limit workflow permissions and runtime
 * issue: Fix the Fleet Dashboard Uptime Distribution showing all zeros by falling back to SNMP sysUpTime when the Host Resources hrSystemUptime is not reported, and apply the same fallback to the per-device Dashboard
 * issue: Stop the Dashboard card header from changing height when hovering the drag handle or tool buttons by reserving space for the theme's button hover border
 * feature: Make the Fleet Dashboard the first tab and the default landing view on the Host MIB interface
@@ -22,6 +21,7 @@ ChangeLog
 * issue: Fix PHP 8.1+ 'float-string to int loses precision' deprecation from runCollector() by typing the last-run timestamp parameter as float
 * dev: Bring all plugin code to PHPStan level 8 with accurate parameter and return types
 * dev: Adopt Cacti core's SNMP library and remove the bundled snmp.php/snmp_functions.php copies
+* dev: Pin CI fixtures and shared test dependencies, disable persisted checkout credentials, and limit workflow permissions and runtime
 * issue: Fix Host Type CSV import (undefined name/version values and header-row parsing)
 * issue: Correct stale html_header_sort() and form_save_button() argument order
 * security: Add a version-safe CSP nonce (`plugin_hmib_csp_nonce()`) to every inline `<script>` tag so pages stay compatible with Cacti's Content-Security-Policy nonce enforcement, while falling back cleanly on older Cacti releases that lack the `CactiSecureHeaders` class
