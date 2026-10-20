@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-10 17:47-0400\nPO-Revision-Date: 2026-10-20 08:18+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-10 17:47-0400\nPO-Revision-Date: 2026-10-20 16:25+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -60,7 +60,7 @@ msgstr "Nere"
 
 #: hmib.php
 msgid "Running Process History"
-msgstr "Historik över körande processer"
+msgstr "Historik över aktiva processer"
 
 #: hmib.php hmib_types.php
 msgid "OS Type"
@@ -516,7 +516,7 @@ msgstr "Anpassad graflista tillämpad - Filtrering från lista"
 
 #: hmib.php
 msgid "Graph Preview Filters"
-msgstr "Filter för graföversikt"
+msgstr "Filter för förhandsvisning av diagram"
 
 #: hmib.php
 msgid "System Information"
@@ -1166,11 +1166,11 @@ msgstr "%d process"
 
 #: setup.php
 msgid "Host Auto Discovery Frequency"
-msgstr "Frekvens för automatisk identifiering av värdar"
+msgstr "Frekvens för automatisk värdupptäckt"
 
 #: setup.php
 msgid "Auto Discovery Frequency"
-msgstr "Frekvens för automatisk identifiering"
+msgstr "Frekvens för automatisk upptäckt"
 
 #: setup.php
 msgid "How often do you want to look for new Cacti Devices?"
@@ -1178,7 +1178,7 @@ msgstr "Hur ofta vill du leta efter nya kaktiska enheter?"
 
 #: setup.php
 msgid "Host Graph Automation"
-msgstr "Automatisering av värdgraf"
+msgstr "Automatisering av värddiagram"
 
 #: setup.php
 msgid "Automatically Add New Graphs"
@@ -1312,7 +1312,7 @@ msgstr "Host MIB-hårdvara"
 
 #: setup.php
 msgid "Host MIB Running Processes"
-msgstr "Körande processer för värd-MIB"
+msgstr "Aktiva processer i värdens MIB"
 
 #: setup.php
 msgid "Host MIB Process Use History"
@@ -1320,7 +1320,7 @@ msgstr "Host MIB Process Använd historia"
 
 #: setup.php
 msgid "Host MIB Software Inventory"
-msgstr "Programvaruinventering för värd-MIB"
+msgstr "Programvaruinventering i värdens MIB"
 
 #: setup.php
 msgid "Host MIB Graphs"
