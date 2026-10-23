@@ -934,7 +934,7 @@ function hmib_host_type_edit(): void {
 	global $config;
 
 	// ================= input validation =================
-	input_validate_input_number(get_request_var_request('id'));
+	input_validate_input_number(get_request_var('id'));
 	// ====================================================
 
 	// file: mactrack_device_types.php, action: edit
@@ -1287,13 +1287,13 @@ function hmib_host_type_filter(): void {
 					</td>
 					<td>
 						<select id='rows'>
-							<option value='-1'<?php if (get_request_var_request('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib'); ?></option>
+							<option value='-1'<?php if (get_request_var('rows') == '-1') {?> selected<?php }?>><?php print __('Default', 'hmib'); ?></option>
 							<?php
 							if (cacti_sizeof($item_rows)) {
 								foreach ($item_rows as $key => $value) {
 									print "<option value='" . $key . "'";
 
-									if (get_request_var_request('rows') == $key) {
+									if (get_request_var('rows') == $key) {
 										print ' selected';
 									} print '>' . $value . '</option>';
 								}
