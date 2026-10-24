@@ -36,10 +36,6 @@ include_once('./lib/ping.php');
 // run stops waiting on its collectors once this long has passed since it began.
 const HMIB_MAX_RUNTIME = 600;
 
-// With auto purge on, process history is dropped this long after a process
-// was last seen running.
-const HMIB_LAST_SEEN_DAYS = 365;
-
 // process calling arguments
 $parms = $_SERVER['argv'];
 array_shift($parms);
@@ -576,8 +572,13 @@ function process_hosts(): void {
 					WHERE host.id IS NULL");
 			}
 		}
+	}
 
-		db_execute_prepared('DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE last_seen < NOW() - INTERVAL ? DAY', [HMIB_LAST_SEEN_DAYS]);
+	// 0, the default, keeps the Use History rows for good
+	$history_days = (int) read_config_option('hmib_history_retention_days');
+
+	if ($history_days > 0) {
+		db_execute_prepared('DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE last_seen < NOW() - INTERVAL ? DAY', [$history_days]);
 	}
 
 	print "NOTE: Updating Summary Statistics for Each Host\n";

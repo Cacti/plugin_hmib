@@ -1,10 +1,11 @@
 ChangeLog
 
 --- develop ---
+* feature: Add a Process History Retention setting that drops Use History rows for processes not seen running for the chosen number of days; the default, Never Purge, keeps them
 * dev: Run the Host MIB main poller in CI against the installed plugin tables after the Cacti poller
 * dev: Print the OS Type, Device and Template filters of the Host MIB tabs from one function instead of six copies; its Device list binds the chosen OS type and the option values are cast to numbers
 * security: Restrict the sort column on the Devices, Storage, Hardware, Processes, Use History and Inventory tabs and on the OS type list to the columns each table shows, bind the OS type id on the edit form and the values of the OS type CSV import, and cast the remaining numeric filter option values
-* issue: Purge the Host MIB rows of devices removed from Cacti with one statement per table instead of seven per device, including rows left without a system entry, and, while Automatically Purge Devices is on, drop process history (the Process Use History tab) for processes not seen for 365 days
+* issue: Purge the Host MIB rows of devices removed from Cacti with one statement per table instead of seven per device, including rows left without a system entry
 * issue: Stop repeating per-row lookups: the Summary tab looks up the summary device once per page instead of once per device type, the graph links find an OS type's devices with a join instead of a separate query, and the processor collector asks once per device whether it runs Linux; the device and type ids in those queries and the summary statistics insert are bound or cast to numbers
 * issue: Remove the autodiscovery process lock however the poller run ends, including on SIGTERM or SIGINT and on a fatal error, so a scan that dies no longer blocks every later run, and stop autodiscovery once the run has used its 10 minutes
 * issue: Stop a main poller run from starting while another is still running by holding a database lock for the whole run, instead of relying on collector rows that are purged after 10 minutes; the main run now stops launching and waiting on collectors 10 minutes after it began, and the launch placeholders use keys that cannot match a process id
