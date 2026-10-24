@@ -56,7 +56,7 @@ switch (get_nfilter_request_var('action')) {
 
 		break;
 	default:
-		if (isset_request_var('scan')) {
+		if (isset_request_var('scan') && $_SERVER['REQUEST_METHOD'] === 'POST') {
 			rescan_types();
 			header('Location: hmib_types.php?header=false');
 			exit;
@@ -1260,8 +1260,9 @@ function hmib_host_type_filter(): void {
 	}
 
 	function rescanTypes() {
-		strURL = '?scan=true';
-		loadPageNoHeader(strURL);
+		$.post('hmib_types.php', {scan: 'true', __csrf_magic: csrfMagicToken}).always(function() {
+			loadPageNoHeader('hmib_types.php?header=false');
+		});
 	}
 
 	function importTypes() {
