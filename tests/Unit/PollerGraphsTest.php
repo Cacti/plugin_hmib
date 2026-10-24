@@ -59,6 +59,9 @@ beforeEach(function () {
 	hmib_test_reset_db_mocks();
 	$GLOBALS['__graph_calls'] = array();
 
+	// The summary device code starts a PHP binary; `true` accepts the arguments and does nothing.
+	$GLOBALS['__test_config'] = array('path_php_binary' => 'true');
+
 	hmib_test_mock_db('db_fetch_assoc', 'plugin_hmib_hrSystem', array(
 		array('host_id' => '9', 'description' => 'host nine'),
 	));
@@ -135,4 +138,8 @@ it('keeps the existing summary device when there is one', function () {
 	add_summary_graphs(7, 5);
 
 	expect($queries[0][1])->toBe(array(7));
+});
+
+afterEach(function () {
+	$GLOBALS['__test_config'] = array();
 });
