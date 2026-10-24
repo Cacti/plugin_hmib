@@ -25,6 +25,10 @@ const HMIB_E2E_DEVICE_TABLES = array(
 	'plugin_hmib_hrSystem',
 	'plugin_hmib_hrSystemTypes',
 	'plugin_hmib_hrSWRun',
+	'plugin_hmib_hrSWRun_last_seen',
+	'plugin_hmib_hrSWInstalled',
+	'plugin_hmib_hrDevices',
+	'plugin_hmib_hrStorage',
 );
 
 beforeAll(fn () => hmib_e2e_suite_open());
@@ -133,6 +137,31 @@ it('shows a user graphs of the selected devices on the Graphs tab', function () 
 
 	hmib_e2e_assert_clean($page);
 });
+
+it('falls back to the default order for a sort column the tab does not show', function (string $action, string $row) {
+	hmib_test_sql('UPDATE plugin_hmib_hrSWRun SET path = ? WHERE host_id = 9001', array('/opt/runpath'));
+	hmib_test_sql('INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name, last_seen) VALUES (9001, ?, ?)', array('alphad', '2001-02-03 04:05:06'));
+	hmib_test_sql('INSERT INTO plugin_hmib_hrSWInstalled (host_id, `index`, name) VALUES (9001, 1, ?)', array('alpha-tools'));
+	hmib_test_sql('INSERT INTO plugin_hmib_hrDevices (host_id, `index`, description) VALUES (9001, 1, ?)', array('alpha disk'));
+	hmib_test_sql('INSERT INTO plugin_hmib_hrStorage (host_id, `index`, description, size) VALUES (9001, 1, ?, 10)', array('/alpha'));
+
+	// the tab keeps its filters in the session, so start from its defaults
+	hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=' . $action . '&header=false&clear=true');
+
+	$page = hmib_e2e_page($action, '&sort_column=nosuchcolumn&sort_direction=DESC');
+
+	hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=' . $action . '&header=false&clear=true');
+
+	hmib_e2e_assert_clean($page);
+	expect(html_entity_decode($page['body']))->toContain($row);
+})->with(array(
+	'devices'  => array('devices', 'action=running&reset=1&device=9001'),
+	'running'  => array('running', '/opt/runpath'),
+	'history'  => array('history', '2001-02-03 04:05:06'),
+	'hardware' => array('hardware', 'alpha disk'),
+	'storage'  => array('storage', '/alpha'),
+	'software' => array('software', 'alpha-tools'),
+));
 
 it('refuses the Devices tab without the viewer realm', function () {
 	expect(hmib_e2e_page('devices', '', 'none')['text'])->toContain('Permission Denied');

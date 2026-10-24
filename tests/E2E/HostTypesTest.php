@@ -85,6 +85,17 @@ it('lists the OS types', function () {
 	expect($page['text'])->toContain('Linux 5 0 .1.3.6 Linux');
 });
 
+it('falls back to the name order for a sort column the OS type list does not show', function () {
+	hmib_fx_type(1, '.1.3.6', 'Linux', 'Linux', '5');
+
+	$page = hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib_types.php?header=false&filter=&sort_column=nosuchcolumn&sort_direction=DESC');
+
+	hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib_types.php?header=false&clear=true');
+
+	hmib_e2e_assert_clean($page);
+	expect($page['text'])->toContain('Linux 5 0 .1.3.6 Linux');
+});
+
 it('escapes every stored field in the OS type list', function () {
 	hmib_fx_type(1, '<b>oid</b>', '<i>descr</i>', '<u>name</u>', '<s>v</s>');
 

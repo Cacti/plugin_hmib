@@ -366,7 +366,7 @@ function hmib_history(): void {
 								<?php
 	if (cacti_sizeof($item_rows)) {
 		foreach ($item_rows as $key => $name) {
-			print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected' : '') . '>' . $name . '</option>';
+			print "<option value='" . (int) $key . "' " . (get_request_var('rows') == $key ? 'selected' : '') . '>' . $name . '</option>';
 		}
 	}
 	?>
@@ -427,7 +427,7 @@ function hmib_history(): void {
 	$sql_where  = "WHERE hrswls.name!='' AND hrswls.name!='System Idle Process'";
 	$sql_params = [];
 	$sql_limit  = ' LIMIT ' . ($num_rows * (get_request_var('page') - 1)) . ',' . $num_rows;
-	$sql_order  = get_order_string();
+	$sql_order  = hmib_summary_order_by('hist', ['name', 'description', 'hrswls.name', 'last_seen', 'total_time'], 'name');
 
 	if (get_request_var('template') != '-1') {
 		$sql_where .= ($sql_where != '' ? ' AND' : 'WHERE') . ' host.host_template_id = ?';
@@ -777,7 +777,7 @@ function hmib_running(): void {
 								<?php
 	if (cacti_sizeof($item_rows)) {
 		foreach ($item_rows as $key => $name) {
-			print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected' : '') . '>' . $name . '</option>';
+			print "<option value='" . (int) $key . "' " . (get_request_var('rows') == $key ? 'selected' : '') . '>' . $name . '</option>';
 		}
 	}
 	?>
@@ -838,7 +838,7 @@ function hmib_running(): void {
 	$sql_limit  = ' LIMIT ' . ($num_rows * (get_request_var('page') - 1)) . ',' . $num_rows;
 	$sql_where  = "WHERE hrswr.name != '' AND hrswr.name != 'System Idle Process'";
 	$sql_params = [];
-	$sql_order  = get_order_string();
+	$sql_order  = hmib_summary_order_by('run', ['name', 'description', 'hrswr.name', 'path', 'parameters', 'perfCpu', 'perfMemory', 'type', 'status'], 'name');
 
 	if (get_request_var('template') != '-1') {
 		$sql_where .= ($sql_where != '' ? ' AND' : 'WHERE') . ' host.host_template_id = ?';
@@ -1222,7 +1222,7 @@ function hmib_hardware(): void {
 
 	if (cacti_sizeof($types)) {
 		foreach ($types as $t) {
-			print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected' : '') . '>' . html_escape($t['description']) . '</option>';
+			print "<option value='" . html_escape((string) $t['id']) . "' " . (get_request_var('type') == $t['id'] ? 'selected' : '') . '>' . html_escape($t['description']) . '</option>';
 		}
 	}
 	?>
@@ -1236,7 +1236,7 @@ function hmib_hardware(): void {
 								<option value='-1'<?php if (get_request_var('status') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	foreach ($hmib_hrDeviceStatus as $skey => $sval) {
-		print "<option value='" . $skey . "'" . (get_request_var('status') == $skey ? ' selected' : '') . '>' . html_escape($sval) . '</option>';
+		print "<option value='" . (int) $skey . "'" . (get_request_var('status') == $skey ? ' selected' : '') . '>' . html_escape($sval) . '</option>';
 	}
 	?>
 							</select>
@@ -1250,7 +1250,7 @@ function hmib_hardware(): void {
 								<?php
 		if (cacti_sizeof($item_rows)) {
 			foreach ($item_rows as $key => $name) {
-				print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected' : '') . '>' . $name . '</option>';
+				print "<option value='" . (int) $key . "' " . (get_request_var('rows') == $key ? 'selected' : '') . '>' . $name . '</option>';
 			}
 		}
 	?>
@@ -1322,7 +1322,7 @@ function hmib_hardware(): void {
 	$sql_where  = "WHERE (hrd.description IS NOT NULL AND hrd.description!='')";
 	$sql_params = [];
 	$sql_limit  = ' LIMIT ' . ($num_rows * (get_request_var('page') - 1)) . ',' . $num_rows;
-	$sql_order  = get_order_string();
+	$sql_order  = hmib_summary_order_by('hw', ['hrd.description', 'host.description', 'type', 'status', 'errors'], 'hrd.description');
 
 	if (get_request_var('template') != '-1') {
 		$sql_where .= ($sql_where != '' ? ' AND' : 'WHERE') . ' host.host_template_id = ?';
@@ -1731,7 +1731,7 @@ function hmib_storage(): void {
 
 	if (cacti_sizeof($types)) {
 		foreach ($types as $t) {
-			print "<option value='" . $t['id'] . "' " . (get_request_var('type') == $t['id'] ? 'selected' : '') . '>' . html_escape($t['description']) . '</option>';
+			print "<option value='" . html_escape((string) $t['id']) . "' " . (get_request_var('type') == $t['id'] ? 'selected' : '') . '>' . html_escape($t['description']) . '</option>';
 		}
 	}
 	?>
@@ -1746,7 +1746,7 @@ function hmib_storage(): void {
 								<?php
 	if (cacti_sizeof($item_rows)) {
 		foreach ($item_rows as $key => $name) {
-			print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected' : '') . '>' . $name . '</option>';
+			print "<option value='" . (int) $key . "' " . (get_request_var('rows') == $key ? 'selected' : '') . '>' . $name . '</option>';
 		}
 	}
 	?>
@@ -1807,7 +1807,7 @@ function hmib_storage(): void {
 	$sql_where  = "WHERE (hrsto.description IS NOT NULL AND hrsto.description!='')";
 	$sql_params = [];
 	$sql_limit  = ' LIMIT ' . ($num_rows * (get_request_var('page') - 1)) . ',' . $num_rows;
-	$sql_order  = get_order_string();
+	$sql_order  = hmib_summary_order_by('st', ['hrsto.description', 'host.description', 'type', 'failures', 'percent', 'used', 'size', 'allocationUnits'], 'hrsto.description');
 
 	if (get_request_var('template') != '-1') {
 		$sql_where .= ($sql_where != '' ? ' AND' : 'WHERE') . ' host.host_template_id = ?';
@@ -2148,7 +2148,7 @@ function hmib_devices(): void {
 
 					break;
 			}
-			print "<option value='" . $s['status'] . "' " . (get_request_var('status') == $s['status'] ? 'selected' : '') . '>' . $status . '</option>';
+			print "<option value='" . (int) $s['status'] . "' " . (get_request_var('status') == $s['status'] ? 'selected' : '') . '>' . $status . '</option>';
 		}
 	}
 	?>
@@ -2163,7 +2163,7 @@ function hmib_devices(): void {
 								<?php
 	if (cacti_sizeof($item_rows)) {
 		foreach ($item_rows as $key => $name) {
-			print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected' : '') . '>' . $name . '</option>';
+			print "<option value='" . (int) $key . "' " . (get_request_var('rows') == $key ? 'selected' : '') . '>' . $name . '</option>';
 		}
 	}
 	?>
@@ -2224,7 +2224,7 @@ function hmib_devices(): void {
 	$sql_limit  = ' LIMIT ' . ($num_rows * (get_request_var('page') - 1)) . ',' . $num_rows;
 	$sql_where  = '';
 	$sql_params = [];
-	$sql_order  = get_order_string();
+	$sql_order  = hmib_summary_order_by('devices', ['description', 'host_status', 'uptime', 'users', 'cpuPercent', 'numCpus', 'processes', 'memSize', 'memUsed', 'swapSize', 'swapUsed'], 'description');
 
 	if (get_request_var('template') != '-1') {
 		$sql_where .= ($sql_where != '' ? ' AND' : 'WHERE') . ' host.host_template_id = ?';
@@ -2715,7 +2715,7 @@ function hmib_software(): void {
 
 	if (cacti_sizeof($types)) {
 		foreach ($types as $t) {
-			print "<option value='" . $t['type'] . "' " . (get_request_var('type') == $t['type'] ? 'selected' : '') . '>' . $hmib_hrSWTypes[$t['type']] . '</option>';
+			print "<option value='" . (int) $t['type'] . "' " . (get_request_var('type') == $t['type'] ? 'selected' : '') . '>' . $hmib_hrSWTypes[$t['type']] . '</option>';
 		}
 	}
 	?>
@@ -2730,7 +2730,7 @@ function hmib_software(): void {
 								<?php
 	if (cacti_sizeof($item_rows)) {
 		foreach ($item_rows as $key => $name) {
-			print "<option value='" . $key . "' " . (get_request_var('rows') == $key ? 'selected' : '') . '>' . $name . '</option>';
+			print "<option value='" . (int) $key . "' " . (get_request_var('rows') == $key ? 'selected' : '') . '>' . $name . '</option>';
 		}
 	}
 	?>
@@ -2791,7 +2791,7 @@ function hmib_software(): void {
 	$sql_limit  = ' LIMIT ' . ($num_rows * (get_request_var('page') - 1)) . ',' . $num_rows;
 	$sql_where  = '';
 	$sql_params = [];
-	$sql_order  = get_order_string();
+	$sql_order  = hmib_summary_order_by('sw', ['name', 'description', 'type', 'date'], 'name');
 
 	if (get_request_var('template') != '-1') {
 		$sql_where .= ($sql_where != '' ? ' AND' : 'WHERE') . ' host.host_template_id = ?';
@@ -2971,11 +2971,11 @@ function hmib_tabs(): void {
 }
 
 /**
- * Builds the ORDER BY clause for a Summary table from the sort stored in the
+ * Builds the ORDER BY clause for a Host MIB table from the sort stored in the
  * session. The column is accepted only when the table can sort on it, so a
  * stored or posted value never reaches the SQL text unchecked.
  *
- * @param string $table   The table's session prefix: host or proc.
+ * @param string $table   The table's session prefix after sess_hmib_, such as host, proc or hist.
  * @param array  $allowed The columns the table can sort on.
  * @param string $default The column used when the stored one is missing or not allowed.
  *

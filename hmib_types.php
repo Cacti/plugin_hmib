@@ -832,10 +832,11 @@ function hmib_host_type_import_processor(array &$host_types): array {
 
 	for ($i = 1; $i < $line_count; $i++) {
 		$line_array    = str_getcsv((string) $lines[$i]);
-		$save_value    = '(';
+		$save_value    = [];
+		$save_params   = [];
 		$j             = 0;
-		$first_column  = true;
-		$sql_where     = '';
+		$sql_where     = [];
+		$where_params  = [];
 		$name          = '';
 		$version       = '';
 		$sysDescrMatch = '';
@@ -843,48 +844,24 @@ function hmib_host_type_import_processor(array &$host_types): array {
 
 		foreach ($line_array as $line_item) {
 			if (in_array($j, $insert_columns, true)) {
-				if (!$first_column) {
-					$save_value .= ',';
-				} else {
-					$first_column = false;
-				}
+				switch ($j) {
+					case $host_type_id:
+						$sql_where[]    = 'id = ?';
+						$where_params[] = $line_item;
 
-				if ($j == $host_type_id || $j == $sysDescrMatch_id || $j == $sysObjectID_id) {
-					if (strlen($sql_where)) {
-						switch ($j) {
-							case $host_type_id:
-								$sql_where .= ' AND id=' . db_qstr($line_item);
+						break;
+					case $sysDescrMatch_id:
+						$sql_where[]    = 'sysDescrMatch = ?';
+						$where_params[] = $line_item;
 
-								break;
-							case $sysDescrMatch_id:
-								$sql_where .= ' AND sysDescrMatch=' . db_qstr($line_item);
+						break;
+					case $sysObjectID_id:
+						$sql_where[]    = 'sysObjectID = ?';
+						$where_params[] = $line_item;
 
-								break;
-							case $sysObjectID_id:
-								$sql_where .= ' AND sysObjectID=' . db_qstr($line_item);
-
-								break;
-							default:
-								// do nothing
-						}
-					} else {
-						switch ($j) {
-							case $host_type_id:
-								$sql_where .= 'WHERE id=' . db_qstr($line_item);
-
-								break;
-							case $sysDescrMatch_id:
-								$sql_where .= 'WHERE sysDescrMatch=' . db_qstr($line_item);
-
-								break;
-							case $sysObjectID_id:
-								$sql_where .= 'WHERE sysObjectID=' . db_qstr($line_item);
-
-								break;
-							default:
-								// do nothing
-						}
-					}
+						break;
+					default:
+						// not part of the existing row lookup
 				}
 
 				if ($j == $sysDescrMatch_id) {
@@ -903,26 +880,28 @@ function hmib_host_type_import_processor(array &$host_types): array {
 					$name = $line_item;
 				}
 
-				$save_value .= db_qstr($line_item);
+				$save_value[]  = '?';
+				$save_params[] = $line_item;
 			}
 
 			$j++;
 		}
 
-		$save_value .= ')';
+		$save_value = '(' . implode(',', $save_value) . ')';
+		$sql_where  = (cacti_sizeof($sql_where) ? 'WHERE ' . implode(' AND ', $sql_where) : '');
 
 		if (isset_request_var('allow_update')) {
 			$sql_execute = 'INSERT INTO plugin_hmib_hrSystemTypes ' . $save_order .
 				' VALUES' . $save_value . $update_suffix;
 
-			if (db_execute($sql_execute)) {
+			if (db_execute_prepared($sql_execute, $save_params)) {
 				array_push($return_array,'INSERT SUCCEEDED: Name: ' . html_escape($name) . ', Version: ' . html_escape($version) . ', sysDescr: ' . html_escape($sysDescrMatch) . ', sysObjectID: ' . html_escape($sysObjectID));
 			} else {
 				array_push($return_array,'<strong>INSERT FAILED:</strong> Name: ' . html_escape($name) . ', Version: ' . html_escape($version) . ', sysDescr: ' . html_escape($sysDescrMatch) . ', sysObjectID: ' . html_escape($sysObjectID));
 			}
 		} else {
 			// perform check to see if the row exists
-			$existing_row = db_fetch_row("SELECT * FROM plugin_hmib_hrSystemTypes $sql_where");
+			$existing_row = db_fetch_row_prepared("SELECT * FROM plugin_hmib_hrSystemTypes $sql_where", $where_params);
 
 			if (cacti_sizeof($existing_row)) {
 				array_push($return_array,'<strong>INSERT SKIPPED, EXISTING:</strong> Name: ' . html_escape($name) . ', Version: ' . html_escape($version) . ', sysDescr: ' . html_escape($sysDescrMatch) . ', sysObjectID: ' . html_escape($sysObjectID));
@@ -930,7 +909,7 @@ function hmib_host_type_import_processor(array &$host_types): array {
 				$sql_execute = 'INSERT INTO plugin_hmib_hrSystemTypes ' . $save_order .
 					' VALUES' . $save_value;
 
-				if (db_execute($sql_execute)) {
+				if (db_execute_prepared($sql_execute, $save_params)) {
 					array_push($return_array,'INSERT SUCCEEDED: Name: ' . html_escape($name) . ', Version: ' . html_escape($version) . ', sysDescr: ' . html_escape($sysDescrMatch) . ', sysObjectID: ' . html_escape($sysObjectID));
 				} else {
 					array_push($return_array,'<strong>INSERT FAILED:</strong> Name: ' . html_escape($name) . ', Version: ' . html_escape($version) . ', sysDescr: ' . html_escape($sysDescrMatch) . ', sysObjectID: ' . html_escape($sysObjectID));
@@ -1011,7 +990,7 @@ function hmib_host_type_edit(): void {
 	];
 
 	if (!isempty_request_var('id')) {
-		$host_type    = db_fetch_row('SELECT * FROM plugin_hmib_hrSystemTypes WHERE id=' . get_filter_request_var('id'));
+		$host_type    = db_fetch_row_prepared('SELECT * FROM plugin_hmib_hrSystemTypes WHERE id = ?', [get_filter_request_var('id')]);
 		$header_label = __esc('Host MIB OS Types [edit: %s]', is_array($host_type) ? $host_type['name'] : '', 'hmib');
 	} else {
 		$header_label = __('Host MIB OS Types [new]', 'hmib');
@@ -1065,7 +1044,12 @@ function hmib_get_host_types(string &$sql_where, int $rows, bool $apply_limits =
 			OR plugin_hmib_hrSystemTypes.sysDescrMatch LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . ')';
 	}
 
-	$sql_order = get_order_string();
+	// the column reaches the ORDER BY, so only a column this table shows is used
+	if (!in_array(get_request_var('sort_column'), ['name', 'version', 'totals', 'sysObjectID', 'sysDescrMatch'], true)) {
+		set_request_var('sort_column', 'name');
+	}
+
+	$sql_order = 'ORDER BY `' . get_request_var('sort_column') . '` ' . (get_request_var('sort_direction') == 'DESC' ? 'DESC' : 'ASC');
 
 	if ($apply_limits) {
 		$sql_limit = ' LIMIT ' . ($rows * (get_request_var('page') - 1)) . ',' . $rows;
