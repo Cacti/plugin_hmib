@@ -4,19 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr ""
-"Project-Id-Version: Cacti\n"
-"Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-10 17:47-0400\n"
-"PO-Revision-Date: 2026-08-04 05:18+0000\n"
-"Last-Translator: Ekaterine papava <papava.e@gtu.ge>\n"
-"Language-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\n"
-"Language: ka-GE\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-10 17:47-0400\nPO-Revision-Date: 2026-10-24 02:18+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -336,7 +324,7 @@ msgstr "გრაფიკები აღწერილი არაა"
 
 #: hmib.php
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: hmib.php
 msgid "No Devices Found"
@@ -394,7 +382,7 @@ msgstr "ჰოსტის MIB-ის აპარატურა"
 
 #: hmib.php
 msgid "Dashboard"
-msgstr ""
+msgstr "სამუშაო დაფა"
 
 #: hmib.php
 msgid "Summary Filter"
@@ -542,7 +530,7 @@ msgstr ""
 
 #: hmib.php
 msgid "CPU Utilization"
-msgstr ""
+msgstr "CPU-ის გამოყენება"
 
 #: hmib.php
 msgid "Memory Utilization"
@@ -609,26 +597,20 @@ msgid "System Name"
 msgstr "ჰოსტის ტიპის სახელი"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Storage Description"
 msgid "Description"
-msgstr "საცავის აღწერა"
+msgstr "აღწერა"
 
 #: hmib.php
 msgid "Contact"
-msgstr ""
+msgstr "კონტაქტი"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Actions"
 msgid "Location"
-msgstr "ქმედებები"
+msgstr "მდებარეობა"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Uptime(d:h:m)"
 msgid "Uptime"
-msgstr "ჩართულობის დრო (დ:სთ:წთ)"
+msgstr "ჩართულობის დრო"
 
 #: hmib.php
 msgid "System Time"
@@ -672,7 +654,7 @@ msgstr "პროცესების ნახვა"
 
 #: hmib.php
 msgid "Unlimited"
-msgstr ""
+msgstr "ულიმიტო"
 
 #: hmib.php
 #, fuzzy
@@ -691,10 +673,9 @@ msgid "Utilization"
 msgstr "აპლიკაცია"
 
 #: hmib.php
-#, fuzzy, php-format
-#| msgid "CPU %%%"
+#, php-format
 msgid "CPU %d"
-msgstr "CPU %%%"
+msgstr "CPU %d"
 
 #: hmib.php
 msgid "No per-processor load reported."
@@ -707,16 +688,12 @@ msgid "Volume"
 msgstr "ტომები"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Used Mem"
 msgid "Used"
-msgstr "გამოყენებული მეხსიერება"
+msgstr "გამოყენებული"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Mem"
 msgid "Total"
-msgstr "მეხსიერება სულ"
+msgstr "სულ"
 
 #: hmib.php
 #, fuzzy
@@ -741,10 +718,8 @@ msgid "Memory"
 msgstr "საშ. მეხსიერება"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No running processes recorded."
-msgstr "გაშვებული პროცესები"
+msgstr "გაშვებული პროცესები ჩაწერილი არაა."
 
 #: hmib.php
 msgid "No hardware devices detected."
@@ -765,14 +740,12 @@ msgid "No installed software inventory collected."
 msgstr ""
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No process use history recorded."
-msgstr "გაშვებული პროცესები"
+msgstr "პროცესების გამოყენების ისტორია ჩაწერილი არაა."
 
 #: hmib.php
 msgid "Show more"
-msgstr ""
+msgstr "მეტის ჩვენება"
 
 #: hmib.php
 msgid "Show less"
@@ -784,7 +757,7 @@ msgstr ""
 
 #: hmib.php
 msgid "Refresh"
-msgstr ""
+msgstr "განახლება"
 
 #: hmib.php
 msgid "Remove from page"
@@ -807,10 +780,8 @@ msgid "No device selected."
 msgstr ""
 
 #: hmib.php
-#, fuzzy
-#| msgid "Unknown"
 msgid "Unknown card."
-msgstr "უცნობი"
+msgstr "უცნობი ბარათი."
 
 #: hmib.php
 #, fuzzy
@@ -823,26 +794,21 @@ msgid "Open a device Dashboard from the Devices tab by clicking the dashboard gl
 msgstr ""
 
 #: hmib.php
-#, fuzzy, php-format
-#| msgid "Device"
+#, php-format
 msgid "Device %d"
-msgstr "მოწყობილობა"
+msgstr "მოწყობილობა %d"
 
 #: hmib.php
-#, fuzzy
-#| msgid "%d Minute"
 msgid "1 Minute"
-msgstr "%d წუთი"
+msgstr "1 წთ"
 
 #: hmib.php
 msgid "30 Seconds"
 msgstr ""
 
 #: hmib.php
-#, fuzzy
-#| msgid "%d Minutes"
 msgid "5 Minutes"
-msgstr "%d წუთი"
+msgstr "5 წუთი"
 
 #: hmib.php
 msgid "No Refresh"
@@ -871,10 +837,8 @@ msgid "Resource Utilization"
 msgstr "აპლიკაცია"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Devices"
 msgid "Device Status"
-msgstr "მოწყობილობები"
+msgstr "მოწყობილობის სტატუსი"
 
 #: hmib.php
 #, fuzzy
@@ -945,10 +909,8 @@ msgid "Total Capacity"
 msgstr "სვოპი სულ"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No OS types recorded."
-msgstr "გაშვებული პროცესები"
+msgstr "ოს-ის ტიპები ჩაწერილი არაა."
 
 #: hmib.php
 #, fuzzy
@@ -961,20 +923,16 @@ msgid "Relative"
 msgstr ""
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No process statistics recorded."
-msgstr "გაშვებული პროცესები"
+msgstr "პროცესის სტატისტიკა ჩაწერილი არაა."
 
 #: hmib.php
 msgid "Scope"
 msgstr ""
 
 #: hmib.php
-#, fuzzy
-#| msgid "Type"
 msgid "All Types"
-msgstr "ტიპი"
+msgstr "ყველა ტიპი"
 
 #: hmib_types.php
 msgid "Delete"
