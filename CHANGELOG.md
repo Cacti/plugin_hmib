@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* issue: Stop a main poller run from starting while another is still running by holding a database lock for the whole run, instead of relying on collector rows that are purged after 10 minutes; the main run now stops launching and waiting on collectors 10 minutes after it began, and the launch placeholders use keys that cannot match a process id
 * issue: Keep a device's stored process, storage, hardware, software and processor rows when the SNMP walk for that table fails or returns nothing, instead of deleting them; core returns an empty walk for a timeout, so a device that really reports an empty table keeps its last rows
 * issue: Fix PHP warnings on the Summary tab when a request names only the device type table or only the process table and the other table has no stored sort
 * issue: Fix the process Time Seen total growing on every poller cycle instead of once per process performance collection

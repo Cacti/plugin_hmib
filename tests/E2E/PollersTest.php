@@ -334,6 +334,43 @@ it('runs the main collection over the discovered devices and then the graph auto
 	expect(hmib_test_sql('SELECT COUNT(*) FROM plugin_hmib_processes')->fetchColumn())->toBe(0);
 });
 
+it('refuses a main run while another run holds the run lock, even after its collector rows look stale', function () {
+	hmib_e2e_worker_fixture();
+	hmib_test_sql('INSERT INTO plugin_hmib_processes (pid, taskid, started) VALUES (4242, 1, NOW() - INTERVAL 700 SECOND)');
+
+	$pdo = hmib_test_connect();
+
+	expect((int) $pdo->query("SELECT GET_LOCK(CONCAT('hmib_poller_', DATABASE()), 0)")->fetchColumn())->toBe(1);
+
+	try {
+		$run = hmib_e2e_cli('plugins/hmib/poller_hmib.php', array('-M', '--force'), 60);
+	} finally {
+		$pdo->query("SELECT RELEASE_LOCK(CONCAT('hmib_poller_', DATABASE()))");
+	}
+
+	expect($run['out'])->toContain('Another Host Mib Collector is still running');
+	expect($run['out'])->not->toContain('Launching Host Collector');
+});
+
+it('stops launching and waiting on collectors that never finish once the run time is up', function () {
+	hmib_fx_host(9001, 'alpha');
+	hmib_fx_host(9002, 'beta');
+	hmib_fx_system(9001, 1, 'Linux', '.1.3.6');
+	hmib_fx_system(9002, 1, 'Linux', '.1.3.6');
+
+	// /bin/true stands in for PHP, so the collector placeholders are never removed.
+	hmib_test_sql('REPLACE INTO settings (name, value) VALUES (?, ?), (?, ?)', array('hmib_concurrent_processes', '1', 'path_php_binary', '/bin/true'));
+
+	$run = hmib_e2e_cli('plugins/hmib/poller_hmib.php', array('-M', '--start=' . (time() - 601)), 60);
+
+	expect($run['killed'])->toBeFalse();
+	expect($run['out'])->toContain("Launching Host Collector For: 'alpha");
+	expect($run['out'])->not->toContain("Launching Host Collector For: 'beta");
+	expect($run['out'])->toContain('No free collector after 600 seconds');
+	expect($run['out'])->toContain("Stopped waiting on '1' Processes after 600 seconds");
+	expect($run['out'])->toContain('Host Mib Polling Completed');
+});
+
 it('assigns the stored OS types to the devices that match them', function () {
 	hmib_fx_type(1, '.1.3.6', 'Linux', 'Linux', '5');
 	hmib_fx_type(2, '.1.3.7', 'Windows', 'Windows', '10');

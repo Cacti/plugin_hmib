@@ -367,24 +367,76 @@ function hmib_e2e_login($server, $username, $password) {
 }
 
 /**
- * Run a PHP script as a subprocess in the Cacti root.
+ * Start a PHP script as a subprocess in the Cacti root, without waiting for it.
  *
  * @param string   $script Path relative to the Cacti root.
  * @param string[] $args   Script arguments.
  *
- * @return array exit code, stdout, stderr.
+ * @return array The handle for hmib_e2e_wait().
  */
-function hmib_e2e_cli($script, $args = array()) {
+function hmib_e2e_spawn($script, $args = array()) {
 	$command = array_merge(array(PHP_BINARY), hmib_e2e_php_options(), array($script), $args);
 	$process = proc_open($command, array(1 => array('pipe', 'w'), 2 => array('pipe', 'w')), $pipes, hmib_e2e_root(), array_merge(getenv(), array('HMIB_COVERAGE_PER_TEST' => '')));
 
-	$stdout = stream_get_contents($pipes[1]);
-	$stderr = stream_get_contents($pipes[2]);
+	stream_set_blocking($pipes[1], false);
+	stream_set_blocking($pipes[2], false);
 
-	fclose($pipes[1]);
-	fclose($pipes[2]);
+	return array('process' => $process, 'pipes' => $pipes);
+}
 
-	return array('exit' => proc_close($process), 'out' => $stdout, 'err' => $stderr);
+/**
+ * Wait for a subprocess from hmib_e2e_spawn(), killing it after a time limit
+ * so a script that never ends fails its test instead of hanging the suite.
+ *
+ * @param array $run     The handle from hmib_e2e_spawn().
+ * @param int   $seconds The time limit.
+ *
+ * @return array exit code, stdout, stderr, and whether it was killed.
+ */
+function hmib_e2e_wait($run, $seconds = 300) {
+	$out     = '';
+	$err     = '';
+	$killed  = false;
+	$expires = microtime(true) + $seconds;
+
+	while (true) {
+		$out   .= stream_get_contents($run['pipes'][1]);
+		$err   .= stream_get_contents($run['pipes'][2]);
+		$status = proc_get_status($run['process']);
+
+		if (!$status['running']) {
+			break;
+		}
+
+		if (microtime(true) > $expires) {
+			proc_terminate($run['process'], 9);
+			$killed = true;
+		}
+
+		usleep(50000);
+	}
+
+	$out .= stream_get_contents($run['pipes'][1]);
+	$err .= stream_get_contents($run['pipes'][2]);
+
+	fclose($run['pipes'][1]);
+	fclose($run['pipes'][2]);
+	proc_close($run['process']);
+
+	return array('exit' => $status['exitcode'], 'out' => $out, 'err' => $err, 'killed' => $killed);
+}
+
+/**
+ * Run a PHP script as a subprocess in the Cacti root.
+ *
+ * @param string   $script  Path relative to the Cacti root.
+ * @param string[] $args    Script arguments.
+ * @param int      $seconds Time limit, see hmib_e2e_wait().
+ *
+ * @return array exit code, stdout, stderr, and whether it was killed.
+ */
+function hmib_e2e_cli($script, $args = array(), $seconds = 300) {
+	return hmib_e2e_wait(hmib_e2e_spawn($script, $args), $seconds);
 }
 
 /**

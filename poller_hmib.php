@@ -32,6 +32,10 @@ include_once('./lib/poller.php');
 include_once('./lib/snmp.php');
 include_once('./lib/ping.php');
 
+// Collector rows older than this are left by a process that died, and the main
+// run stops waiting on its collectors once this long has passed since it began.
+const HMIB_MAX_RUNTIME = 600;
+
 // process calling arguments
 $parms = $_SERVER['argv'];
 array_shift($parms);
@@ -339,6 +343,17 @@ function process_hosts(): void {
 
 	print "NOTE: Processing Hosts Begins\n";
 
+	// The server frees a connection's lock when the connection ends, so a run
+	// that dies cannot leave it behind. NULL from an error counts as held.
+	if (db_fetch_cell("SELECT GET_LOCK(CONCAT('hmib_poller_', DATABASE()), 0)") != 1) {
+		print "WARNING: Another Host Mib Collector is still running!  Exiting\n";
+		exit(0);
+	}
+
+	register_shutdown_function(function () {
+		db_fetch_cell("SELECT RELEASE_LOCK(CONCAT('hmib_poller_', DATABASE()))");
+	});
+
 	/* All time/dates will be stored in timestamps
 	 * Get Autodiscovery Lastrun Information
 	 */
@@ -359,7 +374,7 @@ function process_hosts(): void {
 	}
 
 	// Purge collectors that run longer than 10 minutes
-	db_execute('DELETE FROM plugin_hmib_processes WHERE (UNIX_TIMESTAMP() - UNIX_TIMESTAMP(started)) > 600');
+	db_execute_prepared('DELETE FROM plugin_hmib_processes WHERE (UNIX_TIMESTAMP() - UNIX_TIMESTAMP(started)) > ?', [HMIB_MAX_RUNTIME]);
 
 	// Do not process collectors are still running
 	if (db_fetch_cell('SELECT count(*) FROM plugin_hmib_processes') > 0) {
@@ -415,7 +430,8 @@ function process_hosts(): void {
 
 	print "NOTE: Launching Collectors Starting\n";
 
-	$i = 0;
+	$i        = 0;
+	$deadline = $start + HMIB_MAX_RUNTIME;
 
 	if (cacti_sizeof($hosts)) {
 		foreach ($hosts as $host) {
@@ -423,16 +439,21 @@ function process_hosts(): void {
 				$processes = db_fetch_cell('SELECT COUNT(*) FROM plugin_hmib_processes');
 
 				if ($processes < $concurrent_processes) {
-					// put a placeholder in place to prevent overloads on slow systems
-					$key = rand();
+					// put a placeholder in place to prevent overloads on slow systems;
+					// process ids stay below 2^31, so the key cannot match a collector's own row
+					$key = 2147483648 + $i++;
 
-					db_execute("INSERT INTO plugin_hmib_processes (pid, taskid, started) VALUES ($key, $seed, NOW())");
+					db_execute_prepared('INSERT INTO plugin_hmib_processes (pid, taskid, started) VALUES (?, ?, NOW())', [$key, $seed]);
 
 					print "NOTE: Launching Host Collector For: '" . $host['description'] . '[' . $host['hostname'] . "]'\n";
 					process_host($host['host_id'], $seed, $key);
 					usleep(10000);
 
 					break;
+				} elseif (microtime(true) > $deadline) {
+					print 'WARNING: No free collector after ' . HMIB_MAX_RUNTIME . " seconds, not launching the remaining hosts\n";
+
+					break 2;
 				} else {
 					sleep(1);
 				}
@@ -447,11 +468,15 @@ function process_hosts(): void {
 
 	// wait for all processes to end or max run time
 	while (true) {
-		$processes_left = db_fetch_cell("SELECT count(*) FROM plugin_hmib_processes WHERE taskid=$seed");
-		$pl             = db_fetch_cell('SELECT count(*) FROM plugin_hmib_processes');
+		$processes_left = db_fetch_cell_prepared('SELECT COUNT(*) FROM plugin_hmib_processes WHERE taskid = ?', [$seed]);
 
 		if ($processes_left == 0) {
 			print "NOTE: All Processes Complete, Exiting\n";
+
+			break;
+		} elseif (microtime(true) > $deadline) {
+			print "WARNING: Stopped waiting on '$processes_left' Processes after " . HMIB_MAX_RUNTIME . " seconds\n";
+			cacti_log("WARNING: Stopped waiting on $processes_left Host MIB collectors after " . HMIB_MAX_RUNTIME . ' seconds', false, 'HMIB');
 
 			break;
 		} else {
@@ -744,10 +769,10 @@ function checkHost(int $host_id): void {
 
 	// remove the key process and insert the set a process lock
 	if ($key != '') {
-		db_execute("DELETE FROM plugin_hmib_processes WHERE pid=$key");
+		db_execute_prepared('DELETE FROM plugin_hmib_processes WHERE pid = ?', [$key]);
 	}
 
-	db_execute('REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (' . getmypid() . ", $seed)");
+	db_execute_prepared('REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (?, ?)', [getmypid(), $seed]);
 
 	// obtain host information
 	$host = db_fetch_row_prepared('SELECT *

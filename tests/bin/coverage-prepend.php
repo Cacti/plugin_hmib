@@ -70,7 +70,7 @@ if (PHP_SAPI === 'cli-server' && realpath($_SERVER['SCRIPT_FILENAME'] ?? '') ===
 
 	xdebug_start_code_coverage(XDEBUG_CC_UNUSED | XDEBUG_CC_DEAD_CODE | XDEBUG_CC_BRANCH_CHECK);
 
-	register_shutdown_function(function () use ($directory, $prefixes) {
+	$dump = function () use ($directory, $prefixes) {
 		$coverage = xdebug_get_code_coverage();
 
 		xdebug_stop_code_coverage();
@@ -107,5 +107,11 @@ if (PHP_SAPI === 'cli-server' && realpath($_SERVER['SCRIPT_FILENAME'] ?? '') ===
 		$name = sprintf('%s.%d.%s.json', $tag, getmypid(), bin2hex(random_bytes(4)));
 
 		file_put_contents($directory . '/' . $name, json_encode($kept), LOCK_EX);
+	};
+
+	// Queued from a shutdown function, the dump runs after the shutdown
+	// functions the script registers itself, so their lines are measured too.
+	register_shutdown_function(function () use ($dump) {
+		register_shutdown_function($dump);
 	});
 })();

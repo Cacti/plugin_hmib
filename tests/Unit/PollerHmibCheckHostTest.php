@@ -148,10 +148,10 @@ it('removes the launch placeholder and registers its own process lock', function
 
 	checkHost(5);
 
-	$sql = implode("\n", array_column($GLOBALS['__test_db_calls'], 'sql'));
+	$calls = array_slice($GLOBALS['__test_db_calls'], 0, 2);
 
-	expect($sql)->toContain('DELETE FROM plugin_hmib_processes WHERE pid=123');
-	expect($sql)->toContain('REPLACE INTO plugin_hmib_processes');
+	expect($calls[0])->toBe(array('fn' => 'db_execute_prepared', 'sql' => 'DELETE FROM plugin_hmib_processes WHERE pid = ?', 'params' => array('123')));
+	expect($calls[1])->toBe(array('fn' => 'db_execute_prepared', 'sql' => 'REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (?, ?)', 'params' => array(getmypid(), 77)));
 });
 
 it('does nothing for a device that no longer exists', function () {
