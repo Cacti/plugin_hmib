@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* issue: Fix PHP warnings on the Summary tab when a request names only the device type table or only the process table and the other table has no stored sort
 * issue: Fix the process Time Seen total growing on every poller cycle instead of once per process performance collection
 * issue: Fix graph automation not creating the Host MIB summary device graphs until the next scheduled run after the device is first created
 * issue: Fix graph automation checking the users graph template instead of the processes graph template before adding the processes graph

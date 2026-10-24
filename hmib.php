@@ -3224,8 +3224,8 @@ function hmib_summary(): void {
 	}
 
 	$sql_order = hmib_summary_order_by(
-		(string) $_SESSION['sess_hmib_host_sort_column'],
-		(string) $_SESSION['sess_hmib_host_sort_direction'],
+		(string) ($_SESSION['sess_hmib_host_sort_column'] ?? 'upHosts'),
+		(string) ($_SESSION['sess_hmib_host_sort_direction'] ?? 'DESC'),
 		['name', 'version/1', '(version/1)', 'upHosts', 'recHosts', 'downHosts', 'disabledHosts', 'users', 'cpus', 'avgCpuPercent', 'maxCpuPercent', 'avgMem', 'maxMem', 'avgSwap', 'maxSwap', 'avgProcesses', 'maxProcesses'],
 		'upHosts'
 	);
@@ -3346,7 +3346,7 @@ function hmib_summary(): void {
 		]
 	];
 
-	html_header_sort($display_text, $_SESSION['sess_hmib_host_sort_column'], $_SESSION['sess_hmib_host_sort_direction'], 1, 'hmib.php?action=summary&area=hosts');
+	html_header_sort($display_text, $_SESSION['sess_hmib_host_sort_column'] ?? 'upHosts', $_SESSION['sess_hmib_host_sort_direction'] ?? 'DESC', 1, 'hmib.php?action=summary&area=hosts');
 
 	if (cacti_sizeof($rows)) {
 		$id = 0;
@@ -3508,8 +3508,8 @@ function hmib_summary(): void {
 	$sql_params = [];
 	$sql_limit  = 'LIMIT ' . ($num_rows * (get_request_var('page') - 1)) . ',' . $num_rows;
 	$sql_order  = hmib_summary_order_by(
-		(string) $_SESSION['sess_hmib_proc_sort_column'],
-		(string) $_SESSION['sess_hmib_proc_sort_direction'],
+		(string) ($_SESSION['sess_hmib_proc_sort_column'] ?? 'maxCpu'),
+		(string) ($_SESSION['sess_hmib_proc_sort_direction'] ?? 'DESC'),
 		['name', 'paths', 'numHosts', 'numProcesses', 'avgCpu', 'maxCpu', 'avgMemory', 'maxMemory'],
 		'maxCpu'
 	);
@@ -3600,7 +3600,7 @@ function hmib_summary(): void {
 
 	html_start_box('Process Summary Statistics', '100%', false, 3, 'center', '');
 
-	html_header_sort($display_text, $_SESSION['sess_hmib_proc_sort_column'], $_SESSION['sess_hmib_proc_sort_direction'], 1, 'hmib.php?action=summary&area=processes');
+	html_header_sort($display_text, $_SESSION['sess_hmib_proc_sort_column'] ?? 'maxCpu', $_SESSION['sess_hmib_proc_sort_direction'] ?? 'DESC', 1, 'hmib.php?action=summary&area=processes');
 
 	// set some defaults
 	$url  = $config['url_path'] . 'plugins/hmib/hmib.php';
