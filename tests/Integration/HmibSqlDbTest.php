@@ -14,15 +14,16 @@
  *
  * The functions under test are cut out of the plugin source and executed
  * with the db_* stubs bridged to a PDO connection (see tests/bootstrap-unit.php).
- * The connection defaults match the database the CI workflow starts
- * (127.0.0.1, cactiuser, cacti) and can be overridden with HMIB_TEST_DB_HOST,
- * HMIB_TEST_DB_PORT, HMIB_TEST_DB_USER, HMIB_TEST_DB_PASS and HMIB_TEST_DB_NAME.
- * Set HMIB_TEST_DB=0 to skip. The tests are skipped when no Cacti schema is
- * reachable. Every table a test touches is copied aside first and restored
- * afterwards, so a Cacti install in the same database keeps its rows.
+ * The connection settings and the table copy-and-restore are in
+ * tests/support/db.php. The tests are skipped when no Cacti schema is
+ * reachable or HMIB_TEST_DB=0 is set. Every table a test touches is copied
+ * aside first and restored afterwards, so a Cacti install in the same
+ * database keeps its rows.
  */
 
-const HMIB_TEST_TABLES = array(
+require_once __DIR__ . '/../support/db.php';
+
+const HMIB_SQL_TEST_TABLES = array(
 	'graph_local',
 	'plugin_hmib_hrSystem',
 	'plugin_hmib_hrSystemTypes',
@@ -30,64 +31,6 @@ const HMIB_TEST_TABLES = array(
 	'plugin_hmib_hrSWRun_last_seen',
 	'plugin_hmib_processes',
 );
-
-function hmib_test_connect() {
-	static $pdo = false;
-
-	if ($pdo !== false) {
-		return $pdo ?: null;
-	}
-
-	if (getenv('HMIB_TEST_DB') === '0' || !extension_loaded('pdo_mysql')) {
-		$pdo = null;
-
-		return null;
-	}
-
-	$dsn = sprintf(
-		'mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4',
-		getenv('HMIB_TEST_DB_HOST') ?: '127.0.0.1',
-		getenv('HMIB_TEST_DB_PORT') ?: '3306',
-		getenv('HMIB_TEST_DB_NAME') ?: 'cacti'
-	);
-
-	try {
-		$pdo = new PDO($dsn, getenv('HMIB_TEST_DB_USER') ?: 'cactiuser', getenv('HMIB_TEST_DB_PASS') ?: 'cactiuser', array(
-			PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-			PDO::ATTR_TIMEOUT            => 3,
-			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-		));
-
-		$has_schema = $pdo->query("SHOW TABLES LIKE 'graph_local'")->fetchColumn();
-
-		if (!$has_schema) {
-			$pdo = null;
-		}
-	} catch (PDOException $e) {
-		$pdo = null;
-	}
-
-	return $pdo;
-}
-
-function hmib_test_sql($sql, $params = array()) {
-	$statement = hmib_test_connect()->prepare($sql);
-	$statement->execute($params);
-
-	return $statement;
-}
-
-function hmib_test_create_plugin_tables() {
-	$GLOBALS['__test_db_calls'] = array();
-
-	hmib_setup_table();
-
-	foreach ($GLOBALS['__test_db_calls'] as $call) {
-		if (strpos($call['sql'], 'CREATE TABLE') === 0) {
-			hmib_test_connect()->exec(preg_replace('/^CREATE TABLE (?!IF NOT EXISTS)/', 'CREATE TABLE IF NOT EXISTS ', $call['sql']));
-		}
-	}
-}
 
 beforeAll(function () {
 	require_once __DIR__ . '/../../setup.php';
@@ -113,13 +56,12 @@ beforeEach(function () {
 		$this->markTestSkipped('No MariaDB with a Cacti schema is reachable (see the header of this file).');
 	}
 
+	$GLOBALS['__hmib_sql_mode'] = hmib_test_sql('SELECT @@SESSION.sql_mode')->fetchColumn();
+
 	hmib_test_reset_db_mocks();
 	hmib_test_create_plugin_tables();
 
-	foreach (HMIB_TEST_TABLES as $index => $table) {
-		hmib_test_sql("CREATE TEMPORARY TABLE hmib_bak_{$index} AS SELECT * FROM {$table}");
-		hmib_test_sql("DELETE FROM {$table}");
-	}
+	hmib_test_snapshot(HMIB_SQL_TEST_TABLES);
 
 	$GLOBALS['__test_pdo']      = hmib_test_connect();
 	$GLOBALS['__test_db_calls'] = array();
@@ -132,24 +74,32 @@ beforeEach(function () {
 afterEach(function () {
 	unset($GLOBALS['__test_pdo']);
 
+	if (isset($GLOBALS['__hmib_sql_mode'])) {
+		hmib_test_sql('SET SESSION sql_mode = ?', array($GLOBALS['__hmib_sql_mode']));
+	}
+
 	if (hmib_test_connect() === null) {
 		return;
 	}
 
-	foreach (HMIB_TEST_TABLES as $index => $table) {
-		hmib_test_sql("DELETE FROM {$table}");
-		hmib_test_sql("INSERT INTO {$table} SELECT * FROM hmib_bak_{$index}");
-		hmib_test_sql("DROP TEMPORARY TABLE hmib_bak_{$index}");
-	}
+	hmib_test_restore(HMIB_SQL_TEST_TABLES);
 
 	$GLOBALS['__test_config'] = array();
 });
+
+dataset('sql modes', array(
+	'strict'               => 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION',
+	'not strict'           => '',
+	'strict with full group by' => 'STRICT_TRANS_TABLES,ONLY_FULL_GROUP_BY',
+));
 
 function hmib_test_graph_ids($link) {
 	return preg_match('/graph_add=([0-9,]+)/', $link, $match) ? $match[1] : null;
 }
 
-it('finds graphs by data query, index and device in the graph table', function () {
+it('finds graphs by data query, index and device in the graph table', function (string $mode) {
+	hmib_test_sql('SET SESSION sql_mode = ?', array($mode));
+
 	hmib_test_sql("INSERT INTO graph_local (id, host_id, snmp_query_id, snmp_index) VALUES
 		(1, 1, 12, 'a'), (2, 2, 12, \"o'neil\"), (3, 1, 99, 'a')");
 	hmib_test_sql('INSERT INTO plugin_hmib_hrSystem (host_id, host_type) VALUES (1, 7), (2, 8)');
@@ -159,9 +109,11 @@ it('finds graphs by data query, index and device in the graph table', function (
 	expect(hmib_test_graph_ids(hmib_get_graph_url(12, 0, 1, '', 't', false)))->toBe('1');
 	expect(hmib_test_graph_ids(hmib_get_graph_url(12, 8, 0, '', 't', false)))->toBe('2');
 	expect(hmib_get_graph_url(12, 0, 0, 'missing', 't', false))->toBe('t');
-});
+})->with('sql modes');
 
-it('counts Summary processes with the filter fragment the page appends', function () {
+it('counts Summary processes with the filter fragment the page appends', function (string $mode) {
+	hmib_test_sql('SET SESSION sql_mode = ?', array($mode));
+
 	hmib_test_sql("INSERT INTO plugin_hmib_hrSWRun (host_id, `index`, name, path) VALUES
 		(1, 1, 'sshd', '/usr/sbin/sshd'), (2, 1, 'sshd', '/usr/sbin/sshd'),
 		(1, 2, 'System Idle Process', ''), (3, 1, '', ''), (3, 2, 'cron', '/usr/sbin/cron')");
@@ -180,9 +132,11 @@ it('counts Summary processes with the filter fragment the page appends', functio
 	expect((int) hmib_test_sql($unfiltered)->fetchColumn())->toBe(2);
 	expect((int) hmib_test_sql($filtered, array('%sshd%', '%sshd%', '%sshd%'))->fetchColumn())->toBe(1);
 	expect((int) hmib_test_sql($filtered, array('%/usr/sbin/%', '%/usr/sbin/%', '%/usr/sbin/%'))->fetchColumn())->toBe(2);
-});
+})->with('sql modes');
 
-it('rescans host types without key errors, long values or reclassifying typed devices', function () {
+it('rescans host types without key errors, long values or reclassifying typed devices', function (string $mode) {
+	hmib_test_sql('SET SESSION sql_mode = ?', array($mode));
+
 	hmib_test_sql("INSERT INTO plugin_hmib_hrSystemTypes (id, sysObjectID, sysDescrMatch, name, version) VALUES
 		(20, '.1.3.5', 'Windows', 'Windows', '1'),
 		(21, '.1.3.50', \"it's quoted\", 'Quoted', '1'),
@@ -215,9 +169,11 @@ it('rescans host types without key errors, long values or reclassifying typed de
 	rescan_types();
 
 	expect(hmib_test_sql("SELECT COUNT(*) FROM plugin_hmib_hrSystemTypes WHERE name = 'New Type'")->fetchColumn())->toBe(1);
-});
+})->with('sql modes');
 
-it('adds the performance interval to the stored time seen only when it was collected', function () {
+it('adds the performance interval to the stored time seen only when it was collected', function (string $mode) {
+	hmib_test_sql('SET SESSION sql_mode = ?', array($mode));
+
 	hmib_test_sql("INSERT INTO plugin_hmib_hrSWRun (host_id, `index`, name) VALUES (5, 1, 'sshd'), (5, 2, 'cron')");
 	hmib_test_mock_db('db_fetch_row_prepared', 'FROM host', array('id' => '5', 'description' => 'host five', 'hostname' => 'h5'));
 
@@ -248,4 +204,4 @@ it('adds the performance interval to the stored time seen only when it was colle
 	checkHost(5);
 
 	expect((int) $total())->toBe(600);
-});
+})->with('sql modes');
