@@ -170,6 +170,10 @@ $unmeasured_allowlist = [
 	// top level (exits without --host-id/-M), so it cannot be loaded into the unit
 	// process; kept out of the coverage <source> set like the web controllers above.
 	'poller_hmib.php',
+	// CLI automation: chdir()s, requires cli_check.php and exits at the top level, so
+	// it cannot be loaded into the unit process. Its functions are exercised by
+	// tests/Unit/PollerGraphsTest.php, which defines them from the source text.
+	'poller_graphs.php',
 ];
 $unmeasured            = array_values(array_diff(array_keys($changed), array_keys($measured)));
 $unexpected_unmeasured = array_values(array_diff($unmeasured, $unmeasured_allowlist));
