@@ -200,9 +200,24 @@ jobs:
         "$CACTI_PEST_BIN" --configuration=plugins/hmib/phpunit.xml \
           --coverage-clover=plugins/hmib/coverage/clover.xml
 
+    # The page scripts and the pollers cannot be included in the test process,
+    # so the end-to-end tests run them as real requests and subprocesses. This
+    # second run records, test by test, which of their lines ran (see
+    # tests/bin/coverage-prepend.php and tests/support/coverage.php).
+    - name: Run Pest with per-test coverage of the entry points
+      if: github.event_name == 'pull_request'
+      env:
+        HMIB_COVERAGE_DIR: ${{ github.workspace }}/cacti/plugins/hmib/coverage/e2e
+        HMIB_COVERAGE_PER_TEST: '1'
+      run: |
+        cd ${{ github.workspace }}/cacti
+        mkdir -p "$HMIB_COVERAGE_DIR"
+        php -d auto_prepend_file="$PWD/plugins/hmib/tests/bin/coverage-prepend.php" -d xdebug.mode=coverage \
+          "$CACTI_PEST_BIN" --configuration=plugins/hmib/phpunit.xml
+
     # Whole-file coverage is meaningless here: most of the plugin only runs
     # inside a live Cacti. What is enforceable is that a change covers the
-    # lines it adds.
+    # lines it adds, from the unit run and from the end-to-end runs together.
     - name: Enforce coverage of changed lines
       if: github.event_name == 'pull_request'
       env:
@@ -210,7 +225,8 @@ jobs:
       run: |
         cd ${{ github.workspace }}/cacti/plugins/hmib
         git config --global --add safe.directory ${{ github.workspace }}/cacti/plugins/hmib
-        php tests/bin/patch-coverage.php coverage/clover.xml "$BASE_REF" 100
+        php tests/bin/merge-coverage.php coverage/e2e "$BASE_REF" --merge-clover=coverage/clover.xml --clover=coverage/merged.xml
+        php tests/bin/patch-coverage.php coverage/merged.xml "$BASE_REF" 100
 
     - name: Upload coverage report
       if: always()
