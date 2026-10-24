@@ -273,6 +273,32 @@ jobs:
           exit 1
         fi
 
+    - name: Run the Host MIB poller against the installed tables
+      run: |
+        cd ${{ github.workspace }}/cacti
+
+        # The Cacti poller starts its own main run in the background; this one
+        # would be refused while that still holds the run lock.
+        for attempt in $(seq 1 120); do
+          pgrep -f 'poller_hmib.php -M' > /dev/null || break
+          sleep 1
+        done
+
+        mysql --defaults-file="$HOME/.my.cnf" -e "REPLACE INTO settings (name, value) VALUES ('hmib_enabled', 'on')" cacti
+        sudo -u www-data timeout 900 php plugins/hmib/poller_hmib.php -M --force --debug | tee "$RUNNER_TEMP/hmib-poller.log"
+
+        if ! grep -q "Host Mib Polling Completed" "$RUNNER_TEMP/hmib-poller.log"; then
+          echo "Host MIB poller did not finish"
+          exit 1
+        fi
+
+        for table in plugin_hmib_hrSystem plugin_hmib_hrSystemTypes plugin_hmib_hrSWRun plugin_hmib_hrSWRun_last_seen plugin_hmib_hrSWInstalled plugin_hmib_hrDevices plugin_hmib_hrStorage plugin_hmib_hrProcessor plugin_hmib_processes plugin_hmib_types; do
+          if ! mysql --defaults-file="$HOME/.my.cnf" -N -e "SHOW TABLES LIKE '$table'" cacti | grep -qx "$table"; then
+            echo "Missing table $table"
+            exit 1
+          fi
+        done
+
     - name: View Cacti Logs
       if: always()
       run: |

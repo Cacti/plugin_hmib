@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* dev: Run the Host MIB main poller in CI against the installed plugin tables after the Cacti poller
 * dev: Print the OS Type, Device and Template filters of the Host MIB tabs from one function instead of six copies; its Device list binds the chosen OS type and the option values are cast to numbers
 * security: Restrict the sort column on the Devices, Storage, Hardware, Processes, Use History and Inventory tabs and on the OS type list to the columns each table shows, bind the OS type id on the edit form and the values of the OS type CSV import, and cast the remaining numeric filter option values
 * issue: Purge the Host MIB rows of devices removed from Cacti with one statement per table instead of seven per device, including rows left without a system entry, and, while Automatically Purge Devices is on, drop process history (the Process Use History tab) for processes not seen for 365 days
