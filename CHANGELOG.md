@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* issue: Fix the process Time Seen total growing on every poller cycle instead of once per process performance collection
 * issue: Fix graph automation not creating the Host MIB summary device graphs until the next scheduled run after the device is first created
 * issue: Fix graph automation checking the users graph template instead of the processes graph template before adding the processes graph
 * issue: Fix the host type CSV export producing broken rows for values that contain a double quote, and open values that look like formulas as text

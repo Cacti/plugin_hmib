@@ -770,9 +770,13 @@ function checkHost(int $host_id): void {
 			collect_hrSWRun($host);
 		}
 
+		$perf_seconds = 0;
+
 		if (runCollector($start, $hrSWRunPerf_lastrun, $hrSWRunPerf_freq)) {
 			cacti_log(sprintf('Running Running Process Performance Collection for Device[%s]', $host['id']), false, 'HMIB', POLLER_VERBOSITY_MEDIUM);
 			collect_hrSWRunPerf($host);
+
+			$perf_seconds = (int) $hrSWRunPerf_freq;
 		}
 
 		if (runCollector($start, $hrSWInstalled_lastrun, $hrSWInstalled_freq)) {
@@ -794,15 +798,15 @@ function checkHost(int $host_id): void {
 		$time = substr((string) time(), 0, 3);
 
 		// update the most recent table
-		db_execute_prepared('INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name, total_time)
-			SELECT DISTINCT host_id, name, ' . read_config_option('hmib_hrSWRunPerf_freq') . " AS `total_time`
+		db_execute_prepared("INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name, total_time)
+			SELECT DISTINCT host_id, name, ? AS `total_time`
 			FROM plugin_hmib_hrSWRun
 			WHERE host_id = ?
 			AND name NOT LIKE '$time%'
 			ON DUPLICATE KEY UPDATE
 				last_seen=NOW(),
 				total_time=total_time+VALUES(total_time)",
-			[$host['id']]);
+			[$perf_seconds, $host['id']]);
 
 		// remove the process lock
 		db_execute_prepared('DELETE FROM plugin_hmib_processes
