@@ -2409,7 +2409,7 @@ function hmib_devices(): void {
 			</a>";
 
 			$aurl .= "<a class='pic'
-				href='" . html_escape("$url?action=running%action=running&reset=1&device=" . $row['host_id']) . "'>
+				href='" . html_escape("$url?action=running&reset=1&device=" . $row['host_id']) . "'>
 				<i class='fas fa-cog hmibProcess' title='" . __('View Processes', 'hmib') . "'></i>
 			</a>";
 
