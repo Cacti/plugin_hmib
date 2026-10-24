@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* issue: Fix graph automation checking the users graph template instead of the processes graph template before adding the processes graph
 * issue: Fix the host type CSV export producing broken rows for values that contain a double quote, and open values that look like formulas as text
 * security: Run the OS type rescan from a POST request with a CSRF token instead of a GET link
 * issue: Fix the OS type rescan failing with a duplicate key error when several unclassified devices report the same sysDescr and sysObjectID, and stop it creating an empty match type

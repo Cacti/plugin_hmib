@@ -217,7 +217,7 @@ function add_host_based_graphs(): void {
 				debug('Users Graph Template Not Set');
 			}
 
-			if ($host_users_gt) {
+			if ($host_procs_gt) {
 				debug('Processing Processes');
 				hmib_gt_graph($h['host_id'], $host_procs_gt);
 			} else {
