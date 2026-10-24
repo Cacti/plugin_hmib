@@ -13,22 +13,6 @@
  * characters, so the clause has to be limited to known columns.
  */
 
-if (!function_exists('hmib_test_define_function')) {
-	function hmib_test_define_function($file, $name) {
-		if (function_exists($name)) {
-			return;
-		}
-
-		$source = plugin_test_read_source($file);
-
-		if (!preg_match('/^function ' . preg_quote($name, '/') . '\(.*?^}\n/ms', $source, $match)) {
-			throw new RuntimeException("Unable to locate {$name}() in {$file}");
-		}
-
-		eval($match[0]);
-	}
-}
-
 beforeAll(function () {
 	hmib_test_define_function('hmib.php', 'hmib_summary_order_by');
 });

@@ -16,28 +16,6 @@
  * against MariaDB in tests/Integration/HmibSqlDbTest.php.
  */
 
-if (!function_exists('hmib_test_define_function')) {
-	function hmib_test_define_function($file, $name) {
-		if (function_exists($name)) {
-			return;
-		}
-
-		$source = plugin_test_read_source($file);
-
-		if (!preg_match('/^function ' . preg_quote($name, '/') . '\(.*?^}\n/ms', $source, $match)) {
-			throw new RuntimeException("Unable to locate {$name}() in {$file}");
-		}
-
-		eval($match[0]);
-	}
-}
-
-if (!function_exists('db_affected_rows')) {
-	function db_affected_rows() {
-		return $GLOBALS['__affected_rows'] ?? 0;
-	}
-}
-
 beforeAll(function () {
 	hmib_test_define_function('hmib_types.php', 'rescan_types');
 });

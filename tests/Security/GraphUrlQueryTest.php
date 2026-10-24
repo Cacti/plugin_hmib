@@ -16,22 +16,6 @@
  * the function is cut out of the source and defined here.
  */
 
-if (!function_exists('hmib_test_define_function')) {
-	function hmib_test_define_function($file, $name) {
-		if (function_exists($name)) {
-			return;
-		}
-
-		$source = plugin_test_read_source($file);
-
-		if (!preg_match('/^function ' . preg_quote($name, '/') . '\(.*?^}\n/ms', $source, $match)) {
-			throw new RuntimeException("Unable to locate {$name}() in {$file}");
-		}
-
-		eval($match[0]);
-	}
-}
-
 beforeAll(function () {
 	hmib_test_define_function('hmib.php', 'hmib_get_graph_url');
 });
@@ -50,12 +34,12 @@ beforeEach(function () {
 });
 
 it('binds the snmp index instead of embedding it in the SQL', function () {
-	$index = "x') OR ('1'='1";
+	$index = "idx'quoted";
 
 	$link = hmib_get_graph_url(12, 0, 0, $index, 'title', false);
 
 	expect($GLOBALS['__graph_url_query'])->not->toBeNull();
-	expect($GLOBALS['__graph_url_query']['sql'])->not->toContain('OR (');
+	expect($GLOBALS['__graph_url_query']['sql'])->not->toContain('quoted');
 	expect($GLOBALS['__graph_url_query']['params'])->toBe(array(12, $index));
 	expect($link)->toContain('graph_add=7');
 });

@@ -15,22 +15,6 @@
  * source and defined here, with the collectors replaced by recorders.
  */
 
-if (!function_exists('hmib_test_define_function')) {
-	function hmib_test_define_function($file, $name) {
-		if (function_exists($name)) {
-			return;
-		}
-
-		$source = plugin_test_read_source($file);
-
-		if (!preg_match('/^function ' . preg_quote($name, '/') . '\(.*?^}\n/ms', $source, $match)) {
-			throw new RuntimeException("Unable to locate {$name}() in {$file}");
-		}
-
-		eval($match[0]);
-	}
-}
-
 foreach (array('hrSystem', 'hrDevices', 'hrSWRun', 'hrSWRunPerf', 'hrSWInstalled', 'hrStorage', 'hrProcessor') as $hmib_test_collector) {
 	if (!function_exists('collect_' . $hmib_test_collector)) {
 		eval('function collect_' . $hmib_test_collector . '(array &$host) { $GLOBALS["__collected"][] = "' . $hmib_test_collector . '"; }');

@@ -116,13 +116,65 @@ if (!function_exists('hmib_test_db_result')) {
 			return is_callable($result) ? $result($sql, $params) : $result;
 		}
 
+		if (isset($GLOBALS['__test_pdo'])) {
+			return hmib_test_pdo_fetch($fn, $sql, $params, $default);
+		}
+
 		return $default;
+	}
+}
+
+/*
+ * Database-backed tests (tests/Integration/HmibSqlDbTest.php) set
+ * $GLOBALS['__test_pdo'] to a PDO connection. While it is set, the db_*
+ * stubs below run their SQL against it instead of returning canned values,
+ * unless a hmib_test_mock_db() fixture matches first.
+ */
+if (!function_exists('hmib_test_pdo_run')) {
+	function hmib_test_pdo_run($sql, $params) {
+		$statement = $GLOBALS['__test_pdo']->prepare($sql);
+		$statement->execute(array_values($params));
+
+		$GLOBALS['__affected_rows'] = $statement->rowCount();
+
+		return $statement;
+	}
+}
+
+if (!function_exists('hmib_test_pdo_fetch')) {
+	function hmib_test_pdo_fetch($fn, $sql, $params, $default) {
+		$statement = hmib_test_pdo_run($sql, $params);
+
+		if (substr($fn, -5) === '_cell' || substr($fn, -14) === '_cell_prepared') {
+			$value = $statement->fetchColumn();
+
+			return $value === false ? $default : $value;
+		}
+
+		if (strpos($fn, '_row') !== false) {
+			$row = $statement->fetch(PDO::FETCH_ASSOC);
+
+			return $row === false ? array() : $row;
+		}
+
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+}
+
+if (!function_exists('db_affected_rows')) {
+	function db_affected_rows() {
+		return $GLOBALS['__affected_rows'] ?? 0;
 	}
 }
 
 if (!function_exists('db_execute')) {
 	function db_execute($sql) {
 		$GLOBALS['__test_db_calls'][] = array('fn' => 'db_execute', 'sql' => $sql, 'params' => array());
+
+		if (isset($GLOBALS['__test_pdo'])) {
+			hmib_test_pdo_run($sql, array());
+		}
+
 		return true;
 	}
 }
@@ -130,6 +182,11 @@ if (!function_exists('db_execute')) {
 if (!function_exists('db_execute_prepared')) {
 	function db_execute_prepared($sql, $params = array()) {
 		$GLOBALS['__test_db_calls'][] = array('fn' => 'db_execute_prepared', 'sql' => $sql, 'params' => $params);
+
+		if (isset($GLOBALS['__test_pdo'])) {
+			hmib_test_pdo_run($sql, $params);
+		}
+
 		return true;
 	}
 }
@@ -384,6 +441,35 @@ if (!function_exists('plugin_test_read_source')) {
 		}
 
 		return $contents;
+	}
+}
+
+/**
+ * Define one function from a plugin source file that cannot be included.
+ *
+ * hmib.php, hmib_types.php, poller_hmib.php and poller_graphs.php chdir(),
+ * include Cacti's auth or CLI bootstrap, or exit at the top level, so a test
+ * cannot include them. The function is cut out of the source text and defined
+ * here, so the test runs the production code rather than a copy of it.
+ *
+ * @param string $file Plugin-relative source file.
+ * @param string $name Function to define.
+ *
+ * @return void
+ */
+if (!function_exists('hmib_test_define_function')) {
+	function hmib_test_define_function($file, $name) {
+		if (function_exists($name)) {
+			return;
+		}
+
+		$source = plugin_test_read_source($file);
+
+		if (!preg_match('/^function ' . preg_quote($name, '/') . '\(.*?^}\n/ms', $source, $match)) {
+			throw new RuntimeException("Unable to locate {$name}() in {$file}");
+		}
+
+		eval($match[0]);
 	}
 }
 
