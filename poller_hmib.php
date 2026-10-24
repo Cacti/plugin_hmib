@@ -127,6 +127,18 @@ if (read_config_option('hmib_enabled') == '' || !api_plugin_is_enabled('hmib')) 
 	exit(0);
 }
 
+// Turn SIGTERM and SIGINT into a normal exit, so the shutdown functions still
+// remove the locks this run holds.
+if (function_exists('pcntl_signal')) {
+	$hmib_stop = function () {
+		exit(1);
+	};
+
+	pcntl_async_signals(true);
+	pcntl_signal(SIGTERM, $hmib_stop);
+	pcntl_signal(SIGINT, $hmib_stop);
+}
+
 if ($seed == '') {
 	$seed = rand();
 }
@@ -255,7 +267,7 @@ function hmib_snmp_request_failed($result): bool {
  *                           the summary warning logged at the end.
  */
 function autoDiscoverHosts(): bool {
-	global $debug, $snmp_errors;
+	global $debug, $snmp_errors, $start;
 
 	$hosts = db_fetch_assoc("SELECT *
 		FROM host
@@ -266,12 +278,24 @@ function autoDiscoverHosts(): bool {
 	debug("Starting AutoDiscovery for '" . sizeof($hosts) . "' Hosts");
 
 	// set a process lock
-	db_execute('REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (' . getmypid() . ', 0)');
+	db_execute_prepared('REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (?, 0)', [getmypid()]);
+
+	// a lock left behind by a scan that died would hold off every later run
+	register_shutdown_function(function () {
+		db_execute_prepared('DELETE FROM plugin_hmib_processes WHERE pid = ? AND taskid = 0', [getmypid()]);
+	});
 
 	$snmp_errors = 0;
 
 	if (cacti_sizeof($hosts)) {
 		foreach ($hosts as $host) {
+			if (microtime(true) > $start + HMIB_MAX_RUNTIME) {
+				print 'WARNING: AutoDiscovery stopped after ' . HMIB_MAX_RUNTIME . " seconds, the remaining hosts wait for its next run\n";
+				cacti_log('WARNING: Host MIB AutoDiscovery stopped after ' . HMIB_MAX_RUNTIME . ' seconds', false, 'HMIB');
+
+				break;
+			}
+
 			debug("AutoDiscovery Check for Host '" . $host['description'] . '[' . $host['hostname'] . "]'");
 			$hostMib   = cacti_snmp_walk($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.25.1', $host['snmp_version'],
 				$host['snmp_username'], $host['snmp_password'],
@@ -294,14 +318,11 @@ function autoDiscoverHosts(): bool {
 			}
 
 			if (cacti_sizeof($hostMib)) {
-				$add = true;
-
-				if ($add) {
-					debug("Host '" . $host['description'] . '[' . $host['hostname'] . "]' Supports Host MIB Resources");
-					db_execute('INSERT INTO plugin_hmib_hrSystem
-						(host_id) VALUES (' . $host['id'] . ')
-						ON DUPLICATE KEY UPDATE host_id=VALUES(host_id)');
-				}
+				debug("Host '" . $host['description'] . '[' . $host['hostname'] . "]' Supports Host MIB Resources");
+				db_execute_prepared('INSERT INTO plugin_hmib_hrSystem
+					(host_id) VALUES (?)
+					ON DUPLICATE KEY UPDATE host_id=VALUES(host_id)',
+					[$host['id']]);
 			}
 		}
 	}
@@ -311,8 +332,8 @@ function autoDiscoverHosts(): bool {
 	}
 
 	// remove the process lock
-	db_execute('DELETE FROM plugin_hmib_processes WHERE pid=' . getmypid());
-	db_execute("REPLACE INTO settings (name,value) VALUES ('hmib_autodiscovery_lastrun', '" . time() . "')");
+	db_execute_prepared('DELETE FROM plugin_hmib_processes WHERE pid = ?', [getmypid()]);
+	db_execute_prepared("REPLACE INTO settings (name,value) VALUES ('hmib_autodiscovery_lastrun', ?)", [time()]);
 
 	return true;
 }

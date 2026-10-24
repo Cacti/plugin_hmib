@@ -371,6 +371,62 @@ it('stops launching and waiting on collectors that never finish once the run tim
 	expect($run['out'])->toContain('Host Mib Polling Completed');
 });
 
+it('discovers a device that answers the Host Resources MIB', function () {
+	hmib_fx_host(9001, 'alpha');
+	hmib_test_sql('UPDATE host SET hostname = ?, snmp_community = ? WHERE id = ?', array('localhost', 'public', 9001));
+	hmib_test_sql('REPLACE INTO settings (name, value) VALUES (?, ?)', array('hmib_autodiscovery', 'on'));
+
+	$run = hmib_e2e_cli('plugins/hmib/poller_hmib.php', array('-M', '--force'), 120);
+
+	if (strpos($run['out'], "Launching Host Collector For: 'alpha") === false) {
+		$this->markTestSkipped('No SNMP agent answered on this machine.');
+	}
+
+	expect($run['out'])->toContain('Auto Discovery Complete');
+	expect(hmib_test_sql('SELECT COUNT(*) FROM plugin_hmib_processes')->fetchColumn())->toBe(0);
+});
+
+it('stops autodiscovery once the run time is up', function () {
+	hmib_fx_host(9001, 'alpha');
+	hmib_test_sql('UPDATE host SET hostname = ?, snmp_community = ? WHERE id = ?', array('localhost', 'public', 9001));
+	hmib_test_sql('REPLACE INTO settings (name, value) VALUES (?, ?)', array('hmib_autodiscovery', 'on'));
+
+	$run = hmib_e2e_cli('plugins/hmib/poller_hmib.php', array('-M', '--force', '--start=' . (time() - 601)), 60);
+
+	expect($run['out'])->toContain('AutoDiscovery stopped after 600 seconds');
+	expect(hmib_test_sql('SELECT COUNT(*) FROM plugin_hmib_hrSystem WHERE host_id = 9001')->fetchColumn())->toBe(0);
+	expect(hmib_test_sql('SELECT COUNT(*) FROM plugin_hmib_processes')->fetchColumn())->toBe(0);
+});
+
+it('removes the autodiscovery lock when the run is stopped part way', function () {
+	// An agent that never answers keeps the scan inside its first request.
+	$agent = stream_socket_server('udp://127.0.0.1:0', $errno, $errstr, STREAM_SERVER_BIND);
+	$name  = stream_socket_get_name($agent, false);
+
+	hmib_fx_host(9001, 'alpha');
+	hmib_test_sql('UPDATE host SET hostname = ?, snmp_community = ?, snmp_port = ?, snmp_timeout = ? WHERE id = ?', array('127.0.0.1', 'public', (int) substr($name, strrpos($name, ':') + 1), 2000, 9001));
+	hmib_test_sql('REPLACE INTO settings (name, value) VALUES (?, ?), (?, ?)', array('hmib_autodiscovery', 'on', 'snmp_retries', '0'));
+
+	$run    = hmib_e2e_spawn('plugins/hmib/poller_hmib.php', array('-M', '--force'));
+	$locked = false;
+
+	for ($i = 0; $i < 400 && !$locked; $i++) {
+		usleep(50000);
+
+		$locked = hmib_test_sql('SELECT COUNT(*) FROM plugin_hmib_processes WHERE taskid = 0')->fetchColumn() > 0;
+	}
+
+	proc_terminate($run['process'], 15);
+
+	$result = hmib_e2e_wait($run, 60);
+
+	fclose($agent);
+
+	expect($locked)->toBeTrue();
+	expect($result['out'])->not->toContain('Auto Discovery Complete');
+	expect(hmib_test_sql('SELECT COUNT(*) FROM plugin_hmib_processes WHERE taskid = 0')->fetchColumn())->toBe(0);
+});
+
 it('assigns the stored OS types to the devices that match them', function () {
 	hmib_fx_type(1, '.1.3.6', 'Linux', 'Linux', '5');
 	hmib_fx_type(2, '.1.3.7', 'Windows', 'Windows', '10');
