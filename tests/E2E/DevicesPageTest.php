@@ -27,26 +27,12 @@ const HMIB_E2E_DEVICE_TABLES = array(
 	'plugin_hmib_hrSWRun',
 );
 
-beforeAll(function () {
-	if (hmib_e2e_unavailable() === null) {
-		$GLOBALS['__hmib_e2e'] = hmib_e2e_open();
-	}
-});
+beforeAll(fn () => hmib_e2e_suite_open());
 
-afterAll(function () {
-	if (isset($GLOBALS['__hmib_e2e'])) {
-		hmib_e2e_close($GLOBALS['__hmib_e2e']);
-		unset($GLOBALS['__hmib_e2e']);
-	}
-});
+afterAll(fn () => hmib_e2e_suite_close());
 
 beforeEach(function () {
-	if (!isset($GLOBALS['__hmib_e2e'])) {
-		$this->markTestSkipped(hmib_e2e_unavailable() ?? 'The end-to-end context could not be opened.');
-	}
-
-	hmib_e2e_tag($this->name());
-	hmib_test_snapshot(HMIB_E2E_DEVICE_TABLES);
+	hmib_e2e_test_start($this, HMIB_E2E_DEVICE_TABLES);
 
 	hmib_fx_type(1, '.1.3.6', 'Linux', 'Linux', '5');
 	hmib_fx_host(9001, 'alpha');
@@ -57,11 +43,7 @@ beforeEach(function () {
 	hmib_fx_process(9002, 1, 'betad', array('cpu' => 50));
 });
 
-afterEach(function () {
-	if (isset($GLOBALS['__hmib_e2e'])) {
-		hmib_test_restore(HMIB_E2E_DEVICE_TABLES);
-	}
-});
+afterEach(fn () => hmib_e2e_test_end(HMIB_E2E_DEVICE_TABLES));
 
 function hmib_e2e_page($action, $query = '', $role = 'admin') {
 	return hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=' . $action . '&header=false&filter=' . $query, $role);
@@ -139,15 +121,15 @@ it('shows no graph link for a device that has no graphs', function () {
 });
 
 it('shows a user graphs of the selected devices on the Graphs tab', function () {
+	if (hmib_e2e_core_lacks_graph_filter()) {
+		$this->markTestSkipped('Cacti 1.2.x declares graph_view_has_untemplated_graphs() in graph_view.php only, so its graph filter cannot be used from a plugin page.');
+	}
+
 	$ids = hmib_fx_templates();
 
 	hmib_test_sql('INSERT INTO graph_local (id, host_id, snmp_query_id, snmp_index, graph_template_id) VALUES (604, 9001, ?, ?, ?)', array($ids['cpu_dq'], '1', $ids['users_gt']));
 
 	$page = hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=graphs&header=false&reset=1&style=selective&graph_add=604&graph_list=&graph_template_id=0&filter=');
-
-	if (strpos($page['body'], 'undefined function graph_view_has_untemplated_graphs') !== false) {
-		$this->markTestSkipped('Cacti 1.2.x defines graph_view_has_untemplated_graphs() in graph_view.php only, so its graph filter cannot be used from a plugin page.');
-	}
 
 	hmib_e2e_assert_clean($page);
 });

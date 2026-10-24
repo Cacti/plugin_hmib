@@ -24,34 +24,15 @@ const HMIB_E2E_TYPE_TABLES = array(
 
 const HMIB_E2E_CSV_HEADER = "id,name,version,sysDescrMatch,sysObjectID\n";
 
-beforeAll(function () {
-	if (hmib_e2e_unavailable() === null) {
-		$GLOBALS['__hmib_e2e'] = hmib_e2e_open();
-	}
-});
+beforeAll(fn () => hmib_e2e_suite_open());
 
-afterAll(function () {
-	if (isset($GLOBALS['__hmib_e2e'])) {
-		hmib_e2e_close($GLOBALS['__hmib_e2e']);
-		unset($GLOBALS['__hmib_e2e']);
-	}
-});
+afterAll(fn () => hmib_e2e_suite_close());
 
 beforeEach(function () {
-	if (!isset($GLOBALS['__hmib_e2e'])) {
-		$this->markTestSkipped(hmib_e2e_unavailable() ?? 'The end-to-end context could not be opened.');
-	}
-
-	hmib_e2e_tag($this->name());
-	hmib_e2e_relogin($GLOBALS['__hmib_e2e']);
-	hmib_test_snapshot(HMIB_E2E_TYPE_TABLES);
+	hmib_e2e_test_start($this, HMIB_E2E_TYPE_TABLES, true);
 });
 
-afterEach(function () {
-	if (isset($GLOBALS['__hmib_e2e'])) {
-		hmib_test_restore(HMIB_E2E_TYPE_TABLES);
-	}
-});
+afterEach(fn () => hmib_e2e_test_end(HMIB_E2E_TYPE_TABLES));
 
 function hmib_e2e_types() {
 	return array_map(function ($row) {

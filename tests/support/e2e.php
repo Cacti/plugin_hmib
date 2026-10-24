@@ -70,6 +70,12 @@ function hmib_e2e_unavailable() {
 		return 'No Cacti install with an include/config.php is next to the plugin.';
 	}
 
+	$log = hmib_e2e_root() . '/log/cacti.log';
+
+	if (file_exists($log) ? !is_writable($log) : !is_writable(dirname($log))) {
+		return 'The Cacti log is not writable by this user, and Cacti serves nothing while it is not.';
+	}
+
 	$pdo = hmib_test_connect();
 
 	if ($pdo === null) {
@@ -480,6 +486,10 @@ function hmib_e2e_get($context, $path, $role = 'admin') {
 
 	$response['text'] = hmib_e2e_text($response['body']);
 
+	if (strpos($response['text'], 'System log file is not available for writing') === 0) {
+		throw new RuntimeException('Cacti served its log error instead of ' . $path . ' (status ' . $response['status'] . '): ' . substr($response['text'], 0, 300));
+	}
+
 	return $response;
 }
 
@@ -513,9 +523,11 @@ function hmib_e2e_post($context, $path, $fields, $role = 'admin', $files = array
  * @return void
  */
 function hmib_e2e_assert_clean($page) {
-	expect($page['status'])->toBe(200);
-	expect($page['body'])->not->toContain('( ! )');
-	expect($page['text'])->not->toContain('SQL');
+	$excerpt = ' Page text: ' . substr($page['text'], 0, 400);
+
+	expect($page['status'])->toBe(200, 'Unexpected status ' . $page['status'] . '.' . $excerpt);
+	expect(strpos($page['body'], '( ! )') === false)->toBeTrue('The page printed a PHP error.' . $excerpt);
+	expect(strpos($page['text'], 'SQL') === false)->toBeTrue('The page printed an SQL error.' . $excerpt);
 }
 
 /**
@@ -533,4 +545,89 @@ function hmib_e2e_relogin(&$context) {
 	foreach ($context['passwords'] as $role => $password) {
 		$context['cookies'][$role] = hmib_e2e_login($context['server'], 'hmibe2e' . $role, $password);
 	}
+}
+
+/**
+ * Open the end-to-end context for a test file, unless the install is missing.
+ *
+ * Call from beforeAll(); the context is kept in $GLOBALS['__hmib_e2e'].
+ *
+ * @return void
+ */
+function hmib_e2e_suite_open() {
+	if (hmib_e2e_unavailable() === null) {
+		$GLOBALS['__hmib_e2e'] = hmib_e2e_open();
+	}
+}
+
+/**
+ * Close the context opened by hmib_e2e_suite_open(). Call from afterAll().
+ *
+ * @return void
+ */
+function hmib_e2e_suite_close() {
+	if (isset($GLOBALS['__hmib_e2e'])) {
+		hmib_e2e_close($GLOBALS['__hmib_e2e']);
+		unset($GLOBALS['__hmib_e2e']);
+	}
+}
+
+/**
+ * Prepare one test: skip it when there is no context, tag it for the coverage
+ * report and copy the tables it touches aside.
+ *
+ * @param object   $test     The Pest test case ($this in beforeEach()).
+ * @param string[] $tables   Keys of HMIB_TEST_SNAPSHOT_SQL.
+ * @param bool     $relogin  Whether to log the users in again first.
+ *
+ * @return void
+ */
+function hmib_e2e_test_start($test, $tables, $relogin = false) {
+	if (!isset($GLOBALS['__hmib_e2e'])) {
+		$test->markTestSkipped(hmib_e2e_unavailable() ?? 'The end-to-end context could not be opened.');
+	}
+
+	hmib_e2e_tag($test->name());
+
+	if ($relogin) {
+		hmib_e2e_relogin($GLOBALS['__hmib_e2e']);
+	}
+
+	hmib_test_snapshot($tables);
+}
+
+/**
+ * Put back the tables copied by hmib_e2e_test_start(). Call from afterEach().
+ *
+ * @param string[] $tables Keys of HMIB_TEST_SNAPSHOT_SQL.
+ *
+ * @return void
+ */
+function hmib_e2e_test_end($tables) {
+	if (isset($GLOBALS['__hmib_e2e'])) {
+		hmib_test_restore($tables);
+	}
+}
+
+/**
+ * Whether the Cacti install calls graph_view_has_untemplated_graphs() from
+ * lib/html_graph.php without declaring it in lib/. Cacti 1.2.x declares it
+ * only in graph_view.php, so its graph filter cannot be used by a plugin page.
+ *
+ * @return bool
+ */
+function hmib_e2e_core_lacks_graph_filter() {
+	$library = hmib_e2e_root() . '/lib';
+
+	if (strpos((string) file_get_contents($library . '/html_graph.php'), 'graph_view_has_untemplated_graphs(') === false) {
+		return false;
+	}
+
+	foreach (glob($library . '/*.php') as $file) {
+		if (strpos((string) file_get_contents($file), 'function graph_view_has_untemplated_graphs') !== false) {
+			return false;
+		}
+	}
+
+	return true;
 }

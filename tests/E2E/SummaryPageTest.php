@@ -32,26 +32,12 @@ const HMIB_E2E_SUMMARY_TABLES = array(
 const HMIB_E2E_HOST_SORTS = array('name', 'version/1', 'upHosts', 'recHosts', 'downHosts', 'disabledHosts', 'users', 'cpus', 'avgCpuPercent', 'maxCpuPercent', 'avgMem', 'maxMem', 'avgSwap', 'maxSwap', 'avgProcesses', 'maxProcesses');
 const HMIB_E2E_PROCESS_SORTS = array('name', 'paths', 'numHosts', 'numProcesses', 'avgCpu', 'maxCpu', 'avgMemory', 'maxMemory');
 
-beforeAll(function () {
-	if (hmib_e2e_unavailable() === null) {
-		$GLOBALS['__hmib_e2e'] = hmib_e2e_open();
-	}
-});
+beforeAll(fn () => hmib_e2e_suite_open());
 
-afterAll(function () {
-	if (isset($GLOBALS['__hmib_e2e'])) {
-		hmib_e2e_close($GLOBALS['__hmib_e2e']);
-		unset($GLOBALS['__hmib_e2e']);
-	}
-});
+afterAll(fn () => hmib_e2e_suite_close());
 
 beforeEach(function () {
-	if (!isset($GLOBALS['__hmib_e2e'])) {
-		$this->markTestSkipped(hmib_e2e_unavailable() ?? 'The end-to-end context could not be opened.');
-	}
-
-	hmib_e2e_tag($this->name());
-	hmib_test_snapshot(HMIB_E2E_SUMMARY_TABLES);
+	hmib_e2e_test_start($this, HMIB_E2E_SUMMARY_TABLES);
 
 	hmib_fx_type(1, '.1.3.6', 'Linux', 'Linux', '5');
 	hmib_fx_type(2, '.1.3.7', 'Windows', 'Windows', '10');
@@ -65,11 +51,7 @@ beforeEach(function () {
 	hmib_fx_process(9002, 1, 'sshd', array('cpu' => 50));
 });
 
-afterEach(function () {
-	if (isset($GLOBALS['__hmib_e2e'])) {
-		hmib_test_restore(HMIB_E2E_SUMMARY_TABLES);
-	}
-});
+afterEach(fn () => hmib_e2e_test_end(HMIB_E2E_SUMMARY_TABLES));
 
 function hmib_e2e_summary($query, $role = 'admin') {
 	// The page keeps its filter in the session, so every request names one.
