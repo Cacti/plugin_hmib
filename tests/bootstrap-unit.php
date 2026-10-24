@@ -351,13 +351,14 @@ if (!function_exists('html_escape')) {
 }
 
 if (!function_exists('__')) {
-	function __($text, $domain = '') {
+	// variadic like core's __(), which takes printf arguments before the domain
+	function __($text, ...$args) {
 		return $text;
 	}
 }
 
 if (!function_exists('__esc')) {
-	function __esc($text, $domain = '') {
+	function __esc($text, ...$args) {
 		return htmlspecialchars($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 	}
 }
