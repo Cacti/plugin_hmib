@@ -13,6 +13,13 @@
  * characters, so the clause has to be limited to known columns.
  */
 
+// Cacti core's page key for the sort it keeps in $_SESSION['sort_data'].
+if (!function_exists('get_order_string_page')) {
+	function get_order_string_page($increment = true) {
+		return '0_hmib';
+	}
+}
+
 beforeAll(function () {
 	hmib_test_define_function('hmib.php', 'hmib_summary_order_by');
 });
@@ -53,4 +60,22 @@ it('no longer concatenates the stored sort values into the Summary queries', fun
 
 	expect($source)->not->toContain("ORDER BY ' . \$_SESSION['sess_hmib");
 	expect($source)->toContain('hmib_summary_order_by(');
+});
+
+it('keeps every column of a multi-column sort that the table can sort on', function () {
+	$_SESSION['sort_data']['0_hmib'] = array('name' => 'ASC', 'maxCpu' => 'DESC');
+
+	expect(hmib_order_by('maxCpu', 'DESC'))->toBe('ORDER BY name ASC, maxCpu DESC');
+});
+
+it('drops the parts of a multi-column sort the table cannot sort on', function () {
+	$_SESSION['sort_data']['0_hmib'] = array('name' => 'asc', 'maxCpu; DROP TABLE host' => 'DESC', 'maxCpu' => 'sideways');
+
+	expect(hmib_order_by('maxCpu', 'DESC'))->toBe('ORDER BY name ASC, maxCpu DESC');
+});
+
+it('falls back to the single stored column when no part of a multi-column sort is allowed', function () {
+	$_SESSION['sort_data']['0_hmib'] = array('(SELECT 1)' => 'ASC', 'paths' => 'DESC');
+
+	expect(hmib_order_by('maxCpu', 'ASC'))->toBe('ORDER BY maxCpu ASC');
 });

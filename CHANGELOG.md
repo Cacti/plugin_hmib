@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* issue: Keep shift-click multi-column sorting on the Host MIB tabs now that their sort is checked against the sortable columns, checking each column and direction of the stored sort
 * feature: Add a Process History Retention setting that drops Use History rows for processes not seen running for the chosen number of days; the default, Never Purge, keeps them
 * dev: Run the Host MIB main poller in CI against the installed plugin tables after the Cacti poller
 * dev: Print the OS Type, Device and Template filters of the Host MIB tabs from one function instead of six copies; its Device list binds the chosen OS type and the option values are cast to numbers

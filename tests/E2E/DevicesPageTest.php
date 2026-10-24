@@ -188,6 +188,24 @@ it('offers in the Device filter only the devices of the chosen OS type', functio
 	expect($page['body'])->toContain("<option value='" . $template . "' >Server &lt;b&gt;</option>");
 })->with(array('running', 'history', 'hardware', 'storage', 'software'));
 
+it('sorts the Use History tab by every column of a shift-click multi-column sort', function () {
+	hmib_test_sql('INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name) VALUES (9001, ?), (9001, ?), (9002, ?)', array('aaa-proc', 'zzz-proc', 'mmm-proc'));
+
+	hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=history&header=false&clear=true');
+	hmib_e2e_page('history', '&sort_column=description&sort_direction=ASC&add=reset');
+
+	$page = hmib_e2e_page('history', '&sort_column=hrswls.name&sort_direction=DESC&add=true');
+
+	hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=history&header=false&clear=true');
+
+	hmib_e2e_assert_clean($page);
+
+	$rows = substr($page['body'], (int) strpos($page['body'], 'Use Time'));
+
+	expect(strpos($rows, 'zzz-proc'))->toBeLessThan(strpos($rows, 'aaa-proc'));
+	expect(strpos($rows, 'aaa-proc'))->toBeLessThan(strpos($rows, 'mmm-proc'));
+});
+
 it('refuses the Devices tab without the viewer realm', function () {
 	expect(hmib_e2e_page('devices', '', 'none')['text'])->toContain('Permission Denied');
 });

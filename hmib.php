@@ -2708,6 +2708,20 @@ function hmib_tabs(): void {
 function hmib_summary_order_by(string $table, array $allowed, string $default): string {
 	$column    = (string) ($_SESSION['sess_hmib_' . $table . '_sort_column'] ?? $default);
 	$direction = (string) ($_SESSION['sess_hmib_' . $table . '_sort_direction'] ?? 'DESC');
+	$parts     = [];
+
+	// a shift-click sort is kept by core per page as column => direction; each part is checked
+	if (function_exists('get_order_string_page') && is_array($_SESSION['sort_data'][get_order_string_page(false)] ?? null)) {
+		foreach ($_SESSION['sort_data'][get_order_string_page(false)] as $sort_column => $sort_direction) {
+			if (in_array($sort_column, $allowed, true)) {
+				$parts[] = $sort_column . ' ' . (strtoupper((string) $sort_direction) === 'ASC' ? 'ASC' : 'DESC');
+			}
+		}
+	}
+
+	if (cacti_sizeof($parts)) {
+		return 'ORDER BY ' . implode(', ', $parts);
+	}
 
 	if (!in_array($column, $allowed, true)) {
 		$column = $default;
