@@ -2971,6 +2971,26 @@ function hmib_tabs(): void {
 }
 
 /**
+ * Builds the ORDER BY clause for a Summary table from the stored sort
+ * request. The column is accepted only when the table can sort on it, so a
+ * stored or posted value never reaches the SQL text unchecked.
+ *
+ * @param string $column    The requested sort column.
+ * @param string $direction The requested sort direction.
+ * @param array  $allowed   The columns the table can sort on.
+ * @param string $default   The column used when $column is not allowed.
+ *
+ * @return string The ORDER BY clause.
+ */
+function hmib_summary_order_by(string $column, string $direction, array $allowed, string $default): string {
+	if (!in_array($column, $allowed, true)) {
+		$column = $default;
+	}
+
+	return 'ORDER BY ' . $column . ' ' . (strtoupper($direction) === 'ASC' ? 'ASC' : 'DESC');
+}
+
+/**
  * Renders the Host MIB dashboard/summary view: an overview of monitored
  * device counts by status/OS type, top running processes, and other
  * aggregate statistics, driven by this view's filter request
@@ -3203,7 +3223,12 @@ function hmib_summary(): void {
 		$sql_limit = 'LIMIT 20';
 	}
 
-	$sql_order = ' ORDER BY ' . $_SESSION['sess_hmib_host_sort_column'] . ' ' . $_SESSION['sess_hmib_host_sort_direction'];
+	$sql_order = hmib_summary_order_by(
+		(string) $_SESSION['sess_hmib_host_sort_column'],
+		(string) $_SESSION['sess_hmib_host_sort_direction'],
+		['name', 'version/1', '(version/1)', 'upHosts', 'recHosts', 'downHosts', 'disabledHosts', 'users', 'cpus', 'avgCpuPercent', 'maxCpuPercent', 'avgMem', 'maxMem', 'avgSwap', 'maxSwap', 'avgProcesses', 'maxProcesses'],
+		'upHosts'
+	);
 
 	$sql = "SELECT
 		hrst.id AS id,
@@ -3482,7 +3507,12 @@ function hmib_summary(): void {
 	$sql_where  = '';
 	$sql_params = [];
 	$sql_limit  = 'LIMIT ' . ($num_rows * (get_request_var('page') - 1)) . ',' . $num_rows;
-	$sql_order  = 'ORDER BY ' . $_SESSION['sess_hmib_proc_sort_column'] . ' ' . $_SESSION['sess_hmib_proc_sort_direction'];
+	$sql_order  = hmib_summary_order_by(
+		(string) $_SESSION['sess_hmib_proc_sort_column'],
+		(string) $_SESSION['sess_hmib_proc_sort_direction'],
+		['name', 'paths', 'numHosts', 'numProcesses', 'avgCpu', 'maxCpu', 'avgMemory', 'maxMemory'],
+		'maxCpu'
+	);
 
 	if (strlen(get_request_var('filter'))) {
 		$sql_where = 'AND (

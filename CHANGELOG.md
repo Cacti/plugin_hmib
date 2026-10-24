@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* security: Restrict the Summary tab sort column to the columns each table can sort on and limit the direction to ASC or DESC
 * issue: Fix the Devices tab processes glyph opening an empty page because of a malformed action value in its link
 * issue: Fix the Summary Processes filter failing with a SQL error because the page count query had no WHERE clause
 * issue: Fix the Summary tab dropping the data-query graph links on PHP 8 because a device id of 0 was treated as a device filter
