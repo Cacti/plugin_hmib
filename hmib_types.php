@@ -25,6 +25,7 @@
 chdir('../../');
 include('./include/auth.php');
 include_once('./lib/snmp.php');
+require_once(__DIR__ . '/includes/types.php');
 
 $host_types_actions = [
 	1 => __('Delete', 'hmib'),
@@ -544,30 +545,9 @@ function rescan_types(): void {
 		WHERE name='" . $new_name . "'
 		AND version='" . $new_version . "'");
 
-	// get all known devices types from the device type database
-	$known_types = db_fetch_assoc('SELECT id, sysDescrMatch, sysObjectID FROM plugin_hmib_hrSystemTypes');
-
-	// loop through all device rows and look for a matching type
+	// look for a matching type for the devices that have none
 	if (cacti_sizeof($unknown_host_types)) {
-		foreach ($unknown_host_types as $type) {
-			$found = false;
-
-			if (cacti_sizeof($known_types)) {
-				foreach ($known_types as $known) {
-					db_execute_prepared('UPDATE plugin_hmib_hrSystem SET host_type = ?
-						WHERE host_type = 0
-						AND sysObjectID LIKE ?
-						AND sysDescr LIKE ?',
-						[$known['id'], '%' . $known['sysObjectID'] . '%', '%' . $known['sysDescrMatch'] . '%']);
-
-					if (db_affected_rows() > 0) {
-						$found = true;
-
-						break;
-					}
-				}
-			}
-		}
+		hmib_assign_host_types();
 	}
 
 	// update the host types from unknown_host_types that have a value of 0

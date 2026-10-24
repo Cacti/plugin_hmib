@@ -121,10 +121,6 @@ it('shows no graph link for a device that has no graphs', function () {
 });
 
 it('shows a user graphs of the selected devices on the Graphs tab', function () {
-	if (hmib_e2e_core_lacks_graph_filter()) {
-		$this->markTestSkipped('Cacti 1.2.x declares graph_view_has_untemplated_graphs() in graph_view.php only, so its graph filter cannot be used from a plugin page.');
-	}
-
 	$ids = hmib_fx_templates();
 
 	hmib_test_sql('INSERT INTO graph_local (id, host_id, snmp_query_id, snmp_index, graph_template_id) VALUES (604, 9001, ?, ?, ?)', array($ids['cpu_dq'], '1', $ids['users_gt']));
