@@ -163,6 +163,35 @@ it('falls back to the default order for a sort column the tab does not show', fu
 	'software' => array('software', 'alpha-tools'),
 ));
 
+it('offers in the Device filter only the devices of the chosen OS type', function (string $action) {
+	hmib_fx_type(2, '.1.3.7', 'Windows', 'Windows', '10');
+	hmib_test_sql('UPDATE plugin_hmib_hrSystem SET host_type = 2 WHERE host_id = 9002');
+
+	$template = hmib_fx_template_row('host_template', str_repeat('e', 32), 'Server <b>');
+
+	hmib_test_sql('UPDATE host SET host_template_id = ? WHERE id = 9001', array($template));
+
+	hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=' . $action . '&header=false&clear=true');
+
+	$all  = hmib_e2e_page($action);
+	$page = hmib_e2e_page($action, '&ostype=1');
+
+	hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=' . $action . '&header=false&clear=true');
+
+	hmib_e2e_assert_clean($page);
+
+	foreach (array('all' => $all, 'linux' => $page) as $name => $response) {
+		preg_match_all("/<option value='([^']*)'[^>]*>([^<]*)<\\/option>/", preg_replace('/^.*?<select id=.device.>(.*?)<\\/select>.*$/s', '$1', $response['body']), $options);
+
+		$devices[$name] = array_combine($options[1], $options[2]);
+	}
+
+	expect($devices['all'])->toBe(array('-1' => 'All', '9001' => 'alpha', '9002' => 'beta'));
+	expect($devices['linux'])->toBe(array('-1' => 'All', '9001' => 'alpha'));
+	expect($page['body'])->toContain("<option value='1' selected>Linux [5]</option>");
+	expect($page['body'])->toContain("<option value='" . $template . "' >Server &lt;b&gt;</option>");
+})->with(array('running', 'history', 'hardware', 'storage', 'software'));
+
 it('refuses the Devices tab without the viewer realm', function () {
 	expect(hmib_e2e_page('devices', '', 'none')['text'])->toContain('Permission Denied');
 });
