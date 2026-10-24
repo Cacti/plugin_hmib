@@ -88,12 +88,28 @@ function hmib_test_table_writes() {
 	}));
 }
 
-it('leaves the stored rows alone when every walk of the table comes back empty', function () {
+it('leaves the stored rows alone when every walk of the table comes back empty and the agent does not answer', function () {
 	$host = hmib_test_storage_host();
 
 	collectHostIndexedOid($host, HMIB_TEST_STORAGE_TREE, 'plugin_hmib_hrStorage', 'hrStorage');
 
 	expect(hmib_test_table_writes())->toBe(array());
+});
+
+it('removes the stored rows when the table is empty on an agent that answers', function () {
+	$host = hmib_test_storage_host();
+
+	$GLOBALS['__gets']['.1.3.6.1.2.1.1.3.0'] = '4210614';
+
+	collectHostIndexedOid($host, HMIB_TEST_STORAGE_TREE, 'plugin_hmib_hrStorage', 'hrStorage');
+
+	$writes = hmib_test_table_writes();
+
+	expect(array_column($writes, 'sql'))->toBe(array(
+		'UPDATE plugin_hmib_hrStorage SET present = 0 WHERE host_id = ?',
+		'DELETE FROM plugin_hmib_hrStorage WHERE present = 0 AND host_id = ?',
+	));
+	expect($GLOBALS['snmp_errors'])->toBe(0);
 });
 
 it('leaves the stored rows alone when a walk of the table fails', function () {

@@ -1089,9 +1089,23 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 			$hostMib = array_merge($hostMib, $walk);
 		}
 
-		// Core returns an empty array for a walk that timed out, so an empty
-		// table cannot be told from an unreachable device: keep the stored rows.
-		if ($walk_failed || !cacti_sizeof($hostMib)) {
+		// Core returns an empty array for a walk that timed out as well as for an
+		// empty table, so an empty answer only counts when the agent still
+		// answers a GET, which core does report as failed when it times out.
+		if (!$walk_failed && !cacti_sizeof($hostMib)) {
+			$uptime = cacti_snmp_get($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.1.3.0', $host['snmp_version'],
+				$host['snmp_username'], $host['snmp_password'],
+				$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
+				$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
+				read_config_option('snmp_retries'));
+
+			if (hmib_snmp_request_failed($uptime)) {
+				$snmp_errors++;
+				$walk_failed = true;
+			}
+		}
+
+		if ($walk_failed) {
 			debug("No $name data from '" . $host['description'] . "', keeping the stored rows");
 
 			return;

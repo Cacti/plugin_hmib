@@ -306,6 +306,16 @@ it('keeps the stored process list when the process walk returns nothing', functi
 	expect(hmib_test_sql('SELECT name FROM plugin_hmib_hrSWRun WHERE host_id = 9001 ORDER BY name')->fetchAll(PDO::FETCH_COLUMN))->toBe(array('cron', 'sshd'));
 });
 
+it('clears the stored process list when an agent that answers reports no processes', function () {
+	hmib_e2e_worker_fixture();
+	hmib_test_sql('UPDATE host SET hostname = ?, snmp_community = ? WHERE id = ?', array('localhost', 'public', 9001));
+
+	$run = hmib_e2e_worker(false, true);
+
+	expect($run['exit'])->toBe(0);
+	expect(hmib_test_sql('SELECT COUNT(*) FROM plugin_hmib_hrSWRun WHERE host_id = 9001 AND ((`index` = 1 AND name = ?) OR (`index` = 2 AND name = ?))', array('sshd', 'cron'))->fetchColumn())->toBe(0);
+});
+
 it('requires a device for a worker run', function () {
 	$run = hmib_e2e_cli('plugins/hmib/poller_hmib.php', array());
 
