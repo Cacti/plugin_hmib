@@ -18,8 +18,12 @@ if (!function_exists('debug')) {
 	}
 }
 
+// Same parameters as Cacti core's lib/snmp.php, so the calls under test match them.
 if (!function_exists('cacti_snmp_walk')) {
-	function cacti_snmp_walk($hostname, $community, $oid) {
+	function cacti_snmp_walk($hostname, $community, $oid, $version, $auth_user = '', $auth_pass = '',
+		$auth_proto = '', $priv_pass = '', $priv_proto = '', $context = '',
+		$port = 161, $timeout_ms = 500, $retries = 0, $bulk_walk_size = 10, $environ = 'SNMP',
+		$engineid = '', $value_output_format = 1) {
 		$GLOBALS['snmp_error'] = $GLOBALS['__walk_error'] ?? '';
 
 		return $GLOBALS['__walks'][$oid] ?? array();
@@ -27,7 +31,10 @@ if (!function_exists('cacti_snmp_walk')) {
 }
 
 if (!function_exists('cacti_snmp_get')) {
-	function cacti_snmp_get($hostname, $community, $oid) {
+	function cacti_snmp_get($hostname, $community, $oid, $version, $auth_user = '', $auth_pass = '',
+		$auth_proto = '', $priv_pass = '', $priv_proto = '', $context = '',
+		$port = 161, $timeout_ms = 500, $retries = 0, $environ = 'SNMP',
+		$engineid = '', $value_output_format = 1) {
 		return $GLOBALS['__gets'][$oid] ?? 'U';
 	}
 }
