@@ -3773,14 +3773,23 @@ function hmib_get_graph_url(int $data_query, int $host_type, int $host_id, strin
 	}
 
 	if (!empty($data_query)) {
+		$sql_params = [$data_query];
+
+		if ($index != '') {
+			$sql_index    = ' AND gl.snmp_index = ?';
+			$sql_params[] = $index;
+		} else {
+			$sql_index = '';
+		}
+
 		$sql    = "SELECT DISTINCT gl.id
 			FROM graph_local AS gl
-			WHERE gl.snmp_query_id=$data_query " .
-			($index!='' ? " AND gl.snmp_index IN ('$index')" : '') .
+			WHERE gl.snmp_query_id = ?" .
+			$sql_index .
 			($host_id!='' ? " AND gl.host_id=$host_id" : '') .
 			($hstr!='' ? " AND gl.host_id IN $hstr" : '');
 
-		$graphs = db_fetch_assoc($sql);
+		$graphs = db_fetch_assoc_prepared($sql, $sql_params);
 
 		$graph_add = '';
 

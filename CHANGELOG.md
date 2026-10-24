@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* security: Bind the SNMP index as a query parameter in the graph link builder used by the Summary Processes view
 * issue: Fix the Fleet Dashboard Uptime Distribution showing all zeros by falling back to SNMP sysUpTime when the Host Resources hrSystemUptime is not reported, and apply the same fallback to the per-device Dashboard
 * issue: Stop the Dashboard card header from changing height when hovering the drag handle or tool buttons by reserving space for the theme's button hover border
 * feature: Make the Fleet Dashboard the first tab and the default landing view on the Host MIB interface
