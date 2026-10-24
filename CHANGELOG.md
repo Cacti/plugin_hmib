@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* issue: Keep a device's stored process, storage, hardware, software and processor rows when the SNMP walk for that table fails or returns nothing, instead of deleting them; core returns an empty walk for a timeout, so a device that really reports an empty table keeps its last rows
 * issue: Fix PHP warnings on the Summary tab when a request names only the device type table or only the process table and the other table has no stored sort
 * issue: Fix the process Time Seen total growing on every poller cycle instead of once per process performance collection
 * issue: Fix graph automation not creating the Host MIB summary device graphs until the next scheduled run after the device is first created

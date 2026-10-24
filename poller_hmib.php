@@ -1006,11 +1006,9 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 	$cols = db_get_table_column_types($table);
 
 	if (cacti_sizeof($host)) {
-		// mark for deletion
-		db_execute("UPDATE $table SET present=0 WHERE host_id=" . $host['id']);
-
 		debug("Polling $name from '" . $host['description'] . '[' . $host['hostname'] . "]'");
-		$hostMib   = [];
+		$hostMib     = [];
+		$walk_failed = false;
 
 		foreach ($tree as $mname => $oid) {
 			// baseOID is a container node, not a pollable branch.
@@ -1026,6 +1024,7 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 
 			if (hmib_snmp_request_failed($walk)) {
 				$snmp_errors++;
+				$walk_failed = true;
 			}
 
 			// A failed walk can return false/null; keep the merge operand an array.
@@ -1035,6 +1034,17 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 
 			$hostMib = array_merge($hostMib, $walk);
 		}
+
+		// Core returns an empty array for a walk that timed out, so an empty
+		// table cannot be told from an unreachable device: keep the stored rows.
+		if ($walk_failed || !cacti_sizeof($hostMib)) {
+			debug("No $name data from '" . $host['description'] . "', keeping the stored rows");
+
+			return;
+		}
+
+		// mark for deletion
+		db_execute_prepared("UPDATE $table SET present = 0 WHERE host_id = ?", [$host['id']]);
 
 		$set_string = '';
 		$values     = '';
@@ -1273,7 +1283,7 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 		}
 
 		// remove old records
-		db_execute("DELETE FROM $table WHERE present=0 AND host_id=" . $host['id']);
+		db_execute_prepared("DELETE FROM $table WHERE present = 0 AND host_id = ?", [$host['id']]);
 	}
 }
 

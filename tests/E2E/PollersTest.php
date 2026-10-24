@@ -293,6 +293,15 @@ it('replaces the process list when the process collector is due and keeps the ti
 	expect((int) hmib_test_sql('SELECT total_time FROM plugin_hmib_hrSWRun_last_seen WHERE host_id = 9001 AND name = ?', array('sshd'))->fetchColumn())->toBe(900);
 });
 
+it('keeps the stored process list when the process walk returns nothing', function () {
+	hmib_e2e_worker_fixture();
+
+	$run = hmib_e2e_worker(false, true);
+
+	expect($run['exit'])->toBe(0);
+	expect(hmib_test_sql('SELECT name FROM plugin_hmib_hrSWRun WHERE host_id = 9001 ORDER BY name')->fetchAll(PDO::FETCH_COLUMN))->toBe(array('cron', 'sshd'));
+});
+
 it('requires a device for a worker run', function () {
 	$run = hmib_e2e_cli('plugins/hmib/poller_hmib.php', array());
 
