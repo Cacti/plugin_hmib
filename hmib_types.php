@@ -445,6 +445,25 @@ function hmib_validate_request_vars(): void {
 }
 
 /**
+ * Quotes one value for the host type CSV export. Embedded quotes are doubled,
+ * and a value that a spreadsheet would read as a formula gets a leading quote
+ * so it opens as text.
+ *
+ * @param mixed $value The value to export.
+ *
+ * @return string The quoted CSV field.
+ */
+function hmib_csv_field(mixed $value): string {
+	$value = (string) $value;
+
+	if ($value !== '' && strpos("=+-@\t\r", $value[0]) !== false) {
+		$value = "'" . $value;
+	}
+
+	return '"' . str_replace('"', '""', $value) . '"';
+}
+
+/**
  * Exports all host types matching the current filter as a downloadable
  * CSV file. Called from this script's main request-dispatch switch
  * when action=export.
@@ -476,12 +495,12 @@ function hmib_host_type_export(): void {
 
 	if (cacti_sizeof($host_types)) {
 		foreach ($host_types as $host_type) {
-			array_push($xport_array,'"' .
-			$host_type['id'] . '","' .
-			$host_type['name'] . '","' .
-			$host_type['version'] . '","' .
-			$host_type['sysDescrMatch'] . '","' .
-			$host_type['sysObjectID'] . '"');
+			array_push($xport_array,
+				hmib_csv_field($host_type['id']) . ',' .
+				hmib_csv_field($host_type['name']) . ',' .
+				hmib_csv_field($host_type['version']) . ',' .
+				hmib_csv_field($host_type['sysDescrMatch']) . ',' .
+				hmib_csv_field($host_type['sysObjectID']));
 		}
 	}
 

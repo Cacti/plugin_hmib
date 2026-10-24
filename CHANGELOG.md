@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* issue: Fix the host type CSV export producing broken rows for values that contain a double quote, and open values that look like formulas as text
 * security: Run the OS type rescan from a POST request with a CSRF token instead of a GET link
 * issue: Fix the OS type rescan failing with a duplicate key error when several unclassified devices report the same sysDescr and sysObjectID, and stop it creating an empty match type
 * security: Escape the OS type name, version, sysObjectID and sysDescr match when listing host types and the type version on the Summary tab
