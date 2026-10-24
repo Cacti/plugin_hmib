@@ -3511,8 +3511,9 @@ function hmib_summary(): void {
 
 	$rows = db_fetch_assoc_prepared($sql, $sql_params);
 
-	$total_rows = db_fetch_cell_prepared("SELECT COUNT(DISTINCT name)
-		FROM plugin_hmib_hrSWRun
+	$total_rows = db_fetch_cell_prepared("SELECT COUNT(DISTINCT hrswr.name)
+		FROM plugin_hmib_hrSWRun AS hrswr
+		WHERE hrswr.name!='System Idle Process' AND hrswr.name!=''
 		$sql_where", $sql_params);
 
 	$display_text = [
