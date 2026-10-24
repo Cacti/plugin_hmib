@@ -66,3 +66,17 @@ it('adds no index condition when the index is empty', function () {
 	expect($GLOBALS['__graph_url_query']['sql'])->not->toContain('snmp_index');
 	expect($GLOBALS['__graph_url_query']['params'])->toBe(array(12));
 });
+
+it('does not restrict by device when no device is given', function () {
+	hmib_get_graph_url(12, 0, 0, '', 'title', false);
+
+	expect($GLOBALS['__graph_url_query']['sql'])->not->toContain('gl.host_id');
+});
+
+it('restricts to one device, including the no-device sentinel', function () {
+	hmib_get_graph_url(12, 0, 5, '', 'title', false);
+	expect($GLOBALS['__graph_url_query']['sql'])->toContain('gl.host_id=5');
+
+	hmib_get_graph_url(12, 0, -1, '', 'title', false);
+	expect($GLOBALS['__graph_url_query']['sql'])->toContain('gl.host_id=-1');
+});
