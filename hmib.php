@@ -1546,13 +1546,13 @@ function hmib_storage(): void {
 				<table class='filterTable'>
 					<tr>
 						<td>
-							<?php print __('Search', 'hmib'); ?>
+							<label for='filter'><?php print __('Search', 'hmib'); ?></label>
 						</td>
 						<td>
 							<input type='text' size='30' id='filter' value='<?php print html_escape_request_var('filter'); ?>'>
 						</td>
 						<td>
-							<?php print __('Type', 'hmib'); ?>
+							<label for='type'><?php print __('Type', 'hmib'); ?></label>
 						</td>
 						<td>
 							<select id='type'>
@@ -1863,7 +1863,7 @@ function hmib_devices(): void {
 					<tr>
 						<?php hmib_filter_type_device_template(false); ?>
 						<td>
-							<?php print __('Process', 'hmib'); ?>
+							<label for='process'><?php print __('Process', 'hmib'); ?></label>
 						</td>
 						<td>
 							<select id='process'>
