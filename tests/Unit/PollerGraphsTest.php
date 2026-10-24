@@ -118,3 +118,37 @@ it('adds the disk and processor data query graphs when those queries exist', fun
 
 	expect($GLOBALS['__graph_calls'])->toBe(array(array('dq', '9', '22'), array('dq', '9', '21')));
 });
+
+it('builds the summary graphs for the device it just created', function () {
+	$queries = array();
+
+	hmib_test_mock_db('db_fetch_cell_prepared', 'FROM host', '42');
+	hmib_test_mock_db('db_fetch_assoc_prepared', function ($sql, $params) use (&$queries) {
+		$queries[] = array($sql, $params);
+
+		return false;
+	}, array());
+
+	add_summary_graphs(0, 5);
+
+	$data_query_lookup = array_values(array_filter($queries, function ($query) {
+		return strpos($query[0], 'FROM host_snmp_query') !== false;
+	}));
+
+	expect($data_query_lookup)->toHaveCount(1);
+	expect($data_query_lookup[0][1])->toBe(array(42));
+});
+
+it('keeps the existing summary device when there is one', function () {
+	$queries = array();
+
+	hmib_test_mock_db('db_fetch_assoc_prepared', function ($sql, $params) use (&$queries) {
+		$queries[] = array($sql, $params);
+
+		return false;
+	}, array());
+
+	add_summary_graphs(7, 5);
+
+	expect($queries[0][1])->toBe(array(7));
+});

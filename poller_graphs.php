@@ -402,6 +402,11 @@ function add_summary_graphs(int $host_id, int $host_template): void {
 		// add the host
 		debug('Adding Host');
 		$result = exec("$php_bin -q $base/cli/add_device.php --description='Summary Device' --ip=summary --template=$host_template --version=0 --avail=none", $return_code);
+
+		$host_id = (int) db_fetch_cell_prepared('SELECT id
+			FROM host
+			WHERE host_template_id = ?',
+			[$host_template]);
 	} else {
 		debug('Reindexing Host');
 		$result = exec("$php_bin -q $base/cli/poller_reindex_hosts.php -id=$host_id -qid=All", $return_code);

@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* issue: Fix graph automation not creating the Host MIB summary device graphs until the next scheduled run after the device is first created
 * issue: Fix graph automation checking the users graph template instead of the processes graph template before adding the processes graph
 * issue: Fix the host type CSV export producing broken rows for values that contain a double quote, and open values that look like formulas as text
 * security: Run the OS type rescan from a POST request with a CSRF token instead of a GET link
