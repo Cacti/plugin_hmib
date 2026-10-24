@@ -535,11 +535,11 @@ function rescan_types(): void {
 
 			if (cacti_sizeof($known_types)) {
 				foreach ($known_types as $known) {
-					db_execute('UPDATE plugin_hmib_hrSystem SET host_type=' . (int) $known['id'] . "
-						WHERE host_type=0 AND (sysObjectID LIKE '%" . $known['sysObjectID'] . "%' AND
-						sysDescr LIKE '%" . $known['sysDescrMatch'] . "%')
-						OR (sysObjectID RLIKE '" . $known['sysObjectID'] . "' AND
-						sysDescr RLIKE '" . $known['sysDescrMatch'] . "')");
+					db_execute_prepared('UPDATE plugin_hmib_hrSystem SET host_type = ?
+						WHERE host_type = 0
+						AND sysObjectID LIKE ?
+						AND sysDescr LIKE ?',
+						[$known['id'], '%' . $known['sysObjectID'] . '%', '%' . $known['sysDescrMatch'] . '%']);
 
 					if (db_affected_rows() > 0) {
 						$found = true;
