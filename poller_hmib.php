@@ -603,10 +603,10 @@ function process_hosts(): void {
 
 		foreach ($stats as $s) {
 			$sql_insert .= (strlen($sql_insert) ? ', ' : '') . '(' .
-				$s['host_id'] . ', ' .
-				$s['host_status'] . ', ' .
-				(!empty($s['cpuPercent']) ? $s['cpuPercent'] : '0') . ', ' .
-				(!empty($s['numCpus']) ? $s['numCpus'] : '0') . ')';
+				(int) $s['host_id'] . ', ' .
+				(int) $s['host_status'] . ', ' .
+				(float) $s['cpuPercent'] . ', ' .
+				(int) $s['numCpus'] . ')';
 
 			$j++;
 
@@ -1115,6 +1115,7 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 		$wonky        = false;
 		$hrProcValid  = false;
 		$effective    = 0;
+		$is_linux     = null;
 
 		if (cacti_sizeof($hostMib)) {
 			foreach ($hostMib as $mib) {
@@ -1140,7 +1141,12 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 							$key          = 'load';
 							$mib['value'] = $effective;
 						} elseif (!$hrProcValid) {
-							if (db_fetch_cell("SELECT count(*) FROM plugin_hmib_hrSystem WHERE sysDescr LIKE '%Linux%' AND host_id=" . $host['id'])) {
+							// asked once per device, not once per processor row
+							if ($is_linux === null) {
+								$is_linux = (bool) db_fetch_cell_prepared("SELECT COUNT(*) FROM plugin_hmib_hrSystem WHERE sysDescr LIKE '%Linux%' AND host_id = ?", [$host['id']]);
+							}
+
+							if ($is_linux) {
 								// look for the hrProcessorLoad value
 								$temp_mib = $hostMib;
 

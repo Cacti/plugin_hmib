@@ -117,3 +117,25 @@ it('replaces the stored rows of the device when the walk answers', function () {
 	expect($writes[2]['sql'])->toBe('DELETE FROM plugin_hmib_hrStorage WHERE present = 0 AND host_id = ?');
 	expect($writes[2]['params'])->toBe(array(7));
 });
+
+it('asks once per device whether it runs Linux, not once per processor row', function () {
+	$host = hmib_test_storage_host();
+
+	$GLOBALS['__linux_checks'] = 0;
+
+	foreach (array('db_fetch_cell', 'db_fetch_cell_prepared') as $fn) {
+		hmib_test_mock_db($fn, 'Linux', function ($sql, $params) {
+			$GLOBALS['__linux_checks']++;
+
+			return '0';
+		});
+	}
+
+	foreach (range(1, 4) as $cpu) {
+		$GLOBALS['__walks']['.1.3.6.1.2.1.25.3.3.1'][] = array('oid' => '.1.3.6.1.2.1.25.3.3.1.1.' . $cpu, 'value' => '.0.0');
+	}
+
+	collectHostIndexedOid($host, array('baseOID' => '.1.3.6.1.2.1.25.3.3.1', 'load' => '.1.3.6.1.2.1.25.3.3.1.2'), 'plugin_hmib_hrProcessor', 'hrProcessor');
+
+	expect($GLOBALS['__linux_checks'])->toBe(1);
+});

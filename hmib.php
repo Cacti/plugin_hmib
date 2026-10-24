@@ -3345,17 +3345,17 @@ function hmib_summary(): void {
 
 	html_header_sort($display_text, $_SESSION['sess_hmib_host_sort_column'] ?? 'upHosts', $_SESSION['sess_hmib_host_sort_direction'] ?? 'DESC', 1, 'hmib.php?action=summary&area=hosts');
 
+	if (!$templates_missing) {
+		$host_id = db_fetch_cell_prepared('SELECT id FROM host WHERE host_template_id = ?', [$htsd]);
+	} else {
+		$host_id = '-1';
+	}
+
 	if (cacti_sizeof($rows)) {
 		$id = 0;
 
 		foreach ($rows as $row) {
 			form_alternate_row();
-
-			if (!$templates_missing) {
-				$host_id = db_fetch_cell("SELECT id FROM host WHERE host_template_id=$htsd");
-			} else {
-				$host_id = '-1';
-			}
 
 			$graph_url   = hmib_get_graph_url($htdq, 0, $host_id, $row['id']);
 
@@ -3781,22 +3781,17 @@ function hmib_get_graph_url(int $data_query, int $host_type, int $host_id, strin
 	$nograph = $config['url_path'] . 'plugins/hmib/images/view_graphs_disabled.gif';
 	$graph   = $config['url_path'] . 'plugins/hmib/images/view_graphs.gif';
 
-	$hsql = '';
-	$hstr = '';
-
-	if ($host_type > 0) {
-		$hosts = db_fetch_assoc("SELECT host_id FROM plugin_hmib_hrSystem WHERE host_type=$host_type");
-
-		if (cacti_sizeof($hosts)) {
-			foreach ($hosts as $host) {
-				$hstr .= (strlen($hstr) ? ',' : '(') . $host['host_id'];
-			}
-			$hstr .= ')';
-		}
-	}
-
 	if (!empty($data_query)) {
-		$sql_params = [$data_query];
+		$sql_join   = '';
+		$sql_params = [];
+
+		// joined rather than looked up first, so each link costs one query
+		if ($host_type > 0) {
+			$sql_join     = 'INNER JOIN plugin_hmib_hrSystem AS hrs ON hrs.host_id = gl.host_id AND hrs.host_type = ?';
+			$sql_params[] = $host_type;
+		}
+
+		$sql_params[] = $data_query;
 
 		if ($index != '') {
 			$sql_index    = ' AND gl.snmp_index = ?';
@@ -3805,12 +3800,16 @@ function hmib_get_graph_url(int $data_query, int $host_type, int $host_id, strin
 			$sql_index = '';
 		}
 
+		if ($host_id != 0) {
+			$sql_index   .= ' AND gl.host_id = ?';
+			$sql_params[] = $host_id;
+		}
+
 		$sql    = "SELECT DISTINCT gl.id
 			FROM graph_local AS gl
+			$sql_join
 			WHERE gl.snmp_query_id = ?" .
-			$sql_index .
-			($host_id != 0 ? " AND gl.host_id=$host_id" : '') .
-			($hstr!='' ? " AND gl.host_id IN $hstr" : '');
+			$sql_index;
 
 		$graphs = db_fetch_assoc_prepared($sql, $sql_params);
 

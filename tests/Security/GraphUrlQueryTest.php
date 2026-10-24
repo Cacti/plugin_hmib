@@ -59,8 +59,26 @@ it('does not restrict by device when no device is given', function () {
 
 it('restricts to one device, including the no-device sentinel', function () {
 	hmib_get_graph_url(12, 0, 5, '', 'title', false);
-	expect($GLOBALS['__graph_url_query']['sql'])->toContain('gl.host_id=5');
+	expect($GLOBALS['__graph_url_query']['sql'])->toContain('gl.host_id = ?');
+	expect($GLOBALS['__graph_url_query']['params'])->toBe(array(12, 5));
 
 	hmib_get_graph_url(12, 0, -1, '', 'title', false);
-	expect($GLOBALS['__graph_url_query']['sql'])->toContain('gl.host_id=-1');
+	expect($GLOBALS['__graph_url_query']['params'])->toBe(array(12, -1));
+});
+
+it('finds the graphs of an OS type with one query per link', function () {
+	$GLOBALS['__graph_url_lookups'] = 0;
+
+	hmib_test_mock_db('db_fetch_assoc', 'plugin_hmib_hrSystem', function ($sql, $params) {
+		$GLOBALS['__graph_url_lookups']++;
+
+		return array(array('host_id' => 3));
+	});
+
+	hmib_get_graph_url(12, 8, 0, '', 'title', false);
+	hmib_get_graph_url(12, 8, 0, '', 'other title', false);
+
+	expect($GLOBALS['__graph_url_lookups'])->toBe(0);
+	expect($GLOBALS['__graph_url_query']['sql'])->toContain('hrs.host_type = ?');
+	expect($GLOBALS['__graph_url_query']['params'])->toBe(array(8, 12));
 });
