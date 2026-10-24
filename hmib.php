@@ -3393,7 +3393,7 @@ function hmib_summary(): void {
 
 			form_selectable_cell(($row['name'] != '' ? html_escape($row['name']) : __('Unknown', 'hmib')), $id);
 
-			form_selectable_cell($row['version'], $id, '', 'right');
+			form_selectable_cell(html_escape($row['version']), $id, '', 'right');
 			form_selectable_cell($upHosts, $id, '', 'right');
 			form_selectable_cell($recHosts, $id, '', 'right');
 			form_selectable_cell($downHosts, $id, '', 'right');

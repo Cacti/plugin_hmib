@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* security: Escape the OS type name, version, sysObjectID and sysDescr match when listing host types and the type version on the Summary tab
 * security: Restrict the Summary tab sort column to the columns each table can sort on and limit the direction to ASC or DESC
 * issue: Fix the Devices tab processes glyph opening an empty page because of a malformed action value in its link
 * issue: Fix the Summary Processes filter failing with a SQL error because the page count query had no WHERE clause

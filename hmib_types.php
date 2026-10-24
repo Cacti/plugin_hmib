@@ -1131,11 +1131,11 @@ function hmib_host_type(): void {
 	if (cacti_sizeof($host_types)) {
 		foreach ($host_types as $host_type) {
 			form_alternate_row('line' . $host_type['id'], true);
-			form_selectable_cell('<a class="linkEditMain" href="' . htmlspecialchars('hmib_types.php?action=edit&id=' . $host_type['id']) . '">' . $host_type['name'] . '</a>', $host_type['id']);
-			form_selectable_cell($host_type['version'], $host_type['id']);
+			form_selectable_cell('<a class="linkEditMain" href="' . htmlspecialchars('hmib_types.php?action=edit&id=' . $host_type['id']) . '">' . html_escape($host_type['name']) . '</a>', $host_type['id']);
+			form_selectable_cell(html_escape($host_type['version']), $host_type['id']);
 			form_selectable_cell($host_type['totals'], $host_type['id']);
-			form_selectable_cell($host_type['sysObjectID'], $host_type['id']);
-			form_selectable_cell($host_type['sysDescrMatch'], $host_type['id']);
+			form_selectable_cell(html_escape($host_type['sysObjectID']), $host_type['id']);
+			form_selectable_cell(html_escape($host_type['sysDescrMatch']), $host_type['id']);
 			form_checkbox_cell($host_type['name'], $host_type['id']);
 			form_end_row();
 		}
