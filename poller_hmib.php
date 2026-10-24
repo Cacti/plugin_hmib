@@ -36,6 +36,10 @@ include_once('./lib/ping.php');
 // run stops waiting on its collectors once this long has passed since it began.
 const HMIB_MAX_RUNTIME = 600;
 
+// With auto purge on, process history is dropped this long after a process
+// was last seen running.
+const HMIB_LAST_SEEN_DAYS = 365;
+
 // process calling arguments
 $parms = $_SERVER['argv'];
 array_shift($parms);
@@ -561,16 +565,19 @@ function process_hosts(): void {
 
 		if (cacti_sizeof($dead_hosts)) {
 			foreach ($dead_hosts as $host) {
-				db_execute('DELETE FROM plugin_hmib_hrSystem WHERE host_id=' . $host['host_id']);
-				db_execute('DELETE FROM plugin_hmib_hrSWRun WHERE host_id=' . $host['host_id']);
-				db_execute('DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE host_id=' . $host['host_id']);
-				db_execute('DELETE FROM plugin_hmib_hrDevices WHERE host_id=' . $host['host_id']);
-				db_execute('DELETE FROM plugin_hmib_hrStorage WHERE host_id=' . $host['host_id']);
-				db_execute('DELETE FROM plugin_hmib_hrProcessor WHERE host_id=' . $host['host_id']);
-				db_execute('DELETE FROM plugin_hmib_hrSWInstalled WHERE host_id=' . $host['host_id']);
 				print "Purging Host with ID '" . $host['host_id'] . "'\n";
 			}
+
+			// one statement per table covers every removed device
+			foreach (['plugin_hmib_hrSWRun', 'plugin_hmib_hrSWRun_last_seen', 'plugin_hmib_hrDevices', 'plugin_hmib_hrStorage', 'plugin_hmib_hrProcessor', 'plugin_hmib_hrSWInstalled', 'plugin_hmib_hrSystem'] as $table) {
+				db_execute("DELETE hr FROM $table AS hr
+					LEFT JOIN host
+					ON host.id=hr.host_id
+					WHERE host.id IS NULL");
+			}
 		}
+
+		db_execute_prepared('DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE last_seen < NOW() - INTERVAL ? DAY', [HMIB_LAST_SEEN_DAYS]);
 	}
 
 	print "NOTE: Updating Summary Statistics for Each Host\n";

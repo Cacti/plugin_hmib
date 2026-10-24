@@ -32,6 +32,10 @@ const HMIB_E2E_POLLER_TABLES = array(
 	'plugin_hmib_hrSystemTypes',
 	'plugin_hmib_hrSWRun',
 	'plugin_hmib_hrSWRun_last_seen',
+	'plugin_hmib_hrSWInstalled',
+	'plugin_hmib_hrDevices',
+	'plugin_hmib_hrStorage',
+	'plugin_hmib_hrProcessor',
 	'plugin_hmib_processes',
 );
 
@@ -425,6 +429,24 @@ it('removes the autodiscovery lock when the run is stopped part way', function (
 	expect($locked)->toBeTrue();
 	expect($result['out'])->not->toContain('Auto Discovery Complete');
 	expect(hmib_test_sql('SELECT COUNT(*) FROM plugin_hmib_processes WHERE taskid = 0')->fetchColumn())->toBe(0);
+});
+
+it('purges the rows of removed devices and the process history not seen for a year', function () {
+	hmib_e2e_worker_fixture();
+	hmib_fx_system(9005, 1, 'Linux', '.1.3.6');
+	hmib_fx_process(9005, 1, 'gone');
+	hmib_test_sql('INSERT INTO plugin_hmib_hrStorage (host_id, `index`, description) VALUES (9005, 1, ?)', array('/'));
+	hmib_test_sql('INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name, total_time, last_seen) VALUES
+		(9001, ?, 0, NOW()), (9001, ?, 0, NOW() - INTERVAL 400 DAY), (9005, ?, 0, NOW())', array('sshd', 'oldd', 'gone'));
+	hmib_test_sql('REPLACE INTO settings (name, value) VALUES (?, ?)', array('hmib_autopurge', 'on'));
+
+	$run = hmib_e2e_cli('plugins/hmib/poller_hmib.php', array('-M', '--force'), 120);
+
+	expect($run['out'])->toContain("Purging Host with ID '9005'");
+	expect(hmib_test_sql('SELECT host_id FROM plugin_hmib_hrSystem ORDER BY host_id')->fetchAll(PDO::FETCH_COLUMN))->toBe(array(9001));
+	expect(hmib_test_sql('SELECT DISTINCT host_id FROM plugin_hmib_hrSWRun')->fetchAll(PDO::FETCH_COLUMN))->toBe(array(9001));
+	expect(hmib_test_sql('SELECT COUNT(*) FROM plugin_hmib_hrStorage')->fetchColumn())->toBe(0);
+	expect(hmib_test_sql('SELECT CONCAT(host_id, name) FROM plugin_hmib_hrSWRun_last_seen ORDER BY name')->fetchAll(PDO::FETCH_COLUMN))->toBe(array('9001cron', '9001sshd'));
 });
 
 it('assigns the stored OS types to the devices that match them', function () {
