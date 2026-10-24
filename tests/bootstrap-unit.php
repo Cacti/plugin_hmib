@@ -80,6 +80,12 @@ if (!in_array($expected_version, array('1.2.x', 'develop'), true) && $cacti_vers
 
 require_once $autoload;
 
+require_once __DIR__ . '/support/coverage.php';
+
+if (hmib_cov_enabled()) {
+	hmib_cov_register();
+}
+
 /*
  * base_path has to point at the Cacti root two levels above this plugin:
  * hmib's source files build include paths from it at runtime.
@@ -478,9 +484,12 @@ if (!function_exists('hmib_test_define_function')) {
 
 		$source = plugin_test_read_source($file);
 
-		if (!preg_match('/^function ' . preg_quote($name, '/') . '\(.*?^}\n/ms', $source, $match)) {
+		if (!preg_match('/^function ' . preg_quote($name, '/') . '\(.*?^}\n/ms', $source, $match, PREG_OFFSET_CAPTURE)) {
 			throw new RuntimeException("Unable to locate {$name}() in {$file}");
 		}
+
+		$start = 1 + substr_count(substr($source, 0, $match[0][1]), "\n");
+		$match = array($match[0][0]);
 
 		// tempnam() creates the file exclusively with mode 0600; the path is
 		// built from nothing a request or the source file can influence.
@@ -492,6 +501,9 @@ if (!function_exists('hmib_test_define_function')) {
 
 		try {
 			file_put_contents($path, "<?php\n" . $match[0]);
+
+			// Lets tests/support/coverage.php report the function's lines under the real file.
+			$GLOBALS['__hmib_function_map'][$path] = array($file, $start);
 
 			require $path;
 		} finally {
