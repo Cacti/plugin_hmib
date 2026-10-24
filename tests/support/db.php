@@ -22,7 +22,8 @@
  *
  * Every table a test touches is copied aside first and restored afterwards,
  * so a Cacti install in the same database keeps its rows. The statements are
- * spelled out rather than built from table names.
+ * spelled out rather than built from table names: backup, wipe, restore, drop,
+ * and the statement that empties a table the plugin owns (null for core tables).
  */
 
 if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
@@ -32,146 +33,26 @@ if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
 }
 
 const HMIB_TEST_SNAPSHOT_SQL = array(
-	'graph_local' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_graph_local AS SELECT * FROM graph_local',
-		'clean'   => 'DELETE FROM graph_local',
-		'wipe'    => 'DELETE FROM graph_local',
-		'restore' => 'INSERT INTO graph_local SELECT * FROM hmib_bak_graph_local',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_graph_local',
-	),
-	'host' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_host AS SELECT * FROM host',
-		'clean'   => 'DELETE FROM host WHERE id >= 9000',
-		'wipe'    => 'DELETE FROM host',
-		'restore' => 'INSERT INTO host SELECT * FROM hmib_bak_host',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_host',
-	),
-	'host_graph' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_host_graph AS SELECT * FROM host_graph',
-		'clean'   => 'DELETE FROM host_graph WHERE host_id >= 9000',
-		'wipe'    => 'DELETE FROM host_graph',
-		'restore' => 'INSERT INTO host_graph SELECT * FROM hmib_bak_host_graph',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_host_graph',
-	),
-	'host_snmp_query' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_host_snmp_query AS SELECT * FROM host_snmp_query',
-		'clean'   => 'DELETE FROM host_snmp_query WHERE host_id >= 9000',
-		'wipe'    => 'DELETE FROM host_snmp_query',
-		'restore' => 'INSERT INTO host_snmp_query SELECT * FROM hmib_bak_host_snmp_query',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_host_snmp_query',
-	),
-	'host_template_graph' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_host_template_graph AS SELECT * FROM host_template_graph',
-		'clean'   => 'DO 0',
-		'wipe'    => 'DELETE FROM host_template_graph',
-		'restore' => 'INSERT INTO host_template_graph SELECT * FROM hmib_bak_host_template_graph',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_host_template_graph',
-	),
-	'host_template' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_host_template AS SELECT * FROM host_template',
-		'clean'   => 'DELETE FROM host_template WHERE hash = \'7c13344910097cc599f0d0485305361d\'',
-		'wipe'    => 'DELETE FROM host_template',
-		'restore' => 'INSERT INTO host_template SELECT * FROM hmib_bak_host_template',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_host_template',
-	),
-	'snmp_query' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_snmp_query AS SELECT * FROM snmp_query',
-		'clean'   => 'DELETE FROM snmp_query WHERE hash IN (\'137aeab842986a76cf5bdef41b96c9a3\', \'0d1ab53fe37487a5d0b9e1d3ee8c1d0d\', \'9343eab1f4d88b0e61ffc9d020f35414\', \'6b0ef0fe7f1d85bbb6812801ca15a7c5\')',
-		'wipe'    => 'DELETE FROM snmp_query',
-		'restore' => 'INSERT INTO snmp_query SELECT * FROM hmib_bak_snmp_query',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_snmp_query',
-	),
-	'graph_templates' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_graph_templates AS SELECT * FROM graph_templates',
-		'clean'   => 'DELETE FROM graph_templates WHERE hash IN (\'e8462bbe094e4e9e814d4e681671ea82\', \'62205afbd4066e5c4700338841e3901e\')',
-		'wipe'    => 'DELETE FROM graph_templates',
-		'restore' => 'INSERT INTO graph_templates SELECT * FROM hmib_bak_graph_templates',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_graph_templates',
-	),
-	'settings' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_settings AS SELECT * FROM settings',
-		'clean'   => 'DELETE FROM settings WHERE name LIKE \'hmib%\'',
-		'wipe'    => 'DELETE FROM settings',
-		'restore' => 'INSERT INTO settings SELECT * FROM hmib_bak_settings',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_settings',
-	),
-	'user_auth' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_user_auth AS SELECT * FROM user_auth',
-		'clean'   => 'DO 0',
-		'wipe'    => 'DELETE FROM user_auth',
-		'restore' => 'INSERT INTO user_auth SELECT * FROM hmib_bak_user_auth',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_user_auth',
-	),
-	'user_auth_realm' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_user_auth_realm AS SELECT * FROM user_auth_realm',
-		'clean'   => 'DO 0',
-		'wipe'    => 'DELETE FROM user_auth_realm',
-		'restore' => 'INSERT INTO user_auth_realm SELECT * FROM hmib_bak_user_auth_realm',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_user_auth_realm',
-	),
-	'plugin_hmib_hrSystem' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrSystem AS SELECT * FROM plugin_hmib_hrSystem',
-		'clean'   => 'DELETE FROM plugin_hmib_hrSystem',
-		'wipe'    => 'DELETE FROM plugin_hmib_hrSystem',
-		'restore' => 'INSERT INTO plugin_hmib_hrSystem SELECT * FROM hmib_bak_plugin_hmib_hrSystem',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrSystem',
-	),
-	'plugin_hmib_hrSystemTypes' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrSystemTypes AS SELECT * FROM plugin_hmib_hrSystemTypes',
-		'clean'   => 'DELETE FROM plugin_hmib_hrSystemTypes',
-		'wipe'    => 'DELETE FROM plugin_hmib_hrSystemTypes',
-		'restore' => 'INSERT INTO plugin_hmib_hrSystemTypes SELECT * FROM hmib_bak_plugin_hmib_hrSystemTypes',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrSystemTypes',
-	),
-	'plugin_hmib_hrSWRun' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrSWRun AS SELECT * FROM plugin_hmib_hrSWRun',
-		'clean'   => 'DELETE FROM plugin_hmib_hrSWRun',
-		'wipe'    => 'DELETE FROM plugin_hmib_hrSWRun',
-		'restore' => 'INSERT INTO plugin_hmib_hrSWRun SELECT * FROM hmib_bak_plugin_hmib_hrSWRun',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrSWRun',
-	),
-	'plugin_hmib_hrSWRun_last_seen' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrSWRun_last_seen AS SELECT * FROM plugin_hmib_hrSWRun_last_seen',
-		'clean'   => 'DELETE FROM plugin_hmib_hrSWRun_last_seen',
-		'wipe'    => 'DELETE FROM plugin_hmib_hrSWRun_last_seen',
-		'restore' => 'INSERT INTO plugin_hmib_hrSWRun_last_seen SELECT * FROM hmib_bak_plugin_hmib_hrSWRun_last_seen',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrSWRun_last_seen',
-	),
-	'plugin_hmib_hrSWInstalled' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrSWInstalled AS SELECT * FROM plugin_hmib_hrSWInstalled',
-		'clean'   => 'DELETE FROM plugin_hmib_hrSWInstalled',
-		'wipe'    => 'DELETE FROM plugin_hmib_hrSWInstalled',
-		'restore' => 'INSERT INTO plugin_hmib_hrSWInstalled SELECT * FROM hmib_bak_plugin_hmib_hrSWInstalled',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrSWInstalled',
-	),
-	'plugin_hmib_hrDevices' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrDevices AS SELECT * FROM plugin_hmib_hrDevices',
-		'clean'   => 'DELETE FROM plugin_hmib_hrDevices',
-		'wipe'    => 'DELETE FROM plugin_hmib_hrDevices',
-		'restore' => 'INSERT INTO plugin_hmib_hrDevices SELECT * FROM hmib_bak_plugin_hmib_hrDevices',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrDevices',
-	),
-	'plugin_hmib_hrStorage' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrStorage AS SELECT * FROM plugin_hmib_hrStorage',
-		'clean'   => 'DELETE FROM plugin_hmib_hrStorage',
-		'wipe'    => 'DELETE FROM plugin_hmib_hrStorage',
-		'restore' => 'INSERT INTO plugin_hmib_hrStorage SELECT * FROM hmib_bak_plugin_hmib_hrStorage',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrStorage',
-	),
-	'plugin_hmib_hrProcessor' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrProcessor AS SELECT * FROM plugin_hmib_hrProcessor',
-		'clean'   => 'DELETE FROM plugin_hmib_hrProcessor',
-		'wipe'    => 'DELETE FROM plugin_hmib_hrProcessor',
-		'restore' => 'INSERT INTO plugin_hmib_hrProcessor SELECT * FROM hmib_bak_plugin_hmib_hrProcessor',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrProcessor',
-	),
-	'plugin_hmib_processes' => array(
-		'backup'  => 'CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_processes AS SELECT * FROM plugin_hmib_processes',
-		'clean'   => 'DELETE FROM plugin_hmib_processes',
-		'wipe'    => 'DELETE FROM plugin_hmib_processes',
-		'restore' => 'INSERT INTO plugin_hmib_processes SELECT * FROM hmib_bak_plugin_hmib_processes',
-		'drop'    => 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_processes',
-	),
+	'graph_local' => array('CREATE TEMPORARY TABLE hmib_bak_graph_local AS SELECT * FROM graph_local', 'DELETE FROM graph_local', 'INSERT INTO graph_local SELECT * FROM hmib_bak_graph_local', 'DROP TEMPORARY TABLE hmib_bak_graph_local', 'DELETE FROM graph_local'),
+	'host' => array('CREATE TEMPORARY TABLE hmib_bak_host AS SELECT * FROM host', 'DELETE FROM host', 'INSERT INTO host SELECT * FROM hmib_bak_host', 'DROP TEMPORARY TABLE hmib_bak_host', 'DELETE FROM host WHERE id >= 9000'),
+	'host_graph' => array('CREATE TEMPORARY TABLE hmib_bak_host_graph AS SELECT * FROM host_graph', 'DELETE FROM host_graph', 'INSERT INTO host_graph SELECT * FROM hmib_bak_host_graph', 'DROP TEMPORARY TABLE hmib_bak_host_graph', 'DELETE FROM host_graph WHERE host_id >= 9000'),
+	'host_snmp_query' => array('CREATE TEMPORARY TABLE hmib_bak_host_snmp_query AS SELECT * FROM host_snmp_query', 'DELETE FROM host_snmp_query', 'INSERT INTO host_snmp_query SELECT * FROM hmib_bak_host_snmp_query', 'DROP TEMPORARY TABLE hmib_bak_host_snmp_query', 'DELETE FROM host_snmp_query WHERE host_id >= 9000'),
+	'host_template_graph' => array('CREATE TEMPORARY TABLE hmib_bak_host_template_graph AS SELECT * FROM host_template_graph', 'DELETE FROM host_template_graph', 'INSERT INTO host_template_graph SELECT * FROM hmib_bak_host_template_graph', 'DROP TEMPORARY TABLE hmib_bak_host_template_graph', null),
+	'host_template' => array('CREATE TEMPORARY TABLE hmib_bak_host_template AS SELECT * FROM host_template', 'DELETE FROM host_template', 'INSERT INTO host_template SELECT * FROM hmib_bak_host_template', 'DROP TEMPORARY TABLE hmib_bak_host_template', 'DELETE FROM host_template WHERE hash = \'7c13344910097cc599f0d0485305361d\''),
+	'snmp_query' => array('CREATE TEMPORARY TABLE hmib_bak_snmp_query AS SELECT * FROM snmp_query', 'DELETE FROM snmp_query', 'INSERT INTO snmp_query SELECT * FROM hmib_bak_snmp_query', 'DROP TEMPORARY TABLE hmib_bak_snmp_query', 'DELETE FROM snmp_query WHERE hash IN (\'137aeab842986a76cf5bdef41b96c9a3\', \'0d1ab53fe37487a5d0b9e1d3ee8c1d0d\', \'9343eab1f4d88b0e61ffc9d020f35414\', \'6b0ef0fe7f1d85bbb6812801ca15a7c5\')'),
+	'graph_templates' => array('CREATE TEMPORARY TABLE hmib_bak_graph_templates AS SELECT * FROM graph_templates', 'DELETE FROM graph_templates', 'INSERT INTO graph_templates SELECT * FROM hmib_bak_graph_templates', 'DROP TEMPORARY TABLE hmib_bak_graph_templates', 'DELETE FROM graph_templates WHERE hash IN (\'e8462bbe094e4e9e814d4e681671ea82\', \'62205afbd4066e5c4700338841e3901e\')'),
+	'settings' => array('CREATE TEMPORARY TABLE hmib_bak_settings AS SELECT * FROM settings', 'DELETE FROM settings', 'INSERT INTO settings SELECT * FROM hmib_bak_settings', 'DROP TEMPORARY TABLE hmib_bak_settings', 'DELETE FROM settings WHERE name LIKE \'hmib%\''),
+	'user_auth' => array('CREATE TEMPORARY TABLE hmib_bak_user_auth AS SELECT * FROM user_auth', 'DELETE FROM user_auth', 'INSERT INTO user_auth SELECT * FROM hmib_bak_user_auth', 'DROP TEMPORARY TABLE hmib_bak_user_auth', null),
+	'user_auth_realm' => array('CREATE TEMPORARY TABLE hmib_bak_user_auth_realm AS SELECT * FROM user_auth_realm', 'DELETE FROM user_auth_realm', 'INSERT INTO user_auth_realm SELECT * FROM hmib_bak_user_auth_realm', 'DROP TEMPORARY TABLE hmib_bak_user_auth_realm', null),
+	'plugin_hmib_hrSystem' => array('CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrSystem AS SELECT * FROM plugin_hmib_hrSystem', 'DELETE FROM plugin_hmib_hrSystem', 'INSERT INTO plugin_hmib_hrSystem SELECT * FROM hmib_bak_plugin_hmib_hrSystem', 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrSystem', 'DELETE FROM plugin_hmib_hrSystem'),
+	'plugin_hmib_hrSystemTypes' => array('CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrSystemTypes AS SELECT * FROM plugin_hmib_hrSystemTypes', 'DELETE FROM plugin_hmib_hrSystemTypes', 'INSERT INTO plugin_hmib_hrSystemTypes SELECT * FROM hmib_bak_plugin_hmib_hrSystemTypes', 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrSystemTypes', 'DELETE FROM plugin_hmib_hrSystemTypes'),
+	'plugin_hmib_hrSWRun' => array('CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrSWRun AS SELECT * FROM plugin_hmib_hrSWRun', 'DELETE FROM plugin_hmib_hrSWRun', 'INSERT INTO plugin_hmib_hrSWRun SELECT * FROM hmib_bak_plugin_hmib_hrSWRun', 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrSWRun', 'DELETE FROM plugin_hmib_hrSWRun'),
+	'plugin_hmib_hrSWRun_last_seen' => array('CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrSWRun_last_seen AS SELECT * FROM plugin_hmib_hrSWRun_last_seen', 'DELETE FROM plugin_hmib_hrSWRun_last_seen', 'INSERT INTO plugin_hmib_hrSWRun_last_seen SELECT * FROM hmib_bak_plugin_hmib_hrSWRun_last_seen', 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrSWRun_last_seen', 'DELETE FROM plugin_hmib_hrSWRun_last_seen'),
+	'plugin_hmib_hrSWInstalled' => array('CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrSWInstalled AS SELECT * FROM plugin_hmib_hrSWInstalled', 'DELETE FROM plugin_hmib_hrSWInstalled', 'INSERT INTO plugin_hmib_hrSWInstalled SELECT * FROM hmib_bak_plugin_hmib_hrSWInstalled', 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrSWInstalled', 'DELETE FROM plugin_hmib_hrSWInstalled'),
+	'plugin_hmib_hrDevices' => array('CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrDevices AS SELECT * FROM plugin_hmib_hrDevices', 'DELETE FROM plugin_hmib_hrDevices', 'INSERT INTO plugin_hmib_hrDevices SELECT * FROM hmib_bak_plugin_hmib_hrDevices', 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrDevices', 'DELETE FROM plugin_hmib_hrDevices'),
+	'plugin_hmib_hrStorage' => array('CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrStorage AS SELECT * FROM plugin_hmib_hrStorage', 'DELETE FROM plugin_hmib_hrStorage', 'INSERT INTO plugin_hmib_hrStorage SELECT * FROM hmib_bak_plugin_hmib_hrStorage', 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrStorage', 'DELETE FROM plugin_hmib_hrStorage'),
+	'plugin_hmib_hrProcessor' => array('CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_hrProcessor AS SELECT * FROM plugin_hmib_hrProcessor', 'DELETE FROM plugin_hmib_hrProcessor', 'INSERT INTO plugin_hmib_hrProcessor SELECT * FROM hmib_bak_plugin_hmib_hrProcessor', 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_hrProcessor', 'DELETE FROM plugin_hmib_hrProcessor'),
+	'plugin_hmib_processes' => array('CREATE TEMPORARY TABLE hmib_bak_plugin_hmib_processes AS SELECT * FROM plugin_hmib_processes', 'DELETE FROM plugin_hmib_processes', 'INSERT INTO plugin_hmib_processes SELECT * FROM hmib_bak_plugin_hmib_processes', 'DROP TEMPORARY TABLE hmib_bak_plugin_hmib_processes', 'DELETE FROM plugin_hmib_processes'),
 );
 
 /**
@@ -298,8 +179,11 @@ function hmib_test_create_plugin_tables() {
  */
 function hmib_test_snapshot($tables) {
 	foreach ($tables as $table) {
-		hmib_test_sql(HMIB_TEST_SNAPSHOT_SQL[$table]['backup']);
-		hmib_test_sql(HMIB_TEST_SNAPSHOT_SQL[$table]['clean']);
+		hmib_test_sql(HMIB_TEST_SNAPSHOT_SQL[$table][0]);
+
+		if (HMIB_TEST_SNAPSHOT_SQL[$table][4] !== null) {
+			hmib_test_sql(HMIB_TEST_SNAPSHOT_SQL[$table][4]);
+		}
 	}
 }
 
@@ -312,8 +196,8 @@ function hmib_test_snapshot($tables) {
  */
 function hmib_test_restore($tables) {
 	foreach ($tables as $table) {
-		hmib_test_sql(HMIB_TEST_SNAPSHOT_SQL[$table]['wipe']);
-		hmib_test_sql(HMIB_TEST_SNAPSHOT_SQL[$table]['restore']);
-		hmib_test_sql(HMIB_TEST_SNAPSHOT_SQL[$table]['drop']);
+		foreach (array_slice(HMIB_TEST_SNAPSHOT_SQL[$table], 1, 3) as $statement) {
+			hmib_test_sql($statement);
+		}
 	}
 }
