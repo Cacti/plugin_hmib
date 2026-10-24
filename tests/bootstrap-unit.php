@@ -15,11 +15,23 @@
 */
 
 /*
+ * tests/ can end up inside the web root on a git-clone install. This file
+ * loads Cacti's autoloader and defines stubs, so it must do nothing when a
+ * web server is asked for it.
+ */
+if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
+	http_response_code(404);
+
+	exit;
+}
+
+/*
  * Test bootstrap.
  *
  * HMIB's sources expect to be included by Cacti, which has already
  * defined the db_*, request-variable, and logging helpers as plain global
- * functions. Nothing here talks to a database or a network: each Cacti
+ * functions. Nothing here talks to a network, and the database only when a
+ * test sets $GLOBALS['__test_pdo'] (see hmib_test_pdo_run()): each Cacti
  * function is declared as a stub that records the call in
  * $GLOBALS['__test_db_calls'] and hands back a safe default.
  *
