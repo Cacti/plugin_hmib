@@ -15,9 +15,45 @@
  * source and defined here, with the collectors replaced by recorders.
  */
 
-foreach (array('hrSystem', 'hrDevices', 'hrSWRun', 'hrSWRunPerf', 'hrSWInstalled', 'hrStorage', 'hrProcessor') as $hmib_test_collector) {
-	if (!function_exists('collect_' . $hmib_test_collector)) {
-		eval('function collect_' . $hmib_test_collector . '(array &$host) { $GLOBALS["__collected"][] = "' . $hmib_test_collector . '"; }');
+if (!function_exists('collect_hrSystem')) {
+	function collect_hrSystem(array &$host) {
+		$GLOBALS['__collected'][] = 'hrSystem';
+	}
+}
+
+if (!function_exists('collect_hrDevices')) {
+	function collect_hrDevices(array &$host) {
+		$GLOBALS['__collected'][] = 'hrDevices';
+	}
+}
+
+if (!function_exists('collect_hrSWRun')) {
+	function collect_hrSWRun(array &$host) {
+		$GLOBALS['__collected'][] = 'hrSWRun';
+	}
+}
+
+if (!function_exists('collect_hrSWRunPerf')) {
+	function collect_hrSWRunPerf(array &$host) {
+		$GLOBALS['__collected'][] = 'hrSWRunPerf';
+	}
+}
+
+if (!function_exists('collect_hrSWInstalled')) {
+	function collect_hrSWInstalled(array &$host) {
+		$GLOBALS['__collected'][] = 'hrSWInstalled';
+	}
+}
+
+if (!function_exists('collect_hrStorage')) {
+	function collect_hrStorage(array &$host) {
+		$GLOBALS['__collected'][] = 'hrStorage';
+	}
+}
+
+if (!function_exists('collect_hrProcessor')) {
+	function collect_hrProcessor(array &$host) {
+		$GLOBALS['__collected'][] = 'hrProcessor';
 	}
 }
 

@@ -462,7 +462,8 @@ if (!function_exists('plugin_test_read_source')) {
  * hmib.php, hmib_types.php, poller_hmib.php and poller_graphs.php chdir(),
  * include Cacti's auth or CLI bootstrap, or exit at the top level, so a test
  * cannot include them. The function is cut out of the source text and defined
- * here, so the test runs the production code rather than a copy of it.
+ * here, so the test runs the production code rather than a copy of it. The
+ * text is written to a private temporary file, required, and deleted.
  *
  * @param string $file Plugin-relative source file.
  * @param string $name Function to define.
@@ -481,7 +482,21 @@ if (!function_exists('hmib_test_define_function')) {
 			throw new RuntimeException("Unable to locate {$name}() in {$file}");
 		}
 
-		eval($match[0]);
+		// tempnam() creates the file exclusively with mode 0600; the path is
+		// built from nothing a request or the source file can influence.
+		$path = tempnam(sys_get_temp_dir(), 'hmib');
+
+		if ($path === false) {
+			throw new RuntimeException("Unable to create a temporary file for {$name}()");
+		}
+
+		try {
+			file_put_contents($path, "<?php\n" . $match[0]);
+
+			require $path;
+		} finally {
+			unlink($path);
+		}
 	}
 }
 
