@@ -15,6 +15,7 @@ ChangeLog
 * issue: Fix the Summary tab dropping the data-query graph links on PHP 8 because a device id of 0 was treated as a device filter
 * security: Bind the stored sysObjectID and sysDescr patterns in the OS type rescan and limit the match to devices that are still unclassified
 * security: Bind the SNMP index as a query parameter in the graph link builder used by the Summary Processes view
+* issue: Fix the Graphs tab failing with a fatal error on Cacti 1.2.x, where the graph filter calls a function that core declares only in graph_view.php
 * issue: Fix the Fleet Dashboard Uptime Distribution showing all zeros by falling back to SNMP sysUpTime when the Host Resources hrSystemUptime is not reported, and apply the same fallback to the per-device Dashboard
 * issue: Stop the Dashboard card header from changing height when hovering the drag handle or tool buttons by reserving space for the theme's button hover border
 * feature: Make the Fleet Dashboard the first tab and the default landing view on the Host MIB interface
