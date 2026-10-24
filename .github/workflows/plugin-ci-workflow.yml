@@ -194,6 +194,15 @@ jobs:
     - name: Set expected Cacti version for unit tests
       run: echo -n "${{ env.CACTI }}" | sudo tee ${{ github.workspace }}/cacti/plugins/hmib/tests/.cacti-version > /dev/null
 
+    # The installer ran as root and created the Cacti log, but the end-to-end
+    # tests start Cacti's web server and CLI scripts as the runner, and Cacti
+    # serves nothing while its log is not writable.
+    - name: Make the Cacti log writable for the test run
+      run: |
+        sudo touch ${{ github.workspace }}/cacti/log/cacti.log
+        sudo chown www-data:runner ${{ github.workspace }}/cacti/log/cacti.log
+        sudo chmod 664 ${{ github.workspace }}/cacti/log/cacti.log
+
     - name: Run Pest Unit Tests
       run: |
         cd ${{ github.workspace }}/cacti
