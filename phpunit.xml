@@ -31,6 +31,7 @@
             <file>setup.php</file>
             <file>includes/database.php</file>
             <file>includes/compat.php</file>
+            <file>includes/types.php</file>
             <file>associate_os_type.php</file>
         </include>
     </source>
