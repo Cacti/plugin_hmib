@@ -588,6 +588,7 @@ function hmib_e2e_test_start($test, $tables, $relogin = false) {
 	}
 
 	hmib_e2e_tag($test->name());
+	hmib_e2e_log_mark();
 
 	if ($relogin) {
 		hmib_e2e_relogin($GLOBALS['__hmib_e2e']);
@@ -606,7 +607,52 @@ function hmib_e2e_test_start($test, $tables, $relogin = false) {
 function hmib_e2e_test_end($tables) {
 	if (isset($GLOBALS['__hmib_e2e'])) {
 		hmib_test_restore($tables);
+		hmib_e2e_log_restore();
 	}
+}
+
+/**
+ * Remember how long cacti.log is before a test runs.
+ *
+ * Cacti and the pollers log warnings for the throwaway fixtures (a graph
+ * template with no items, a reindex of a device that was just created). The
+ * workflow fails the job on any WARNING: line left in the log, so a test that
+ * provokes them puts the log back with hmib_e2e_log_restore().
+ *
+ * @return void
+ */
+function hmib_e2e_log_mark() {
+	clearstatcache();
+
+	$log = hmib_e2e_root() . '/log/cacti.log';
+
+	$GLOBALS['__hmib_e2e_log_length'] = file_exists($log) ? filesize($log) : 0;
+}
+
+/**
+ * Cut cacti.log back to the length hmib_e2e_log_mark() recorded.
+ *
+ * @return void
+ */
+function hmib_e2e_log_restore() {
+	$log = hmib_e2e_root() . '/log/cacti.log';
+
+	if (!isset($GLOBALS['__hmib_e2e_log_length']) || !file_exists($log)) {
+		return;
+	}
+
+	clearstatcache();
+
+	if (filesize($log) > $GLOBALS['__hmib_e2e_log_length']) {
+		$handle = fopen($log, 'r+');
+
+		if ($handle !== false) {
+			ftruncate($handle, $GLOBALS['__hmib_e2e_log_length']);
+			fclose($handle);
+		}
+	}
+
+	unset($GLOBALS['__hmib_e2e_log_length']);
 }
 
 /**

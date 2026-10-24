@@ -41,6 +41,7 @@ beforeEach(function () {
 	}
 
 	hmib_e2e_tag($this->name());
+	hmib_e2e_log_mark();
 	hmib_test_snapshot(HMIB_E2E_POLLER_TABLES);
 
 	$GLOBALS['__hmib_wrapper'] = hmib_e2e_php_wrapper();
@@ -54,13 +55,16 @@ afterEach(function () {
 		unset($GLOBALS['__hmib_wrapper']);
 		hmib_test_restore(HMIB_E2E_POLLER_TABLES);
 	}
+
+	hmib_e2e_log_restore();
 });
 
 function hmib_e2e_graphs($arguments = array('--force', '--debug')) {
 	$run = hmib_e2e_cli('plugins/hmib/poller_graphs.php', $arguments);
 
-	expect($run['exit'])->toBe(0);
-	expect($run['out'])->not->toContain('Fatal error');
+	if ($run['exit'] !== 0 || strpos($run['out'], 'Fatal error') !== false) {
+		throw new RuntimeException('poller_graphs.php exited ' . $run['exit'] . "\nstdout:\n" . $run['out'] . "\nstderr:\n" . $run['err']);
+	}
 
 	return $run['out'];
 }
@@ -174,8 +178,10 @@ it('reports a disabled automation frequency without doing anything', function ()
 	hmib_fx_templates();
 	hmib_test_sql('REPLACE INTO settings (name, value) VALUES (?, ?)', array('hmib_automation_frequency', '0'));
 
+	$before = hmib_test_sql('SELECT COUNT(*) FROM host')->fetchColumn();
+
 	expect(hmib_e2e_graphs(array('--debug')))->toContain('Graph Automation is Disabled');
-	expect(hmib_test_sql('SELECT COUNT(*) FROM host WHERE host_template_id > 0')->fetchColumn())->toBe(0);
+	expect(hmib_test_sql('SELECT COUNT(*) FROM host')->fetchColumn())->toBe($before);
 });
 
 it('does not run the automation again before its frequency has passed', function () {
