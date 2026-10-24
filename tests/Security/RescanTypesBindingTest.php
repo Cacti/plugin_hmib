@@ -35,7 +35,7 @@ if (!function_exists('hmib_test_define_function')) {
 
 if (!function_exists('db_affected_rows')) {
 	function db_affected_rows() {
-		return 0;
+		return $GLOBALS['__affected_rows'] ?? 0;
 	}
 }
 

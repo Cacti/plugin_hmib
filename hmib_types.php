@@ -552,9 +552,14 @@ function rescan_types(): void {
 	}
 
 	// update the host types from unknown_host_types that have a value of 0
-	db_execute("INSERT INTO plugin_hmib_hrSystemTypes
+	db_execute_prepared("INSERT IGNORE INTO plugin_hmib_hrSystemTypes
 		(name, version, sysDescrMatch, sysObjectID)
-		SELECT '$new_name', '$new_version', sysDescr, sysObjectID FROM plugin_hmib_hrSystem WHERE host_type=0");
+		SELECT DISTINCT ?, ?, LEFT(sysDescr, 100), LEFT(sysObjectID, 100)
+		FROM plugin_hmib_hrSystem
+		WHERE host_type = 0
+		AND sysDescr != ''
+		AND sysObjectID != ''",
+		[$new_name, $new_version]);
 
 	$new_types = db_affected_rows();
 

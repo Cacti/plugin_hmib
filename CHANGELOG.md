@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* issue: Fix the OS type rescan failing with a duplicate key error when several unclassified devices report the same sysDescr and sysObjectID, and stop it creating an empty match type
 * security: Escape the OS type name, version, sysObjectID and sysDescr match when listing host types and the type version on the Summary tab
 * security: Restrict the Summary tab sort column to the columns each table can sort on and limit the direction to ASC or DESC
 * issue: Fix the Devices tab processes glyph opening an empty page because of a malformed action value in its link
