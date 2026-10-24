@@ -1,6 +1,28 @@
 ChangeLog
 
 --- develop ---
+* dev: Run the Host MIB main poller in CI against the installed plugin tables after the Cacti poller
+* dev: Print the OS Type, Device and Template filters of the Host MIB tabs from one function instead of six copies; its Device list binds the chosen OS type and the option values are cast to numbers
+* security: Restrict the sort column on the Devices, Storage, Hardware, Processes, Use History and Inventory tabs and on the OS type list to the columns each table shows, bind the OS type id on the edit form and the values of the OS type CSV import, and cast the remaining numeric filter option values
+* issue: Purge the Host MIB rows of devices removed from Cacti with one statement per table instead of seven per device, including rows left without a system entry, and, while Automatically Purge Devices is on, drop process history (the Process Use History tab) for processes not seen for 365 days
+* issue: Stop repeating per-row lookups: the Summary tab looks up the summary device once per page instead of once per device type, the graph links find an OS type's devices with a join instead of a separate query, and the processor collector asks once per device whether it runs Linux; the device and type ids in those queries and the summary statistics insert are bound or cast to numbers
+* issue: Remove the autodiscovery process lock however the poller run ends, including on SIGTERM or SIGINT and on a fatal error, so a scan that dies no longer blocks every later run, and stop autodiscovery once the run has used its 10 minutes
+* issue: Stop a main poller run from starting while another is still running by holding a database lock for the whole run, instead of relying on collector rows that are purged after 10 minutes; the main run now stops launching and waiting on collectors 10 minutes after it began, and the launch placeholders use keys that cannot match a process id
+* issue: Keep a device's stored process, storage, hardware, software and processor rows when the SNMP walk for that table fails or returns nothing, instead of deleting them; core returns an empty walk for a timeout, so a device that really reports an empty table keeps its last rows
+* issue: Fix PHP warnings on the Summary tab when a request names only the device type table or only the process table and the other table has no stored sort
+* issue: Fix the process Time Seen total growing on every poller cycle instead of once per process performance collection
+* issue: Fix graph automation not creating the Host MIB summary device graphs until the next scheduled run after the device is first created
+* issue: Fix graph automation checking the users graph template instead of the processes graph template before adding the processes graph
+* issue: Fix the host type CSV export producing broken rows for values that contain a double quote, and open values that look like formulas as text
+* security: Run the OS type rescan from a POST request with a CSRF token instead of a GET link
+* issue: Fix the OS type rescan failing with a duplicate key error when several unclassified devices report the same sysDescr and sysObjectID, and stop it creating an empty match type
+* security: Escape the OS type name, version, sysObjectID and sysDescr match when listing host types and the type version on the Summary tab
+* security: Restrict the Summary tab sort column to the columns each table can sort on and limit the direction to ASC or DESC
+* issue: Fix the Devices tab processes glyph opening an empty page because of a malformed action value in its link
+* issue: Fix the Summary Processes filter failing with a SQL error because the page count query had no WHERE clause
+* issue: Fix the Summary tab dropping the data-query graph links on PHP 8 because a device id of 0 was treated as a device filter
+* security: Bind the stored sysObjectID and sysDescr patterns in the OS type rescan and limit the match to devices that are still unclassified
+* security: Bind the SNMP index as a query parameter in the graph link builder used by the Summary Processes view
 * issue: Fix the Fleet Dashboard Uptime Distribution showing all zeros by falling back to SNMP sysUpTime when the Host Resources hrSystemUptime is not reported, and apply the same fallback to the per-device Dashboard
 * issue: Stop the Dashboard card header from changing height when hovering the drag handle or tool buttons by reserving space for the theme's button hover border
 * feature: Make the Fleet Dashboard the first tab and the default landing view on the Host MIB interface
