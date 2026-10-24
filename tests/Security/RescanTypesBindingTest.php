@@ -13,6 +13,12 @@
  * seeded from device-reported sysDescr, so they have to be bound parameters,
  * and the match must stay limited to devices that are still unclassified.
  *
+ * The placeholder type it registers for the devices that match nothing has to
+ * collapse duplicates (plugin_hmib_hrSystemTypes is keyed on sysObjectID and
+ * sysDescrMatch), truncate to the column width and skip devices that have not
+ * reported a description yet; the statement is executed against MariaDB in
+ * tests/Integration/HmibSqlDbTest.php.
+ *
  * hmib_types.php dispatches on ?action at the top level and cannot be
  * included, so the function is cut out of the source and defined here.
  */
@@ -24,6 +30,8 @@ beforeAll(function () {
 beforeEach(function () {
 	hmib_test_reset_db_mocks();
 	$GLOBALS['__test_db_calls'] = array();
+	$GLOBALS['__affected_rows'] = 0;
+	$_SESSION                   = array();
 
 	hmib_test_mock_db('db_fetch_assoc', 'SELECT DISTINCT sysObjectID', array(
 		array('sysObjectID' => '.1.3.6', 'sysDescr' => 'Linux', 'host_type' => 0),
@@ -65,4 +73,44 @@ it('only reassigns devices that are still unclassified', function () {
 	expect($updates[0]['sql'])->toContain('host_type = 0');
 	expect($updates[0]['sql'])->not->toContain(' OR ');
 	expect($updates[0]['sql'])->not->toContain('RLIKE');
+});
+
+function hmib_test_rescan_insert() {
+	foreach ($GLOBALS['__test_db_calls'] as $call) {
+		if (strpos($call['sql'], 'INSERT') !== false) {
+			return $call;
+		}
+	}
+
+	return null;
+}
+
+it('inserts distinct, truncated, non-empty placeholder types with the key collisions ignored', function () {
+	rescan_types();
+
+	$insert = hmib_test_rescan_insert();
+
+	expect($insert)->not->toBeNull();
+	expect($insert['fn'])->toBe('db_execute_prepared');
+	expect($insert['sql'])->toContain('INSERT IGNORE');
+	expect($insert['sql'])->toContain('SELECT DISTINCT');
+	expect($insert['sql'])->toContain('LEFT(sysDescr, 100)');
+	expect($insert['sql'])->toContain('LEFT(sysObjectID, 100)');
+	expect($insert['sql'])->toContain("sysDescr != ''");
+	expect($insert['sql'])->toContain("sysObjectID != ''");
+	expect($insert['params'])->toBe(array('New Type', 'Unknown'));
+});
+
+it('reports the number of types that were added', function () {
+	$GLOBALS['__affected_rows'] = 3;
+
+	rescan_types();
+
+	expect($_SESSION['hmib_message'])->toContain('Device Types Added');
+});
+
+it('reports when no new types were found', function () {
+	rescan_types();
+
+	expect($_SESSION['hmib_message'])->toBe('No New Host Types Found!');
 });
