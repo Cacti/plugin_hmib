@@ -3591,6 +3591,7 @@ function hmib_view_graphs(): void {
 
 	include('./lib/timespan_settings.php');
 	include('./lib/html_graph.php');
+	require_once(__DIR__ . '/includes/compat.php');
 
 	html_graph_validate_preview_request_vars();
 

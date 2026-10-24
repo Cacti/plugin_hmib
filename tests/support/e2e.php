@@ -706,26 +706,3 @@ function hmib_e2e_log_restore() {
 
 	unset($GLOBALS['__hmib_e2e_log_length']);
 }
-
-/**
- * Whether the Cacti install calls graph_view_has_untemplated_graphs() from
- * lib/html_graph.php without declaring it in lib/. Cacti 1.2.x declares it
- * only in graph_view.php, so its graph filter cannot be used by a plugin page.
- *
- * @return bool
- */
-function hmib_e2e_core_lacks_graph_filter() {
-	$library = hmib_e2e_root() . '/lib';
-
-	if (strpos((string) file_get_contents($library . '/html_graph.php'), 'graph_view_has_untemplated_graphs(') === false) {
-		return false;
-	}
-
-	foreach (glob($library . '/*.php') as $file) {
-		if (strpos((string) file_get_contents($file), 'function graph_view_has_untemplated_graphs') !== false) {
-			return false;
-		}
-	}
-
-	return true;
-}

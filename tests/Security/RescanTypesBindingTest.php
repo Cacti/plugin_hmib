@@ -24,6 +24,7 @@
  */
 
 beforeAll(function () {
+	require_once __DIR__ . '/../../includes/types.php';
 	hmib_test_define_function('hmib_types.php', 'rescan_types');
 });
 
