@@ -151,26 +151,14 @@ foreach ($clover->xpath('//file') as $file) {
 }
 
 /*
- * Production PHP entry points that cannot safely be loaded into the isolated
- * unit process (CLI/daemon/web entry points that chdir + include auth.php,
- * do pcntl signal handling, or execute at the top level) belong here, each
+ * Production PHP entry points that cannot be measured at all belong here, each
  * with a one-line justification. Keep the exception explicit: any newly
  * changed production PHP file must either appear in Clover or be added here.
  *
- * Empty by default; add entries per repository as the need arises.
+ * Empty: the page scripts and the pollers are measured by the end-to-end runs
+ * (tests/bin/merge-coverage.php writes the Clover file this script reads in CI).
  */
-$unmeasured_allowlist = [
-	// Web page controller: chdir()s and includes auth.php at the top level with a
-	// request-dispatch switch, so it cannot be loaded into the isolated unit process.
-	'hmib_types.php',
-	// Web page controller: renders general_header()/tabs/footer at the top level and
-	// dispatches on ?action, so it cannot be loaded into the isolated unit process.
-	'hmib.php',
-	// CLI collector: chdir()s and includes cli_check.php then runs the poller at the
-	// top level (exits without --host-id/-M), so it cannot be loaded into the unit
-	// process; kept out of the coverage <source> set like the web controllers above.
-	'poller_hmib.php',
-];
+$unmeasured_allowlist = [];
 $unmeasured            = array_values(array_diff(array_keys($changed), array_keys($measured)));
 $unexpected_unmeasured = array_values(array_diff($unmeasured, $unmeasured_allowlist));
 

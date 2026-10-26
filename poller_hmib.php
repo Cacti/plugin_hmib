@@ -32,6 +32,10 @@ include_once('./lib/poller.php');
 include_once('./lib/snmp.php');
 include_once('./lib/ping.php');
 
+// Collector rows older than this are left by a process that died, and the main
+// run stops waiting on its collectors once this long has passed since it began.
+const HMIB_MAX_RUNTIME = 600;
+
 // process calling arguments
 $parms = $_SERVER['argv'];
 array_shift($parms);
@@ -121,6 +125,18 @@ if (!$mainrun && $host_id == '') {
 if (read_config_option('hmib_enabled') == '' || !api_plugin_is_enabled('hmib')) {
 	print 'WARNING: The Host Mib Collection is Down!  Exiting' . PHP_EOL;
 	exit(0);
+}
+
+// Turn SIGTERM and SIGINT into a normal exit, so the shutdown functions still
+// remove the locks this run holds.
+if (function_exists('pcntl_signal')) {
+	$hmib_stop = function () {
+		exit(1);
+	};
+
+	pcntl_async_signals(true);
+	pcntl_signal(SIGTERM, $hmib_stop);
+	pcntl_signal(SIGINT, $hmib_stop);
 }
 
 if ($seed == '') {
@@ -251,7 +267,7 @@ function hmib_snmp_request_failed($result): bool {
  *                           the summary warning logged at the end.
  */
 function autoDiscoverHosts(): bool {
-	global $debug, $snmp_errors;
+	global $debug, $snmp_errors, $start;
 
 	$hosts = db_fetch_assoc("SELECT *
 		FROM host
@@ -262,12 +278,24 @@ function autoDiscoverHosts(): bool {
 	debug("Starting AutoDiscovery for '" . sizeof($hosts) . "' Hosts");
 
 	// set a process lock
-	db_execute('REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (' . getmypid() . ', 0)');
+	db_execute_prepared('REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (?, 0)', [getmypid()]);
+
+	// a lock left behind by a scan that died would hold off every later run
+	register_shutdown_function(function () {
+		db_execute_prepared('DELETE FROM plugin_hmib_processes WHERE pid = ? AND taskid = 0', [getmypid()]);
+	});
 
 	$snmp_errors = 0;
 
 	if (cacti_sizeof($hosts)) {
 		foreach ($hosts as $host) {
+			if (microtime(true) > $start + HMIB_MAX_RUNTIME) {
+				print 'WARNING: AutoDiscovery stopped after ' . HMIB_MAX_RUNTIME . " seconds, the remaining hosts wait for its next run\n";
+				cacti_log('WARNING: Host MIB AutoDiscovery stopped after ' . HMIB_MAX_RUNTIME . ' seconds', false, 'HMIB');
+
+				break;
+			}
+
 			debug("AutoDiscovery Check for Host '" . $host['description'] . '[' . $host['hostname'] . "]'");
 			$hostMib   = cacti_snmp_walk($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.25.1', $host['snmp_version'],
 				$host['snmp_username'], $host['snmp_password'],
@@ -290,14 +318,11 @@ function autoDiscoverHosts(): bool {
 			}
 
 			if (cacti_sizeof($hostMib)) {
-				$add = true;
-
-				if ($add) {
-					debug("Host '" . $host['description'] . '[' . $host['hostname'] . "]' Supports Host MIB Resources");
-					db_execute('INSERT INTO plugin_hmib_hrSystem
-						(host_id) VALUES (' . $host['id'] . ')
-						ON DUPLICATE KEY UPDATE host_id=VALUES(host_id)');
-				}
+				debug("Host '" . $host['description'] . '[' . $host['hostname'] . "]' Supports Host MIB Resources");
+				db_execute_prepared('INSERT INTO plugin_hmib_hrSystem
+					(host_id) VALUES (?)
+					ON DUPLICATE KEY UPDATE host_id=VALUES(host_id)',
+					[$host['id']]);
 			}
 		}
 	}
@@ -307,8 +332,8 @@ function autoDiscoverHosts(): bool {
 	}
 
 	// remove the process lock
-	db_execute('DELETE FROM plugin_hmib_processes WHERE pid=' . getmypid());
-	db_execute("REPLACE INTO settings (name,value) VALUES ('hmib_autodiscovery_lastrun', '" . time() . "')");
+	db_execute_prepared('DELETE FROM plugin_hmib_processes WHERE pid = ?', [getmypid()]);
+	db_execute_prepared("REPLACE INTO settings (name,value) VALUES ('hmib_autodiscovery_lastrun', ?)", [time()]);
 
 	return true;
 }
@@ -339,6 +364,17 @@ function process_hosts(): void {
 
 	print "NOTE: Processing Hosts Begins\n";
 
+	// The server frees a connection's lock when the connection ends, so a run
+	// that dies cannot leave it behind. NULL from an error counts as held.
+	if (db_fetch_cell("SELECT GET_LOCK(CONCAT('hmib_poller_', DATABASE()), 0)") != 1) {
+		print "WARNING: Another Host Mib Collector is still running!  Exiting\n";
+		exit(0);
+	}
+
+	register_shutdown_function(function () {
+		db_fetch_cell("SELECT RELEASE_LOCK(CONCAT('hmib_poller_', DATABASE()))");
+	});
+
 	/* All time/dates will be stored in timestamps
 	 * Get Autodiscovery Lastrun Information
 	 */
@@ -359,7 +395,7 @@ function process_hosts(): void {
 	}
 
 	// Purge collectors that run longer than 10 minutes
-	db_execute('DELETE FROM plugin_hmib_processes WHERE (UNIX_TIMESTAMP() - UNIX_TIMESTAMP(started)) > 600');
+	db_execute_prepared('DELETE FROM plugin_hmib_processes WHERE (UNIX_TIMESTAMP() - UNIX_TIMESTAMP(started)) > ?', [HMIB_MAX_RUNTIME]);
 
 	// Do not process collectors are still running
 	if (db_fetch_cell('SELECT count(*) FROM plugin_hmib_processes') > 0) {
@@ -417,7 +453,8 @@ function process_hosts(): void {
 
 	print "NOTE: Launching Collectors Starting\n";
 
-	$i = 0;
+	$i        = 0;
+	$deadline = $start + HMIB_MAX_RUNTIME;
 
 	if (cacti_sizeof($hosts)) {
 		foreach ($hosts as $host) {
@@ -425,16 +462,21 @@ function process_hosts(): void {
 				$processes = db_fetch_cell('SELECT COUNT(*) FROM plugin_hmib_processes');
 
 				if ($processes < $concurrent_processes) {
-					// put a placeholder in place to prevent overloads on slow systems
-					$key = rand();
+					// put a placeholder in place to prevent overloads on slow systems;
+					// process ids stay below 2^31, so the key cannot match a collector's own row
+					$key = 2147483648 + $i++;
 
-					db_execute("INSERT INTO plugin_hmib_processes (pid, taskid, started) VALUES ($key, $seed, NOW())");
+					db_execute_prepared('INSERT INTO plugin_hmib_processes (pid, taskid, started) VALUES (?, ?, NOW())', [$key, $seed]);
 
 					print "NOTE: Launching Host Collector For: '" . $host['description'] . '[' . $host['hostname'] . "]'\n";
 					process_host($host['host_id'], $seed, $key);
 					usleep(10000);
 
 					break;
+				} elseif (microtime(true) > $deadline) {
+					print 'WARNING: No free collector after ' . HMIB_MAX_RUNTIME . " seconds, not launching the remaining hosts\n";
+
+					break 2;
 				} else {
 					sleep(1);
 				}
@@ -449,11 +491,15 @@ function process_hosts(): void {
 
 	// wait for all processes to end or max run time
 	while (true) {
-		$processes_left = db_fetch_cell("SELECT count(*) FROM plugin_hmib_processes WHERE taskid=$seed");
-		$pl             = db_fetch_cell('SELECT count(*) FROM plugin_hmib_processes');
+		$processes_left = db_fetch_cell_prepared('SELECT COUNT(*) FROM plugin_hmib_processes WHERE taskid = ?', [$seed]);
 
 		if ($processes_left == 0) {
 			print "NOTE: All Processes Complete, Exiting\n";
+
+			break;
+		} elseif (microtime(true) > $deadline) {
+			print "WARNING: Stopped waiting on '$processes_left' Processes after " . HMIB_MAX_RUNTIME . " seconds\n";
+			cacti_log("WARNING: Stopped waiting on $processes_left Host MIB collectors after " . HMIB_MAX_RUNTIME . ' seconds', false, 'HMIB');
 
 			break;
 		} else {
@@ -517,16 +563,24 @@ function process_hosts(): void {
 
 		if (cacti_sizeof($dead_hosts)) {
 			foreach ($dead_hosts as $host) {
-				db_execute('DELETE FROM plugin_hmib_hrSystem WHERE host_id=' . $host['host_id']);
-				db_execute('DELETE FROM plugin_hmib_hrSWRun WHERE host_id=' . $host['host_id']);
-				db_execute('DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE host_id=' . $host['host_id']);
-				db_execute('DELETE FROM plugin_hmib_hrDevices WHERE host_id=' . $host['host_id']);
-				db_execute('DELETE FROM plugin_hmib_hrStorage WHERE host_id=' . $host['host_id']);
-				db_execute('DELETE FROM plugin_hmib_hrProcessor WHERE host_id=' . $host['host_id']);
-				db_execute('DELETE FROM plugin_hmib_hrSWInstalled WHERE host_id=' . $host['host_id']);
 				print "Purging Host with ID '" . $host['host_id'] . "'\n";
 			}
+
+			// one statement per table covers every removed device
+			foreach (['plugin_hmib_hrSWRun', 'plugin_hmib_hrSWRun_last_seen', 'plugin_hmib_hrDevices', 'plugin_hmib_hrStorage', 'plugin_hmib_hrProcessor', 'plugin_hmib_hrSWInstalled', 'plugin_hmib_hrSystem'] as $table) {
+				db_execute("DELETE hr FROM $table AS hr
+					LEFT JOIN host
+					ON host.id=hr.host_id
+					WHERE host.id IS NULL");
+			}
 		}
+	}
+
+	// 0, the default, keeps the Use History rows for good
+	$history_days = (int) read_config_option('hmib_history_retention_days');
+
+	if ($history_days > 0) {
+		db_execute_prepared('DELETE FROM plugin_hmib_hrSWRun_last_seen WHERE last_seen < NOW() - INTERVAL ? DAY', [$history_days]);
 	}
 
 	print "NOTE: Updating Summary Statistics for Each Host\n";
@@ -559,10 +613,10 @@ function process_hosts(): void {
 
 		foreach ($stats as $s) {
 			$sql_insert .= (strlen($sql_insert) ? ', ' : '') . '(' .
-				$s['host_id'] . ', ' .
-				$s['host_status'] . ', ' .
-				(!empty($s['cpuPercent']) ? $s['cpuPercent'] : '0') . ', ' .
-				(!empty($s['numCpus']) ? $s['numCpus'] : '0') . ')';
+				(int) $s['host_id'] . ', ' .
+				(int) $s['host_status'] . ', ' .
+				(float) $s['cpuPercent'] . ', ' .
+				(int) $s['numCpus'] . ')';
 
 			$j++;
 
@@ -746,10 +800,10 @@ function checkHost(int $host_id): void {
 
 	// remove the key process and insert the set a process lock
 	if ($key != '') {
-		db_execute("DELETE FROM plugin_hmib_processes WHERE pid=$key");
+		db_execute_prepared('DELETE FROM plugin_hmib_processes WHERE pid = ?', [$key]);
 	}
 
-	db_execute('REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (' . getmypid() . ", $seed)");
+	db_execute_prepared('REPLACE INTO plugin_hmib_processes (pid, taskid) VALUES (?, ?)', [getmypid(), $seed]);
 
 	// obtain host information
 	$host = db_fetch_row_prepared('SELECT *
@@ -780,9 +834,13 @@ function checkHost(int $host_id): void {
 			collect_hrSWRun($host);
 		}
 
+		$perf_seconds = 0;
+
 		if (runCollector($start, $hrSWRunPerf_lastrun, $hrSWRunPerf_freq)) {
 			cacti_log(sprintf('Running Running Process Performance Collection for Device[%s]', $host['id']), false, 'HMIB', POLLER_VERBOSITY_MEDIUM);
 			collect_hrSWRunPerf($host);
+
+			$perf_seconds = (int) $hrSWRunPerf_freq;
 		}
 
 		if (runCollector($start, $hrSWInstalled_lastrun, $hrSWInstalled_freq)) {
@@ -804,15 +862,15 @@ function checkHost(int $host_id): void {
 		$time = substr((string) time(), 0, 3);
 
 		// update the most recent table
-		db_execute_prepared('INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name, total_time)
-			SELECT DISTINCT host_id, name, ' . read_config_option('hmib_hrSWRunPerf_freq') . " AS `total_time`
+		db_execute_prepared("INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name, total_time)
+			SELECT DISTINCT host_id, name, ? AS `total_time`
 			FROM plugin_hmib_hrSWRun
 			WHERE host_id = ?
 			AND name NOT LIKE '$time%'
 			ON DUPLICATE KEY UPDATE
 				last_seen=NOW(),
 				total_time=total_time+VALUES(total_time)",
-			[$host['id']]);
+			[$perf_seconds, $host['id']]);
 
 		// remove the process lock
 		db_execute_prepared('DELETE FROM plugin_hmib_processes
@@ -1022,11 +1080,9 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 	$cols = db_get_table_column_types($table);
 
 	if (cacti_sizeof($host)) {
-		// mark for deletion
-		db_execute("UPDATE $table SET present=0 WHERE host_id=" . $host['id']);
-
 		debug("Polling $name from '" . $host['description'] . '[' . $host['hostname'] . "]'");
-		$hostMib   = [];
+		$hostMib     = [];
+		$walk_failed = false;
 
 		foreach ($tree as $mname => $oid) {
 			// baseOID is a container node, not a pollable branch.
@@ -1042,6 +1098,7 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 
 			if (hmib_snmp_request_failed($walk)) {
 				$snmp_errors++;
+				$walk_failed = true;
 			}
 
 			// A failed walk can return false/null; keep the merge operand an array.
@@ -1051,6 +1108,31 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 
 			$hostMib = array_merge($hostMib, $walk);
 		}
+
+		// Core returns an empty array for a walk that timed out as well as for an
+		// empty table, so an empty answer only counts when the agent still
+		// answers a GET, which core does report as failed when it times out.
+		if (!$walk_failed && !cacti_sizeof($hostMib)) {
+			$uptime = cacti_snmp_get($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.1.3.0', $host['snmp_version'],
+				$host['snmp_username'], $host['snmp_password'],
+				$host['snmp_auth_protocol'], $host['snmp_priv_passphrase'], $host['snmp_priv_protocol'],
+				$host['snmp_context'], $host['snmp_port'], $host['snmp_timeout'],
+				read_config_option('snmp_retries'));
+
+			if (hmib_snmp_request_failed($uptime)) {
+				$snmp_errors++;
+				$walk_failed = true;
+			}
+		}
+
+		if ($walk_failed) {
+			debug("No $name data from '" . $host['description'] . "', keeping the stored rows");
+
+			return;
+		}
+
+		// mark for deletion
+		db_execute_prepared("UPDATE $table SET present = 0 WHERE host_id = ?", [$host['id']]);
 
 		$set_string = '';
 		$values     = '';
@@ -1075,6 +1157,7 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 		$wonky        = false;
 		$hrProcValid  = false;
 		$effective    = 0;
+		$is_linux     = null;
 
 		if (cacti_sizeof($hostMib)) {
 			foreach ($hostMib as $mib) {
@@ -1100,7 +1183,12 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 							$key          = 'load';
 							$mib['value'] = $effective;
 						} elseif (!$hrProcValid) {
-							if (db_fetch_cell("SELECT count(*) FROM plugin_hmib_hrSystem WHERE sysDescr LIKE '%Linux%' AND host_id=" . $host['id'])) {
+							// asked once per device, not once per processor row
+							if ($is_linux === null) {
+								$is_linux = (bool) db_fetch_cell_prepared("SELECT COUNT(*) FROM plugin_hmib_hrSystem WHERE sysDescr LIKE '%Linux%' AND host_id = ?", [$host['id']]);
+							}
+
+							if ($is_linux) {
 								// look for the hrProcessorLoad value
 								$temp_mib = $hostMib;
 
@@ -1289,7 +1377,7 @@ function collectHostIndexedOid(array &$host, array $tree, string $table, string 
 		}
 
 		// remove old records
-		db_execute("DELETE FROM $table WHERE present=0 AND host_id=" . $host['id']);
+		db_execute_prepared("DELETE FROM $table WHERE present = 0 AND host_id = ?", [$host['id']]);
 	}
 }
 

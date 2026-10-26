@@ -15,11 +15,23 @@
 */
 
 /*
+ * tests/ can end up inside the web root on a git-clone install. This file
+ * loads Cacti's autoloader and defines stubs, so it must do nothing when a
+ * web server is asked for it.
+ */
+if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
+	http_response_code(404);
+
+	exit;
+}
+
+/*
  * Test bootstrap.
  *
  * HMIB's sources expect to be included by Cacti, which has already
  * defined the db_*, request-variable, and logging helpers as plain global
- * functions. Nothing here talks to a database or a network: each Cacti
+ * functions. Nothing here talks to a network, and the database only when a
+ * test sets $GLOBALS['__test_pdo'] (see hmib_test_pdo_run()): each Cacti
  * function is declared as a stub that records the call in
  * $GLOBALS['__test_db_calls'] and hands back a safe default.
  *
@@ -67,6 +79,12 @@ if (!in_array($expected_version, array('1.2.x', 'develop'), true) && $cacti_vers
 }
 
 require_once $autoload;
+
+require_once __DIR__ . '/support/coverage.php';
+
+if (hmib_cov_enabled()) {
+	hmib_cov_register();
+}
 
 /*
  * base_path has to point at the Cacti root two levels above this plugin:
@@ -116,13 +134,65 @@ if (!function_exists('hmib_test_db_result')) {
 			return is_callable($result) ? $result($sql, $params) : $result;
 		}
 
+		if (isset($GLOBALS['__test_pdo'])) {
+			return hmib_test_pdo_fetch($fn, $sql, $params, $default);
+		}
+
 		return $default;
+	}
+}
+
+/*
+ * Database-backed tests (tests/Integration/HmibSqlDbTest.php) set
+ * $GLOBALS['__test_pdo'] to a PDO connection. While it is set, the db_*
+ * stubs below run their SQL against it instead of returning canned values,
+ * unless a hmib_test_mock_db() fixture matches first.
+ */
+if (!function_exists('hmib_test_pdo_run')) {
+	function hmib_test_pdo_run($sql, $params) {
+		$statement = $GLOBALS['__test_pdo']->prepare($sql);
+		$statement->execute(array_values($params));
+
+		$GLOBALS['__affected_rows'] = $statement->rowCount();
+
+		return $statement;
+	}
+}
+
+if (!function_exists('hmib_test_pdo_fetch')) {
+	function hmib_test_pdo_fetch($fn, $sql, $params, $default) {
+		$statement = hmib_test_pdo_run($sql, $params);
+
+		if (substr($fn, -5) === '_cell' || substr($fn, -14) === '_cell_prepared') {
+			$value = $statement->fetchColumn();
+
+			return $value === false ? $default : $value;
+		}
+
+		if (strpos($fn, '_row') !== false) {
+			$row = $statement->fetch(PDO::FETCH_ASSOC);
+
+			return $row === false ? array() : $row;
+		}
+
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+}
+
+if (!function_exists('db_affected_rows')) {
+	function db_affected_rows() {
+		return $GLOBALS['__affected_rows'] ?? 0;
 	}
 }
 
 if (!function_exists('db_execute')) {
 	function db_execute($sql) {
 		$GLOBALS['__test_db_calls'][] = array('fn' => 'db_execute', 'sql' => $sql, 'params' => array());
+
+		if (isset($GLOBALS['__test_pdo'])) {
+			hmib_test_pdo_run($sql, array());
+		}
+
 		return true;
 	}
 }
@@ -130,6 +200,11 @@ if (!function_exists('db_execute')) {
 if (!function_exists('db_execute_prepared')) {
 	function db_execute_prepared($sql, $params = array()) {
 		$GLOBALS['__test_db_calls'][] = array('fn' => 'db_execute_prepared', 'sql' => $sql, 'params' => $params);
+
+		if (isset($GLOBALS['__test_pdo'])) {
+			hmib_test_pdo_run($sql, $params);
+		}
+
 		return true;
 	}
 }
@@ -260,7 +335,7 @@ if (!function_exists('test_set_current_page')) {
 
 if (!function_exists('read_config_option')) {
 	function read_config_option($name, $force = false) {
-		return '';
+		return $GLOBALS['__test_config'][$name] ?? '';
 	}
 }
 
@@ -276,13 +351,14 @@ if (!function_exists('html_escape')) {
 }
 
 if (!function_exists('__')) {
-	function __($text, $domain = '') {
+	// variadic like core's __(), which takes printf arguments before the domain
+	function __($text, ...$args) {
 		return $text;
 	}
 }
 
 if (!function_exists('__esc')) {
-	function __esc($text, $domain = '') {
+	function __esc($text, ...$args) {
 		return htmlspecialchars($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 	}
 }
@@ -384,6 +460,56 @@ if (!function_exists('plugin_test_read_source')) {
 		}
 
 		return $contents;
+	}
+}
+
+/**
+ * Define one function from a plugin source file that cannot be included.
+ *
+ * hmib.php, hmib_types.php, poller_hmib.php and poller_graphs.php chdir(),
+ * include Cacti's auth or CLI bootstrap, or exit at the top level, so a test
+ * cannot include them. The function is cut out of the source text and defined
+ * here, so the test runs the production code rather than a copy of it. The
+ * text is written to a private temporary file, required, and deleted.
+ *
+ * @param string $file Plugin-relative source file.
+ * @param string $name Function to define.
+ *
+ * @return void
+ */
+if (!function_exists('hmib_test_define_function')) {
+	function hmib_test_define_function($file, $name) {
+		if (function_exists($name)) {
+			return;
+		}
+
+		$source = plugin_test_read_source($file);
+
+		if (!preg_match('/^function ' . preg_quote($name, '/') . '\(.*?^}\n/ms', $source, $match, PREG_OFFSET_CAPTURE)) {
+			throw new RuntimeException("Unable to locate {$name}() in {$file}");
+		}
+
+		$start = 1 + substr_count(substr($source, 0, $match[0][1]), "\n");
+		$match = array($match[0][0]);
+
+		// tempnam() creates the file exclusively with mode 0600; the path is
+		// built from nothing a request or the source file can influence.
+		$path = tempnam(sys_get_temp_dir(), 'hmib');
+
+		if ($path === false) {
+			throw new RuntimeException("Unable to create a temporary file for {$name}()");
+		}
+
+		try {
+			file_put_contents($path, "<?php\n" . $match[0]);
+
+			// Lets tests/support/coverage.php report the function's lines under the real file.
+			$GLOBALS['__hmib_function_map'][$path] = array($file, $start);
+
+			require $path;
+		} finally {
+			unlink($path);
+		}
 	}
 }
 

@@ -17,6 +17,7 @@
             <directory>tests/Security</directory>
             <directory>tests/Unit</directory>
             <directory>tests/Integration</directory>
+            <directory>tests/E2E</directory>
         </testsuite>
     </testsuites>
 
@@ -29,7 +30,8 @@
         <include>
             <file>setup.php</file>
             <file>includes/database.php</file>
-            <file>poller_graphs.php</file>
+            <file>includes/compat.php</file>
+            <file>includes/types.php</file>
             <file>associate_os_type.php</file>
         </include>
     </source>

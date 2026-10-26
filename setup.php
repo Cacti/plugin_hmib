@@ -279,6 +279,19 @@ function hmib_config_settings(): void {
 			'method'        => 'checkbox',
 			'default'       => 'on'
 			],
+		'hmib_history_retention_days' => [
+			'friendly_name' => __('Process History Retention', 'hmib'),
+			'description'   => __('How long should the Use History tab keep a process after it was last seen running?', 'hmib'),
+			'method'        => 'drop_array',
+			'default'       => '0',
+			'array'         => [
+				0   => __('Never Purge', 'hmib'),
+				30  => __('%d Days', 30, 'hmib'),
+				90  => __('%d Days', 90, 'hmib'),
+				180 => __('%d Days', 180, 'hmib'),
+				365 => __('%d Year', 1, 'hmib'),
+				730 => __('%d Years', 2, 'hmib')]
+			],
 		'hmib_os_type_rows' => [
 			'friendly_name' => __('Default Row Count', 'hmib'),
 			'description'   => __('How many rows do you wish to see on the HMIB OS Type by default?', 'hmib'),
