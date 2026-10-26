@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-10 17:47-0400\nPO-Revision-Date: 2026-10-20 16:25+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-10 17:47-0400\nPO-Revision-Date: 2026-10-26 10:32+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -28,7 +28,7 @@ msgstr "Applikation"
 
 #: hmib.php
 msgid "Running"
-msgstr "Kör"
+msgstr "Pågår"
 
 #: hmib.php
 msgid "Runnable"
@@ -340,7 +340,7 @@ msgstr "Applikationer"
 
 #: hmib.php
 msgid "Package"
-msgstr "Paketfiler"
+msgstr "Paket"
 
 #: hmib.php
 msgid "Installed"
@@ -368,7 +368,7 @@ msgstr "Användningshistorik"
 
 #: hmib.php
 msgid "Inventory"
-msgstr "Lager"
+msgstr "Inventering"
 
 #: hmib.php
 msgid "Graphs"
@@ -516,7 +516,7 @@ msgstr "Anpassad graflista tillämpad - Filtrering från lista"
 
 #: hmib.php
 msgid "Graph Preview Filters"
-msgstr "Filter för förhandsvisning av diagram"
+msgstr "Filter för förhandsvisning av grafer"
 
 #: hmib.php
 msgid "System Information"
@@ -949,15 +949,15 @@ msgstr "Skriv över befintliga data?"
 
 #: hmib_types.php
 msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
-msgstr "Bör importprocessen tillåtas att skriva över befintliga data? Observera att det här inte betyder att radera gammal rad, bara ersätta dubbla rader."
+msgstr "Ska importen få skriva över befintliga data? Observera att gamla rader inte tas bort; endast dubblettrader ersätts."
 
 #: hmib_types.php
 msgid "Allow Existing Rows to be Updated?"
-msgstr "Tillåt befintliga rader att uppdateras?"
+msgstr "Tillåt att befintliga rader uppdateras?"
 
 #: hmib_types.php
 msgid "Required File Format Notes"
-msgstr "Anmärkningar om obligatoriskt filformat"
+msgstr "Information om filformatet som krävs"
 
 #: hmib_types.php
 msgid "The file must contain a header row with the following column headings."
@@ -1059,7 +1059,7 @@ msgstr "Välj en åtgärd:"
 
 #: hmib_types.php
 msgid "Rescan"
-msgstr "Omsökning"
+msgstr "Sök igen"
 
 #: hmib_types.php
 msgid "Scan for New or Unknown Device Types"

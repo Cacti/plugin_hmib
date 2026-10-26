@@ -407,12 +407,14 @@ function process_hosts(): void {
 	 *  1) Not be disabled,
 	 *  2) Be linked to the host table
 	 *  3) Be up and operational
+	 *  4) Still have SNMP enabled
 	 */
 	$hosts = db_fetch_assoc("SELECT hm.host_id, host.description, host.hostname FROM plugin_hmib_hrSystem AS hm
 		INNER JOIN host
 		ON host.id=hm.host_id
 		WHERE host.disabled!='on'
-		AND host.status!=1");
+		AND host.status!=1
+		AND host.snmp_version>0");
 
 	// Remove entries from  down and disabled hosts
 	db_execute("DELETE FROM plugin_hmib_hrSWRun
@@ -812,7 +814,15 @@ function checkHost(int $host_id): void {
 		// Run the collectors
 		cacti_log(sprintf('Running Device System Info Collection for Device[%s]', $host['id']), false, 'HMIB', POLLER_VERBOSITY_MEDIUM);
 
-		collect_hrSystem($host);
+		if (!collect_hrSystem($host)) {
+			cacti_log(sprintf('Device[%s] returned no Host Resources MIB, skipping collection', $host['id']), false, 'HMIB', POLLER_VERBOSITY_MEDIUM);
+
+			db_execute_prepared('DELETE FROM plugin_hmib_processes
+				WHERE pid = ?',
+				[getmypid()]);
+
+			return;
+		}
 
 		if (runCollector($start, $hrDevices_lastrun, $hrDevices_freq)) {
 			cacti_log(sprintf('Running Device Collection for Device[%s]', $host['id']), false, 'HMIB', POLLER_VERBOSITY_MEDIUM);
@@ -886,7 +896,9 @@ function checkHost(int $host_id): void {
  * @param array $host Reference, the Cacti host row to collect data for,
  *                    providing SNMP connection settings.
  *
- * @return void
+ * @return bool False when the device returned nothing under the
+ *              hrSystem base OID, so the caller can skip the remaining
+ *              Host Resources collectors; true otherwise.
  *
  * @global array $hrSystem    Map of OID => plugin_hmib_hrSystem column
  *                            name, used to translate SNMP results into
@@ -898,7 +910,7 @@ function checkHost(int $host_id): void {
  *                            collector functions in this file; not used
  *                            directly here.
  */
-function collect_hrSystem(array &$host): void {
+function collect_hrSystem(array &$host): bool {
 	global $hrSystem, $cnn_id, $snmp_errors;
 
 	if (cacti_sizeof($host)) {
@@ -916,6 +928,12 @@ function collect_hrSystem(array &$host): void {
 		// A failed walk can return false/null; keep the merge operands arrays.
 		if (!is_array($hostMib)) {
 			$hostMib = array();
+		}
+
+		// Without the hrSystem base every other Host Resources walk would only
+		// time out or come back empty.
+		if (!cacti_sizeof($hostMib)) {
+			return false;
 		}
 
 		$systemMib = cacti_snmp_walk($host['hostname'], $host['snmp_community'], '.1.3.6.1.2.1.1', $host['snmp_version'],
@@ -965,6 +983,8 @@ function collect_hrSystem(array &$host): void {
 			db_execute("UPDATE plugin_hmib_hrSystem SET $set_string WHERE host_id=" . $host['id']);
 		}
 	}
+
+	return true;
 }
 
 /**
