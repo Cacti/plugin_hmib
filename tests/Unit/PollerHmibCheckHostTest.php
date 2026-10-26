@@ -19,7 +19,7 @@ if (!function_exists('collect_hrSystem')) {
 	function collect_hrSystem(array &$host): bool {
 		$GLOBALS['__collected'][] = 'hrSystem';
 
-		return $GLOBALS['__has_hr_mib'];
+		return $GLOBALS['__has_hr_mib'] ?? true;
 	}
 }
 
