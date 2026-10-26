@@ -16,8 +16,10 @@
  */
 
 if (!function_exists('collect_hrSystem')) {
-	function collect_hrSystem(array &$host) {
+	function collect_hrSystem(array &$host): bool {
 		$GLOBALS['__collected'][] = 'hrSystem';
+
+		return $GLOBALS['__has_hr_mib'];
 	}
 }
 
@@ -78,6 +80,7 @@ beforeEach(function () {
 	hmib_test_reset_db_mocks();
 	$GLOBALS['__test_db_calls'] = array();
 	$GLOBALS['__collected']     = array();
+	$GLOBALS['__has_hr_mib']    = true;
 	$GLOBALS['__test_config']   = hmib_test_collector_defaults();
 	$GLOBALS['forcerun']        = false;
 	$GLOBALS['start']           = 1000000.0;
@@ -162,4 +165,17 @@ it('does nothing for a device that no longer exists', function () {
 
 	expect($GLOBALS['__collected'])->toBe(array());
 	expect(hmib_test_last_seen_call())->toBeNull();
+});
+
+it('skips the other collectors and drops its lock when the device has no Host Resources MIB', function () {
+	$GLOBALS['__has_hr_mib'] = false;
+	$GLOBALS['__test_config'] = array_merge(hmib_test_collector_defaults(), array('hmib_hrDevices_freq' => '300', 'hmib_hrStorage_freq' => '300'));
+
+	checkHost(5);
+
+	$calls = $GLOBALS['__test_db_calls'];
+
+	expect($GLOBALS['__collected'])->toBe(array('hrSystem'));
+	expect(hmib_test_last_seen_call())->toBeNull();
+	expect(end($calls))->toBe(array('fn' => 'db_execute_prepared', 'sql' => "DELETE FROM plugin_hmib_processes\n\t\t\t\tWHERE pid = ?", 'params' => array(getmypid())));
 });
