@@ -185,7 +185,8 @@ The Host MIB tab has these pages:
 * Storage, Hardware, Processes, Inventory (installed software).
 
 * Use History: for each Device and process name, when the process was last seen
-  and for how long (days:hours:minutes) it has been seen running.
+  and for how long (days:hours:minutes) it has been seen running.  'Process
+  History Retention' deletes the rows of processes not seen for that long.
 
 * Graphs: Graphs of the Host MIB Devices.
 
@@ -202,12 +203,11 @@ type's 'Vendor snmp Object ID'.
   `php plugins/hmib/associate_os_type.php` does the same on demand.
 
 * 'Rescan' tries the stored types in table order against the Devices that have
-  no type, comparing sysObjectID and sysDescr either as LIKE substrings or as
-  regular expressions, and then adds a placeholder type named 'New Type' with
-  version 'Unknown' for the sysDescr and sysObjectID of the Devices that still
-  have none.  Rename those types and give them real patterns.  The regular
-  expression comparison is not limited to Devices without a type, so a Rescan
-  can also change the type of a Device that already has one.
+  no type, comparing sysObjectID and sysDescr as LIKE substrings, so such a
+  Device takes the first type that matches.  It then adds a placeholder type
+  named 'New Type' with version 'Unknown' for the sysDescr and sysObjectID of
+  the Devices that still have none.  Rename those types and give them real
+  patterns.  Rescan does not change a Device that already has a type.
 
 * 'Export' downloads cacti_host_type_xport.csv.  Its first line is
   `"id","name","version","sysDescrMatch","sysObjectID"`, followed by one quoted
@@ -229,6 +229,7 @@ Cacti's Settings page, 'Host MIB' tab.  A frequency is Disabled, or 1, 5, 10 or
 | hmib_enabled | Host MIB Poller Enabled | off | on, off |
 | hmib_autodiscovery | Automatically Discover Cacti Devices | on | on, off |
 | hmib_autopurge | Automatically Purge Devices | on | on, off |
+| hmib_history_retention_days | Process History Retention | Never Purge | Never Purge, 30, 90 or 180 days, 1 or 2 years |
 | hmib_os_type_rows | Default Row Count | 10 | Cacti's row counts, or Default |
 | hmib_top_types | Default Top Host Types | 10 | 5, 8, 10, 15 |
 | hmib_top_processes | Default Top Processes | 10 | 5, 10, 20, 30 |
@@ -246,6 +247,12 @@ Auto discovery looks at the Cacti Devices that are enabled, not down, and have
 SNMP enabled, and adds the ones that answer for the Host MIB system group.  With
 'Automatically Purge Devices' on, data of Devices that were deleted from Cacti
 is deleted too.
+
+A discovered Device stays in hmib.  On each cycle its collectors run only while
+SNMP is still enabled for it and it still answers for the Host MIB system group;
+when it does not, the other walks are skipped.  When the walk of a table fails
+or times out, the stored rows of that table are kept.  An empty answer clears
+them only when the Device still answers a sysUpTime request.
 
 ### SNMP data
 
@@ -287,8 +294,11 @@ directory, as the user Cacti runs as.  All of them print their version with
 poller_hmib.php is started by Cacti at the end of every polling cycle with -M,
 the master process.  It runs the auto discovery and the collectors that are due,
 starts one child process per Device (up to the Maximum Concurrent Collectors),
-waits for them, assigns the OS Types, and then starts poller_graphs.php.  A
-child is started with `--host-id`.  `-f` or `--force` runs every collector
+waits for them, assigns the OS Types, and then starts poller_graphs.php.  It
+holds a database lock for the whole run, so a master started while another is
+running exits.  Auto discovery, launching children and waiting for them all
+stop 10 minutes after the master started.  A child is started with
+`--host-id`.  `-f` or `--force` runs every collector
 whatever its frequency, `-d` or `--debug` prints more.  `--key` and `--start` are
 passed from the master to the child, and `-fd` or `--force-discovery` is
 accepted and has no effect.
