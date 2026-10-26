@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* issue: Skip the remaining Host Resources collectors for a device that no longer answers the hrSystem base OID or has SNMP set to Not In Use, instead of running every walk to a timeout on every cycle
 * issue: Fix the Fleet Dashboard Uptime Distribution showing all zeros by falling back to SNMP sysUpTime when the Host Resources hrSystemUptime is not reported, and apply the same fallback to the per-device Dashboard
 * issue: Stop the Dashboard card header from changing height when hovering the drag handle or tool buttons by reserving space for the theme's button hover border
 * feature: Make the Fleet Dashboard the first tab and the default landing view on the Host MIB interface
