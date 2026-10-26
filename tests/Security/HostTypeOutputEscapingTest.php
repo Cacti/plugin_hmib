@@ -20,8 +20,10 @@ it('escapes every host type field printed in the OS type list', function () {
 
 	expect($loop)->not->toBe(array());
 
-	foreach (array('name', 'version', 'sysObjectID', 'sysDescrMatch') as $field) {
-		expect($loop[0])->toContain("html_escape(\$host_type['" . $field . "'])");
+	expect($loop[0])->toContain("html_escape(\$host_type['name'])");
+
+	foreach (array('version', 'sysObjectID', 'sysDescrMatch') as $field) {
+		expect($loop[0])->toContain("form_selectable_ecell(\$host_type['" . $field . "'],");
 	}
 
 	expect($loop[0])->not->toMatch('/form_selectable_cell\(\$host_type\[\'(version|sysObjectID|sysDescrMatch)\'\]/');
