@@ -92,6 +92,7 @@ beforeEach(function () {
 
 afterEach(function () {
 	$GLOBALS['__test_config'] = array();
+	unset($GLOBALS['__has_hr_mib']);
 });
 
 function hmib_test_last_seen_call() {
