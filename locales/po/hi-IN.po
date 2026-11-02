@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-10 17:47-0400\n"
+"POT-Creation-Date: 2026-10-24 06:10-0400\n"
 "PO-Revision-Date: 2024-06-08 09:52-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -69,10 +69,6 @@ msgstr "परिक्षण"
 msgid "Down"
 msgstr "नीचे"
 
-#: hmib.php
-msgid "Running Process History"
-msgstr "रनिंग प्रोसेस हिस्ट्री"
-
 #: hmib.php hmib_types.php
 msgid "OS Type"
 msgstr "ओएस प्रकार"
@@ -88,6 +84,10 @@ msgstr "डिवाइस"
 #: hmib.php
 msgid "Template"
 msgstr "खाका"
+
+#: hmib.php
+msgid "Running Process History"
+msgstr "रनिंग प्रोसेस हिस्ट्री"
 
 #: hmib.php hmib_types.php
 msgid "Go"
@@ -362,6 +362,12 @@ msgid "No Software Packages Found"
 msgstr "कोई सॉफ्टवेयर पैकेज नहीं मिला"
 
 #: hmib.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Fleet Dashboard"
+msgstr "होस्ट MIB विवरण"
+
+#: hmib.php
 msgid "Summary"
 msgstr "सारांश"
 
@@ -384,12 +390,6 @@ msgstr "इन्वेंटरी"
 #: hmib.php
 msgid "Graphs"
 msgstr "रेखांकन"
-
-#: hmib.php
-#, fuzzy
-#| msgid "Host MIB Details"
-msgid "Fleet Dashboard"
-msgstr "होस्ट MIB विवरण"
 
 #: hmib.php
 msgid "Dashboard"
@@ -1223,6 +1223,37 @@ msgid "Do you wish to automatically purge devices that are removed from the Cact
 msgstr "क्या आप कैक्टि प्रणाली से हटाए गए उपकरणों को स्वचालित रूप से शुद्ध करना चाहते हैं?"
 
 #: setup.php
+#, fuzzy
+#| msgid "No Process History Found"
+msgid "Process History Retention"
+msgstr "कोई प्रक्रिया इतिहास नहीं मिला"
+
+#: setup.php
+msgid "How long should the Use History tab keep a process after it was last seen running?"
+msgstr ""
+
+#: setup.php
+#, fuzzy
+#| msgid "Never"
+msgid "Never Purge"
+msgstr "कभी नहीं"
+
+#: setup.php
+#, php-format
+msgid "%d Days"
+msgstr "%d दिन"
+
+#: setup.php
+#, php-format
+msgid "%d Year"
+msgstr ""
+
+#: setup.php
+#, php-format
+msgid "%d Years"
+msgstr ""
+
+#: setup.php
 msgid "Default Row Count"
 msgstr "डिफ़ॉल्ट पंक्ति गणना"
 
@@ -1309,11 +1340,6 @@ msgid "%d Day"
 msgstr "%d दिवस"
 
 #: setup.php
-#, php-format
-msgid "%d Days"
-msgstr "%d दिन"
-
-#: setup.php
 msgid "Host MIB Table Collection Frequencies"
 msgstr "होस्ट MIB तालिका संग्रह फ़्रिक्वेंसी"
 
@@ -1388,23 +1414,23 @@ msgid "General Administration"
 msgstr "सामान्य प्रशासन"
 
 #: setup.php
-msgid "Host MIB Inventory Summary"
-msgstr "होस्ट MIB इन्वेंटरी सारांश"
-
-#: setup.php
-#, fuzzy
-#| msgid "Host MIB Details"
-msgid "Host MIB Device Dashboard"
-msgstr "होस्ट MIB विवरण"
-
-#: setup.php
 #, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Fleet Dashboard"
 msgstr "होस्ट MIB विवरण"
 
 #: setup.php
+msgid "Host MIB Inventory Summary"
+msgstr "होस्ट MIB इन्वेंटरी सारांश"
+
+#: setup.php
 msgid "Host MIB Details"
+msgstr "होस्ट MIB विवरण"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Device Dashboard"
 msgstr "होस्ट MIB विवरण"
 
 #: setup.php
