@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-10 17:47-0400\n"
+"POT-Creation-Date: 2026-10-24 06:10-0400\n"
 "PO-Revision-Date: 2024-06-08 09:53-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -69,10 +69,6 @@ msgstr "Impostazioni"
 msgid "Down"
 msgstr "Giù"
 
-#: hmib.php
-msgid "Running Process History"
-msgstr "Esecuzione della cronologia del processo"
-
 #: hmib.php hmib_types.php
 msgid "OS Type"
 msgstr "Tipo SO"
@@ -88,6 +84,10 @@ msgstr "Dispositivo"
 #: hmib.php
 msgid "Template"
 msgstr "Modello"
+
+#: hmib.php
+msgid "Running Process History"
+msgstr "Esecuzione della cronologia del processo"
 
 #: hmib.php hmib_types.php
 msgid "Go"
@@ -362,6 +362,12 @@ msgid "No Software Packages Found"
 msgstr "Nessun pacchetto software trovato"
 
 #: hmib.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Fleet Dashboard"
+msgstr "Dettagli MIB Host"
+
+#: hmib.php
 msgid "Summary"
 msgstr "Sommario"
 
@@ -384,12 +390,6 @@ msgstr "Inventario"
 #: hmib.php
 msgid "Graphs"
 msgstr "Grafici"
-
-#: hmib.php
-#, fuzzy
-#| msgid "Host MIB Details"
-msgid "Fleet Dashboard"
-msgstr "Dettagli MIB Host"
 
 #: hmib.php
 msgid "Dashboard"
@@ -1223,6 +1223,37 @@ msgid "Do you wish to automatically purge devices that are removed from the Cact
 msgstr "Desiderate eliminare automaticamente i dispositivi che vengono rimossi dal sistema Cacti?"
 
 #: setup.php
+#, fuzzy
+#| msgid "No Process History Found"
+msgid "Process History Retention"
+msgstr "Nessuna storia di processo trovata"
+
+#: setup.php
+msgid "How long should the Use History tab keep a process after it was last seen running?"
+msgstr ""
+
+#: setup.php
+#, fuzzy
+#| msgid "Never"
+msgid "Never Purge"
+msgstr "Mai"
+
+#: setup.php
+#, php-format
+msgid "%d Days"
+msgstr "%d Giorni"
+
+#: setup.php
+#, php-format
+msgid "%d Year"
+msgstr ""
+
+#: setup.php
+#, php-format
+msgid "%d Years"
+msgstr ""
+
+#: setup.php
 msgid "Default Row Count"
 msgstr "Conteggio predefinito delle righe"
 
@@ -1309,11 +1340,6 @@ msgid "%d Day"
 msgstr "%d Giorno"
 
 #: setup.php
-#, php-format
-msgid "%d Days"
-msgstr "%d Giorni"
-
-#: setup.php
 msgid "Host MIB Table Collection Frequencies"
 msgstr "Frequenze di raccolta dei tavoli MIB Host MIB"
 
@@ -1388,23 +1414,23 @@ msgid "General Administration"
 msgstr "Amministrazione Generale"
 
 #: setup.php
-msgid "Host MIB Inventory Summary"
-msgstr "Riepilogo dell'inventario del MIB ospitante"
-
-#: setup.php
-#, fuzzy
-#| msgid "Host MIB Details"
-msgid "Host MIB Device Dashboard"
-msgstr "Dettagli MIB Host"
-
-#: setup.php
 #, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Fleet Dashboard"
 msgstr "Dettagli MIB Host"
 
 #: setup.php
+msgid "Host MIB Inventory Summary"
+msgstr "Riepilogo dell'inventario del MIB ospitante"
+
+#: setup.php
 msgid "Host MIB Details"
+msgstr "Dettagli MIB Host"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Device Dashboard"
 msgstr "Dettagli MIB Host"
 
 #: setup.php
