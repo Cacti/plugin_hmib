@@ -4,7 +4,19 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-10 17:47-0400\nPO-Revision-Date: 2026-10-26 10:32+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: developers@cacti.net\n"
+"POT-Creation-Date: 2026-10-24 06:10-0400\n"
+"PO-Revision-Date: 2026-10-26 23:38+0000\n"
+"Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
+"Language-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\n"
+"Language: sv-SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -58,10 +70,6 @@ msgstr "Testar"
 msgid "Down"
 msgstr "Nere"
 
-#: hmib.php
-msgid "Running Process History"
-msgstr "Historik över aktiva processer"
-
 #: hmib.php hmib_types.php
 msgid "OS Type"
 msgstr "OS typ"
@@ -77,6 +85,10 @@ msgstr "Enhet"
 #: hmib.php
 msgid "Template"
 msgstr "Mall"
+
+#: hmib.php
+msgid "Running Process History"
+msgstr "Historik över aktiva processer"
 
 #: hmib.php hmib_types.php
 msgid "Go"
@@ -264,7 +276,7 @@ msgstr "Åtgärder"
 
 #: hmib.php
 msgid "Uptime(d:h:m)"
-msgstr "Driftstid (d: t: m)"
+msgstr "Drifttid (d:h:m)"
 
 #: hmib.php
 msgid "Users"
@@ -280,7 +292,7 @@ msgstr "Processorer"
 
 #: hmib.php
 msgid "Total Mem"
-msgstr "Totalt Mem"
+msgstr "Totalt minne"
 
 #: hmib.php
 msgid "Used Mem"
@@ -316,7 +328,7 @@ msgstr "Visa programvaruinventariet"
 
 #: hmib.php
 msgid "View Graphs"
-msgstr "Se grafer"
+msgstr "Visa grafer"
 
 #: hmib.php
 msgid "No Graphs Defined"
@@ -351,6 +363,10 @@ msgid "No Software Packages Found"
 msgstr "Inga programvarupaket hittades"
 
 #: hmib.php
+msgid "Fleet Dashboard"
+msgstr "Instrumentpanel för flottan"
+
+#: hmib.php
 msgid "Summary"
 msgstr "Sammanfattning"
 
@@ -373,10 +389,6 @@ msgstr "Inventering"
 #: hmib.php
 msgid "Graphs"
 msgstr "Grafer"
-
-#: hmib.php
-msgid "Fleet Dashboard"
-msgstr "Instrumentpanel för flottan"
 
 #: hmib.php
 msgid "Dashboard"
@@ -426,7 +438,7 @@ msgstr "PROCESSORER"
 
 #: hmib.php
 msgid "Avg CPU"
-msgstr "Genomsnittlig CPU"
+msgstr "Genomsnittlig processoranvändning"
 
 #: hmib.php
 msgid "Max CPU"
@@ -512,7 +524,7 @@ msgstr "Processer"
 
 #: hmib.php
 msgid "Custom Graph List Applied - Filtering from List"
-msgstr "Anpassad graflista tillämpad - Filtrering från lista"
+msgstr "Anpassad graflista används – filtrerar enligt listan"
 
 #: hmib.php
 msgid "Graph Preview Filters"
@@ -524,7 +536,7 @@ msgstr "Systeminformation"
 
 #: hmib.php
 msgid "CPU Utilization"
-msgstr "CPU-användning"
+msgstr "Processoranvändning"
 
 #: hmib.php
 msgid "Memory Utilization"
@@ -584,7 +596,7 @@ msgstr "Kontakt"
 
 #: hmib.php
 msgid "Location"
-msgstr "Plats"
+msgstr "Placering"
 
 #: hmib.php
 msgid "Uptime"
@@ -876,7 +888,7 @@ msgstr "Alla typer"
 
 #: hmib_types.php
 msgid "Delete"
-msgstr "Radera"
+msgstr "Ta bort"
 
 #: hmib_types.php
 msgid "Duplicate"
@@ -1059,7 +1071,7 @@ msgstr "Välj en åtgärd:"
 
 #: hmib_types.php
 msgid "Rescan"
-msgstr "Sök igen"
+msgstr "Skanna igen"
 
 #: hmib_types.php
 msgid "Scan for New or Unknown Device Types"
@@ -1099,15 +1111,15 @@ msgstr "Värd MIB Allmänna inställningar"
 
 #: setup.php
 msgid "Host MIB Poller Enabled"
-msgstr "Värd MIB Poller Aktiverad"
+msgstr "Host MIB-insamling aktiverad"
 
 #: setup.php
 msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
-msgstr "Markera den här rutan om du vill att Host MIB-omröstningen ska vara aktiverad. I annat fall fungerar pollen inte."
+msgstr "Markera rutan för att aktivera Host MIB-insamling. Annars fungerar inte insamlingsprocessen."
 
 #: setup.php
 msgid "Automatically Discover Cacti Devices"
-msgstr "Upptäck automatiskt kaktusenheter"
+msgstr "Upptäck Cacti-enheter automatiskt"
 
 #: setup.php
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
@@ -1115,11 +1127,42 @@ msgstr "Vill du automatiskt söka efter och lägga till enheter som stöder vär
 
 #: setup.php
 msgid "Automatically Purge Devices"
-msgstr "Automatiskt rengöringsenheter"
+msgstr "Rensa bort enheter automatiskt"
 
 #: setup.php
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
-msgstr "Vill du automatiskt rensa enheter som tas bort från kaktisystemet?"
+msgstr "Vill du automatiskt rensa bort enheter som har tagits bort från Cacti?"
+
+#: setup.php
+#, fuzzy
+#| msgid "No Process History Found"
+msgid "Process History Retention"
+msgstr "Ingen processhistorik hittades"
+
+#: setup.php
+msgid "How long should the Use History tab keep a process after it was last seen running?"
+msgstr ""
+
+#: setup.php
+#, fuzzy
+#| msgid "Never"
+msgid "Never Purge"
+msgstr "Aldrig"
+
+#: setup.php
+#, php-format
+msgid "%d Days"
+msgstr "%d dagar"
+
+#: setup.php
+#, php-format
+msgid "%d Year"
+msgstr ""
+
+#: setup.php
+#, php-format
+msgid "%d Years"
+msgstr ""
 
 #: setup.php
 msgid "Default Row Count"
@@ -1153,11 +1196,11 @@ msgstr "%d processer"
 
 #: setup.php
 msgid "Maximum Concurrent Collectors"
-msgstr "Maximal samtidiga samlare"
+msgstr "Högsta antal samtidiga insamlare"
 
 #: setup.php
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
-msgstr "Vad är det maximala antalet samtidiga samlarprocesser som du vill köra på en gång?"
+msgstr "Hur många insamlarprocesser får köras samtidigt?"
 
 #: setup.php
 #, php-format
@@ -1174,7 +1217,7 @@ msgstr "Frekvens för automatisk upptäckt"
 
 #: setup.php
 msgid "How often do you want to look for new Cacti Devices?"
-msgstr "Hur ofta vill du leta efter nya kaktiska enheter?"
+msgstr "Hur ofta ska nya Cacti-enheter sökas efter?"
 
 #: setup.php
 msgid "Host Graph Automation"
@@ -1186,7 +1229,7 @@ msgstr "Lägg automatiskt till nya grafer"
 
 #: setup.php
 msgid "How often do you want to check for new objects to graph?"
-msgstr "Hur ofta vill du söka efter nya objekt i diagrammet?"
+msgstr "Hur ofta ska nya objekt att skapa grafer för sökas?"
 
 #: setup.php
 msgid "Never"
@@ -1205,12 +1248,7 @@ msgstr "%d timmar"
 #: setup.php
 #, php-format
 msgid "%d Day"
-msgstr "%d Dag"
-
-#: setup.php
-#, php-format
-msgid "%d Days"
-msgstr "%d dagar"
+msgstr "%d dag"
 
 #: setup.php
 msgid "Host MIB Table Collection Frequencies"
@@ -1287,20 +1325,20 @@ msgid "General Administration"
 msgstr "Allmän administration"
 
 #: setup.php
-msgid "Host MIB Inventory Summary"
-msgstr "Värd MIB Inventory Summary"
-
-#: setup.php
-msgid "Host MIB Device Dashboard"
-msgstr "Översikt över Host MIB-enheter"
-
-#: setup.php
 msgid "Host MIB Fleet Dashboard"
 msgstr "Översikt över Host MIB-flottan"
 
 #: setup.php
+msgid "Host MIB Inventory Summary"
+msgstr "Värd MIB Inventory Summary"
+
+#: setup.php
 msgid "Host MIB Details"
 msgstr "Värd MIB Detaljer"
+
+#: setup.php
+msgid "Host MIB Device Dashboard"
+msgstr "Översikt över Host MIB-enheter"
 
 #: setup.php
 msgid "Host MIB Storage"
