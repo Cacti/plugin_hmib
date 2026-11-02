@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-10 17:47-0400\n"
+"POT-Creation-Date: 2026-10-24 06:10-0400\n"
 "PO-Revision-Date: 2024-06-08 10:03-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -69,10 +69,6 @@ msgstr "Thử nghiệm"
 msgid "Down"
 msgstr "Xuống"
 
-#: hmib.php
-msgid "Running Process History"
-msgstr "Chạy lịch sử quá trình"
-
 #: hmib.php hmib_types.php
 msgid "OS Type"
 msgstr "Loại hệ điều hành"
@@ -88,6 +84,10 @@ msgstr "Thiết bị"
 #: hmib.php
 msgid "Template"
 msgstr "Mẫu"
+
+#: hmib.php
+msgid "Running Process History"
+msgstr "Chạy lịch sử quá trình"
 
 #: hmib.php hmib_types.php
 msgid "Go"
@@ -362,6 +362,12 @@ msgid "No Software Packages Found"
 msgstr "Không tìm thấy gói phần mềm nào"
 
 #: hmib.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Fleet Dashboard"
+msgstr "Chi tiết máy chủ MIB"
+
+#: hmib.php
 msgid "Summary"
 msgstr "Tóm tắt"
 
@@ -384,12 +390,6 @@ msgstr "Hàng tồn kho"
 #: hmib.php
 msgid "Graphs"
 msgstr "Đồ thị"
-
-#: hmib.php
-#, fuzzy
-#| msgid "Host MIB Details"
-msgid "Fleet Dashboard"
-msgstr "Chi tiết máy chủ MIB"
 
 #: hmib.php
 msgid "Dashboard"
@@ -1223,6 +1223,37 @@ msgid "Do you wish to automatically purge devices that are removed from the Cact
 msgstr "Bạn có muốn tự động lọc các thiết bị đã bị xóa khỏi hệ thống Cacti không?"
 
 #: setup.php
+#, fuzzy
+#| msgid "No Process History Found"
+msgid "Process History Retention"
+msgstr "Không tìm thấy lịch sử quá trình"
+
+#: setup.php
+msgid "How long should the Use History tab keep a process after it was last seen running?"
+msgstr ""
+
+#: setup.php
+#, fuzzy
+#| msgid "Never"
+msgid "Never Purge"
+msgstr "Không bao giờ"
+
+#: setup.php
+#, php-format
+msgid "%d Days"
+msgstr "%d Ngày"
+
+#: setup.php
+#, php-format
+msgid "%d Year"
+msgstr ""
+
+#: setup.php
+#, php-format
+msgid "%d Years"
+msgstr ""
+
+#: setup.php
 msgid "Default Row Count"
 msgstr "Đếm hàng mặc định"
 
@@ -1309,11 +1340,6 @@ msgid "%d Day"
 msgstr "%d Ngày"
 
 #: setup.php
-#, php-format
-msgid "%d Days"
-msgstr "%d Ngày"
-
-#: setup.php
 msgid "Host MIB Table Collection Frequencies"
 msgstr "Lưu trữ bộ sưu tập bảng MIB thường xuyên"
 
@@ -1388,23 +1414,23 @@ msgid "General Administration"
 msgstr "Quản lý chung"
 
 #: setup.php
-msgid "Host MIB Inventory Summary"
-msgstr "Tóm tắt hàng tồn kho của MIB"
-
-#: setup.php
-#, fuzzy
-#| msgid "Host MIB Details"
-msgid "Host MIB Device Dashboard"
-msgstr "Chi tiết máy chủ MIB"
-
-#: setup.php
 #, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Fleet Dashboard"
 msgstr "Chi tiết máy chủ MIB"
 
 #: setup.php
+msgid "Host MIB Inventory Summary"
+msgstr "Tóm tắt hàng tồn kho của MIB"
+
+#: setup.php
 msgid "Host MIB Details"
+msgstr "Chi tiết máy chủ MIB"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Device Dashboard"
 msgstr "Chi tiết máy chủ MIB"
 
 #: setup.php
