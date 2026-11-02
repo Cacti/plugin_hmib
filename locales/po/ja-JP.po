@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-10 17:47-0400\n"
+"POT-Creation-Date: 2026-10-24 06:10-0400\n"
 "PO-Revision-Date: 2024-11-22 02:12+0000\n"
 "Last-Translator: Nakayama Kito <nakayamakito@icloud.com>\n"
 "Language-Team: Japanese <http://translate.cacti.net/projects/cacti/hmib/ja/>\n"
@@ -70,10 +70,6 @@ msgstr "テスト"
 msgid "Down"
 msgstr "下"
 
-#: hmib.php
-msgid "Running Process History"
-msgstr "実行中のプロセス履歴"
-
 #: hmib.php hmib_types.php
 msgid "OS Type"
 msgstr "OSの種類"
@@ -89,6 +85,10 @@ msgstr "デバイス"
 #: hmib.php
 msgid "Template"
 msgstr "テンプレート"
+
+#: hmib.php
+msgid "Running Process History"
+msgstr "実行中のプロセス履歴"
 
 #: hmib.php hmib_types.php
 msgid "Go"
@@ -363,6 +363,12 @@ msgid "No Software Packages Found"
 msgstr "ソフトウェアパッケージが見つかりません"
 
 #: hmib.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Fleet Dashboard"
+msgstr "ホストMIBの詳細"
+
+#: hmib.php
 msgid "Summary"
 msgstr "概要"
 
@@ -385,12 +391,6 @@ msgstr "インベントリ"
 #: hmib.php
 msgid "Graphs"
 msgstr "グラフ"
-
-#: hmib.php
-#, fuzzy
-#| msgid "Host MIB Details"
-msgid "Fleet Dashboard"
-msgstr "ホストMIBの詳細"
 
 #: hmib.php
 msgid "Dashboard"
@@ -1223,6 +1223,37 @@ msgid "Do you wish to automatically purge devices that are removed from the Cact
 msgstr "Cactiシステムから取り外されたデバイスを自動的に削除しますか？"
 
 #: setup.php
+#, fuzzy
+#| msgid "No Process History Found"
+msgid "Process History Retention"
+msgstr "プロセス履歴が見つかりません"
+
+#: setup.php
+msgid "How long should the Use History tab keep a process after it was last seen running?"
+msgstr ""
+
+#: setup.php
+#, fuzzy
+#| msgid "Never"
+msgid "Never Purge"
+msgstr "決して"
+
+#: setup.php
+#, php-format
+msgid "%d Days"
+msgstr "%d 日"
+
+#: setup.php
+#, php-format
+msgid "%d Year"
+msgstr ""
+
+#: setup.php
+#, php-format
+msgid "%d Years"
+msgstr ""
+
+#: setup.php
 msgid "Default Row Count"
 msgstr "デフォルトの行数"
 
@@ -1309,11 +1340,6 @@ msgid "%d Day"
 msgstr "%d 日間"
 
 #: setup.php
-#, php-format
-msgid "%d Days"
-msgstr "%d 日"
-
-#: setup.php
 msgid "Host MIB Table Collection Frequencies"
 msgstr "ホストMIBテーブル収集頻度"
 
@@ -1388,23 +1414,23 @@ msgid "General Administration"
 msgstr "総務"
 
 #: setup.php
-msgid "Host MIB Inventory Summary"
-msgstr "ホストMIBインベントリ要約"
-
-#: setup.php
-#, fuzzy
-#| msgid "Host MIB Details"
-msgid "Host MIB Device Dashboard"
-msgstr "ホストMIBの詳細"
-
-#: setup.php
 #, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Fleet Dashboard"
 msgstr "ホストMIBの詳細"
 
 #: setup.php
+msgid "Host MIB Inventory Summary"
+msgstr "ホストMIBインベントリ要約"
+
+#: setup.php
 msgid "Host MIB Details"
+msgstr "ホストMIBの詳細"
+
+#: setup.php
+#, fuzzy
+#| msgid "Host MIB Details"
+msgid "Host MIB Device Dashboard"
 msgstr "ホストMIBの詳細"
 
 #: setup.php
