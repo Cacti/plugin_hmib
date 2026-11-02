@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-10 17:47-0400\nPO-Revision-Date: 2026-10-24 02:18+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-02 05:18+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/hmib/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -58,10 +58,6 @@ msgstr "დატესტვა"
 msgid "Down"
 msgstr "გამორთ"
 
-#: hmib.php
-msgid "Running Process History"
-msgstr "გაშვებული პროცესების ისტორია"
-
 #: hmib.php hmib_types.php
 msgid "OS Type"
 msgstr "ოს-ის ტიპი"
@@ -77,6 +73,10 @@ msgstr "მოწყობილობა"
 #: hmib.php
 msgid "Template"
 msgstr "ნიმუში"
+
+#: hmib.php
+msgid "Running Process History"
+msgstr "გაშვებული პროცესების ისტორია"
 
 #: hmib.php hmib_types.php
 msgid "Go"
@@ -351,6 +351,12 @@ msgid "No Software Packages Found"
 msgstr ""
 
 #: hmib.php
+#, fuzzy
+#| msgid "Host MIB Hardware"
+msgid "Fleet Dashboard"
+msgstr "ჰოსტის MIB-ის აპარატურა"
+
+#: hmib.php
 msgid "Summary"
 msgstr "ჯამში"
 
@@ -373,12 +379,6 @@ msgstr "ინვენტარი"
 #: hmib.php
 msgid "Graphs"
 msgstr "გრაფიკები"
-
-#: hmib.php
-#, fuzzy
-#| msgid "Host MIB Hardware"
-msgid "Fleet Dashboard"
-msgstr "ჰოსტის MIB-ის აპარატურა"
 
 #: hmib.php
 msgid "Dashboard"
@@ -1182,6 +1182,37 @@ msgid "Do you wish to automatically purge devices that are removed from the Cact
 msgstr ""
 
 #: setup.php
+#, fuzzy
+#| msgid "Use History"
+msgid "Process History Retention"
+msgstr "გამოყენების ისტორია"
+
+#: setup.php
+msgid "How long should the Use History tab keep a process after it was last seen running?"
+msgstr ""
+
+#: setup.php
+#, fuzzy
+#| msgid "Never"
+msgid "Never Purge"
+msgstr "არასდროს"
+
+#: setup.php
+#, php-format
+msgid "%d Days"
+msgstr "%d დღე"
+
+#: setup.php
+#, php-format
+msgid "%d Year"
+msgstr "%d წელი"
+
+#: setup.php
+#, php-format
+msgid "%d Years"
+msgstr "%d წელი"
+
+#: setup.php
 msgid "Default Row Count"
 msgstr "მწკრივების ნაგულისხმევი რაოდენობა"
 
@@ -1268,11 +1299,6 @@ msgid "%d Day"
 msgstr "%d დღე"
 
 #: setup.php
-#, php-format
-msgid "%d Days"
-msgstr "%d დღე"
-
-#: setup.php
 msgid "Host MIB Table Collection Frequencies"
 msgstr ""
 
@@ -1347,7 +1373,17 @@ msgid "General Administration"
 msgstr "ზოგადი ადმინისტრირება"
 
 #: setup.php
+#, fuzzy
+#| msgid "Host MIB Hardware"
+msgid "Host MIB Fleet Dashboard"
+msgstr "ჰოსტის MIB-ის აპარატურა"
+
+#: setup.php
 msgid "Host MIB Inventory Summary"
+msgstr ""
+
+#: setup.php
+msgid "Host MIB Details"
 msgstr ""
 
 #: setup.php
@@ -1355,16 +1391,6 @@ msgstr ""
 #| msgid "Host MIB Hardware"
 msgid "Host MIB Device Dashboard"
 msgstr "ჰოსტის MIB-ის აპარატურა"
-
-#: setup.php
-#, fuzzy
-#| msgid "Host MIB Hardware"
-msgid "Host MIB Fleet Dashboard"
-msgstr "ჰოსტის MIB-ის აპარატურა"
-
-#: setup.php
-msgid "Host MIB Details"
-msgstr ""
 
 #: setup.php
 msgid "Host MIB Storage"
