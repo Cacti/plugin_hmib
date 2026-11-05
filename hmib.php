@@ -4635,8 +4635,11 @@ function hmib_summary_stats(int $ostype): array {
 		$where  = $ostype >= 0 ? 'WHERE hrs.host_type = ?' : '';
 		$params = $ostype >= 0 ? [$ostype] : [];
 
-		// hrSystemUptime (uptime) is often unreported (0) by agents that still serve
-		// sysUpTime (sysUptime), so fall back to it for the uptime distribution.
+		// hrSystemUptime (uptime) and the polled sysUpTime (sysUptime) are frequently
+		// unreported (0) by agents, which left the uptime distribution all zeros. The
+		// Cacti core host table maintains snmp_sysUpTimeInstance (hundredths of a
+		// second) on every poll independent of any time range, so source the uptime
+		// distribution from there directly.
 		$row = db_fetch_row_prepared("SELECT
 			COUNT(*) AS devices,
 			SUM(host_status = 3) AS up,
@@ -4659,10 +4662,12 @@ function hmib_summary_stats(int $ostype): array {
 			MIN(CASE WHEN host_status >= 2 THEN processes END) AS minProc,
 			AVG(CASE WHEN host_status >= 2 THEN processes END) AS avgProc,
 			MAX(CASE WHEN host_status >= 2 THEN processes END) AS maxProc,
-			MIN(CASE WHEN host_status >= 2 THEN IF(uptime > 0, uptime, sysUptime) END) AS minUptime,
-			AVG(CASE WHEN host_status >= 2 THEN IF(uptime > 0, uptime, sysUptime) END) AS avgUptime,
-			MAX(CASE WHEN host_status >= 2 THEN IF(uptime > 0, uptime, sysUptime) END) AS maxUptime
+			MIN(CASE WHEN host_status >= 2 THEN h.snmp_sysUpTimeInstance END) AS minUptime,
+			AVG(CASE WHEN host_status >= 2 THEN h.snmp_sysUpTimeInstance END) AS avgUptime,
+			MAX(CASE WHEN host_status >= 2 THEN h.snmp_sysUpTimeInstance END) AS maxUptime
 			FROM plugin_hmib_hrSystem AS hrs
+			INNER JOIN host AS h
+			ON h.id = hrs.host_id
 			$where", $params);
 
 		$cache[$ostype] = is_array($row) ? $row : [];
