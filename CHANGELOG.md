@@ -1,6 +1,8 @@
 ChangeLog
 
 --- develop ---
+* dev: Restore missing characters in the unmatched device-type regression test so PHP syntax checks and the test can run
+* dev: Run the CI poller with the shared runner group so RRD files and structured directories pass permission verification
 * issue: Fix the Fleet Dashboard Uptime Distribution still showing all zeros by sourcing it from the Cacti host table's snmp_sysUpTimeInstance directly instead of the frequently-unreported Host Resources hrSystemUptime/sysUpTime columns
 * issue: Skip the remaining Host Resources collectors for a device that no longer answers the hrSystem base OID or has SNMP set to Not In Use, instead of running every walk to a timeout on every cycle
 * issue: Keep shift-click multi-column sorting on the Host MIB tabs now that their sort is checked against the sortable columns, checking each column and direction of the stored sort
