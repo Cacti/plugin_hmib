@@ -3103,13 +3103,13 @@ function hmib_summary(): void {
 
 			$graph_url   = hmib_get_graph_url($htdq, 0, $host_id, $row['id']);
 
-			$graph_ncpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', $row['cpus'], false);
-			$graph_acpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', (string) round($row['avgCpuPercent'], 2), false);
-			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', (string) round($row['maxCpuPercent'], 2), false);
+			$graph_ncpu  = hmib_get_graph_url($hcpudq, $row['host_type'], 0, '', $row['cpus'], false);
+			$graph_acpu  = hmib_get_graph_url($hcpudq, $row['host_type'], 0, '', (string) round($row['avgCpuPercent'], 2), false);
+			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row['host_type'], 0, '', (string) round($row['maxCpuPercent'], 2), false);
 
-			$graph_users = hmib_get_graph_template_url($hugt, $row['id'], 0, number_format_i18n($row['users'], 0), false);
-			$graph_aproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['avgProcesses'], 0), false);
-			$graph_mproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['maxProcesses'], 0), false);
+			$graph_users = hmib_get_graph_template_url($hugt, $row['host_type'], 0, number_format_i18n($row['users'], 0), false);
+			$graph_aproc = hmib_get_graph_template_url($hpgt, $row['host_type'], 0, number_format_i18n($row['avgProcesses'], 0), false);
+			$graph_mproc = hmib_get_graph_template_url($hpgt, $row['host_type'], 0, number_format_i18n($row['maxProcesses'], 0), false);
 
 			$aurl  = "<a class='pic' href='" . html_escape("$url?action=summary_dashboard&reset=1&ostype=" . $row['host_type']) . "'><i class='fas fa-tachometer-alt hmibDashboard' title='" . __('View Fleet Dashboard', 'hmib') . "'></i></a>";
 
