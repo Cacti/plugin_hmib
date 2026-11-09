@@ -18,7 +18,7 @@
  * Report line coverage for the lines a branch changes.
  *
  * Whole-file coverage is not a useful gate here: most of the plugin only runs
- * inside a live Cacti, so the repository figure would sit near zero no matte
+ * inside a live Cacti, so the repository figure would sit near zero no matter
  * how well a change is tested.  What a reviewer wants to know is whether the
  * lines this branch adds are exercised, which is what this measures.
  *
@@ -49,7 +49,7 @@ if (!is_readable($clover_path)) {
  * Only added and modified lines count. Deletions have nothing left to cover,
  * and context lines were not part of this change.
  *
- * Paths stay repository-relative so the report can be produced in a containe
+ * Paths stay repository-relative so the report can be produced in a container
  * and evaluated on the host, where the absolute paths differ.
  *
  * @param string $base_ref Git ref to diff against.

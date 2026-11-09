@@ -128,7 +128,7 @@ if (!file_exists($config['base_path'] . '/include/css/card-widgets.css')) {
 print get_md5_include_css('plugins/hmib/css/hmib.css');
 
 // Validate the theme against the shipped override list before using it in a
-// path: get_selected_theme() can return an unvalidated session value on olde
+// path: get_selected_theme() can return an unvalidated session value on older
 // Cacti releases, which must not reach the filesystem/URL unchecked.
 $hmib_theme = get_selected_theme();
 
@@ -397,7 +397,7 @@ function hmib_history(): void {
 								<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$procs = db_fetch_assoc("SELECT DISTINCT name
-									FROM plugin_hmib_hrSWRun_last_seen AS hrsw
+									FROM plugin_hmib_hrSWRun_last_seen AS hrswr
 									WHERE name!='System Idle Time' AND name NOT LIKE '128%' AND (name IS NOT NULL AND name!='')
 									ORDER BY name");
 
@@ -521,7 +521,7 @@ function hmib_history(): void {
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrst.id=hrs.host_type
 		$sql_where
-		$sql_orde
+		$sql_order
 		$sql_limit";
 
 	// print $sql;
@@ -742,7 +742,7 @@ function hmib_running(): void {
 								<option value='-1'<?php if (get_request_var('process') == '-1') {?> selected<?php }?>><?php print __('All', 'hmib'); ?></option>
 								<?php
 	$procs = db_fetch_assoc("SELECT DISTINCT name
-									FROM plugin_hmib_hrSWRun_last_seen AS hrsw
+									FROM plugin_hmib_hrSWRun_last_seen AS hrswr
 										WHERE name!='System Idle Time' AND name NOT LIKE '128%' AND (name IS NOT NULL AND name!='')
 									ORDER BY name");
 
@@ -859,7 +859,7 @@ function hmib_running(): void {
 	}
 
 	$sql = "SELECT hrswr.*, host.hostname, host.description, host.disabled
-		FROM plugin_hmib_hrSWRun AS hrsw
+		FROM plugin_hmib_hrSWRun AS hrswr
 		INNER JOIN host
 		ON host.id=hrswr.host_id
 		INNER JOIN plugin_hmib_hrSystem AS hrs
@@ -867,7 +867,7 @@ function hmib_running(): void {
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrst.id=hrs.host_type
 		$sql_where
-		$sql_orde
+		$sql_order
 		$sql_limit";
 
 	// print $sql;
@@ -875,7 +875,7 @@ function hmib_running(): void {
 	$rows = db_fetch_assoc_prepared($sql, $sql_params);
 
 	$total_rows = db_fetch_cell_prepared("SELECT COUNT(*)
-		FROM plugin_hmib_hrSWRun AS hrsw
+		FROM plugin_hmib_hrSWRun AS hrswr
 		INNER JOIN host
 		ON host.id=hrswr.host_id
 		INNER JOIN plugin_hmib_hrSystem AS hrs
@@ -887,7 +887,7 @@ function hmib_running(): void {
 	$totals = db_fetch_row_prepared("SELECT
 		ROUND(SUM(perfCPU),2) as cpu,
 		ROUND(SUM(perfMemory),2) as memory
-		FROM plugin_hmib_hrSWRun AS hrsw
+		FROM plugin_hmib_hrSWRun AS hrswr
 		INNER JOIN host ON host.id=hrswr.host_id
 		INNER JOIN plugin_hmib_hrSystem AS hrs
 		ON hrs.host_id=host.id
@@ -1013,10 +1013,10 @@ function running_legend(array $totals, int $total_rows): void {
 }
 
 /**
- * Renders the Hardware view: validates/stores this view's filte
+ * Renders the Hardware view: validates/stores this view's filter
  * request variables (rows, page, template, device, type, ostype,
  * process, sort), renders the filter box, then queries and displays a
- * sortable/paginated table of detected hardware devices (pe
+ * sortable/paginated table of detected hardware devices (per
  * hrDevices) across devices matching the selected filters. Called from
  * this script's main request-dispatch switch when action=hardware.
  *
@@ -1287,7 +1287,7 @@ function hmib_hardware(): void {
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrs.host_type=hrst.id
 		$sql_where
-		$sql_orde
+		$sql_order
 		$sql_limit";
 
 	$rows = db_fetch_assoc_prepared($sql, $sql_params);
@@ -1425,7 +1425,7 @@ function hmib_device_status_pill(int $status): string {
 }
 
 /**
- * Renders the Hardware tab status legend as a row of equal-width colou
+ * Renders the Hardware tab status legend as a row of equal-width colour
  * chips, one per hrDeviceStatus value (Host Resources MIB, RFC 2790, plus
  * this plugin's Present default), matching the footer legend pattern used
  * by the thold/mactrack/servcheck views. The clickable filter drill-down
@@ -1462,7 +1462,7 @@ function hmib_device_status_legend(): void {
 }
 
 /**
- * Renders the Storage view: validates/stores this view's filte
+ * Renders the Storage view: validates/stores this view's filter
  * request variables, renders the filter box, then queries and displays
  * a sortable/paginated table of detected storage (per hrStorage)
  * across devices matching the selected filters. Called from this
@@ -1701,7 +1701,7 @@ function hmib_storage(): void {
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrs.host_type=hrst.id
 		$sql_where
-		$sql_orde
+		$sql_order
 		$sql_limit";
 
 	$rows = db_fetch_assoc_prepared($sql, $sql_params);
@@ -1804,7 +1804,7 @@ function hmib_storage(): void {
 }
 
 /**
- * Renders the Details view: validates/stores this view's filte
+ * Renders the Details view: validates/stores this view's filter
  * request variables, renders the filter box, then queries and displays
  * a sortable/paginated table of Host MIB-monitored devices matching the
  * selected filters. Called from this script's main request-dispatch
@@ -2076,7 +2076,7 @@ function hmib_devices(): void {
 		ON hrs.host_type=hrst.id
 		$sql_join
 		$sql_where
-		$sql_orde
+		$sql_order
 		$sql_limit";
 
 	$rows = db_fetch_assoc_prepared($sql, $sql_params);
@@ -2348,7 +2348,7 @@ function hmib_memory(float $mem): string {
 /**
  * Renders the Software Inventory view: validates/stores this view's
  * filter request variables, renders the filter box, then queries and
- * displays a sortable/paginated table of installed software (pe
+ * displays a sortable/paginated table of installed software (per
  * hrSWInstalled) across devices matching the selected filters. Called
  * from this script's main request-dispatch switch when
  * action=software.
@@ -2359,7 +2359,7 @@ function hmib_memory(float $mem): string {
  *                               to build device edit links.
  * @global array $item_rows      Cacti's standard row-count option list,
  *                               used to populate the rows dropdown.
- * @global array $hmib_hrSWTypes Reserved/declared for parity with othe
+ * @global array $hmib_hrSWTypes Reserved/declared for parity with other
  *                               functions in this file; not used
  *                               directly here.
  */
@@ -2576,7 +2576,7 @@ function hmib_software(): void {
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrst.id=hrs.host_type
 		$sql_where
-		$sql_orde
+		$sql_order
 		$sql_limit";
 
 	$rows = db_fetch_assoc_prepared($sql, $sql_params);
@@ -2752,7 +2752,7 @@ function hmib_summary_order_by(string $table, array $allowed, string $default): 
 
 /**
  * Renders the Host MIB dashboard/summary view: an overview of monitored
- * device counts by status/OS type, top running processes, and othe
+ * device counts by status/OS type, top running processes, and other
  * aggregate statistics, driven by this view's filter request
  * variables. Called from this script's main request-dispatch switch
  * when action=summary.
@@ -3008,7 +3008,7 @@ function hmib_summary(): void {
 		LEFT JOIN plugin_hmib_hrSystemTypes AS hrst
 		ON hrs.host_type=hrst.id
 		GROUP BY hrs.host_type
-		$sql_orde
+		$sql_order
 		$sql_limit";
 
 	$rows = db_fetch_assoc($sql);
@@ -3282,17 +3282,17 @@ function hmib_summary(): void {
 		MAX(hrswr.perfCPU) AS maxCpu,
 		AVG(hrswr.perfMemory) AS avgMemory,
 		MAX(hrswr.perfMemory) AS maxMemory
-		FROM plugin_hmib_hrSWRun AS hrsw
+		FROM plugin_hmib_hrSWRun AS hrswr
 		WHERE hrswr.name!='System Idle Process' AND hrswr.name!=''
 		$sql_where
 		GROUP BY hrswr.name
-		$sql_orde
+		$sql_order
 		$sql_limit";
 
 	$rows = db_fetch_assoc_prepared($sql, $sql_params);
 
 	$total_rows = db_fetch_cell_prepared("SELECT COUNT(DISTINCT hrswr.name)
-		FROM plugin_hmib_hrSWRun AS hrsw
+		FROM plugin_hmib_hrSWRun AS hrswr
 		WHERE hrswr.name!='System Idle Process' AND hrswr.name!=''
 		$sql_where", $sql_params);
 
@@ -3433,7 +3433,7 @@ function hmib_get_device_status_url(int $count, int $host_type, int $status): st
 }
 
 /**
- * Builds a link (icon or titled text) to the selective Graphs view fo
+ * Builds a link (icon or titled text) to the selective Graphs view for
  * all graphs using a given graph template, optionally restricted to a
  * specific OS type and/or device. Called from summary/list views when
  * rendering a 'view graphs' action for a graph template.
@@ -3446,10 +3446,10 @@ function hmib_get_device_status_url(int $count, int $host_type, int $status): st
  *                               to a single device.
  * @param string $title          The link text to use when $image is
  *                               false.
- * @param bool   $image          Whether to render an icon link (true) o
+ * @param bool   $image          Whether to render an icon link (true) or
  *                               a titled text link (false).
  *
- * @return string An HTML anchor linking to the matching graphs, o
+ * @return string An HTML anchor linking to the matching graphs, or
  *                $title unchanged if no matching graphs are found.
  *
  * @global array $config Cacti global configuration array; used to build
@@ -3509,7 +3509,7 @@ function hmib_get_graph_template_url(int $graph_template, int $host_type = 0, in
 }
 
 /**
- * Builds a link (icon or titled text) to the selective Graphs view fo
+ * Builds a link (icon or titled text) to the selective Graphs view for
  * graphs from a given data query, optionally restricted to a specific
  * SNMP index, device, and/or OS type. Called from summary/list views
  * when rendering a 'view graphs' action for a data-query-driven metric
@@ -3528,7 +3528,7 @@ function hmib_get_graph_template_url(int $graph_template, int $host_type = 0, in
  * @param bool   $image      Whether to render an icon link (true) or a
  *                           titled text link (false).
  *
- * @return string An HTML anchor linking to the matching graphs, o
+ * @return string An HTML anchor linking to the matching graphs, or
  *                $title unchanged if no matching graphs are found.
  *
  * @global array $config Cacti global configuration array; used to build
@@ -3658,7 +3658,7 @@ function hmib_view_graphs(): void {
 			WHERE hash="7c13344910097cc599f0d0485305361d" ORDER BY id DESC'), 'id', 'id'));
 	$hosts = $_SESSION['sess_hmib_hosts'];
 
-	// include graph view filter selecto
+	// include graph view filter selector
 	html_start_box(__('Graph Preview Filters', 'hmib') . (isset_request_var('style') && strlen(get_request_var('style')) ? ' [ ' . __('Custom Graph List Applied - Filtering from List', 'hmib') . ' ]' : ''), '100%', false, 3, 'center', '');
 
 	html_graph_preview_filter('hmib.php', 'graphs', "h.id IN ($hosts)", "gt.id IN ($gt)");
@@ -4081,7 +4081,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 			break;
 		case 'processors':
 			$processors = db_fetch_assoc_prepared('SELECT `index`, `load`
-				FROM plugin_hmib_hrProcesso
+				FROM plugin_hmib_hrProcessor
 				WHERE host_id = ?
 				ORDER BY `index`',
 				[$host_id]);
@@ -4331,7 +4331,7 @@ function hmib_dashboard_render_card(string $key, int $host_id, bool $expanded = 
 }
 
 /**
- * The current user's Dashboard layout: the present cards in order plus thei
+ * The current user's Dashboard layout: the present cards in order plus their
  * expanded state. With no saved layout every card is present in the default
  * order; cards absent from a saved order live in the "Add" catalogue instead.
  *
@@ -4642,7 +4642,7 @@ function hmib_summary_resolve_type(bool $persist = false): int {
 		$ostype = ($stored !== '' && preg_match('/^-?[0-9]+$/', (string) $stored) && (int) $stored >= -1) ? (int) $stored : -1;
 	}
 
-	// A remembered positive type can become unselectable (its last device left, o
+	// A remembered positive type can become unselectable (its last device left, or
 	// an admin deleted the type); the picker only lists populated types, so fall
 	// back to all-types instead of silently showing an empty, mislabelled scope.
 	if ($ostype > 0 && db_fetch_cell_prepared('SELECT COUNT(*) FROM plugin_hmib_hrSystem WHERE host_type = ?', [$ostype]) == 0) {
@@ -4654,7 +4654,7 @@ function hmib_summary_resolve_type(bool $persist = false): int {
 
 /**
  * Memoized fleet system aggregates for an OS type scope (-1 = all types, 0 =
- * Unknown). The utilization statistics (cpu/mem/swap/processes/uptime) conside
+ * Unknown). The utilization statistics (cpu/mem/swap/processes/uptime) consider
  * only up or recovering devices so stale values from down devices do not skew
  * them.
  *
@@ -4747,7 +4747,7 @@ function hmib_summary_storage_stats(int $ostype): array {
 }
 
 /**
- * The Fleet Dashboard card registry: title, column span (out of 8) and whethe
+ * The Fleet Dashboard card registry: title, column span (out of 8) and whether
  * the card clips with a "show more" control.
  *
  * @return array<string, array{title: string, span: int, expandable: bool}>
@@ -5025,7 +5025,7 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 				COUNT(DISTINCT hrswr.host_id) AS hosts,
 				AVG(hrswr.perfCPU) AS avgCpu, MAX(hrswr.perfCPU) AS maxCpu,
 				AVG(hrswr.perfMemory) AS avgMem, MAX(hrswr.perfMemory) AS maxMem
-				FROM plugin_hmib_hrSWRun AS hrsw
+				FROM plugin_hmib_hrSWRun AS hrswr
 				INNER JOIN plugin_hmib_hrSystem AS hrs ON hrs.host_id = hrswr.host_id
 				WHERE hrswr.name != '' AND hrswr.name != 'System Idle Process' AND hrs.host_status >= 2 $where
 				GROUP BY hrswr.name
@@ -5208,7 +5208,7 @@ function hmib_summary_layout_save(): string {
 }
 
 /**
- * Persist the posted Fleet Dashboard auto-refresh interval for the current use
+ * Persist the posted Fleet Dashboard auto-refresh interval for the current user
  * (CSRF POST, validated against the refresh picker's options).
  *
  * @return string A JSON status document.
@@ -5237,7 +5237,7 @@ function hmib_summary_refresh_save(): string {
 }
 
 /**
- * AJAX: render a single Fleet Dashboard card (adding from the catalogue o
+ * AJAX: render a single Fleet Dashboard card (adding from the catalogue or
  * refreshing in place).
  *
  * @return string A JSON document with the card key and rendered HTML.
