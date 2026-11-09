@@ -18,7 +18,7 @@
  * Report line coverage for the lines a branch changes.
  *
  * Whole-file coverage is not a useful gate here: most of the plugin only runs
- * inside a live Cacti, so the repository figure would sit near zero no matter
+ * inside a live Cacti, so the repository figure would sit near zero no matte
  * how well a change is tested.  What a reviewer wants to know is whether the
  * lines this branch adds are exercised, which is what this measures.
  *
@@ -49,7 +49,7 @@ if (!is_readable($clover_path)) {
  * Only added and modified lines count. Deletions have nothing left to cover,
  * and context lines were not part of this change.
  *
- * Paths stay repository-relative so the report can be produced in a container
+ * Paths stay repository-relative so the report can be produced in a containe
  * and evaluated on the host, where the absolute paths differ.
  *
  * @param string $base_ref Git ref to diff against.
@@ -184,7 +184,12 @@ foreach ($clover->xpath('//file') as $file) {
 	}
 
 	$measured[$relative] = true;
-	$ignored             = ignored_lines($relative);
+
+	// Resolve the source from this script's own location (plugins/<name>/tests/bin)
+	// plus the repository-relative path, so the ignore markers are read correctly
+	// regardless of the current working directory the runner invoked us from.
+	$source  = dirname(__DIR__, 2) . '/' . $relative;
+	$ignored = ignored_lines(is_readable($source) ? $source : $relative);
 
 	foreach ($file->line as $line) {
 		$number = (int) $line['num'];

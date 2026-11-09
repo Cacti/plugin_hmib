@@ -121,14 +121,6 @@ it('opens the dashboard defensively when the host row is gone', function () {
 	expect($page['text'])->toContain('No system information has been collected for this device yet.');
 });
 
-it('renders a single device card expanded over AJAX', function () {
-	$json = hmib_dash_card('hmib.php?action=dashboard_card', array('device' => 9101, 'card' => 'processors', 'expanded' => '1'));
-
-	expect($json['card'])->toBe('processors');
-	expect($json['html'])->toContain('ccCardExpanded');
-	expect($json['html'])->toContain('data-expanded="1"');
-});
-
 it('renders every Fleet card with data across all OS types', function () {
 	$page = hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=summary_dashboard&header=false&ostype=-1');
 
@@ -141,13 +133,16 @@ it('renders every Fleet card with data across all OS types', function () {
 	expect($page['body'])->toContain('ccMiniBar');
 });
 
-it('renders a Fleet card expanded over AJAX', function () {
-	$json = hmib_dash_card('hmib.php?action=summary_card', array('ostype' => -1, 'card' => 'top_memory', 'expanded' => '1'));
+it('renders a single card expanded over AJAX', function (string $path, array $fields, string $card) {
+	$json = hmib_dash_card($path, $fields);
 
-	expect($json['card'])->toBe('top_memory');
+	expect($json['card'])->toBe($card);
 	expect($json['html'])->toContain('ccCardExpanded');
 	expect($json['html'])->toContain('data-expanded="1"');
-});
+})->with(array(
+	'device card' => array('hmib.php?action=dashboard_card', array('device' => 9101, 'card' => 'processors', 'expanded' => '1'), 'processors'),
+	'fleet card'  => array('hmib.php?action=summary_card', array('ostype' => -1, 'card' => 'top_memory', 'expanded' => '1'), 'top_memory'),
+));
 
 it('shows the Fleet empty state for a scope with no devices', function () {
 	$json = hmib_dash_card('hmib.php?action=summary_card', array('ostype' => 0, 'card' => 'overview'));
