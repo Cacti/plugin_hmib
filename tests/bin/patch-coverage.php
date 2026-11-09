@@ -100,6 +100,59 @@ function changed_lines($base_ref) {
 	return $changed;
 }
 
+/**
+ * Line numbers a source file marks as coverage-exempt.
+ *
+ * Honors the standard PHPUnit block markers @codeCoverageIgnoreStart and
+ * @codeCoverageIgnoreEnd. The end-to-end Clover is assembled from raw Xdebug
+ * data (tests/bin/merge-coverage.php), so no driver applies these annotations
+ * for us; this script therefore honors them itself.
+ *
+ * The intended use is narrow: lines that cannot be exercised by the CI run at
+ * all, most importantly the bundled-asset fallbacks that only execute on a
+ * Cacti older than the one the end-to-end run installs. Ordinary untested
+ * lines must be covered, not ignored.
+ *
+ * @param string $relative Repository-relative file path.
+ *
+ * @return array<int, bool>
+ */
+function ignored_lines($relative) {
+	if (!is_readable($relative)) {
+		return [];
+	}
+
+	$handle = fopen($relative, 'r');
+
+	if ($handle === false) {
+		return [];
+	}
+
+	$ignored = [];
+	$depth   = 0;
+	$number  = 0;
+
+	while (($text = fgets($handle)) !== false) {
+		$number++;
+
+		if (strpos($text, '@codeCoverageIgnoreStart') !== false) {
+			$depth++;
+		}
+
+		if ($depth > 0) {
+			$ignored[$number] = true;
+		}
+
+		if ($depth > 0 && strpos($text, '@codeCoverageIgnoreEnd') !== false) {
+			$depth--;
+		}
+	}
+
+	fclose($handle);
+
+	return $ignored;
+}
+
 $changed = changed_lines($base_ref);
 $clover  = simplexml_load_file($clover_path);
 
@@ -131,12 +184,20 @@ foreach ($clover->xpath('//file') as $file) {
 	}
 
 	$measured[$relative] = true;
+	$ignored             = ignored_lines($relative);
 
 	foreach ($file->line as $line) {
 		$number = (int) $line['num'];
 
 		// Only statement lines are measurable; method markers double-count.
 		if ((string) $line['type'] !== 'stmt' || !isset($changed[$relative][$number])) {
+			continue;
+		}
+
+		// Lines inside @codeCoverageIgnoreStart/End cannot be exercised in CI
+		// (for example the bundled-asset fallbacks that only run on a Cacti
+		// older than the one the end-to-end run installs).
+		if (isset($ignored[$number])) {
 			continue;
 		}
 

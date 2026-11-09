@@ -1,0 +1,171 @@
+<?php
+/*
+ +-------------------------------------------------------------------------+
+ | Copyright (C) 2004-2026 The Cacti Group                                 |
+ +-------------------------------------------------------------------------+
+ | Cacti: The Complete RRDtool-based Graphing Solution                     |
+ +-------------------------------------------------------------------------+
+*/
+
+/*
+ * End-to-end tests for the per-device Dashboard and the Fleet (Summary)
+ * Dashboard: every card is rendered against a device (or fleet scope) that both
+ * has data and lacks it, so the data-present charts and the friendly empty
+ * states are both exercised. The single-card AJAX endpoints are used to drive
+ * the expanded state and the per-scope empty branches the full page cannot
+ * reach on its own. See tests/support/e2e.php and tests/support/fixtures.php.
+ */
+
+require_once __DIR__ . '/../support/fixtures.php';
+require_once __DIR__ . '/../support/e2e.php';
+
+const HMIB_E2E_DASH_TABLES = array(
+	'host',
+	'plugin_hmib_hrSystem',
+	'plugin_hmib_hrSystemTypes',
+	'plugin_hmib_hrSWRun',
+	'plugin_hmib_hrSWRun_last_seen',
+	'plugin_hmib_hrStorage',
+	'plugin_hmib_hrProcessor',
+	'plugin_hmib_hrDevices',
+	'plugin_hmib_hrSWInstalled',
+);
+
+beforeAll(fn () => hmib_e2e_suite_open());
+
+afterAll(fn () => hmib_e2e_suite_close());
+
+beforeEach(function () {
+	hmib_e2e_test_start($this, HMIB_E2E_DASH_TABLES);
+
+	hmib_fx_type(1, '.1.3.6', 'Linux', 'Linux', '5');
+	hmib_fx_type(2, '.1.3.5', 'Windows', 'Windows', '11');
+	hmib_fx_type(3, '.1.3.9', 'BSD', 'BSD', '14');
+
+	// Rich, up device: every device card has data to chart.
+	hmib_fx_host(9101, 'rich-host', 3);
+	hmib_fx_system_full(9101, 1);
+	hmib_fx_processor(9101, 1, 20);
+	hmib_fx_processor(9101, 2, 80);
+	hmib_fx_storage(9101, 1, '/', 1000000, 400000);
+	hmib_fx_storage(9101, 2, '/var', 500000, 450000);
+	hmib_fx_process(9101, 1, 'sshd', array('cpu' => 1200, 'memory' => 2048));
+	hmib_fx_process(9101, 2, 'httpd', array('cpu' => 9000, 'memory' => 16384));
+	hmib_fx_process(9101, 3, 'cron', array('cpu' => 50, 'memory' => 512));
+	hmib_fx_history(9101, 'sshd', 86400);
+	hmib_fx_history(9101, 'httpd', 43200);
+	hmib_fx_hw_device(9101, 1, 'eth0', 2, 0);
+	hmib_fx_hw_device(9101, 2, 'sda', 2, 3);
+	hmib_fx_software(9101, 1, 'openssl');
+	hmib_fx_software(9101, 2, 'nginx');
+
+	// Minimal, up device (OS type 2): a system row exists so the dashboard
+	// opens, but every table-backed card renders its empty state and swap is
+	// not configured.
+	hmib_fx_host(9102, 'min-host', 3);
+	hmib_fx_system(9102, 2, 'Minimal', '.1.3.5', array('cpu' => 0));
+
+	// Down device (OS type 3) whose only storage belongs to a device that is
+	// not up: the Fleet storage card has volumes to count but no live average.
+	hmib_fx_host(9104, 'down-host', 1);
+	hmib_fx_system(9104, 3, 'Down', '.1.3.9', array('status' => 1));
+	hmib_fx_storage(9104, 1, '/', 1000, 500);
+
+	// A system row whose host row is gone: the device dashboard still opens
+	// (the host is still "known" to Host MIB) but the join yields no system, so
+	// the defensive empty states in every card render.
+	hmib_fx_system_full(9199, 1);
+});
+
+afterEach(fn () => hmib_e2e_test_end(HMIB_E2E_DASH_TABLES));
+
+/** POST to a single-card AJAX endpoint and return the decoded JSON. */
+function hmib_dash_card($path, $fields) {
+	$response = hmib_e2e_post($GLOBALS['__hmib_e2e'], $path, $fields);
+
+	expect($response['status'])->toBe(200);
+
+	$json = json_decode($response['body'], true);
+
+	expect($json)->toBeArray();
+	expect(isset($json['error']))->toBeFalse();
+
+	return $json;
+}
+
+it('renders every device card with data for an up device', function () {
+	$page = hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=dashboard&header=false&device=9101');
+
+	hmib_e2e_assert_clean($page);
+	expect($page['body'])->toContain('ccGrid');
+	expect($page['body'])->toContain('ccGauge');
+	expect($page['body'])->toContain('ccBar');
+	expect($page['text'])->toContain('openssl');
+	expect($page['text'])->toContain('sshd');
+});
+
+it('renders the friendly empty states for a device with no collected tables', function () {
+	$page = hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=dashboard&header=false&device=9102');
+
+	hmib_e2e_assert_clean($page);
+	expect($page['body'])->toContain('ccEmpty');
+	expect($page['text'])->toContain('No swap configured on this device.');
+	expect($page['text'])->toContain('Unlimited');
+});
+
+it('opens the dashboard defensively when the host row is gone', function () {
+	$page = hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=dashboard&header=false&device=9199');
+
+	hmib_e2e_assert_clean($page);
+	expect($page['body'])->toContain('ccGrid');
+	expect($page['text'])->toContain('No system information has been collected for this device yet.');
+});
+
+it('renders a single device card expanded over AJAX', function () {
+	$json = hmib_dash_card('hmib.php?action=dashboard_card', array('device' => 9101, 'card' => 'processors', 'expanded' => '1'));
+
+	expect($json['card'])->toBe('processors');
+	expect($json['html'])->toContain('ccCardExpanded');
+	expect($json['html'])->toContain('data-expanded="1"');
+});
+
+it('renders every Fleet card with data across all OS types', function () {
+	$page = hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=summary_dashboard&header=false&ostype=-1');
+
+	hmib_e2e_assert_clean($page);
+	expect($page['body'])->toContain('ccGrid');
+	expect($page['body'])->toContain('ccTile');
+	expect($page['body'])->toContain('ccBullet');
+	expect($page['body'])->toContain('ccStack');
+	expect($page['body'])->toContain('ccDistRow');
+	expect($page['body'])->toContain('ccMiniBar');
+});
+
+it('renders a Fleet card expanded over AJAX', function () {
+	$json = hmib_dash_card('hmib.php?action=summary_card', array('ostype' => -1, 'card' => 'top_memory', 'expanded' => '1'));
+
+	expect($json['card'])->toBe('top_memory');
+	expect($json['html'])->toContain('ccCardExpanded');
+	expect($json['html'])->toContain('data-expanded="1"');
+});
+
+it('shows the Fleet empty state for a scope with no devices', function () {
+	$json = hmib_dash_card('hmib.php?action=summary_card', array('ostype' => 0, 'card' => 'overview'));
+
+	expect($json['html'])->toContain('No Host MIB devices in this scope yet.');
+});
+
+it('shows empty Fleet storage and process cards for a scope that has neither', function () {
+	$storage = hmib_dash_card('hmib.php?action=summary_card', array('ostype' => 2, 'card' => 'storage'));
+	$top     = hmib_dash_card('hmib.php?action=summary_card', array('ostype' => 2, 'card' => 'top_cpu'));
+
+	expect($storage['html'])->toContain('No storage volumes detected in this scope.');
+	expect($top['html'])->toContain('No process statistics recorded.');
+});
+
+it('renders a Fleet storage bullet when the only volumes are on a down device', function () {
+	$json = hmib_dash_card('hmib.php?action=summary_card', array('ostype' => 3, 'card' => 'storage'));
+
+	expect($json['card'])->toBe('storage');
+	expect($json['html'])->toContain('ccBullet');
+});

@@ -112,6 +112,8 @@ general_header();
 // Shared card chrome + chart-widget primitives. On Cacti 1.2.32+ these ship in
 // core and are loaded by the common page header; bundle the plugin's own copy
 // only when core does not provide them.
+// @codeCoverageIgnoreStart -- fallback runs only on cores lacking the bundle;
+// the end-to-end run installs a core that ships it, so CI cannot reach here.
 if (!file_exists($config['base_path'] . '/include/css/cards.css')) {
 	print get_md5_include_css('plugins/hmib/css/cards.css');
 }
@@ -119,6 +121,7 @@ if (!file_exists($config['base_path'] . '/include/css/cards.css')) {
 if (!file_exists($config['base_path'] . '/include/css/card-widgets.css')) {
 	print get_md5_include_css('plugins/hmib/css/card-widgets.css');
 }
+// @codeCoverageIgnoreEnd
 
 // Load this plugin's per-theme glyph styling: base rules plus the active
 // theme's override file when one is shipped (see plugins/hmib/css/).
@@ -4504,9 +4507,11 @@ function hmib_dashboard(): void {
 		]);
 	}
 
+	// @codeCoverageIgnoreStart -- bundled copy loads only on cores lacking it.
 	if (!file_exists($config['base_path'] . '/include/js/cards.js')) {
 		print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . ' src="' . $config['url_path'] . 'plugins/hmib/js/cards.js?v=' . filemtime($config['base_path'] . '/plugins/hmib/js/cards.js') . '"></script>';
 	}
+	// @codeCoverageIgnoreEnd
 	print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . ' src="' . $config['url_path'] . 'plugins/hmib/js/hmib_dashboard.js?v=' . filemtime($config['base_path'] . '/plugins/hmib/js/hmib_dashboard.js') . '"></script>';
 
 	$system = hmib_dashboard_system($host_id);
@@ -5280,9 +5285,11 @@ function hmib_summary_dashboard(): void {
 		]);
 	}
 
+	// @codeCoverageIgnoreStart -- bundled copy loads only on cores lacking it.
 	if (!file_exists($config['base_path'] . '/include/js/cards.js')) {
 		print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . ' src="' . $config['url_path'] . 'plugins/hmib/js/cards.js?v=' . filemtime($config['base_path'] . '/plugins/hmib/js/cards.js') . '"></script>';
 	}
+	// @codeCoverageIgnoreEnd
 	print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . ' src="' . $config['url_path'] . 'plugins/hmib/js/hmib_dashboard.js?v=' . filemtime($config['base_path'] . '/plugins/hmib/js/hmib_dashboard.js') . '"></script>';
 
 	$layout = hmib_summary_layout($ostype);
