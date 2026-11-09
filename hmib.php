@@ -5283,7 +5283,7 @@ function hmib_summary_dashboard(): void {
 	if (!file_exists($config['base_path'] . '/include/js/cards.js')) {
 		print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . ' src="' . $config['url_path'] . 'plugins/hmib/js/cards.js?v=' . filemtime($config['base_path'] . '/plugins/hmib/js/cards.js') . '"></script>';
 	}
-	print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . ' src="' . $config['url_path'] . 'plugins/hmib/js/hmib_summary_dashboard.js?v=' . filemtime($config['base_path'] . '/plugins/hmib/js/hmib_summary_dashboard.js') . '"></script>';
+	print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . ' src="' . $config['url_path'] . 'plugins/hmib/js/hmib_dashboard.js?v=' . filemtime($config['base_path'] . '/plugins/hmib/js/hmib_dashboard.js') . '"></script>';
 
 	$layout = hmib_summary_layout($ostype);
 	$meta   = hmib_summary_card_meta();
