@@ -93,45 +93,32 @@ function hmib_dash_card($path, $fields) {
 	return $json;
 }
 
-it('renders every device card with data for an up device', function () {
-	$page = hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=dashboard&header=false&device=9101');
+it('renders a dashboard page with its expected markup', function (string $url, array $needles) {
+	$page = hmib_e2e_get($GLOBALS['__hmib_e2e'], $url);
 
 	hmib_e2e_assert_clean($page);
-	expect($page['body'])->toContain('ccGrid');
-	expect($page['body'])->toContain('ccGauge');
-	expect($page['body'])->toContain('ccBar');
-	expect($page['text'])->toContain('openssl');
-	expect($page['text'])->toContain('sshd');
-});
 
-it('renders the friendly empty states for a device with no collected tables', function () {
-	$page = hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=dashboard&header=false&device=9102');
-
-	hmib_e2e_assert_clean($page);
-	expect($page['body'])->toContain('ccEmpty');
-	expect($page['text'])->toContain('No swap configured on this device.');
-	expect($page['text'])->toContain('Unlimited');
-});
-
-it('opens the dashboard defensively when the host row is gone', function () {
-	$page = hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=dashboard&header=false&device=9199');
-
-	hmib_e2e_assert_clean($page);
-	expect($page['body'])->toContain('ccGrid');
-	expect($page['text'])->toContain('No system information has been collected for this device yet.');
-});
-
-it('renders every Fleet card with data across all OS types', function () {
-	$page = hmib_e2e_get($GLOBALS['__hmib_e2e'], 'hmib.php?action=summary_dashboard&header=false&ostype=-1');
-
-	hmib_e2e_assert_clean($page);
-	expect($page['body'])->toContain('ccGrid');
-	expect($page['body'])->toContain('ccTile');
-	expect($page['body'])->toContain('ccBullet');
-	expect($page['body'])->toContain('ccStack');
-	expect($page['body'])->toContain('ccDistRow');
-	expect($page['body'])->toContain('ccMiniBar');
-});
+	foreach ($needles as $needle) {
+		expect($page['body'] . ' ' . $page['text'])->toContain($needle);
+	}
+})->with(array(
+	'device cards with data' => array(
+		'hmib.php?action=dashboard&header=false&device=9101',
+		array('ccGrid', 'ccGauge', 'ccBar', 'openssl', 'sshd'),
+	),
+	'device empty states' => array(
+		'hmib.php?action=dashboard&header=false&device=9102',
+		array('ccEmpty', 'No swap configured on this device.', 'Unlimited'),
+	),
+	'device with a missing host row' => array(
+		'hmib.php?action=dashboard&header=false&device=9199',
+		array('ccGrid', 'No system information has been collected for this device yet.'),
+	),
+	'fleet cards with data' => array(
+		'hmib.php?action=summary_dashboard&header=false&ostype=-1',
+		array('ccGrid', 'ccTile', 'ccBullet', 'ccStack', 'ccDistRow', 'ccMiniBar'),
+	),
+));
 
 it('renders a single card expanded over AJAX', function (string $path, array $fields, string $card) {
 	$json = hmib_dash_card($path, $fields);
