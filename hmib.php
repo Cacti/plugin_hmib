@@ -3895,6 +3895,30 @@ function hmib_dashboard_severity(float $percent): string {
 }
 
 /**
+ * Map an hmib severity token to the suffix the shared chart-widget CSS
+ * (include/css/card-widgets.css) expects. hmib's palette uses 'recovering'/'rec'
+ * for the warning band and 'dis' for disabled; the shared widgets expect 'warn'
+ * and 'none'. Anything unrecognised collapses to the neutral 'none'.
+ *
+ * @param string $token An hmib severity token (up/down/recovering/rec/dis/...).
+ *
+ * @return string One of 'up', 'warn', 'down' or 'none'.
+ */
+function hmib_dashboard_severity_class(string $token): string {
+	switch ($token) {
+		case 'up':
+		case 'down':
+			return $token;
+		case 'warn':
+		case 'recovering':
+		case 'rec':
+			return 'warn';
+		default:
+			return 'none';
+	}
+}
+
+/**
  * The severity accent for a card header, or '' for a neutral header. Only the
  * utilization gauge cards carry a severity, derived from their live value; a
  * device that is not up renders neutral.
@@ -3961,7 +3985,7 @@ function hmib_dashboard_bar(float $percent): string {
 	$percent  = max(0.0, min(100.0, $percent));
 	$severity = hmib_dashboard_severity($percent);
 
-	return '<div class="ccBar"><div class="ccBarFill ccBarFill--' . $severity . '" style="width:' . number_format($percent, 1, '.', '') . '%"></div></div>';
+	return '<div class="ccBar"><div class="ccBarFill ccBarFill--' . hmib_dashboard_severity_class($severity) . '" style="width:' . number_format($percent, 1, '.', '') . '%"></div></div>';
 }
 
 /**
@@ -4559,7 +4583,7 @@ function hmib_dashboard(): void {
 
 	form_end();
 
-	print '<div class="ccToolbar">';
+	print '<div id="hmib_dashboard_toolbar" class="ccToolbar">';
 
 	print '<label class="ccToolbarLabel" for="hmib_dashboard_add">' . __esc('Add card', 'hmib') . '</label>';
 	print '<select id="hmib_dashboard_add" class="ccAdd"><option value="">' . __esc('Add a card…', 'hmib') . '</option>';
@@ -4820,7 +4844,7 @@ function hmib_summary_bullet(string $label, ?float $min, ?float $avg, ?float $ma
 	$width = max(0.75, ($hi - $lo) / $scale * 100);
 	$mark  = $av / $scale * 100;
 
-	$sev = in_array($severity, ['up', 'recovering', 'down'], true) ? $severity : 'none';
+	$sev = hmib_dashboard_severity_class($severity);
 
 	return '<div class="ccBullet">' . $head
 		. '<div class="ccBulletTrack">'
@@ -4903,7 +4927,7 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 
 			print '<div class="ccTiles">';
 			foreach ($tiles as $tile) {
-				$mod = $tile[0] !== '' ? ' ccTile--' . $tile[0] : '';
+				$mod = $tile[0] !== '' ? ' ccTile--' . hmib_dashboard_severity_class($tile[0]) : '';
 				print '<div class="ccTile' . $mod . '"><span class="ccTileValue">' . html_escape($tile[1]) . '</span><span class="ccTileLabel">' . html_escape($tile[2]) . '</span></div>';
 			}
 			print '</div>';
@@ -4937,14 +4961,14 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 			print '<div class="ccStack">';
 			foreach ($segs as $seg) {
 				if ($seg[1] > 0) {
-					print '<div class="ccStackSeg ccStackSeg--' . $seg[0] . '" style="width:' . number_format($seg[1] / $total * 100, 2, '.', '') . '%" title="' . html_escape($seg[2] . ': ' . $seg[1]) . '"></div>';
+					print '<div class="ccStackSeg ccStackSeg--' . hmib_dashboard_severity_class($seg[0]) . '" style="width:' . number_format($seg[1] / $total * 100, 2, '.', '') . '%" title="' . html_escape($seg[2] . ': ' . $seg[1]) . '"></div>';
 				}
 			}
 			print '</div>';
 
 			print '<div class="ccStackLegend">';
 			foreach ($segs as $seg) {
-				print '<span><span class="ccStackChip ccStackSeg--' . $seg[0] . '"></span>' . html_escape($seg[2]) . ' ' . number_format_i18n($seg[1], 0) . '</span>';
+				print '<span><span class="ccStackChip ccStackSeg--' . hmib_dashboard_severity_class($seg[0]) . '"></span>' . html_escape($seg[2]) . ' ' . number_format_i18n($seg[1], 0) . '</span>';
 			}
 			print '</div>';
 
@@ -5303,7 +5327,7 @@ function hmib_summary_dashboard(): void {
 		$page_refresh_interval = [0 => __('No Refresh', 'hmib'), 30 => __('30 Seconds', 'hmib'), 60 => __('1 Minute', 'hmib'), 300 => __('5 Minutes', 'hmib')];
 	}
 
-	print '<div class="ccToolbar">';
+	print '<div id="hmib_summary_toolbar" class="ccToolbar">';
 	print '<label class="ccToolbarLabel" for="hmib_summary_type">' . __esc('Scope', 'hmib') . '</label>';
 	print '<select id="hmib_summary_type" class="ccAdd">';
 	print '<option value="-1"' . ($ostype === -1 ? ' selected' : '') . '>' . __esc('All Types', 'hmib') . '</option>';

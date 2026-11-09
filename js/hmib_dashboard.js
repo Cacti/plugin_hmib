@@ -208,6 +208,107 @@ function hmibDashInit(opts) {
 			});
 		}
 
+		/* The live card currently in the grid for an id; an overlapping swap may
+		 * have detached the node captured when a request was issued. */
+		function liveCard(id) {
+			var match = null;
+
+			grid.querySelectorAll('.ccCard').forEach(function(card) {
+				if (match === null && card.dataset.card === id) {
+					match = card;
+				}
+			});
+
+			return match;
+		}
+
+		/* The data-tool of the focused per-card control when focus is inside the
+		 * card, so it can be restored to the equivalent button after a swap. */
+		function focusedTool(card) {
+			var active = document.activeElement;
+
+			if (!card || !active || !active.closest || !card.contains(active)) {
+				return null;
+			}
+
+			var tool = active.closest('.ccTool');
+
+			return tool ? tool.getAttribute('data-tool') : null;
+		}
+
+		/* Restore keyboard focus to the equivalent tool on a freshly swapped card. */
+		function restoreTool(card, tool) {
+			if (!card || !tool) {
+				return;
+			}
+
+			var button = card.querySelector('.ccTool[data-tool="' + tool + '"]');
+
+			if (button) {
+				button.focus();
+			}
+		}
+
+		/* A refresh response carries the expanded state captured when the request
+		 * was issued; re-apply the card's current live state so a toggle made while
+		 * the request was in flight is not undone. */
+		function reconcileExpanded(html, card) {
+			var tmp = document.createElement('div');
+			tmp.innerHTML = String(html).trim();
+
+			var fresh = tmp.querySelector('.ccCard') || tmp.firstElementChild;
+
+			if (!fresh || !card) {
+				return html;
+			}
+
+			var expanded = card.classList.contains('ccCardExpanded');
+			fresh.classList.toggle('ccCardExpanded', expanded);
+			fresh.setAttribute('data-expanded', expanded ? '1' : '0');
+
+			return fresh.outerHTML;
+		}
+
+		/* Swap a card from a refresh response, preserving the live expanded state
+		 * and keyboard focus. Shared by the per-card Refresh tool and refresh-all. */
+		function applyRefresh(card, html) {
+			var live = liveCard(card.dataset.card) || card;
+			var tool = focusedTool(live);
+			var fresh = CactiCards.replaceCard(grid, adapter, live, reconcileExpanded(html, live));
+
+			restoreTool(fresh, tool);
+
+			return fresh;
+		}
+
+		// Guard against appending duplicate cards when the same absent card is
+		// chosen twice before its fetch completes (the shared controller appends
+		// every successful add response).
+		var pendingAdds = {};
+
+		// Serialize layout saves so a newer snapshot cannot be overwritten by a
+		// slower, earlier POST that the shared debounce already released.
+		var layoutSaving = false;
+		var layoutQueued = null;
+
+		function sendLayout(payload) {
+			layoutSaving = true;
+
+			$.post('hmib.php', {
+				action: opts.layoutAction,
+				layout: JSON.stringify(payload),
+				__csrf_magic: csrfMagicToken
+			}, null, 'json').always(function() {
+				layoutSaving = false;
+
+				if (layoutQueued) {
+					var next = layoutQueued;
+					layoutQueued = null;
+					sendLayout(next);
+				}
+			});
+		}
+
 		var adapter = {
 			addControl: opts.addId,
 
@@ -215,8 +316,33 @@ function hmibDashInit(opts) {
 				return fetchCard(id, state && state.expanded);
 			},
 
+			// Runs on init, add and replace: keep the grid's sortable table
+			// headers keyboard-focusable and screen-reader friendly.
+			applyTheme: function(gridEl) {
+				hmibDashPrepSortHeaders(gridEl);
+			},
+
+			// Own the per-card Refresh swap so the live expanded state and
+			// keyboard focus survive the replacement (also when core supplies
+			// the controller).
+			onRefresh: function(id, card) {
+				fetchCard(id, card.classList.contains('ccCardExpanded')).then(function(html) {
+					if (html != null && window.CactiCards) {
+						applyRefresh(card, html);
+					}
+				});
+			},
+
 			onAddCard: function(id) {
-				return fetchCard(id, false);
+				if (liveCard(id) || pendingAdds[id]) {
+					return null;
+				}
+
+				pendingAdds[id] = true;
+
+				return fetchCard(id, false).always(function() {
+					delete pendingAdds[id];
+				});
 			},
 
 			onLayoutChange: function(state) {
@@ -228,11 +354,13 @@ function hmibDashInit(opts) {
 					}
 				});
 
-				$.post('hmib.php', {
-					action: opts.layoutAction,
-					layout: JSON.stringify({order: state.order, expanded: expanded}),
-					__csrf_magic: csrfMagicToken
-				}, null, 'json');
+				var payload = {order: state.order, expanded: expanded};
+
+				if (layoutSaving) {
+					layoutQueued = payload;
+				} else {
+					sendLayout(payload);
+				}
 
 				syncAddOptions();
 			},
@@ -279,8 +407,8 @@ function hmibDashInit(opts) {
 
 				cards.forEach(function(card) {
 					fetchCard(card.dataset.card, card.classList.contains('ccCardExpanded')).then(function(html) {
-						if (html && card.parentNode && window.CactiCards) {
-							CactiCards.replaceCard(grid, adapter, card, html);
+						if (html && window.CactiCards) {
+							applyRefresh(card, html);
 						}
 					}).always(function() {
 						pending--;
