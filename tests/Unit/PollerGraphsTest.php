@@ -13,10 +13,15 @@
  * The script chdir()s, includes cli_check.php and exits at the top level, so
  * it cannot be included. The functions under test are cut out of the source
  * and defined here, with the helpers they call replaced by recorders.
+ *
+ * The Test Data Source gate (test_data_sources()) mirrors Cacti's own
+ * create_save_graph(): a Graph Template with 'Test Data Source' enabled must
+ * not be graphed on a device whose data source returns no valid data.
  */
 
 if (!function_exists('debug')) {
 	function debug($message) {
+		$GLOBALS['__debug_out'][] = (string) $message;
 	}
 }
 
@@ -32,9 +37,20 @@ if (!function_exists('cacti_escapeshellarg')) {
 	}
 }
 
-if (!function_exists('hmib_gt_graph')) {
-	function hmib_gt_graph($host_id, $graph_template_id) {
+if (!function_exists('exec_with_timeout')) {
+	function exec_with_timeout($command, &$output, &$return_code, $timeout) {
+		$GLOBALS['__exec_count']++;
+		$output      = array('Graph Added');
+		$return_code = 0;
+	}
+}
+
+if (!function_exists('test_data_sources')) {
+	function test_data_sources($graph_template_id, $host_id, $snmp_query_id = 0, $snmp_index = '', $values = array()) {
 		$GLOBALS['__graph_calls'][] = array('gt', $host_id, $graph_template_id);
+		$GLOBALS['__tds_args'][]    = array($graph_template_id, $host_id, $snmp_query_id, $snmp_index);
+
+		return $GLOBALS['__tds_return'];
 	}
 }
 
@@ -44,20 +60,20 @@ if (!function_exists('add_host_dq_graphs')) {
 	}
 }
 
-if (!function_exists('hmib_dq_graphs')) {
-	function hmib_dq_graphs($host_id, $query_id, $graph_template_id, $query_type_id) {
-		$GLOBALS['__graph_calls'][] = array('dqg', $host_id, $query_id);
-	}
-}
-
 beforeAll(function () {
 	hmib_test_define_function('poller_graphs.php', 'add_host_based_graphs');
 	hmib_test_define_function('poller_graphs.php', 'add_summary_graphs');
+	hmib_test_define_function('poller_graphs.php', 'hmib_gt_graph');
+	hmib_test_define_function('poller_graphs.php', 'hmib_dq_graphs');
 });
 
 beforeEach(function () {
 	hmib_test_reset_db_mocks();
 	$GLOBALS['__graph_calls'] = array();
+	$GLOBALS['__tds_args']    = array();
+	$GLOBALS['__debug_out']   = array();
+	$GLOBALS['__tds_return']  = true;
+	$GLOBALS['__exec_count']  = 0;
 
 	// The summary device code starts a PHP binary; `true` accepts the arguments and does nothing.
 	$GLOBALS['__test_config'] = array('path_php_binary' => 'true');
@@ -77,7 +93,7 @@ it('adds the users and processes graph templates for a device', function () {
 
 	add_host_based_graphs();
 
-	expect($GLOBALS['__graph_calls'])->toBe(array(array('gt', '9', '11'), array('gt', '9', '12')));
+	expect($GLOBALS['__graph_calls'])->toBe(array(array('gt', 9, 11), array('gt', 9, 12)));
 });
 
 it('does not add the processes graph when only the users template exists', function () {
@@ -85,7 +101,7 @@ it('does not add the processes graph when only the users template exists', funct
 
 	add_host_based_graphs();
 
-	expect($GLOBALS['__graph_calls'])->toBe(array(array('gt', '9', '11')));
+	expect($GLOBALS['__graph_calls'])->toBe(array(array('gt', 9, 11)));
 });
 
 it('adds the processes graph when only the processes template exists', function () {
@@ -93,7 +109,7 @@ it('adds the processes graph when only the processes template exists', function 
 
 	add_host_based_graphs();
 
-	expect($GLOBALS['__graph_calls'])->toBe(array(array('gt', '9', '12')));
+	expect($GLOBALS['__graph_calls'])->toBe(array(array('gt', 9, 12)));
 });
 
 it('adds the disk and processor data query graphs when those queries exist', function () {
@@ -104,6 +120,55 @@ it('adds the disk and processor data query graphs when those queries exist', fun
 	add_host_based_graphs();
 
 	expect($GLOBALS['__graph_calls'])->toBe(array(array('dq', '9', '22'), array('dq', '9', '21')));
+});
+
+it('skips a device graph template when its Test Data Source check fails', function () {
+	$GLOBALS['__tds_return'] = false;
+
+	hmib_gt_graph(9, 11);
+
+	expect($GLOBALS['__tds_args'])->toBe(array(array(11, 9, 0, '')));
+	expect($GLOBALS['__exec_count'])->toBe(0);
+	expect(implode(' ', $GLOBALS['__debug_out']))->toContain('Skipping Graph Template');
+});
+
+it('creates a device graph template when its Test Data Source check passes', function () {
+	$GLOBALS['__tds_return'] = true;
+
+	hmib_gt_graph(9, 11);
+
+	expect($GLOBALS['__tds_args'])->toBe(array(array(11, 9, 0, '')));
+	expect($GLOBALS['__exec_count'])->toBe(1);
+});
+
+it('skips a data query graph when its Test Data Source check fails', function () {
+	hmib_test_mock_db('db_fetch_assoc_prepared', 'host_snmp_cache', array(
+		array('field_value' => 'disk one', 'snmp_index' => '7'),
+	));
+
+	$GLOBALS['__tds_return'] = false;
+
+	hmib_dq_graphs(9, 3, 11, 5, 'hrStorageDescr');
+
+	expect($GLOBALS['__tds_args'])->toBe(array(array(11, 9, 3, '7')));
+	expect(implode(' ', $GLOBALS['__debug_out']))->toContain('Skipping Data Query Graph');
+});
+
+it('skips a summary template graph when its Test Data Source check fails', function () {
+	$GLOBALS['__tds_return'] = false;
+
+	// No data-query graphs; one directly-assigned host_graph template.
+	hmib_test_mock_db('db_fetch_assoc_prepared', function ($sql, $params) {
+		return strpos($sql, 'FROM host_graph') !== false;
+	}, array(
+		array('graph_template_id' => 11),
+	));
+
+	add_summary_graphs(42, 5);
+
+	expect($GLOBALS['__tds_args'])->toBe(array(array(11, 42, 0, '')));
+	expect($GLOBALS['__exec_count'])->toBe(0);
+	expect(implode(' ', $GLOBALS['__debug_out']))->toContain('Skipping Graph Template');
 });
 
 it('builds the summary graphs for the device it just created', function () {
