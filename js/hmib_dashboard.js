@@ -16,17 +16,20 @@
  +-------------------------------------------------------------------------+
 */
 
-/* Host Dashboard: the per-device drilldown card grid. Mirrors the Syslog Status
- * tab's card interaction model (drag/keyboard reorder, per-card tools, an "Add
- * card" catalogue, auto-refresh interval + manual refresh) with the card order,
- * expanded state and current host persisted server-side in settings_user. */
+/*
+ * Host Dashboard adapter for the shared card chrome (js/cards.js). The
+ * CactiCards controller owns drag/keyboard reorder and the per-card tools; this
+ * adapter maps those to hmib's server endpoints (hmib.php) and wires hmib's
+ * dashboard extras - sortable card tables, the device picker, the auto-refresh
+ * interval and manual refresh-all. The card markup uses the shared .cc*
+ * contract and the card bodies the shared .cc* chart primitives.
+ */
 
-var hmibDashDragging = null;
+var hmibDashAdapter = null;
 
 /* Named navigation callback for the device picker. The select2 drop_callback
- * invokes this by name (via the field's on_change/data-callback) on selection
- * instead of emitting a change event, so it reads the picker value itself and
- * opens that device's dashboard. Must stay global for executeFunctionByName(). */
+ * invokes this by name on selection (it does not emit a change event on older
+ * Cacti), so it must stay global for executeFunctionByName(). */
 function hmibDashboardNavigate() {
 	var host = document.getElementById('hmib_dashboard_host');
 
@@ -35,302 +38,12 @@ function hmibDashboardNavigate() {
 	}
 }
 
-function initHmibDashboard() {
-	$(function() {
-		var grid = document.getElementById('hmib_dashboard');
-		if (!grid) {
-			return;
-		}
-
-		grid.querySelectorAll('.hmibDashCard').forEach(function(card) {
-			hmibDashBindCard(grid, card);
-		});
-
-		grid.addEventListener('dragover', function(event) {
-			if (!hmibDashDragging) {
-				return;
-			}
-			event.preventDefault();
-			event.dataTransfer.dropEffect = 'move';
-			var before = hmibDashDragReference(grid, event.clientX, event.clientY);
-			if (before == null) {
-				grid.appendChild(hmibDashDragging);
-			} else if (before !== hmibDashDragging) {
-				grid.insertBefore(hmibDashDragging, before);
-			}
-		});
-
-		// Per-card tool buttons bubble to the grid.
-		$(grid).off('click.hmibdash').on('click.hmibdash', '.hmibDashCardTool', function() {
-			var card = this.closest('.hmibDashCard');
-			if (!card) {
-				return;
-			}
-			switch (this.dataset.tool) {
-				case 'expand':   card.classList.add('hmibDashCardExpanded'); hmibDashSaveLayout(grid); break;
-				case 'collapse': card.classList.remove('hmibDashCardExpanded'); hmibDashSaveLayout(grid); break;
-				case 'maximize': hmibDashMaximize(card); break;
-				case 'refresh':  hmibDashRefreshCard(grid, card); break;
-				case 'remove':   hmibDashRemoveCard(grid, card); break;
-			}
-		});
-
-		// Client-side column sorting for card tables (mouse and keyboard).
-		$(grid).off('click.hmibdashsort').on('click.hmibdashsort', 'th.hmibDashSortable', function() {
-			hmibDashSortTable(this);
-		});
-		$(grid).off('keydown.hmibdashsort').on('keydown.hmibdashsort', 'th.hmibDashSortable', function(event) {
-			if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
-				event.preventDefault();
-				hmibDashSortTable(this);
-			}
-		});
-
-		var add = document.getElementById('hmib_dashboard_add');
-		if (add) {
-			$(add).off('change.hmibdash').on('change.hmibdash', function() {
-				var key = this.value;
-				this.value = '';
-				if (key) {
-					hmibDashAddCard(grid, key);
-				}
-			});
-		}
-
-		var host = document.getElementById('hmib_dashboard_host');
-		if (host) {
-			// Native change covers the plain-<select> autocomplete fallback; the
-			// select2 AJAX control instead invokes the named hmibDashboardNavigate()
-			// callback (wired via the field's on_change/data-callback), which does
-			// not emit a change event on older Cacti, so both paths are handled.
-			$(host).off('change.hmibdash').on('change.hmibdash', function() {
-				hmibDashboardNavigate();
-			});
-		}
-
-		// Changing the interval persists the preference through a CSRF-protected
-		// POST (never a drive-by GET), then reloads so Cacti's page refresh applies.
-		var interval = document.getElementById('hmib_dashboard_refresh');
-		if (interval) {
-			$(interval).off('change.hmibdash').on('change.hmibdash', function() {
-				$.post('hmib.php', {action: 'dashboard_refresh', refresh: this.value, __csrf_magic: csrfMagicToken}, null, 'json').always(function() {
-					window.location = 'hmib.php?action=dashboard';
-				});
-			});
-		}
-
-		var refreshNow = document.getElementById('hmib_dashboard_refresh_now');
-		if (refreshNow) {
-			$(refreshNow).off('click.hmibdash').on('click.hmibdash', function() {
-				hmibDashRefreshAll(grid, this);
-			});
-		}
-	});
-}
-
-/** Wire a single card's drag handle (mouse + keyboard) and drag events. */
-function hmibDashBindCard(grid, card) {
-	hmibDashPrepSortHeaders(card);
-
-	var handle = card.querySelector('.hmibDashCardDrag');
-	if (!handle) {
-		return;
-	}
-
-	// Arm HTML5 drag only from the handle, and disarm on release when no drag
-	// began so selecting content elsewhere can't drag the card.
-	var disarm = function() { card.draggable = false; };
-	handle.addEventListener('mousedown', function() {
-		card.draggable = true;
-		document.addEventListener('mouseup', disarm, {once: true});
-	});
-	handle.addEventListener('touchstart', function() {
-		card.draggable = true;
-		document.addEventListener('touchend', disarm, {once: true});
-		document.addEventListener('touchcancel', disarm, {once: true});
-	}, {passive: true});
-
-	// Keyboard-accessible reordering: move the card with the arrow keys.
-	handle.addEventListener('keydown', function(event) {
-		var back = event.key === 'ArrowLeft' || event.key === 'ArrowUp';
-		var fwd  = event.key === 'ArrowRight' || event.key === 'ArrowDown';
-		if (!back && !fwd) {
-			return;
-		}
-		event.preventDefault();
-		if (back && card.previousElementSibling) {
-			grid.insertBefore(card, card.previousElementSibling);
-		} else if (fwd && card.nextElementSibling) {
-			grid.insertBefore(card.nextElementSibling, card);
-		} else {
-			return;
-		}
-		handle.focus();
-		hmibDashSaveLayout(grid);
-	});
-
-	card.addEventListener('dragstart', function(event) {
-		hmibDashDragging = card;
-		card.classList.add('hmibDashCardDragging');
-		event.dataTransfer.effectAllowed = 'move';
-		try { event.dataTransfer.setData('text/plain', card.dataset.card || ''); } catch (error) { /* IE guard */ }
-	});
-
-	card.addEventListener('dragend', function() {
-		card.draggable = false;
-		card.classList.remove('hmibDashCardDragging');
-		if (hmibDashDragging) {
-			hmibDashDragging = null;
-			hmibDashSaveLayout(grid);
-		}
-	});
-}
-
-/** The card the dragged card should be inserted before for the current pointer
- *  position, or null to append at the end. */
-function hmibDashDragReference(grid, x, y) {
-	var cards = Array.prototype.slice.call(grid.querySelectorAll('.hmibDashCard:not(.hmibDashCardDragging)'));
-	for (var i = 0; i < cards.length; i++) {
-		var rect = cards[i].getBoundingClientRect();
-		if (y < rect.top - 1) {
-			return cards[i];
-		}
-		if (y <= rect.bottom && x < rect.left + rect.width / 2) {
-			return cards[i];
-		}
-	}
-	return null;
-}
-
-/** Add a card from the catalogue: fetch its HTML, append it, persist and refresh
- *  the "Add" options. */
-function hmibDashAddCard(grid, key) {
-	if (hmibDashHasCard(grid, key)) {
-		return;
-	}
-	$.post('hmib.php', {action: 'dashboard_card', card: key, device: grid.dataset.host, __csrf_magic: csrfMagicToken}, null, 'json').done(function(data) {
-		if (!data || !data.html || hmibDashHasCard(grid, key)) {
-			return;
-		}
-		var card = hmibDashParseCard(data.html);
-		if (!card) {
-			return;
-		}
-		grid.appendChild(card);
-		hmibDashBindCard(grid, card);
-		hmibDashSaveLayout(grid);
-		hmibDashSyncAddOptions(grid);
-	});
-}
-
-/** Whether a card with the given key is currently on the grid. */
-function hmibDashHasCard(grid, key) {
-	var present = false;
-	grid.querySelectorAll('.hmibDashCard').forEach(function(card) {
-		if (card.dataset.card === key) {
-			present = true;
-		}
-	});
-	return present;
-}
-
-/** Remove a card from the page and return it to the "Add" catalogue. */
-function hmibDashRemoveCard(grid, card) {
-	card.parentNode.removeChild(card);
-	hmibDashSaveLayout(grid);
-	hmibDashSyncAddOptions(grid);
-}
-
-/** Re-fetch a single card's HTML and swap it in place, keeping expanded state. */
-function hmibDashRefreshCard(grid, card, done) {
-	var icon = card.querySelector('.hmibDashCardTool[data-tool="refresh"] .fa, .hmibDashCardTool[data-tool="refresh"] .fas');
-	if (icon) {
-		icon.classList.add('fa-spin');
-	}
-	var settle = function() {
-		if (icon) {
-			icon.classList.remove('fa-spin');
-		}
-		if (done) {
-			done();
-		}
-	};
-	var expanded = card.classList.contains('hmibDashCardExpanded') ? '1' : '0';
-	$.post('hmib.php', {action: 'dashboard_card', card: card.dataset.card, device: grid.dataset.host, expanded: expanded, __csrf_magic: csrfMagicToken}, null, 'json').done(function(data) {
-		if (!data || !data.html || !card.parentNode) {
-			settle();
-			return;
-		}
-		var fresh = hmibDashParseCard(data.html);
-		if (!fresh) {
-			settle();
-			return;
-		}
-		card.parentNode.replaceChild(fresh, card);
-		hmibDashBindCard(grid, fresh);
-		if (done) {
-			done();
-		}
-	}).fail(settle);
-}
-
-/** Refresh every card on the page, spinning the toolbar glyph until all land. */
-function hmibDashRefreshAll(grid, button) {
-	var icon = button ? button.querySelector('.fa, .fas') : null;
-	var cards = Array.prototype.slice.call(grid.querySelectorAll('.hmibDashCard'));
-	var pending = cards.length;
-	if (!pending) {
-		return;
-	}
-	if (icon) {
-		icon.classList.add('fa-spin');
-	}
-	cards.forEach(function(card) {
-		hmibDashRefreshCard(grid, card, function() {
-			pending--;
-			if (pending <= 0 && icon) {
-				icon.classList.remove('fa-spin');
-			}
-		});
-	});
-}
-
-/** Open a copy of a card's body in a large modal dialog. */
-function hmibDashMaximize(card) {
-	var dialog = document.getElementById('hmib_dashboard_dialog');
-	if (!dialog) {
-		return;
-	}
-	var title = card.querySelector('.hmibDashCardTitle');
-	var body  = card.querySelector('.hmibDashCardBody');
-	dialog.innerHTML = '<div class="hmibDashDialogBody">' + (body ? body.innerHTML : '') + '</div>';
-
-	// The dialog is a clone outside the grid, so wire its own sort handlers.
-	hmibDashPrepSortHeaders(dialog);
-	$(dialog).off('click.hmibdashsort').on('click.hmibdashsort', 'th.hmibDashSortable', function() {
-		hmibDashSortTable(this);
-	});
-	$(dialog).off('keydown.hmibdashsort').on('keydown.hmibdashsort', 'th.hmibDashSortable', function(event) {
-		if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
-			event.preventDefault();
-			hmibDashSortTable(this);
-		}
-	});
-
-	$(dialog).dialog({
-		modal: true,
-		appendTo: 'body',
-		width: Math.min(900, $(window).width() - 40),
-		title: title ? title.textContent : ''
-	});
-}
-
-/** Make a container's sortable headers focusable and screen-reader friendly:
- *  keyboard-operable (tabindex) with an initial aria-sort state. */
+/* Make a container's sortable headers focusable and screen-reader friendly. */
 function hmibDashPrepSortHeaders(container) {
 	if (!container) {
 		return;
 	}
+
 	container.querySelectorAll('th.hmibDashSortable').forEach(function(th) {
 		if (!th.hasAttribute('tabindex')) {
 			th.setAttribute('tabindex', '0');
@@ -342,49 +55,19 @@ function hmibDashPrepSortHeaders(container) {
 	});
 }
 
-/** Parse a card HTML string into its <section> element. */
-function hmibDashParseCard(html) {
-	var tmp = document.createElement('div');
-	tmp.innerHTML = html;
-	return tmp.querySelector('.hmibDashCard');
-}
-
-/** Rebuild the "Add" dropdown so it lists only cards not currently on the page. */
-function hmibDashSyncAddOptions(grid) {
-	var add = document.getElementById('hmib_dashboard_add');
-	if (!add || typeof hmibDashCatalog === 'undefined') {
-		return;
-	}
-	var present = {};
-	grid.querySelectorAll('.hmibDashCard').forEach(function(card) {
-		if (card.dataset.card) {
-			present[card.dataset.card] = true;
-		}
-	});
-	while (add.options.length > 1) {
-		add.remove(1);
-	}
-	Object.keys(hmibDashCatalog).forEach(function(key) {
-		if (!present[key]) {
-			var option = document.createElement('option');
-			option.value = key;
-			option.textContent = hmibDashCatalog[key];
-			add.appendChild(option);
-		}
-	});
-}
-
-/** Sort a card table by the clicked column header, toggling asc/desc. Numeric
- *  columns (data-sort="num") sort by the cell's data-sort-value when present. */
+/* Sort a card table by the clicked column header, toggling asc/desc. Numeric
+ * columns (data-sort="num") sort by the cell's data-sort-value when present. */
 function hmibDashSortTable(th) {
 	var table = th.closest('table');
 	if (!table) {
 		return;
 	}
+
 	var tbody = table.tBodies[0];
 	if (!tbody) {
 		return;
 	}
+
 	var headers = Array.prototype.slice.call(th.parentNode.children);
 	var index = headers.indexOf(th);
 	var numeric = th.dataset.sort === 'num';
@@ -429,40 +112,199 @@ function hmibDashSortTable(th) {
 	});
 }
 
-/** Serialize layout POSTs so rapid actions can't persist out of order: one
- *  request is in flight at a time, and a save requested meanwhile is coalesced
- *  into a single follow-up that reads the latest DOM, so the final state wins. */
-var hmibDashSaveInFlight = false;
-var hmibDashSaveQueued = false;
+/* Rebuild the "Add" dropdown so it lists only cards not currently on the page. */
+function hmibDashSyncAddOptions(grid) {
+	var add = document.getElementById('hmib_dashboard_add');
 
-function hmibDashSaveLayout(grid) {
-	if (hmibDashSaveInFlight) {
-		hmibDashSaveQueued = true;
+	if (!add || typeof hmibDashCatalog === 'undefined') {
 		return;
 	}
-	hmibDashSaveInFlight = true;
 
-	var order = [];
-	var expanded = {};
-	grid.querySelectorAll('.hmibDashCard').forEach(function(card) {
-		if (!card.dataset.card) {
-			return;
+	var present = {};
+
+	grid.querySelectorAll('.ccCard').forEach(function(card) {
+		if (card.dataset.card) {
+			present[card.dataset.card] = true;
 		}
-		order.push(card.dataset.card);
-		if (card.classList.contains('hmibDashCardExpanded')) {
-			expanded[card.dataset.card] = true;
+	});
+
+	while (add.options.length > 1) {
+		add.remove(1);
+	}
+
+	Object.keys(hmibDashCatalog).forEach(function(key) {
+		if (!present[key]) {
+			var option = document.createElement('option');
+			option.value = key;
+			option.textContent = hmibDashCatalog[key];
+			add.appendChild(option);
+		}
+	});
+}
+
+/* Open a copy of a card's body in a large modal dialog, re-wiring the clone's
+ * sortable table headers (they live outside the grid). */
+function hmibDashMaximize(card) {
+	var dialog = document.getElementById('hmib_dashboard_dialog');
+
+	if (!dialog) {
+		return;
+	}
+
+	var title = card.querySelector('.ccTitle');
+	var body  = card.querySelector('.ccCardBody');
+
+	dialog.innerHTML = '<div class="ccDialogBody">' + (body ? body.innerHTML : '') + '</div>';
+
+	hmibDashPrepSortHeaders(dialog);
+	$(dialog).off('click.hmibdashsort').on('click.hmibdashsort', 'th.hmibDashSortable', function() {
+		hmibDashSortTable(this);
+	});
+	$(dialog).off('keydown.hmibdashsort').on('keydown.hmibdashsort', 'th.hmibDashSortable', function(event) {
+		if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+			event.preventDefault();
+			hmibDashSortTable(this);
+		}
+	});
+
+	$(dialog).dialog({
+		modal: true,
+		appendTo: 'body',
+		width: Math.min(900, $(window).width() - 40),
+		title: title ? title.textContent : ''
+	});
+}
+
+/* Fetch a single card's HTML from the server (used by refresh/add). */
+function hmibDashFetch(grid, id, expanded) {
+	return $.post('hmib.php', {
+		action: 'dashboard_card',
+		card: id,
+		device: grid.dataset.host,
+		expanded: expanded ? '1' : '0',
+		__csrf_magic: csrfMagicToken
+	}, null, 'json').then(function(data) {
+		return data && data.html ? data.html : null;
+	});
+}
+
+/* Persist order + expanded state and resync the "Add" catalogue. */
+function hmibDashPostLayout(grid, state) {
+	var expanded = {};
+
+	state.order.forEach(function(id) {
+		if (state.cards[id] && state.cards[id].expanded) {
+			expanded[id] = true;
 		}
 	});
 
 	$.post('hmib.php', {
 		action: 'dashboard_layout',
-		layout: JSON.stringify({order: order, expanded: expanded}),
+		layout: JSON.stringify({order: state.order, expanded: expanded}),
 		__csrf_magic: csrfMagicToken
-	}, null, 'json').always(function() {
-		hmibDashSaveInFlight = false;
-		if (hmibDashSaveQueued) {
-			hmibDashSaveQueued = false;
-			hmibDashSaveLayout(grid);
+	}, null, 'json');
+
+	hmibDashSyncAddOptions(grid);
+}
+
+/* Refresh every card on the page, spinning the toolbar glyph until all land. */
+function hmibDashRefreshAll(grid, button) {
+	var icon = button ? button.querySelector('.fa, .fas') : null;
+	var cards = Array.prototype.slice.call(grid.querySelectorAll('.ccCard'));
+	var pending = cards.length;
+
+	if (!pending) {
+		return;
+	}
+
+	if (icon) {
+		icon.classList.add('fa-spin');
+	}
+
+	cards.forEach(function(card) {
+		var expanded = card.classList.contains('ccCardExpanded');
+
+		hmibDashFetch(grid, card.dataset.card, expanded).then(function(html) {
+			if (html && card.parentNode && window.CactiCards) {
+				CactiCards.replaceCard(grid, hmibDashAdapter, card, html);
+			}
+		}).always(function() {
+			pending--;
+			if (pending <= 0 && icon) {
+				icon.classList.remove('fa-spin');
+			}
+		});
+	});
+}
+
+/* Wire the Host Dashboard grid to the shared card chrome plus hmib's extras. */
+function initHmibDashboard() {
+	$(function() {
+		var grid = document.getElementById('hmib_dashboard');
+
+		if (!grid || !window.CactiCards) {
+			return;
+		}
+
+		hmibDashAdapter = {
+			addControl: 'hmib_dashboard_add',
+
+			fetchCard: function(id, state) {
+				return hmibDashFetch(grid, id, state && state.expanded);
+			},
+
+			onAddCard: function(id) {
+				return hmibDashFetch(grid, id, false);
+			},
+
+			onLayoutChange: function(state) {
+				hmibDashPostLayout(grid, state);
+			},
+
+			maximize: function(id, mode, card) {
+				hmibDashMaximize(card);
+			}
+		};
+
+		CactiCards.init(grid, hmibDashAdapter);
+		hmibDashSyncAddOptions(grid);
+
+		// Client-side column sorting for card tables (mouse and keyboard).
+		$(grid).off('click.hmibdashsort').on('click.hmibdashsort', 'th.hmibDashSortable', function() {
+			hmibDashSortTable(this);
+		});
+		$(grid).off('keydown.hmibdashsort').on('keydown.hmibdashsort', 'th.hmibDashSortable', function(event) {
+			if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+				event.preventDefault();
+				hmibDashSortTable(this);
+			}
+		});
+
+		// Device picker: the plain-<select> fallback emits change; the select2
+		// AJAX control instead invokes hmibDashboardNavigate() by name.
+		var host = document.getElementById('hmib_dashboard_host');
+		if (host) {
+			$(host).off('change.hmibdash').on('change.hmibdash', function() {
+				hmibDashboardNavigate();
+			});
+		}
+
+		// Auto-refresh interval: persist through a CSRF-protected POST, then
+		// reload so Cacti's page refresh applies.
+		var interval = document.getElementById('hmib_dashboard_refresh');
+		if (interval) {
+			$(interval).off('change.hmibdash').on('change.hmibdash', function() {
+				$.post('hmib.php', {action: 'dashboard_refresh', refresh: this.value, __csrf_magic: csrfMagicToken}, null, 'json').always(function() {
+					window.location = 'hmib.php?action=dashboard';
+				});
+			});
+		}
+
+		var refreshNow = document.getElementById('hmib_dashboard_refresh_now');
+		if (refreshNow) {
+			$(refreshNow).off('click.hmibdash').on('click.hmibdash', function() {
+				hmibDashRefreshAll(grid, this);
+			});
 		}
 	});
 }

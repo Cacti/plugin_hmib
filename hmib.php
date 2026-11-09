@@ -109,6 +109,17 @@ if (get_request_var('action') == 'summary_refresh') {
 
 general_header();
 
+// Shared card chrome + chart-widget primitives. On Cacti 1.2.32+ these ship in
+// core and are loaded by the common page header; bundle the plugin's own copy
+// only when core does not provide them.
+if (!file_exists($config['base_path'] . '/include/css/cards.css')) {
+	print get_md5_include_css('plugins/hmib/css/cards.css');
+}
+
+if (!file_exists($config['base_path'] . '/include/css/card-widgets.css')) {
+	print get_md5_include_css('plugins/hmib/css/card-widgets.css');
+}
+
 // Load this plugin's per-theme glyph styling: base rules plus the active
 // theme's override file when one is shipped (see plugins/hmib/css/).
 print get_md5_include_css('plugins/hmib/css/hmib.css');
@@ -3925,14 +3936,14 @@ function hmib_dashboard_gauge(float $percent, string $center_label, string $sub_
 	$color    = $severity === 'down' ? '#cc0000' : ($severity === 'recovering' ? '#d9830f' : '#3c9a5f');
 	$dash     = number_format($percent, 2, '.', '');
 
-	return '<div class="hmibDashGauge">'
-		. '<svg class="hmibDashGaugeSvg" viewBox="0 0 120 68" role="img" aria-label="' . html_escape($center_label) . '">'
-		. '<path class="hmibDashGaugeTrack" d="M10 60 A50 50 0 0 1 110 60" fill="none" pathLength="100" />'
-		. '<path class="hmibDashGaugeValue" d="M10 60 A50 50 0 0 1 110 60" fill="none" pathLength="100" stroke="' . $color . '" stroke-dasharray="' . $dash . ' 100" />'
+	return '<div class="ccGauge">'
+		. '<svg class="ccGaugeSvg" viewBox="0 0 120 68" role="img" aria-label="' . html_escape($center_label) . '">'
+		. '<path class="ccGaugeTrack" d="M10 60 A50 50 0 0 1 110 60" fill="none" pathLength="100" />'
+		. '<path class="ccGaugeValue" d="M10 60 A50 50 0 0 1 110 60" fill="none" pathLength="100" stroke="' . $color . '" stroke-dasharray="' . $dash . ' 100" />'
 		. '</svg>'
-		. '<div class="hmibDashGaugeText">'
-		. '<span class="hmibDashGaugeValueText">' . html_escape($center_label) . '</span>'
-		. ($sub_label !== '' ? '<span class="hmibDashGaugeSub">' . html_escape($sub_label) . '</span>' : '')
+		. '<div class="ccGaugeText">'
+		. '<span class="ccGaugeValueText">' . html_escape($center_label) . '</span>'
+		. ($sub_label !== '' ? '<span class="ccGaugeSub">' . html_escape($sub_label) . '</span>' : '')
 		. '</div></div>';
 }
 
@@ -3947,7 +3958,7 @@ function hmib_dashboard_bar(float $percent): string {
 	$percent  = max(0.0, min(100.0, $percent));
 	$severity = hmib_dashboard_severity($percent);
 
-	return '<div class="hmibDashBar"><div class="hmibDashBarFill hmibDashBarFill--' . $severity . '" style="width:' . number_format($percent, 1, '.', '') . '%"></div></div>';
+	return '<div class="ccBar"><div class="ccBarFill ccBarFill--' . $severity . '" style="width:' . number_format($percent, 1, '.', '') . '%"></div></div>';
 }
 
 /**
@@ -3990,7 +4001,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 	switch ($key) {
 		case 'system':
 			if (!cacti_sizeof($system)) {
-				print '<p class="hmibDashEmpty">' . __esc('No system information has been collected for this device yet.', 'hmib') . '</p>';
+				print '<p class="ccEmpty">' . __esc('No system information has been collected for this device yet.', 'hmib') . '</p>';
 
 				break;
 			}
@@ -4014,7 +4025,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 			break;
 		case 'cpu':
 			if (!cacti_sizeof($system)) {
-				print '<p class="hmibDashEmpty">' . __esc('No processor data available.', 'hmib') . '</p>';
+				print '<p class="ccEmpty">' . __esc('No processor data available.', 'hmib') . '</p>';
 
 				break;
 			}
@@ -4027,7 +4038,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 			break;
 		case 'memory':
 			if (!cacti_sizeof($system)) {
-				print '<p class="hmibDashEmpty">' . __esc('No memory data available.', 'hmib') . '</p>';
+				print '<p class="ccEmpty">' . __esc('No memory data available.', 'hmib') . '</p>';
 
 				break;
 			}
@@ -4040,7 +4051,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 			break;
 		case 'swap':
 			if (!cacti_sizeof($system) || (float) $system['swapSize'] <= 0) {
-				print '<p class="hmibDashEmpty">' . __esc('No swap configured on this device.', 'hmib') . '</p>';
+				print '<p class="ccEmpty">' . __esc('No swap configured on this device.', 'hmib') . '</p>';
 
 				break;
 			}
@@ -4053,12 +4064,12 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 			break;
 		case 'logins':
 			if (!cacti_sizeof($system)) {
-				print '<p class="hmibDashEmpty">' . __esc('No session data available.', 'hmib') . '</p>';
+				print '<p class="ccEmpty">' . __esc('No session data available.', 'hmib') . '</p>';
 
 				break;
 			}
 
-			print '<div class="hmibDashStat"><span class="hmibDashStatValue">' . ($up ? number_format_i18n((int) $system['users'], 0) : __('N/A', 'hmib')) . '</span><span class="hmibDashStatLabel">' . __esc('Logged-in Users', 'hmib') . '</span></div>';
+			print '<div class="ccStat"><span class="ccStatValue">' . ($up ? number_format_i18n((int) $system['users'], 0) : __('N/A', 'hmib')) . '</span><span class="ccStatLabel">' . __esc('Logged-in Users', 'hmib') . '</span></div>';
 			print '<table class="hmibDashTable hmibDashKv"><tbody>';
 			$kv(__('Running Processes', 'hmib'), $up ? number_format_i18n((int) $system['processes'], 0) : __('N/A', 'hmib'));
 			$kv(__('Maximum Processes', 'hmib'), (int) $system['maxProcesses'] > 0 ? number_format_i18n((int) $system['maxProcesses'], 0) : __('Unlimited', 'hmib'));
@@ -4088,7 +4099,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 						. '</tr>';
 				}
 			} else {
-				print '<tr class="hmibDashEmptyRow"><td colspan="3" class="hmibDashEmpty">' . __esc('No per-processor load reported.', 'hmib') . '</td></tr>';
+				print '<tr class="hmibDashEmptyRow"><td colspan="3" class="ccEmpty">' . __esc('No per-processor load reported.', 'hmib') . '</td></tr>';
 			}
 
 			print '</tbody></table>';
@@ -4128,7 +4139,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 						. '</tr>';
 				}
 			} else {
-				print '<tr class="hmibDashEmptyRow"><td colspan="5" class="hmibDashEmpty">' . __esc('No storage volumes detected.', 'hmib') . '</td></tr>';
+				print '<tr class="hmibDashEmptyRow"><td colspan="5" class="ccEmpty">' . __esc('No storage volumes detected.', 'hmib') . '</td></tr>';
 			}
 
 			print '</tbody></table>';
@@ -4162,7 +4173,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 						. '</tr>';
 				}
 			} else {
-				print '<tr class="hmibDashEmptyRow"><td colspan="3" class="hmibDashEmpty">' . __esc('No running processes recorded.', 'hmib') . '</td></tr>';
+				print '<tr class="hmibDashEmptyRow"><td colspan="3" class="ccEmpty">' . __esc('No running processes recorded.', 'hmib') . '</td></tr>';
 			}
 
 			print '</tbody></table>';
@@ -4188,12 +4199,12 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 
 					print '<tr>'
 						. '<td>' . html_escape($device['description']) . '</td>'
-						. '<td><span class="hmibDashPill ' . hmib_device_status_class($status) . '">' . html_escape($label) . '</span></td>'
+						. '<td><span class="ccPill ' . hmib_device_status_class($status) . '">' . html_escape($label) . '</span></td>'
 						. '<td class="hmibDashNum" data-sort-value="' . (int) $device['errors'] . '">' . number_format_i18n((int) $device['errors'], 0) . '</td>'
 						. '</tr>';
 				}
 			} else {
-				print '<tr class="hmibDashEmptyRow"><td colspan="3" class="hmibDashEmpty">' . __esc('No hardware devices detected.', 'hmib') . '</td></tr>';
+				print '<tr class="hmibDashEmptyRow"><td colspan="3" class="ccEmpty">' . __esc('No hardware devices detected.', 'hmib') . '</td></tr>';
 			}
 
 			print '</tbody></table>';
@@ -4208,7 +4219,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 
 			$count = cacti_sizeof($software);
 
-			print '<div class="hmibDashStat"><span class="hmibDashStatValue">' . number_format_i18n($count, 0) . '</span><span class="hmibDashStatLabel">' . __esc('Installed Packages', 'hmib') . '</span></div>';
+			print '<div class="ccStat"><span class="ccStatValue">' . number_format_i18n($count, 0) . '</span><span class="ccStatLabel">' . __esc('Installed Packages', 'hmib') . '</span></div>';
 			print '<table class="hmibDashTable"><thead><tr>'
 				. '<th class="hmibDashSortable">' . __esc('Name', 'hmib') . '</th>'
 				. '<th class="hmibDashSortable">' . __esc('Installed', 'hmib') . '</th>'
@@ -4222,7 +4233,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 						. '</tr>';
 				}
 			} else {
-				print '<tr class="hmibDashEmptyRow"><td colspan="2" class="hmibDashEmpty">' . __esc('No installed software inventory collected.', 'hmib') . '</td></tr>';
+				print '<tr class="hmibDashEmptyRow"><td colspan="2" class="ccEmpty">' . __esc('No installed software inventory collected.', 'hmib') . '</td></tr>';
 			}
 
 			print '</tbody></table>';
@@ -4250,7 +4261,7 @@ function hmib_dashboard_card_body(string $key, int $host_id): string {
 						. '</tr>';
 				}
 			} else {
-				print '<tr class="hmibDashEmptyRow"><td colspan="3" class="hmibDashEmpty">' . __esc('No process use history recorded.', 'hmib') . '</td></tr>';
+				print '<tr class="hmibDashEmptyRow"><td colspan="3" class="ccEmpty">' . __esc('No process use history recorded.', 'hmib') . '</td></tr>';
 			}
 
 			print '</tbody></table>';
@@ -4283,34 +4294,36 @@ function hmib_dashboard_render_card(string $key, int $host_id, bool $expanded = 
 	$tools = '';
 
 	if ($def['expandable']) {
-		$tools .= '<button type="button" class="hmibDashCardTool" data-tool="expand" aria-label="' . __esc('Show more', 'hmib') . '" title="' . __esc('Show more', 'hmib') . '"><i class="fas fa-chevron-down" aria-hidden="true"></i></button>';
-		$tools .= '<button type="button" class="hmibDashCardTool" data-tool="collapse" aria-label="' . __esc('Show less', 'hmib') . '" title="' . __esc('Show less', 'hmib') . '"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>';
+		$tools .= '<button type="button" class="ccTool" data-tool="expand" aria-label="' . __esc('Show more', 'hmib') . '" title="' . __esc('Show more', 'hmib') . '"><i class="fas fa-chevron-down" aria-hidden="true"></i></button>';
+		$tools .= '<button type="button" class="ccTool" data-tool="collapse" aria-label="' . __esc('Show less', 'hmib') . '" title="' . __esc('Show less', 'hmib') . '"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>';
 	}
 
-	$tools .= '<button type="button" class="hmibDashCardTool" data-tool="maximize" aria-label="' . __esc('Open in a dialog', 'hmib') . '" title="' . __esc('Open in a dialog', 'hmib') . '"><i class="fas fa-window-maximize" aria-hidden="true"></i></button>';
-	$tools .= '<button type="button" class="hmibDashCardTool" data-tool="refresh" aria-label="' . __esc('Refresh', 'hmib') . '" title="' . __esc('Refresh', 'hmib') . '"><i class="fas fa-sync-alt" aria-hidden="true"></i></button>';
-	$tools .= '<button type="button" class="hmibDashCardTool" data-tool="remove" aria-label="' . __esc('Remove from page', 'hmib') . '" title="' . __esc('Remove from page', 'hmib') . '"><i class="fas fa-times" aria-hidden="true"></i></button>';
+	$tools .= '<button type="button" class="ccTool" data-tool="maximize" aria-label="' . __esc('Open in a dialog', 'hmib') . '" title="' . __esc('Open in a dialog', 'hmib') . '"><i class="fas fa-window-maximize" aria-hidden="true"></i></button>';
+	$tools .= '<button type="button" class="ccTool" data-tool="refresh" aria-label="' . __esc('Refresh', 'hmib') . '" title="' . __esc('Refresh', 'hmib') . '"><i class="fas fa-sync-alt" aria-hidden="true"></i></button>';
+	$tools .= '<button type="button" class="ccTool" data-tool="remove" aria-label="' . __esc('Remove from page', 'hmib') . '" title="' . __esc('Remove from page', 'hmib') . '"><i class="fas fa-times" aria-hidden="true"></i></button>';
 
-	$classes = 'hmibDashCard hmibDashSpan' . (int) $def['span'];
+	$classes = 'ccCard ccW' . (int) $def['span'];
 
 	if ($def['expandable']) {
-		$classes .= ' hmibDashCardExpandable';
+		$classes .= ' ccCardExpandable';
 	}
 
 	if ($expanded) {
-		$classes .= ' hmibDashCardExpanded';
+		$classes .= ' ccCardExpanded';
 	}
 
 	$state = hmib_dashboard_card_state($key, $host_id);
-	$header_class = 'hmibDashCardHeader' . ($state !== '' ? ' hmibDashCardHeader--' . $state : '');
+	$severity = ($state === 'recovering') ? 'warn' : (($state === 'up' || $state === 'down') ? $state : 'none');
 
-	return '<section class="' . $classes . '" data-card="' . html_escape($key) . '">'
-		. '<header class="' . $header_class . '">'
-		. '<button type="button" class="hmibDashCardDrag" aria-label="' . __esc('Drag to reorder card', 'hmib') . '"><i class="fas fa-bars" aria-hidden="true"></i></button>'
-		. '<h2 class="hmibDashCardTitle">' . html_escape($def['title']) . '</h2>'
-		. '<span class="hmibDashCardTools">' . $tools . '</span>'
+	return '<section class="' . $classes . '" data-card="' . html_escape($key) . '" data-severity="' . $severity . '"'
+		. ($def['expandable'] ? ' data-expandable="1"' : '')
+		. ' data-expanded="' . ($expanded ? '1' : '0') . '">'
+		. '<header class="ccCardHeader">'
+		. '<button type="button" class="ccDrag" aria-label="' . __esc('Drag to reorder card', 'hmib') . '"><i class="fas fa-bars" aria-hidden="true"></i></button>'
+		. '<h2 class="ccTitle">' . html_escape($def['title']) . '</h2>'
+		. '<span class="ccTools">' . $tools . '</span>'
 		. '</header>'
-		. '<div class="hmibDashCardBody">' . hmib_dashboard_card_body($key, $host_id) . '</div>'
+		. '<div class="ccCardBody">' . hmib_dashboard_card_body($key, $host_id) . '</div>'
 		. '</section>';
 }
 
@@ -4491,6 +4504,9 @@ function hmib_dashboard(): void {
 		]);
 	}
 
+	if (!file_exists($config['base_path'] . '/include/js/cards.js')) {
+		print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . ' src="' . $config['url_path'] . 'plugins/hmib/js/cards.js?v=' . filemtime($config['base_path'] . '/plugins/hmib/js/cards.js') . '"></script>';
+	}
 	print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . ' src="' . $config['url_path'] . 'plugins/hmib/js/hmib_dashboard.js?v=' . filemtime($config['base_path'] . '/plugins/hmib/js/hmib_dashboard.js') . '"></script>';
 
 	$system = hmib_dashboard_system($host_id);
@@ -4538,10 +4554,10 @@ function hmib_dashboard(): void {
 
 	form_end();
 
-	print '<div class="hmibDashToolbar">';
+	print '<div class="ccToolbar">';
 
-	print '<label class="hmibDashToolbarLabel" for="hmib_dashboard_add">' . __esc('Add card', 'hmib') . '</label>';
-	print '<select id="hmib_dashboard_add" class="hmibDashAdd"><option value="">' . __esc('Add a card…', 'hmib') . '</option>';
+	print '<label class="ccToolbarLabel" for="hmib_dashboard_add">' . __esc('Add card', 'hmib') . '</label>';
+	print '<select id="hmib_dashboard_add" class="ccAdd"><option value="">' . __esc('Add a card…', 'hmib') . '</option>';
 
 	foreach ($absent as $key) {
 		print '<option value="' . html_escape($key) . '">' . html_escape($meta[$key]['title']) . '</option>';
@@ -4549,9 +4565,9 @@ function hmib_dashboard(): void {
 
 	print '</select>';
 
-	print '<div class="hmibDashRefresh">';
-	print '<label class="hmibDashToolbarLabel" for="hmib_dashboard_refresh">' . __esc('Refresh', 'hmib') . '</label>';
-	print '<select id="hmib_dashboard_refresh" class="hmibDashRefreshInterval">';
+	print '<div class="ccRefresh">';
+	print '<label class="ccToolbarLabel" for="hmib_dashboard_refresh">' . __esc('Refresh', 'hmib') . '</label>';
+	print '<select id="hmib_dashboard_refresh" class="ccRefreshInterval">';
 	print '<option value="0"' . ($current_refresh == 0 ? ' selected' : '') . '>' . __esc('No Refresh', 'hmib') . '</option>';
 
 	foreach ($page_refresh_interval as $seconds => $display_text) {
@@ -4563,11 +4579,11 @@ function hmib_dashboard(): void {
 	}
 
 	print '</select>';
-	print '<button type="button" id="hmib_dashboard_refresh_now" class="hmibDashCardTool hmibDashRefreshNow" aria-label="' . __esc('Refresh', 'hmib') . '" title="' . __esc('Refresh', 'hmib') . '"><i class="fas fa-sync-alt" aria-hidden="true"></i></button>';
+	print '<button type="button" id="hmib_dashboard_refresh_now" class="ccTool hmibDashRefreshNow" aria-label="' . __esc('Refresh', 'hmib') . '" title="' . __esc('Refresh', 'hmib') . '"><i class="fas fa-sync-alt" aria-hidden="true"></i></button>';
 	print '</div>';
 	print '</div>';
 
-	print '<div id="hmib_dashboard" class="hmibDashGrid" data-host="' . $host_id . '">';
+	print '<div id="hmib_dashboard" class="ccGrid" data-host="' . $host_id . '">';
 
 	foreach ($layout['order'] as $key) {
 		print hmib_dashboard_render_card($key, $host_id, !empty($layout['expanded'][$key]));
@@ -4785,10 +4801,10 @@ function hmib_summary_bullet(string $label, ?float $min, ?float $avg, ?float $ma
 		}
 	};
 
-	$head = '<div class="hmibBulletHead"><span class="hmibBulletLabel">' . html_escape($label) . '</span><span class="hmibBulletAvg">' . html_escape($fmt($avg)) . '</span></div>';
+	$head = '<div class="ccBulletHead"><span class="ccBulletLabel">' . html_escape($label) . '</span><span class="ccBulletAvg">' . html_escape($fmt($avg)) . '</span></div>';
 
 	if ($avg === null || $scale <= 0) {
-		return '<div class="hmibBullet">' . $head . '<div class="hmibBulletTrack"></div></div>';
+		return '<div class="ccBullet">' . $head . '<div class="ccBulletTrack"></div></div>';
 	}
 
 	$lo = max(0.0, min($scale, (float) ($min ?? $avg)));
@@ -4801,12 +4817,12 @@ function hmib_summary_bullet(string $label, ?float $min, ?float $avg, ?float $ma
 
 	$sev = in_array($severity, ['up', 'recovering', 'down'], true) ? $severity : 'none';
 
-	return '<div class="hmibBullet">' . $head
-		. '<div class="hmibBulletTrack">'
-		. '<div class="hmibBulletRange hmibBulletRange--' . $sev . '" style="left:' . number_format($left, 2, '.', '') . '%;width:' . number_format($width, 2, '.', '') . '%"></div>'
-		. '<div class="hmibBulletMarker" style="left:' . number_format($mark, 2, '.', '') . '%"></div>'
+	return '<div class="ccBullet">' . $head
+		. '<div class="ccBulletTrack">'
+		. '<div class="ccBulletRange ccBulletRange--' . $sev . '" style="left:' . number_format($left, 2, '.', '') . '%;width:' . number_format($width, 2, '.', '') . '%"></div>'
+		. '<div class="ccBulletMarker" style="left:' . number_format($mark, 2, '.', '') . '%"></div>'
 		. '</div>'
-		. '<div class="hmibBulletScale"><span>' . html_escape($fmt($min)) . '</span><span>' . html_escape($fmt($max)) . '</span></div>'
+		. '<div class="ccBulletScale"><span>' . html_escape($fmt($min)) . '</span><span>' . html_escape($fmt($max)) . '</span></div>'
 		. '</div>';
 }
 
@@ -4861,7 +4877,7 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 	ob_start();
 
 	if (!cacti_sizeof($stats) || (int) $stats['devices'] === 0) {
-		print '<p class="hmibDashEmpty">' . __esc('No Host MIB devices in this scope yet.', 'hmib') . '</p>';
+		print '<p class="ccEmpty">' . __esc('No Host MIB devices in this scope yet.', 'hmib') . '</p>';
 
 		return (string) ob_get_clean();
 	}
@@ -4880,10 +4896,10 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 				['', hmib_memory((float) $stats['memTotal']), __('Total RAM', 'hmib')]
 			];
 
-			print '<div class="hmibFleetTiles">';
+			print '<div class="ccTiles">';
 			foreach ($tiles as $tile) {
-				$mod = $tile[0] !== '' ? ' hmibFleetTile--' . $tile[0] : '';
-				print '<div class="hmibFleetTile' . $mod . '"><span class="hmibFleetTileValue">' . html_escape($tile[1]) . '</span><span class="hmibFleetTileLabel">' . html_escape($tile[2]) . '</span></div>';
+				$mod = $tile[0] !== '' ? ' ccTile--' . $tile[0] : '';
+				print '<div class="ccTile' . $mod . '"><span class="ccTileValue">' . html_escape($tile[1]) . '</span><span class="ccTileLabel">' . html_escape($tile[2]) . '</span></div>';
 			}
 			print '</div>';
 
@@ -4913,17 +4929,17 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 				['dis', (int) $stats['disabled'], __('Disabled', 'hmib')]
 			];
 
-			print '<div class="hmibStackBar">';
+			print '<div class="ccStack">';
 			foreach ($segs as $seg) {
 				if ($seg[1] > 0) {
-					print '<div class="hmibStackSeg hmibStackSeg--' . $seg[0] . '" style="width:' . number_format($seg[1] / $total * 100, 2, '.', '') . '%" title="' . html_escape($seg[2] . ': ' . $seg[1]) . '"></div>';
+					print '<div class="ccStackSeg ccStackSeg--' . $seg[0] . '" style="width:' . number_format($seg[1] / $total * 100, 2, '.', '') . '%" title="' . html_escape($seg[2] . ': ' . $seg[1]) . '"></div>';
 				}
 			}
 			print '</div>';
 
-			print '<div class="hmibStackLegend">';
+			print '<div class="ccStackLegend">';
 			foreach ($segs as $seg) {
-				print '<span><span class="hmibStackChip hmibStackSeg--' . $seg[0] . '"></span>' . html_escape($seg[2]) . ' ' . number_format_i18n($seg[1], 0) . '</span>';
+				print '<span><span class="ccStackChip ccStackSeg--' . $seg[0] . '"></span>' . html_escape($seg[2]) . ' ' . number_format_i18n($seg[1], 0) . '</span>';
 			}
 			print '</div>';
 
@@ -4932,7 +4948,7 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 			$storage = hmib_summary_storage_stats($ostype);
 
 			if (!cacti_sizeof($storage) || (int) $storage['volumes'] === 0) {
-				print '<p class="hmibDashEmpty">' . __esc('No storage volumes detected in this scope.', 'hmib') . '</p>';
+				print '<p class="ccEmpty">' . __esc('No storage volumes detected in this scope.', 'hmib') . '</p>';
 
 				break;
 			}
@@ -4971,7 +4987,7 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 				ORDER BY devices DESC", $type_params);
 
 			if (!cacti_sizeof($types)) {
-				print '<p class="hmibDashEmpty">' . __esc('No OS types recorded.', 'hmib') . '</p>';
+				print '<p class="ccEmpty">' . __esc('No OS types recorded.', 'hmib') . '</p>';
 
 				break;
 			}
@@ -4983,10 +4999,10 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 
 			foreach ($types as $type) {
 				$width = (int) $type['devices'] / $peak * 100;
-				print '<div class="hmibDistRow">'
-					. '<span class="hmibDistLabel" title="' . html_escape($type['name']) . '">' . html_escape($type['name']) . '</span>'
-					. '<span class="hmibDistTrack"><span class="hmibDistFill" style="width:' . number_format($width, 2, '.', '') . '%"></span></span>'
-					. '<span class="hmibDistValue">' . number_format_i18n((int) $type['devices'], 0) . '</span>'
+				print '<div class="ccDistRow">'
+					. '<span class="ccDistLabel" title="' . html_escape($type['name']) . '">' . html_escape($type['name']) . '</span>'
+					. '<span class="ccDistTrack"><span class="ccDistFill" style="width:' . number_format($width, 2, '.', '') . '%"></span></span>'
+					. '<span class="ccDistValue">' . number_format_i18n((int) $type['devices'], 0) . '</span>'
 					. '</div>';
 			}
 
@@ -5038,11 +5054,11 @@ function hmib_summary_card_body(string $key, int $ostype): string {
 						. '<td>' . html_escape($process['name']) . '</td>'
 						. '<td class="hmibDashNum" data-sort-value="' . (int) $process['hosts'] . '">' . number_format_i18n((int) $process['hosts'], 0) . '</td>'
 						. '<td class="hmibDashNum" data-sort-value="' . $raw . '">' . html_escape($display) . '</td>'
-						. '<td><span class="hmibMiniBar"><span class="hmibMiniBarFill" style="width:' . number_format($width, 2, '.', '') . '%"></span></span></td>'
+						. '<td><span class="ccMiniBar"><span class="ccMiniBarFill" style="width:' . number_format($width, 2, '.', '') . '%"></span></span></td>'
 						. '</tr>';
 				}
 			} else {
-				print '<tr class="hmibDashEmptyRow"><td colspan="4" class="hmibDashEmpty">' . __esc('No process statistics recorded.', 'hmib') . '</td></tr>';
+				print '<tr class="hmibDashEmptyRow"><td colspan="4" class="ccEmpty">' . __esc('No process statistics recorded.', 'hmib') . '</td></tr>';
 			}
 
 			print '</tbody></table>';
@@ -5074,34 +5090,36 @@ function hmib_summary_render_card(string $key, int $ostype, bool $expanded = fal
 	$tools = '';
 
 	if ($def['expandable']) {
-		$tools .= '<button type="button" class="hmibDashCardTool" data-tool="expand" aria-label="' . __esc('Show more', 'hmib') . '" title="' . __esc('Show more', 'hmib') . '"><i class="fas fa-chevron-down" aria-hidden="true"></i></button>';
-		$tools .= '<button type="button" class="hmibDashCardTool" data-tool="collapse" aria-label="' . __esc('Show less', 'hmib') . '" title="' . __esc('Show less', 'hmib') . '"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>';
+		$tools .= '<button type="button" class="ccTool" data-tool="expand" aria-label="' . __esc('Show more', 'hmib') . '" title="' . __esc('Show more', 'hmib') . '"><i class="fas fa-chevron-down" aria-hidden="true"></i></button>';
+		$tools .= '<button type="button" class="ccTool" data-tool="collapse" aria-label="' . __esc('Show less', 'hmib') . '" title="' . __esc('Show less', 'hmib') . '"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>';
 	}
 
-	$tools .= '<button type="button" class="hmibDashCardTool" data-tool="maximize" aria-label="' . __esc('Open in a dialog', 'hmib') . '" title="' . __esc('Open in a dialog', 'hmib') . '"><i class="fas fa-window-maximize" aria-hidden="true"></i></button>';
-	$tools .= '<button type="button" class="hmibDashCardTool" data-tool="refresh" aria-label="' . __esc('Refresh', 'hmib') . '" title="' . __esc('Refresh', 'hmib') . '"><i class="fas fa-sync-alt" aria-hidden="true"></i></button>';
-	$tools .= '<button type="button" class="hmibDashCardTool" data-tool="remove" aria-label="' . __esc('Remove from page', 'hmib') . '" title="' . __esc('Remove from page', 'hmib') . '"><i class="fas fa-times" aria-hidden="true"></i></button>';
+	$tools .= '<button type="button" class="ccTool" data-tool="maximize" aria-label="' . __esc('Open in a dialog', 'hmib') . '" title="' . __esc('Open in a dialog', 'hmib') . '"><i class="fas fa-window-maximize" aria-hidden="true"></i></button>';
+	$tools .= '<button type="button" class="ccTool" data-tool="refresh" aria-label="' . __esc('Refresh', 'hmib') . '" title="' . __esc('Refresh', 'hmib') . '"><i class="fas fa-sync-alt" aria-hidden="true"></i></button>';
+	$tools .= '<button type="button" class="ccTool" data-tool="remove" aria-label="' . __esc('Remove from page', 'hmib') . '" title="' . __esc('Remove from page', 'hmib') . '"><i class="fas fa-times" aria-hidden="true"></i></button>';
 
-	$classes = 'hmibDashCard hmibDashSpan' . (int) $def['span'];
+	$classes = 'ccCard ccW' . (int) $def['span'];
 
 	if ($def['expandable']) {
-		$classes .= ' hmibDashCardExpandable';
+		$classes .= ' ccCardExpandable';
 	}
 
 	if ($expanded) {
-		$classes .= ' hmibDashCardExpanded';
+		$classes .= ' ccCardExpanded';
 	}
 
 	$state = hmib_summary_card_state($key, $ostype);
-	$header_class = 'hmibDashCardHeader' . ($state !== '' ? ' hmibDashCardHeader--' . $state : '');
+	$severity = ($state === 'recovering') ? 'warn' : (($state === 'up' || $state === 'down') ? $state : 'none');
 
-	return '<section class="' . $classes . '" data-card="' . html_escape($key) . '">'
-		. '<header class="' . $header_class . '">'
-		. '<button type="button" class="hmibDashCardDrag" aria-label="' . __esc('Drag to reorder card', 'hmib') . '"><i class="fas fa-bars" aria-hidden="true"></i></button>'
-		. '<h2 class="hmibDashCardTitle">' . html_escape($def['title']) . '</h2>'
-		. '<span class="hmibDashCardTools">' . $tools . '</span>'
+	return '<section class="' . $classes . '" data-card="' . html_escape($key) . '" data-severity="' . $severity . '"'
+		. ($def['expandable'] ? ' data-expandable="1"' : '')
+		. ' data-expanded="' . ($expanded ? '1' : '0') . '">'
+		. '<header class="ccCardHeader">'
+		. '<button type="button" class="ccDrag" aria-label="' . __esc('Drag to reorder card', 'hmib') . '"><i class="fas fa-bars" aria-hidden="true"></i></button>'
+		. '<h2 class="ccTitle">' . html_escape($def['title']) . '</h2>'
+		. '<span class="ccTools">' . $tools . '</span>'
 		. '</header>'
-		. '<div class="hmibDashCardBody">' . hmib_summary_card_body($key, $ostype) . '</div>'
+		. '<div class="ccCardBody">' . hmib_summary_card_body($key, $ostype) . '</div>'
 		. '</section>';
 }
 
@@ -5262,6 +5280,9 @@ function hmib_summary_dashboard(): void {
 		]);
 	}
 
+	if (!file_exists($config['base_path'] . '/include/js/cards.js')) {
+		print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . ' src="' . $config['url_path'] . 'plugins/hmib/js/cards.js?v=' . filemtime($config['base_path'] . '/plugins/hmib/js/cards.js') . '"></script>';
+	}
 	print '<script type="text/javascript" ' . plugin_hmib_csp_nonce() . ' src="' . $config['url_path'] . 'plugins/hmib/js/hmib_summary_dashboard.js?v=' . filemtime($config['base_path'] . '/plugins/hmib/js/hmib_summary_dashboard.js') . '"></script>';
 
 	$layout = hmib_summary_layout($ostype);
@@ -5272,9 +5293,9 @@ function hmib_summary_dashboard(): void {
 		$page_refresh_interval = [0 => __('No Refresh', 'hmib'), 30 => __('30 Seconds', 'hmib'), 60 => __('1 Minute', 'hmib'), 300 => __('5 Minutes', 'hmib')];
 	}
 
-	print '<div class="hmibDashToolbar">';
-	print '<label class="hmibDashToolbarLabel" for="hmib_summary_type">' . __esc('Scope', 'hmib') . '</label>';
-	print '<select id="hmib_summary_type" class="hmibDashAdd">';
+	print '<div class="ccToolbar">';
+	print '<label class="ccToolbarLabel" for="hmib_summary_type">' . __esc('Scope', 'hmib') . '</label>';
+	print '<select id="hmib_summary_type" class="ccAdd">';
 	print '<option value="-1"' . ($ostype === -1 ? ' selected' : '') . '>' . __esc('All Types', 'hmib') . '</option>';
 
 	if (db_fetch_cell('SELECT COUNT(*) FROM plugin_hmib_hrSystem WHERE host_type = 0') > 0) {
@@ -5295,8 +5316,8 @@ function hmib_summary_dashboard(): void {
 
 	print '</select>';
 
-	print '<label class="hmibDashToolbarLabel" for="hmib_summary_add">' . __esc('Add card', 'hmib') . '</label>';
-	print '<select id="hmib_summary_add" class="hmibDashAdd"><option value="">' . __esc('Add a card…', 'hmib') . '</option>';
+	print '<label class="ccToolbarLabel" for="hmib_summary_add">' . __esc('Add card', 'hmib') . '</label>';
+	print '<select id="hmib_summary_add" class="ccAdd"><option value="">' . __esc('Add a card…', 'hmib') . '</option>';
 
 	foreach ($absent as $key) {
 		print '<option value="' . html_escape($key) . '">' . html_escape($meta[$key]['title']) . '</option>';
@@ -5304,9 +5325,9 @@ function hmib_summary_dashboard(): void {
 
 	print '</select>';
 
-	print '<div class="hmibDashRefresh">';
-	print '<label class="hmibDashToolbarLabel" for="hmib_summary_refresh">' . __esc('Refresh', 'hmib') . '</label>';
-	print '<select id="hmib_summary_refresh" class="hmibDashRefreshInterval">';
+	print '<div class="ccRefresh">';
+	print '<label class="ccToolbarLabel" for="hmib_summary_refresh">' . __esc('Refresh', 'hmib') . '</label>';
+	print '<select id="hmib_summary_refresh" class="ccRefreshInterval">';
 	print '<option value="0"' . ($current_refresh === 0 ? ' selected' : '') . '>' . __esc('No Refresh', 'hmib') . '</option>';
 
 	foreach ($page_refresh_interval as $seconds => $display_text) {
@@ -5318,11 +5339,11 @@ function hmib_summary_dashboard(): void {
 	}
 
 	print '</select>';
-	print '<button type="button" id="hmib_summary_refresh_now" class="hmibDashCardTool hmibDashRefreshNow" aria-label="' . __esc('Refresh', 'hmib') . '" title="' . __esc('Refresh', 'hmib') . '"><i class="fas fa-sync-alt" aria-hidden="true"></i></button>';
+	print '<button type="button" id="hmib_summary_refresh_now" class="ccTool hmibDashRefreshNow" aria-label="' . __esc('Refresh', 'hmib') . '" title="' . __esc('Refresh', 'hmib') . '"><i class="fas fa-sync-alt" aria-hidden="true"></i></button>';
 	print '</div>';
 	print '</div>';
 
-	print '<div id="hmib_summary_dashboard" class="hmibDashGrid" data-ostype="' . $ostype . '">';
+	print '<div id="hmib_summary_dashboard" class="ccGrid" data-ostype="' . $ostype . '">';
 
 	foreach ($layout['order'] as $key) {
 		print hmib_summary_render_card($key, $ostype, !empty($layout['expanded'][$key]));

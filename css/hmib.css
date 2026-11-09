@@ -17,6 +17,24 @@
 */
 
 /*
+ * Bind the shared card chrome (core include/css/cards.css) and chart-widget
+ * primitives (include/css/card-widgets.css) - loaded globally on Cacti 1.2.32+,
+ * bundled by the plugin on older cores - to hmib's theme-agnostic palette.
+ * Everything derives from currentColor so the dashboard follows every Cacti
+ * theme; the grids are 8 columns wide. The .cc* chrome/primitive rules below
+ * (now superseded by the shared stylesheets) are retained only where they also
+ * style hmib-specific content (tables, status pills, the device picker).
+ */
+#hmib_dashboard.ccGrid,
+#hmib_summary_dashboard.ccGrid {
+	--cc-cols: 8;
+	--cc-card: transparent;
+	--cc-text: currentColor;
+	--cc-border: color-mix(in srgb, currentColor 18%, transparent);
+	--cc-header-bg: color-mix(in srgb, currentColor 9%, transparent);
+}
+
+/*
  * Base (light-theme) action-glyph colours for the Host MIB views. Each core
  * theme that needs different (brighter) values ships a same-named override
  * file in this directory (dark.css, deepness.css, midwinter.css,

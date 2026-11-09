@@ -1,6 +1,7 @@
 ChangeLog
 
 --- develop ---
+* dev: Adopt the shared Cacti dashboarding Card API across both dashboards: the per-device Host Dashboard and the Fleet (Summary) Dashboard now drive their card grids through the shared `js/cards.js` (`CactiCards`) controller plus thin `js/hmib_dashboard.js` / `js/hmib_summary_dashboard.js` adapters, the card markup uses the shared `.cc*` chrome contract, and the card-body charts (gauge, usage/distribution bars, min/avg/max bullet, stacked bar, stat tiles) use the shared `.cc*` chart-widget primitives. On Cacti 1.2.32+ the chrome and widgets come from core (`include/js/cards.js`, `include/css/cards.css`, `include/css/card-widgets.css`); on older cores hmib bundles its own byte-identical copies, gated by `file_exists`. Card header severity now uses the shared `data-severity` wash. No functional change to the dashboards
 * dev: Restore missing characters in the unmatched device-type regression test so PHP syntax checks and the test can run
 * dev: Run the CI poller with the shared runner group so RRD files and structured directories pass permission verification
 * issue: Fix the Fleet Dashboard Uptime Distribution still showing all zeros by sourcing it from the Cacti host table's snmp_sysUpTimeInstance directly instead of the frequently-unreported Host Resources hrSystemUptime/sysUpTime columns
