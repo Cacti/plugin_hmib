@@ -25,6 +25,12 @@
 chdir('../../');
 include('./include/auth.php');
 
+// Ensure helper functions defined in setup.php (e.g. plugin_hmib_csp_nonce())
+// are available even when this page is loaded directly and no hmib hook that
+// would otherwise include setup.php has fired (for example when the plugin has
+// been disabled by a prior error). require_once is safe against redefinition.
+require_once(__DIR__ . '/setup.php');
+
 set_default_action('summary_dashboard');
 
 if (get_request_var('action') == 'ajax_hosts') {
@@ -3097,13 +3103,13 @@ function hmib_summary(): void {
 
 			$graph_url   = hmib_get_graph_url($htdq, 0, $host_id, $row['id']);
 
-			$graph_ncpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', $row['cpus'], false);
-			$graph_acpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', (string) round($row['avgCpuPercent'], 2), false);
-			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row['id'], 0, '', (string) round($row['maxCpuPercent'], 2), false);
+			$graph_ncpu  = hmib_get_graph_url($hcpudq, $row['host_type'], 0, '', $row['cpus'], false);
+			$graph_acpu  = hmib_get_graph_url($hcpudq, $row['host_type'], 0, '', (string) round($row['avgCpuPercent'], 2), false);
+			$graph_mcpu  = hmib_get_graph_url($hcpudq, $row['host_type'], 0, '', (string) round($row['maxCpuPercent'], 2), false);
 
-			$graph_users = hmib_get_graph_template_url($hugt, $row['id'], 0, number_format_i18n($row['users'], 0), false);
-			$graph_aproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['avgProcesses'], 0), false);
-			$graph_mproc = hmib_get_graph_template_url($hpgt, $row['id'], 0, number_format_i18n($row['maxProcesses'], 0), false);
+			$graph_users = hmib_get_graph_template_url($hugt, $row['host_type'], 0, number_format_i18n($row['users'], 0), false);
+			$graph_aproc = hmib_get_graph_template_url($hpgt, $row['host_type'], 0, number_format_i18n($row['avgProcesses'], 0), false);
+			$graph_mproc = hmib_get_graph_template_url($hpgt, $row['host_type'], 0, number_format_i18n($row['maxProcesses'], 0), false);
 
 			$aurl  = "<a class='pic' href='" . html_escape("$url?action=summary_dashboard&reset=1&ostype=" . $row['host_type']) . "'><i class='fas fa-tachometer-alt hmibDashboard' title='" . __('View Fleet Dashboard', 'hmib') . "'></i></a>";
 
@@ -3501,7 +3507,9 @@ function hmib_get_graph_template_url(int $graph_template, int $host_type = 0, in
  * @param int    $host_id    Optional host id to restrict the search to
  *                           a single device.
  * @param string $index      Optional SNMP index to restrict the search
- *                           to a specific data query row.
+ *                           to a specific data query row. A NULL value
+ *                           (e.g. an unmatched LEFT JOIN row) is treated
+ *                           as no index restriction.
  * @param string $title      The link text to use when $image is false.
  * @param bool   $image      Whether to render an icon link (true) or a
  *                           titled text link (false).
@@ -3512,8 +3520,13 @@ function hmib_get_graph_template_url(int $graph_template, int $host_type = 0, in
  * @global array $config Cacti global configuration array; used to build
  *                       the link URL and image paths.
  */
-function hmib_get_graph_url(int $data_query, int $host_type, int $host_id, string $index, string $title = '', bool $image = true): string {
+function hmib_get_graph_url(int $data_query, int $host_type, int $host_id, ?string $index, string $title = '', bool $image = true): string {
 	global $config;
+
+	// Device types with no matching plugin_hmib_hrSystemTypes row (LEFT JOIN) can
+	// yield a NULL index; normalize to an empty string so the signature and the
+	// '' comparisons below behave as "no index filter".
+	$index = (string) $index;
 
 	$url     = $config['url_path'] . 'plugins/hmib/hmib.php';
 	$nograph = $config['url_path'] . 'plugins/hmib/images/view_graphs_disabled.gif';
