@@ -90,6 +90,118 @@ function hmib_fx_type($id, $oid, $descr, $name, $version = '1') {
 }
 
 /**
+ * Host MIB system row with every Dashboard-relevant column, for the device and
+ * Fleet dashboards (which read swap, memory, uptime and the sys* identity
+ * fields that hmib_fx_system() leaves at their defaults).
+ *
+ * @param int   $host_id Device id.
+ * @param int   $type    plugin_hmib_hrSystemTypes id, 0 for unclassified.
+ * @param array $extra   Overrides for any inserted column.
+ *
+ * @return void
+ */
+function hmib_fx_system_full($host_id, $type, $extra = array()) {
+	$values = array_merge(array(
+		'status'       => 3,
+		'uptime'       => 8640000,
+		'users'        => 4,
+		'cpu'          => 12,
+		'cpus'         => 2,
+		'processes'    => 120,
+		'maxProcesses' => 512,
+		'memSize'      => 8589934592,
+		'memUsed'      => 42,
+		'swapSize'     => 2147483648,
+		'swapUsed'     => 7,
+		'sysDescr'     => 'Linux test 5.0',
+		'sysObjectID'  => '.1.3.6',
+		'sysUptime'    => 8640000,
+		'sysName'      => 'node.example.net',
+		'sysContact'   => 'ops@example.net',
+		'sysLocation'  => 'Rack 1',
+	), $extra);
+
+	hmib_test_sql('INSERT INTO plugin_hmib_hrSystem
+		(host_id, host_type, host_status, uptime, users, cpuPercent, numCpus, processes, maxProcesses,
+		memSize, memUsed, swapSize, swapUsed, sysDescr, sysObjectID, sysUptime, sysName, sysContact, sysLocation)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', array(
+			$host_id, $type, $values['status'], $values['uptime'], $values['users'], $values['cpu'],
+			$values['cpus'], $values['processes'], $values['maxProcesses'], $values['memSize'], $values['memUsed'],
+			$values['swapSize'], $values['swapUsed'], $values['sysDescr'], $values['sysObjectID'],
+			$values['sysUptime'], $values['sysName'], $values['sysContact'], $values['sysLocation']));
+}
+
+/**
+ * Per-processor load row.
+ *
+ * @param int $host_id Device id.
+ * @param int $index   Processor index.
+ * @param int $load    Load percentage.
+ *
+ * @return void
+ */
+function hmib_fx_processor($host_id, $index, $load) {
+	hmib_test_sql('INSERT INTO plugin_hmib_hrProcessor (host_id, `index`, `load`) VALUES (?, ?, ?)', array($host_id, $index, $load));
+}
+
+/**
+ * Storage volume row.
+ *
+ * @param int    $host_id     Device id.
+ * @param int    $index       Volume index.
+ * @param string $description Volume description.
+ * @param int    $size        Size in allocation units.
+ * @param int    $used        Used allocation units.
+ * @param int    $alloc       Allocation unit size in bytes.
+ *
+ * @return void
+ */
+function hmib_fx_storage($host_id, $index, $description, $size, $used, $alloc = 4096) {
+	hmib_test_sql('INSERT INTO plugin_hmib_hrStorage (host_id, `index`, description, allocationUnits, size, used) VALUES (?, ?, ?, ?, ?, ?)', array($host_id, $index, $description, $alloc, $size, $used));
+}
+
+/**
+ * Hardware device row.
+ *
+ * @param int    $host_id     Device id.
+ * @param int    $index       Device index.
+ * @param string $description Device description.
+ * @param int    $status      hrDeviceStatus value.
+ * @param int    $errors      Error count.
+ *
+ * @return void
+ */
+function hmib_fx_hw_device($host_id, $index, $description, $status = 2, $errors = 0) {
+	hmib_test_sql('INSERT INTO plugin_hmib_hrDevices (host_id, `index`, description, status, errors) VALUES (?, ?, ?, ?, ?)', array($host_id, $index, $description, $status, $errors));
+}
+
+/**
+ * Installed software row.
+ *
+ * @param int    $host_id Device id.
+ * @param int    $index   Package index.
+ * @param string $name    Package name.
+ *
+ * @return void
+ */
+function hmib_fx_software($host_id, $index, $name) {
+	hmib_test_sql('INSERT INTO plugin_hmib_hrSWInstalled (host_id, `index`, name) VALUES (?, ?, ?)', array($host_id, $index, $name));
+}
+
+/**
+ * Process use-history row.
+ *
+ * @param int    $host_id    Device id.
+ * @param string $name       Process name.
+ * @param int    $total_time Accumulated run time in seconds.
+ *
+ * @return void
+ */
+function hmib_fx_history($host_id, $name, $total_time) {
+	hmib_test_sql('INSERT INTO plugin_hmib_hrSWRun_last_seen (host_id, name, total_time) VALUES (?, ?, ?)', array($host_id, $name, $total_time));
+}
+
+/**
  * Many running-process rows for one device, to exercise paging.
  *
  * @param int $host_id Device id.

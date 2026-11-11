@@ -101,6 +101,61 @@ function merge_changed_lines($base_ref) {
 }
 
 /**
+ * Line numbers a source file marks as coverage-exempt via the standard PHPUnit
+ * block markers @codeCoverageIgnoreStart / @codeCoverageIgnoreEnd.
+ *
+ * The dumps this script merges are raw Xdebug data, so no driver applies these
+ * annotations for us. Honor them here for the narrow case of lines that cannot
+ * be exercised by the CI run at all, such as the bundled-asset fallbacks that
+ * only execute on a Cacti older than the one the end-to-end run installs.
+ *
+ * @param string $file Repository-relative source path.
+ *
+ * @return array<int, bool>
+ */
+function merge_ignored_lines($file) {
+	$source = dirname(__DIR__, 2) . '/' . $file;
+
+	if (!is_readable($source)) {
+		$source = $file;
+	}
+
+	if (!is_readable($source)) {
+		return array();
+	}
+
+	$handle = fopen($source, 'r');
+
+	if ($handle === false) {
+		return array();
+	}
+
+	$ignored = array();
+	$depth   = 0;
+	$number  = 0;
+
+	while (($text = fgets($handle)) !== false) {
+		$number++;
+
+		if (strpos($text, '@codeCoverageIgnoreStart') !== false) {
+			$depth++;
+		}
+
+		if ($depth > 0) {
+			$ignored[$number] = true;
+		}
+
+		if ($depth > 0 && strpos($text, '@codeCoverageIgnoreEnd') !== false) {
+			$depth--;
+		}
+	}
+
+	fclose($handle);
+
+	return $ignored;
+}
+
+/**
  * Read every dump into per-file line and branch tables.
  *
  * @param string $directory The dump directory.
@@ -195,11 +250,19 @@ $missing_total = 0;
 foreach ($changed as $file => $numbers) {
 	ksort($numbers);
 
+	$ignored    = merge_ignored_lines($file);
 	$executable = 0;
 	$covered    = 0;
 	$uncovered  = array();
 
 	foreach (array_keys($numbers) as $number) {
+		// Lines inside @codeCoverageIgnoreStart/End cannot be exercised in CI
+		// (for example the bundled-asset fallbacks that only run on a Cacti
+		// older than the one the end-to-end run installs).
+		if (isset($ignored[$number])) {
+			continue;
+		}
+
 		$detail = $lines[$file][$number] ?? null;
 
 		if ($detail === null || !$detail['executable']) {

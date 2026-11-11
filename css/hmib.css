@@ -17,6 +17,32 @@
 */
 
 /*
+ * Bind the shared card chrome (core include/css/cards.css) and chart-widget
+ * primitives (include/css/card-widgets.css) - loaded globally on Cacti 1.2.32+,
+ * bundled by the plugin on older cores - to hmib's theme-agnostic palette.
+ * Everything derives from currentColor so the dashboard follows every Cacti
+ * theme; the grids are 8 columns wide. The palette is applied to the toolbar
+ * and maximize dialog as well as the grid, because both live outside the grid
+ * (the dialog is reparented under <body> by jQuery UI when maximized) and would
+ * otherwise fall back to the shared stylesheet's light-theme defaults. The .cc*
+ * chrome/primitive rules below (now superseded by the shared stylesheets) are
+ * retained only where they also style hmib-specific content (tables, status
+ * pills, the device picker).
+ */
+#hmib_dashboard_toolbar,
+#hmib_dashboard.ccGrid,
+#hmib_dashboard_dialog,
+#hmib_summary_toolbar,
+#hmib_summary_dashboard.ccGrid,
+#hmib_summary_dialog {
+	--cc-cols: 8;
+	--cc-card: transparent;
+	--cc-text: currentColor;
+	--cc-border: color-mix(in srgb, currentColor 18%, transparent);
+	--cc-header-bg: color-mix(in srgb, currentColor 9%, transparent);
+}
+
+/*
  * Base (light-theme) action-glyph colours for the Host MIB views. Each core
  * theme that needs different (brighter) values ships a same-named override
  * file in this directory (dark.css, deepness.css, midwinter.css,
@@ -479,28 +505,34 @@
 
 /* Narrow the grid before cards get cramped. */
 @media (max-width: 1200px) {
-	.hmibDashGrid {
+	#hmib_dashboard.ccGrid,
+	#hmib_summary_dashboard.ccGrid {
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
 
-	.hmibDashSpan4,
-	.hmibDashSpan6,
-	.hmibDashSpan8 {
+	#hmib_dashboard.ccGrid .ccW4,
+	#hmib_dashboard.ccGrid .ccW5,
+	#hmib_dashboard.ccGrid .ccW6,
+	#hmib_dashboard.ccGrid .ccW7,
+	#hmib_dashboard.ccGrid .ccW8,
+	#hmib_summary_dashboard.ccGrid .ccW4,
+	#hmib_summary_dashboard.ccGrid .ccW5,
+	#hmib_summary_dashboard.ccGrid .ccW6,
+	#hmib_summary_dashboard.ccGrid .ccW7,
+	#hmib_summary_dashboard.ccGrid .ccW8 {
 		grid-column: 1 / -1;
 	}
 }
 
 @media (max-width: 760px) {
-	.hmibDashGrid {
+	#hmib_dashboard.ccGrid,
+	#hmib_summary_dashboard.ccGrid {
 		grid-template-columns: 1fr;
 		gap: 10px;
 	}
 
-	.hmibDashSpan2,
-	.hmibDashSpan3,
-	.hmibDashSpan4,
-	.hmibDashSpan6,
-	.hmibDashSpan8 {
+	#hmib_dashboard.ccGrid > .ccCard,
+	#hmib_summary_dashboard.ccGrid > .ccCard {
 		grid-column: 1 / -1;
 	}
 }
