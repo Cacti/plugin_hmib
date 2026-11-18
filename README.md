@@ -37,6 +37,24 @@ use the HMIB data for graphing instead of accessing the Cacti Devices directly
 for that information.  This approach reduces Cacti polling times by removing the
 latency of obtaining the information from the Device.
 
+## Versions and compatibility
+
+This README describes the `develop` source branch.
+
+| Code | Plugin version | Minimum Cacti declared in `INFO` |
+| --- | --- | --- |
+| [Source branch](INFO) | 3.5 | 1.2.25 |
+| [Published v3.4](https://github.com/Cacti/plugin_hmib/releases/tag/v3.4) | 3.4 | 1.2.24 |
+
+Use the published release’s assets and tagged documentation when installing that
+package. Branch code can include later changes, even when its version number
+matches the release. Cacti’s own PHP and database requirements also apply.
+
+Install this plugin in **`<cacti-root>/plugins/hmib`**, using the directory
+name `hmib` rather than `plugin_hmib`.
+
+See [CHANGELOG.md](CHANGELOG.md) for the version history.
+
 ## Requirements
 
 * Cacti 1.2.25 or later.  The plugin's INFO file declares `compat = 1.2.25`, and
