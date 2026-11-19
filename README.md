@@ -43,7 +43,7 @@ This README describes the `develop` source branch.
 
 | Code | Plugin version | Minimum Cacti declared in `INFO` |
 | --- | --- | --- |
-| [Source branch](INFO) | 3.5 | 1.2.25 |
+| [Source branch](https://github.com/Cacti/plugin_hmib/blob/develop/INFO) | 3.5 | 1.2.25 |
 | [Published v3.4](https://github.com/Cacti/plugin_hmib/releases/tag/v3.4) | 3.4 | 1.2.24 |
 
 Use the published release’s assets and tagged documentation when installing that
@@ -53,7 +53,7 @@ matches the release. Cacti’s own PHP and database requirements also apply.
 Install this plugin in **`<cacti-root>/plugins/hmib`**, using the directory
 name `hmib` rather than `plugin_hmib`.
 
-See [CHANGELOG.md](CHANGELOG.md) for the version history.
+See [CHANGELOG.md](https://github.com/Cacti/plugin_hmib/blob/develop/CHANGELOG.md) for the version history.
 
 ## Requirements
 
