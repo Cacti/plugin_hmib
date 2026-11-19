@@ -37,17 +37,35 @@ use the HMIB data for graphing instead of accessing the Cacti Devices directly
 for that information.  This approach reduces Cacti polling times by removing the
 latency of obtaining the information from the Device.
 
+## Versions and compatibility
+
+This README describes the `develop` source branch.
+
+| Code | Plugin version | Minimum Cacti declared in `INFO` |
+| --- | --- | --- |
+| [Source branch](https://github.com/Cacti/plugin_hmib/blob/develop/INFO) | 3.5 | 1.2.25 |
+| [Published v3.4](https://github.com/Cacti/plugin_hmib/releases/tag/v3.4) | 3.4 | 1.2.24 |
+
+Use the published release’s assets and tagged documentation when installing that
+package. Branch code can include later changes, even when its version number
+matches the release. Cacti’s own PHP and database requirements also apply.
+
+Install this plugin in **`<cacti-root>/plugins/hmib`**, using the directory
+name `hmib` rather than `plugin_hmib`.
+
+See [CHANGELOG.md](https://github.com/Cacti/plugin_hmib/blob/develop/CHANGELOG.md) for the version history.
+
 ## Requirements
 
 * Cacti 1.2.25 or later.  The plugin's INFO file declares `compat = 1.2.25`, and
   Cacti's Plugin Management page shows it as 'Requires: Cacti >= 1.2.25'.  The
-  plugin was checked on Cacti 1.2.25, 1.2.32 and on the development branch.  The
-  Graphs tab does not work on Cacti 1.2.32, because that release builds the
-  Graph Template filter with a function it declares only in graph_view.php.  The
-  other tabs work on all three.
+  current plugin supplies a compatibility helper for the Graphs tab on Cacti
+  releases whose graph-template filter helper is otherwise loaded only by
+  `graph_view.php`. This avoids the older undefined-function failure on 1.2.32.
 
 * PHP 8.0 or later.  setup.php and hmib.php use union types, so they do not
-  parse on PHP 7.4.  The plugin's automated tests run on PHP 8.2, 8.3 and 8.4.
+  parse on PHP 7.4. Use the higher of the plugin and Cacti PHP requirements.
+  The integration workflow covers PHP 8.2 through 8.5, with PHP 8.6 experimental.
 
 * MariaDB or MySQL, the database Cacti itself uses.  The plugin creates its
   tables itself; see 'Database tables'.
@@ -353,7 +371,8 @@ be loaded by the tests and are not measured.
 
 GitHub Actions (.github/workflows/plugin-ci-workflow.yml) runs on pushes and
 pull requests to main and develop.  It installs Cacti 1.2.x and the plugin on a
-MariaDB 11.8 database with PHP 8.2, 8.3 and 8.4, checks the manifest, runs
+MariaDB 11.8 database with PHP 8.2 through 8.5 (plus an experimental PHP 8.6
+job), checks the manifest, runs
 `php -l` on every PHP file, runs the tests with coverage, and then runs a Cacti
 poller cycle.  On pull requests it also runs the gettext check and the coverage
 check.
