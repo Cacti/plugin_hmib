@@ -508,7 +508,7 @@ msgstr "%s MB"
 
 #: hmib.php
 msgid "No Processes"
-msgstr "Processer"
+msgstr "Inga processer"
 
 #: hmib.php
 msgid "Custom Graph List Applied - Filtering from List"
@@ -675,7 +675,7 @@ msgstr "Inga lagringsvolymer har identifierats."
 
 #: hmib.php
 msgid "CPU (s)"
-msgstr "Processor (tim)"
+msgstr "CPU (s)"
 
 #: hmib.php
 msgid "Memory"
@@ -1008,9 +1008,9 @@ msgid "System Description Match"
 msgstr "Matchning av systembeskrivning"
 
 #: hmib_types.php
-#, php-format
+#, no-php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr "Tillhandahåller nyckelinformation som hjälper HMIB att upptäcka typen av värd.  SQL Where-uttryck stöds.  SQL Where-jokertecknet är tecknet '%'. Reguljära uttryck har tagits bort på grund av kompatibilitetsproblem."
+msgstr "Tillhandahåller nyckelinformation för att hjälpa HMIB att identifiera värdtypen. SQL Where-uttryck stöds. SQL Where-jokertecknet är '%' som tecken. Reguljära uttryck har tagits bort på grund av kompatibilitetsproblem."
 
 #: hmib_types.php
 msgid "Vendor snmp Object ID"

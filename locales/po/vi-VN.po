@@ -215,7 +215,7 @@ msgstr "Không tìm thấy phần cứng"
 
 #: hmib.php
 msgid "Click to filter by this status"
-msgstr ""
+msgstr "Nhấp để lọc theo trạng thái này"
 
 #: hmib.php
 msgid "Storage Inventory"
@@ -307,7 +307,7 @@ msgstr "Hoán đổi sử dụng"
 
 #: hmib.php
 msgid "View Dashboard"
-msgstr ""
+msgstr "Xem bảng tổng quan"
 
 #: hmib.php
 msgid "View Storage"
@@ -335,7 +335,7 @@ msgstr "Không có đồ thị được xác định"
 
 #: hmib.php
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: hmib.php
 msgid "No Devices Found"
@@ -362,10 +362,9 @@ msgid "No Software Packages Found"
 msgstr "Không tìm thấy gói phần mềm nào"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Fleet Dashboard"
-msgstr "Chi tiết máy chủ MIB"
+msgstr "Bảng tổng quan toàn hệ thống"
 
 #: hmib.php
 msgid "Summary"
@@ -393,14 +392,13 @@ msgstr "Đồ thị"
 
 #: hmib.php
 msgid "Dashboard"
-msgstr ""
+msgstr "Bảng tổng quan"
 
 #: hmib.php
 msgid "Summary Filter"
 msgstr "Tóm tắt bộ lọc"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Type"
 msgid "Types"
 msgstr "Loại"
@@ -412,12 +410,12 @@ msgstr "Tất cả hồ sơ"
 #: hmib.php
 #, php-format
 msgid "%d Records"
-msgstr "% d Hồ sơ"
+msgstr "%d bản ghi"
 
 #: hmib.php
 #, php-format
 msgid "%d Record"
-msgstr "% d Ghi"
+msgstr "%d bản ghi"
 
 #: hmib.php
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
@@ -473,7 +471,7 @@ msgstr "Tối đa Proc"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
-msgstr ""
+msgstr "Xem bảng tổng quan hệ thống"
 
 #: hmib.php
 msgid "View Devices"
@@ -508,10 +506,9 @@ msgid "Max Memory"
 msgstr "Bộ nhớ tối đa"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Summary"
 msgid "Summary Stats"
-msgstr "Tóm tắt"
+msgstr "Thống kê tóm tắt"
 
 #: hmib.php
 #, php-format
@@ -537,223 +534,201 @@ msgstr "Bộ lọc xem trước đồ thị"
 
 #: hmib.php
 msgid "System Information"
-msgstr ""
+msgstr "Thông tin hệ thống"
 
 #: hmib.php
 msgid "CPU Utilization"
-msgstr ""
+msgstr "Mức sử dụng CPU"
 
 #: hmib.php
 msgid "Memory Utilization"
-msgstr ""
+msgstr "Mức sử dụng bộ nhớ"
 
 #: hmib.php
 msgid "Swap Utilization"
-msgstr ""
+msgstr "Mức sử dụng Swap"
 
 #: hmib.php
 msgid "Users and Logins"
-msgstr ""
+msgstr "Người dùng và đăng nhập"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Process Name"
 msgid "Per-Processor Load"
-msgstr "Tên tiến trình"
+msgstr "Tải trên mỗi bộ xử lý"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Storage Type"
 msgid "Storage Volumes"
-msgstr "Kiểu Lưu trữ"
+msgstr "Phân vùng lưu trữ"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes"
-msgstr "Quy trình"
+msgstr "Tiến trình hàng đầu"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Process Use History"
 msgid "Process Use History"
-msgstr "Lịch sử sử dụng máy chủ MIB Lịch sử sử dụng"
+msgstr "Lịch sử sử dụng tiến trình"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Hardware Type"
 msgid "Hardware Devices"
-msgstr "Loại phần cứng"
+msgstr "Thiết bị phần cứng"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Installed Software Frequency"
 msgid "Installed Software"
-msgstr "Tần số phần mềm đã cài đặt"
+msgstr "Phần mềm đã cài đặt"
 
 #: hmib.php
 msgid "No system information has been collected for this device yet."
-msgstr ""
+msgstr "Chưa thu thập được thông tin hệ thống nào cho thiết bị này."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Management"
 msgid "Management Address"
-msgstr "Sự quản lý"
+msgstr "Địa chỉ quản lý"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host Type Name"
 msgid "System Name"
-msgstr "Tên loại máy chủ"
+msgstr "Tên hệ thống"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Storage Description"
 msgid "Description"
-msgstr "Mô tả lưu trữ"
+msgstr "Mô tả"
 
 #: hmib.php
 msgid "Contact"
-msgstr ""
+msgstr "Liên hệ"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Actions"
 msgid "Location"
-msgstr "Hành động"
+msgstr "Vị trí"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Uptime(d:h:m)"
 msgid "Uptime"
-msgstr "Thời gian hoạt động (d: h: m)"
+msgstr "Thời gian hoạt động"
 
 #: hmib.php
 msgid "System Time"
-msgstr ""
+msgstr "Thời gian hệ thống"
 
 #: hmib.php
 msgid "No processor data available."
-msgstr ""
+msgstr "Không có dữ liệu bộ xử lý."
 
 #: hmib.php
 #, php-format
 msgid "%d CPU(s)"
-msgstr ""
+msgstr "%d CPU"
 
 #: hmib.php
 msgid "No memory data available."
-msgstr ""
+msgstr "Không có dữ liệu bộ nhớ."
 
 #: hmib.php
 #, php-format
 msgid "%s total"
-msgstr ""
+msgstr "Tổng cộng %s"
 
 #: hmib.php
 msgid "No swap configured on this device."
-msgstr ""
+msgstr "Không có bộ nhớ swap nào được cấu hình trên thiết bị này."
 
 #: hmib.php
 msgid "No session data available."
-msgstr ""
+msgstr "Không có dữ liệu phiên."
 
 #: hmib.php
 msgid "Logged-in Users"
-msgstr ""
+msgstr "Người dùng đang đăng nhập"
 
 #: hmib.php
-#, fuzzy
 #| msgid "View Processes"
 msgid "Maximum Processes"
-msgstr "Xem quy trình"
+msgstr "Số tiến trình tối đa"
 
 #: hmib.php
 msgid "Unlimited"
-msgstr ""
+msgstr "Không giới hạn"
 
 #: hmib.php
-#, fuzzy
 #| msgid "CPUs"
 msgid "CPU"
 msgstr "CPU"
 
 #: hmib.php
 msgid "Load"
-msgstr ""
+msgstr "Tải"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Utilization"
-msgstr "Ứng dụng"
+msgstr "Mức sử dụng"
 
 #: hmib.php
-#, fuzzy, php-format
+#, php-format
 #| msgid "CPU %%%"
 msgid "CPU %d"
-msgstr "CPU %"
+msgstr "CPU %d"
 
 #: hmib.php
 msgid "No per-processor load reported."
-msgstr ""
+msgstr "Không có báo cáo tải theo từng bộ xử lý."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Volumes"
 msgid "Volume"
-msgstr "Các Thể Tích Lưu Trữ"
+msgstr "Khối lưu trữ"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Used Mem"
 msgid "Used"
-msgstr "Mem đã qua sử dụng"
+msgstr "Đã sử dụng"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Mem"
 msgid "Total"
-msgstr "Tổng số Mem"
+msgstr "Tổng"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Used Mem"
 msgid "Used %"
-msgstr "Mem đã qua sử dụng"
+msgstr "% Đã sử dụng"
 
 #: hmib.php
 msgid "No storage volumes detected."
-msgstr ""
+msgstr "Không phát hiện ổ đĩa lưu trữ nào."
 
 #: hmib.php
-#, fuzzy
 #| msgid "CPU (Hrs)"
 msgid "CPU (s)"
-msgstr "CPU (giờ)"
+msgstr "CPU (giây)"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Avg Memory"
 msgid "Memory"
-msgstr "Bộ nhớ trung bình"
+msgstr "Bộ nhớ"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No running processes recorded."
-msgstr "Chạy quy trình"
+msgstr "Chưa có tiến trình đang chạy nào được ghi nhận."
 
 #: hmib.php
 msgid "No hardware devices detected."
-msgstr ""
+msgstr "Không phát hiện thiết bị phần cứng nào."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Installed"
 msgid "Installed Packages"
-msgstr "Đã lắp đặt"
+msgstr "Các gói đã cài đặt"
 
 #: hmib.php hmib_types.php
 msgid "Name"
@@ -761,219 +736,200 @@ msgstr "Tên"
 
 #: hmib.php
 msgid "No installed software inventory collected."
-msgstr ""
+msgstr "Chưa thu thập được danh mục phần mềm đã cài đặt nào."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No process use history recorded."
-msgstr "Chạy quy trình"
+msgstr "Chưa có lịch sử sử dụng tiến trình nào được ghi nhận."
 
 #: hmib.php
 msgid "Show more"
-msgstr ""
+msgstr "Hiển thị thêm"
 
 #: hmib.php
 msgid "Show less"
-msgstr ""
+msgstr "Hiển thị ít hơn"
 
 #: hmib.php
 msgid "Open in a dialog"
-msgstr ""
+msgstr "Mở trong hộp thoại"
 
 #: hmib.php
 msgid "Refresh"
-msgstr ""
+msgstr "Làm mới"
 
 #: hmib.php
 msgid "Remove from page"
-msgstr ""
+msgstr "Xóa khỏi trang"
 
 #: hmib.php
 msgid "Drag to reorder card"
-msgstr ""
+msgstr "Kéo để sắp xếp lại thẻ"
 
 #: hmib.php
 msgid "Invalid request. Please try again."
-msgstr ""
+msgstr "Yêu cầu không hợp lệ. Vui lòng thử lại."
 
 #: hmib.php
 msgid "Invalid refresh interval."
-msgstr ""
+msgstr "Khoảng thời gian làm mới không hợp lệ."
 
 #: hmib.php
 msgid "No device selected."
-msgstr ""
+msgstr "Chưa chọn thiết bị nào."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Unknown"
 msgid "Unknown card."
-msgstr "Không xác định"
+msgstr "Thẻ không xác định."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Dashboard"
-msgstr "Chi tiết máy chủ MIB"
+msgstr "Bảng tổng quan Host MIB"
 
 #: hmib.php
 msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
-msgstr ""
+msgstr "Mở Bảng điều khiển thiết bị từ thẻ Thiết bị bằng cách nhấp vào biểu tượng bảng điều khiển trong cột Thao tác. Bảng điều khiển sẽ ghi nhớ thiết bị cuối cùng bạn đã mở."
 
 #: hmib.php
-#, fuzzy, php-format
+#, php-format
 #| msgid "Device"
 msgid "Device %d"
-msgstr "Thiết bị"
+msgstr "Thiết bị %d"
 
 #: hmib.php
-#, fuzzy
 #| msgid "%d Minute"
 msgid "1 Minute"
-msgstr "%d phút"
+msgstr "1 Phút"
 
 #: hmib.php
 msgid "30 Seconds"
-msgstr ""
+msgstr "30 giây"
 
 #: hmib.php
-#, fuzzy
 #| msgid "%d Minutes"
 msgid "5 Minutes"
-msgstr "%d phút"
+msgstr "5 phút"
 
 #: hmib.php
 msgid "No Refresh"
-msgstr ""
+msgstr "Không làm mới"
 
 #: hmib.php
 msgid "Search Host MIB devices as you type to open that device's dashboard."
-msgstr ""
+msgstr "Tìm kiếm thiết bị Host MIB khi bạn nhập để mở bảng tổng quan của thiết bị đó."
 
 #: hmib.php
 msgid "Add card"
-msgstr ""
+msgstr "Thêm thẻ"
 
 #: hmib.php
 msgid "Add a card…"
-msgstr ""
+msgstr "Thêm thẻ…"
 
 #: hmib.php
 msgid "Fleet Overview"
-msgstr ""
+msgstr "Tổng quan hệ thống thiết bị"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Resource Utilization"
-msgstr "Ứng dụng"
+msgstr "Mức sử dụng tài nguyên"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Devices"
 msgid "Device Status"
-msgstr "Thiết bị"
+msgstr "Tình trạng thiết bị"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Storage Utilization"
-msgstr "Ứng dụng"
+msgstr "Mức sử dụng lưu trữ"
 
 #: hmib.php
 msgid "Uptime Distribution"
-msgstr ""
+msgstr "Phân bố thời gian hoạt động"
 
 #: hmib.php
 msgid "OS Type Distribution"
-msgstr ""
+msgstr "Phân bố loại hệ điều hành"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes by CPU"
-msgstr "Quy trình"
+msgstr "Tiến trình hàng đầu theo CPU"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes by Memory"
-msgstr "Quy trình"
+msgstr "Tiến trình hàng đầu theo bộ nhớ"
 
 #: hmib.php
 msgid "No Host MIB devices in this scope yet."
-msgstr ""
+msgstr "Chưa có thiết bị Host MIB nào trong phạm vi này."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Mem"
 msgid "Total RAM"
-msgstr "Tổng số Mem"
+msgstr "Tổng RAM"
 
 #: hmib.php
-#, fuzzy
 #| msgid "CPU %%%"
 msgid "CPU %"
 msgstr "CPU %"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Avg Memory"
 msgid "Memory %"
-msgstr "Bộ nhớ trung bình"
+msgstr "Bộ nhớ %"
 
 #: hmib.php
 msgid "Swap %"
-msgstr ""
+msgstr "Swap %"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Processes"
 msgid "Processes / host"
-msgstr "Quy trình"
+msgstr "Tiến trình / máy chủ"
 
 #: hmib.php
 msgid "No storage volumes detected in this scope."
-msgstr ""
+msgstr "Không phát hiện ổ đĩa lưu trữ nào trong phạm vi này."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Swap"
 msgid "Total Capacity"
-msgstr "Tổng số hoán đổi"
+msgstr "Tổng dung lượng"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No OS types recorded."
-msgstr "Chạy quy trình"
+msgstr "Chưa có loại hệ điều hành nào được ghi nhận."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Max CPU"
 msgid "Max CPU (s)"
-msgstr "CPU tối đa"
+msgstr "CPU tối đa (giây)"
 
 #: hmib.php
 msgid "Relative"
-msgstr ""
+msgstr "Tương đối"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No process statistics recorded."
-msgstr "Chạy quy trình"
+msgstr "Chưa có thống kê tiến trình nào được ghi nhận."
 
 #: hmib.php
 msgid "Scope"
-msgstr ""
+msgstr "Phạm vi"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Type"
 msgid "All Types"
-msgstr "Loại"
+msgstr "Tất cả các loại"
 
 #: hmib_types.php
 msgid "Delete"
@@ -1018,7 +974,7 @@ msgstr "Loại mới"
 #: hmib_types.php
 #, php-format
 msgid "There were %d Device Types Added!"
-msgstr "Đã có% d Loại thiết bị được thêm vào!"
+msgstr "Đã thêm %d Loại thiết bị!"
 
 #: hmib_types.php
 msgid "No New Host Types Found!"
@@ -1109,9 +1065,9 @@ msgid "System Description Match"
 msgstr "Mô tả hệ thống phù hợp"
 
 #: hmib_types.php
-#, fuzzy, php-format
+#, no-php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr "Cung cấp thông tin chính để giúp HMIB phát hiện loại Máy chủ. SQL Nơi biểu thức được hỗ trợ. SQL Trong đó ký tự đại diện là ký hiệu '%'. Biểu thức thông thường đã bị xóa do vấn đề tương thích."
+msgstr "Cung cấp thông tin khóa để giúp HMIB phát hiện loại Máy chủ. Hỗ trợ biểu thức SQL Where. Ký tự đại diện SQL Where là dấu '%' sử dụng trong biểu thức. Biểu thức chính quy đã bị loại bỏ do vấn đề tương thích."
 
 #: hmib_types.php
 msgid "Vendor snmp Object ID"
@@ -1204,7 +1160,7 @@ msgstr "Máy chủ lưu trữ MIB kích hoạt"
 
 #: setup.php
 msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
-msgstr "Chọn hộp này, nếu bạn muốn kích hoạt bỏ phiếu Host MIB. Nếu không, pug sẽ không hoạt động."
+msgstr "Chọn hộp này nếu bạn muốn bật tính năng thăm dò Host MIB.  Nếu không, poller sẽ không hoạt động."
 
 #: setup.php
 msgid "Automatically Discover Cacti Devices"
@@ -1223,20 +1179,18 @@ msgid "Do you wish to automatically purge devices that are removed from the Cact
 msgstr "Bạn có muốn tự động lọc các thiết bị đã bị xóa khỏi hệ thống Cacti không?"
 
 #: setup.php
-#, fuzzy
 #| msgid "No Process History Found"
 msgid "Process History Retention"
-msgstr "Không tìm thấy lịch sử quá trình"
+msgstr "Thời gian lưu giữ lịch sử tiến trình"
 
 #: setup.php
 msgid "How long should the Use History tab keep a process after it was last seen running?"
-msgstr ""
+msgstr "Thẻ Lịch sử sử dụng nên giữ một tiến trình trong bao lâu sau lần cuối nhìn thấy tiến trình đó chạy?"
 
 #: setup.php
-#, fuzzy
 #| msgid "Never"
 msgid "Never Purge"
-msgstr "Không bao giờ"
+msgstr "Không bao giờ dọn dẹp"
 
 #: setup.php
 #, php-format
@@ -1246,12 +1200,12 @@ msgstr "%d Ngày"
 #: setup.php
 #, php-format
 msgid "%d Year"
-msgstr ""
+msgstr "%d Năm"
 
 #: setup.php
 #, php-format
 msgid "%d Years"
-msgstr ""
+msgstr "%d Năm"
 
 #: setup.php
 msgid "Default Row Count"
@@ -1272,7 +1226,7 @@ msgstr "Theo mặc định, có bao nhiêu quá trình bạn muốn xem trên B�
 #: setup.php
 #, php-format
 msgid "%d Types"
-msgstr "% d Các loại"
+msgstr "%d loại"
 
 #: setup.php
 msgid "Default Top Processes"
@@ -1281,7 +1235,7 @@ msgstr "Các quy trình hàng đầu mặc định"
 #: setup.php
 #, php-format
 msgid "%d Processes"
-msgstr "% d Quá trình"
+msgstr "%d Tiến trình"
 
 #: setup.php
 msgid "Maximum Concurrent Collectors"
@@ -1294,7 +1248,7 @@ msgstr "Số lượng quá trình thu thập đồng thời tối đa mà bạn 
 #: setup.php
 #, php-format
 msgid "%d Process"
-msgstr "Quá trình% d"
+msgstr "%d tiến trình"
 
 #: setup.php
 msgid "Host Auto Discovery Frequency"
@@ -1414,10 +1368,9 @@ msgid "General Administration"
 msgstr "Quản lý chung"
 
 #: setup.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Fleet Dashboard"
-msgstr "Chi tiết máy chủ MIB"
+msgstr "Bảng tổng quan hệ thống thiết bị Host MIB"
 
 #: setup.php
 msgid "Host MIB Inventory Summary"
@@ -1428,10 +1381,9 @@ msgid "Host MIB Details"
 msgstr "Chi tiết máy chủ MIB"
 
 #: setup.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Device Dashboard"
-msgstr "Chi tiết máy chủ MIB"
+msgstr "Bảng tổng quan thiết bị Host MIB"
 
 #: setup.php
 msgid "Host MIB Storage"

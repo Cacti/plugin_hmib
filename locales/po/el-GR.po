@@ -215,7 +215,7 @@ msgstr "Δεν βρέθηκε υλικό"
 
 #: hmib.php
 msgid "Click to filter by this status"
-msgstr ""
+msgstr "Κάντε κλικ για φιλτράρισμα με βάση αυτήν την κατάσταση"
 
 #: hmib.php
 msgid "Storage Inventory"
@@ -307,7 +307,7 @@ msgstr "Χρησιμοποιημένος Ανταλλαγή"
 
 #: hmib.php
 msgid "View Dashboard"
-msgstr ""
+msgstr "Προβολή πίνακα ελέγχου"
 
 #: hmib.php
 msgid "View Storage"
@@ -335,7 +335,7 @@ msgstr "Δεν ορίζονται γραφήματα"
 
 #: hmib.php
 msgid "N/A"
-msgstr ""
+msgstr "Μη Διαθέσιμο"
 
 #: hmib.php
 msgid "No Devices Found"
@@ -362,10 +362,9 @@ msgid "No Software Packages Found"
 msgstr "Δεν βρέθηκαν πακέτα λογισμικού"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Fleet Dashboard"
-msgstr "Υποστήριξη λεπτομερειών MIB"
+msgstr "Πίνακας ελέγχου στόλου"
 
 #: hmib.php
 msgid "Summary"
@@ -393,17 +392,16 @@ msgstr "Γραφήματα"
 
 #: hmib.php
 msgid "Dashboard"
-msgstr ""
+msgstr "Πίνακας ελέγχου"
 
 #: hmib.php
 msgid "Summary Filter"
 msgstr "Σύνοψη φίλτρου"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Type"
 msgid "Types"
-msgstr "Τύπος"
+msgstr "Τύποι"
 
 #: hmib.php
 msgid "All Records"
@@ -412,12 +410,12 @@ msgstr "Όλα τα αρχεία"
 #: hmib.php
 #, php-format
 msgid "%d Records"
-msgstr "% d Αρχεία"
+msgstr "%d εγγραφές"
 
 #: hmib.php
 #, php-format
 msgid "%d Record"
-msgstr "% d Εγγραφή"
+msgstr "%d εγγραφή"
 
 #: hmib.php
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
@@ -473,7 +471,7 @@ msgstr "Max Proc"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
-msgstr ""
+msgstr "Προβολή πίνακα ελέγχου στόλου"
 
 #: hmib.php
 msgid "View Devices"
@@ -508,10 +506,9 @@ msgid "Max Memory"
 msgstr "Μέγιστη μνήμη"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Summary"
 msgid "Summary Stats"
-msgstr "Περίληψη"
+msgstr "Συνοπτικά στατιστικά"
 
 #: hmib.php
 #, php-format
@@ -525,7 +522,7 @@ msgstr "%s MB"
 
 #: hmib.php
 msgid "No Processes"
-msgstr "Διαδικασίες"
+msgstr "Δεν υπάρχουν διεργασίες"
 
 #: hmib.php
 msgid "Custom Graph List Applied - Filtering from List"
@@ -537,223 +534,201 @@ msgstr "Φίλτρα προεπισκόπησης γραφημάτων"
 
 #: hmib.php
 msgid "System Information"
-msgstr ""
+msgstr "Πληροφορίες συστήματος"
 
 #: hmib.php
 msgid "CPU Utilization"
-msgstr ""
+msgstr "Χρήση CPU"
 
 #: hmib.php
 msgid "Memory Utilization"
-msgstr ""
+msgstr "Χρήση μνήμης"
 
 #: hmib.php
 msgid "Swap Utilization"
-msgstr ""
+msgstr "Χρήση Swap"
 
 #: hmib.php
 msgid "Users and Logins"
-msgstr ""
+msgstr "Χρήστες και συνδέσεις"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Process Name"
 msgid "Per-Processor Load"
-msgstr "Όνομα διαδικασίας"
+msgstr "Φόρτος ανά επεξεργαστή"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Storage Type"
 msgid "Storage Volumes"
-msgstr "Τύπος αποθήκευσης"
+msgstr "Τόμοι αποθήκευσης"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes"
-msgstr "Διαδικασίες"
+msgstr "Κορυφαίες διεργασίες"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Process Use History"
 msgid "Process Use History"
-msgstr "Διαδικασία υποδοχής MIB Χρήση ιστορικού"
+msgstr "Ιστορικό χρήσης διεργασιών"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Hardware Type"
 msgid "Hardware Devices"
-msgstr "Τύπος υλικού"
+msgstr "Συσκευές υλικού"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Installed Software Frequency"
 msgid "Installed Software"
-msgstr "Εγκατεστημένη συχνότητα λογισμικού"
+msgstr "Εγκατεστημένο λογισμικό"
 
 #: hmib.php
 msgid "No system information has been collected for this device yet."
-msgstr ""
+msgstr "Δεν έχουν συλλεχθεί ακόμη πληροφορίες συστήματος για αυτήν τη συσκευή."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Management"
 msgid "Management Address"
-msgstr "Διοίκηση"
+msgstr "Διεύθυνση διαχείρισης"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host Type Name"
 msgid "System Name"
-msgstr "Όνομα τύπου κεντρικού υπολογιστή"
+msgstr "Όνομα συστήματος"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Storage Description"
 msgid "Description"
-msgstr "Περιγραφή αποθήκευσης"
+msgstr "Περιγραφή"
 
 #: hmib.php
 msgid "Contact"
-msgstr ""
+msgstr "Επικοινωνία"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Actions"
 msgid "Location"
-msgstr "Ενέργειες"
+msgstr "Τοποθεσία"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Uptime(d:h:m)"
 msgid "Uptime"
-msgstr "Ώρα λειτουργίας (d: h: m)"
+msgstr "Χρόνος λειτουργίας"
 
 #: hmib.php
 msgid "System Time"
-msgstr ""
+msgstr "Ώρα συστήματος"
 
 #: hmib.php
 msgid "No processor data available."
-msgstr ""
+msgstr "Δεν υπάρχουν διαθέσιμα δεδομένα επεξεργαστή."
 
 #: hmib.php
 #, php-format
 msgid "%d CPU(s)"
-msgstr ""
+msgstr "%d CPU"
 
 #: hmib.php
 msgid "No memory data available."
-msgstr ""
+msgstr "Δεν υπάρχουν διαθέσιμα δεδομένα μνήμης."
 
 #: hmib.php
 #, php-format
 msgid "%s total"
-msgstr ""
+msgstr "%s σύνολο"
 
 #: hmib.php
 msgid "No swap configured on this device."
-msgstr ""
+msgstr "Δεν έχει διαμορφωθεί χώρος swap σε αυτήν τη συσκευή."
 
 #: hmib.php
 msgid "No session data available."
-msgstr ""
+msgstr "Δεν υπάρχουν διαθέσιμα δεδομένα συνεδρίας."
 
 #: hmib.php
 msgid "Logged-in Users"
-msgstr ""
+msgstr "Συνδεδεμένοι χρήστες"
 
 #: hmib.php
-#, fuzzy
 #| msgid "View Processes"
 msgid "Maximum Processes"
-msgstr "Προβολή διεργασιών"
+msgstr "Μέγιστος αριθμός διεργασιών"
 
 #: hmib.php
 msgid "Unlimited"
-msgstr ""
+msgstr "Απεριόριστα"
 
 #: hmib.php
-#, fuzzy
 #| msgid "CPUs"
 msgid "CPU"
 msgstr "CPU"
 
 #: hmib.php
 msgid "Load"
-msgstr ""
+msgstr "Φορτίο"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Utilization"
-msgstr "Αίτηση"
+msgstr "Αξιοποίηση"
 
 #: hmib.php
-#, fuzzy, php-format
+#, php-format
 #| msgid "CPU %%%"
 msgid "CPU %d"
-msgstr "ΕΠΕΞΕΡΓΑΣΤΗΣ %"
+msgstr "CPU %d"
 
 #: hmib.php
 msgid "No per-processor load reported."
-msgstr ""
+msgstr "Δεν αναφέρθηκε φόρτος ανά επεξεργαστή."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Volumes"
 msgid "Volume"
-msgstr "Τόμοι"
+msgstr "Τόμος"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Used Mem"
 msgid "Used"
-msgstr "Χρησιμοποιημένος Mem"
+msgstr "Σε χρήση"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Mem"
 msgid "Total"
-msgstr "Σύνολο Μετ"
+msgstr "Σύνολο"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Used Mem"
 msgid "Used %"
-msgstr "Χρησιμοποιημένος Mem"
+msgstr "Σε χρήση %"
 
 #: hmib.php
 msgid "No storage volumes detected."
-msgstr ""
+msgstr "Δεν εντοπίστηκαν τόμοι αποθήκευσης."
 
 #: hmib.php
-#, fuzzy
 #| msgid "CPU (Hrs)"
 msgid "CPU (s)"
-msgstr "CPU (ώρες)"
+msgstr "CPU (δευτ.)"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Avg Memory"
 msgid "Memory"
-msgstr "Μέση μνήμη"
+msgstr "Μνήμη"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No running processes recorded."
-msgstr "Εκτελούμενες Διεργασίες"
+msgstr "Δεν έχουν καταγραφεί εκτελούμενες διεργασίες."
 
 #: hmib.php
 msgid "No hardware devices detected."
-msgstr ""
+msgstr "Δεν εντοπίστηκαν συσκευές υλικού."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Installed"
 msgid "Installed Packages"
-msgstr "Εγκατεστημένο"
+msgstr "Εγκατεστημένα πακέτα"
 
 #: hmib.php hmib_types.php
 msgid "Name"
@@ -761,219 +736,200 @@ msgstr "Όνομα"
 
 #: hmib.php
 msgid "No installed software inventory collected."
-msgstr ""
+msgstr "Δεν συλλέχθηκε απογραφή εγκατεστημένου λογισμικού."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No process use history recorded."
-msgstr "Εκτελούμενες Διεργασίες"
+msgstr "Δεν έχει καταγραφεί ιστορικό χρήσης διεργασιών."
 
 #: hmib.php
 msgid "Show more"
-msgstr ""
+msgstr "Εμφάνιση περισσότερων"
 
 #: hmib.php
 msgid "Show less"
-msgstr ""
+msgstr "Εμφάνιση λιγότερων"
 
 #: hmib.php
 msgid "Open in a dialog"
-msgstr ""
+msgstr "Άνοιγμα σε παράθυρο διαλόγου"
 
 #: hmib.php
 msgid "Refresh"
-msgstr ""
+msgstr "Ανανέωση"
 
 #: hmib.php
 msgid "Remove from page"
-msgstr ""
+msgstr "Αφαίρεση από τη σελίδα"
 
 #: hmib.php
 msgid "Drag to reorder card"
-msgstr ""
+msgstr "Σύρετε για αναδιάταξη της κάρτας"
 
 #: hmib.php
 msgid "Invalid request. Please try again."
-msgstr ""
+msgstr "Μη έγκυρο αίτημα. Παρακαλώ προσπαθήστε ξανά."
 
 #: hmib.php
 msgid "Invalid refresh interval."
-msgstr ""
+msgstr "Μη έγκυρο διάστημα ανανέωσης."
 
 #: hmib.php
 msgid "No device selected."
-msgstr ""
+msgstr "Δεν επιλέχθηκε συσκευή."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Unknown"
 msgid "Unknown card."
-msgstr "Άγνωστο"
+msgstr "Άγνωστη κάρτα."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Dashboard"
-msgstr "Υποστήριξη λεπτομερειών MIB"
+msgstr "Πίνακας ελέγχου Host MIB"
 
 #: hmib.php
 msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
-msgstr ""
+msgstr "Ανοίξτε έναν Πίνακα εργαλείων συσκευής από την καρτέλα «Συσκευές» κάνοντας κλικ στο εικονίδιο του πίνακα εργαλείων στη στήλη «Ενέργειες». Ο Πίνακας εργαλείων θυμάται την τελευταία συσκευή που ανοίξατε."
 
 #: hmib.php
-#, fuzzy, php-format
+#, php-format
 #| msgid "Device"
 msgid "Device %d"
-msgstr "Συσκευή"
+msgstr "Συσκευή %d"
 
 #: hmib.php
-#, fuzzy
 #| msgid "%d Minute"
 msgid "1 Minute"
-msgstr "% d λεπτά"
+msgstr "1 λεπτό"
 
 #: hmib.php
 msgid "30 Seconds"
-msgstr ""
+msgstr "30 δευτερόλεπτα"
 
 #: hmib.php
-#, fuzzy
 #| msgid "%d Minutes"
 msgid "5 Minutes"
-msgstr "%d λεπτά"
+msgstr "5 λεπτά"
 
 #: hmib.php
 msgid "No Refresh"
-msgstr ""
+msgstr "Χωρίς ανανέωση"
 
 #: hmib.php
 msgid "Search Host MIB devices as you type to open that device's dashboard."
-msgstr ""
+msgstr "Αναζήτηση συσκευών Host MIB καθώς πληκτρολογείτε για να ανοίξετε τον πίνακα εργαλείων της συσκευής."
 
 #: hmib.php
 msgid "Add card"
-msgstr ""
+msgstr "Προσθήκη κάρτας"
 
 #: hmib.php
 msgid "Add a card…"
-msgstr ""
+msgstr "Προσθήκη κάρτας…"
 
 #: hmib.php
 msgid "Fleet Overview"
-msgstr ""
+msgstr "Επισκόπηση στόλου"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Resource Utilization"
-msgstr "Αίτηση"
+msgstr "Χρήση πόρων"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Devices"
 msgid "Device Status"
-msgstr "Τύπος Συσκευής"
+msgstr "Κατάσταση συσκευών"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Storage Utilization"
-msgstr "Αίτηση"
+msgstr "Χρήση αποθηκευτικού χώρου"
 
 #: hmib.php
 msgid "Uptime Distribution"
-msgstr ""
+msgstr "Κατανομή χρόνου λειτουργίας"
 
 #: hmib.php
 msgid "OS Type Distribution"
-msgstr ""
+msgstr "Κατανομή τύπων λειτουργικού συστήματος"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes by CPU"
-msgstr "Διαδικασίες"
+msgstr "Κορυφαίες διεργασίες ανά CPU"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes by Memory"
-msgstr "Διαδικασίες"
+msgstr "Κορυφαίες διεργασίες ανά μνήμη"
 
 #: hmib.php
 msgid "No Host MIB devices in this scope yet."
-msgstr ""
+msgstr "Δεν υπάρχουν ακόμη συσκευές Host MIB σε αυτό το εύρος."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Mem"
 msgid "Total RAM"
-msgstr "Σύνολο Μετ"
+msgstr "Συνολική RAM"
 
 #: hmib.php
-#, fuzzy
 #| msgid "CPU %%%"
 msgid "CPU %"
-msgstr "ΕΠΕΞΕΡΓΑΣΤΗΣ %"
+msgstr "CPU %"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Avg Memory"
 msgid "Memory %"
-msgstr "Μέση μνήμη"
+msgstr "Μνήμη %"
 
 #: hmib.php
 msgid "Swap %"
-msgstr ""
+msgstr "Swap %"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Processes"
 msgid "Processes / host"
-msgstr "Διαδικασίες"
+msgstr "Διεργασίες / κεντρικός υπολογιστής"
 
 #: hmib.php
 msgid "No storage volumes detected in this scope."
-msgstr ""
+msgstr "Δεν εντοπίστηκαν τόμοι αποθήκευσης σε αυτό το εύρος."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Swap"
 msgid "Total Capacity"
-msgstr "Σύνολο ανταλλαγής"
+msgstr "Συνολική χωρητικότητα"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No OS types recorded."
-msgstr "Εκτελούμενες Διεργασίες"
+msgstr "Δεν έχουν καταγραφεί τύποι λειτουργικού συστήματος."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Max CPU"
 msgid "Max CPU (s)"
-msgstr "Μέγιστη CPU"
+msgstr "Μέγ. CPU (s)"
 
 #: hmib.php
 msgid "Relative"
-msgstr ""
+msgstr "Σχετικό"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No process statistics recorded."
-msgstr "Εκτελούμενες Διεργασίες"
+msgstr "Δεν έχουν καταγραφεί στατιστικά διεργασιών."
 
 #: hmib.php
 msgid "Scope"
-msgstr ""
+msgstr "Εύρος"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Type"
 msgid "All Types"
-msgstr "Τύπος"
+msgstr "Όλοι οι τύποι"
 
 #: hmib_types.php
 msgid "Delete"
@@ -1013,12 +969,12 @@ msgstr "Διπλότυποι τύποι κεντρικών υπολογιστώ�
 
 #: hmib_types.php
 msgid "New Type"
-msgstr "Νέος Τύπος Εxpert"
+msgstr "Νέος τύπος"
 
 #: hmib_types.php
 #, php-format
 msgid "There were %d Device Types Added!"
-msgstr "Υπήρχαν% d Τύποι συσκευών που προστέθηκαν!"
+msgstr "Προστέθηκαν %d τύποι συσκευών!"
 
 #: hmib_types.php
 msgid "No New Host Types Found!"
@@ -1109,9 +1065,9 @@ msgid "System Description Match"
 msgstr "Περιγραφή συστήματος Συσχέτιση"
 
 #: hmib_types.php
-#, fuzzy, php-format
+#, no-php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr "Παρέχετε βασικές πληροφορίες για να βοηθήσετε την HMIB να ανιχνεύσει τον τύπο του Host. SQL όπου υποστηρίζονται εκφράσεις. SQL όπου το χαρακτήρα μπαλαντέρ είναι το σύμβολο '%'. Οι κανονικές εκφράσεις έχουν καταργηθεί λόγω ζητημάτων συμβατότητας."
+msgstr "Παρέχετε βασικές πληροφορίες για να βοηθήσετε το HMIB να ανιχνεύσει τον τύπο του κεντρικού υπολογιστή. Υποστηρίζονται εκφράσεις SQL Where. Ο χαρακτήρας μπαλαντέρ για το SQL Where είναι το σύμβολο '%' sign. Οι κανονικές εκφράσεις έχουν αφαιρεθεί λόγω προβλημάτων συμβατότητας."
 
 #: hmib_types.php
 msgid "Vendor snmp Object ID"
@@ -1223,20 +1179,18 @@ msgid "Do you wish to automatically purge devices that are removed from the Cact
 msgstr "Θέλετε να καθαρίσετε αυτόματα τις συσκευές που έχουν αφαιρεθεί από το σύστημα Cacti;"
 
 #: setup.php
-#, fuzzy
 #| msgid "No Process History Found"
 msgid "Process History Retention"
-msgstr "Δεν βρέθηκε κανένα ιστορικό διεργασίας"
+msgstr "Διατήρηση ιστορικού διεργασιών"
 
 #: setup.php
 msgid "How long should the Use History tab keep a process after it was last seen running?"
-msgstr ""
+msgstr "Για πόσο χρόνο πρέπει η καρτέλα «Ιστορικό χρήσης» να διατηρεί μια διεργασία αφότου εντοπιστεί να εκτελείται για τελευταία φορά;"
 
 #: setup.php
-#, fuzzy
 #| msgid "Never"
 msgid "Never Purge"
-msgstr "Ποτέ"
+msgstr "Χωρίς εκκαθάριση ποτέ"
 
 #: setup.php
 #, php-format
@@ -1246,12 +1200,12 @@ msgstr "%d Ημέρες"
 #: setup.php
 #, php-format
 msgid "%d Year"
-msgstr ""
+msgstr "%d Έτος"
 
 #: setup.php
 #, php-format
 msgid "%d Years"
-msgstr ""
+msgstr "%d Έτη"
 
 #: setup.php
 msgid "Default Row Count"
@@ -1272,7 +1226,7 @@ msgstr "Πόσες διαδικασίες θέλετε να δείτε στον 
 #: setup.php
 #, php-format
 msgid "%d Types"
-msgstr "% d Τύποι"
+msgstr "%d τύποι"
 
 #: setup.php
 msgid "Default Top Processes"
@@ -1281,7 +1235,7 @@ msgstr "Προεπιλεγμένες κορυφαίες διεργασίες"
 #: setup.php
 #, php-format
 msgid "%d Processes"
-msgstr "% d Διαδικασίες"
+msgstr "%d Διεργασίες"
 
 #: setup.php
 msgid "Maximum Concurrent Collectors"
@@ -1294,7 +1248,7 @@ msgstr "Ποιος είναι ο μέγιστος αριθμός ταυτόχρ�
 #: setup.php
 #, php-format
 msgid "%d Process"
-msgstr "% d Διαδικασία"
+msgstr "%d διεργασία"
 
 #: setup.php
 msgid "Host Auto Discovery Frequency"
@@ -1337,7 +1291,7 @@ msgstr "%d ώρες"
 #: setup.php
 #, php-format
 msgid "%d Day"
-msgstr "% d Ημέρα"
+msgstr "%d Ημέρα"
 
 #: setup.php
 msgid "Host MIB Table Collection Frequencies"
@@ -1394,7 +1348,7 @@ msgstr "Πόσο συχνά θέλετε να σαρώσετε δεδομένα 
 #: setup.php
 #, php-format
 msgid "%d Minute"
-msgstr "% d λεπτά"
+msgstr "%d Λεπτό"
 
 #: setup.php
 #, php-format
@@ -1414,10 +1368,9 @@ msgid "General Administration"
 msgstr "Γενική Διοίκηση"
 
 #: setup.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Fleet Dashboard"
-msgstr "Υποστήριξη λεπτομερειών MIB"
+msgstr "Πίνακας ελέγχου στόλου Host MIB"
 
 #: setup.php
 msgid "Host MIB Inventory Summary"
@@ -1428,10 +1381,9 @@ msgid "Host MIB Details"
 msgstr "Υποστήριξη λεπτομερειών MIB"
 
 #: setup.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Device Dashboard"
-msgstr "Υποστήριξη λεπτομερειών MIB"
+msgstr "Πίνακας ελέγχου συσκευών Host MIB"
 
 #: setup.php
 msgid "Host MIB Storage"
@@ -1455,7 +1407,7 @@ msgstr "Φιλοξενία απογραφής λογισμικού MIB"
 
 #: setup.php
 msgid "Host MIB Graphs"
-msgstr "Υπολογιστές MIB"
+msgstr "Γραφήματα Host MIB"
 
 #: setup.php
 msgid "Host MIB OS Types"

@@ -216,7 +216,7 @@ msgstr "找不到硬件"
 
 #: hmib.php
 msgid "Click to filter by this status"
-msgstr ""
+msgstr "点击按此状态筛选"
 
 #: hmib.php
 msgid "Storage Inventory"
@@ -283,7 +283,6 @@ msgid "Users"
 msgstr "用户"
 
 #: hmib.php
-#, fuzzy
 msgid "CPU %%%"
 msgstr "CPU %"
 
@@ -309,7 +308,7 @@ msgstr "使用的Swap"
 
 #: hmib.php
 msgid "View Dashboard"
-msgstr ""
+msgstr "查看仪表板"
 
 #: hmib.php
 msgid "View Storage"
@@ -337,7 +336,7 @@ msgstr "没有定义的图形"
 
 #: hmib.php
 msgid "N/A"
-msgstr ""
+msgstr "不可用"
 
 #: hmib.php
 msgid "No Devices Found"
@@ -364,10 +363,9 @@ msgid "No Software Packages Found"
 msgstr "找不到软件包"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Fleet Dashboard"
-msgstr "主机MIB详细信息"
+msgstr "设备群仪表板"
 
 #: hmib.php
 msgid "Summary"
@@ -395,14 +393,13 @@ msgstr "图表"
 
 #: hmib.php
 msgid "Dashboard"
-msgstr ""
+msgstr "仪表板"
 
 #: hmib.php
 msgid "Summary Filter"
 msgstr "摘要过滤器"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Type"
 msgid "Types"
 msgstr "类型"
@@ -475,7 +472,7 @@ msgstr "最大进程"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
-msgstr ""
+msgstr "查看设备群仪表板"
 
 #: hmib.php
 msgid "View Devices"
@@ -510,10 +507,9 @@ msgid "Max Memory"
 msgstr "最大内存"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Summary"
 msgid "Summary Stats"
-msgstr "概要"
+msgstr "汇总统计"
 
 #: hmib.php
 #, php-format
@@ -539,222 +535,200 @@ msgstr "图预览过滤器"
 
 #: hmib.php
 msgid "System Information"
-msgstr ""
+msgstr "系统信息"
 
 #: hmib.php
 msgid "CPU Utilization"
-msgstr ""
+msgstr "CPU 利用率"
 
 #: hmib.php
 msgid "Memory Utilization"
-msgstr ""
+msgstr "内存利用率"
 
 #: hmib.php
 msgid "Swap Utilization"
-msgstr ""
+msgstr "Swap 利用率"
 
 #: hmib.php
 msgid "Users and Logins"
-msgstr ""
+msgstr "用户与登录"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Process Name"
 msgid "Per-Processor Load"
-msgstr "进程名称"
+msgstr "单处理器负载"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Storage Type"
 msgid "Storage Volumes"
-msgstr "存储类型"
+msgstr "存储卷"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes"
-msgstr "没有进程"
+msgstr "Top 进程"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Process Use History"
 msgid "Process Use History"
-msgstr "主机MIB进程使用历史"
+msgstr "进程使用历史"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Hardware Type"
 msgid "Hardware Devices"
-msgstr "硬件类型"
+msgstr "硬件设备"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Installed Software Frequency"
 msgid "Installed Software"
-msgstr "安装软件频率"
+msgstr "已安装软件"
 
 #: hmib.php
 msgid "No system information has been collected for this device yet."
-msgstr ""
+msgstr "尚未收集到此设备的系统信息。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Management"
 msgid "Management Address"
-msgstr "管理"
+msgstr "管理地址"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host Type Name"
 msgid "System Name"
-msgstr "主机类型名称"
+msgstr "系统名称"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Storage Description"
 msgid "Description"
-msgstr "存储说明"
+msgstr "描述"
 
 #: hmib.php
 msgid "Contact"
-msgstr ""
+msgstr "联系人"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Actions"
 msgid "Location"
-msgstr "操作"
+msgstr "位置"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Uptime(d:h:m)"
 msgid "Uptime"
-msgstr "正常运行时间(d:h:m)"
+msgstr "运行时间"
 
 #: hmib.php
 msgid "System Time"
-msgstr ""
+msgstr "系统时间"
 
 #: hmib.php
 msgid "No processor data available."
-msgstr ""
+msgstr "无可用处理器数据。"
 
 #: hmib.php
 #, php-format
 msgid "%d CPU(s)"
-msgstr ""
+msgstr "%d 个 CPU"
 
 #: hmib.php
 msgid "No memory data available."
-msgstr ""
+msgstr "无可用内存数据。"
 
 #: hmib.php
 #, php-format
 msgid "%s total"
-msgstr ""
+msgstr "总计 %s"
 
 #: hmib.php
 msgid "No swap configured on this device."
-msgstr ""
+msgstr "此设备上未配置交换空间。"
 
 #: hmib.php
 msgid "No session data available."
-msgstr ""
+msgstr "没有可用的会话数据。"
 
 #: hmib.php
 msgid "Logged-in Users"
-msgstr ""
+msgstr "已登录用户"
 
 #: hmib.php
-#, fuzzy
 #| msgid "View Processes"
 msgid "Maximum Processes"
-msgstr "查看进程"
+msgstr "最大进程数"
 
 #: hmib.php
 msgid "Unlimited"
-msgstr ""
+msgstr "无限"
 
 #: hmib.php
-#, fuzzy
 #| msgid "CPUs"
 msgid "CPU"
-msgstr "CPUs"
+msgstr "CPU"
 
 #: hmib.php
 msgid "Load"
-msgstr ""
+msgstr "负载"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Utilization"
-msgstr "应用"
+msgstr "利用率"
 
 #: hmib.php
-#, fuzzy, php-format
+#, php-format
 msgid "CPU %d"
-msgstr "CPU %"
+msgstr "CPU %d"
 
 #: hmib.php
 msgid "No per-processor load reported."
-msgstr ""
+msgstr "未报告单处理器负载。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Volumes"
 msgid "Volume"
 msgstr "卷"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Used Mem"
 msgid "Used"
-msgstr "使用的内存"
+msgstr "已用"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Mem"
 msgid "Total"
-msgstr "总内存"
+msgstr "一共"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Used Mem"
 msgid "Used %"
-msgstr "使用的内存"
+msgstr "已用 %"
 
 #: hmib.php
 msgid "No storage volumes detected."
-msgstr ""
+msgstr "未检测到存储卷。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "CPU (Hrs)"
 msgid "CPU (s)"
-msgstr "CPU (Hrs)"
+msgstr "CPU (秒)"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Avg Memory"
 msgid "Memory"
-msgstr "平均内存"
+msgstr "内存"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No running processes recorded."
-msgstr "运行进程"
+msgstr "未记录正在运行的进程。"
 
 #: hmib.php
 msgid "No hardware devices detected."
-msgstr ""
+msgstr "未检测到硬件设备。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Installed"
 msgid "Installed Packages"
-msgstr "安装"
+msgstr "已安装软件包"
 
 #: hmib.php hmib_types.php
 msgid "Name"
@@ -762,218 +736,199 @@ msgstr "名称"
 
 #: hmib.php
 msgid "No installed software inventory collected."
-msgstr ""
+msgstr "未收集到已安装软件清单。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No process use history recorded."
-msgstr "运行进程"
+msgstr "未记录进程使用历史。"
 
 #: hmib.php
 msgid "Show more"
-msgstr ""
+msgstr "显示更多"
 
 #: hmib.php
 msgid "Show less"
-msgstr ""
+msgstr "收起"
 
 #: hmib.php
 msgid "Open in a dialog"
-msgstr ""
+msgstr "在对话框中打开"
 
 #: hmib.php
 msgid "Refresh"
-msgstr ""
+msgstr "刷新"
 
 #: hmib.php
 msgid "Remove from page"
-msgstr ""
+msgstr "从页面移除"
 
 #: hmib.php
 msgid "Drag to reorder card"
-msgstr ""
+msgstr "拖动以重新排序卡片"
 
 #: hmib.php
 msgid "Invalid request. Please try again."
-msgstr ""
+msgstr "请求无效，请重试。"
 
 #: hmib.php
 msgid "Invalid refresh interval."
-msgstr ""
+msgstr "刷新间隔无效。"
 
 #: hmib.php
 msgid "No device selected."
-msgstr ""
+msgstr "未选择设备。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Unknown"
 msgid "Unknown card."
-msgstr "未知"
+msgstr "未知卡片。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Dashboard"
-msgstr "主机MIB详细信息"
+msgstr "主机 MIB 仪表板"
 
 #: hmib.php
 msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
-msgstr ""
+msgstr "在“设备”选项卡中，点击设备“操作”列中的仪表板图标即可打开设备仪表板。仪表板会记住您上次打开的设备。"
 
 #: hmib.php
-#, fuzzy, php-format
+#, php-format
 #| msgid "Device"
 msgid "Device %d"
-msgstr "设备"
+msgstr "设备 %d"
 
 #: hmib.php
-#, fuzzy
 #| msgid "%d Minute"
 msgid "1 Minute"
-msgstr "%d分钟"
+msgstr "1 分钟"
 
 #: hmib.php
 msgid "30 Seconds"
-msgstr ""
+msgstr "30 秒"
 
 #: hmib.php
-#, fuzzy
 #| msgid "%d Minutes"
 msgid "5 Minutes"
-msgstr "%d分钟"
+msgstr "5 分钟"
 
 #: hmib.php
 msgid "No Refresh"
-msgstr ""
+msgstr "不刷新"
 
 #: hmib.php
 msgid "Search Host MIB devices as you type to open that device's dashboard."
-msgstr ""
+msgstr "在输入时搜索 Host MIB 设备以打开该设备的仪表板。"
 
 #: hmib.php
 msgid "Add card"
-msgstr ""
+msgstr "添加卡片"
 
 #: hmib.php
 msgid "Add a card…"
-msgstr ""
+msgstr "添加卡片…"
 
 #: hmib.php
 msgid "Fleet Overview"
-msgstr ""
+msgstr "主机群概览"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Resource Utilization"
-msgstr "应用"
+msgstr "资源利用率"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Devices"
 msgid "Device Status"
-msgstr "设备"
+msgstr "设备状态"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Storage Utilization"
-msgstr "应用"
+msgstr "存储利用率"
 
 #: hmib.php
 msgid "Uptime Distribution"
-msgstr ""
+msgstr "运行时间分布"
 
 #: hmib.php
 msgid "OS Type Distribution"
-msgstr ""
+msgstr "操作系统类型分布"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes by CPU"
-msgstr "没有进程"
+msgstr "按 CPU 排序的 Top 进程"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes by Memory"
-msgstr "没有进程"
+msgstr "按内存排序的 Top 进程"
 
 #: hmib.php
 msgid "No Host MIB devices in this scope yet."
-msgstr ""
+msgstr "此范围内尚无 Host MIB 设备。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Mem"
 msgid "Total RAM"
 msgstr "总内存"
 
 #: hmib.php
-#, fuzzy
 msgid "CPU %"
 msgstr "CPU %"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Avg Memory"
 msgid "Memory %"
-msgstr "平均内存"
+msgstr "内存 %"
 
 #: hmib.php
 msgid "Swap %"
-msgstr ""
+msgstr "Swap 使用率 %"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Processes"
 msgid "Processes / host"
-msgstr "流程..."
+msgstr "每台主机进程数"
 
 #: hmib.php
 msgid "No storage volumes detected in this scope."
-msgstr ""
+msgstr "在此范围内未检测到存储卷。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Swap"
 msgid "Total Capacity"
-msgstr "总Swap"
+msgstr "总容量"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No OS types recorded."
-msgstr "运行进程"
+msgstr "未记录操作系统类型。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Max CPU"
 msgid "Max CPU (s)"
-msgstr "最大CPU"
+msgstr "最大 CPU (秒)"
 
 #: hmib.php
 msgid "Relative"
-msgstr ""
+msgstr "相对"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No process statistics recorded."
-msgstr "运行进程"
+msgstr "未记录进程统计信息。"
 
 #: hmib.php
 msgid "Scope"
-msgstr ""
+msgstr "范围"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Type"
 msgid "All Types"
-msgstr "类型"
+msgstr "所有类型"
 
 #: hmib_types.php
 msgid "Delete"
@@ -1109,9 +1064,9 @@ msgid "System Description Match"
 msgstr "系统描述匹配"
 
 #: hmib_types.php
-#, fuzzy, php-format
+#, no-php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr "提供关键信息以帮助HMIB检测主机的类型。 SQL在哪里支持表达式。 SQL通配符是'％'符号。 由于兼容性问题，正则表达式已被删除。"
+msgstr "提供关键信息以帮助 HMIB 检测主机类型。支持 SQL Where 表达式。SQL Where 通配符为 '%' sign（百分号）。由于兼容性问题，正则表达式已被移除。"
 
 #: hmib_types.php
 msgid "Vendor snmp Object ID"
@@ -1191,9 +1146,8 @@ msgid "Host MIB Admin"
 msgstr "主机 MIB 管理员"
 
 #: setup.php
-#, fuzzy
 msgid "Host MIB"
-msgstr "导入主机MIB操作系统类型"
+msgstr "主机 MIB"
 
 #: setup.php
 msgid "Host MIB General Settings"
@@ -1224,20 +1178,18 @@ msgid "Do you wish to automatically purge devices that are removed from the Cact
 msgstr "您是否希望自动清除从Cacti系统中移除的设备？"
 
 #: setup.php
-#, fuzzy
 #| msgid "No Process History Found"
 msgid "Process History Retention"
-msgstr "找不到过程历史记录"
+msgstr "进程历史记录保留时间"
 
 #: setup.php
 msgid "How long should the Use History tab keep a process after it was last seen running?"
-msgstr ""
+msgstr "进程最后一次运行后，“使用历史”选项卡应保留该进程多长时间？"
 
 #: setup.php
-#, fuzzy
 #| msgid "Never"
 msgid "Never Purge"
-msgstr "从不"
+msgstr "从不清理"
 
 #: setup.php
 #, php-format
@@ -1247,12 +1199,12 @@ msgstr "%d 天"
 #: setup.php
 #, php-format
 msgid "%d Year"
-msgstr ""
+msgstr "%d 年"
 
 #: setup.php
 #, php-format
 msgid "%d Years"
-msgstr ""
+msgstr "%d 年"
 
 #: setup.php
 msgid "Default Row Count"
@@ -1415,10 +1367,9 @@ msgid "General Administration"
 msgstr "基本管理"
 
 #: setup.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Fleet Dashboard"
-msgstr "主机MIB详细信息"
+msgstr "主机 MIB 设备群仪表板"
 
 #: setup.php
 msgid "Host MIB Inventory Summary"
@@ -1429,10 +1380,9 @@ msgid "Host MIB Details"
 msgstr "主机MIB详细信息"
 
 #: setup.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Device Dashboard"
-msgstr "主机MIB详细信息"
+msgstr "主机 MIB 设备仪表板"
 
 #: setup.php
 msgid "Host MIB Storage"

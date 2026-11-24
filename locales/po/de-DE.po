@@ -215,7 +215,7 @@ msgstr "Keine Hardware gefunden"
 
 #: hmib.php
 msgid "Click to filter by this status"
-msgstr ""
+msgstr "Klicken, um nach diesem Status zu filtern"
 
 #: hmib.php
 msgid "Storage Inventory"
@@ -227,7 +227,7 @@ msgstr "Volumen"
 
 #: hmib.php
 msgid "Storage Description"
-msgstr "Besondere Hindernisse? Wo genau sollte der Container aufgestellt werden?"
+msgstr "Speicherbeschreibung"
 
 #: hmib.php
 msgid "Storage Type"
@@ -307,7 +307,7 @@ msgstr "Gebrauchter Swap"
 
 #: hmib.php
 msgid "View Dashboard"
-msgstr ""
+msgstr "Dashboard anzeigen"
 
 #: hmib.php
 msgid "View Storage"
@@ -335,7 +335,7 @@ msgstr "Keine Diagramme definiert"
 
 #: hmib.php
 msgid "N/A"
-msgstr ""
+msgstr "Nicht verfügbar"
 
 #: hmib.php
 msgid "No Devices Found"
@@ -362,10 +362,9 @@ msgid "No Software Packages Found"
 msgstr "Keine Softwarepakete gefunden"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Fleet Dashboard"
-msgstr "Details zur Host-MIB"
+msgstr "Flotten-Dashboard"
 
 #: hmib.php
 msgid "Summary"
@@ -393,17 +392,16 @@ msgstr "Diagramme"
 
 #: hmib.php
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashboard"
 
 #: hmib.php
 msgid "Summary Filter"
 msgstr "Zusammenfassungsfilter"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Type"
 msgid "Types"
-msgstr "Typ"
+msgstr "Typen"
 
 #: hmib.php
 msgid "All Records"
@@ -473,7 +471,7 @@ msgstr "Max Proc"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
-msgstr ""
+msgstr "Flotten-Dashboard anzeigen"
 
 #: hmib.php
 msgid "View Devices"
@@ -508,10 +506,9 @@ msgid "Max Memory"
 msgstr "Max. Speicher"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Summary"
 msgid "Summary Stats"
-msgstr "Zusammenfassung"
+msgstr "Zusammenfassende Statistiken"
 
 #: hmib.php
 #, php-format
@@ -525,7 +522,7 @@ msgstr "%s MB"
 
 #: hmib.php
 msgid "No Processes"
-msgstr "Prozesse"
+msgstr "Keine Prozesse"
 
 #: hmib.php
 msgid "Custom Graph List Applied - Filtering from List"
@@ -537,223 +534,201 @@ msgstr "Diagramm-Vorschau-Filter"
 
 #: hmib.php
 msgid "System Information"
-msgstr ""
+msgstr "Systeminformationen"
 
 #: hmib.php
 msgid "CPU Utilization"
-msgstr ""
+msgstr "CPU-Auslastung"
 
 #: hmib.php
 msgid "Memory Utilization"
-msgstr ""
+msgstr "Speicherauslastung"
 
 #: hmib.php
 msgid "Swap Utilization"
-msgstr ""
+msgstr "Swap-Auslastung"
 
 #: hmib.php
 msgid "Users and Logins"
-msgstr ""
+msgstr "Benutzer und Anmeldungen"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Process Name"
 msgid "Per-Processor Load"
-msgstr "Prozess Name"
+msgstr "Auslastung pro Prozessor"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Storage Type"
 msgid "Storage Volumes"
-msgstr "Lager Typ des Artikels"
+msgstr "Speichervolumes"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes"
-msgstr "Prozesse"
+msgstr "Top-Prozesse"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Process Use History"
 msgid "Process Use History"
-msgstr "Host MIB Prozess Nutzungsverlauf"
+msgstr "Prozessnutzungsverlauf"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Hardware Type"
 msgid "Hardware Devices"
-msgstr "Hardware-Typ"
+msgstr "Hardware-Geräte"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Installed Software Frequency"
 msgid "Installed Software"
-msgstr "Installierte Software-Frequenz"
+msgstr "Installierte Software"
 
 #: hmib.php
 msgid "No system information has been collected for this device yet."
-msgstr ""
+msgstr "Für dieses Gerät wurden noch keine Systeminformationen erfasst."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Management"
 msgid "Management Address"
-msgstr "Verwaltung"
+msgstr "Verwaltungsadresse"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host Type Name"
 msgid "System Name"
-msgstr "Name des Hosttyps"
+msgstr "Systemname"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Storage Description"
 msgid "Description"
-msgstr "Besondere Hindernisse? Wo genau sollte der Container aufgestellt werden?"
+msgstr "Beschreibung"
 
 #: hmib.php
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Actions"
 msgid "Location"
-msgstr "Aktionen"
+msgstr "Standort"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Uptime(d:h:m)"
 msgid "Uptime"
-msgstr "Betriebszeit(d:h:m)"
+msgstr "Laufzeit"
 
 #: hmib.php
 msgid "System Time"
-msgstr ""
+msgstr "Systemzeit"
 
 #: hmib.php
 msgid "No processor data available."
-msgstr ""
+msgstr "Keine Prozessordaten verfügbar."
 
 #: hmib.php
 #, php-format
 msgid "%d CPU(s)"
-msgstr ""
+msgstr "%d CPU(s)"
 
 #: hmib.php
 msgid "No memory data available."
-msgstr ""
+msgstr "Keine Speicherdaten verfügbar."
 
 #: hmib.php
 #, php-format
 msgid "%s total"
-msgstr ""
+msgstr "%s gesamt"
 
 #: hmib.php
 msgid "No swap configured on this device."
-msgstr ""
+msgstr "Auf diesem Gerät ist kein Swap-Speicher konfiguriert."
 
 #: hmib.php
 msgid "No session data available."
-msgstr ""
+msgstr "Keine Sitzungsdaten verfügbar."
 
 #: hmib.php
 msgid "Logged-in Users"
-msgstr ""
+msgstr "Angemeldete Benutzer"
 
 #: hmib.php
-#, fuzzy
 #| msgid "View Processes"
 msgid "Maximum Processes"
-msgstr "Prozesse anzeigen"
+msgstr "Maximale Anzahl Prozesse"
 
 #: hmib.php
 msgid "Unlimited"
-msgstr ""
+msgstr "Unbegrenzt"
 
 #: hmib.php
-#, fuzzy
 #| msgid "CPUs"
 msgid "CPU"
-msgstr "Prozessoren"
+msgstr "CPU"
 
 #: hmib.php
 msgid "Load"
-msgstr ""
+msgstr "Auslastung"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Utilization"
-msgstr "Bewerbung"
+msgstr "Auslastung"
 
 #: hmib.php
-#, fuzzy, php-format
+#, php-format
 #| msgid "CPU %%%"
 msgid "CPU %d"
-msgstr "CPU %"
+msgstr "CPU %d"
 
 #: hmib.php
 msgid "No per-processor load reported."
-msgstr ""
+msgstr "Keine Auslastung pro Prozessor gemeldet."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Volumes"
 msgid "Volume"
-msgstr "Volumen"
+msgstr "Datenträger"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Used Mem"
 msgid "Used"
-msgstr "Verwendete Mem"
+msgstr "Belegt"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Mem"
 msgid "Total"
-msgstr "Gesamtmemory"
+msgstr "Gesamt"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Used Mem"
 msgid "Used %"
-msgstr "Verwendete Mem"
+msgstr "Belegt %"
 
 #: hmib.php
 msgid "No storage volumes detected."
-msgstr ""
+msgstr "Keine Speichervolumes erkannt."
 
 #: hmib.php
-#, fuzzy
 #| msgid "CPU (Hrs)"
 msgid "CPU (s)"
-msgstr "CPU (Stunden)"
+msgstr "CPU (s)"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Avg Memory"
 msgid "Memory"
-msgstr "Avg Speicher"
+msgstr "Arbeitsspeicher"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No running processes recorded."
-msgstr "Laufende Prozesse"
+msgstr "Keine laufenden Prozesse erfasst."
 
 #: hmib.php
 msgid "No hardware devices detected."
-msgstr ""
+msgstr "Keine Hardwaregeräte erkannt."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Installed"
 msgid "Installed Packages"
-msgstr "Installiert"
+msgstr "Installierte Pakete"
 
 #: hmib.php hmib_types.php
 msgid "Name"
@@ -761,219 +736,200 @@ msgstr "Name"
 
 #: hmib.php
 msgid "No installed software inventory collected."
-msgstr ""
+msgstr "Kein Inventar installierter Software erfasst."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No process use history recorded."
-msgstr "Laufende Prozesse"
+msgstr "Kein Prozessnutzungsverlauf erfasst."
 
 #: hmib.php
 msgid "Show more"
-msgstr ""
+msgstr "Mehr anzeigen"
 
 #: hmib.php
 msgid "Show less"
-msgstr ""
+msgstr "Weniger anzeigen"
 
 #: hmib.php
 msgid "Open in a dialog"
-msgstr ""
+msgstr "In einem Dialog öffnen"
 
 #: hmib.php
 msgid "Refresh"
-msgstr ""
+msgstr "Aktualisieren"
 
 #: hmib.php
 msgid "Remove from page"
-msgstr ""
+msgstr "Von Seite entfernen"
 
 #: hmib.php
 msgid "Drag to reorder card"
-msgstr ""
+msgstr "Ziehen zum Neuanordnen der Karte"
 
 #: hmib.php
 msgid "Invalid request. Please try again."
-msgstr ""
+msgstr "Ungültige Anfrage. Bitte versuchen Sie es erneut."
 
 #: hmib.php
 msgid "Invalid refresh interval."
-msgstr ""
+msgstr "Ungültiges Aktualisierungsintervall."
 
 #: hmib.php
 msgid "No device selected."
-msgstr ""
+msgstr "Kein Gerät ausgewählt."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Unknown"
 msgid "Unknown card."
-msgstr "Unbekannt"
+msgstr "Unbekannte Karte."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Dashboard"
-msgstr "Details zur Host-MIB"
+msgstr "Host-MIB-Dashboard"
 
 #: hmib.php
 msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
-msgstr ""
+msgstr "Öffnen Sie ein Geräte-Dashboard über die Registerkarte „Geräte“, indem Sie in der Spalte „Aktionen“ auf das Dashboard-Symbol klicken. Das Dashboard merkt sich das zuletzt geöffnete Gerät."
 
 #: hmib.php
-#, fuzzy, php-format
+#, php-format
 #| msgid "Device"
 msgid "Device %d"
-msgstr "Zielsysteme"
+msgstr "Gerät %d"
 
 #: hmib.php
-#, fuzzy
 #| msgid "%d Minute"
 msgid "1 Minute"
-msgstr "%d Minute"
+msgstr "1 Minute"
 
 #: hmib.php
 msgid "30 Seconds"
-msgstr ""
+msgstr "30 Sekunden"
 
 #: hmib.php
-#, fuzzy
 #| msgid "%d Minutes"
 msgid "5 Minutes"
-msgstr "%d Minuten"
+msgstr "5 Minuten"
 
 #: hmib.php
 msgid "No Refresh"
-msgstr ""
+msgstr "Keine Aktualisierung"
 
 #: hmib.php
 msgid "Search Host MIB devices as you type to open that device's dashboard."
-msgstr ""
+msgstr "Host-MIB-Geräte während der Eingabe suchen, um das Dashboard des jeweiligen Geräts zu öffnen."
 
 #: hmib.php
 msgid "Add card"
-msgstr ""
+msgstr "Karte hinzufügen"
 
 #: hmib.php
 msgid "Add a card…"
-msgstr ""
+msgstr "Karte hinzufügen…"
 
 #: hmib.php
 msgid "Fleet Overview"
-msgstr ""
+msgstr "Flottenübersicht"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Resource Utilization"
-msgstr "Bewerbung"
+msgstr "Ressourcenauslastung"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Devices"
 msgid "Device Status"
-msgstr "Zielsysteme"
+msgstr "Gerätestatus"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Storage Utilization"
-msgstr "Bewerbung"
+msgstr "Speicherauslastung"
 
 #: hmib.php
 msgid "Uptime Distribution"
-msgstr ""
+msgstr "Betriebszeitverteilung"
 
 #: hmib.php
 msgid "OS Type Distribution"
-msgstr ""
+msgstr "Verteilung der Betriebssystemtypen"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes by CPU"
-msgstr "Prozesse"
+msgstr "Top-Prozesse nach CPU"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes by Memory"
-msgstr "Prozesse"
+msgstr "Top-Prozesse nach Arbeitsspeicher"
 
 #: hmib.php
 msgid "No Host MIB devices in this scope yet."
-msgstr ""
+msgstr "In diesem Bereich sind noch keine Host-MIB-Geräte vorhanden."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Mem"
 msgid "Total RAM"
-msgstr "Gesamtmemory"
+msgstr "RAM gesamt"
 
 #: hmib.php
-#, fuzzy
 #| msgid "CPU %%%"
 msgid "CPU %"
 msgstr "CPU %"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Avg Memory"
 msgid "Memory %"
-msgstr "Avg Speicher"
+msgstr "Arbeitsspeicher %"
 
 #: hmib.php
 msgid "Swap %"
-msgstr ""
+msgstr "Swap %"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Processes"
 msgid "Processes / host"
-msgstr "Prozesse"
+msgstr "Prozesse / Host"
 
 #: hmib.php
 msgid "No storage volumes detected in this scope."
-msgstr ""
+msgstr "In diesem Bereich wurden keine Speichervolumes erkannt."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Swap"
 msgid "Total Capacity"
-msgstr "Total Swap"
+msgstr "Gesamtkapazität"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No OS types recorded."
-msgstr "Laufende Prozesse"
+msgstr "Keine Betriebssystemtypen erfasst."
 
 #: hmib.php
-#, fuzzy
 #| msgid "Max CPU"
 msgid "Max CPU (s)"
-msgstr "Maximale CPU"
+msgstr "Max. CPU (s)"
 
 #: hmib.php
 msgid "Relative"
-msgstr ""
+msgstr "Relativ"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No process statistics recorded."
-msgstr "Laufende Prozesse"
+msgstr "Keine Prozessstatistiken erfasst."
 
 #: hmib.php
 msgid "Scope"
-msgstr ""
+msgstr "Bereich"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Type"
 msgid "All Types"
-msgstr "Typ"
+msgstr "Alle Typen"
 
 #: hmib_types.php
 msgid "Delete"
@@ -1109,9 +1065,9 @@ msgid "System Description Match"
 msgstr "Abgleich der Systembeschreibung"
 
 #: hmib_types.php
-#, fuzzy, php-format
+#, no-php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr "Bereitstellung von Schlüsselinformationen, die dem HMIB helfen, den Typ des Hosts zu erkennen.  SQL Wo Ausdrücke unterstützt werden.  SQL Wenn das Platzhalterzeichen das Zeichen'%' ist. Reguläre Ausdrücke wurden aufgrund von Kompatibilitätsproblemen entfernt."
+msgstr "Geben Sie wichtige Informationen an, damit HMIB den Host-Typ erkennen kann. SQL-WHERE-Ausdrücke werden unterstützt. Das Platzhalterzeichen in SQL-WHERE ist das Zeichen '%' selbst. Reguläre Ausdrücke wurden aus Kompatibilitätsgründen entfernt."
 
 #: hmib_types.php
 msgid "Vendor snmp Object ID"
@@ -1208,7 +1164,7 @@ msgstr "Aktivieren Sie dieses Kontrollkästchen, wenn Sie möchten, dass die Hos
 
 #: setup.php
 msgid "Automatically Discover Cacti Devices"
-msgstr "Automatische Erkennung von Kakteengeräten"
+msgstr "Cacti-Geräte automatisch erkennen"
 
 #: setup.php
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
@@ -1223,20 +1179,18 @@ msgid "Do you wish to automatically purge devices that are removed from the Cact
 msgstr "Möchten Sie Geräte, die aus dem Cacti-System entfernt wurden, automatisch bereinigen?"
 
 #: setup.php
-#, fuzzy
 #| msgid "No Process History Found"
 msgid "Process History Retention"
-msgstr "Keine Prozesshistorie gefunden"
+msgstr "Aufbewahrungsdauer des Prozessverlaufs"
 
 #: setup.php
 msgid "How long should the Use History tab keep a process after it was last seen running?"
-msgstr ""
+msgstr "Wie lange soll der Tab „Nutzungsverlauf“ einen Prozess behalten, nachdem er zuletzt aktiv gesehen wurde?"
 
 #: setup.php
-#, fuzzy
 #| msgid "Never"
 msgid "Never Purge"
-msgstr "Niemals"
+msgstr "Niemals bereinigen"
 
 #: setup.php
 #, php-format
@@ -1246,12 +1200,12 @@ msgstr "%d Tage"
 #: setup.php
 #, php-format
 msgid "%d Year"
-msgstr ""
+msgstr "%d Jahr"
 
 #: setup.php
 #, php-format
 msgid "%d Years"
-msgstr ""
+msgstr "%d Jahre"
 
 #: setup.php
 msgid "Default Row Count"
@@ -1306,7 +1260,7 @@ msgstr "Automatische Erkennungshäufigkeit"
 
 #: setup.php
 msgid "How often do you want to look for new Cacti Devices?"
-msgstr "Wie oft möchten Sie nach neuen Kakteenprodukten suchen?"
+msgstr "Wie oft soll nach neuen Cacti-Geräten gesucht werden?"
 
 #: setup.php
 msgid "Host Graph Automation"
@@ -1407,17 +1361,16 @@ msgstr "Verwaltung"
 
 #: setup.php
 msgid "Normal User"
-msgstr "Kunde / Urlauber"
+msgstr "Normaler Benutzer"
 
 #: setup.php
 msgid "General Administration"
 msgstr "Allgemeine Administration"
 
 #: setup.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Fleet Dashboard"
-msgstr "Details zur Host-MIB"
+msgstr "Host-MIB-Flotten-Dashboard"
 
 #: setup.php
 msgid "Host MIB Inventory Summary"
@@ -1428,10 +1381,9 @@ msgid "Host MIB Details"
 msgstr "Details zur Host-MIB"
 
 #: setup.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Device Dashboard"
-msgstr "Details zur Host-MIB"
+msgstr "Host-MIB-Geräte-Dashboard"
 
 #: setup.php
 msgid "Host MIB Storage"

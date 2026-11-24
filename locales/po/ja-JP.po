@@ -216,7 +216,7 @@ msgstr "ハードウェアが見つかりません"
 
 #: hmib.php
 msgid "Click to filter by this status"
-msgstr ""
+msgstr "クリックしてこのステータスでフィルタリングします"
 
 #: hmib.php
 msgid "Storage Inventory"
@@ -308,7 +308,7 @@ msgstr "中古スワップ"
 
 #: hmib.php
 msgid "View Dashboard"
-msgstr ""
+msgstr "ダッシュボードを表示"
 
 #: hmib.php
 msgid "View Storage"
@@ -336,7 +336,7 @@ msgstr "グラフが定義されていません"
 
 #: hmib.php
 msgid "N/A"
-msgstr ""
+msgstr "該当なし"
 
 #: hmib.php
 msgid "No Devices Found"
@@ -363,10 +363,9 @@ msgid "No Software Packages Found"
 msgstr "ソフトウェアパッケージが見つかりません"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Fleet Dashboard"
-msgstr "ホストMIBの詳細"
+msgstr "フリートダッシュボード"
 
 #: hmib.php
 msgid "Summary"
@@ -394,14 +393,13 @@ msgstr "グラフ"
 
 #: hmib.php
 msgid "Dashboard"
-msgstr ""
+msgstr "ダッシュボード"
 
 #: hmib.php
 msgid "Summary Filter"
 msgstr "サマリフィルタ"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Type"
 msgid "Types"
 msgstr "タイプ"
@@ -474,7 +472,7 @@ msgstr "マックスプロック"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
-msgstr ""
+msgstr "フリートダッシュボードを表示"
 
 #: hmib.php
 msgid "View Devices"
@@ -498,7 +496,7 @@ msgstr "パス数"
 
 #: hmib.php hmib_types.php
 msgid "Hosts"
-msgstr "主机"
+msgstr "ホスト"
 
 #: hmib.php
 msgid "Avg Memory"
@@ -509,10 +507,9 @@ msgid "Max Memory"
 msgstr "最大メモリ"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Summary"
 msgid "Summary Stats"
-msgstr "概要"
+msgstr "概要統計"
 
 #: hmib.php
 #, php-format
@@ -526,7 +523,7 @@ msgstr "%s MB"
 
 #: hmib.php
 msgid "No Processes"
-msgstr "プロセッサー"
+msgstr "プロセスがありません"
 
 #: hmib.php
 msgid "Custom Graph List Applied - Filtering from List"
@@ -538,223 +535,201 @@ msgstr "グラフプレビューフィルタ"
 
 #: hmib.php
 msgid "System Information"
-msgstr ""
+msgstr "システム情報"
 
 #: hmib.php
 msgid "CPU Utilization"
-msgstr ""
+msgstr "CPU 使用率"
 
 #: hmib.php
 msgid "Memory Utilization"
-msgstr ""
+msgstr "メモリ使用率"
 
 #: hmib.php
 msgid "Swap Utilization"
-msgstr ""
+msgstr "スワップ使用率"
 
 #: hmib.php
 msgid "Users and Logins"
-msgstr ""
+msgstr "ユーザーおよびログイン"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Process Name"
 msgid "Per-Processor Load"
-msgstr "プロセス名"
+msgstr "プロセッサごとの負荷"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Storage Type"
 msgid "Storage Volumes"
-msgstr "保管タイプ"
+msgstr "ストレージボリューム"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes"
-msgstr "プロセッサー"
+msgstr "上位プロセス"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Process Use History"
 msgid "Process Use History"
-msgstr "ホストMIBプロセス使用履歴"
+msgstr "プロセス使用履歴"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Hardware Type"
 msgid "Hardware Devices"
-msgstr "ハードウェアの種類"
+msgstr "ハードウェアデバイス"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Installed Software Frequency"
 msgid "Installed Software"
-msgstr "インストールされているソフトウェアの頻度"
+msgstr "インストール済みソフトウェア"
 
 #: hmib.php
 msgid "No system information has been collected for this device yet."
-msgstr ""
+msgstr "このデバイスのシステム情報はまだ収集されていません。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Management"
 msgid "Management Address"
-msgstr "マネジメント"
+msgstr "管理アドレス"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host Type Name"
 msgid "System Name"
-msgstr "ホストタイプ名"
+msgstr "システム名"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Storage Description"
 msgid "Description"
-msgstr "ストレージの説明"
+msgstr "説明"
 
 #: hmib.php
 msgid "Contact"
-msgstr ""
+msgstr "お問い合わせ"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Actions"
 msgid "Location"
-msgstr "操作"
+msgstr "場所"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Uptime(d:h:m)"
 msgid "Uptime"
-msgstr "稼働時間（d：h：m）"
+msgstr "稼働時間"
 
 #: hmib.php
 msgid "System Time"
-msgstr ""
+msgstr "システム時刻"
 
 #: hmib.php
 msgid "No processor data available."
-msgstr ""
+msgstr "利用可能なプロセッサデータがありません。"
 
 #: hmib.php
 #, php-format
 msgid "%d CPU(s)"
-msgstr ""
+msgstr "%d CPU"
 
 #: hmib.php
 msgid "No memory data available."
-msgstr ""
+msgstr "利用可能なメモリデータがありません。"
 
 #: hmib.php
 #, php-format
 msgid "%s total"
-msgstr ""
+msgstr "合計 %s"
 
 #: hmib.php
 msgid "No swap configured on this device."
-msgstr ""
+msgstr "このデバイスにはスワップが設定されていません。"
 
 #: hmib.php
 msgid "No session data available."
-msgstr ""
+msgstr "利用可能なセッションデータがありません。"
 
 #: hmib.php
 msgid "Logged-in Users"
-msgstr ""
+msgstr "ログイン中のユーザー"
 
 #: hmib.php
-#, fuzzy
 #| msgid "View Processes"
 msgid "Maximum Processes"
-msgstr "プロセスを表示"
+msgstr "最大プロセス数"
 
 #: hmib.php
 msgid "Unlimited"
-msgstr ""
+msgstr "無制限"
 
 #: hmib.php
-#, fuzzy
 #| msgid "CPUs"
 msgid "CPU"
 msgstr "CPU"
 
 #: hmib.php
 msgid "Load"
-msgstr ""
+msgstr "負荷"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Utilization"
-msgstr "アプリケーション"
+msgstr "使用率"
 
 #: hmib.php
-#, fuzzy, php-format
+#, php-format
 #| msgid "CPU %%%"
 msgid "CPU %d"
-msgstr "CPU ％"
+msgstr "CPU %d"
 
 #: hmib.php
 msgid "No per-processor load reported."
-msgstr ""
+msgstr "プロセッサごとの負荷は報告されていません。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Volumes"
 msgid "Volume"
 msgstr "ボリューム"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Used Mem"
 msgid "Used"
-msgstr "使用されたMem"
+msgstr "使用済み"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Mem"
 msgid "Total"
-msgstr "合計メモリ"
+msgstr "合計"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Used Mem"
 msgid "Used %"
-msgstr "使用されたMem"
+msgstr "使用率 (%)"
 
 #: hmib.php
 msgid "No storage volumes detected."
-msgstr ""
+msgstr "ストレージボリュームが検出されませんでした。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "CPU (Hrs)"
 msgid "CPU (s)"
-msgstr "CPU（時間）"
+msgstr "CPU (秒)"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Avg Memory"
 msgid "Memory"
-msgstr "平均メモリ"
+msgstr "メモリ"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No running processes recorded."
-msgstr "実行中のプロセス"
+msgstr "実行中のプロセスは記録されていません。"
 
 #: hmib.php
 msgid "No hardware devices detected."
-msgstr ""
+msgstr "ハードウェアデバイスが検出されませんでした。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Installed"
 msgid "Installed Packages"
-msgstr "インストール済み"
+msgstr "インストール済みパッケージ"
 
 #: hmib.php hmib_types.php
 msgid "Name"
@@ -762,218 +737,199 @@ msgstr "名前"
 
 #: hmib.php
 msgid "No installed software inventory collected."
-msgstr ""
+msgstr "インストール済みソフトウェアのインベントリは収集されていません。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No process use history recorded."
-msgstr "実行中のプロセス"
+msgstr "プロセス使用履歴が記録されていません。"
 
 #: hmib.php
 msgid "Show more"
-msgstr ""
+msgstr "さらに表示"
 
 #: hmib.php
 msgid "Show less"
-msgstr ""
+msgstr "表示を減らす"
 
 #: hmib.php
 msgid "Open in a dialog"
-msgstr ""
+msgstr "ダイアログで開く"
 
 #: hmib.php
 msgid "Refresh"
-msgstr ""
+msgstr "更新"
 
 #: hmib.php
 msgid "Remove from page"
-msgstr ""
+msgstr "ページから削除"
 
 #: hmib.php
 msgid "Drag to reorder card"
-msgstr ""
+msgstr "ドラッグしてカードを並べ替え"
 
 #: hmib.php
 msgid "Invalid request. Please try again."
-msgstr ""
+msgstr "無効なリクエストです。もう一度お試しください。"
 
 #: hmib.php
 msgid "Invalid refresh interval."
-msgstr ""
+msgstr "更新間隔が無効です。"
 
 #: hmib.php
 msgid "No device selected."
-msgstr ""
+msgstr "デバイスが選択されていません。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Unknown"
 msgid "Unknown card."
-msgstr "不明"
+msgstr "不明なカードです。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Dashboard"
-msgstr "ホストMIBの詳細"
+msgstr "Host MIB ダッシュボード"
 
 #: hmib.php
 msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
-msgstr ""
+msgstr "[デバイス] タブの [操作] 列にあるダッシュボードアイコンをクリックしてデバイスのダッシュボードを開きます。ダッシュボードには最後に開いたデバイスが記憶されます。"
 
 #: hmib.php
-#, fuzzy, php-format
+#, php-format
 #| msgid "Device"
 msgid "Device %d"
-msgstr "デバイス"
+msgstr "デバイス %d"
 
 #: hmib.php
-#, fuzzy
 msgid "1 Minute"
-msgstr "%d分"
+msgstr "1分"
 
 #: hmib.php
 msgid "30 Seconds"
-msgstr ""
+msgstr "30 秒"
 
 #: hmib.php
-#, fuzzy
 #| msgid "%d Minutes"
 msgid "5 Minutes"
-msgstr "%d 分"
+msgstr "5 分"
 
 #: hmib.php
 msgid "No Refresh"
-msgstr ""
+msgstr "更新なし"
 
 #: hmib.php
 msgid "Search Host MIB devices as you type to open that device's dashboard."
-msgstr ""
+msgstr "入力に合わせて Host MIB デバイスを検索し、そのデバイスのダッシュボードを開きます。"
 
 #: hmib.php
 msgid "Add card"
-msgstr ""
+msgstr "カードを追加"
 
 #: hmib.php
 msgid "Add a card…"
-msgstr ""
+msgstr "カードを追加…"
 
 #: hmib.php
 msgid "Fleet Overview"
-msgstr ""
+msgstr "フリート概要"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Resource Utilization"
-msgstr "アプリケーション"
+msgstr "リソース使用率"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Devices"
 msgid "Device Status"
-msgstr "デバイス"
+msgstr "デバイスの状態"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Application"
 msgid "Storage Utilization"
-msgstr "アプリケーション"
+msgstr "ストレージ使用率"
 
 #: hmib.php
 msgid "Uptime Distribution"
-msgstr ""
+msgstr "稼働時間の分布"
 
 #: hmib.php
 msgid "OS Type Distribution"
-msgstr ""
+msgstr "OS 種別の分布"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes by CPU"
-msgstr "プロセッサー"
+msgstr "CPU別上位プロセス"
 
 #: hmib.php
-#, fuzzy
 #| msgid "No Processes"
 msgid "Top Processes by Memory"
-msgstr "プロセッサー"
+msgstr "メモリ別上位プロセス"
 
 #: hmib.php
 msgid "No Host MIB devices in this scope yet."
-msgstr ""
+msgstr "この範囲には Host MIB デバイスがまだありません。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Mem"
 msgid "Total RAM"
-msgstr "合計メモリ"
+msgstr "合計RAM"
 
 #: hmib.php
-#, fuzzy
 #| msgid "CPU %%%"
 msgid "CPU %"
-msgstr "CPU ％"
+msgstr "CPU %"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Avg Memory"
 msgid "Memory %"
-msgstr "平均メモリ"
+msgstr "メモリ %"
 
 #: hmib.php
 msgid "Swap %"
-msgstr ""
+msgstr "スワップ %"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Processes"
 msgid "Processes / host"
-msgstr "プロセッサー"
+msgstr "プロセス数 / ホスト"
 
 #: hmib.php
 msgid "No storage volumes detected in this scope."
-msgstr ""
+msgstr "この範囲ではストレージボリュームが検出されませんでした。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Total Swap"
 msgid "Total Capacity"
-msgstr "合計スワップ"
+msgstr "総容量"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No OS types recorded."
-msgstr "実行中のプロセス"
+msgstr "OS タイプが記録されていません。"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Max CPU"
 msgid "Max CPU (s)"
-msgstr "最大CPU"
+msgstr "最大 CPU (秒)"
 
 #: hmib.php
 msgid "Relative"
-msgstr ""
+msgstr "相対"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Running Processes"
 msgid "No process statistics recorded."
-msgstr "実行中のプロセス"
+msgstr "プロセス統計が記録されていません。"
 
 #: hmib.php
 msgid "Scope"
-msgstr ""
+msgstr "スコープ"
 
 #: hmib.php
-#, fuzzy
 #| msgid "Type"
 msgid "All Types"
-msgstr "タイプ"
+msgstr "すべてのタイプ"
 
 #: hmib_types.php
 msgid "Delete"
@@ -1109,9 +1065,9 @@ msgid "System Description Match"
 msgstr "システム記述の一致"
 
 #: hmib_types.php
-#, fuzzy, php-format
+#, no-php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr "HMIBがホストの種類を検出するのに役立つ重要な情報を提供します。 SQL Where式がサポートされています。 SQLここで、ワイルドカード文字は '％'記号です。互換性の問題により、正規表現は削除されました。"
+msgstr "HMIB がホストの種類を検出するのに役立つ主要情報を指定します。SQL WHERE 式がサポートされています。SQL WHERE のワイルドカード文字は '%' sign（パーセント記号）です。互換性の問題により、正規表現は削除されました。"
 
 #: hmib_types.php
 msgid "Vendor snmp Object ID"
@@ -1223,20 +1179,18 @@ msgid "Do you wish to automatically purge devices that are removed from the Cact
 msgstr "Cactiシステムから取り外されたデバイスを自動的に削除しますか？"
 
 #: setup.php
-#, fuzzy
 #| msgid "No Process History Found"
 msgid "Process History Retention"
-msgstr "プロセス履歴が見つかりません"
+msgstr "プロセス履歴の保持期間"
 
 #: setup.php
 msgid "How long should the Use History tab keep a process after it was last seen running?"
-msgstr ""
+msgstr "プロセスが最後に実行中として確認された後、「使用履歴」タブにそのプロセスを保持する期間を指定します。"
 
 #: setup.php
-#, fuzzy
 #| msgid "Never"
 msgid "Never Purge"
-msgstr "決して"
+msgstr "パージしない"
 
 #: setup.php
 #, php-format
@@ -1246,12 +1200,12 @@ msgstr "%d 日"
 #: setup.php
 #, php-format
 msgid "%d Year"
-msgstr ""
+msgstr "%d 年間の"
 
 #: setup.php
 #, php-format
 msgid "%d Years"
-msgstr ""
+msgstr "%d 年"
 
 #: setup.php
 msgid "Default Row Count"
@@ -1392,7 +1346,7 @@ msgid "How often do you want to scan for Processor performance data?"
 msgstr "どのくらいの頻度でプロセッサのパフォーマンスデータをスキャンしますか？"
 
 #: setup.php
-#, fuzzy, php-format
+#, php-format
 msgid "%d Minute"
 msgstr "%d分"
 
@@ -1414,10 +1368,9 @@ msgid "General Administration"
 msgstr "総務"
 
 #: setup.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Fleet Dashboard"
-msgstr "ホストMIBの詳細"
+msgstr "Host MIB フリートダッシュボード"
 
 #: setup.php
 msgid "Host MIB Inventory Summary"
@@ -1428,10 +1381,9 @@ msgid "Host MIB Details"
 msgstr "ホストMIBの詳細"
 
 #: setup.php
-#, fuzzy
 #| msgid "Host MIB Details"
 msgid "Host MIB Device Dashboard"
-msgstr "ホストMIBの詳細"
+msgstr "Host MIB デバイスダッシュボード"
 
 #: setup.php
 msgid "Host MIB Storage"
