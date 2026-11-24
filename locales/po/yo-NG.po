@@ -1,0 +1,1369 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR The Cacti Group
+# This file is distributed under the same license as the Cacti package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cacti\n"
+"Report-Msgid-Bugs-To: developers@cacti.net\n"
+"POT-Creation-Date: 2026-10-24 06:10-0400\n"
+"PO-Revision-Date: 2026-11-24 19:00+0000\n"
+"Last-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\n"
+"Language-Team: Yoruba\n"
+"Language: yo-NG\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: hmib.php
+msgid "Error"
+msgstr "Àṣìṣe"
+
+#: hmib.php hmib_types.php
+msgid "Unknown"
+msgstr "Àìmọ̀"
+
+#: hmib.php
+msgid "Operating System"
+msgstr "Ètò Ìṣiṣẹ́ Ẹ̀rọ"
+
+#: hmib.php
+msgid "Device Driver"
+msgstr "Olùdarí Ẹ̀rọ"
+
+#: hmib.php
+msgid "Application"
+msgstr "Ohun Èlò"
+
+#: hmib.php
+msgid "Running"
+msgstr "Ń ṣiṣẹ́"
+
+#: hmib.php
+msgid "Runnable"
+msgstr "Tó ṣeé mú ṣiṣẹ́"
+
+#: hmib.php
+msgid "Not Runnable"
+msgstr "Kò le ṣiṣẹ́"
+
+#: hmib.php
+msgid "Invalid"
+msgstr "Kò tọ́"
+
+#: hmib.php
+msgid "Present"
+msgstr "Wà níbẹ̀"
+
+#: hmib.php
+msgid "Warning"
+msgstr "Ìkìlọ̀"
+
+#: hmib.php
+msgid "Testing"
+msgstr "Ìdánwò"
+
+#: hmib.php
+msgid "Down"
+msgstr "Kò Ṣiṣẹ́"
+
+#: hmib.php hmib_types.php
+msgid "OS Type"
+msgstr "Irú OS"
+
+#: hmib.php
+msgid "All"
+msgstr "Gbogbo"
+
+#: hmib.php
+msgid "Device"
+msgstr "Ẹ̀rọ"
+
+#: hmib.php
+msgid "Template"
+msgstr "Àdàkọ"
+
+#: hmib.php
+msgid "Running Process History"
+msgstr "Ìtàn Ìlànà Tó Ń Ṣiṣẹ́"
+
+#: hmib.php hmib_types.php
+msgid "Go"
+msgstr "Lọ"
+
+#: hmib.php hmib_types.php
+msgid "Clear"
+msgstr "Nu Kúrò"
+
+#: hmib.php hmib_types.php
+msgid "Search"
+msgstr "Ṣàwárí"
+
+#: hmib.php
+msgid "Process"
+msgstr "Ìṣiṣẹ́"
+
+#: hmib.php
+msgid "Entries"
+msgstr "Àwọn Àkọsílẹ̀"
+
+#: hmib.php hmib_types.php
+msgid "Default"
+msgstr "Àìyípadà"
+
+#: hmib.php
+msgid "Hostname"
+msgstr "Orúkọ Olùgbàlejò"
+
+#: hmib.php
+msgid "Last Seen"
+msgstr "Ìgbà Tí A Rí I Kẹ́yìn"
+
+#: hmib.php
+msgid "Use Time (d:h:m)"
+msgstr "Lo Àkókò (d:h:m)"
+
+#: hmib.php
+msgid "History"
+msgstr "Ìtàn"
+
+#: hmib.php
+msgid "Edit Device"
+msgstr "Ṣàtúnṣe Ẹ̀rọ"
+
+#: hmib.php
+msgid "No Process History Found"
+msgstr "Kò sí Ìtàn Ìlànà kankan tí a rí"
+
+#: hmib.php
+msgid "Running Processes"
+msgstr "Àwọn Ìlànà Tó Ń Ṣiṣẹ́"
+
+#: hmib.php
+msgid "Path"
+msgstr "Ọ̀nà"
+
+#: hmib.php
+msgid "Parameters"
+msgstr "Àwọn Pàrámítà"
+
+#: hmib.php
+msgid "CPU (Hrs)"
+msgstr "CPU (Wákàtí)"
+
+#: hmib.php
+msgid "Memory (MB)"
+msgstr "Ìrántí (MB)"
+
+#: hmib.php
+msgid "Type"
+msgstr "Irú"
+
+#: hmib.php
+msgid "Status"
+msgstr "Ipò"
+
+#: hmib.php
+msgid "Processes"
+msgstr "Àwọn Ìṣiṣẹ́"
+
+#: hmib.php
+msgid "No Running Software Found"
+msgstr "Kò sí Sọ́fítíwèà Tó Ń Ṣiṣẹ́ kankan tí a rí"
+
+#: hmib.php
+msgid "Total CPU [h]:"
+msgstr "Àpapọ̀ CPU [h]:"
+
+#: hmib.php
+msgid "Total Size [MB]:"
+msgstr "Àpapọ̀ Ìwọ̀n [MB]:"
+
+#: hmib.php
+msgid "Avg. CPU [h]:"
+msgstr "Ìpíndọ́gba CPU [h]:"
+
+#: hmib.php
+msgid "Avg. Size [MB]:"
+msgstr "Ìpíndọ́gba Ìwọ̀n [MB]:"
+
+#: hmib.php
+msgid "Hardware Inventory"
+msgstr "Àkójọ Ohun Èlò Líle"
+
+#: hmib.php
+msgid "Hardware Description"
+msgstr "Àpèjúwe Ohun Èlò Líle"
+
+#: hmib.php
+msgid "Hardware Type"
+msgstr "Irú Ohun Èlò Líle"
+
+#: hmib.php
+msgid "Errors"
+msgstr "Àwọn Àṣìṣe"
+
+#: hmib.php
+msgid "Devices"
+msgstr "Àwọn Ẹ̀rọ"
+
+#: hmib.php
+msgid "No Hardware Found"
+msgstr "Kò sí Hádíwẹ́à kankan tí a rí"
+
+#: hmib.php
+msgid "Click to filter by this status"
+msgstr "Tẹ láti ṣàlẹ̀mọ́ nípasẹ̀ ipò yìí"
+
+#: hmib.php
+msgid "Storage Inventory"
+msgstr "Àkójọ Ohun Èlò Ìpamọ́"
+
+#: hmib.php
+msgid "Volumes"
+msgstr "Àwọn Ìwọ̀n"
+
+#: hmib.php
+msgid "Storage Description"
+msgstr "Àpèjúwe Ìpamọ́"
+
+#: hmib.php
+msgid "Storage Type"
+msgstr "Irú Ìpamọ́"
+
+#: hmib.php
+msgid "Percent Used"
+msgstr "Ìdá Ọgọ́rùn-ún Tí A Lò"
+
+#: hmib.php
+msgid "Used (MB)"
+msgstr "Tí A Lò (MB)"
+
+#: hmib.php
+msgid "Total (MB)"
+msgstr "Àpapọ̀ (MB)"
+
+#: hmib.php
+msgid "Alloc (KB)"
+msgstr "Ìpín (KB)"
+
+#: hmib.php
+msgid "No Storage Devices Found"
+msgstr "Kò sí Àwọn Ẹ̀rọ Ìfipamọ́ kankan tí a rí"
+
+#: hmib.php
+msgid "Device Filter"
+msgstr "Àlẹ̀mọ́ Ẹ̀rọ"
+
+#: hmib.php
+msgid "Recovering"
+msgstr "Ń Bọ̀ sípò"
+
+#: hmib.php
+msgid "Up"
+msgstr "Ń Ṣiṣẹ́"
+
+#: hmib.php setup.php
+msgid "Disabled"
+msgstr "Àìṣiṣẹ́"
+
+#: hmib.php setup.php
+msgid "Actions"
+msgstr "Àwọn Ìgbésẹ̀"
+
+#: hmib.php
+msgid "Uptime(d:h:m)"
+msgstr "Àkókò Ìṣiṣẹ́(d:h:m)"
+
+#: hmib.php
+msgid "Users"
+msgstr "Àwọn Olùlò"
+
+#: hmib.php
+msgid "CPU %%%"
+msgstr "CPU %%%"
+
+#: hmib.php
+msgid "CPUs"
+msgstr "Àwọn CPU"
+
+#: hmib.php
+msgid "Total Mem"
+msgstr "Àpapọ̀ Ìrántí"
+
+#: hmib.php
+msgid "Used Mem"
+msgstr "Ìrántí Tí A Lò"
+
+#: hmib.php
+msgid "Total Swap"
+msgstr "Àpapọ̀ Swap"
+
+#: hmib.php
+msgid "Used Swap"
+msgstr "Swap Tí A Lò"
+
+#: hmib.php
+msgid "View Dashboard"
+msgstr "Wo Pátákó Àkóso"
+
+#: hmib.php
+msgid "View Storage"
+msgstr "Wo Ibi Ìpamọ́"
+
+#: hmib.php
+msgid "View Hardware"
+msgstr "Wo Ohun Èlò"
+
+#: hmib.php
+msgid "View Processes"
+msgstr "Wo Àwọn Ìlànà"
+
+#: hmib.php
+msgid "View Software Inventory"
+msgstr "Wo Àkójọ Sọ́fítíwèà"
+
+#: hmib.php
+msgid "View Graphs"
+msgstr "Wo Àwọn Gíráàfù"
+
+#: hmib.php
+msgid "No Graphs Defined"
+msgstr "Kò sí Àwọn Gíráàfù tí a Tọ́ka sí"
+
+#: hmib.php
+msgid "N/A"
+msgstr "Kò Sí"
+
+#: hmib.php
+msgid "No Devices Found"
+msgstr "A Kò Rí Ẹ̀rọ Kankan"
+
+#: hmib.php
+msgid "Software Inventory"
+msgstr "Àkójọ Sọ́fítíwèà"
+
+#: hmib.php
+msgid "Applications"
+msgstr "Àwọn Ohun Èlò"
+
+#: hmib.php
+msgid "Package"
+msgstr "Àpò"
+
+#: hmib.php
+msgid "Installed"
+msgstr "Ti Fi Sílẹ̀"
+
+#: hmib.php
+msgid "No Software Packages Found"
+msgstr "Kò sí Àwọn Àkójọpọ̀ Sọ́fítíwèà kankan tí a rí"
+
+#: hmib.php
+msgid "Fleet Dashboard"
+msgstr "Pátákó Ìṣàkóso Ọ̀wọ́ Ẹ̀rọ"
+
+#: hmib.php
+msgid "Summary"
+msgstr "Àkótán"
+
+#: hmib.php
+msgid "Storage"
+msgstr "Ìpamọ́"
+
+#: hmib.php
+msgid "Hardware"
+msgstr "Ohun Èlò Líle"
+
+#: hmib.php
+msgid "Use History"
+msgstr "Lo Ìtàn"
+
+#: hmib.php
+msgid "Inventory"
+msgstr "Àkójọpọ̀ Ohun Èlò"
+
+#: hmib.php
+msgid "Graphs"
+msgstr "Àwọn Gíráàfù"
+
+#: hmib.php
+msgid "Dashboard"
+msgstr "Pátákó Àkóso"
+
+#: hmib.php
+msgid "Summary Filter"
+msgstr "Àlẹ̀mọ́ Àkótán"
+
+#: hmib.php
+msgid "Types"
+msgstr "Àwọn Irú"
+
+#: hmib.php
+msgid "All Records"
+msgstr "Gbogbo Àwọn Àkọsílẹ̀"
+
+#: hmib.php
+#, php-format
+msgid "%d Records"
+msgstr "Àwọn Àkọsílẹ̀ %d"
+
+#: hmib.php
+#, php-format
+msgid "%d Record"
+msgstr "Àkọsílẹ̀ %d"
+
+#: hmib.php
+msgid "NOTE: Import the Host MIB Device Package to view Graphs."
+msgstr "ÀKÍYÈSÍ: Kó Àkójọpọ̀ Ẹ̀rọ Host MIB wọlé láti wo Àwọn Gíráàfù."
+
+#: hmib.php
+msgid "Device Type Summary Statistics"
+msgstr "Àkópọ̀ Àwọn Ìṣirò Irú Ẹ̀rọ"
+
+#: hmib.php hmib_types.php
+msgid "Version"
+msgstr "Ẹ̀yà"
+
+#: hmib.php
+msgid "Logins"
+msgstr "Àwọn Ìwọlé"
+
+#: hmib.php
+msgid "CPUS"
+msgstr "Àwọn CPU"
+
+#: hmib.php
+msgid "Avg CPU"
+msgstr "Ìpíndọ́gba CPU"
+
+#: hmib.php
+msgid "Max CPU"
+msgstr "CPU Tó Pọ̀ Jù Lọ"
+
+#: hmib.php
+msgid "Avg Mem"
+msgstr "Ìpíndọ́gba Ìrántí"
+
+#: hmib.php
+msgid "Max Mem"
+msgstr "Ìrántí Tó Pọ̀ Jù"
+
+#: hmib.php
+msgid "Avg Swap"
+msgstr "Ìpíndọ́gba Swap"
+
+#: hmib.php
+msgid "Max Swap"
+msgstr "Swap Tó Pọ̀ Jù Lọ"
+
+#: hmib.php
+msgid "Avg Proc"
+msgstr "Ìpíndọ́gba Ìṣe"
+
+#: hmib.php
+msgid "Max Proc"
+msgstr "Ìlànà Tó Pọ̀ Jù"
+
+#: hmib.php
+msgid "View Fleet Dashboard"
+msgstr "Wo Pátákó Àkóso Àkójọ Ẹ̀rọ"
+
+#: hmib.php
+msgid "View Devices"
+msgstr "Wo Àwọn Ẹ̀rọ"
+
+#: hmib.php
+msgid "No Device Types"
+msgstr "Kò sí Àwọn Irú Ẹ̀rọ"
+
+#: hmib.php
+msgid "Process Summary Filter"
+msgstr "Àlẹ̀mọ́ Àkópọ̀ Ìṣiṣẹ́"
+
+#: hmib.php
+msgid "Process Name"
+msgstr "Orúkọ Ìṣiṣẹ́"
+
+#: hmib.php
+msgid "Num Paths"
+msgstr "Iye Àwọn Ọ̀nà"
+
+#: hmib.php hmib_types.php
+msgid "Hosts"
+msgstr "Àwọn Olùgbàlejò"
+
+#: hmib.php
+msgid "Avg Memory"
+msgstr "Ìpíndọ́gba Ìrántí"
+
+#: hmib.php
+msgid "Max Memory"
+msgstr "Ìrántí Tó Pọ̀ Jù Lọ"
+
+#: hmib.php
+msgid "Summary Stats"
+msgstr "Ìṣirò Àkótán"
+
+#: hmib.php
+#, php-format
+msgid "%s Hrs"
+msgstr "Wákàtí %s"
+
+#: hmib.php
+#, php-format
+msgid "%s MB"
+msgstr "%s MB"
+
+#: hmib.php
+msgid "No Processes"
+msgstr "Kò sí Àwọn Ìlànà"
+
+#: hmib.php
+msgid "Custom Graph List Applied - Filtering from List"
+msgstr "A ti lo Àtòjọ Gíráfù Àdáni - À ń ṣàlẹ̀mọ́ láti inú Àtòjọ"
+
+#: hmib.php
+msgid "Graph Preview Filters"
+msgstr "Àwọn Ajọ̀ Àkọ́wò Àwòrán-ìtọ́ka"
+
+#: hmib.php
+msgid "System Information"
+msgstr "Àlàyé Ètò"
+
+#: hmib.php
+msgid "CPU Utilization"
+msgstr "Ìlò CPU"
+
+#: hmib.php
+msgid "Memory Utilization"
+msgstr "Ìlò Ìrántí"
+
+#: hmib.php
+msgid "Swap Utilization"
+msgstr "Ìlò Swap"
+
+#: hmib.php
+msgid "Users and Logins"
+msgstr "Àwọn Olùlò àti Àwọn Ìwọlé"
+
+#: hmib.php
+msgid "Per-Processor Load"
+msgstr "Ẹrù Olùṣiṣẹ́ Kọ̀ọ̀kan"
+
+#: hmib.php
+msgid "Storage Volumes"
+msgstr "Àwọn Àpótí Ìpamọ́"
+
+#: hmib.php
+msgid "Top Processes"
+msgstr "Àwọn Ìlànà Tó Ga Jùlọ"
+
+#: hmib.php
+msgid "Process Use History"
+msgstr "Ìtàn Lílò Ìṣiṣẹ́"
+
+#: hmib.php
+msgid "Hardware Devices"
+msgstr "Àwọn Ẹ̀rọ Ohun Èlò Líle"
+
+#: hmib.php
+msgid "Installed Software"
+msgstr "Sọ́fítíwèà Tí A Fi Sórí Ẹ̀rọ"
+
+#: hmib.php
+msgid "No system information has been collected for this device yet."
+msgstr "A kò tíì gba àlàyé ètò kankan jọ fún ẹ̀rọ yìí síbẹ̀."
+
+#: hmib.php
+msgid "Management Address"
+msgstr "Àdírẹ́sì Ìṣàkóso"
+
+#: hmib.php
+msgid "System Name"
+msgstr "Orúkọ Ètò"
+
+#: hmib.php
+msgid "Description"
+msgstr "Àpèjúwe"
+
+#: hmib.php
+msgid "Contact"
+msgstr "Olùbásọ̀rọ̀"
+
+#: hmib.php
+msgid "Location"
+msgstr "Ibùdó"
+
+#: hmib.php
+msgid "Uptime"
+msgstr "Àkókò Ìṣiṣẹ́"
+
+#: hmib.php
+msgid "System Time"
+msgstr "Àkókò Ètò"
+
+#: hmib.php
+msgid "No processor data available."
+msgstr "Kò sí dátà púrósẹ́sọ̀ kankan tí ó wà."
+
+#: hmib.php
+#, php-format
+msgid "%d CPU(s)"
+msgstr "%d CPU"
+
+#: hmib.php
+msgid "No memory data available."
+msgstr "Kò sí dátà ìrántí kankan tí ó wà."
+
+#: hmib.php
+#, php-format
+msgid "%s total"
+msgstr "%s lápapọ̀"
+
+#: hmib.php
+msgid "No swap configured on this device."
+msgstr "Kò sí swap tí a ṣètò lórí ẹ̀rọ yìí."
+
+#: hmib.php
+msgid "No session data available."
+msgstr "Kò sí dátà ìgbà ìṣiṣẹ́ kankan tí ó wà."
+
+#: hmib.php
+msgid "Logged-in Users"
+msgstr "Àwọn Olùlò Tí Wọ́n Wọlé"
+
+#: hmib.php
+msgid "Maximum Processes"
+msgstr "Àwọn Ìlànà Tó Pọ̀ Jù Lọ"
+
+#: hmib.php
+msgid "Unlimited"
+msgstr "Aláìlópin"
+
+#: hmib.php
+msgid "CPU"
+msgstr "CPU"
+
+#: hmib.php
+msgid "Load"
+msgstr "Ìrù"
+
+#: hmib.php
+msgid "Utilization"
+msgstr "Ìlò"
+
+#: hmib.php
+#, php-format
+msgid "CPU %d"
+msgstr "CPU %d"
+
+#: hmib.php
+msgid "No per-processor load reported."
+msgstr "Kò sí ẹrù fún púrósẹ́sọ̀ kọ̀ọ̀kan tí a jábọ̀."
+
+#: hmib.php
+msgid "Volume"
+msgstr "Ìwọ̀n"
+
+#: hmib.php
+msgid "Used"
+msgstr "Tí A Lò"
+
+#: hmib.php
+msgid "Total"
+msgstr "Àpapọ̀"
+
+#: hmib.php
+msgid "Used %"
+msgstr "% Tí A Lò"
+
+#: hmib.php
+msgid "No storage volumes detected."
+msgstr "Kò sí àwọn ìwọ̀n ìpamọ́ kankan tí a ṣàwárí."
+
+#: hmib.php
+msgid "CPU (s)"
+msgstr "CPU (ìṣẹ́jú-àáyá)"
+
+#: hmib.php
+msgid "Memory"
+msgstr "Ìrántí"
+
+#: hmib.php
+msgid "No running processes recorded."
+msgstr "Kò sí àwọn ìlànà tí ó ń ṣiṣẹ́ tí a kọ sílẹ̀."
+
+#: hmib.php
+msgid "No hardware devices detected."
+msgstr "Kò sí àwọn ẹ̀rọ haadíwéà kankan tí a ṣàwárí."
+
+#: hmib.php
+msgid "Installed Packages"
+msgstr "Àwọn Àpò Ètò Tí A Fi Sórí Ẹ̀rọ"
+
+#: hmib.php hmib_types.php
+msgid "Name"
+msgstr "Orúkọ"
+
+#: hmib.php
+msgid "No installed software inventory collected."
+msgstr "Kò sí àkójọ sọ́fítíwéà tí a fi sórí ẹ̀rọ tí a gbà jọ."
+
+#: hmib.php
+msgid "No process use history recorded."
+msgstr "Kò sí ìtàn lílo ìlànà tí a kọ sílẹ̀."
+
+#: hmib.php
+msgid "Show more"
+msgstr "Ṣàfihàn sí i"
+
+#: hmib.php
+msgid "Show less"
+msgstr "Ṣàfihàn díẹ̀"
+
+#: hmib.php
+msgid "Open in a dialog"
+msgstr "Ṣí nínú àpótí ìfọ̀rọ̀wérọ̀"
+
+#: hmib.php
+msgid "Refresh"
+msgstr "Sọdọ̀tun"
+
+#: hmib.php
+msgid "Remove from page"
+msgstr "Yọ kúrò láti ojú-ewé"
+
+#: hmib.php
+msgid "Drag to reorder card"
+msgstr "Fà á láti tún káàdì tò"
+
+#: hmib.php
+msgid "Invalid request. Please try again."
+msgstr "Ìbéèrè tí kò tọ́. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan sí i."
+
+#: hmib.php
+msgid "Invalid refresh interval."
+msgstr "Ààrin àkókò ìsọdọ̀tun tí kò tọ́."
+
+#: hmib.php
+msgid "No device selected."
+msgstr "Kò sí ẹ̀rọ kankan tí a yàn."
+
+#: hmib.php
+msgid "Unknown card."
+msgstr "Káàdì àìmọ̀."
+
+#: hmib.php
+msgid "Host MIB Dashboard"
+msgstr "Pátákó Àkóso Host MIB"
+
+#: hmib.php
+msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
+msgstr "Ṣí Pátákó Ìṣàkóso ẹ̀rọ kan láti orí taábù Àwọn Ẹ̀rọ nípa títẹ àmì pátákó ìṣàkóso nínú òpó Àwọn Ìgbésẹ̀ rẹ̀. Pátákó Ìṣàkóso máa ń rántí ẹ̀rọ tí o ṣí kẹ́yìn."
+
+#: hmib.php
+#, php-format
+msgid "Device %d"
+msgstr "Ẹ̀rọ %d"
+
+#: hmib.php
+msgid "1 Minute"
+msgstr "Ìṣẹ́jú 1"
+
+#: hmib.php
+msgid "30 Seconds"
+msgstr "Ìṣẹ́jú-àáyá 30"
+
+#: hmib.php
+msgid "5 Minutes"
+msgstr "Ìṣẹ́jú 5"
+
+#: hmib.php
+msgid "No Refresh"
+msgstr "Kò sí Ìmúsọ̀tun"
+
+#: hmib.php
+msgid "Search Host MIB devices as you type to open that device's dashboard."
+msgstr "Ṣàwárí àwọn ẹ̀rọ Olùgbàlejò MIB bí o ṣe ń tẹ̀ láti ṣí pátákó ìṣàkóso ẹ̀rọ náà."
+
+#: hmib.php
+msgid "Add card"
+msgstr "Fi káàdì kún un"
+
+#: hmib.php
+msgid "Add a card…"
+msgstr "Fi káàdì kan kún un…"
+
+#: hmib.php
+msgid "Fleet Overview"
+msgstr "Àkópọ̀ Ọ̀wọ́ Ẹ̀rọ"
+
+#: hmib.php
+msgid "Resource Utilization"
+msgstr "Ìlò Ohun Èlò"
+
+#: hmib.php
+msgid "Device Status"
+msgstr "Ipò Ẹ̀rọ"
+
+#: hmib.php
+msgid "Storage Utilization"
+msgstr "Ìlò Ìpamọ́"
+
+#: hmib.php
+msgid "Uptime Distribution"
+msgstr "Ìpínkiri Àkókò Ìṣiṣẹ́"
+
+#: hmib.php
+msgid "OS Type Distribution"
+msgstr "Ìpínkiri Irú OS"
+
+#: hmib.php
+msgid "Top Processes by CPU"
+msgstr "Àwọn Ìlànà Tó Ga Jùlọ nípa CPU"
+
+#: hmib.php
+msgid "Top Processes by Memory"
+msgstr "Àwọn Ìlànà Tó Ga Jùlọ nípa Ìrántí"
+
+#: hmib.php
+msgid "No Host MIB devices in this scope yet."
+msgstr "Kò sí àwọn ẹ̀rọ MIB Olùgbàlejò ní agbègbè yìí síbẹ̀."
+
+#: hmib.php
+msgid "Total RAM"
+msgstr "Àpapọ̀ RAM"
+
+#: hmib.php
+msgid "CPU %"
+msgstr "CPU %"
+
+#: hmib.php
+msgid "Memory %"
+msgstr "Ìrántí %"
+
+#: hmib.php
+msgid "Swap %"
+msgstr "Ìpín Swap %"
+
+#: hmib.php
+msgid "Processes / host"
+msgstr "Àwọn ìṣiṣẹ́ / olùgbàlejò"
+
+#: hmib.php
+msgid "No storage volumes detected in this scope."
+msgstr "Kò sí àwọn ìwọ̀n ìpamọ́ kankan tí a ṣàwárí nínú àgbègbè yìí."
+
+#: hmib.php
+msgid "Total Capacity"
+msgstr "Àpapọ̀ Agbára"
+
+#: hmib.php
+msgid "No OS types recorded."
+msgstr "Kò sí àwọn irú OS tí a kọ sílẹ̀."
+
+#: hmib.php
+msgid "Max CPU (s)"
+msgstr "CPU Tó Pọ̀ Jù Lọ (s)"
+
+#: hmib.php
+msgid "Relative"
+msgstr "Ìbámu"
+
+#: hmib.php
+msgid "No process statistics recorded."
+msgstr "Kò sí àwọn ìṣirò ìlànà tí a kọ sílẹ̀."
+
+#: hmib.php
+msgid "Scope"
+msgstr "Ààyè Ìṣiṣẹ́"
+
+#: hmib.php
+msgid "All Types"
+msgstr "Gbogbo Àwọn Irú"
+
+#: hmib_types.php
+msgid "Delete"
+msgstr "Pa rẹ́"
+
+#: hmib_types.php
+msgid "Duplicate"
+msgstr "Ẹ̀dà"
+
+#: hmib_types.php
+msgid "Click 'Continue' to Delete the following Host Type(s)"
+msgstr "Tẹ 'Tẹ̀síwájú' láti Pa Irú Olùgbàlejò wọ̀nyí rẹ́"
+
+#: hmib_types.php
+msgid "Cancel"
+msgstr "Fagilé"
+
+#: hmib_types.php
+msgid "Continue"
+msgstr "Tẹ̀síwájú"
+
+#: hmib_types.php
+msgid "Delete Host Type(s)"
+msgstr "Pa (Àwọn) Irú Olùgbàlejò Rẹ́"
+
+#: hmib_types.php
+msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
+msgstr "Tẹ 'Tẹ̀síwájú' láti Ṣe ẹ̀dà Irú Olùgbàlejò wọ̀nyí. O lè yan láti yí àpèjúwe padà fún Irú Olùgbàlejò tuntun. Bí bẹ́ẹ̀ kọ́, má ṣe yí iye tó wà ní ìsàlẹ̀ padà, a ó sì ṣe àdàkọ orúkọ ìpilẹ̀ṣẹ̀ pẹ̀lú àfikún ìparí tuntun."
+
+#: hmib_types.php
+msgid "Host Type Prefix:"
+msgstr "Ìṣáájú Irú Olùgbàlejò:"
+
+#: hmib_types.php
+msgid "Duplicate Host Type(s)"
+msgstr "Ṣe ẹ̀dà Irú Olùgbàlejò"
+
+#: hmib_types.php
+msgid "New Type"
+msgstr "Irú Tuntun"
+
+#: hmib_types.php
+#, php-format
+msgid "There were %d Device Types Added!"
+msgstr "A ti Fi %d Irú Àwọn Ẹ̀rọ Kún un!"
+
+#: hmib_types.php
+msgid "No New Host Types Found!"
+msgstr "Kò sí Àwọn Irú Olùgbàlejò Tuntun kankan tí a rí!"
+
+#: hmib_types.php
+msgid "Import Results"
+msgstr "Àbájáde Ìkówọlé"
+
+#: hmib_types.php
+msgid "Cacti has imported the following items:"
+msgstr "Cacti ti kó àwọn ohun wọ̀nyí wọlé:"
+
+#: hmib_types.php
+msgid "Import Host MIB OS Types"
+msgstr "Kó Àwọn Irú OS MIB Olùgbàlejò Wọlé"
+
+#: hmib_types.php
+msgid "Import Device Types from Local File"
+msgstr "Kó Àwọn Irú Ẹ̀rọ Wọlé láti Fáìlì Abẹ́lé"
+
+#: hmib_types.php
+msgid "Please specify the location of the CSV file containing your device type information."
+msgstr "Jọ̀wọ́ tọ́ka sí ibi tí fáìlì CSV tó ní àlàyé irú ẹ̀rọ rẹ wà."
+
+#: hmib_types.php
+msgid "Overwrite Existing Data?"
+msgstr "Ṣé kí a kọ lé Dátà Tí Ó Wà Tẹ́lẹ̀?"
+
+#: hmib_types.php
+msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
+msgstr "Ṣé kí a gba ìlànà ìgbéwọlé láàyè láti kọ sórí dátà tí ó wà tẹ́lẹ̀?  Jọ̀wọ́ ṣàkíyèsí pé èyí kò túmọ̀ sí pípa ìlà àtijọ́ rẹ́, ó kàn máa ń rọ́pò àwọn ìlà tí ó jọra."
+
+#: hmib_types.php
+msgid "Allow Existing Rows to be Updated?"
+msgstr "Gba Ààyè fún Ṣíṣe Àtúnṣe Àwọn Ìlà Tí Ó Wà Tẹ́lẹ̀?"
+
+#: hmib_types.php
+msgid "Required File Format Notes"
+msgstr "Àwọn Àkíyèsí Ọ̀nà Fáìlì Tí A Béèrè"
+
+#: hmib_types.php
+msgid "The file must contain a header row with the following column headings."
+msgstr "Fáìlì náà gbọ́dọ̀ ní ìlà àkọlé pẹ̀lú àwọn àkọlé òpó wọ̀nyí."
+
+#: hmib_types.php
+msgid "A common name for the Host Type.  For example, Windows 7"
+msgstr "Orúkọ tó wọ́pọ̀ fún Irú Olùgbàlejò.  Fún àpẹẹrẹ, Windows 7"
+
+#: hmib_types.php
+msgid "The OS version for the Host Type"
+msgstr "Ẹ̀yà OS fún Irú Olùgbàlejò"
+
+#: hmib_types.php
+msgid "A unique set of characters from the snmp sysDescr that uniquely identify this device"
+msgstr "Àkójọ àwọn lẹ́tà àrà ọ̀tọ̀ láti inú SNMP sysDescr tí ó ń dá ẹ̀rọ yìí mọ̀ lọ́nà àrà ọ̀tọ̀"
+
+#: hmib_types.php
+msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
+msgstr "snmp sysObjectID pàtó ti olùtajà tó yà ẹ̀rọ yìí sọ́tọ̀ kúrò lára èyí tó tẹ̀lé e"
+
+#: hmib_types.php
+msgid "The primary key for this table is a combination of the following two fields:"
+msgstr "Kọ́kọ́rọ́ àkọ́kọ́ fún tábìlì yìí jẹ́ àpapọ̀ àwọn pápá méjì wọ̀nyí:"
+
+#: hmib_types.php
+msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
+msgstr "Nítorí náà, tí o bá gbìyànjú láti kó àwọn irú ẹ̀rọ tí ó jọra wọlé, a ó ṣàtúnṣe dátà tó wà tẹ́lẹ̀ pẹ̀lú àlàyé tuntun."
+
+#: hmib_types.php
+msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
+msgstr "A ń pinnu Irú Olùgbàlejò nípa ṣíṣe àyẹ̀wò aṣojú snmp rẹ̀ fún sysObjectID àti sysDescription àti fífí wé àwọn iye nínú ibi ìpamọ́ dátà Àwọn Irú Olùgbàlejò.  Ìbámu àkọ́kọ́ tí a bá rí nínú ibi ìpamọ́ dátà ni a máa ń lò láti kó dátà Olùgbàlejò jọ.  Nítorí náà, ó ṣe pàtàkì gan-an kí o yan sysObjectID, sysDescrMatch tó péye fún Àwọn Olùgbàlejò rẹ."
+
+#: hmib_types.php
+msgid "Device Scanning Function Options"
+msgstr "Àwọn Àṣàyàn Iṣẹ́ Ìṣàyẹ̀wò Ẹ̀rọ"
+
+#: hmib_types.php
+msgid "Give this Host Type a meaningful name."
+msgstr "Fún Irú Olùgbàlejò yìí ní orúkọ tí ó ní ìtumọ̀."
+
+#: hmib_types.php
+msgid "Fill in the name for the version of this Host Type."
+msgstr "Kọ orúkọ fún ẹ̀yà Irú Olùgbàlejò yìí."
+
+#: hmib_types.php
+msgid "System Description Match"
+msgstr "Ìbámu Àpèjúwe Sísítẹ̀mù"
+
+#: hmib_types.php
+#, php-format
+msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
+msgstr "Pèsè àlàyé pàtàkì láti ran HMIB lọ́wọ́ láti ṣàwárí irú Olùgbàlejò náà. Àwọn gbólóhùn SQL Where ní àtìlẹ́yìn. SQL Where máa ń lo '%' sí ipò àmì àfiyèsí gbogbogbòò (wildcard). A ti yọ Regular Expressions kúrò nítorí àwọn ìṣòro ìbáramu."
+
+#: hmib_types.php
+msgid "Vendor snmp Object ID"
+msgstr "Object ID snmp Olùpèsè"
+
+#: hmib_types.php
+#, php-format
+msgid "Host MIB OS Types [edit: %s]"
+msgstr "Àwọn Irú OS Host MIB [ṣàtúnṣe: %s]"
+
+#: hmib_types.php
+msgid "Host MIB OS Types [new]"
+msgstr "Àwọn Irú OS Host MIB [tuntun]"
+
+#: hmib_types.php
+msgid "Host MIB OS Type Filters"
+msgstr "Àwọn Àlẹ̀mọ́ Irú OS Host MIB"
+
+#: hmib_types.php setup.php
+msgid "OS Types"
+msgstr "Àwọn Irú OS"
+
+#: hmib_types.php
+msgid "Host Type Name"
+msgstr "Orúkọ Irú Olùgbàlejò"
+
+#: hmib_types.php
+msgid "OS Version"
+msgstr "Ẹ̀dà OS"
+
+#: hmib_types.php
+msgid "SNMP ObjectID"
+msgstr "SNMP ObjectID"
+
+#: hmib_types.php
+msgid "SNMP Sys Description Match"
+msgstr "Ìbáramu Àpèjúwe Ètò SNMP"
+
+#: hmib_types.php
+msgid "No Host Types Found"
+msgstr "Kò sí Àwọn Irú Olùgbàlejò kankan tí a rí"
+
+#: hmib_types.php
+msgid "Choose an action:"
+msgstr "Yan ìgbésẹ̀ kan:"
+
+#: hmib_types.php
+msgid "Rescan"
+msgstr "Tún-ṣàyẹ̀wò"
+
+#: hmib_types.php
+msgid "Scan for New or Unknown Device Types"
+msgstr "Ṣàyẹ̀wò fún Àwọn Irú Ẹ̀rọ Tuntun tàbí Àìmọ̀"
+
+#: hmib_types.php setup.php
+msgid "Import"
+msgstr "Kó Wọlé"
+
+#: hmib_types.php
+msgid "Import Host Types from a CSV File"
+msgstr "Kó Àwọn Irú Olùgbàlejò Wọlé láti Fáìlì CSV"
+
+#: hmib_types.php
+msgid "Export"
+msgstr "Kó Jáde"
+
+#: hmib_types.php
+msgid "Export Host Types to Share with Others"
+msgstr "Kó Àwọn Irú Olùgbàlejò Jáde Láti Pín Pẹ̀lú Àwọn Ẹlòmíràn"
+
+#: setup.php
+msgid "Host MIB Viewer"
+msgstr "Olùwòran Host MIB"
+
+#: setup.php
+msgid "Host MIB Admin"
+msgstr "Alákòóso Host MIB"
+
+#: setup.php
+msgid "Host MIB"
+msgstr "MIB Olùgbàlejò"
+
+#: setup.php
+msgid "Host MIB General Settings"
+msgstr "Àwọn Ètò Gbogbogbòò Host MIB"
+
+#: setup.php
+msgid "Host MIB Poller Enabled"
+msgstr "Olùṣàyẹ̀wò Host MIB Ṣiṣẹ́"
+
+#: setup.php
+msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
+msgstr "Fi àmì sí àpótí yìí, tí o bá fẹ́ kí ìṣàyẹ̀wò Host MIB wà ní Ṣiṣẹ́. Bí bẹ́ẹ̀ kọ́, Olùṣàyẹ̀wò náà kò ní ṣiṣẹ́."
+
+#: setup.php
+msgid "Automatically Discover Cacti Devices"
+msgstr "Ṣàwárí Àwọn Ẹ̀rọ Cacti Lọ́nà Àdáṣe"
+
+#: setup.php
+msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
+msgstr "Ṣé o fẹ́ láti ṣàyẹ̀wò láìfọwọ́yí kí o sì fi àwọn ẹ̀rọ tí ó ṣe àtìlẹ́yìn fún Host Resource MIB kún un láti inú tábìlì olùgbàlejò Cacti?"
+
+#: setup.php
+msgid "Automatically Purge Devices"
+msgstr "Nu Àwọn Ẹ̀rọ Kúrò Lọ́nà Àdáṣe"
+
+#: setup.php
+msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
+msgstr "Ṣé o fẹ́ láti pa àwọn ẹ̀rọ tí a ti yọ kúrò nínú ètò Cacti rẹ́ láìfọwọ́yí?"
+
+#: setup.php
+msgid "Process History Retention"
+msgstr "Ìpamọ́ Ìtàn Ìṣiṣẹ́"
+
+#: setup.php
+msgid "How long should the Use History tab keep a process after it was last seen running?"
+msgstr "Ìgbà wo ni táàbù Ìtàn Ìlò yẹ kí ó pa ìgbésẹ̀ kan mọ́ lẹ́yìn tí a rí i kẹ́yìn pé ó ń ṣiṣẹ́?"
+
+#: setup.php
+msgid "Never Purge"
+msgstr "Má ṣe Pa rẹ́ Láé"
+
+#: setup.php
+#, php-format
+msgid "%d Days"
+msgstr "Ọjọ́ %d"
+
+#: setup.php
+#, php-format
+msgid "%d Year"
+msgstr "Ọdún %d"
+
+#: setup.php
+#, php-format
+msgid "%d Years"
+msgstr "Ọdún %d"
+
+#: setup.php
+msgid "Default Row Count"
+msgstr "Ìka Ìlà Àìyípadà"
+
+#: setup.php
+msgid "How many rows do you wish to see on the HMIB OS Type by default?"
+msgstr "Àwọn ìlà mélòó ni o fẹ́ láti rí lórí Irú OS HMIB gẹ́gẹ́ bí àìyípadà?"
+
+#: setup.php
+msgid "Default Top Host Types"
+msgstr "Àwọn Irú Olùgbàlejò Tí Ó Ga Jù Àìyípadà"
+
+#: setup.php
+msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
+msgstr "Àwọn ìgbésẹ̀ mélòó ni o fẹ́ láti rí lórí Pátákó Àkóso HMIB gẹ́gẹ́ bí àìyípadà?"
+
+#: setup.php
+#, php-format
+msgid "%d Types"
+msgstr "Àwọn Irú %d"
+
+#: setup.php
+msgid "Default Top Processes"
+msgstr "Àwọn Ìlànà Tí Ó Ga Jù Àìyípadà"
+
+#: setup.php
+#, php-format
+msgid "%d Processes"
+msgstr "Àwọn Ìlànà %d"
+
+#: setup.php
+msgid "Maximum Concurrent Collectors"
+msgstr "Àwọn Olùkójọ Lẹ́ẹ̀kan Náà Tó Pọ̀ Jù Lọ"
+
+#: setup.php
+msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
+msgstr "Kí ni iye tó pọ̀ jùlọ ti ìṣiṣẹ́ akójọpọ̀ lẹ́ẹ̀kan náà tí o fẹ́ ṣiṣẹ́ ní àkókò kan?"
+
+#: setup.php
+#, php-format
+msgid "%d Process"
+msgstr "Ìlànà Ìṣiṣẹ́ %d"
+
+#: setup.php
+msgid "Host Auto Discovery Frequency"
+msgstr "Ìgbà Ìwárí Aládàáṣe Olùgbàlejò"
+
+#: setup.php
+msgid "Auto Discovery Frequency"
+msgstr "Ìgbàgbogbo Ìwárí Aládàáṣe"
+
+#: setup.php
+msgid "How often do you want to look for new Cacti Devices?"
+msgstr "Ìgbàgbà wo ni o fẹ́ máa wá Àwọn Ẹ̀rọ Cacti tuntun?"
+
+#: setup.php
+msgid "Host Graph Automation"
+msgstr "Àdáṣe Gíráfù Olùgbàlejò"
+
+#: setup.php
+msgid "Automatically Add New Graphs"
+msgstr "Fi Àwọn Gíráàfù Tuntun Kún Un Aládàáṣe"
+
+#: setup.php
+msgid "How often do you want to check for new objects to graph?"
+msgstr "Ìgbàgbà wo ni o fẹ́ máa ṣàyẹ̀wò fún àwọn ohun tuntun láti ṣe gíráàfù?"
+
+#: setup.php
+msgid "Never"
+msgstr "Kò ṣẹlẹ̀ rí"
+
+#: setup.php
+#, php-format
+msgid "%d Hour"
+msgstr "Wákàtí %d"
+
+#: setup.php
+#, php-format
+msgid "%d Hours"
+msgstr "Wákàtí %d"
+
+#: setup.php
+#, php-format
+msgid "%d Day"
+msgstr "Ọjọ́ %d"
+
+#: setup.php
+msgid "Host MIB Table Collection Frequencies"
+msgstr "Ìgbàgbà Ìkójọpọ̀ Tábìlì Host MIB"
+
+#: setup.php
+msgid "Running Programs Frequency"
+msgstr "Ìgbàgbogbo Àwọn Ètò Tó Ń Ṣiṣẹ́"
+
+#: setup.php
+msgid "How often do you want to scan running software?"
+msgstr "Ìgbà mélòó ni o fẹ́ láti ṣàyẹ̀wò sọ́fítíwèà tí ń ṣiṣẹ́?"
+
+#: setup.php
+msgid "Running Programs CPU/Memory Frequency"
+msgstr "Ìgbàgbogbo CPU/Ìrántí Àwọn Ètò Tó Ń Ṣiṣẹ́"
+
+#: setup.php
+msgid "How often do you want to scan running software for performance data?"
+msgstr "Ìgbà mélòó ni o fẹ́ láti ṣàyẹ̀wò sọ́fítíwèà tí ń ṣiṣẹ́ fún dátà iṣẹ́?"
+
+#: setup.php
+msgid "Installed Software Frequency"
+msgstr "Ìgbàgbogbo Sọ́fítíwèà Tí A Fi Sórí Ẹ̀rọ"
+
+#: setup.php
+msgid "How often do you want to scan for installed software?"
+msgstr "Ìgbà mélòó ni o fẹ́ láti ṣàyẹ̀wò fún sọ́fítíwèà tí a fi sí i?"
+
+#: setup.php
+msgid "Storage Frequency"
+msgstr "Ìgbà Ìpamọ́"
+
+#: setup.php
+msgid "How often do you want to scan for Storage performance data?"
+msgstr "Ìgbà mélòó ni o fẹ́ láti ṣàyẹ̀wò fún dátà iṣẹ́ Ibi Ìpamọ́?"
+
+#: setup.php
+msgid "Device Frequency"
+msgstr "Ìgbà-ìṣiṣẹ́ Ẹ̀rọ"
+
+#: setup.php
+msgid "How often do you want to scan for Device performance data?"
+msgstr "Ìgbà mélòó ni o fẹ́ láti ṣàyẹ̀wò fún dátà iṣẹ́ Ẹ̀rọ?"
+
+#: setup.php
+msgid "Processor Frequency"
+msgstr "Ìgbàgbọ̀n Olùṣiṣẹ́"
+
+#: setup.php
+msgid "How often do you want to scan for Processor performance data?"
+msgstr "Ìgbà mélòó ni o fẹ́ láti ṣàyẹ̀wò fún dátà iṣẹ́ Púrọ́sẹ́sọ̀?"
+
+#: setup.php
+#, php-format
+msgid "%d Minute"
+msgstr "Ìṣẹ́jú %d"
+
+#: setup.php
+#, php-format
+msgid "%d Minutes"
+msgstr "Ìṣẹ́jú %d"
+
+#: setup.php
+msgid "Management"
+msgstr "Ìṣàkóso"
+
+#: setup.php
+msgid "Normal User"
+msgstr "Olùlò Déédéé"
+
+#: setup.php
+msgid "General Administration"
+msgstr "Ìṣàkóso Gbogbogbòò"
+
+#: setup.php
+msgid "Host MIB Fleet Dashboard"
+msgstr "Pátákó Àkóso Àkójọpọ̀ Ẹ̀rọ Host MIB"
+
+#: setup.php
+msgid "Host MIB Inventory Summary"
+msgstr "Àkótán Àkójọ Ohun Ìní Host MIB"
+
+#: setup.php
+msgid "Host MIB Details"
+msgstr "Àwọn Àlàyé Host MIB"
+
+#: setup.php
+msgid "Host MIB Device Dashboard"
+msgstr "Pátákó Àkóso Ẹ̀rọ Host MIB"
+
+#: setup.php
+msgid "Host MIB Storage"
+msgstr "Ibi Ìpamọ́ Host MIB"
+
+#: setup.php
+msgid "Host MIB Hardware"
+msgstr "Ohun Èlò Kọ̀ǹpútà Host MIB"
+
+#: setup.php
+msgid "Host MIB Running Processes"
+msgstr "Àwọn Ìgbésẹ̀ Tó Ń Lọ Lọ́wọ́ Host MIB"
+
+#: setup.php
+msgid "Host MIB Process Use History"
+msgstr "Ìtàn Ìlò Ìgbésẹ̀ Host MIB"
+
+#: setup.php
+msgid "Host MIB Software Inventory"
+msgstr "Àkójọ Sọ́fítíwè Host MIB"
+
+#: setup.php
+msgid "Host MIB Graphs"
+msgstr "Àwọn Gíráàfù Host MIB"
+
+#: setup.php
+msgid "Host MIB OS Types"
+msgstr "Àwọn Irú OS Host MIB"
+
+#: setup.php
+msgid "(Edit)"
+msgstr "(Ṣàtúnṣe)"
+
