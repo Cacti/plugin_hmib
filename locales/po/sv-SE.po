@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-09 22:18+0000\nLast-Translator: Daniel Nylander <daniel@danielnylander.se>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Swedish <https://translate.cacti.net/projects/cacti/hmib/sv/>\nLanguage: sv-SE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -508,7 +508,7 @@ msgstr "%s MB"
 
 #: hmib.php
 msgid "No Processes"
-msgstr "Processer"
+msgstr "Inga processer"
 
 #: hmib.php
 msgid "Custom Graph List Applied - Filtering from List"
@@ -675,7 +675,7 @@ msgstr "Inga lagringsvolymer har identifierats."
 
 #: hmib.php
 msgid "CPU (s)"
-msgstr "Processor (tim)"
+msgstr "CPU (s)"
 
 #: hmib.php
 msgid "Memory"
@@ -1010,7 +1010,7 @@ msgstr "Matchning av systembeskrivning"
 #: hmib_types.php
 #, php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr "Tillhandahåller nyckelinformation som hjälper HMIB att upptäcka typen av värd.  SQL Where-uttryck stöds.  SQL Where-jokertecknet är tecknet '%'. Reguljära uttryck har tagits bort på grund av kompatibilitetsproblem."
+msgstr "Tillhandahåller nyckelinformation för att hjälpa HMIB att identifiera värdtypen. SQL Where-uttryck stöds. SQL Where-jokertecknet är '%' som tecken. Reguljära uttryck har tagits bort på grund av kompatibilitetsproblem."
 
 #: hmib_types.php
 msgid "Vendor snmp Object ID"
