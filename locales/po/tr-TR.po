@@ -4,19 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr ""
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-24 06:10-0400\n"
-"PO-Revision-Date: 2024-06-08 10:02-0400\n"
-"Last-Translator: San IPE <sanipe1949@krunsea.com>\n"
-"Language-Team: Turkish <http://translate.cacti.net/projects/cacti/hmib/tr/>\n"
-"Language: tr_TR\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.4.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Turkish <https://translate.cacti.net/projects/cacti/hmib/tr/>\nLanguage: tr-TR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -216,7 +204,7 @@ msgstr "Donanım bulunamadı"
 
 #: hmib.php
 msgid "Click to filter by this status"
-msgstr ""
+msgstr "Bu duruma göre filtrelemek için tıklayın"
 
 #: hmib.php
 msgid "Storage Inventory"
@@ -276,7 +264,7 @@ msgstr "Eylemler"
 
 #: hmib.php
 msgid "Uptime(d:h:m)"
-msgstr "Çalışma süresi (d: s: d)"
+msgstr "Çalışma Süresi(g:s:d)"
 
 #: hmib.php
 msgid "Users"
@@ -284,7 +272,7 @@ msgstr "Kullanıcılar"
 
 #: hmib.php
 msgid "CPU %%%"
-msgstr "İŞLEMCİ %"
+msgstr "CPU %%%"
 
 #: hmib.php
 msgid "CPUs"
@@ -292,11 +280,11 @@ msgstr "CPU'lar"
 
 #: hmib.php
 msgid "Total Mem"
-msgstr "Toplam Mem"
+msgstr "Toplam Bellek"
 
 #: hmib.php
 msgid "Used Mem"
-msgstr "Kullanılan Mem"
+msgstr "Kullanılan Bellek"
 
 #: hmib.php
 msgid "Total Swap"
@@ -308,7 +296,7 @@ msgstr "Kullanılan Swap"
 
 #: hmib.php
 msgid "View Dashboard"
-msgstr ""
+msgstr "Panoyu Görüntüle"
 
 #: hmib.php
 msgid "View Storage"
@@ -332,11 +320,11 @@ msgstr "Grafikleri Görüntüle"
 
 #: hmib.php
 msgid "No Graphs Defined"
-msgstr "Tanımlanmış Grafik Yok"
+msgstr "Grafik Tanımlanmamış"
 
 #: hmib.php
 msgid "N/A"
-msgstr ""
+msgstr "Yok"
 
 #: hmib.php
 msgid "No Devices Found"
@@ -363,10 +351,8 @@ msgid "No Software Packages Found"
 msgstr "Yazılım Paketi Bulunamadı"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Fleet Dashboard"
-msgstr "Ev sahibi MIB Details"
+msgstr "Filo Gösterge Paneli"
 
 #: hmib.php
 msgid "Summary"
@@ -394,17 +380,15 @@ msgstr "Grafikler"
 
 #: hmib.php
 msgid "Dashboard"
-msgstr ""
+msgstr "Pano"
 
 #: hmib.php
 msgid "Summary Filter"
 msgstr "Özet Filtresi"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Type"
 msgid "Types"
-msgstr "Tip"
+msgstr "Türler"
 
 #: hmib.php
 msgid "All Records"
@@ -413,12 +397,12 @@ msgstr "Tüm Kayıtlar"
 #: hmib.php
 #, php-format
 msgid "%d Records"
-msgstr "% d Kayıt"
+msgstr "%d Kayıt"
 
 #: hmib.php
 #, php-format
 msgid "%d Record"
-msgstr "% d Kayıt"
+msgstr "%d Kayıt"
 
 #: hmib.php
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
@@ -474,7 +458,7 @@ msgstr "Max Proc"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
-msgstr ""
+msgstr "Filo Panosunu Görüntüle"
 
 #: hmib.php
 msgid "View Devices"
@@ -498,7 +482,7 @@ msgstr "Num Yolları"
 
 #: hmib.php hmib_types.php
 msgid "Hosts"
-msgstr "Ana makineler"
+msgstr "Sunucular"
 
 #: hmib.php
 msgid "Avg Memory"
@@ -509,10 +493,8 @@ msgid "Max Memory"
 msgstr "Maksimum bellek"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Summary"
 msgid "Summary Stats"
-msgstr "Özet"
+msgstr "Özet İstatistikler"
 
 #: hmib.php
 #, php-format
@@ -526,11 +508,11 @@ msgstr "%s MB"
 
 #: hmib.php
 msgid "No Processes"
-msgstr "Süreçler"
+msgstr "İşlem Yok"
 
 #: hmib.php
 msgid "Custom Graph List Applied - Filtering from List"
-msgstr "Uygulanan Özel Grafik Listesi - Listeden Filtreleme"
+msgstr "Özel Grafik Listesi Uygulandı - Listeden Filtreleniyor"
 
 #: hmib.php
 msgid "Graph Preview Filters"
@@ -538,223 +520,178 @@ msgstr "Grafik Önizleme Filtreleri"
 
 #: hmib.php
 msgid "System Information"
-msgstr ""
+msgstr "Sistem Bilgisi"
 
 #: hmib.php
 msgid "CPU Utilization"
-msgstr ""
+msgstr "CPU Kullanımı"
 
 #: hmib.php
 msgid "Memory Utilization"
-msgstr ""
+msgstr "Bellek Kullanımı"
 
 #: hmib.php
 msgid "Swap Utilization"
-msgstr ""
+msgstr "Takas Alanı Kullanımı"
 
 #: hmib.php
 msgid "Users and Logins"
-msgstr ""
+msgstr "Kullanıcılar ve Oturumlar"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Process Name"
 msgid "Per-Processor Load"
-msgstr "İşlem adı"
+msgstr "İşlemci Başına Yük"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Storage Type"
 msgid "Storage Volumes"
-msgstr "Depolama türü"
+msgstr "Depolama Birimleri"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes"
-msgstr "Süreçler"
+msgstr "En Yoğun İşlemler"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Process Use History"
 msgid "Process Use History"
-msgstr "Ana Bilgisayar MIB İşlemi Kullanımı Geçmişi"
+msgstr "İşlem Kullanım Geçmişi"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Hardware Type"
 msgid "Hardware Devices"
-msgstr "Donanım türü"
+msgstr "Donanım Cihazları"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Installed Software Frequency"
 msgid "Installed Software"
-msgstr "Kurulu Yazılım Frekansı"
+msgstr "Yüklü Yazılımlar"
 
 #: hmib.php
 msgid "No system information has been collected for this device yet."
-msgstr ""
+msgstr "Bu cihaz için henüz sistem bilgisi toplanmadı."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Management"
 msgid "Management Address"
-msgstr "Kullanıcı Yonetimi"
+msgstr "Yönetim Adresi"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host Type Name"
 msgid "System Name"
-msgstr "Ana Bilgisayar Türü Adı"
+msgstr "Sistem Adı"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Storage Description"
 msgid "Description"
-msgstr "Depolama açıklaması"
+msgstr "Açıklama"
 
 #: hmib.php
 msgid "Contact"
-msgstr ""
+msgstr "İletişim"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Actions"
 msgid "Location"
-msgstr "Eylemler"
+msgstr "Konum"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Uptime(d:h:m)"
 msgid "Uptime"
-msgstr "Çalışma süresi (d: s: d)"
+msgstr "Çalışma Süresi"
 
 #: hmib.php
 msgid "System Time"
-msgstr ""
+msgstr "Sistem Saati"
 
 #: hmib.php
 msgid "No processor data available."
-msgstr ""
+msgstr "İşlemci verisi mevcut değil."
 
 #: hmib.php
 #, php-format
 msgid "%d CPU(s)"
-msgstr ""
+msgstr "%d CPU"
 
 #: hmib.php
 msgid "No memory data available."
-msgstr ""
+msgstr "Bellek verisi mevcut değil."
 
 #: hmib.php
 #, php-format
 msgid "%s total"
-msgstr ""
+msgstr "Toplam %s"
 
 #: hmib.php
 msgid "No swap configured on this device."
-msgstr ""
+msgstr "Bu cihazda takas alanı (swap) yapılandırılmamış."
 
 #: hmib.php
 msgid "No session data available."
-msgstr ""
+msgstr "Oturum verisi mevcut değil."
 
 #: hmib.php
 msgid "Logged-in Users"
-msgstr ""
+msgstr "Oturum Açmış Kullanıcılar"
 
 #: hmib.php
-#, fuzzy
-#| msgid "View Processes"
 msgid "Maximum Processes"
-msgstr "İşlemleri Görüntüle"
+msgstr "Maksimum İşlem Sayısı"
 
 #: hmib.php
 msgid "Unlimited"
-msgstr ""
+msgstr "Sınırsız"
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPUs"
 msgid "CPU"
-msgstr "CPU'lar"
+msgstr "CPU"
 
 #: hmib.php
 msgid "Load"
-msgstr ""
+msgstr "Yük"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Utilization"
-msgstr "Uygulama"
+msgstr "Kullanım Oranı"
 
 #: hmib.php
-#, fuzzy, php-format
-#| msgid "CPU %%%"
+#, php-format
 msgid "CPU %d"
-msgstr "İŞLEMCİ %"
+msgstr "CPU %d"
 
 #: hmib.php
 msgid "No per-processor load reported."
-msgstr ""
+msgstr "İşlemci başına yük bildirilmedi."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Volumes"
 msgid "Volume"
-msgstr "Birimler"
+msgstr "Birim"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Used Mem"
 msgid "Used"
-msgstr "Kullanılan Mem"
+msgstr "Kullanılan"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Mem"
 msgid "Total"
-msgstr "Toplam Mem"
+msgstr "Toplam"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Used Mem"
 msgid "Used %"
-msgstr "Kullanılan Mem"
+msgstr "Kullanılan %"
 
 #: hmib.php
 msgid "No storage volumes detected."
-msgstr ""
+msgstr "Depolama birimi algılanmadı."
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPU (Hrs)"
 msgid "CPU (s)"
-msgstr "CPU (Saat)"
+msgstr "CPU (sn)"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Avg Memory"
 msgid "Memory"
-msgstr "Ort. Hafıza"
+msgstr "Bellek"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No running processes recorded."
-msgstr "Çalışan İşlemler"
+msgstr "Kayıtlı çalışan işlem yok."
 
 #: hmib.php
 msgid "No hardware devices detected."
-msgstr ""
+msgstr "Donanım cihazı algılanmadı."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Installed"
 msgid "Installed Packages"
-msgstr "Yüklü"
+msgstr "Yüklü Paketler"
 
 #: hmib.php hmib_types.php
 msgid "Name"
@@ -762,219 +699,180 @@ msgstr "İsim"
 
 #: hmib.php
 msgid "No installed software inventory collected."
-msgstr ""
+msgstr "Yüklü yazılım envanteri toplanmadı."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No process use history recorded."
-msgstr "Çalışan İşlemler"
+msgstr "Kayıtlı işlem kullanım geçmişi yok."
 
 #: hmib.php
 msgid "Show more"
-msgstr ""
+msgstr "Daha fazla göster"
 
 #: hmib.php
 msgid "Show less"
-msgstr ""
+msgstr "Daha az göster"
 
 #: hmib.php
 msgid "Open in a dialog"
-msgstr ""
+msgstr "İletişim kutusunda aç"
 
 #: hmib.php
 msgid "Refresh"
-msgstr ""
+msgstr "Yenile"
 
 #: hmib.php
 msgid "Remove from page"
-msgstr ""
+msgstr "Sayfadan kaldır"
 
 #: hmib.php
 msgid "Drag to reorder card"
-msgstr ""
+msgstr "Kartı yeniden sıralamak için sürükleyin"
 
 #: hmib.php
 msgid "Invalid request. Please try again."
-msgstr ""
+msgstr "Geçersiz istek. Lütfen tekrar deneyin."
 
 #: hmib.php
 msgid "Invalid refresh interval."
-msgstr ""
+msgstr "Geçersiz yenileme aralığı."
 
 #: hmib.php
 msgid "No device selected."
-msgstr ""
+msgstr "Cihaz seçilmedi."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Unknown"
 msgid "Unknown card."
-msgstr "Bilinmeyen"
+msgstr "Bilinmeyen kart."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Dashboard"
-msgstr "Ev sahibi MIB Details"
+msgstr "Host MIB Gösterge Paneli"
 
 #: hmib.php
 msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
-msgstr ""
+msgstr "Cihazlar sekmesindeki Eylemler sütununda yer alan pano simgesine tıklayarak bir cihaz Panosu açın. Pano, açtığınız son cihazı hatırlar."
 
 #: hmib.php
-#, fuzzy, php-format
-#| msgid "Device"
+#, php-format
 msgid "Device %d"
-msgstr "Cihaz"
+msgstr "Cihaz %d"
 
 #: hmib.php
-#, fuzzy
-#| msgid "%d Minute"
 msgid "1 Minute"
-msgstr "% d dakika"
+msgstr "1 dakika boyu"
 
 #: hmib.php
 msgid "30 Seconds"
-msgstr ""
+msgstr "30 Saniye"
 
 #: hmib.php
-#, fuzzy
-#| msgid "%d Minutes"
 msgid "5 Minutes"
-msgstr "%d Dakika"
+msgstr "5 Dakika"
 
 #: hmib.php
 msgid "No Refresh"
-msgstr ""
+msgstr "Yenileme Yok"
 
 #: hmib.php
 msgid "Search Host MIB devices as you type to open that device's dashboard."
-msgstr ""
+msgstr "Cihazın panosunu açmak için yazarken Host MIB cihazlarını arayın."
 
 #: hmib.php
 msgid "Add card"
-msgstr ""
+msgstr "Kart ekle"
 
 #: hmib.php
 msgid "Add a card…"
-msgstr ""
+msgstr "Kart ekle…"
 
 #: hmib.php
 msgid "Fleet Overview"
-msgstr ""
+msgstr "Filo Genel Görünümü"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Resource Utilization"
-msgstr "Uygulama"
+msgstr "Kaynak Kullanımı"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Devices"
 msgid "Device Status"
-msgstr "Cihazlar"
+msgstr "Cihaz durumu"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Storage Utilization"
-msgstr "Uygulama"
+msgstr "Depolama Kullanımı"
 
 #: hmib.php
 msgid "Uptime Distribution"
-msgstr ""
+msgstr "Çalışma Süresi Dağılımı"
 
 #: hmib.php
 msgid "OS Type Distribution"
-msgstr ""
+msgstr "İşletim Sistemi Türü Dağılımı"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes by CPU"
-msgstr "Süreçler"
+msgstr "CPU'ya Göre En Yoğun İşlemler"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes by Memory"
-msgstr "Süreçler"
+msgstr "Belleğe Göre En Yoğun İşlemler"
 
 #: hmib.php
 msgid "No Host MIB devices in this scope yet."
-msgstr ""
+msgstr "Bu kapsamda henüz Host MIB cihazı yok."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Mem"
 msgid "Total RAM"
-msgstr "Toplam Mem"
+msgstr "Toplam RAM"
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPU %%%"
 msgid "CPU %"
-msgstr "İŞLEMCİ %"
+msgstr "CPU %"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Avg Memory"
 msgid "Memory %"
-msgstr "Ort. Hafıza"
+msgstr "Bellek %"
 
 #: hmib.php
 msgid "Swap %"
-msgstr ""
+msgstr "Takas %"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Processes"
 msgid "Processes / host"
-msgstr "Süreçler"
+msgstr "İşlem / cihaz"
 
 #: hmib.php
 msgid "No storage volumes detected in this scope."
-msgstr ""
+msgstr "Bu kapsamda depolama birimi algılanmadı."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Swap"
 msgid "Total Capacity"
-msgstr "Toplam takas"
+msgstr "Toplam Kapasite"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No OS types recorded."
-msgstr "Çalışan İşlemler"
+msgstr "Kayıtlı işletim sistemi türü yok."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Max CPU"
 msgid "Max CPU (s)"
-msgstr "Maksimum işlemci"
+msgstr "Maks. CPU (sn)"
 
 #: hmib.php
 msgid "Relative"
-msgstr ""
+msgstr "Göreli"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No process statistics recorded."
-msgstr "Çalışan İşlemler"
+msgstr "Kayıtlı işlem istatistiği yok."
 
 #: hmib.php
 msgid "Scope"
-msgstr ""
+msgstr "Kapsam"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Type"
 msgid "All Types"
-msgstr "Tip"
+msgstr "Tüm Türler"
 
 #: hmib_types.php
 msgid "Delete"
@@ -986,7 +884,7 @@ msgstr "Kopyala"
 
 #: hmib_types.php
 msgid "Click 'Continue' to Delete the following Host Type(s)"
-msgstr "Aşağıdaki Ana Bilgisayar Türlerini silmek için 'Devam Et'i tıklayın."
+msgstr "Aşağıdaki Ana Bilgisayar Türlerini silmek için 'Devam Et'i tıklayın"
 
 #: hmib_types.php
 msgid "Cancel"
@@ -1110,9 +1008,9 @@ msgid "System Description Match"
 msgstr "Sistem Açıklaması Eşleşmesi"
 
 #: hmib_types.php
-#, fuzzy, php-format
+#, php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr "HMIB'ın Ana Bilgisayar türünü algılamasına yardımcı olacak temel bilgileri girin. SQL Where ifadeleri desteklenir. SQL Joker karakter '%' işaretidir. Uyumluluk sorunları nedeniyle normal İfadeler kaldırıldı."
+msgstr "HMIB'nin Ana Bilgisayar türünü algılamasına yardımcı olacak temel bilgileri girin. SQL Where ifadeleri desteklenir. SQL Where joker karakteri '%' sembolüdür. Uyumluluk sorunları nedeniyle Düzenli İfadeler (RegEx) kaldırılmıştır."
 
 #: hmib_types.php
 msgid "Vendor snmp Object ID"
@@ -1209,7 +1107,7 @@ msgstr "Host MIB sorgulamanın etkin olmasını istiyorsanız bu kutuyu işaretl
 
 #: setup.php
 msgid "Automatically Discover Cacti Devices"
-msgstr "Cacti Cihazlarını Otomatik Olarak Keşfedin"
+msgstr "Cacti Cihazlarını Otomatik Olarak Keşfet"
 
 #: setup.php
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
@@ -1224,20 +1122,16 @@ msgid "Do you wish to automatically purge devices that are removed from the Cact
 msgstr "Cacti sisteminden kaldırılan cihazları otomatik olarak temizlemek istiyor musunuz?"
 
 #: setup.php
-#, fuzzy
-#| msgid "No Process History Found"
 msgid "Process History Retention"
-msgstr "İşlem Geçmişi Bulunamadı"
+msgstr "İşlem Geçmişi Saklama Süresi"
 
 #: setup.php
 msgid "How long should the Use History tab keep a process after it was last seen running?"
-msgstr ""
+msgstr "Kullanım Geçmişi sekmesi bir işlemi son çalışır görülmesinden sonra ne kadar süre saklamalıdır?"
 
 #: setup.php
-#, fuzzy
-#| msgid "Never"
 msgid "Never Purge"
-msgstr "Asla"
+msgstr "Asla Temizleme"
 
 #: setup.php
 #, php-format
@@ -1247,12 +1141,12 @@ msgstr "%d Gün"
 #: setup.php
 #, php-format
 msgid "%d Year"
-msgstr ""
+msgstr "%d Yıl"
 
 #: setup.php
 #, php-format
 msgid "%d Years"
-msgstr ""
+msgstr "%d Yıl"
 
 #: setup.php
 msgid "Default Row Count"
@@ -1273,7 +1167,7 @@ msgstr "HMIB Panosunda varsayılan olarak kaç işlem görmek istiyorsunuz?"
 #: setup.php
 #, php-format
 msgid "%d Types"
-msgstr "% d Türleri"
+msgstr "%d Tür"
 
 #: setup.php
 msgid "Default Top Processes"
@@ -1282,20 +1176,20 @@ msgstr "Varsayılan Üst İşlemler"
 #: setup.php
 #, php-format
 msgid "%d Processes"
-msgstr "% d İşlemler"
+msgstr "%d İşlem"
 
 #: setup.php
 msgid "Maximum Concurrent Collectors"
-msgstr "Maksimum Eşzamanlı Koleksiyoner"
+msgstr "Maksimum Eşzamanlı Toplayıcı"
 
 #: setup.php
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
-msgstr "Bir kerede çalıştırmak istediğiniz maksimum eşzamanlı toplayıcı işlem sayısı nedir?"
+msgstr "Aynı anda çalıştırmak istediğiniz en fazla eşzamanlı toplayıcı işlemi sayısı nedir?"
 
 #: setup.php
 #, php-format
 msgid "%d Process"
-msgstr "% d Süreç"
+msgstr "%d İşlem"
 
 #: setup.php
 msgid "Host Auto Discovery Frequency"
@@ -1303,11 +1197,11 @@ msgstr "Ana Bilgisayar Otomatik Bulma Frekansı"
 
 #: setup.php
 msgid "Auto Discovery Frequency"
-msgstr "Otomatik Keşif Frekansı"
+msgstr "Otomatik Keşif Sıklığı"
 
 #: setup.php
 msgid "How often do you want to look for new Cacti Devices?"
-msgstr "Ne kadar sıklıkla yeni Cacti Cihazları aramak istersiniz?"
+msgstr "Yeni Cacti Cihazlarını ne sıklıkla aramak istiyorsunuz?"
 
 #: setup.php
 msgid "Host Graph Automation"
@@ -1319,7 +1213,7 @@ msgstr "Yeni Grafikleri Otomatik Olarak Ekle"
 
 #: setup.php
 msgid "How often do you want to check for new objects to graph?"
-msgstr "Yeni nesnelerin grafiğini ne sıklıkla kontrol etmek istiyorsunuz?"
+msgstr "Grafiği çizilecek yeni nesneleri ne sıklıkla kontrol etmek istiyorsunuz?"
 
 #: setup.php
 msgid "Never"
@@ -1370,7 +1264,7 @@ msgstr "Yüklü yazılımı ne sıklıkla taramak istiyorsunuz?"
 
 #: setup.php
 msgid "Storage Frequency"
-msgstr "Depolama frekansı"
+msgstr "Depolama Sıklığı"
 
 #: setup.php
 msgid "How often do you want to scan for Storage performance data?"
@@ -1395,7 +1289,7 @@ msgstr "İşlemci performans verilerini ne sıklıkla taramak istiyorsunuz?"
 #: setup.php
 #, php-format
 msgid "%d Minute"
-msgstr "% d dakika"
+msgstr "%d Dakika"
 
 #: setup.php
 #, php-format
@@ -1415,10 +1309,8 @@ msgid "General Administration"
 msgstr "Genel Yönetim"
 
 #: setup.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Fleet Dashboard"
-msgstr "Ev sahibi MIB Details"
+msgstr "Host MIB Filo Gösterge Paneli"
 
 #: setup.php
 msgid "Host MIB Inventory Summary"
@@ -1429,10 +1321,8 @@ msgid "Host MIB Details"
 msgstr "Ev sahibi MIB Details"
 
 #: setup.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Device Dashboard"
-msgstr "Ev sahibi MIB Details"
+msgstr "Host MIB Cihaz Gösterge Paneli"
 
 #: setup.php
 msgid "Host MIB Storage"
