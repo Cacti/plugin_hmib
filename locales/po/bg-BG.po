@@ -4,18 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr ""
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-24 06:10-0400\n"
-"PO-Revision-Date: 2024-06-08 09:47-0400\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: bg_BG\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Bulgarian <https://translate.cacti.net/projects/cacti/hmib/bg/>\nLanguage: bg-BG\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -23,7 +12,7 @@ msgstr "Грешка"
 
 #: hmib.php hmib_types.php
 msgid "Unknown"
-msgstr "알려지지 않음"
+msgstr "Неизвестно"
 
 #: hmib.php
 msgid "Operating System"
@@ -39,7 +28,7 @@ msgstr "Приложение"
 
 #: hmib.php
 msgid "Running"
-msgstr "실행 중"
+msgstr "Изпълнява се"
 
 #: hmib.php
 msgid "Runnable"
@@ -107,7 +96,7 @@ msgstr "В процес"
 
 #: hmib.php
 msgid "Entries"
-msgstr "Получени съобщения"
+msgstr "Записи"
 
 #: hmib.php hmib_types.php
 msgid "Default"
@@ -215,7 +204,7 @@ msgstr "Няма намерен хардуер"
 
 #: hmib.php
 msgid "Click to filter by this status"
-msgstr ""
+msgstr "Натиснете, за да филтрирате по това състояние"
 
 #: hmib.php
 msgid "Storage Inventory"
@@ -267,7 +256,7 @@ msgstr "Нагоре"
 
 #: hmib.php setup.php
 msgid "Disabled"
-msgstr "Изключен"
+msgstr "деактивиран"
 
 #: hmib.php setup.php
 msgid "Actions"
@@ -275,7 +264,7 @@ msgstr "Действия"
 
 #: hmib.php
 msgid "Uptime(d:h:m)"
-msgstr "Uptime (г: ч: т)"
+msgstr "Време на работа (д:ч:м)"
 
 #: hmib.php
 msgid "Users"
@@ -283,7 +272,7 @@ msgstr "Потребители"
 
 #: hmib.php
 msgid "CPU %%%"
-msgstr "ПРОЦЕСОР %"
+msgstr "Процесор %%%"
 
 #: hmib.php
 msgid "CPUs"
@@ -291,11 +280,11 @@ msgstr "процесори"
 
 #: hmib.php
 msgid "Total Mem"
-msgstr "Общо Mem"
+msgstr "Общо памет"
 
 #: hmib.php
 msgid "Used Mem"
-msgstr "Използва се Mem"
+msgstr "Използвана памет"
 
 #: hmib.php
 msgid "Total Swap"
@@ -307,7 +296,7 @@ msgstr "Използва се суап"
 
 #: hmib.php
 msgid "View Dashboard"
-msgstr ""
+msgstr "Преглед на таблото"
 
 #: hmib.php
 msgid "View Storage"
@@ -331,11 +320,11 @@ msgstr "Преглед на графиките"
 
 #: hmib.php
 msgid "No Graphs Defined"
-msgstr "Не са определени графики"
+msgstr "Няма дефинирани графики"
 
 #: hmib.php
 msgid "N/A"
-msgstr ""
+msgstr "Няма"
 
 #: hmib.php
 msgid "No Devices Found"
@@ -362,10 +351,8 @@ msgid "No Software Packages Found"
 msgstr "Не са намерени софтуерни пакети"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Fleet Dashboard"
-msgstr "Детайли на MIB на хоста"
+msgstr "Табло на парка устройства"
 
 #: hmib.php
 msgid "Summary"
@@ -393,17 +380,15 @@ msgstr "Графики"
 
 #: hmib.php
 msgid "Dashboard"
-msgstr ""
+msgstr "Табло"
 
 #: hmib.php
 msgid "Summary Filter"
 msgstr "Обобщен филтър"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Type"
 msgid "Types"
-msgstr "Тип"
+msgstr "Типове"
 
 #: hmib.php
 msgid "All Records"
@@ -412,12 +397,12 @@ msgstr "Всички измервания"
 #: hmib.php
 #, php-format
 msgid "%d Records"
-msgstr "% d записи"
+msgstr "%d записа"
 
 #: hmib.php
 #, php-format
 msgid "%d Record"
-msgstr "% d Запис"
+msgstr "%d запис"
 
 #: hmib.php
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
@@ -473,7 +458,7 @@ msgstr "Max Proc"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
-msgstr ""
+msgstr "Преглед на таблото на парка от устройства"
 
 #: hmib.php
 msgid "View Devices"
@@ -497,7 +482,7 @@ msgstr "Num Paths"
 
 #: hmib.php hmib_types.php
 msgid "Hosts"
-msgstr "Силите"
+msgstr "Хостове"
 
 #: hmib.php
 msgid "Avg Memory"
@@ -508,15 +493,13 @@ msgid "Max Memory"
 msgstr "Максимална памет"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Summary"
 msgid "Summary Stats"
-msgstr "Резюме"
+msgstr "Обобщена статистика"
 
 #: hmib.php
 #, php-format
 msgid "%s Hrs"
-msgstr "%s часа"
+msgstr "%s ч."
 
 #: hmib.php
 #, php-format
@@ -525,11 +508,11 @@ msgstr "%s MB"
 
 #: hmib.php
 msgid "No Processes"
-msgstr "Процеси"
+msgstr "Няма процеси"
 
 #: hmib.php
 msgid "Custom Graph List Applied - Filtering from List"
-msgstr "Приложен е персонализиран графичен списък - филтриране от списък"
+msgstr "Приложен е персонализиран списък с графики - филтриране от списъка"
 
 #: hmib.php
 msgid "Graph Preview Filters"
@@ -537,223 +520,178 @@ msgstr "Филтри за преглед на графика"
 
 #: hmib.php
 msgid "System Information"
-msgstr ""
+msgstr "Системна информация"
 
 #: hmib.php
 msgid "CPU Utilization"
-msgstr ""
+msgstr "Натоварване на CPU"
 
 #: hmib.php
 msgid "Memory Utilization"
-msgstr ""
+msgstr "Използване на паметта"
 
 #: hmib.php
 msgid "Swap Utilization"
-msgstr ""
+msgstr "Използване на Swap"
 
 #: hmib.php
 msgid "Users and Logins"
-msgstr ""
+msgstr "Потребители и влизания"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Process Name"
 msgid "Per-Processor Load"
-msgstr "Име на процес"
+msgstr "Натоварване по процесори"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Storage Type"
 msgid "Storage Volumes"
-msgstr "Тип съхранение"
+msgstr "Томове за съхранение"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes"
-msgstr "Процеси"
+msgstr "Водещи процеси"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Process Use History"
 msgid "Process Use History"
-msgstr "История на използване на MIB процеса на хоста"
+msgstr "История на използването на процесите"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Hardware Type"
 msgid "Hardware Devices"
-msgstr "Тип хардуер"
+msgstr "Хардуерни устройства"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Installed Software Frequency"
 msgid "Installed Software"
-msgstr "Честота на инсталирания софтуер"
+msgstr "Инсталиран софтуер"
 
 #: hmib.php
 msgid "No system information has been collected for this device yet."
-msgstr ""
+msgstr "Все още не е събрана системна информация за това устройство."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Management"
 msgid "Management Address"
-msgstr "управление"
+msgstr "Адрес за управление"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host Type Name"
 msgid "System Name"
-msgstr "Име на типа на хоста"
+msgstr "Име на системата"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Storage Description"
 msgid "Description"
-msgstr "Описание за съхранение"
+msgstr "Описание"
 
 #: hmib.php
 msgid "Contact"
-msgstr ""
+msgstr "Контакт"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Actions"
 msgid "Location"
-msgstr "Действия"
+msgstr "Местоположение"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Uptime(d:h:m)"
 msgid "Uptime"
-msgstr "Uptime (г: ч: т)"
+msgstr "Време на работа"
 
 #: hmib.php
 msgid "System Time"
-msgstr ""
+msgstr "Системно време"
 
 #: hmib.php
 msgid "No processor data available."
-msgstr ""
+msgstr "Няма налични данни за процесора."
 
 #: hmib.php
 #, php-format
 msgid "%d CPU(s)"
-msgstr ""
+msgstr "%d процесор(а)"
 
 #: hmib.php
 msgid "No memory data available."
-msgstr ""
+msgstr "Няма налични данни за паметта."
 
 #: hmib.php
 #, php-format
 msgid "%s total"
-msgstr ""
+msgstr "%s общо"
 
 #: hmib.php
 msgid "No swap configured on this device."
-msgstr ""
+msgstr "Няма конфигуриран swap на това устройство."
 
 #: hmib.php
 msgid "No session data available."
-msgstr ""
+msgstr "Няма налични данни за сесии."
 
 #: hmib.php
 msgid "Logged-in Users"
-msgstr ""
+msgstr "Влезли потребители"
 
 #: hmib.php
-#, fuzzy
-#| msgid "View Processes"
 msgid "Maximum Processes"
-msgstr "Преглед на процеси"
+msgstr "Максимален брой процеси"
 
 #: hmib.php
 msgid "Unlimited"
-msgstr ""
+msgstr "Неограничено"
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPUs"
 msgid "CPU"
-msgstr "процесори"
+msgstr "Процесор"
 
 #: hmib.php
 msgid "Load"
-msgstr ""
+msgstr "Натоварване"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Utilization"
-msgstr "Приложение"
+msgstr "Натоварване"
 
 #: hmib.php
-#, fuzzy, php-format
-#| msgid "CPU %%%"
+#, php-format
 msgid "CPU %d"
-msgstr "ПРОЦЕСОР %"
+msgstr "Процесор %d"
 
 #: hmib.php
 msgid "No per-processor load reported."
-msgstr ""
+msgstr "Не е отчетено натоварване по процесори."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Volumes"
 msgid "Volume"
-msgstr "Обемите"
+msgstr "Том"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Used Mem"
 msgid "Used"
-msgstr "Използва се Mem"
+msgstr "Използвано"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Mem"
 msgid "Total"
-msgstr "Общо Mem"
+msgstr "Общо"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Used Mem"
 msgid "Used %"
-msgstr "Използва се Mem"
+msgstr "Използвано %"
 
 #: hmib.php
 msgid "No storage volumes detected."
-msgstr ""
+msgstr "Не са открити томове за съхранение."
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPU (Hrs)"
 msgid "CPU (s)"
-msgstr "CPU (часа)"
+msgstr "Процесор (сек.)"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Avg Memory"
 msgid "Memory"
-msgstr "Ср. Памет"
+msgstr "Памет"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No running processes recorded."
-msgstr "Работещи процеси"
+msgstr "Няма записани работещи процеси."
 
 #: hmib.php
 msgid "No hardware devices detected."
-msgstr ""
+msgstr "Не са открити хардуерни устройства."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Installed"
 msgid "Installed Packages"
-msgstr "Инсталирано"
+msgstr "Инсталирани пакети"
 
 #: hmib.php hmib_types.php
 msgid "Name"
@@ -761,219 +699,180 @@ msgstr "Име"
 
 #: hmib.php
 msgid "No installed software inventory collected."
-msgstr ""
+msgstr "Няма събран опис на инсталирания софтуер."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No process use history recorded."
-msgstr "Работещи процеси"
+msgstr "Няма записана история за използване на процеси."
 
 #: hmib.php
 msgid "Show more"
-msgstr ""
+msgstr "Показване на повече"
 
 #: hmib.php
 msgid "Show less"
-msgstr ""
+msgstr "Показване на по-малко"
 
 #: hmib.php
 msgid "Open in a dialog"
-msgstr ""
+msgstr "Отваряне в диалогов прозорец"
 
 #: hmib.php
 msgid "Refresh"
-msgstr ""
+msgstr "Обновяване"
 
 #: hmib.php
 msgid "Remove from page"
-msgstr ""
+msgstr "Премахване от страницата"
 
 #: hmib.php
 msgid "Drag to reorder card"
-msgstr ""
+msgstr "Плъзнете за пренареждане на картата"
 
 #: hmib.php
 msgid "Invalid request. Please try again."
-msgstr ""
+msgstr "Невалидна заявка. Моля, опитайте отново."
 
 #: hmib.php
 msgid "Invalid refresh interval."
-msgstr ""
+msgstr "Невалиден интервал за опресняване."
 
 #: hmib.php
 msgid "No device selected."
-msgstr ""
+msgstr "Няма избрано устройство."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Unknown"
 msgid "Unknown card."
-msgstr "알려지지 않음"
+msgstr "Неизвестна карта."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Dashboard"
-msgstr "Детайли на MIB на хоста"
+msgstr "Табло на Host MIB"
 
 #: hmib.php
 msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
-msgstr ""
+msgstr "Отворете табло на устройство от раздела „Устройства“, като щракнете върху иконата на табло в колоната „Действия“. Таблото запомня последното отворено от вас устройство."
 
 #: hmib.php
-#, fuzzy, php-format
-#| msgid "Device"
+#, php-format
 msgid "Device %d"
-msgstr "Устройство"
+msgstr "Устройство %d"
 
 #: hmib.php
-#, fuzzy
-#| msgid "%d Minute"
 msgid "1 Minute"
-msgstr "%d минута"
+msgstr "1 минута"
 
 #: hmib.php
 msgid "30 Seconds"
-msgstr ""
+msgstr "30 секунди"
 
 #: hmib.php
-#, fuzzy
-#| msgid "%d Minutes"
 msgid "5 Minutes"
-msgstr "%d минути"
+msgstr "5 минути"
 
 #: hmib.php
 msgid "No Refresh"
-msgstr ""
+msgstr "Без опресняване"
 
 #: hmib.php
 msgid "Search Host MIB devices as you type to open that device's dashboard."
-msgstr ""
+msgstr "Търсете Host MIB устройства, докато пишете, за да отворите таблото на съответното устройство."
 
 #: hmib.php
 msgid "Add card"
-msgstr ""
+msgstr "Добавяне на карта"
 
 #: hmib.php
 msgid "Add a card…"
-msgstr ""
+msgstr "Добавяне на карта…"
 
 #: hmib.php
 msgid "Fleet Overview"
-msgstr ""
+msgstr "Общ преглед на устройствата"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Resource Utilization"
-msgstr "Приложение"
+msgstr "Използване на ресурсите"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Devices"
 msgid "Device Status"
-msgstr "Устройства"
+msgstr "Състояние на устройството"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Storage Utilization"
-msgstr "Приложение"
+msgstr "Използване на хранилището"
 
 #: hmib.php
 msgid "Uptime Distribution"
-msgstr ""
+msgstr "Разпределение на времето на работа"
 
 #: hmib.php
 msgid "OS Type Distribution"
-msgstr ""
+msgstr "Разпределение по тип ОС"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes by CPU"
-msgstr "Процеси"
+msgstr "Водещи процеси по CPU"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes by Memory"
-msgstr "Процеси"
+msgstr "Водещи процеси по памет"
 
 #: hmib.php
 msgid "No Host MIB devices in this scope yet."
-msgstr ""
+msgstr "Все още няма Host MIB устройства в този обхват."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Mem"
 msgid "Total RAM"
-msgstr "Общо Mem"
+msgstr "Общо RAM"
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPU %%%"
 msgid "CPU %"
-msgstr "ПРОЦЕСОР %"
+msgstr "Процесор %"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Avg Memory"
 msgid "Memory %"
-msgstr "Ср. Памет"
+msgstr "Памет %"
 
 #: hmib.php
 msgid "Swap %"
-msgstr ""
+msgstr "Swap %"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Processes"
 msgid "Processes / host"
-msgstr "Процеси"
+msgstr "Процеси / хост"
 
 #: hmib.php
 msgid "No storage volumes detected in this scope."
-msgstr ""
+msgstr "Не са открити томове за съхранение в този обхват."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Swap"
 msgid "Total Capacity"
-msgstr "Общ суап"
+msgstr "Общ капацитет"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No OS types recorded."
-msgstr "Работещи процеси"
+msgstr "Няма записани типове ОС."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Max CPU"
 msgid "Max CPU (s)"
-msgstr "Макс CPU"
+msgstr "Макс. CPU (сек.)"
 
 #: hmib.php
 msgid "Relative"
-msgstr ""
+msgstr "Относителен"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No process statistics recorded."
-msgstr "Работещи процеси"
+msgstr "Няма записани статистики за процеси."
 
 #: hmib.php
 msgid "Scope"
-msgstr ""
+msgstr "Обхват"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Type"
 msgid "All Types"
-msgstr "Тип"
+msgstr "Видове"
 
 #: hmib_types.php
 msgid "Delete"
@@ -1018,7 +917,7 @@ msgstr "Нов вид"
 #: hmib_types.php
 #, php-format
 msgid "There were %d Device Types Added!"
-msgstr "Добавени са% d типове устройства!"
+msgstr "Бяха добавени %d типа устройства!"
 
 #: hmib_types.php
 msgid "No New Host Types Found!"
@@ -1109,9 +1008,9 @@ msgid "System Description Match"
 msgstr "Описание на системата Съвпадение"
 
 #: hmib_types.php
-#, fuzzy, php-format
+#, php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr "Предоставете ключова информация, за да помогнете на HMIB да открие типа Host. SQL където се поддържат изрази. SQL Когато символът за заместване е знакът '%'. Редовни изрази бяха премахнати поради проблеми със съвместимостта."
+msgstr "Предоставете ключова информация, която да помогне на HMIB да определи типа на хоста. Поддържат се SQL Where изрази. Заместващият символ в SQL Where е '%' sign (знак за процент). Регулярните изрази са премахнати поради проблеми със съвместимостта."
 
 #: hmib_types.php
 msgid "Vendor snmp Object ID"
@@ -1208,7 +1107,7 @@ msgstr "Поставете отметка в това квадратче, ако
 
 #: setup.php
 msgid "Automatically Discover Cacti Devices"
-msgstr "Автоматично откриване на устройства Cacti"
+msgstr "Автоматично откриване на устройства в Cacti"
 
 #: setup.php
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
@@ -1216,42 +1115,38 @@ msgstr "Искате ли да сканирате автоматично и да
 
 #: setup.php
 msgid "Automatically Purge Devices"
-msgstr "Автоматично почистване на устройствата"
+msgstr "Автоматично изчистване на устройства"
 
 #: setup.php
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
-msgstr "Искате ли автоматично да почистите устройства, които са премахнати от системата Cacti?"
+msgstr "Желаете ли автоматично да се изчистват устройствата, премахнати от системата Cacti?"
 
 #: setup.php
-#, fuzzy
-#| msgid "No Process History Found"
 msgid "Process History Retention"
-msgstr "Няма намерена история на процеса"
+msgstr "Запазване на историята на процесите"
 
 #: setup.php
 msgid "How long should the Use History tab keep a process after it was last seen running?"
-msgstr ""
+msgstr "Колко дълго разделът „История на използването“ да пази даден процес след последното му засичане като работещ?"
 
 #: setup.php
-#, fuzzy
-#| msgid "Never"
 msgid "Never Purge"
-msgstr "Никога"
+msgstr "Никога не изчиствай"
 
 #: setup.php
 #, php-format
 msgid "%d Days"
-msgstr "% d дни"
+msgstr "%d дни"
 
 #: setup.php
 #, php-format
 msgid "%d Year"
-msgstr ""
+msgstr "%d година"
 
 #: setup.php
 #, php-format
 msgid "%d Years"
-msgstr ""
+msgstr "%d години"
 
 #: setup.php
 msgid "Default Row Count"
@@ -1272,7 +1167,7 @@ msgstr "Колко процеси искате да видите на табло
 #: setup.php
 #, php-format
 msgid "%d Types"
-msgstr "% d Видове"
+msgstr "%d типа"
 
 #: setup.php
 msgid "Default Top Processes"
@@ -1281,20 +1176,20 @@ msgstr "Основни процеси по подразбиране"
 #: setup.php
 #, php-format
 msgid "%d Processes"
-msgstr "% d Процеси"
+msgstr "%d процеса"
 
 #: setup.php
 msgid "Maximum Concurrent Collectors"
-msgstr "Максимални едновременни колектори"
+msgstr "Максимален брой едновременни колектори"
 
 #: setup.php
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
-msgstr "Какъв е максималният брой едновременно събирателен процес, който искате да стартирате едновременно?"
+msgstr "Какъв е максималният брой едновременни процеси за събиране на данни, които искате да се изпълняват по едно и също време?"
 
 #: setup.php
 #, php-format
 msgid "%d Process"
-msgstr "% d Процес"
+msgstr "%d процес"
 
 #: setup.php
 msgid "Host Auto Discovery Frequency"
@@ -1306,7 +1201,7 @@ msgstr "Честота на автоматично откриване"
 
 #: setup.php
 msgid "How often do you want to look for new Cacti Devices?"
-msgstr "Колко често искате да търсите нови Cacti устройства?"
+msgstr "Колко често желаете да се търсят нови Cacti устройства?"
 
 #: setup.php
 msgid "Host Graph Automation"
@@ -1318,7 +1213,7 @@ msgstr "Автоматично добавяне на нови графики"
 
 #: setup.php
 msgid "How often do you want to check for new objects to graph?"
-msgstr "Колко често искате да проверявате за нови обекти в графиката?"
+msgstr "Колко често желаете да се проверява за нови обекти за графики?"
 
 #: setup.php
 msgid "Never"
@@ -1337,7 +1232,7 @@ msgstr "%d часа"
 #: setup.php
 #, php-format
 msgid "%d Day"
-msgstr "% d ден"
+msgstr "%d ден"
 
 #: setup.php
 msgid "Host MIB Table Collection Frequencies"
@@ -1407,17 +1302,15 @@ msgstr "управление"
 
 #: setup.php
 msgid "Normal User"
-msgstr "Обикновен потребител"
+msgstr "Нормален потребител"
 
 #: setup.php
 msgid "General Administration"
 msgstr "Обща администрация"
 
 #: setup.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Fleet Dashboard"
-msgstr "Детайли на MIB на хоста"
+msgstr "Общо табло на Host MIB"
 
 #: setup.php
 msgid "Host MIB Inventory Summary"
@@ -1428,10 +1321,8 @@ msgid "Host MIB Details"
 msgstr "Детайли на MIB на хоста"
 
 #: setup.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Device Dashboard"
-msgstr "Детайли на MIB на хоста"
+msgstr "Табло за устройство на Host MIB"
 
 #: setup.php
 msgid "Host MIB Storage"
