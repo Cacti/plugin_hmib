@@ -4,18 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr ""
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-24 06:10-0400\n"
-"PO-Revision-Date: 2024-06-08 09:55-0400\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: ko_KR\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Korean <https://translate.cacti.net/projects/cacti/hmib/ko/>\nLanguage: ko-KR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -103,7 +92,7 @@ msgstr "검색"
 
 #: hmib.php
 msgid "Process"
-msgstr "WordPress에 내장 된 admin-ajax.php를 사용하여 추적 프로그램을 처리합니다."
+msgstr "프로세스"
 
 #: hmib.php
 msgid "Entries"
@@ -215,7 +204,7 @@ msgstr "하드웨어를 찾을 수 없음"
 
 #: hmib.php
 msgid "Click to filter by this status"
-msgstr ""
+msgstr "이 상태로 필터링하려면 클릭하세요"
 
 #: hmib.php
 msgid "Storage Inventory"
@@ -267,7 +256,7 @@ msgstr "위로"
 
 #: hmib.php setup.php
 msgid "Disabled"
-msgstr "비활성화"
+msgstr "비활성화됨"
 
 #: hmib.php setup.php
 msgid "Actions"
@@ -275,7 +264,7 @@ msgstr "작업"
 
 #: hmib.php
 msgid "Uptime(d:h:m)"
-msgstr "가동 시간 (d : h : m)"
+msgstr "가동 시간(d:h:m)"
 
 #: hmib.php
 msgid "Users"
@@ -291,11 +280,11 @@ msgstr "CPU"
 
 #: hmib.php
 msgid "Total Mem"
-msgstr "총 Mem"
+msgstr "총 메모리"
 
 #: hmib.php
 msgid "Used Mem"
-msgstr "사용한 Mem"
+msgstr "사용된 메모리"
 
 #: hmib.php
 msgid "Total Swap"
@@ -307,7 +296,7 @@ msgstr "스왑 사용"
 
 #: hmib.php
 msgid "View Dashboard"
-msgstr ""
+msgstr "대시보드 보기"
 
 #: hmib.php
 msgid "View Storage"
@@ -331,11 +320,11 @@ msgstr "그래프보기"
 
 #: hmib.php
 msgid "No Graphs Defined"
-msgstr "정의 된 그래프 없음"
+msgstr "정의된 그래프 없음"
 
 #: hmib.php
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: hmib.php
 msgid "No Devices Found"
@@ -362,10 +351,8 @@ msgid "No Software Packages Found"
 msgstr "소프트웨어 패키지를 찾을 수 없음"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Fleet Dashboard"
-msgstr "호스트 MIB 세부 정보"
+msgstr "전체 장치 대시보드"
 
 #: hmib.php
 msgid "Summary"
@@ -389,19 +376,17 @@ msgstr "목록"
 
 #: hmib.php
 msgid "Graphs"
-msgstr "그래프 "
+msgstr "그래프"
 
 #: hmib.php
 msgid "Dashboard"
-msgstr ""
+msgstr "대시보드"
 
 #: hmib.php
 msgid "Summary Filter"
 msgstr "요약 필터"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Type"
 msgid "Types"
 msgstr "유형"
 
@@ -412,12 +397,12 @@ msgstr "모든 기록"
 #: hmib.php
 #, php-format
 msgid "%d Records"
-msgstr "레코드 % d 개"
+msgstr "레코드 %d개"
 
 #: hmib.php
 #, php-format
 msgid "%d Record"
-msgstr "% d 기록"
+msgstr "레코드 %d개"
 
 #: hmib.php
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
@@ -437,7 +422,7 @@ msgstr "로그인"
 
 #: hmib.php
 msgid "CPUS"
-msgstr "CPUS"
+msgstr "CPU"
 
 #: hmib.php
 msgid "Avg CPU"
@@ -473,7 +458,7 @@ msgstr "최대 Proc"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
-msgstr ""
+msgstr "플릿 대시보드 보기"
 
 #: hmib.php
 msgid "View Devices"
@@ -508,10 +493,8 @@ msgid "Max Memory"
 msgstr "최대 메모리"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Summary"
 msgid "Summary Stats"
-msgstr "요약"
+msgstr "요약 통계"
 
 #: hmib.php
 #, php-format
@@ -525,11 +508,11 @@ msgstr "%s MB"
 
 #: hmib.php
 msgid "No Processes"
-msgstr "프로세스"
+msgstr "프로세스 없음"
 
 #: hmib.php
 msgid "Custom Graph List Applied - Filtering from List"
-msgstr "맞춤 그래프 목록 적용 - 목록에서 필터링"
+msgstr "사용자 지정 그래프 목록 적용됨 - 목록에서 필터링"
 
 #: hmib.php
 msgid "Graph Preview Filters"
@@ -537,223 +520,178 @@ msgstr "그래프 미리보기 필터"
 
 #: hmib.php
 msgid "System Information"
-msgstr ""
+msgstr "시스템 정보"
 
 #: hmib.php
 msgid "CPU Utilization"
-msgstr ""
+msgstr "CPU 사용률"
 
 #: hmib.php
 msgid "Memory Utilization"
-msgstr ""
+msgstr "메모리 사용률"
 
 #: hmib.php
 msgid "Swap Utilization"
-msgstr ""
+msgstr "스왑 사용률"
 
 #: hmib.php
 msgid "Users and Logins"
-msgstr ""
+msgstr "사용자 및 로그인"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Process Name"
 msgid "Per-Processor Load"
-msgstr "프로세스 이름"
+msgstr "프로세서별 부하"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Storage Type"
 msgid "Storage Volumes"
-msgstr "저장방식"
+msgstr "스토리지 볼륨"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes"
-msgstr "프로세스"
+msgstr "상위 프로세스"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Process Use History"
 msgid "Process Use History"
-msgstr "호스트 MIB 프로세스 사용 내역"
+msgstr "프로세스 사용 기록"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Hardware Type"
 msgid "Hardware Devices"
-msgstr "하드웨어 유형"
+msgstr "하드웨어 장치"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Installed Software Frequency"
 msgid "Installed Software"
-msgstr "설치된 소프트웨어 빈도"
+msgstr "설치된 소프트웨어"
 
 #: hmib.php
 msgid "No system information has been collected for this device yet."
-msgstr ""
+msgstr "이 장치에 대해 아직 수집된 시스템 정보가 없습니다."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Management"
 msgid "Management Address"
-msgstr "관리"
+msgstr "관리 주소"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host Type Name"
 msgid "System Name"
-msgstr "호스트 유형 이름"
+msgstr "시스템 이름"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Storage Description"
 msgid "Description"
-msgstr "스토리지 설명"
+msgstr "설명"
 
 #: hmib.php
 msgid "Contact"
-msgstr ""
+msgstr "연락처"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Actions"
 msgid "Location"
-msgstr "작업"
+msgstr "위치"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Uptime(d:h:m)"
 msgid "Uptime"
-msgstr "가동 시간 (d : h : m)"
+msgstr "운영 시간"
 
 #: hmib.php
 msgid "System Time"
-msgstr ""
+msgstr "시스템 시간"
 
 #: hmib.php
 msgid "No processor data available."
-msgstr ""
+msgstr "사용 가능한 프로세서 데이터가 없습니다."
 
 #: hmib.php
 #, php-format
 msgid "%d CPU(s)"
-msgstr ""
+msgstr "CPU %d개"
 
 #: hmib.php
 msgid "No memory data available."
-msgstr ""
+msgstr "사용 가능한 메모리 데이터가 없습니다."
 
 #: hmib.php
 #, php-format
 msgid "%s total"
-msgstr ""
+msgstr "총 %s"
 
 #: hmib.php
 msgid "No swap configured on this device."
-msgstr ""
+msgstr "이 장치에 구성된 스왑(Swap)이 없습니다."
 
 #: hmib.php
 msgid "No session data available."
-msgstr ""
+msgstr "사용 가능한 세션 데이터가 없습니다."
 
 #: hmib.php
 msgid "Logged-in Users"
-msgstr ""
+msgstr "로그인한 사용자"
 
 #: hmib.php
-#, fuzzy
-#| msgid "View Processes"
 msgid "Maximum Processes"
-msgstr "프로세스보기"
+msgstr "최대 프로세스 수"
 
 #: hmib.php
 msgid "Unlimited"
-msgstr ""
+msgstr "무제한"
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPUs"
 msgid "CPU"
 msgstr "CPU"
 
 #: hmib.php
 msgid "Load"
-msgstr ""
+msgstr "부하"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Utilization"
-msgstr "신청서"
+msgstr "사용률"
 
 #: hmib.php
-#, fuzzy, php-format
-#| msgid "CPU %%%"
+#, php-format
 msgid "CPU %d"
-msgstr "CPU %"
+msgstr "CPU %d"
 
 #: hmib.php
 msgid "No per-processor load reported."
-msgstr ""
+msgstr "보고된 프로세서별 부하가 없습니다."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Volumes"
 msgid "Volume"
 msgstr "볼륨"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Used Mem"
 msgid "Used"
-msgstr "사용한 Mem"
+msgstr "사용량"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Mem"
 msgid "Total"
-msgstr "총 Mem"
+msgstr "합계"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Used Mem"
 msgid "Used %"
-msgstr "사용한 Mem"
+msgstr "사용 %"
 
 #: hmib.php
 msgid "No storage volumes detected."
-msgstr ""
+msgstr "감지된 스토리지 볼륨이 없습니다."
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPU (Hrs)"
 msgid "CPU (s)"
-msgstr "CPU (Hrs)"
+msgstr "CPU (초)"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Avg Memory"
 msgid "Memory"
-msgstr "평균 메모리"
+msgstr "메모리"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No running processes recorded."
-msgstr "프로세스 실행"
+msgstr "기록된 실행 중 프로세스가 없습니다."
 
 #: hmib.php
 msgid "No hardware devices detected."
-msgstr ""
+msgstr "감지된 하드웨어 장치가 없습니다."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Installed"
 msgid "Installed Packages"
-msgstr "설치됨"
+msgstr "설치된 패키지"
 
 #: hmib.php hmib_types.php
 msgid "Name"
@@ -761,219 +699,180 @@ msgstr "이름"
 
 #: hmib.php
 msgid "No installed software inventory collected."
-msgstr ""
+msgstr "수집된 설치 소프트웨어 인벤토리가 없습니다."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No process use history recorded."
-msgstr "프로세스 실행"
+msgstr "기록된 프로세스 사용 내역이 없습니다."
 
 #: hmib.php
 msgid "Show more"
-msgstr ""
+msgstr "더 보기"
 
 #: hmib.php
 msgid "Show less"
-msgstr ""
+msgstr "간략히 보기"
 
 #: hmib.php
 msgid "Open in a dialog"
-msgstr ""
+msgstr "대화 상자에서 열기"
 
 #: hmib.php
 msgid "Refresh"
-msgstr ""
+msgstr "새로고침"
 
 #: hmib.php
 msgid "Remove from page"
-msgstr ""
+msgstr "페이지에서 제거"
 
 #: hmib.php
 msgid "Drag to reorder card"
-msgstr ""
+msgstr "드래그하여 카드 순서 변경"
 
 #: hmib.php
 msgid "Invalid request. Please try again."
-msgstr ""
+msgstr "잘못된 요청입니다. 다시 시도해 주세요."
 
 #: hmib.php
 msgid "Invalid refresh interval."
-msgstr ""
+msgstr "잘못된 새로 고침 간격입니다."
 
 #: hmib.php
 msgid "No device selected."
-msgstr ""
+msgstr "선택된 장치가 없습니다."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Unknown"
 msgid "Unknown card."
-msgstr "알 수 없음"
+msgstr "알 수 없는 카드입니다."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Dashboard"
-msgstr "호스트 MIB 세부 정보"
+msgstr "호스트 MIB 대시보드"
 
 #: hmib.php
 msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
-msgstr ""
+msgstr "장치 탭의 작업 열에서 대시보드 아이콘을 클릭하여 장치 대시보드를 엽니다. 대시보드는 마지막으로 연 장치를 기억합니다."
 
 #: hmib.php
-#, fuzzy, php-format
-#| msgid "Device"
+#, php-format
 msgid "Device %d"
-msgstr "장치"
+msgstr "장치 %d"
 
 #: hmib.php
-#, fuzzy
-#| msgid "%d Minute"
 msgid "1 Minute"
-msgstr "%d 분"
+msgstr "1분"
 
 #: hmib.php
 msgid "30 Seconds"
-msgstr ""
+msgstr "30초"
 
 #: hmib.php
-#, fuzzy
-#| msgid "%d Minutes"
 msgid "5 Minutes"
-msgstr "%d 분"
+msgstr "5분"
 
 #: hmib.php
 msgid "No Refresh"
-msgstr ""
+msgstr "새로 고침 안 함"
 
 #: hmib.php
 msgid "Search Host MIB devices as you type to open that device's dashboard."
-msgstr ""
+msgstr "입력하면서 Host MIB 장치를 검색하여 해당 장치의 대시보드를 엽니다."
 
 #: hmib.php
 msgid "Add card"
-msgstr ""
+msgstr "카드 추가"
 
 #: hmib.php
 msgid "Add a card…"
-msgstr ""
+msgstr "카드 추가…"
 
 #: hmib.php
 msgid "Fleet Overview"
-msgstr ""
+msgstr "전체 시스템 개요"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Resource Utilization"
-msgstr "신청서"
+msgstr "리소스 사용률"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Devices"
 msgid "Device Status"
-msgstr "장치"
+msgstr "장치 상태"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Storage Utilization"
-msgstr "신청서"
+msgstr "스토리지 사용률"
 
 #: hmib.php
 msgid "Uptime Distribution"
-msgstr ""
+msgstr "가동 시간 분포"
 
 #: hmib.php
 msgid "OS Type Distribution"
-msgstr ""
+msgstr "OS 유형 분포"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes by CPU"
-msgstr "프로세스"
+msgstr "CPU 기준 상위 프로세스"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes by Memory"
-msgstr "프로세스"
+msgstr "메모리 기준 상위 프로세스"
 
 #: hmib.php
 msgid "No Host MIB devices in this scope yet."
-msgstr ""
+msgstr "이 범위에 아직 Host MIB 장치가 없습니다."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Mem"
 msgid "Total RAM"
-msgstr "총 Mem"
+msgstr "총 RAM"
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPU %%%"
 msgid "CPU %"
 msgstr "CPU %"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Avg Memory"
 msgid "Memory %"
-msgstr "평균 메모리"
+msgstr "메모리 %"
 
 #: hmib.php
 msgid "Swap %"
-msgstr ""
+msgstr "스왑 %"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Processes"
 msgid "Processes / host"
-msgstr "프로세스"
+msgstr "프로세스 / 호스트"
 
 #: hmib.php
 msgid "No storage volumes detected in this scope."
-msgstr ""
+msgstr "이 범위에서 감지된 스토리지 볼륨이 없습니다."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Swap"
 msgid "Total Capacity"
-msgstr "총 스왑"
+msgstr "총 용량"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No OS types recorded."
-msgstr "프로세스 실행"
+msgstr "기록된 OS 유형이 없습니다."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Max CPU"
 msgid "Max CPU (s)"
-msgstr "최대 CPU"
+msgstr "최대 CPU (초)"
 
 #: hmib.php
 msgid "Relative"
-msgstr ""
+msgstr "상대"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No process statistics recorded."
-msgstr "프로세스 실행"
+msgstr "기록된 프로세스 통계가 없습니다."
 
 #: hmib.php
 msgid "Scope"
-msgstr ""
+msgstr "범위"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Type"
 msgid "All Types"
-msgstr "유형"
+msgstr "모든타입"
 
 #: hmib_types.php
 msgid "Delete"
@@ -985,7 +884,7 @@ msgstr "복사"
 
 #: hmib_types.php
 msgid "Click 'Continue' to Delete the following Host Type(s)"
-msgstr "다음 호스트 유형을 삭제하려면 '계속'을 클릭하십시오."
+msgstr "다음 호스트 유형을 삭제하려면 '계속'을 클릭하십시오"
 
 #: hmib_types.php
 msgid "Cancel"
@@ -1018,7 +917,7 @@ msgstr "새 용도분류"
 #: hmib_types.php
 #, php-format
 msgid "There were %d Device Types Added!"
-msgstr "추가 된 기기 유형이 % d 개 있습니다!"
+msgstr "%d개의 장치 유형이 추가되었습니다!"
 
 #: hmib_types.php
 msgid "No New Host Types Found!"
@@ -1109,9 +1008,9 @@ msgid "System Description Match"
 msgstr "시스템 설명 일치"
 
 #: hmib_types.php
-#, fuzzy, php-format
+#, php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr "HMIB가 호스트 유형을 탐지하는 데 도움이되는 주요 정보를 제공하십시오. SQL 표현식이 지원됩니다. SQL 여기서 와일드 카드 문자는 '%'기호입니다. 호환성 문제로 인해 정규 표현식이 제거되었습니다."
+msgstr "HMIB가 호스트 유형을 감지하는 데 도움이 되는 주요 정보를 입력하세요. SQL Where 표현식이 지원됩니다. SQL Where 와일드카드 문자는 '%' sign(퍼센트 기호)입니다. 정규 표현식은 호환성 문제로 인해 제거되었습니다."
 
 #: hmib_types.php
 msgid "Vendor snmp Object ID"
@@ -1120,7 +1019,7 @@ msgstr "공급 업체 snmp 개체 ID"
 #: hmib_types.php
 #, php-format
 msgid "Host MIB OS Types [edit: %s]"
-msgstr "호스트 MIB OS 유형 [편집 :  %s]"
+msgstr "호스트 MIB OS 유형 [편집 : %s]"
 
 #: hmib_types.php
 msgid "Host MIB OS Types [new]"
@@ -1152,11 +1051,11 @@ msgstr "SNMP 시스템 설명 일치"
 
 #: hmib_types.php
 msgid "No Host Types Found"
-msgstr "호스트 유형을 찾을 수 없습니다."
+msgstr "호스트 유형을 찾을 수 없습니다"
 
 #: hmib_types.php
 msgid "Choose an action:"
-msgstr "작업선택"
+msgstr "작업선택:"
 
 #: hmib_types.php
 msgid "Rescan"
@@ -1216,27 +1115,23 @@ msgstr "호스트 리소스 테이블을 지원하는 장치를 Cacti 호스트 
 
 #: setup.php
 msgid "Automatically Purge Devices"
-msgstr "자동으로 장치 제거"
+msgstr "장치 자동 제거"
 
 #: setup.php
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
-msgstr "Cacti 시스템에서 제거 된 장치를 자동으로 제거 하시겠습니까?"
+msgstr "Cacti 시스템에서 제거된 장치를 자동으로 정리하시겠습니까?"
 
 #: setup.php
-#, fuzzy
-#| msgid "No Process History Found"
 msgid "Process History Retention"
-msgstr "프로세스 기록 없음"
+msgstr "프로세스 기록 보존"
 
 #: setup.php
 msgid "How long should the Use History tab keep a process after it was last seen running?"
-msgstr ""
+msgstr "사용 기록 탭에서 프로세스가 마지막으로 실행된 것이 확인된 후 얼마나 오래 유지할까요?"
 
 #: setup.php
-#, fuzzy
-#| msgid "Never"
 msgid "Never Purge"
-msgstr "안함"
+msgstr "제거 안 함"
 
 #: setup.php
 #, php-format
@@ -1246,12 +1141,12 @@ msgstr "%d일"
 #: setup.php
 #, php-format
 msgid "%d Year"
-msgstr ""
+msgstr "%d년"
 
 #: setup.php
 #, php-format
 msgid "%d Years"
-msgstr ""
+msgstr "%d년"
 
 #: setup.php
 msgid "Default Row Count"
@@ -1272,7 +1167,7 @@ msgstr "HMIB Dashboard에서 기본적으로 몇 개의 프로세스를보고 �
 #: setup.php
 #, php-format
 msgid "%d Types"
-msgstr "유형 % d 개"
+msgstr "유형 %d개"
 
 #: setup.php
 msgid "Default Top Processes"
@@ -1281,20 +1176,20 @@ msgstr "기본 상위 프로세스"
 #: setup.php
 #, php-format
 msgid "%d Processes"
-msgstr "프로세스 % d 개"
+msgstr "프로세스 %d개"
 
 #: setup.php
 msgid "Maximum Concurrent Collectors"
-msgstr "최대 동시 컬렉터"
+msgstr "최대 동시 수집기"
 
 #: setup.php
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
-msgstr "한 번에 실행할 동시 콜렉터 프로세스의 최대 수는 얼마입니까?"
+msgstr "한 번에 실행할 동시 수집기 프로세스의 최대 개수는 얼마입니까?"
 
 #: setup.php
 #, php-format
 msgid "%d Process"
-msgstr "프로세스 % d 개"
+msgstr "프로세스 %d개"
 
 #: setup.php
 msgid "Host Auto Discovery Frequency"
@@ -1302,11 +1197,11 @@ msgstr "호스트 자동 발견 빈도"
 
 #: setup.php
 msgid "Auto Discovery Frequency"
-msgstr "자동 발견 빈도"
+msgstr "자동 검색 빈도"
 
 #: setup.php
 msgid "How often do you want to look for new Cacti Devices?"
-msgstr "새로운 Cacti 장치를 얼마나 자주 찾고 싶습니까?"
+msgstr "새 Cacti 장치를 얼마나 자주 검색하시겠습니까?"
 
 #: setup.php
 msgid "Host Graph Automation"
@@ -1318,7 +1213,7 @@ msgstr "새 그래프 자동 추가"
 
 #: setup.php
 msgid "How often do you want to check for new objects to graph?"
-msgstr "얼마나 자주 그래프에 새 객체가 있는지 확인하고 싶습니까?"
+msgstr "그래프를 생성할 새 개체를 얼마나 자주 확인하시겠습니까?"
 
 #: setup.php
 msgid "Never"
@@ -1337,7 +1232,7 @@ msgstr "%d 시간"
 #: setup.php
 #, php-format
 msgid "%d Day"
-msgstr "% d 일"
+msgstr "%d일"
 
 #: setup.php
 msgid "Host MIB Table Collection Frequencies"
@@ -1414,10 +1309,8 @@ msgid "General Administration"
 msgstr "일반 관리"
 
 #: setup.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Fleet Dashboard"
-msgstr "호스트 MIB 세부 정보"
+msgstr "호스트 MIB 전체 장치 대시보드"
 
 #: setup.php
 msgid "Host MIB Inventory Summary"
@@ -1428,10 +1321,8 @@ msgid "Host MIB Details"
 msgstr "호스트 MIB 세부 정보"
 
 #: setup.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Device Dashboard"
-msgstr "호스트 MIB 세부 정보"
+msgstr "호스트 MIB 장치 대시보드"
 
 #: setup.php
 msgid "Host MIB Storage"
