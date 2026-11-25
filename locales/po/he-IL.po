@@ -4,18 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr ""
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-24 06:10-0400\n"
-"PO-Revision-Date: 2024-06-08 09:51-0400\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: he_IL\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Hebrew (Israel) <https://translate.cacti.net/projects/cacti/hmib/he_IL/>\nLanguage: he-IL\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && n % 10 == 0) ? 2 : 3));\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -167,7 +156,7 @@ msgstr "סטטוס"
 
 #: hmib.php
 msgid "Processes"
-msgstr "לא הצלחנו לעבד את התרומה  שלך, אנא נסה שוב."
+msgstr "תהליכים"
 
 #: hmib.php
 msgid "No Running Software Found"
@@ -207,7 +196,7 @@ msgstr "שגיאות"
 
 #: hmib.php
 msgid "Devices"
-msgstr "ניתן להתנתק מכל ההתקנים האחרים, כגון טלפון נייד או מחשב ציבורי, על ידי לחיצה על כפתור התנתקות מכל ההתקנים האחרים."
+msgstr "התקנים"
 
 #: hmib.php
 msgid "No Hardware Found"
@@ -215,7 +204,7 @@ msgstr "לא נמצאה חומרה"
 
 #: hmib.php
 msgid "Click to filter by this status"
-msgstr ""
+msgstr "לחץ כדי לסנן לפי מצב זה"
 
 #: hmib.php
 msgid "Storage Inventory"
@@ -267,7 +256,7 @@ msgstr "למעלה"
 
 #: hmib.php setup.php
 msgid "Disabled"
-msgstr "לא זמין"
+msgstr "מושבת"
 
 #: hmib.php setup.php
 msgid "Actions"
@@ -275,7 +264,7 @@ msgstr "פעולות"
 
 #: hmib.php
 msgid "Uptime(d:h:m)"
-msgstr "Uptime (d: h: m)"
+msgstr "זמן פעילות (d:h:m)"
 
 #: hmib.php
 msgid "Users"
@@ -283,7 +272,7 @@ msgstr "משתמשים"
 
 #: hmib.php
 msgid "CPU %%%"
-msgstr "מעבד %"
+msgstr "מעבד %%%"
 
 #: hmib.php
 msgid "CPUs"
@@ -291,11 +280,11 @@ msgstr "מעבדים"
 
 #: hmib.php
 msgid "Total Mem"
-msgstr "סך הכל"
+msgstr "סה\"כ זיכרון"
 
 #: hmib.php
 msgid "Used Mem"
-msgstr "זיכרון משומש"
+msgstr "זיכרון בשימוש"
 
 #: hmib.php
 msgid "Total Swap"
@@ -307,7 +296,7 @@ msgstr "החלפה משומשת"
 
 #: hmib.php
 msgid "View Dashboard"
-msgstr ""
+msgstr "הצג לוח מחוונים"
 
 #: hmib.php
 msgid "View Storage"
@@ -335,7 +324,7 @@ msgstr "לא הוגדרו גרפים"
 
 #: hmib.php
 msgid "N/A"
-msgstr ""
+msgstr "לא זמין"
 
 #: hmib.php
 msgid "No Devices Found"
@@ -362,10 +351,8 @@ msgid "No Software Packages Found"
 msgstr "לא נמצאו חבילות תוכנה"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Fleet Dashboard"
-msgstr "MIB מארח פרטים"
+msgstr "לוח מחוונים של צי ההתקנים"
 
 #: hmib.php
 msgid "Summary"
@@ -393,17 +380,15 @@ msgstr "גרפים"
 
 #: hmib.php
 msgid "Dashboard"
-msgstr ""
+msgstr "לוח בקרה"
 
 #: hmib.php
 msgid "Summary Filter"
 msgstr "מסנן סיכום"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Type"
 msgid "Types"
-msgstr "סוג"
+msgstr "סוגים"
 
 #: hmib.php
 msgid "All Records"
@@ -412,12 +397,12 @@ msgstr "כל הרשומות"
 #: hmib.php
 #, php-format
 msgid "%d Records"
-msgstr "% d רשומות"
+msgstr "%d רשומות"
 
 #: hmib.php
 #, php-format
 msgid "%d Record"
-msgstr "% d רשומה"
+msgstr "רשומה %d"
 
 #: hmib.php
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
@@ -437,7 +422,7 @@ msgstr "התחברויות"
 
 #: hmib.php
 msgid "CPUS"
-msgstr "CPUS"
+msgstr "מעבדים"
 
 #: hmib.php
 msgid "Avg CPU"
@@ -473,11 +458,11 @@ msgstr "מקס Proc"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
-msgstr ""
+msgstr "הצג לוח מחוונים של הצי"
 
 #: hmib.php
 msgid "View Devices"
-msgstr "הצג מכשירים"
+msgstr "הצג התקנים"
 
 #: hmib.php
 msgid "No Device Types"
@@ -508,10 +493,8 @@ msgid "Max Memory"
 msgstr "זיכרון מרבי"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Summary"
 msgid "Summary Stats"
-msgstr "סיכום"
+msgstr "סטטיסטיקת סיכום"
 
 #: hmib.php
 #, php-format
@@ -525,11 +508,11 @@ msgstr "%s מגה בייט"
 
 #: hmib.php
 msgid "No Processes"
-msgstr "לא הצלחנו לעבד את התרומה  שלך, אנא נסה שוב."
+msgstr "אין תהליכים"
 
 #: hmib.php
 msgid "Custom Graph List Applied - Filtering from List"
-msgstr "רשימת גרפים מותאמים אישית - מסננים מהרשימה"
+msgstr "רשימת גרפים מותאמת אישית הופעלה - מסנן מהרשימה"
 
 #: hmib.php
 msgid "Graph Preview Filters"
@@ -537,223 +520,178 @@ msgstr "מסננים תצוגה מקדימה של גרף"
 
 #: hmib.php
 msgid "System Information"
-msgstr ""
+msgstr "מידע מערכת"
 
 #: hmib.php
 msgid "CPU Utilization"
-msgstr ""
+msgstr "ניצולת מעבד"
 
 #: hmib.php
 msgid "Memory Utilization"
-msgstr ""
+msgstr "ניצולת זיכרון"
 
 #: hmib.php
 msgid "Swap Utilization"
-msgstr ""
+msgstr "ניצולת Swap"
 
 #: hmib.php
 msgid "Users and Logins"
-msgstr ""
+msgstr "משתמשים וכניסות"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Process Name"
 msgid "Per-Processor Load"
-msgstr "שם תהליך"
+msgstr "עומס לכל מעבד"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Storage Type"
 msgid "Storage Volumes"
-msgstr "סוג אחסון"
+msgstr "נפחי אחסון"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes"
-msgstr "לא הצלחנו לעבד את התרומה  שלך, אנא נסה שוב."
+msgstr "תהליכים מובילים"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Process Use History"
 msgid "Process Use History"
-msgstr "תהליך MIB מארח שימוש בהיסטוריה"
+msgstr "היסטוריית שימוש בתהליכים"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Hardware Type"
 msgid "Hardware Devices"
-msgstr "סוג חומרה"
+msgstr "התקני חומרה"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Installed Software Frequency"
 msgid "Installed Software"
-msgstr "תדירות תוכנה מותקנת"
+msgstr "תוכנה מותקנת"
 
 #: hmib.php
 msgid "No system information has been collected for this device yet."
-msgstr ""
+msgstr "טרם נאסף מידע מערכת עבור התקן זה."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Management"
 msgid "Management Address"
-msgstr "ניהול"
+msgstr "כתובת ניהול"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host Type Name"
 msgid "System Name"
-msgstr "שם סוג מארח"
+msgstr "שם מערכת"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Storage Description"
 msgid "Description"
-msgstr "תיאור אחסון"
+msgstr "תיאור"
 
 #: hmib.php
 msgid "Contact"
-msgstr ""
+msgstr "צור קשר"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Actions"
 msgid "Location"
-msgstr "פעולות"
+msgstr "מיקום"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Uptime(d:h:m)"
 msgid "Uptime"
-msgstr "Uptime (d: h: m)"
+msgstr "זמן פעילות השרת"
 
 #: hmib.php
 msgid "System Time"
-msgstr ""
+msgstr "זמן מערכת"
 
 #: hmib.php
 msgid "No processor data available."
-msgstr ""
+msgstr "אין נתוני מעבד זמינים."
 
 #: hmib.php
 #, php-format
 msgid "%d CPU(s)"
-msgstr ""
+msgstr "%d מעבד(ים)"
 
 #: hmib.php
 msgid "No memory data available."
-msgstr ""
+msgstr "אין נתוני זיכרון זמינים."
 
 #: hmib.php
 #, php-format
 msgid "%s total"
-msgstr ""
+msgstr "%s סך הכל"
 
 #: hmib.php
 msgid "No swap configured on this device."
-msgstr ""
+msgstr "לא הוגדר זיכרון החלפה (swap) בהתקן זה."
 
 #: hmib.php
 msgid "No session data available."
-msgstr ""
+msgstr "אין נתוני הפעלות (sessions) זמינים."
 
 #: hmib.php
 msgid "Logged-in Users"
-msgstr ""
+msgstr "משתמשים מחוברים"
 
 #: hmib.php
-#, fuzzy
-#| msgid "View Processes"
 msgid "Maximum Processes"
-msgstr "הצג תהליכים"
+msgstr "מספר תהליכים מרבי"
 
 #: hmib.php
 msgid "Unlimited"
-msgstr ""
+msgstr "ללא הגבלה"
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPUs"
 msgid "CPU"
-msgstr "מעבדים"
+msgstr "מעבד (CPU)"
 
 #: hmib.php
 msgid "Load"
-msgstr ""
+msgstr "עומס"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Utilization"
-msgstr "תפריט"
+msgstr "ניצולת"
 
 #: hmib.php
-#, fuzzy, php-format
-#| msgid "CPU %%%"
+#, php-format
 msgid "CPU %d"
-msgstr "מעבד %"
+msgstr "מעבד %d"
 
 #: hmib.php
 msgid "No per-processor load reported."
-msgstr ""
+msgstr "לא דווח עומס לכל מעבד."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Volumes"
 msgid "Volume"
-msgstr "כרכים"
+msgstr "כרך"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Used Mem"
 msgid "Used"
-msgstr "זיכרון משומש"
+msgstr "בשימוש"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Mem"
 msgid "Total"
-msgstr "סך הכל"
+msgstr "סה\"כ"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Used Mem"
 msgid "Used %"
-msgstr "זיכרון משומש"
+msgstr "% בשימוש"
 
 #: hmib.php
 msgid "No storage volumes detected."
-msgstr ""
+msgstr "לא זוהו אמצעי אחסון."
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPU (Hrs)"
 msgid "CPU (s)"
-msgstr "CPU (שעות)"
+msgstr "CPU (שניות)"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Avg Memory"
 msgid "Memory"
-msgstr "זיכרון ממוצע"
+msgstr "זיכרון"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No running processes recorded."
-msgstr "הפעלת תהליכים"
+msgstr "לא תועדו תהליכים פעילים."
 
 #: hmib.php
 msgid "No hardware devices detected."
-msgstr ""
+msgstr "לא זוהו התקני חומרה."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Installed"
 msgid "Installed Packages"
-msgstr "מותקן"
+msgstr "חבילות מותקנות"
 
 #: hmib.php hmib_types.php
 msgid "Name"
@@ -761,219 +699,180 @@ msgstr "שם"
 
 #: hmib.php
 msgid "No installed software inventory collected."
-msgstr ""
+msgstr "לא נאסף מלאי תוכנה מותקנת."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No process use history recorded."
-msgstr "הפעלת תהליכים"
+msgstr "לא תועדה היסטוריית שימוש בתהליכים."
 
 #: hmib.php
 msgid "Show more"
-msgstr ""
+msgstr "הצג יותר"
 
 #: hmib.php
 msgid "Show less"
-msgstr ""
+msgstr "הצג פחות"
 
 #: hmib.php
 msgid "Open in a dialog"
-msgstr ""
+msgstr "פתח בתיבת דו-שיח"
 
 #: hmib.php
 msgid "Refresh"
-msgstr ""
+msgstr "רענן"
 
 #: hmib.php
 msgid "Remove from page"
-msgstr ""
+msgstr "הסר מהדף"
 
 #: hmib.php
 msgid "Drag to reorder card"
-msgstr ""
+msgstr "גרור לשינוי סדר הכרטיס"
 
 #: hmib.php
 msgid "Invalid request. Please try again."
-msgstr ""
+msgstr "בקשה לא חוקית. אנא נסה שוב."
 
 #: hmib.php
 msgid "Invalid refresh interval."
-msgstr ""
+msgstr "מרווח רענון לא חוקי."
 
 #: hmib.php
 msgid "No device selected."
-msgstr ""
+msgstr "לא נבחר התקן."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Unknown"
 msgid "Unknown card."
-msgstr "לא ידוע"
+msgstr "כרטיס לא ידוע."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Dashboard"
-msgstr "MIB מארח פרטים"
+msgstr "לוח מחוונים של Host MIB"
 
 #: hmib.php
 msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
-msgstr ""
+msgstr "פתח לוח בקרה של התקן מלשונית ההתקנים על ידי לחיצה על סמל לוח הבקרה בעמודת הפעולות שלו. לוח הבקרה זוכר את ההתקן האחרון שפתחת."
 
 #: hmib.php
-#, fuzzy, php-format
-#| msgid "Device"
+#, php-format
 msgid "Device %d"
-msgstr "התקן"
+msgstr "התקן %d"
 
 #: hmib.php
-#, fuzzy
-#| msgid "%d Minute"
 msgid "1 Minute"
-msgstr "‫%d דקה"
+msgstr "1 דקה"
 
 #: hmib.php
 msgid "30 Seconds"
-msgstr ""
+msgstr "30 שניות"
 
 #: hmib.php
-#, fuzzy
-#| msgid "%d Minutes"
 msgid "5 Minutes"
-msgstr "דקות %d"
+msgstr "5 דקות"
 
 #: hmib.php
 msgid "No Refresh"
-msgstr ""
+msgstr "ללא רענון"
 
 #: hmib.php
 msgid "Search Host MIB devices as you type to open that device's dashboard."
-msgstr ""
+msgstr "חפש התקני Host MIB תוך כדי הקלדה כדי לפתוח את לוח המחוונים של אותו התקן."
 
 #: hmib.php
 msgid "Add card"
-msgstr ""
+msgstr "הוסף כרטיס"
 
 #: hmib.php
 msgid "Add a card…"
-msgstr ""
+msgstr "הוסף כרטיס…"
 
 #: hmib.php
 msgid "Fleet Overview"
-msgstr ""
+msgstr "סקירת צי ההתקנים"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Resource Utilization"
-msgstr "תפריט"
+msgstr "ניצול משאבים"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Devices"
 msgid "Device Status"
-msgstr "ניתן להתנתק מכל ההתקנים האחרים, כגון טלפון נייד או מחשב ציבורי, על ידי לחיצה על כפתור התנתקות מכל ההתקנים האחרים."
+msgstr "מצב התקן"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Storage Utilization"
-msgstr "תפריט"
+msgstr "ניצולת אחסון"
 
 #: hmib.php
 msgid "Uptime Distribution"
-msgstr ""
+msgstr "התפלגות זמן פעולה רציף"
 
 #: hmib.php
 msgid "OS Type Distribution"
-msgstr ""
+msgstr "התפלגות סוגי מערכות הפעלה"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes by CPU"
-msgstr "לא הצלחנו לעבד את התרומה  שלך, אנא נסה שוב."
+msgstr "תהליכים מובילים לפי CPU"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes by Memory"
-msgstr "לא הצלחנו לעבד את התרומה  שלך, אנא נסה שוב."
+msgstr "תהליכים מובילים לפי זיכרון"
 
 #: hmib.php
 msgid "No Host MIB devices in this scope yet."
-msgstr ""
+msgstr "אין עדיין התקני Host MIB בהיקף זה."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Mem"
 msgid "Total RAM"
-msgstr "סך הכל"
+msgstr "סה\"כ RAM"
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPU %%%"
 msgid "CPU %"
 msgstr "מעבד %"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Avg Memory"
 msgid "Memory %"
-msgstr "זיכרון ממוצע"
+msgstr "זיכרון %"
 
 #: hmib.php
 msgid "Swap %"
-msgstr ""
+msgstr "Swap %"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Processes"
 msgid "Processes / host"
-msgstr "לא הצלחנו לעבד את התרומה  שלך, אנא נסה שוב."
+msgstr "תהליכים / מארח"
 
 #: hmib.php
 msgid "No storage volumes detected in this scope."
-msgstr ""
+msgstr "לא זוהו אמצעי אחסון בהיקף זה."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Swap"
 msgid "Total Capacity"
-msgstr "סה\"כ החלפה"
+msgstr "קיבולת כוללת"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No OS types recorded."
-msgstr "הפעלת תהליכים"
+msgstr "לא תועדו סוגי מערכות הפעלה."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Max CPU"
 msgid "Max CPU (s)"
-msgstr "מעבד מקסימלי"
+msgstr "CPU מרבי (שניות)"
 
 #: hmib.php
 msgid "Relative"
-msgstr ""
+msgstr "יחסי"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No process statistics recorded."
-msgstr "הפעלת תהליכים"
+msgstr "לא תועדו נתוני תהליכים."
 
 #: hmib.php
 msgid "Scope"
-msgstr ""
+msgstr "היקף"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Type"
 msgid "All Types"
-msgstr "סוג"
+msgstr "כל הסוגים"
 
 #: hmib_types.php
 msgid "Delete"
@@ -985,7 +884,7 @@ msgstr "שכפל"
 
 #: hmib_types.php
 msgid "Click 'Continue' to Delete the following Host Type(s)"
-msgstr "לחץ על 'המשך' כדי למחוק את סוגי המארחים הבאים:"
+msgstr "לחץ על 'המשך' כדי למחוק את סוגי המארחים הבאים"
 
 #: hmib_types.php
 msgid "Cancel"
@@ -1018,7 +917,7 @@ msgstr "סוג חדש"
 #: hmib_types.php
 #, php-format
 msgid "There were %d Device Types Added!"
-msgstr "היו% d סוגי התקנים שנוספו!"
+msgstr "נוספו %d סוגי התקנים!"
 
 #: hmib_types.php
 msgid "No New Host Types Found!"
@@ -1109,9 +1008,9 @@ msgid "System Description Match"
 msgstr "תיאור המערכת התאמה"
 
 #: hmib_types.php
-#, fuzzy, php-format
+#, php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr "לספק מידע מפתח כדי לעזור HMIB לזהות את סוג המארח. SQL שבו נתמכים ביטויים. SQL כאשר תו כלליים הוא הסימן '%'. ביטויים רגילים הוסרו עקב בעיות תאימות."
+msgstr "ספק מידע מרכזי כדי לסייע ל-HMIB לזהות את סוג המארח. ביטויי SQL Where נתמכים. התו הכללי של SQL Where הוא הסימן '%' sign. ביטויים רגולריים הוסרו עקב בעיות תאימות."
 
 #: hmib_types.php
 msgid "Vendor snmp Object ID"
@@ -1156,11 +1055,11 @@ msgstr "לא נמצאו סוגי מארחים"
 
 #: hmib_types.php
 msgid "Choose an action:"
-msgstr "נא לבחור פעולה"
+msgstr "נא לבחור פעולה:"
 
 #: hmib_types.php
 msgid "Rescan"
-msgstr "×¢×§××£ ××ª ×¨×©×××ª ××§×××××× (×××××× \"hextile raw\")"
+msgstr "סרוק מחדש"
 
 #: hmib_types.php
 msgid "Scan for New or Unknown Device Types"
@@ -1208,7 +1107,7 @@ msgstr "סמן תיבה זו, אם ברצונך שהסקירה של MIB מאופ
 
 #: setup.php
 msgid "Automatically Discover Cacti Devices"
-msgstr "אוטומטית לגלות התקנים קקטוסים"
+msgstr "גלה התקני Cacti באופן אוטומטי"
 
 #: setup.php
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
@@ -1216,27 +1115,23 @@ msgstr "האם אתה רוצה באופן אוטומטי לסרוק ולהוסי
 
 #: setup.php
 msgid "Automatically Purge Devices"
-msgstr "באופן אוטומטי לטהר התקנים"
+msgstr "נקה התקנים אוטומטית"
 
 #: setup.php
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
-msgstr "האם אתה רוצה לטהר באופן אוטומטי התקנים מוסרים ממערכת Cacti?"
+msgstr "האם ברצונך לנקות באופן אוטומטי התקנים שהוסרו ממערכת Cacti?"
 
 #: setup.php
-#, fuzzy
-#| msgid "No Process History Found"
 msgid "Process History Retention"
-msgstr "לא נמצאה היסטוריה של תהליכים"
+msgstr "שמירת היסטוריית תהליכים"
 
 #: setup.php
 msgid "How long should the Use History tab keep a process after it was last seen running?"
-msgstr ""
+msgstr "כמה זמן על לשונית היסטוריית השימוש לשמור תהליך לאחר שנראה רץ לאחרונה?"
 
 #: setup.php
-#, fuzzy
-#| msgid "Never"
 msgid "Never Purge"
-msgstr "לעולם לא"
+msgstr "אל תנקה לעולם"
 
 #: setup.php
 #, php-format
@@ -1246,12 +1141,12 @@ msgstr "%d ימים"
 #: setup.php
 #, php-format
 msgid "%d Year"
-msgstr ""
+msgstr "%d שנה"
 
 #: setup.php
 #, php-format
 msgid "%d Years"
-msgstr ""
+msgstr "%d שנים"
 
 #: setup.php
 msgid "Default Row Count"
@@ -1272,7 +1167,7 @@ msgstr "כמה תהליכים אתה רוצה לראות על לוח המחוו�
 #: setup.php
 #, php-format
 msgid "%d Types"
-msgstr "% d סוגים"
+msgstr "%d סוגים"
 
 #: setup.php
 msgid "Default Top Processes"
@@ -1281,20 +1176,20 @@ msgstr "תהליכי ברירת מחדל מובילים"
 #: setup.php
 #, php-format
 msgid "%d Processes"
-msgstr "% d תהליכים"
+msgstr "%d תהליכים"
 
 #: setup.php
 msgid "Maximum Concurrent Collectors"
-msgstr "מקסימום מקביל אספנים"
+msgstr "מספר מרבי של אוספים במקביל"
 
 #: setup.php
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
-msgstr "מהו המספר המקסימלי של תהליך אספן בו זמנית שברצונך להפעיל בו-זמנית?"
+msgstr "מהו המספר המרבי של תהליכי איסוף מקבילים שברצונך להריץ בו-זמנית?"
 
 #: setup.php
 #, php-format
 msgid "%d Process"
-msgstr "תהליך% d"
+msgstr "תהליך %d"
 
 #: setup.php
 msgid "Host Auto Discovery Frequency"
@@ -1302,11 +1197,11 @@ msgstr "מארח גילוי אוטומטי תדר"
 
 #: setup.php
 msgid "Auto Discovery Frequency"
-msgstr "גילוי אוטומטי של תדר"
+msgstr "תדירות גילוי אוטומטי"
 
 #: setup.php
 msgid "How often do you want to look for new Cacti Devices?"
-msgstr "כמה פעמים אתה רוצה לחפש חדש Cacti התקנים?"
+msgstr "באיזו תדירות ברצונך לחפש התקני Cacti חדשים?"
 
 #: setup.php
 msgid "Host Graph Automation"
@@ -1314,11 +1209,11 @@ msgstr "גרף מארח אוטומציה"
 
 #: setup.php
 msgid "Automatically Add New Graphs"
-msgstr "הוסף אוטומטית גרפים חדשים"
+msgstr "הוסף גרפים חדשים אוטומטית"
 
 #: setup.php
 msgid "How often do you want to check for new objects to graph?"
-msgstr "באיזו תדירות אתה רוצה לבדוק אובייקטים חדשים גרף?"
+msgstr "באיזו תדירות ברצונך לבדוק אם קיימים אובייקטים חדשים ליצירת גרף?"
 
 #: setup.php
 msgid "Never"
@@ -1332,12 +1227,12 @@ msgstr "‫%d שעה"
 #: setup.php
 #, php-format
 msgid "%d Hours"
-msgstr "%d לפני מספר ימים"
+msgstr "%d שעות"
 
 #: setup.php
 #, php-format
 msgid "%d Day"
-msgstr "% d יום"
+msgstr "%d יום"
 
 #: setup.php
 msgid "Host MIB Table Collection Frequencies"
@@ -1369,7 +1264,7 @@ msgstr "באיזו תדירות ברצונך לסרוק את התוכנה המו
 
 #: setup.php
 msgid "Storage Frequency"
-msgstr "תדר אחסון"
+msgstr "תדירות אחסון"
 
 #: setup.php
 msgid "How often do you want to scan for Storage performance data?"
@@ -1385,7 +1280,7 @@ msgstr "באיזו תדירות ברצונך לסרוק את נתוני ביצו
 
 #: setup.php
 msgid "Processor Frequency"
-msgstr "תדר המעבד"
+msgstr "תדר מעבד"
 
 #: setup.php
 msgid "How often do you want to scan for Processor performance data?"
@@ -1414,10 +1309,8 @@ msgid "General Administration"
 msgstr "מינהל כללי"
 
 #: setup.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Fleet Dashboard"
-msgstr "MIB מארח פרטים"
+msgstr "לוח מחוונים של צי Host MIB"
 
 #: setup.php
 msgid "Host MIB Inventory Summary"
@@ -1428,10 +1321,8 @@ msgid "Host MIB Details"
 msgstr "MIB מארח פרטים"
 
 #: setup.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Device Dashboard"
-msgstr "MIB מארח פרטים"
+msgstr "לוח מחוונים של התקן Host MIB"
 
 #: setup.php
 msgid "Host MIB Storage"
