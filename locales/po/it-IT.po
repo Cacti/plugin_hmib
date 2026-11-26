@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Italian <https://translate.cacti.net/projects/cacti/hmib/it/>\nLanguage: it-IT\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Italian <https://translate.cacti.net/projects/cacti/hmib/it/>\nLanguage: it-IT\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -92,7 +92,7 @@ msgstr "Cerca"
 
 #: hmib.php
 msgid "Process"
-msgstr "Processo"
+msgstr "Elabora"
 
 #: hmib.php
 msgid "Entries"
@@ -426,7 +426,7 @@ msgstr "CPU"
 
 #: hmib.php
 msgid "Avg CPU"
-msgstr "CPU media"
+msgstr "Media CPU"
 
 #: hmib.php
 msgid "Max CPU"
@@ -438,7 +438,7 @@ msgstr "Mem"
 
 #: hmib.php
 msgid "Max Mem"
-msgstr "Max Mem"
+msgstr "Memoria max"
 
 #: hmib.php
 msgid "Avg Swap"
@@ -450,11 +450,11 @@ msgstr "Scambio massimo"
 
 #: hmib.php
 msgid "Avg Proc"
-msgstr "Avg Proc"
+msgstr "Media processi"
 
 #: hmib.php
 msgid "Max Proc"
-msgstr "Max Proc"
+msgstr "Processi max"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
@@ -719,7 +719,7 @@ msgstr "Apri in una finestra di dialogo"
 
 #: hmib.php
 msgid "Refresh"
-msgstr "Aggiorna"
+msgstr "Ricarica"
 
 #: hmib.php
 msgid "Remove from page"
