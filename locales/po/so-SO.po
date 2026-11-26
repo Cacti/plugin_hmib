@@ -1,0 +1,1369 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR The Cacti Group
+# This file is distributed under the same license as the Cacti package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cacti\n"
+"Report-Msgid-Bugs-To: developers@cacti.net\n"
+"POT-Creation-Date: 2026-10-24 06:10-0400\n"
+"PO-Revision-Date: 2026-11-24 19:00+0000\n"
+"Last-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\n"
+"Language-Team: Somali\n"
+"Language: so-SO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: hmib.php
+msgid "Error"
+msgstr "Cilad"
+
+#: hmib.php hmib_types.php
+msgid "Unknown"
+msgstr "Aan la aqoon"
+
+#: hmib.php
+msgid "Operating System"
+msgstr "Nidaamka Hawlgalka"
+
+#: hmib.php
+msgid "Device Driver"
+msgstr "Darawalka Qalabka"
+
+#: hmib.php
+msgid "Application"
+msgstr "Barnaamij"
+
+#: hmib.php
+msgid "Running"
+msgstr "Socda"
+
+#: hmib.php
+msgid "Runnable"
+msgstr "La socodsiin karo"
+
+#: hmib.php
+msgid "Not Runnable"
+msgstr "Aan la socodsiin karin"
+
+#: hmib.php
+msgid "Invalid"
+msgstr "Aan sax ahayn"
+
+#: hmib.php
+msgid "Present"
+msgstr "Jooga"
+
+#: hmib.php
+msgid "Warning"
+msgstr "Digniin"
+
+#: hmib.php
+msgid "Testing"
+msgstr "Tijaabin"
+
+#: hmib.php
+msgid "Down"
+msgstr "Ma shaqeynayo"
+
+#: hmib.php hmib_types.php
+msgid "OS Type"
+msgstr "Nooca OS"
+
+#: hmib.php
+msgid "All"
+msgstr "Dhammaan"
+
+#: hmib.php
+msgid "Device"
+msgstr "Qalab"
+
+#: hmib.php
+msgid "Template"
+msgstr "Qaab-dhismeed"
+
+#: hmib.php
+msgid "Running Process History"
+msgstr "Taariikhda Hawlaha Socda"
+
+#: hmib.php hmib_types.php
+msgid "Go"
+msgstr "Soco"
+
+#: hmib.php hmib_types.php
+msgid "Clear"
+msgstr "Nadiifi"
+
+#: hmib.php hmib_types.php
+msgid "Search"
+msgstr "Raadi"
+
+#: hmib.php
+msgid "Process"
+msgstr "Habka"
+
+#: hmib.php
+msgid "Entries"
+msgstr "Gelitaanno"
+
+#: hmib.php hmib_types.php
+msgid "Default"
+msgstr "Asal ah"
+
+#: hmib.php
+msgid "Hostname"
+msgstr "Magaca Martigeliyaha"
+
+#: hmib.php
+msgid "Last Seen"
+msgstr "Markii Ugu Dambaysay ee La Arkay"
+
+#: hmib.php
+msgid "Use Time (d:h:m)"
+msgstr "Waqtiga Isticmaalka (d:h:m)"
+
+#: hmib.php
+msgid "History"
+msgstr "Taariikhda"
+
+#: hmib.php
+msgid "Edit Device"
+msgstr "Wax ka beddel Qalabka"
+
+#: hmib.php
+msgid "No Process History Found"
+msgstr "Taariikhda Hawlaha Lama Helin"
+
+#: hmib.php
+msgid "Running Processes"
+msgstr "Hawlaha Socda"
+
+#: hmib.php
+msgid "Path"
+msgstr "Jidka"
+
+#: hmib.php
+msgid "Parameters"
+msgstr "Halbeegyada"
+
+#: hmib.php
+msgid "CPU (Hrs)"
+msgstr "CPU (Saacado)"
+
+#: hmib.php
+msgid "Memory (MB)"
+msgstr "Xusuusta (MB)"
+
+#: hmib.php
+msgid "Type"
+msgstr "Nooca"
+
+#: hmib.php
+msgid "Status"
+msgstr "Xaaladda"
+
+#: hmib.php
+msgid "Processes"
+msgstr "Geeddi-socodyada"
+
+#: hmib.php
+msgid "No Running Software Found"
+msgstr "Software Shaqeynaya Lama Helin"
+
+#: hmib.php
+msgid "Total CPU [h]:"
+msgstr "Wadarta CPU [h]:"
+
+#: hmib.php
+msgid "Total Size [MB]:"
+msgstr "Wadarta Cabbirka [MB]:"
+
+#: hmib.php
+msgid "Avg. CPU [h]:"
+msgstr "Celceliska CPU [h]:"
+
+#: hmib.php
+msgid "Avg. Size [MB]:"
+msgstr "Celceliska Cabbirka [MB]:"
+
+#: hmib.php
+msgid "Hardware Inventory"
+msgstr "Liiska Qalabka adag"
+
+#: hmib.php
+msgid "Hardware Description"
+msgstr "Sharaxaadda Qalabka adag"
+
+#: hmib.php
+msgid "Hardware Type"
+msgstr "Nooca Qalabka adag"
+
+#: hmib.php
+msgid "Errors"
+msgstr "Khaladaadka"
+
+#: hmib.php
+msgid "Devices"
+msgstr "Aaladaha"
+
+#: hmib.php
+msgid "No Hardware Found"
+msgstr "Ma Jiro Qalab Adag oo La Helay"
+
+#: hmib.php
+msgid "Click to filter by this status"
+msgstr "Guji si aad ugu shaandheyso xaaladdan"
+
+#: hmib.php
+msgid "Storage Inventory"
+msgstr "Liiska Kaydinta"
+
+#: hmib.php
+msgid "Volumes"
+msgstr "Mugagga"
+
+#: hmib.php
+msgid "Storage Description"
+msgstr "Sharaxaadda Kaydinta"
+
+#: hmib.php
+msgid "Storage Type"
+msgstr "Nooca Kaydinta"
+
+#: hmib.php
+msgid "Percent Used"
+msgstr "Boqolkiiba La Isticmaalay"
+
+#: hmib.php
+msgid "Used (MB)"
+msgstr "La isticmaalay (MB)"
+
+#: hmib.php
+msgid "Total (MB)"
+msgstr "Wadarta (MB)"
+
+#: hmib.php
+msgid "Alloc (KB)"
+msgstr "Qoondeynta (KB)"
+
+#: hmib.php
+msgid "No Storage Devices Found"
+msgstr "Aaladaha Kaydinta Lama Helin"
+
+#: hmib.php
+msgid "Device Filter"
+msgstr "Shaandheeyaha Qalabka"
+
+#: hmib.php
+msgid "Recovering"
+msgstr "Soo Kabanaysa"
+
+#: hmib.php
+msgid "Up"
+msgstr "Shaqeynaya"
+
+#: hmib.php setup.php
+msgid "Disabled"
+msgstr "La joojiyay"
+
+#: hmib.php setup.php
+msgid "Actions"
+msgstr "Ficillada"
+
+#: hmib.php
+msgid "Uptime(d:h:m)"
+msgstr "Waqtiga Shaqaynta(d:h:m)"
+
+#: hmib.php
+msgid "Users"
+msgstr "Isticmaalayaasha"
+
+#: hmib.php
+msgid "CPU %%%"
+msgstr "CPU %%%"
+
+#: hmib.php
+msgid "CPUs"
+msgstr "CPU-yada"
+
+#: hmib.php
+msgid "Total Mem"
+msgstr "Wadarta Xusuusta"
+
+#: hmib.php
+msgid "Used Mem"
+msgstr "Xusuusta La Isticmaalay"
+
+#: hmib.php
+msgid "Total Swap"
+msgstr "Wadarta Swap-ka"
+
+#: hmib.php
+msgid "Used Swap"
+msgstr "Swap-ka La Isticmaalay"
+
+#: hmib.php
+msgid "View Dashboard"
+msgstr "Eeg Guddi-hawleedka"
+
+#: hmib.php
+msgid "View Storage"
+msgstr "Eeg Kaydinta"
+
+#: hmib.php
+msgid "View Hardware"
+msgstr "Eeg Qalabka Adag"
+
+#: hmib.php
+msgid "View Processes"
+msgstr "Eeg Habraacyada"
+
+#: hmib.php
+msgid "View Software Inventory"
+msgstr "Eeg Liiska Barnaamijyada"
+
+#: hmib.php
+msgid "View Graphs"
+msgstr "Eeg Jaantusyada"
+
+#: hmib.php
+msgid "No Graphs Defined"
+msgstr "Ma Jiraan Jaantusyada La Qeexay"
+
+#: hmib.php
+msgid "N/A"
+msgstr "Ma khuseyso"
+
+#: hmib.php
+msgid "No Devices Found"
+msgstr "Aalad Lama Helin"
+
+#: hmib.php
+msgid "Software Inventory"
+msgstr "Liiska Barnaamijyada"
+
+#: hmib.php
+msgid "Applications"
+msgstr "Barnaamijyada"
+
+#: hmib.php
+msgid "Package"
+msgstr "Xirmo"
+
+#: hmib.php
+msgid "Installed"
+msgstr "La rakibay"
+
+#: hmib.php
+msgid "No Software Packages Found"
+msgstr "Xirmooyinka Software-ka Lama Helin"
+
+#: hmib.php
+msgid "Fleet Dashboard"
+msgstr "Guddiga Xogta Raxanta"
+
+#: hmib.php
+msgid "Summary"
+msgstr "Kooban"
+
+#: hmib.php
+msgid "Storage"
+msgstr "Kaydinta"
+
+#: hmib.php
+msgid "Hardware"
+msgstr "Qalabka adag"
+
+#: hmib.php
+msgid "Use History"
+msgstr "Isticmaal Taariikhda"
+
+#: hmib.php
+msgid "Inventory"
+msgstr "Diiwaanka Agabka"
+
+#: hmib.php
+msgid "Graphs"
+msgstr "Jaantusyada"
+
+#: hmib.php
+msgid "Dashboard"
+msgstr "Guddiga Xogta"
+
+#: hmib.php
+msgid "Summary Filter"
+msgstr "Shaandheeyaha Soo Koobidda"
+
+#: hmib.php
+msgid "Types"
+msgstr "Noocyada"
+
+#: hmib.php
+msgid "All Records"
+msgstr "Dhammaan Diiwaannada"
+
+#: hmib.php
+#, php-format
+msgid "%d Records"
+msgstr "%d Diiwaanno"
+
+#: hmib.php
+#, php-format
+msgid "%d Record"
+msgstr "%d Diiwaan"
+
+#: hmib.php
+msgid "NOTE: Import the Host MIB Device Package to view Graphs."
+msgstr "FIIRO GAAR AH: Soo deji Xirmada Qalabka Martigeliyaha MIB si aad u aragto Jaantusyada."
+
+#: hmib.php
+msgid "Device Type Summary Statistics"
+msgstr "Tirakoobka Soo Koobidda Nooca Qalabka"
+
+#: hmib.php hmib_types.php
+msgid "Version"
+msgstr "Nooca"
+
+#: hmib.php
+msgid "Logins"
+msgstr "Soo gelitaannada"
+
+#: hmib.php
+msgid "CPUS"
+msgstr "CPU-yada"
+
+#: hmib.php
+msgid "Avg CPU"
+msgstr "Celceliska CPU"
+
+#: hmib.php
+msgid "Max CPU"
+msgstr "CPU-ga Ugu Badan"
+
+#: hmib.php
+msgid "Avg Mem"
+msgstr "Celceliska Xusuusta"
+
+#: hmib.php
+msgid "Max Mem"
+msgstr "Xusuusta Ugu Badan"
+
+#: hmib.php
+msgid "Avg Swap"
+msgstr "Celceliska Swap"
+
+#: hmib.php
+msgid "Max Swap"
+msgstr "Swap-ka Ugu Badan"
+
+#: hmib.php
+msgid "Avg Proc"
+msgstr "Celceliska Habraaca"
+
+#: hmib.php
+msgid "Max Proc"
+msgstr "Hababka Ugu Badan"
+
+#: hmib.php
+msgid "View Fleet Dashboard"
+msgstr "Eeg Guddi-hawleedka Kooxda Aaladaha"
+
+#: hmib.php
+msgid "View Devices"
+msgstr "Eeg Aaladaha"
+
+#: hmib.php
+msgid "No Device Types"
+msgstr "Ma Jiraan Noocyada Qalabka"
+
+#: hmib.php
+msgid "Process Summary Filter"
+msgstr "Shaandheeyaha Soo koobidda Habka"
+
+#: hmib.php
+msgid "Process Name"
+msgstr "Magaca Habka"
+
+#: hmib.php
+msgid "Num Paths"
+msgstr "Tirada Wadooyinka"
+
+#: hmib.php hmib_types.php
+msgid "Hosts"
+msgstr "Martigeliyayaasha"
+
+#: hmib.php
+msgid "Avg Memory"
+msgstr "Celceliska Xusuusta"
+
+#: hmib.php
+msgid "Max Memory"
+msgstr "Xusuusta Ugu Badan"
+
+#: hmib.php
+msgid "Summary Stats"
+msgstr "Tirakoobka Kooban"
+
+#: hmib.php
+#, php-format
+msgid "%s Hrs"
+msgstr "%s Saac"
+
+#: hmib.php
+#, php-format
+msgid "%s MB"
+msgstr "%s MB"
+
+#: hmib.php
+msgid "No Processes"
+msgstr "Ma Jiraan Hawlo"
+
+#: hmib.php
+msgid "Custom Graph List Applied - Filtering from List"
+msgstr "Liiska Garaafka Gaarka ah waa la dabaqay - Waxaa laga shaandhaynayaa Liiska"
+
+#: hmib.php
+msgid "Graph Preview Filters"
+msgstr "Shaandhooyinka Horudhaca Garaafka"
+
+#: hmib.php
+msgid "System Information"
+msgstr "Macluumaadka Nidaamka"
+
+#: hmib.php
+msgid "CPU Utilization"
+msgstr "Isticmaalka CPU"
+
+#: hmib.php
+msgid "Memory Utilization"
+msgstr "Isticmaalka Xusuusta"
+
+#: hmib.php
+msgid "Swap Utilization"
+msgstr "Isticmaalka Xusuusta Swap"
+
+#: hmib.php
+msgid "Users and Logins"
+msgstr "Isticmaalayaasha iyo Gelitaannada"
+
+#: hmib.php
+msgid "Per-Processor Load"
+msgstr "Culayska Processor kasta"
+
+#: hmib.php
+msgid "Storage Volumes"
+msgstr "Qaybaha Kaydinta"
+
+#: hmib.php
+msgid "Top Processes"
+msgstr "Hawlaha Ugu Sarreeya"
+
+#: hmib.php
+msgid "Process Use History"
+msgstr "Taariikhda Isticmaalka Habka"
+
+#: hmib.php
+msgid "Hardware Devices"
+msgstr "Aaladaha Qalabka adag"
+
+#: hmib.php
+msgid "Installed Software"
+msgstr "Barnaamijyada La Rakibay"
+
+#: hmib.php
+msgid "No system information has been collected for this device yet."
+msgstr "Weli wax macluumaad nidaam ah looma ururin qalabkan."
+
+#: hmib.php
+msgid "Management Address"
+msgstr "Cinwaanka Maamulka"
+
+#: hmib.php
+msgid "System Name"
+msgstr "Magaca Nidaamka"
+
+#: hmib.php
+msgid "Description"
+msgstr "Sharaxaadda"
+
+#: hmib.php
+msgid "Contact"
+msgstr "Xiriirka"
+
+#: hmib.php
+msgid "Location"
+msgstr "Goobta"
+
+#: hmib.php
+msgid "Uptime"
+msgstr "Waqtiga Shaqeynta"
+
+#: hmib.php
+msgid "System Time"
+msgstr "Waqtiga Nidaamka"
+
+#: hmib.php
+msgid "No processor data available."
+msgstr "Wax xog processor ah lama heli karo."
+
+#: hmib.php
+#, php-format
+msgid "%d CPU(s)"
+msgstr "%d CPU(yo)"
+
+#: hmib.php
+msgid "No memory data available."
+msgstr "Wax xog ah oo xusuusta ah lama heli karo."
+
+#: hmib.php
+#, php-format
+msgid "%s total"
+msgstr "%s wadar"
+
+#: hmib.php
+msgid "No swap configured on this device."
+msgstr "Wax swap ah laguma habayn qalabkan."
+
+#: hmib.php
+msgid "No session data available."
+msgstr "Wax xog fadhi ah lama heli karo."
+
+#: hmib.php
+msgid "Logged-in Users"
+msgstr "Isticmaalayaasha Soo Galay"
+
+#: hmib.php
+msgid "Maximum Processes"
+msgstr "Hababka Ugu Badan"
+
+#: hmib.php
+msgid "Unlimited"
+msgstr "Aan Xad Lahayn"
+
+#: hmib.php
+msgid "CPU"
+msgstr "CPU"
+
+#: hmib.php
+msgid "Load"
+msgstr "Culayska"
+
+#: hmib.php
+msgid "Utilization"
+msgstr "Heerka Isticmaalka"
+
+#: hmib.php
+#, php-format
+msgid "CPU %d"
+msgstr "CPU %d"
+
+#: hmib.php
+msgid "No per-processor load reported."
+msgstr "Wax culays processor kasta ah lama soo sheegin."
+
+#: hmib.php
+msgid "Volume"
+msgstr "Mugga"
+
+#: hmib.php
+msgid "Used"
+msgstr "La isticmaalay"
+
+#: hmib.php
+msgid "Total"
+msgstr "Wadarta"
+
+#: hmib.php
+msgid "Used %"
+msgstr "La isticmaalay %"
+
+#: hmib.php
+msgid "No storage volumes detected."
+msgstr "Wax mug kaydin ah lama ogaan."
+
+#: hmib.php
+msgid "CPU (s)"
+msgstr "CPU (ilb.)"
+
+#: hmib.php
+msgid "Memory"
+msgstr "Xusuus"
+
+#: hmib.php
+msgid "No running processes recorded."
+msgstr "Wax geeddi-socodyo socda ah lama diiwaangelin."
+
+#: hmib.php
+msgid "No hardware devices detected."
+msgstr "Ma jiraan aaladaha qalab-adag oo la ogaaday."
+
+#: hmib.php
+msgid "Installed Packages"
+msgstr "Xirmooyinka La Rakibay"
+
+#: hmib.php hmib_types.php
+msgid "Name"
+msgstr "Magac"
+
+#: hmib.php
+msgid "No installed software inventory collected."
+msgstr "Wax liis ah oo barnaamijyo rakiban ah lama ururin."
+
+#: hmib.php
+msgid "No process use history recorded."
+msgstr "Wax taariikh isticmaal geeddi-socod ah lama diiwaangelin."
+
+#: hmib.php
+msgid "Show more"
+msgstr "Muuji wax badan"
+
+#: hmib.php
+msgid "Show less"
+msgstr "Muuji wax yar"
+
+#: hmib.php
+msgid "Open in a dialog"
+msgstr "Ku fur daaqad wada-hadal"
+
+#: hmib.php
+msgid "Refresh"
+msgstr "Cusboonaysii"
+
+#: hmib.php
+msgid "Remove from page"
+msgstr "Ka saar bogga"
+
+#: hmib.php
+msgid "Drag to reorder card"
+msgstr "Jiid si aad u habayso kaarka"
+
+#: hmib.php
+msgid "Invalid request. Please try again."
+msgstr "Codsi aan sax ahayn. Fadlan mar kale isku day."
+
+#: hmib.php
+msgid "Invalid refresh interval."
+msgstr "Muddo-xilliyeedka dib-u-cusboonaysiinta oo aan sax ahayn."
+
+#: hmib.php
+msgid "No device selected."
+msgstr "Wax qalab ah lama dooran."
+
+#: hmib.php
+msgid "Unknown card."
+msgstr "Kaar aan la aqoon."
+
+#: hmib.php
+msgid "Host MIB Dashboard"
+msgstr "Guddi-hawleedka Host MIB"
+
+#: hmib.php
+msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
+msgstr "Ka fur Dashboard-ka Qalabka qaybta Aaladaha adigoo gujinaya astaanta dashboard-ka ee ku jirta tiirka Ficilada. Dashboard-ku wuxuu xusuustaa qalabkii ugu dambeeyay ee aad furtay."
+
+#: hmib.php
+#, php-format
+msgid "Device %d"
+msgstr "Qalab %d"
+
+#: hmib.php
+msgid "1 Minute"
+msgstr "1 Daqiiqo"
+
+#: hmib.php
+msgid "30 Seconds"
+msgstr "30 Ilbiriqsi"
+
+#: hmib.php
+msgid "5 Minutes"
+msgstr "5 Daqiiqo"
+
+#: hmib.php
+msgid "No Refresh"
+msgstr "Dib-u-cusbooneysiin Malaha"
+
+#: hmib.php
+msgid "Search Host MIB devices as you type to open that device's dashboard."
+msgstr "Raadi aaladaha Host MIB markaad qoreyso si aad u furto shaashadda xogta ee qalabkaas."
+
+#: hmib.php
+msgid "Add card"
+msgstr "Ku dar kaar"
+
+#: hmib.php
+msgid "Add a card…"
+msgstr "Ku dar kaar…"
+
+#: hmib.php
+msgid "Fleet Overview"
+msgstr "Dulmarka Raxanta"
+
+#: hmib.php
+msgid "Resource Utilization"
+msgstr "Isticmaalka Khayraadka"
+
+#: hmib.php
+msgid "Device Status"
+msgstr "Xaaladda Aaladda"
+
+#: hmib.php
+msgid "Storage Utilization"
+msgstr "Isticmaalka Kaydinta"
+
+#: hmib.php
+msgid "Uptime Distribution"
+msgstr "Qaybinta Waqtiga Shaqaynta"
+
+#: hmib.php
+msgid "OS Type Distribution"
+msgstr "Qaybinta Nooca OS"
+
+#: hmib.php
+msgid "Top Processes by CPU"
+msgstr "Hawlaha Ugu Sarreeya ee CPU-ga"
+
+#: hmib.php
+msgid "Top Processes by Memory"
+msgstr "Hawlaha Ugu Sarreeya ee Xusuusta"
+
+#: hmib.php
+msgid "No Host MIB devices in this scope yet."
+msgstr "Weli ma jiraan aaladaha Martigeliye MIB ee baaxaddan ku jira."
+
+#: hmib.php
+msgid "Total RAM"
+msgstr "Wadarta RAM-ka"
+
+#: hmib.php
+msgid "CPU %"
+msgstr "CPU %"
+
+#: hmib.php
+msgid "Memory %"
+msgstr "Xusuusta %"
+
+#: hmib.php
+msgid "Swap %"
+msgstr "Xusuusta Swap %"
+
+#: hmib.php
+msgid "Processes / host"
+msgstr "Hababka / martigeliyaha"
+
+#: hmib.php
+msgid "No storage volumes detected in this scope."
+msgstr "Wax mug kaydin ah lagama ogaan baaxaddan gudaheeda."
+
+#: hmib.php
+msgid "Total Capacity"
+msgstr "Wadarta Awoodda"
+
+#: hmib.php
+msgid "No OS types recorded."
+msgstr "Ma jiraan noocyo OS ah oo la diiwaangeliyay."
+
+#: hmib.php
+msgid "Max CPU (s)"
+msgstr "CPU-ga Ugu Badan (ilbiriqsi)"
+
+#: hmib.php
+msgid "Relative"
+msgstr "Ku-xiran"
+
+#: hmib.php
+msgid "No process statistics recorded."
+msgstr "Wax tirakoob geeddi-socod ah lama diiwaangelin."
+
+#: hmib.php
+msgid "Scope"
+msgstr "Baaxadda"
+
+#: hmib.php
+msgid "All Types"
+msgstr "Dhammaan Noocyada"
+
+#: hmib_types.php
+msgid "Delete"
+msgstr "Tirtir"
+
+#: hmib_types.php
+msgid "Duplicate"
+msgstr "Nuqul labaad"
+
+#: hmib_types.php
+msgid "Click 'Continue' to Delete the following Host Type(s)"
+msgstr "Guji 'Sii wad' si aad u Tirtirto Nooca/Noocyada Martigeliyaha ee soo socda"
+
+#: hmib_types.php
+msgid "Cancel"
+msgstr "Jooji"
+
+#: hmib_types.php
+msgid "Continue"
+msgstr "Sii wad"
+
+#: hmib_types.php
+msgid "Delete Host Type(s)"
+msgstr "Tirtir Noocyada Martigeliyaha"
+
+#: hmib_types.php
+msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
+msgstr "Guji 'Sii wad' si aad nuqul uga samayso Nooca/Noocyada Martigeliyaha ee soo socda. Ikhtiyaari ahaan waad beddeli kartaa sharraxaadda Nooca/Noocyada Martigeliyaha ee cusub.  Haddii kale, ha beddelin qiimaha hoose, magaca asalka ahna waxaa lagu soo celin doonaa dabagale cusub."
+
+#: hmib_types.php
+msgid "Host Type Prefix:"
+msgstr "Horgalaha Nooca Martigeliyaha:"
+
+#: hmib_types.php
+msgid "Duplicate Host Type(s)"
+msgstr "Nuqul ka samee Nooca/Noocyada Martigeliyaha"
+
+#: hmib_types.php
+msgid "New Type"
+msgstr "Nooc Cusub"
+
+#: hmib_types.php
+#, php-format
+msgid "There were %d Device Types Added!"
+msgstr "Waxaa lagu daray %d Nooc oo Qalab ah!"
+
+#: hmib_types.php
+msgid "No New Host Types Found!"
+msgstr "Noocyo Cusub oo Martigeliye ah Lama Helin!"
+
+#: hmib_types.php
+msgid "Import Results"
+msgstr "Natiijooyinka Soo-dhoofinta"
+
+#: hmib_types.php
+msgid "Cacti has imported the following items:"
+msgstr "Cacti waxay soo dejisay waxyaabaha soo socda:"
+
+#: hmib_types.php
+msgid "Import Host MIB OS Types"
+msgstr "Soo deji Noocyada OS ee MIB ee Martigeliyaha"
+
+#: hmib_types.php
+msgid "Import Device Types from Local File"
+msgstr "Ka soo deji Noocyada Qalabka Faylka Gudaha"
+
+#: hmib_types.php
+msgid "Please specify the location of the CSV file containing your device type information."
+msgstr "Fadlan sheeg halka uu ku yaallo faylka CSV ee ay ku jirto macluumaadka nooca qalabkaaga."
+
+#: hmib_types.php
+msgid "Overwrite Existing Data?"
+msgstr "Ma la dul-qoraa xogta jirta?"
+
+#: hmib_types.php
+msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
+msgstr "Ma in habka soo dejinta loo oggolaado inuu dul-qoro xogta jirta?  Fadlan ogow, tani macnaheedu maaha in la tirtiro safkii hore, kaliya waxaa la beddelayaa safafka soo noqnoqda."
+
+#: hmib_types.php
+msgid "Allow Existing Rows to be Updated?"
+msgstr "Ma la oggolaadaa in safafka jira la cusboonaysiiyo?"
+
+#: hmib_types.php
+msgid "Required File Format Notes"
+msgstr "Qoraallada Qaabka Faylka ee Loo Baahan Yahay"
+
+#: hmib_types.php
+msgid "The file must contain a header row with the following column headings."
+msgstr "Faylku waa in uu lahaadaa saf madax ah oo leh cinwaannada tiirarka soo socda."
+
+#: hmib_types.php
+msgid "A common name for the Host Type.  For example, Windows 7"
+msgstr "Magac guud oo loogu talagalay Nooca Martigeliyaha.  Tusaale ahaan, Windows 7"
+
+#: hmib_types.php
+msgid "The OS version for the Host Type"
+msgstr "Nooca OS ee Nooca Martigeliyaha"
+
+#: hmib_types.php
+msgid "A unique set of characters from the snmp sysDescr that uniquely identify this device"
+msgstr "Xarfo gaar ah oo laga soo qaatay snmp sysDescr kuwaas oo si gaar ah u aqoonsanaya qalabkan"
+
+#: hmib_types.php
+msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
+msgstr "Aqoonsiga gaarka ah ee soo-saaraha snmp sysObjectID ee kala saara Qalabkan iyo kan ku xiga"
+
+#: hmib_types.php
+msgid "The primary key for this table is a combination of the following two fields:"
+msgstr "Furaha koowaad ee miiskan waa isku-darka labadan goobood ee soo socda:"
+
+#: hmib_types.php
+msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
+msgstr "Sidaa darteed, haddii aad isku daydo inaad soo dejiso noocyada qalabka ee laba jeer soo noqda, xogta jirta waxaa lagu cusboonaysiin doonaa macluumaadka cusub."
+
+#: hmib_types.php
+msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
+msgstr "Nooca Martigeliyaha waxaa lagu go'aamiyaa iyadoo la baaro wakiilkiisa snmp si loo helo sysObjectID iyo sysDescription loona barbardhigo qiimaha ku jira kaydka xogta Noocyada Martigeliyaha.  Iswaafajinta ugu horreysa ee laga helo kaydka xogta ayaa loo isticmaalaa ururinta xogta Martigeliyaha.  Sidaa darteed, aad bay muhiim u tahay inaad u doorato sysObjectID, sysDescrMatch ansax ah Martigeliyeyaashaada."
+
+#: hmib_types.php
+msgid "Device Scanning Function Options"
+msgstr "Ikhtiyaarrada Shaqada Baaritaanka Qalabka"
+
+#: hmib_types.php
+msgid "Give this Host Type a meaningful name."
+msgstr "Sii Noocan Martigeliye magac macno leh."
+
+#: hmib_types.php
+msgid "Fill in the name for the version of this Host Type."
+msgstr "Buuxi magaca nooca Martigeliyahan."
+
+#: hmib_types.php
+msgid "System Description Match"
+msgstr "Iswaafajinta Sharaxaadda Nidaamka"
+
+#: hmib_types.php
+#, php-format
+msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
+msgstr "Sii macluumaad muhiim ah si aad uga caawiso HMIB ogaanshaha nooca Martigeliyaha. Tibaaxaha SQL Where waa la taageeraa. Astaanta wildcard ee SQL Where waa calaamadda '%' sida caadiga ah. Tibaaxaha Joogtada ah waa laga saaray arrimo is-waafaqid la'aan awgood."
+
+#: hmib_types.php
+msgid "Vendor snmp Object ID"
+msgstr "Aqoonsiga Shayga SNMP ee Iibiyaha"
+
+#: hmib_types.php
+#, php-format
+msgid "Host MIB OS Types [edit: %s]"
+msgstr "Noocyada OS ee Host MIB [wax ka beddel: %s]"
+
+#: hmib_types.php
+msgid "Host MIB OS Types [new]"
+msgstr "Noocyada OS ee Host MIB [cusub]"
+
+#: hmib_types.php
+msgid "Host MIB OS Type Filters"
+msgstr "Shaandheeyayaasha Nooca OS ee Host MIB"
+
+#: hmib_types.php setup.php
+msgid "OS Types"
+msgstr "Noocyada OS"
+
+#: hmib_types.php
+msgid "Host Type Name"
+msgstr "Magaca Nooca Martigeliyaha"
+
+#: hmib_types.php
+msgid "OS Version"
+msgstr "Nuqulka OS"
+
+#: hmib_types.php
+msgid "SNMP ObjectID"
+msgstr "SNMP ObjectID"
+
+#: hmib_types.php
+msgid "SNMP Sys Description Match"
+msgstr "Iswaafajinta Sharaxaadda Nidaamka SNMP"
+
+#: hmib_types.php
+msgid "No Host Types Found"
+msgstr "Noocyada Martigeliye Lama Helin"
+
+#: hmib_types.php
+msgid "Choose an action:"
+msgstr "Dooro fal:"
+
+#: hmib_types.php
+msgid "Rescan"
+msgstr "Dib u baar"
+
+#: hmib_types.php
+msgid "Scan for New or Unknown Device Types"
+msgstr "Baar Noocyada Qalabka Cusub ama aan la Aqoon"
+
+#: hmib_types.php setup.php
+msgid "Import"
+msgstr "Soo dhoofi"
+
+#: hmib_types.php
+msgid "Import Host Types from a CSV File"
+msgstr "Ka soo deji Noocyada Martigeliyaha Fayl CSV ah"
+
+#: hmib_types.php
+msgid "Export"
+msgstr "Dhoofi"
+
+#: hmib_types.php
+msgid "Export Host Types to Share with Others"
+msgstr "Dhoofi Noocyada Martigeliyaha si loola Wadaago Dadka Kale"
+
+#: setup.php
+msgid "Host MIB Viewer"
+msgstr "Daawadaha Host MIB"
+
+#: setup.php
+msgid "Host MIB Admin"
+msgstr "Maamulka Host MIB"
+
+#: setup.php
+msgid "Host MIB"
+msgstr "MIB-ga Martigeliyaha"
+
+#: setup.php
+msgid "Host MIB General Settings"
+msgstr "Dejinta Guud ee Host MIB"
+
+#: setup.php
+msgid "Host MIB Poller Enabled"
+msgstr "Xog-uruuriyaha Host MIB waa La hawlgeliyay"
+
+#: setup.php
+msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
+msgstr "Calaamadee sanduuqan, haddii aad rabto in ururinta Martigeliye MIB la hawlgeliyo.  Haddii kale, Xog-uruuriyehu ma shaqayn doono."
+
+#: setup.php
+msgid "Automatically Discover Cacti Devices"
+msgstr "Si toos ah u soo hel Aaladaha Cacti"
+
+#: setup.php
+msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
+msgstr "Ma rabtaa in aad si toos ah u baarto oo aad ugu darto aaladaha taageera Host Resource MIB ee ku jira jadwalka martigeliyaha Cacti?"
+
+#: setup.php
+msgid "Automatically Purge Devices"
+msgstr "Si toos ah u nadiifi Aaladaha"
+
+#: setup.php
+msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
+msgstr "Ma rabtaa in aad si toos ah u nadiifiso aaladaha laga saaray nidaamka Cacti?"
+
+#: setup.php
+msgid "Process History Retention"
+msgstr "Haynta Taariikhda Habka"
+
+#: setup.php
+msgid "How long should the Use History tab keep a process after it was last seen running?"
+msgstr "Muddo intee le'eg ayay tahay in qaybta Taariikhda Isticmaalka ay hayso hawl ka dib markii ugu dambaysay ee la arkay iyadoo socota?"
+
+#: setup.php
+msgid "Never Purge"
+msgstr "Weligaa Ha Tirtirin"
+
+#: setup.php
+#, php-format
+msgid "%d Days"
+msgstr "%d Maalmood"
+
+#: setup.php
+#, php-format
+msgid "%d Year"
+msgstr "%d Sano"
+
+#: setup.php
+#, php-format
+msgid "%d Years"
+msgstr "%d Sano"
+
+#: setup.php
+msgid "Default Row Count"
+msgstr "Tirada Safafka ee Caadiga ah"
+
+#: setup.php
+msgid "How many rows do you wish to see on the HMIB OS Type by default?"
+msgstr "Immisa saf ayaad rabtaa inaad ku aragto Nooca OS ee HMIB si caadi ah?"
+
+#: setup.php
+msgid "Default Top Host Types"
+msgstr "Noocyada Martigeliyaha Ugu Sarreeya ee Caadiga ah"
+
+#: setup.php
+msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
+msgstr "Immisa hawlood ayaad rabtaa inaad ku aragto Guddi-hawleedka HMIB si caadi ah?"
+
+#: setup.php
+#, php-format
+msgid "%d Types"
+msgstr "%d Nooc"
+
+#: setup.php
+msgid "Default Top Processes"
+msgstr "Hawlaha Ugu Sarreeya ee Caadiga ah"
+
+#: setup.php
+#, php-format
+msgid "%d Processes"
+msgstr "%d Hawlo"
+
+#: setup.php
+msgid "Maximum Concurrent Collectors"
+msgstr "Ururiyeyaasha Isku Mar Shaqeeya ee Ugu Badan"
+
+#: setup.php
+msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
+msgstr "Waa maxay tirada ugu badan ee hababka ururiyaha ee isku mar shaqeynaya ee aad rabto inaad hal mar socodsiiso?"
+
+#: setup.php
+#, php-format
+msgid "%d Process"
+msgstr "%d Hawl"
+
+#: setup.php
+msgid "Host Auto Discovery Frequency"
+msgstr "Inta jeer ee Is-helidda Tooska ah ee Martigeliyaha"
+
+#: setup.php
+msgid "Auto Discovery Frequency"
+msgstr "Inta jeer ee Baaritaanka Tooska ah"
+
+#: setup.php
+msgid "How often do you want to look for new Cacti Devices?"
+msgstr "Inta jeer ee aad rabto inaad raadiso Aaladaha cusub ee Cacti?"
+
+#: setup.php
+msgid "Host Graph Automation"
+msgstr "Otomatigga Garaafka Martigeliyaha"
+
+#: setup.php
+msgid "Automatically Add New Graphs"
+msgstr "Si Toos ah Ugu Dar Jaantusyada Cusub"
+
+#: setup.php
+msgid "How often do you want to check for new objects to graph?"
+msgstr "Inta jeer ee aad rabto inaad hubiso walxo cusub oo loo sameeyo garaaf?"
+
+#: setup.php
+msgid "Never"
+msgstr "Marna"
+
+#: setup.php
+#, php-format
+msgid "%d Hour"
+msgstr "%d Saac"
+
+#: setup.php
+#, php-format
+msgid "%d Hours"
+msgstr "%d Saacadood"
+
+#: setup.php
+#, php-format
+msgid "%d Day"
+msgstr "%d Maalin"
+
+#: setup.php
+msgid "Host MIB Table Collection Frequencies"
+msgstr "Inta Jeer ee Ururinta Jadwalka Host MIB"
+
+#: setup.php
+msgid "Running Programs Frequency"
+msgstr "Inta jeer ee Barnaamijyada Socda"
+
+#: setup.php
+msgid "How often do you want to scan running software?"
+msgstr "Intee jeer ayaad rabtaa inaad baarto barnaamijyada shaqeynaya?"
+
+#: setup.php
+msgid "Running Programs CPU/Memory Frequency"
+msgstr "Inta jeer ee CPU/Xusuusta Barnaamijyada Socda"
+
+#: setup.php
+msgid "How often do you want to scan running software for performance data?"
+msgstr "Intee jeer ayaad rabtaa inaad u baarto barnaamijyada shaqeynaya xogta waxqabadka?"
+
+#: setup.php
+msgid "Installed Software Frequency"
+msgstr "Soo-noqnoqoshada Barnaamijyada La Rakibay"
+
+#: setup.php
+msgid "How often do you want to scan for installed software?"
+msgstr "Intee jeer ayaad rabtaa inaad baarto barnaamijyada rakiban?"
+
+#: setup.php
+msgid "Storage Frequency"
+msgstr "Inta jeer ee Kaydinta"
+
+#: setup.php
+msgid "How often do you want to scan for Storage performance data?"
+msgstr "Intee jeer ayaad rabtaa inaad baarto xogta waxqabadka Kaydinta?"
+
+#: setup.php
+msgid "Device Frequency"
+msgstr "Joogteynta Qalabka"
+
+#: setup.php
+msgid "How often do you want to scan for Device performance data?"
+msgstr "Intee jeer ayaad rabtaa inaad baarto xogta waxqabadka Qalabka?"
+
+#: setup.php
+msgid "Processor Frequency"
+msgstr "Joogtaynta Processor-ka"
+
+#: setup.php
+msgid "How often do you want to scan for Processor performance data?"
+msgstr "Intee jeer ayaad rabtaa inaad baarto xogta waxqabadka Processor-ka?"
+
+#: setup.php
+#, php-format
+msgid "%d Minute"
+msgstr "%d Daqiiqo"
+
+#: setup.php
+#, php-format
+msgid "%d Minutes"
+msgstr "%d Daqiiqo"
+
+#: setup.php
+msgid "Management"
+msgstr "Maamul"
+
+#: setup.php
+msgid "Normal User"
+msgstr "Isticmaale Caadi ah"
+
+#: setup.php
+msgid "General Administration"
+msgstr "Maamulka Guud"
+
+#: setup.php
+msgid "Host MIB Fleet Dashboard"
+msgstr "Guddi-hawleedka Kooxda Aaladaha Host MIB"
+
+#: setup.php
+msgid "Host MIB Inventory Summary"
+msgstr "Soo-koobidda Diiwaanka Host MIB"
+
+#: setup.php
+msgid "Host MIB Details"
+msgstr "Faahfaahinta Host MIB"
+
+#: setup.php
+msgid "Host MIB Device Dashboard"
+msgstr "Guddi-hawleedka Qalabka Host MIB"
+
+#: setup.php
+msgid "Host MIB Storage"
+msgstr "Kaydinta Host MIB"
+
+#: setup.php
+msgid "Host MIB Hardware"
+msgstr "Qalabka Adag ee Host MIB"
+
+#: setup.php
+msgid "Host MIB Running Processes"
+msgstr "Hawlaha Socda ee Host MIB"
+
+#: setup.php
+msgid "Host MIB Process Use History"
+msgstr "Taariikhda Isticmaalka Hawlaha Host MIB"
+
+#: setup.php
+msgid "Host MIB Software Inventory"
+msgstr "Diiwaanka Barnaamijyada ee Host MIB"
+
+#: setup.php
+msgid "Host MIB Graphs"
+msgstr "Jaantusyada Host MIB"
+
+#: setup.php
+msgid "Host MIB OS Types"
+msgstr "Noocyada OS ee Host MIB"
+
+#: setup.php
+msgid "(Edit)"
+msgstr "(Wax ka beddel)"
+

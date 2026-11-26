@@ -1,0 +1,1369 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR The Cacti Group
+# This file is distributed under the same license as the Cacti package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cacti\n"
+"Report-Msgid-Bugs-To: developers@cacti.net\n"
+"POT-Creation-Date: 2026-10-24 06:10-0400\n"
+"PO-Revision-Date: 2026-11-24 19:00+0000\n"
+"Last-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\n"
+"Language-Team: Malagasy\n"
+"Language: mg-MG\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: hmib.php
+msgid "Error"
+msgstr "Hadisoana"
+
+#: hmib.php hmib_types.php
+msgid "Unknown"
+msgstr "Tsy fantatra"
+
+#: hmib.php
+msgid "Operating System"
+msgstr "Rafitra mpandrindra"
+
+#: hmib.php
+msgid "Device Driver"
+msgstr "Mpamily fitaovana"
+
+#: hmib.php
+msgid "Application"
+msgstr "Rindranasa"
+
+#: hmib.php
+msgid "Running"
+msgstr "Mandeha"
+
+#: hmib.php
+msgid "Runnable"
+msgstr "Azo alefa"
+
+#: hmib.php
+msgid "Not Runnable"
+msgstr "Tsy azo alefa"
+
+#: hmib.php
+msgid "Invalid"
+msgstr "Tsy manan-kery"
+
+#: hmib.php
+msgid "Present"
+msgstr "Misy"
+
+#: hmib.php
+msgid "Warning"
+msgstr "Fampitandremana"
+
+#: hmib.php
+msgid "Testing"
+msgstr "Fanaovana andrana"
+
+#: hmib.php
+msgid "Down"
+msgstr "Tsy mandeha"
+
+#: hmib.php hmib_types.php
+msgid "OS Type"
+msgstr "Karazana OS"
+
+#: hmib.php
+msgid "All"
+msgstr "Rehetra"
+
+#: hmib.php
+msgid "Device"
+msgstr "Fitaovana"
+
+#: hmib.php
+msgid "Template"
+msgstr "Modely"
+
+#: hmib.php
+msgid "Running Process History"
+msgstr "Tantaran'ny fizotra mandeha"
+
+#: hmib.php hmib_types.php
+msgid "Go"
+msgstr "Alefa"
+
+#: hmib.php hmib_types.php
+msgid "Clear"
+msgstr "Fafao"
+
+#: hmib.php hmib_types.php
+msgid "Search"
+msgstr "Fikarohana"
+
+#: hmib.php
+msgid "Process"
+msgstr "Dingana"
+
+#: hmib.php
+msgid "Entries"
+msgstr "Andininy"
+
+#: hmib.php hmib_types.php
+msgid "Default"
+msgstr "Voafaritra mialoha"
+
+#: hmib.php
+msgid "Hostname"
+msgstr "Anaran'ny mpampiantrano"
+
+#: hmib.php
+msgid "Last Seen"
+msgstr "Hita farany"
+
+#: hmib.php
+msgid "Use Time (d:h:m)"
+msgstr "Fotoana fampiasana (d:h:m)"
+
+#: hmib.php
+msgid "History"
+msgstr "Tantara"
+
+#: hmib.php
+msgid "Edit Device"
+msgstr "Ahitsio ny Fitaovana"
+
+#: hmib.php
+msgid "No Process History Found"
+msgstr "Tsy misy tantaran'ny fizotra hita"
+
+#: hmib.php
+msgid "Running Processes"
+msgstr "Fizotra mandeha"
+
+#: hmib.php
+msgid "Path"
+msgstr "Lalana"
+
+#: hmib.php
+msgid "Parameters"
+msgstr "Masontsivana"
+
+#: hmib.php
+msgid "CPU (Hrs)"
+msgstr "CPU (Ora)"
+
+#: hmib.php
+msgid "Memory (MB)"
+msgstr "Fitadidiana (MB)"
+
+#: hmib.php
+msgid "Type"
+msgstr "Karazana"
+
+#: hmib.php
+msgid "Status"
+msgstr "Sata"
+
+#: hmib.php
+msgid "Processes"
+msgstr "Fizotra"
+
+#: hmib.php
+msgid "No Running Software Found"
+msgstr "Tsy misy rindrankajy mandeha hita"
+
+#: hmib.php
+msgid "Total CPU [h]:"
+msgstr "Fitambaran'ny CPU [h]:"
+
+#: hmib.php
+msgid "Total Size [MB]:"
+msgstr "Habe manontolo [MB]:"
+
+#: hmib.php
+msgid "Avg. CPU [h]:"
+msgstr "Salanisa CPU [h]:"
+
+#: hmib.php
+msgid "Avg. Size [MB]:"
+msgstr "Salanisa Habeny [MB]:"
+
+#: hmib.php
+msgid "Hardware Inventory"
+msgstr "Lisitry ny fitaovana ara-batana"
+
+#: hmib.php
+msgid "Hardware Description"
+msgstr "Famaritana ny fitaovana ara-batana"
+
+#: hmib.php
+msgid "Hardware Type"
+msgstr "Karazana fitaovana ara-batana"
+
+#: hmib.php
+msgid "Errors"
+msgstr "Hadisoana"
+
+#: hmib.php
+msgid "Devices"
+msgstr "Fitaovana"
+
+#: hmib.php
+msgid "No Hardware Found"
+msgstr "Tsy misy fitaovana ara-batana hita"
+
+#: hmib.php
+msgid "Click to filter by this status"
+msgstr "Tsindrio mba hanivana araka ity sata ity"
+
+#: hmib.php
+msgid "Storage Inventory"
+msgstr "Lisitry ny fitahirizana"
+
+#: hmib.php
+msgid "Volumes"
+msgstr "Ireo habetsahana"
+
+#: hmib.php
+msgid "Storage Description"
+msgstr "Famaritana ny fitahirizana"
+
+#: hmib.php
+msgid "Storage Type"
+msgstr "Karazana fitahirizana"
+
+#: hmib.php
+msgid "Percent Used"
+msgstr "Isan-jato nampiasaina"
+
+#: hmib.php
+msgid "Used (MB)"
+msgstr "Nampiasaina (MB)"
+
+#: hmib.php
+msgid "Total (MB)"
+msgstr "Fitambarany (MB)"
+
+#: hmib.php
+msgid "Alloc (KB)"
+msgstr "Natokana (KB)"
+
+#: hmib.php
+msgid "No Storage Devices Found"
+msgstr "Tsy misy Fitaovana fitahirizana hita"
+
+#: hmib.php
+msgid "Device Filter"
+msgstr "Sivana fitaovana"
+
+#: hmib.php
+msgid "Recovering"
+msgstr "Miverina amin'ny laoniny"
+
+#: hmib.php
+msgid "Up"
+msgstr "Mandeha"
+
+#: hmib.php setup.php
+msgid "Disabled"
+msgstr "Tsy mavitrika"
+
+#: hmib.php setup.php
+msgid "Actions"
+msgstr "Hetsika"
+
+#: hmib.php
+msgid "Uptime(d:h:m)"
+msgstr "Fotoana fiasana(d:h:m)"
+
+#: hmib.php
+msgid "Users"
+msgstr "Mpampiasa"
+
+#: hmib.php
+msgid "CPU %%%"
+msgstr "CPU %%%"
+
+#: hmib.php
+msgid "CPUs"
+msgstr "Ireo CPU"
+
+#: hmib.php
+msgid "Total Mem"
+msgstr "Fitambaran'ny Tadidy"
+
+#: hmib.php
+msgid "Used Mem"
+msgstr "Fitadidiana nampiasaina"
+
+#: hmib.php
+msgid "Total Swap"
+msgstr "Fitambaran'ny Swap"
+
+#: hmib.php
+msgid "Used Swap"
+msgstr "Swap nampiasaina"
+
+#: hmib.php
+msgid "View Dashboard"
+msgstr "Jereo ny tabilao fanaraha-maso"
+
+#: hmib.php
+msgid "View Storage"
+msgstr "Jereo ny fitehirizana"
+
+#: hmib.php
+msgid "View Hardware"
+msgstr "Jereo ny fitaovana ara-batana"
+
+#: hmib.php
+msgid "View Processes"
+msgstr "Jereo ny dingana"
+
+#: hmib.php
+msgid "View Software Inventory"
+msgstr "Jereo ny lisitry ny rindrankajy"
+
+#: hmib.php
+msgid "View Graphs"
+msgstr "Hijery tabilao"
+
+#: hmib.php
+msgid "No Graphs Defined"
+msgstr "Tsy misy Kisary voafaritra"
+
+#: hmib.php
+msgid "N/A"
+msgstr "Tsy misy"
+
+#: hmib.php
+msgid "No Devices Found"
+msgstr "Tsy nisy fitaovana hita"
+
+#: hmib.php
+msgid "Software Inventory"
+msgstr "Lisitry ny rindrankajy"
+
+#: hmib.php
+msgid "Applications"
+msgstr "Rindranasa"
+
+#: hmib.php
+msgid "Package"
+msgstr "Fonosana"
+
+#: hmib.php
+msgid "Installed"
+msgstr "Tafapetraka"
+
+#: hmib.php
+msgid "No Software Packages Found"
+msgstr "Tsy misy fonosana rindrankajy hita"
+
+#: hmib.php
+msgid "Fleet Dashboard"
+msgstr "Tabilao fanaraha-maso ny andiam-pitaovana"
+
+#: hmib.php
+msgid "Summary"
+msgstr "Famintinana"
+
+#: hmib.php
+msgid "Storage"
+msgstr "Fitahirizana"
+
+#: hmib.php
+msgid "Hardware"
+msgstr "Fitaovana ara-batana"
+
+#: hmib.php
+msgid "Use History"
+msgstr "Ampiasao ny tantara"
+
+#: hmib.php
+msgid "Inventory"
+msgstr "Fanisana"
+
+#: hmib.php
+msgid "Graphs"
+msgstr "Kisary"
+
+#: hmib.php
+msgid "Dashboard"
+msgstr "Takelaka fanaraha-maso"
+
+#: hmib.php
+msgid "Summary Filter"
+msgstr "Sivana famintinana"
+
+#: hmib.php
+msgid "Types"
+msgstr "Karazana"
+
+#: hmib.php
+msgid "All Records"
+msgstr "Firaketana rehetra"
+
+#: hmib.php
+#, php-format
+msgid "%d Records"
+msgstr "%d Firaketana"
+
+#: hmib.php
+#, php-format
+msgid "%d Record"
+msgstr "%d Firaketana"
+
+#: hmib.php
+msgid "NOTE: Import the Host MIB Device Package to view Graphs."
+msgstr "FANAMARIHANA: Ampidiro ny fonosan'ny Fitaovana Host MIB mba hijerena ny Kisary."
+
+#: hmib.php
+msgid "Device Type Summary Statistics"
+msgstr "Antontan'isa famintinana ny karazana fitaovana"
+
+#: hmib.php hmib_types.php
+msgid "Version"
+msgstr "Kinova"
+
+#: hmib.php
+msgid "Logins"
+msgstr "Fidirana"
+
+#: hmib.php
+msgid "CPUS"
+msgstr "Ireo CPU"
+
+#: hmib.php
+msgid "Avg CPU"
+msgstr "Salanisa CPU"
+
+#: hmib.php
+msgid "Max CPU"
+msgstr "CPU farany ambony"
+
+#: hmib.php
+msgid "Avg Mem"
+msgstr "Salanisa Fitadidiana"
+
+#: hmib.php
+msgid "Max Mem"
+msgstr "Fitadidiana farany ambony"
+
+#: hmib.php
+msgid "Avg Swap"
+msgstr "Salanisa Swap"
+
+#: hmib.php
+msgid "Max Swap"
+msgstr "Swap farany ambony"
+
+#: hmib.php
+msgid "Avg Proc"
+msgstr "Salanisa Dingana"
+
+#: hmib.php
+msgid "Max Proc"
+msgstr "Fizotra farany ambony"
+
+#: hmib.php
+msgid "View Fleet Dashboard"
+msgstr "Jereo ny tabilao fanaraha-mason'ny andian-fitaovana"
+
+#: hmib.php
+msgid "View Devices"
+msgstr "Jereo ny Fitaovana"
+
+#: hmib.php
+msgid "No Device Types"
+msgstr "Tsy misy karazana Fitaovana"
+
+#: hmib.php
+msgid "Process Summary Filter"
+msgstr "Sivana famintinana ny dingana"
+
+#: hmib.php
+msgid "Process Name"
+msgstr "Anaran'ny dingana"
+
+#: hmib.php
+msgid "Num Paths"
+msgstr "Isan'ny lalana"
+
+#: hmib.php hmib_types.php
+msgid "Hosts"
+msgstr "Mpampiantrano"
+
+#: hmib.php
+msgid "Avg Memory"
+msgstr "Salanisan'ny Fitadidiana"
+
+#: hmib.php
+msgid "Max Memory"
+msgstr "Fitadidiana farany ambony"
+
+#: hmib.php
+msgid "Summary Stats"
+msgstr "Antontan'isa famintinana"
+
+#: hmib.php
+#, php-format
+msgid "%s Hrs"
+msgstr "%s Ora"
+
+#: hmib.php
+#, php-format
+msgid "%s MB"
+msgstr "%s MB"
+
+#: hmib.php
+msgid "No Processes"
+msgstr "Tsy misy fizotra"
+
+#: hmib.php
+msgid "Custom Graph List Applied - Filtering from List"
+msgstr "Nampiharina ny lisitry ny Kisary namboarina - Manivana avy amin'ny lisitra"
+
+#: hmib.php
+msgid "Graph Preview Filters"
+msgstr "Sivana fijerena mialoha ny kisary"
+
+#: hmib.php
+msgid "System Information"
+msgstr "Fampahalalana momba ny rafitra"
+
+#: hmib.php
+msgid "CPU Utilization"
+msgstr "Fampiasana CPU"
+
+#: hmib.php
+msgid "Memory Utilization"
+msgstr "Fampiasana ny fitadidiana"
+
+#: hmib.php
+msgid "Swap Utilization"
+msgstr "Fampiasana Swap"
+
+#: hmib.php
+msgid "Users and Logins"
+msgstr "Mpampiasa sy fidirana"
+
+#: hmib.php
+msgid "Per-Processor Load"
+msgstr "Enta-mavesatra isaky ny processeur"
+
+#: hmib.php
+msgid "Storage Volumes"
+msgstr "Fizarana fitahirizana"
+
+#: hmib.php
+msgid "Top Processes"
+msgstr "Dingana ambony indrindra"
+
+#: hmib.php
+msgid "Process Use History"
+msgstr "Tantaran'ny fampiasana dingana"
+
+#: hmib.php
+msgid "Hardware Devices"
+msgstr "Fitaovana ara-batana"
+
+#: hmib.php
+msgid "Installed Software"
+msgstr "Rindrankajy voapetraka"
+
+#: hmib.php
+msgid "No system information has been collected for this device yet."
+msgstr "Tsy mbola nisy fampahalalana momba ny rafitra voaangona ho an'ity fitaovana ity."
+
+#: hmib.php
+msgid "Management Address"
+msgstr "Adiresy fitantanana"
+
+#: hmib.php
+msgid "System Name"
+msgstr "Anaran'ny rafitra"
+
+#: hmib.php
+msgid "Description"
+msgstr "Famaritana"
+
+#: hmib.php
+msgid "Contact"
+msgstr "Fifandraisana"
+
+#: hmib.php
+msgid "Location"
+msgstr "Toerana"
+
+#: hmib.php
+msgid "Uptime"
+msgstr "Fotoana niasana"
+
+#: hmib.php
+msgid "System Time"
+msgstr "Ora ao amin'ny rafitra"
+
+#: hmib.php
+msgid "No processor data available."
+msgstr "Tsy misy angona momba ny mpikajy azo ampiasaina."
+
+#: hmib.php
+#, php-format
+msgid "%d CPU(s)"
+msgstr "%d CPU(s)"
+
+#: hmib.php
+msgid "No memory data available."
+msgstr "Tsy misy angona momba ny fitadidiana azo ampiasaina."
+
+#: hmib.php
+#, php-format
+msgid "%s total"
+msgstr "%s ny fitambarany"
+
+#: hmib.php
+msgid "No swap configured on this device."
+msgstr "Tsy misy swap voarindra amin'ity fitaovana ity."
+
+#: hmib.php
+msgid "No session data available."
+msgstr "Tsy misy angona momba ny fivoriana azo ampiasaina."
+
+#: hmib.php
+msgid "Logged-in Users"
+msgstr "Mpampiasa tafiditra"
+
+#: hmib.php
+msgid "Maximum Processes"
+msgstr "Fizotra farany ambony"
+
+#: hmib.php
+msgid "Unlimited"
+msgstr "Tsy voafetra"
+
+#: hmib.php
+msgid "CPU"
+msgstr "CPU"
+
+#: hmib.php
+msgid "Load"
+msgstr "Enta-mavesatra"
+
+#: hmib.php
+msgid "Utilization"
+msgstr "Fampiasana"
+
+#: hmib.php
+#, php-format
+msgid "CPU %d"
+msgstr "CPU %d"
+
+#: hmib.php
+msgid "No per-processor load reported."
+msgstr "Tsy misy enta-mavesatra isaky ny mpikajy voalaza."
+
+#: hmib.php
+msgid "Volume"
+msgstr "Habetsahana"
+
+#: hmib.php
+msgid "Used"
+msgstr "Nampiasaina"
+
+#: hmib.php
+msgid "Total"
+msgstr "Fitambarany"
+
+#: hmib.php
+msgid "Used %"
+msgstr "Nampiasaina %"
+
+#: hmib.php
+msgid "No storage volumes detected."
+msgstr "Tsy nisy habaka fitahirizana hita."
+
+#: hmib.php
+msgid "CPU (s)"
+msgstr "CPU (s)"
+
+#: hmib.php
+msgid "Memory"
+msgstr "Fitadidiana"
+
+#: hmib.php
+msgid "No running processes recorded."
+msgstr "Tsy misy fizotra mandeha voarakitra."
+
+#: hmib.php
+msgid "No hardware devices detected."
+msgstr "Tsy nisy fitaovana ara-batana hita."
+
+#: hmib.php
+msgid "Installed Packages"
+msgstr "Fonosana voapetraka"
+
+#: hmib.php hmib_types.php
+msgid "Name"
+msgstr "Anarana"
+
+#: hmib.php
+msgid "No installed software inventory collected."
+msgstr "Tsy nisy lisitry ny rindrankajy voapetraka voaangona."
+
+#: hmib.php
+msgid "No process use history recorded."
+msgstr "Tsy misy tantaran'ny fampiasana fizotra voarakitra."
+
+#: hmib.php
+msgid "Show more"
+msgstr "Asehoy bebe kokoa"
+
+#: hmib.php
+msgid "Show less"
+msgstr "Asehoy kely kokoa"
+
+#: hmib.php
+msgid "Open in a dialog"
+msgstr "Sokafy ao anaty boaty fifampiresahana"
+
+#: hmib.php
+msgid "Refresh"
+msgstr "Havaozy"
+
+#: hmib.php
+msgid "Remove from page"
+msgstr "Esory ao amin'ny pejy"
+
+#: hmib.php
+msgid "Drag to reorder card"
+msgstr "Tariho hanovana ny filaharan'ny karatra"
+
+#: hmib.php
+msgid "Invalid request. Please try again."
+msgstr "Fangatahana tsy manan-kery. Andramo indray azafady."
+
+#: hmib.php
+msgid "Invalid refresh interval."
+msgstr "Elanelam-potoana fanavaozana tsy manan-kery."
+
+#: hmib.php
+msgid "No device selected."
+msgstr "Tsy misy fitaovana voafidy."
+
+#: hmib.php
+msgid "Unknown card."
+msgstr "Karatra tsy fantatra."
+
+#: hmib.php
+msgid "Host MIB Dashboard"
+msgstr "Tabilao Host MIB"
+
+#: hmib.php
+msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
+msgstr "Sokafy ny solaitraben'ny Fitaovana avy ao amin'ny kiheba Fitaovana amin'ny fipihana ny marika solaitrabe ao amin'ny tsanganana Asa. Tadidin'ny Solaitrabe ny Fitaovana nosokafanao farany."
+
+#: hmib.php
+#, php-format
+msgid "Device %d"
+msgstr "Fitaovana %d"
+
+#: hmib.php
+msgid "1 Minute"
+msgstr "1 Minitra"
+
+#: hmib.php
+msgid "30 Seconds"
+msgstr "30 Segondra"
+
+#: hmib.php
+msgid "5 Minutes"
+msgstr "5 Minitra"
+
+#: hmib.php
+msgid "No Refresh"
+msgstr "Tsy misy fanavaozana"
+
+#: hmib.php
+msgid "Search Host MIB devices as you type to open that device's dashboard."
+msgstr "Karohy ny fitaovana MIB Mpampiantrano eo am-panoratana mba hanokafana ny tabilao an'io fitaovana io."
+
+#: hmib.php
+msgid "Add card"
+msgstr "Manampy karatra"
+
+#: hmib.php
+msgid "Add a card…"
+msgstr "Manampy karatra…"
+
+#: hmib.php
+msgid "Fleet Overview"
+msgstr "Topi-maso ny andiam-pitaovana"
+
+#: hmib.php
+msgid "Resource Utilization"
+msgstr "Fampiasana loharanon-karena"
+
+#: hmib.php
+msgid "Device Status"
+msgstr "Satan'ny Fitaovana"
+
+#: hmib.php
+msgid "Storage Utilization"
+msgstr "Fampiasana ny fitahirizana"
+
+#: hmib.php
+msgid "Uptime Distribution"
+msgstr "Fizarana ny fotoana fiasana"
+
+#: hmib.php
+msgid "OS Type Distribution"
+msgstr "Fitsinjaran'ny karazana OS"
+
+#: hmib.php
+msgid "Top Processes by CPU"
+msgstr "Dingana ambony indrindra araka ny CPU"
+
+#: hmib.php
+msgid "Top Processes by Memory"
+msgstr "Dingana ambony indrindra araka ny Tadidy"
+
+#: hmib.php
+msgid "No Host MIB devices in this scope yet."
+msgstr "Mbola tsy misy Fitaovana Host MIB ato amin'ity sehatra ity."
+
+#: hmib.php
+msgid "Total RAM"
+msgstr "Fitambaran'ny RAM"
+
+#: hmib.php
+msgid "CPU %"
+msgstr "CPU %"
+
+#: hmib.php
+msgid "Memory %"
+msgstr "Fitadidiana %"
+
+#: hmib.php
+msgid "Swap %"
+msgstr "Swap %"
+
+#: hmib.php
+msgid "Processes / host"
+msgstr "Dingana / mpampiantrano"
+
+#: hmib.php
+msgid "No storage volumes detected in this scope."
+msgstr "Tsy nisy habaka fitahirizana hita ato amin'ity sehatra ity."
+
+#: hmib.php
+msgid "Total Capacity"
+msgstr "Fitambaran'ny fahafaha-mitahiry"
+
+#: hmib.php
+msgid "No OS types recorded."
+msgstr "Tsy misy karazana OS voarakitra."
+
+#: hmib.php
+msgid "Max CPU (s)"
+msgstr "CPU farany ambony (s)"
+
+#: hmib.php
+msgid "Relative"
+msgstr "Mifandraika"
+
+#: hmib.php
+msgid "No process statistics recorded."
+msgstr "Tsy misy antontan'isan'ny fizotra voarakitra."
+
+#: hmib.php
+msgid "Scope"
+msgstr "Sehatra"
+
+#: hmib.php
+msgid "All Types"
+msgstr "Karazana Rehetra"
+
+#: hmib_types.php
+msgid "Delete"
+msgstr "Fafao"
+
+#: hmib_types.php
+msgid "Duplicate"
+msgstr "Dika mitovy"
+
+#: hmib_types.php
+msgid "Click 'Continue' to Delete the following Host Type(s)"
+msgstr "Tsindrio ny 'Tohizo' mba hamafana ireto Karazana Mpampiantrano manaraka ireto"
+
+#: hmib_types.php
+msgid "Cancel"
+msgstr "Foano"
+
+#: hmib_types.php
+msgid "Continue"
+msgstr "Tohizo"
+
+#: hmib_types.php
+msgid "Delete Host Type(s)"
+msgstr "Fafao ny/ireo Karazana Mpampiantrano"
+
+#: hmib_types.php
+msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
+msgstr "Tsindrio ny 'Tohizo' mba hanaovana kopia roa amin'ireto Karazana Mpampiantrano manaraka ireto. Azonao ovana ihany ny fanoritsoritana ho an'ireo Karazana Mpampiantrano vaovao.  Raha tsy izany dia aza ovana ny sanda eto ambany ary haverina miaraka amin'ny tovana vaovao ny anarana voalohany."
+
+#: hmib_types.php
+msgid "Host Type Prefix:"
+msgstr "Tovona karazana Mpampiantrano:"
+
+#: hmib_types.php
+msgid "Duplicate Host Type(s)"
+msgstr "Dika mitovy ny karazana Mpampiantrano"
+
+#: hmib_types.php
+msgid "New Type"
+msgstr "Karazana vaovao"
+
+#: hmib_types.php
+#, php-format
+msgid "There were %d Device Types Added!"
+msgstr "Nisy Karazana Fitaovana %d nampiana!"
+
+#: hmib_types.php
+msgid "No New Host Types Found!"
+msgstr "Tsy misy karazana Mpampiantrano vaovao hita!"
+
+#: hmib_types.php
+msgid "Import Results"
+msgstr "Vokatry ny fanafarana"
+
+#: hmib_types.php
+msgid "Cacti has imported the following items:"
+msgstr "Nanafatra ireto singa manaraka ireto ny Cacti:"
+
+#: hmib_types.php
+msgid "Import Host MIB OS Types"
+msgstr "Manafatra Karazana OS MIB Mpampiantrano"
+
+#: hmib_types.php
+msgid "Import Device Types from Local File"
+msgstr "Manafatra Karazana Fitaovana avy amin'ny Rakitra Eto An-toerana"
+
+#: hmib_types.php
+msgid "Please specify the location of the CSV file containing your device type information."
+msgstr "Azafady, mariho ny toerana misy ny rakitra CSV mirakitra ny mombamomba ny karazana fitaovanao."
+
+#: hmib_types.php
+msgid "Overwrite Existing Data?"
+msgstr "Hosoloina ve ny angona efa misy?"
+
+#: hmib_types.php
+msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
+msgstr "Tokony havela hanolo ny angona efa misy ve ny dingana fanafarana?  Mariho tsara fa tsy midika ho famafana ny andalana taloha izany, fa fanoloana ireo andalana mitovy ihany."
+
+#: hmib_types.php
+msgid "Allow Existing Rows to be Updated?"
+msgstr "Avela havaozina ve ireo andalana efa misy?"
+
+#: hmib_types.php
+msgid "Required File Format Notes"
+msgstr "Fanamarihana momba ny endriky ny rakitra takiana"
+
+#: hmib_types.php
+msgid "The file must contain a header row with the following column headings."
+msgstr "Ny rakitra dia tsy maintsy ahitana andalana lohapejy misy ireto lohatenin'ny tsanganana manaraka ireto."
+
+#: hmib_types.php
+msgid "A common name for the Host Type.  For example, Windows 7"
+msgstr "Anarana mahazatra ho an'ny Karazana Mpampiantrano. Ohatra, Windows 7"
+
+#: hmib_types.php
+msgid "The OS version for the Host Type"
+msgstr "Ny dikan-tenin'ny OS ho an'ny Karazana Mpampiantrano"
+
+#: hmib_types.php
+msgid "A unique set of characters from the snmp sysDescr that uniquely identify this device"
+msgstr "Fitambarana tarehintsoratra manokana avy amin'ny snmp sysDescr izay mamantatra manokana ity fitaovana ity"
+
+#: hmib_types.php
+msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
+msgstr "Ny snmp sysObjectID manokana avy amin'ny mpamatsy izay manavaka ity fitaovana ity amin'ny manaraka"
+
+#: hmib_types.php
+msgid "The primary key for this table is a combination of the following two fields:"
+msgstr "Ny fanalahidy fototra ho an'ity tabilao ity dia fitambaran'ireto saha roa manaraka ireto:"
+
+#: hmib_types.php
+msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
+msgstr "Noho izany, raha manandrana manafatra karazana fitaovana mitovy ianao, dia havaozina amin'ny vaovao ilay angona efa misy."
+
+#: hmib_types.php
+msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
+msgstr "Ny Karazana Mpampiantrano dia faritana amin'ny alalan'ny fitiliana ny mpandraharaha SNMP-ny hitadiavana ny sysObjectID sy sysDescription ary fampitahana izany amin'ny sanda ao amin'ny tahiry angon'ny Karazana Mpampiantrano. Ny fifanandrifiana voalohany hita ao amin'ny tahiry angona no ampiasaina hanambarana ny angon'ny Mpampiantrano. Noho izany, tena zava-dehibe ny fisafidiananao sysObjectID sy sysDescrMatch manan-kery ho an'ireo Mpampiantrano anao."
+
+#: hmib_types.php
+msgid "Device Scanning Function Options"
+msgstr "Safidy asa fitarafana fitaovana"
+
+#: hmib_types.php
+msgid "Give this Host Type a meaningful name."
+msgstr "Omeo anarana mazava ity karazana Mpampiantrano ity."
+
+#: hmib_types.php
+msgid "Fill in the name for the version of this Host Type."
+msgstr "Fenoy ny anaran'ny kinovan'ity Karazana Mpampiantrano ity."
+
+#: hmib_types.php
+msgid "System Description Match"
+msgstr "Fampifanarahana ny famaritana ny rafitra"
+
+#: hmib_types.php
+#, php-format
+msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
+msgstr "Omeo fampahalalana fototra hanampiana ny HMIB hamantatra ny karazana Mpampiantrano. Ny fomba fiteny SQL Where dia tohanana. Ny marika jôkera amin'ny SQL Where dia ny '%' sary famantarana. Nesorina ny Regular Expressions noho ny olana amin'ny fifanarahana."
+
+#: hmib_types.php
+msgid "Vendor snmp Object ID"
+msgstr "ID zavatra snmp mpamatsy"
+
+#: hmib_types.php
+#, php-format
+msgid "Host MIB OS Types [edit: %s]"
+msgstr "Karazana OS Host MIB [ovao: %s]"
+
+#: hmib_types.php
+msgid "Host MIB OS Types [new]"
+msgstr "Karazana OS Host MIB [vaovao]"
+
+#: hmib_types.php
+msgid "Host MIB OS Type Filters"
+msgstr "Sivana karazana OS Host MIB"
+
+#: hmib_types.php setup.php
+msgid "OS Types"
+msgstr "Karazana OS"
+
+#: hmib_types.php
+msgid "Host Type Name"
+msgstr "Anaran'ny karazana Mpampiantrano"
+
+#: hmib_types.php
+msgid "OS Version"
+msgstr "Dikan-tenin'ny OS"
+
+#: hmib_types.php
+msgid "SNMP ObjectID"
+msgstr "ObjectID SNMP"
+
+#: hmib_types.php
+msgid "SNMP Sys Description Match"
+msgstr "Fampifanarahana ny famaritana rafitra SNMP"
+
+#: hmib_types.php
+msgid "No Host Types Found"
+msgstr "Tsy misy karazana Mpampiantrano hita"
+
+#: hmib_types.php
+msgid "Choose an action:"
+msgstr "Safidio ny hetsika:"
+
+#: hmib_types.php
+msgid "Rescan"
+msgstr "Tsiriho indray"
+
+#: hmib_types.php
+msgid "Scan for New or Unknown Device Types"
+msgstr "Mitily Karazana Fitaovana Vaovao na Tsy Fantatra"
+
+#: hmib_types.php setup.php
+msgid "Import"
+msgstr "Manafatra"
+
+#: hmib_types.php
+msgid "Import Host Types from a CSV File"
+msgstr "Manafatra Karazana Mpampiantrano avy amin'ny Rakitra CSV"
+
+#: hmib_types.php
+msgid "Export"
+msgstr "Aondrana"
+
+#: hmib_types.php
+msgid "Export Host Types to Share with Others"
+msgstr "Aondrana ny karazana Mpampiantrano hozaraina amin'ny hafa"
+
+#: setup.php
+msgid "Host MIB Viewer"
+msgstr "Mpaneho Host MIB"
+
+#: setup.php
+msgid "Host MIB Admin"
+msgstr "Fitantanana Host MIB"
+
+#: setup.php
+msgid "Host MIB"
+msgstr "MIB-n'ny Mpampiantrano"
+
+#: setup.php
+msgid "Host MIB General Settings"
+msgstr "Fandrindrana ankapobeny Host MIB"
+
+#: setup.php
+msgid "Host MIB Poller Enabled"
+msgstr "Poller Host MIB Mavitrika"
+
+#: setup.php
+msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
+msgstr "Mariho ity boaty ity raha tianao ho mavitrika ny fanangonana Host MIB. Raha tsy izany dia tsy hiasa ny poller."
+
+#: setup.php
+msgid "Automatically Discover Cacti Devices"
+msgstr "Mitady Fitaovana Cacti ho azy"
+
+#: setup.php
+msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
+msgstr "Tianao ve ny hitady ho azy sy hanampy Fitaovana manohana ny Host Resource MIB avy ao amin'ny tabilaon'ny Mpampiantrano Cacti?"
+
+#: setup.php
+msgid "Automatically Purge Devices"
+msgstr "Mamafa Fitaovana ho azy"
+
+#: setup.php
+msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
+msgstr "Tianao ve ny hanadio ho azy ireo Fitaovana nesorina tao amin'ny rafitra Cacti?"
+
+#: setup.php
+msgid "Process History Retention"
+msgstr "Fitehirizana ny tantaran'ny dingana"
+
+#: setup.php
+msgid "How long should the Use History tab keep a process after it was last seen running?"
+msgstr "Mandra-pahoviana no tokony hitazonan'ny tabilao Tantaran'ny fampiasana ny dingana iray taorian'ny nahitana azy nandeha farany?"
+
+#: setup.php
+msgid "Never Purge"
+msgstr "Aza fafana mihitsy"
+
+#: setup.php
+#, php-format
+msgid "%d Days"
+msgstr "%d Andro"
+
+#: setup.php
+#, php-format
+msgid "%d Year"
+msgstr "%d taona"
+
+#: setup.php
+#, php-format
+msgid "%d Years"
+msgstr "%d Taona"
+
+#: setup.php
+msgid "Default Row Count"
+msgstr "Isan'ny andalana mahazatra"
+
+#: setup.php
+msgid "How many rows do you wish to see on the HMIB OS Type by default?"
+msgstr "Firy ny andalana tianao ho hita eo amin'ny karazana OS HMIB amin'ny fomba mahazatra?"
+
+#: setup.php
+msgid "Default Top Host Types"
+msgstr "Karazana Mpampiantrano ambony indrindra mahazatra"
+
+#: setup.php
+msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
+msgstr "Firy ny dingana tianao ho hita eo amin'ny Tabilao HMIB amin'ny fomba mahazatra?"
+
+#: setup.php
+#, php-format
+msgid "%d Types"
+msgstr "%d Karazany"
+
+#: setup.php
+msgid "Default Top Processes"
+msgstr "Dingana ambony indrindra mahazatra"
+
+#: setup.php
+#, php-format
+msgid "%d Processes"
+msgstr "%d Dingana"
+
+#: setup.php
+msgid "Maximum Concurrent Collectors"
+msgstr "Mpanangona miaraka miasa farany ambony"
+
+#: setup.php
+msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
+msgstr "Inona ny isa farany ambony amin'ny fizotran'ny mpanangona miaraka tianao alefa indray mandeha?"
+
+#: setup.php
+#, php-format
+msgid "%d Process"
+msgstr "%d Fizotra"
+
+#: setup.php
+msgid "Host Auto Discovery Frequency"
+msgstr "Hatetiky ny fitadiavana Mpampiantrano ho azy"
+
+#: setup.php
+msgid "Auto Discovery Frequency"
+msgstr "Fiverenan'ny fitadiavana ho azy"
+
+#: setup.php
+msgid "How often do you want to look for new Cacti Devices?"
+msgstr "Impiry no tianao hitadiavana Fitaovana Cacti vaovao?"
+
+#: setup.php
+msgid "Host Graph Automation"
+msgstr "Fanaovana ho azy ny Kisarin'ny Mpampiantrano"
+
+#: setup.php
+msgid "Automatically Add New Graphs"
+msgstr "Manampy kisary vaovao ho azy"
+
+#: setup.php
+msgid "How often do you want to check for new objects to graph?"
+msgstr "Impiry no tianao hanamarinana zavatra vaovao hatao Kisary?"
+
+#: setup.php
+msgid "Never"
+msgstr "Tsy mihitsy"
+
+#: setup.php
+#, php-format
+msgid "%d Hour"
+msgstr "%d ora"
+
+#: setup.php
+#, php-format
+msgid "%d Hours"
+msgstr "%d ora"
+
+#: setup.php
+#, php-format
+msgid "%d Day"
+msgstr "%d Andro"
+
+#: setup.php
+msgid "Host MIB Table Collection Frequencies"
+msgstr "Fahatetehan'ny fanangonana tabilao Host MIB"
+
+#: setup.php
+msgid "Running Programs Frequency"
+msgstr "Matetika fampiasana programa mandeha"
+
+#: setup.php
+msgid "How often do you want to scan running software?"
+msgstr "Impiry ianao no te-hitety ireo rindrankajy mandeha?"
+
+#: setup.php
+msgid "Running Programs CPU/Memory Frequency"
+msgstr "Matetika fampiasana CPU/fitadidiana ho an'ny programa mandeha"
+
+#: setup.php
+msgid "How often do you want to scan running software for performance data?"
+msgstr "Impiry ianao no te-hitety ireo rindrankajy mandeha mba hahazoana angona momba ny fahombiazana?"
+
+#: setup.php
+msgid "Installed Software Frequency"
+msgstr "Fahatetehan'ny rindrankajy voapetraka"
+
+#: setup.php
+msgid "How often do you want to scan for installed software?"
+msgstr "Impiry ianao no te-hitety ireo rindrankajy napetraka?"
+
+#: setup.php
+msgid "Storage Frequency"
+msgstr "Matetikan'ny fitahirizana"
+
+#: setup.php
+msgid "How often do you want to scan for Storage performance data?"
+msgstr "Impiry ianao no te-hitety ny angon'ny fahombiazan'ny fitehirizana?"
+
+#: setup.php
+msgid "Device Frequency"
+msgstr "Fahamaroan'ny fitaovana"
+
+#: setup.php
+msgid "How often do you want to scan for Device performance data?"
+msgstr "Impiry ianao no te-hitety ny angon'ny fahombiazan'ny Fitaovana?"
+
+#: setup.php
+msgid "Processor Frequency"
+msgstr "Fatran'ny processeur"
+
+#: setup.php
+msgid "How often do you want to scan for Processor performance data?"
+msgstr "Impiry ianao no te-hitety ny angon'ny fahombiazan'ny mpikirakira?"
+
+#: setup.php
+#, php-format
+msgid "%d Minute"
+msgstr "%d minitra"
+
+#: setup.php
+#, php-format
+msgid "%d Minutes"
+msgstr "%d minitra"
+
+#: setup.php
+msgid "Management"
+msgstr "Fitantanana"
+
+#: setup.php
+msgid "Normal User"
+msgstr "Mpampiasa tsotra"
+
+#: setup.php
+msgid "General Administration"
+msgstr "Fitantanana ankapobeny"
+
+#: setup.php
+msgid "Host MIB Fleet Dashboard"
+msgstr "Tabilao Andiana Fitaovana Host MIB"
+
+#: setup.php
+msgid "Host MIB Inventory Summary"
+msgstr "Famintinana ny lisitry ny Host MIB"
+
+#: setup.php
+msgid "Host MIB Details"
+msgstr "Antsipirian'ny Host MIB"
+
+#: setup.php
+msgid "Host MIB Device Dashboard"
+msgstr "Tabilao Fitaovana Host MIB"
+
+#: setup.php
+msgid "Host MIB Storage"
+msgstr "Fitehirizana Host MIB"
+
+#: setup.php
+msgid "Host MIB Hardware"
+msgstr "Fitaovana ara-batana Host MIB"
+
+#: setup.php
+msgid "Host MIB Running Processes"
+msgstr "Dingana mandeha Host MIB"
+
+#: setup.php
+msgid "Host MIB Process Use History"
+msgstr "Tantaran'ny fampiasana dingana Host MIB"
+
+#: setup.php
+msgid "Host MIB Software Inventory"
+msgstr "Lisitry ny rindrankajy Host MIB"
+
+#: setup.php
+msgid "Host MIB Graphs"
+msgstr "Kisary Host MIB"
+
+#: setup.php
+msgid "Host MIB OS Types"
+msgstr "Karazana OS Host MIB"
+
+#: setup.php
+msgid "(Edit)"
+msgstr "(Fanovana)"
+

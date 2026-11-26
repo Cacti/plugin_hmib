@@ -1,0 +1,1369 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR The Cacti Group
+# This file is distributed under the same license as the Cacti package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cacti\n"
+"Report-Msgid-Bugs-To: developers@cacti.net\n"
+"POT-Creation-Date: 2026-10-24 06:10-0400\n"
+"PO-Revision-Date: 2026-11-24 19:00+0000\n"
+"Last-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\n"
+"Language-Team: Kinyarwanda\n"
+"Language: rw-RW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: hmib.php
+msgid "Error"
+msgstr "Ikosa"
+
+#: hmib.php hmib_types.php
+msgid "Unknown"
+msgstr "Ntibizwi"
+
+#: hmib.php
+msgid "Operating System"
+msgstr "Sisitemu y'imikorere"
+
+#: hmib.php
+msgid "Device Driver"
+msgstr "Porogaramu iyobora Igikoresho"
+
+#: hmib.php
+msgid "Application"
+msgstr "Porogaramu"
+
+#: hmib.php
+msgid "Running"
+msgstr "Biri gukora"
+
+#: hmib.php
+msgid "Runnable"
+msgstr "Gishobora gukoreshwa"
+
+#: hmib.php
+msgid "Not Runnable"
+msgstr "Ntibishobora gukora"
+
+#: hmib.php
+msgid "Invalid"
+msgstr "Ntibyemewe"
+
+#: hmib.php
+msgid "Present"
+msgstr "Bihari"
+
+#: hmib.php
+msgid "Warning"
+msgstr "Iburira"
+
+#: hmib.php
+msgid "Testing"
+msgstr "Mu isuzuma"
+
+#: hmib.php
+msgid "Down"
+msgstr "Ntigikora"
+
+#: hmib.php hmib_types.php
+msgid "OS Type"
+msgstr "Ubwoko bwa OS"
+
+#: hmib.php
+msgid "All"
+msgstr "Byose"
+
+#: hmib.php
+msgid "Device"
+msgstr "Igikoresho"
+
+#: hmib.php
+msgid "Template"
+msgstr "Inyandikorugero"
+
+#: hmib.php
+msgid "Running Process History"
+msgstr "Amateka y'ibikorwa biri gukora"
+
+#: hmib.php hmib_types.php
+msgid "Go"
+msgstr "Komeza"
+
+#: hmib.php hmib_types.php
+msgid "Clear"
+msgstr "Siba"
+
+#: hmib.php hmib_types.php
+msgid "Search"
+msgstr "Shakisha"
+
+#: hmib.php
+msgid "Process"
+msgstr "Igikorwa"
+
+#: hmib.php
+msgid "Entries"
+msgstr "Ibyinjijwe"
+
+#: hmib.php hmib_types.php
+msgid "Default"
+msgstr "Mburabuzi"
+
+#: hmib.php
+msgid "Hostname"
+msgstr "Izina ku muyoboro"
+
+#: hmib.php
+msgid "Last Seen"
+msgstr "Igihe cya nyuma byagaragaye"
+
+#: hmib.php
+msgid "Use Time (d:h:m)"
+msgstr "Igihe cyakoreshejwe (d:h:m)"
+
+#: hmib.php
+msgid "History"
+msgstr "Amateka"
+
+#: hmib.php
+msgid "Edit Device"
+msgstr "Hindura igikoresho"
+
+#: hmib.php
+msgid "No Process History Found"
+msgstr "Nta mateka y'ibikorwa yabonetse"
+
+#: hmib.php
+msgid "Running Processes"
+msgstr "Ibikorwa biri gukora"
+
+#: hmib.php
+msgid "Path"
+msgstr "Inzira"
+
+#: hmib.php
+msgid "Parameters"
+msgstr "Ibipimo ngenderwaho"
+
+#: hmib.php
+msgid "CPU (Hrs)"
+msgstr "CPU (Amasaha)"
+
+#: hmib.php
+msgid "Memory (MB)"
+msgstr "Ububiko (MB)"
+
+#: hmib.php
+msgid "Type"
+msgstr "Ubwoko"
+
+#: hmib.php
+msgid "Status"
+msgstr "Imiterere"
+
+#: hmib.php
+msgid "Processes"
+msgstr "Porosesi"
+
+#: hmib.php
+msgid "No Running Software Found"
+msgstr "Nta porogaramu ziri gukora zabonetse"
+
+#: hmib.php
+msgid "Total CPU [h]:"
+msgstr "CPU yose [h]:"
+
+#: hmib.php
+msgid "Total Size [MB]:"
+msgstr "Ingano yose [MB]:"
+
+#: hmib.php
+msgid "Avg. CPU [h]:"
+msgstr "Impuzandengo ya CPU [h]:"
+
+#: hmib.php
+msgid "Avg. Size [MB]:"
+msgstr "Impuzandengo y'Ingano [MB]:"
+
+#: hmib.php
+msgid "Hardware Inventory"
+msgstr "Urutonde rw'ibikoresho fatizo"
+
+#: hmib.php
+msgid "Hardware Description"
+msgstr "Ibisobanuro by'ibikoresho fatizo"
+
+#: hmib.php
+msgid "Hardware Type"
+msgstr "Ubwoko bw'ibikoresho fatizo"
+
+#: hmib.php
+msgid "Errors"
+msgstr "Amakosa"
+
+#: hmib.php
+msgid "Devices"
+msgstr "Ibikoresho"
+
+#: hmib.php
+msgid "No Hardware Found"
+msgstr "Nta bikoresho bya hardware byabonetse"
+
+#: hmib.php
+msgid "Click to filter by this status"
+msgstr "Kanda kugira ngo uyungurure ukurikije iyi miterere"
+
+#: hmib.php
+msgid "Storage Inventory"
+msgstr "Urutonde rw'ububiko"
+
+#: hmib.php
+msgid "Volumes"
+msgstr "Ibice by'ububiko"
+
+#: hmib.php
+msgid "Storage Description"
+msgstr "Ibisobanuro by'ububiko"
+
+#: hmib.php
+msgid "Storage Type"
+msgstr "Ubwoko bw'ububiko"
+
+#: hmib.php
+msgid "Percent Used"
+msgstr "Ijanisha ryakoreshejwe"
+
+#: hmib.php
+msgid "Used (MB)"
+msgstr "Byakoreshejwe (MB)"
+
+#: hmib.php
+msgid "Total (MB)"
+msgstr "Igiteranyo (MB)"
+
+#: hmib.php
+msgid "Alloc (KB)"
+msgstr "Ibyatanzwe (KB)"
+
+#: hmib.php
+msgid "No Storage Devices Found"
+msgstr "Nta bikoresho by'ububiko byabonetse"
+
+#: hmib.php
+msgid "Device Filter"
+msgstr "Akayunguruzo k'Igikoresho"
+
+#: hmib.php
+msgid "Recovering"
+msgstr "Kirimo gusubira mu buryo"
+
+#: hmib.php
+msgid "Up"
+msgstr "Kirakora"
+
+#: hmib.php setup.php
+msgid "Disabled"
+msgstr "Byahagaritswe"
+
+#: hmib.php setup.php
+msgid "Actions"
+msgstr "Ibikorwa"
+
+#: hmib.php
+msgid "Uptime(d:h:m)"
+msgstr "Igihe bikora(d:h:m)"
+
+#: hmib.php
+msgid "Users"
+msgstr "Abakoresha"
+
+#: hmib.php
+msgid "CPU %%%"
+msgstr "CPU %%%"
+
+#: hmib.php
+msgid "CPUs"
+msgstr "Ama-CPU"
+
+#: hmib.php
+msgid "Total Mem"
+msgstr "Ububiko bwose"
+
+#: hmib.php
+msgid "Used Mem"
+msgstr "Ububiko (Mem) bwakoreshejwe"
+
+#: hmib.php
+msgid "Total Swap"
+msgstr "Swap yose"
+
+#: hmib.php
+msgid "Used Swap"
+msgstr "Swap yakoreshejwe"
+
+#: hmib.php
+msgid "View Dashboard"
+msgstr "Reba imbonerahamwe"
+
+#: hmib.php
+msgid "View Storage"
+msgstr "Reba ububiko"
+
+#: hmib.php
+msgid "View Hardware"
+msgstr "Reba ibikoresho bifatika"
+
+#: hmib.php
+msgid "View Processes"
+msgstr "Reba ibikorwa biri gukora"
+
+#: hmib.php
+msgid "View Software Inventory"
+msgstr "Reba urutonde rwa porogaramu"
+
+#: hmib.php
+msgid "View Graphs"
+msgstr "Kureba Ibishushanyo"
+
+#: hmib.php
+msgid "No Graphs Defined"
+msgstr "Nta bishushanyo byashyizweho"
+
+#: hmib.php
+msgid "N/A"
+msgstr "Ntibihari"
+
+#: hmib.php
+msgid "No Devices Found"
+msgstr "Nta bikoresho byabonetse"
+
+#: hmib.php
+msgid "Software Inventory"
+msgstr "Urutonde rwa Porogaramu"
+
+#: hmib.php
+msgid "Applications"
+msgstr "Porogaramu"
+
+#: hmib.php
+msgid "Package"
+msgstr "Paketi"
+
+#: hmib.php
+msgid "Installed"
+msgstr "Byashyizwemo"
+
+#: hmib.php
+msgid "No Software Packages Found"
+msgstr "Nta mifuka ya porogaramu yabonetse"
+
+#: hmib.php
+msgid "Fleet Dashboard"
+msgstr "Imbonerahamwe y'Itsinda"
+
+#: hmib.php
+msgid "Summary"
+msgstr "Incamake"
+
+#: hmib.php
+msgid "Storage"
+msgstr "Ububiko"
+
+#: hmib.php
+msgid "Hardware"
+msgstr "Ibikoresho fatizo"
+
+#: hmib.php
+msgid "Use History"
+msgstr "Koresha amateka"
+
+#: hmib.php
+msgid "Inventory"
+msgstr "Ibarura ry'ibikoresho"
+
+#: hmib.php
+msgid "Graphs"
+msgstr "Ibishushanyo"
+
+#: hmib.php
+msgid "Dashboard"
+msgstr "Ikibaho cy'ibikorwa"
+
+#: hmib.php
+msgid "Summary Filter"
+msgstr "Akayunguruzo k'incamake"
+
+#: hmib.php
+msgid "Types"
+msgstr "Ubwoko"
+
+#: hmib.php
+msgid "All Records"
+msgstr "Inyandiko Zose"
+
+#: hmib.php
+#, php-format
+msgid "%d Records"
+msgstr "Ibyanditswe %d"
+
+#: hmib.php
+#, php-format
+msgid "%d Record"
+msgstr "Icyanditswe %d"
+
+#: hmib.php
+msgid "NOTE: Import the Host MIB Device Package to view Graphs."
+msgstr "ICYITONDERWA: Injiza paki y'Igikoresho cya Host MIB kugira ngo urebe Ibishushanyo."
+
+#: hmib.php
+msgid "Device Type Summary Statistics"
+msgstr "Imibare y'Incamake y'Ubwoko bw'Igikoresho"
+
+#: hmib.php hmib_types.php
+msgid "Version"
+msgstr "Verisiyo"
+
+#: hmib.php
+msgid "Logins"
+msgstr "Kwinjira"
+
+#: hmib.php
+msgid "CPUS"
+msgstr "Ama-CPU"
+
+#: hmib.php
+msgid "Avg CPU"
+msgstr "Impuzandengo ya CPU"
+
+#: hmib.php
+msgid "Max CPU"
+msgstr "CPU ntarengwa"
+
+#: hmib.php
+msgid "Avg Mem"
+msgstr "Impuzandengo ya Mem"
+
+#: hmib.php
+msgid "Max Mem"
+msgstr "Ububiko ntarengwa"
+
+#: hmib.php
+msgid "Avg Swap"
+msgstr "Impuzandengo ya Swap"
+
+#: hmib.php
+msgid "Max Swap"
+msgstr "Swap ntarengwa"
+
+#: hmib.php
+msgid "Avg Proc"
+msgstr "Impuzandengo ya Proc"
+
+#: hmib.php
+msgid "Max Proc"
+msgstr "Ibikorwa ntarengwa"
+
+#: hmib.php
+msgid "View Fleet Dashboard"
+msgstr "Reba imbonerahamwe y'ibikoresho byose"
+
+#: hmib.php
+msgid "View Devices"
+msgstr "Reba ibikoresho"
+
+#: hmib.php
+msgid "No Device Types"
+msgstr "Nta moko y'ibikoresho"
+
+#: hmib.php
+msgid "Process Summary Filter"
+msgstr "Akayunguruzo k'incamake y'ibikorwa"
+
+#: hmib.php
+msgid "Process Name"
+msgstr "Izina ry'igikorwa"
+
+#: hmib.php
+msgid "Num Paths"
+msgstr "Umubare w'inzira"
+
+#: hmib.php hmib_types.php
+msgid "Hosts"
+msgstr "Ba Mwakirizi"
+
+#: hmib.php
+msgid "Avg Memory"
+msgstr "Impuzandengo y'Ububiko"
+
+#: hmib.php
+msgid "Max Memory"
+msgstr "Ububiko ntarengwa"
+
+#: hmib.php
+msgid "Summary Stats"
+msgstr "Imibare y'incamake"
+
+#: hmib.php
+#, php-format
+msgid "%s Hrs"
+msgstr "Amasaha %s"
+
+#: hmib.php
+#, php-format
+msgid "%s MB"
+msgstr "%s MB"
+
+#: hmib.php
+msgid "No Processes"
+msgstr "Nta bikorwa"
+
+#: hmib.php
+msgid "Custom Graph List Applied - Filtering from List"
+msgstr "Urutonde rwihariye rw'Ibishushanyo rwakoreshejwe - Hayungururwa uhereye ku Rutonde"
+
+#: hmib.php
+msgid "Graph Preview Filters"
+msgstr "Muyunguruzi zo kureba mbere ibishushanyo"
+
+#: hmib.php
+msgid "System Information"
+msgstr "Amakuru ya sisitemu"
+
+#: hmib.php
+msgid "CPU Utilization"
+msgstr "Ikoreshwa rya CPU"
+
+#: hmib.php
+msgid "Memory Utilization"
+msgstr "Ikoreshwa ry'ububiko"
+
+#: hmib.php
+msgid "Swap Utilization"
+msgstr "Ikoreshwa rya Swap"
+
+#: hmib.php
+msgid "Users and Logins"
+msgstr "Abakoresha n'iyinjira"
+
+#: hmib.php
+msgid "Per-Processor Load"
+msgstr "Umuremero kuri buri mutunganyamakuru"
+
+#: hmib.php
+msgid "Storage Volumes"
+msgstr "Ibice by'ububiko"
+
+#: hmib.php
+msgid "Top Processes"
+msgstr "Ibikorwa bya mbere"
+
+#: hmib.php
+msgid "Process Use History"
+msgstr "Amateka y'ikoreshwa ry'igikorwa"
+
+#: hmib.php
+msgid "Hardware Devices"
+msgstr "Ibikoresho fatizo"
+
+#: hmib.php
+msgid "Installed Software"
+msgstr "Porogaramu zashyizwemo"
+
+#: hmib.php
+msgid "No system information has been collected for this device yet."
+msgstr "Nta makuru ya sisitemu arakusanywa kuri iki gikoresho."
+
+#: hmib.php
+msgid "Management Address"
+msgstr "Aderesi y'Imicungire"
+
+#: hmib.php
+msgid "System Name"
+msgstr "Izina rya sisitemu"
+
+#: hmib.php
+msgid "Description"
+msgstr "Ibisobanuro"
+
+#: hmib.php
+msgid "Contact"
+msgstr "Uwo kuvugana na we"
+
+#: hmib.php
+msgid "Location"
+msgstr "Ahantu"
+
+#: hmib.php
+msgid "Uptime"
+msgstr "Igihe kimaze gikora"
+
+#: hmib.php
+msgid "System Time"
+msgstr "Igihe cya sisitemu"
+
+#: hmib.php
+msgid "No processor data available."
+msgstr "Nta makuru ya poroseseri aboneka."
+
+#: hmib.php
+#, php-format
+msgid "%d CPU(s)"
+msgstr "CPU %d"
+
+#: hmib.php
+msgid "No memory data available."
+msgstr "Nta makuru ya memori aboneka."
+
+#: hmib.php
+#, php-format
+msgid "%s total"
+msgstr "%s byose hamwe"
+
+#: hmib.php
+msgid "No swap configured on this device."
+msgstr "Nta bubiko bwa swap bwashyizweho kuri iki gikoresho."
+
+#: hmib.php
+msgid "No session data available."
+msgstr "Nta makuru y'igihe cy'ikoresha aboneka."
+
+#: hmib.php
+msgid "Logged-in Users"
+msgstr "Abakoresha binjiye"
+
+#: hmib.php
+msgid "Maximum Processes"
+msgstr "Ibikorwa ntarengwa"
+
+#: hmib.php
+msgid "Unlimited"
+msgstr "Nta mupaka"
+
+#: hmib.php
+msgid "CPU"
+msgstr "CPU"
+
+#: hmib.php
+msgid "Load"
+msgstr "Umutwaro"
+
+#: hmib.php
+msgid "Utilization"
+msgstr "Ikoreshwa"
+
+#: hmib.php
+#, php-format
+msgid "CPU %d"
+msgstr "CPU %d"
+
+#: hmib.php
+msgid "No per-processor load reported."
+msgstr "Nta mutwaro kuri buri poroseseri watanzwe."
+
+#: hmib.php
+msgid "Volume"
+msgstr "Igice cy'ububiko"
+
+#: hmib.php
+msgid "Used"
+msgstr "Byakoreshejwe"
+
+#: hmib.php
+msgid "Total"
+msgstr "Igiteranyo"
+
+#: hmib.php
+msgid "Used %"
+msgstr "Byakoreshejwe %"
+
+#: hmib.php
+msgid "No storage volumes detected."
+msgstr "Nta bice by'ububiko byabonetse."
+
+#: hmib.php
+msgid "CPU (s)"
+msgstr "CPU (Amasegonda)"
+
+#: hmib.php
+msgid "Memory"
+msgstr "Ububiko"
+
+#: hmib.php
+msgid "No running processes recorded."
+msgstr "Nta bikorwa biri gukora byanditswe."
+
+#: hmib.php
+msgid "No hardware devices detected."
+msgstr "Nta bikoresho by'ikoranabuhanga bifatika byabonetse."
+
+#: hmib.php
+msgid "Installed Packages"
+msgstr "Paki zashyizwemo"
+
+#: hmib.php hmib_types.php
+msgid "Name"
+msgstr "Izina"
+
+#: hmib.php
+msgid "No installed software inventory collected."
+msgstr "Nta rutonde rwa porogaramu zashyizwemo rwakusanyijwe."
+
+#: hmib.php
+msgid "No process use history recorded."
+msgstr "Nta mateka y'ikoreshwa ry'ibikorwa yanditswe."
+
+#: hmib.php
+msgid "Show more"
+msgstr "Erekana byinshi"
+
+#: hmib.php
+msgid "Show less"
+msgstr "Erekana bike"
+
+#: hmib.php
+msgid "Open in a dialog"
+msgstr "Fungurira mu kadirishya k'ikiganiro"
+
+#: hmib.php
+msgid "Refresh"
+msgstr "Vugurura"
+
+#: hmib.php
+msgid "Remove from page"
+msgstr "Kura ku rupapuro"
+
+#: hmib.php
+msgid "Drag to reorder card"
+msgstr "Kurura kugira ngo uhindure urutonde rw'ikarita"
+
+#: hmib.php
+msgid "Invalid request. Please try again."
+msgstr "Icyifuzo kitari cyo. Nyamuneka ongera ugerageze."
+
+#: hmib.php
+msgid "Invalid refresh interval."
+msgstr "Intera yo kuvugurura itari yo."
+
+#: hmib.php
+msgid "No device selected."
+msgstr "Nta gikoresho cyahiswemo."
+
+#: hmib.php
+msgid "Unknown card."
+msgstr "Ikarita itazwi."
+
+#: hmib.php
+msgid "Host MIB Dashboard"
+msgstr "Imbonerahamwe ya Mwakirizi MIB"
+
+#: hmib.php
+msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
+msgstr "Fungura Imbonerahamwe y'igikoresho uhereye ku gice cy'Ibikoresho ukanze ku gishushanyo cy'imbonerahamwe mu nkingi y'Ibikorwa. Imbonerahamwe yibuka igikoresho cya nyuma wafunguye."
+
+#: hmib.php
+#, php-format
+msgid "Device %d"
+msgstr "Igikoresho %d"
+
+#: hmib.php
+msgid "1 Minute"
+msgstr "Umunota 1"
+
+#: hmib.php
+msgid "30 Seconds"
+msgstr "Amasegonda 30"
+
+#: hmib.php
+msgid "5 Minutes"
+msgstr "Iminota 5"
+
+#: hmib.php
+msgid "No Refresh"
+msgstr "Nta kuvugurura"
+
+#: hmib.php
+msgid "Search Host MIB devices as you type to open that device's dashboard."
+msgstr "Shakisha ibikoresho bya Mwakirizi MIB uko wandika kugira ngo ufungure imbonerahamwe y'icyo gikoresho."
+
+#: hmib.php
+msgid "Add card"
+msgstr "Ongeraho ikarita"
+
+#: hmib.php
+msgid "Add a card…"
+msgstr "Ongeraho ikarita…"
+
+#: hmib.php
+msgid "Fleet Overview"
+msgstr "Incamake y'Itsinda"
+
+#: hmib.php
+msgid "Resource Utilization"
+msgstr "Imikoreshereze y'ubushobozi"
+
+#: hmib.php
+msgid "Device Status"
+msgstr "Imimerere y'igikoresho"
+
+#: hmib.php
+msgid "Storage Utilization"
+msgstr "Ikoreshwa ry'ububiko"
+
+#: hmib.php
+msgid "Uptime Distribution"
+msgstr "Ikwirakwizwa ry'igihe bikora"
+
+#: hmib.php
+msgid "OS Type Distribution"
+msgstr "Ikwirakwizwa ry'ubwoko bwa OS"
+
+#: hmib.php
+msgid "Top Processes by CPU"
+msgstr "Ibikorwa bya mbere hakurikijwe CPU"
+
+#: hmib.php
+msgid "Top Processes by Memory"
+msgstr "Ibikorwa bya mbere hakurikijwe Ububiko"
+
+#: hmib.php
+msgid "No Host MIB devices in this scope yet."
+msgstr "Nta bikoresho bya Mwakirizi MIB biraboneka muri uru rwego kugeza ubu."
+
+#: hmib.php
+msgid "Total RAM"
+msgstr "RAM yose"
+
+#: hmib.php
+msgid "CPU %"
+msgstr "CPU %"
+
+#: hmib.php
+msgid "Memory %"
+msgstr "Ububiko %"
+
+#: hmib.php
+msgid "Swap %"
+msgstr "Swap %"
+
+#: hmib.php
+msgid "Processes / host"
+msgstr "Ibikorwa / mwakirizi"
+
+#: hmib.php
+msgid "No storage volumes detected in this scope."
+msgstr "Nta bice by'ububiko byabonetse muri iki gice."
+
+#: hmib.php
+msgid "Total Capacity"
+msgstr "Ubushobozi bwose"
+
+#: hmib.php
+msgid "No OS types recorded."
+msgstr "Nta moko ya sisitemu y'imikorere yanditswe."
+
+#: hmib.php
+msgid "Max CPU (s)"
+msgstr "CPU ntarengwa (s)"
+
+#: hmib.php
+msgid "Relative"
+msgstr "Bigendanye"
+
+#: hmib.php
+msgid "No process statistics recorded."
+msgstr "Nta mibare y'ibikorwa yanditswe."
+
+#: hmib.php
+msgid "Scope"
+msgstr "Urwego rw'ibirebwa"
+
+#: hmib.php
+msgid "All Types"
+msgstr "Ubwoko bwose"
+
+#: hmib_types.php
+msgid "Delete"
+msgstr "Siba"
+
+#: hmib_types.php
+msgid "Duplicate"
+msgstr "Kora kopi"
+
+#: hmib_types.php
+msgid "Click 'Continue' to Delete the following Host Type(s)"
+msgstr "Kanda 'Komeza' kugira ngo usibe Ubwoko bwa Mwakirizi bukurikira"
+
+#: hmib_types.php
+msgid "Cancel"
+msgstr "Hagarika"
+
+#: hmib_types.php
+msgid "Continue"
+msgstr "Komeza"
+
+#: hmib_types.php
+msgid "Delete Host Type(s)"
+msgstr "Siba Ubwoko bwa Mwakirizi"
+
+#: hmib_types.php
+msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
+msgstr "Kanda 'Komeza' kugira ngo utubure Ubwoko bwa Mwakirizi bukurikira. Ushobora guhindura ibisobanuro by'Ubwoko bushya bwa Mwakirizi ubishatse.  Bitabaye ibyo, ntuhindure agaciro kari hasi maze izina ry'umwimerere riziganywa n'umugereka mushya."
+
+#: hmib_types.php
+msgid "Host Type Prefix:"
+msgstr "Imbanziriza y'Ubwoko bwa Mwakirizi:"
+
+#: hmib_types.php
+msgid "Duplicate Host Type(s)"
+msgstr "Tubura ubwoko bwa Mwakirizi"
+
+#: hmib_types.php
+msgid "New Type"
+msgstr "Ubwoko Bushya"
+
+#: hmib_types.php
+#, php-format
+msgid "There were %d Device Types Added!"
+msgstr "Hongeweho ubwoko bw'Ibikoresho %d!"
+
+#: hmib_types.php
+msgid "No New Host Types Found!"
+msgstr "Nta moko mashya ya Mwakirizi yabonetse!"
+
+#: hmib_types.php
+msgid "Import Results"
+msgstr "Ibisubizo byo kwinjiza"
+
+#: hmib_types.php
+msgid "Cacti has imported the following items:"
+msgstr "Cacti yatumije ibi bikurikira:"
+
+#: hmib_types.php
+msgid "Import Host MIB OS Types"
+msgstr "Injiza Ubwoko bwa OS bwa MIB ya Mwakirizi"
+
+#: hmib_types.php
+msgid "Import Device Types from Local File"
+msgstr "Injiza Ubwoko bw'Ibikoresho uvuye muri Dosiye yo kuri Mudasobwa"
+
+#: hmib_types.php
+msgid "Please specify the location of the CSV file containing your device type information."
+msgstr "Nyamuneka garagaza aho dosiye ya CSV irimo amakuru y'ubwoko bw'ibikoresho byawe iherereye."
+
+#: hmib_types.php
+msgid "Overwrite Existing Data?"
+msgstr "Gusimbuza amakuru asanzwe?"
+
+#: hmib_types.php
+msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
+msgstr "Ese igikorwa cyo kwinjiza amakuru kigomba kwemererwa gusimbuza amakuru asanzweho?  Menya ko ibi bitavuga gusiba umurongo wa kera, ahubwo ni ugusimbuza imirongo isubiwemo gusa."
+
+#: hmib_types.php
+msgid "Allow Existing Rows to be Updated?"
+msgstr "Kwemerera imirongo isanzwe kuvugururwa?"
+
+#: hmib_types.php
+msgid "Required File Format Notes"
+msgstr "Amabwiriza y'imiterere ya dosiye isabwa"
+
+#: hmib_types.php
+msgid "The file must contain a header row with the following column headings."
+msgstr "Dosiye igomba kuba irimo umurongo w'umutwe ufite imitwe y'inkingi ikurikira."
+
+#: hmib_types.php
+msgid "A common name for the Host Type.  For example, Windows 7"
+msgstr "Izina risanzwe ry'Ubwoko bwa Mwakirizi.  Urugero, Windows 7"
+
+#: hmib_types.php
+msgid "The OS version for the Host Type"
+msgstr "Verisiyo ya OS y'ubwoko bwa Mwakirizi"
+
+#: hmib_types.php
+msgid "A unique set of characters from the snmp sysDescr that uniquely identify this device"
+msgstr "Urutonde rwihariye rw'inyuguti zivuye muri snmp sysDescr ziranga iki gikoresho mu buryo bwihariye"
+
+#: hmib_types.php
+msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
+msgstr "sysObjectID ya SNMP yihariye y'uwatanze igikoresho itandukanya iki gikoresho n'ikindi"
+
+#: hmib_types.php
+msgid "The primary key for this table is a combination of the following two fields:"
+msgstr "Urufunguzo rw'ibanze rw'iyi mbonerahamwe ni ihuriro ry'ibi bice bibiri bikurikira:"
+
+#: hmib_types.php
+msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
+msgstr "Ku bw'ibyo, nugerageza kuzana ubwoko bw'ibikoresho busubiyemo, amakuru asanzweho azavugururwa hifashishijwe amakuru mashya."
+
+#: hmib_types.php
+msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
+msgstr "Ubwoko bwa Mwakirizi bugenwa binyuze mu kugenzura umukozi wayo wa SNMP hashakishwa sysObjectID na sysDescription hanyuma bikagereranywa n'ibiri mu bubiko bw'amakuru bw'Amoko ya Mwakirizi.  Ibihuye bya mbere bibonetse mu bubiko bw'amakuru bikoreshwa mu gukusanya amakuru ya Mwakirizi.  Ku bw'ibyo, ni ingenzi cyane ko uhitamo sysObjectID na sysDescrMatch zemewe kuri ba Mwakirizi bawe."
+
+#: hmib_types.php
+msgid "Device Scanning Function Options"
+msgstr "Amahitamo y'umukoro w'isuzuma ry'Igikoresho"
+
+#: hmib_types.php
+msgid "Give this Host Type a meaningful name."
+msgstr "Ha ubu bwoko bwa Mwakirizi izina rifite igisobanuro."
+
+#: hmib_types.php
+msgid "Fill in the name for the version of this Host Type."
+msgstr "Uzuza izina rya verisiyo y'ubu Bwoko bwa Mwakirizi."
+
+#: hmib_types.php
+msgid "System Description Match"
+msgstr "Guhuza umwirondoro wa sisitemu"
+
+#: hmib_types.php
+#, php-format
+msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
+msgstr "Tanga amakuru y'ingenzi yo gufasha HMIB gutahura ubwoko bwa Mwakirizi.  Imvugo za SQL Where ziremewe.  Ikimenyetso gisimbura ibindi muri SQL Where ni '%' sisitemu ikoresha. Imvugo ngenderwaho (Regular Expressions) zakuweho kubera ibibazo byo kutajyana."
+
+#: hmib_types.php
+msgid "Vendor snmp Object ID"
+msgstr "Indangakintu ya snmp y'umucuruzi"
+
+#: hmib_types.php
+#, php-format
+msgid "Host MIB OS Types [edit: %s]"
+msgstr "Ubwoko bwa OS bwa Mwakirizi MIB [hindura: %s]"
+
+#: hmib_types.php
+msgid "Host MIB OS Types [new]"
+msgstr "Ubwoko bwa OS bwa Mwakirizi MIB [gishya]"
+
+#: hmib_types.php
+msgid "Host MIB OS Type Filters"
+msgstr "Utuyunguruzo tw'Ubwoko bwa OS bwa Mwakirizi MIB"
+
+#: hmib_types.php setup.php
+msgid "OS Types"
+msgstr "Amoko ya OS"
+
+#: hmib_types.php
+msgid "Host Type Name"
+msgstr "Izina ry'Ubwoko bwa Mwakirizi"
+
+#: hmib_types.php
+msgid "OS Version"
+msgstr "Verisiyo ya OS"
+
+#: hmib_types.php
+msgid "SNMP ObjectID"
+msgstr "SNMP ObjectID"
+
+#: hmib_types.php
+msgid "SNMP Sys Description Match"
+msgstr "Guhuza isobanuro rya Sys rya SNMP"
+
+#: hmib_types.php
+msgid "No Host Types Found"
+msgstr "Nta moko ya Mwakirizi yabonetse"
+
+#: hmib_types.php
+msgid "Choose an action:"
+msgstr "Hitamo igikorwa:"
+
+#: hmib_types.php
+msgid "Rescan"
+msgstr "Ongera usuzume"
+
+#: hmib_types.php
+msgid "Scan for New or Unknown Device Types"
+msgstr "Suzuma ushake Ubwoko bw'Ibikoresho Bushya cyangwa Butazwi"
+
+#: hmib_types.php setup.php
+msgid "Import"
+msgstr "Injiza"
+
+#: hmib_types.php
+msgid "Import Host Types from a CSV File"
+msgstr "Injiza Ubwoko bwa Mwakirizi uvuye muri Dosiye ya CSV"
+
+#: hmib_types.php
+msgid "Export"
+msgstr "Sohora"
+
+#: hmib_types.php
+msgid "Export Host Types to Share with Others"
+msgstr "Kohereza hanze ubwoko bwa Mwakirizi kugira ngo ubusangize abandi"
+
+#: setup.php
+msgid "Host MIB Viewer"
+msgstr "Imboni ya Mwakirizi MIB"
+
+#: setup.php
+msgid "Host MIB Admin"
+msgstr "Ubuyobozi bwa Mwakirizi MIB"
+
+#: setup.php
+msgid "Host MIB"
+msgstr "MIB ya Mwakirizi"
+
+#: setup.php
+msgid "Host MIB General Settings"
+msgstr "Amagenamiterere rusange ya Mwakirizi MIB"
+
+#: setup.php
+msgid "Host MIB Poller Enabled"
+msgstr "Ikusanyamakuru rya Mwakirizi MIB Byafunguwe"
+
+#: setup.php
+msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
+msgstr "Hitamo aka gasanduku, niba wifuza ko ikusanyamakuru rya Host MIB rifungurwa. Bitabaye ibyo, ikusanyamakuru ntirizakora."
+
+#: setup.php
+msgid "Automatically Discover Cacti Devices"
+msgstr "Shakisha Ibikoresho bya Cacti mu buryo bwikora"
+
+#: setup.php
+msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
+msgstr "Ese wifuza gushakisha mu buryo bwikora no kongeramo Ibikoresho byemera Host Resource MIB bivuye mu mbonerahamwe ya ba Mwakirizi ya Cacti?"
+
+#: setup.php
+msgid "Automatically Purge Devices"
+msgstr "Gusiba burundu Ibikoresho mu buryo bwikora"
+
+#: setup.php
+msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
+msgstr "Ese wifuza gusiba burundu mu buryo bwikora Ibikoresho byakuwe mu mikorere ya Cacti?"
+
+#: setup.php
+msgid "Process History Retention"
+msgstr "Igihe cyo kubika amateka y'ibikorwa"
+
+#: setup.php
+msgid "How long should the Use History tab keep a process after it was last seen running?"
+msgstr "Ni igihe kingana iki agace k'Amateka y'Ikoreshwa kagomba kubika porosesi nyuma y'igihe iheruka kugaragara ikora?"
+
+#: setup.php
+msgid "Never Purge"
+msgstr "Ntuzigere usiba burundu"
+
+#: setup.php
+#, php-format
+msgid "%d Days"
+msgstr "Iminsi %d"
+
+#: setup.php
+#, php-format
+msgid "%d Year"
+msgstr "Umwaka %d"
+
+#: setup.php
+#, php-format
+msgid "%d Years"
+msgstr "Imyaka %d"
+
+#: setup.php
+msgid "Default Row Count"
+msgstr "Umubare mburabuzi w'imirongo"
+
+#: setup.php
+msgid "How many rows do you wish to see on the HMIB OS Type by default?"
+msgstr "Ni imirongo ingahe wifuza kubona ku Bwoko bwa OS bwa HMIB ku buryo busanzwe?"
+
+#: setup.php
+msgid "Default Top Host Types"
+msgstr "Ubwoko mburabuzi bw'abakirizi ba mbere"
+
+#: setup.php
+msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
+msgstr "Ni porosesi zingahe wifuza kubona ku Mbonerahamwe ya HMIB ku buryo busanzwe?"
+
+#: setup.php
+#, php-format
+msgid "%d Types"
+msgstr "Ubwoko %d"
+
+#: setup.php
+msgid "Default Top Processes"
+msgstr "Ibikorwa mburabuzi bya mbere"
+
+#: setup.php
+#, php-format
+msgid "%d Processes"
+msgstr "Ibikorwa %d"
+
+#: setup.php
+msgid "Maximum Concurrent Collectors"
+msgstr "Ibikusanyamakuru bikorera rimwe ntarengwa"
+
+#: setup.php
+msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
+msgstr "Ni uwuhe mubare ntarengwa w'ibikorwa byo gukusanya bikorera rimwe ushaka gukoresha icyarimwe?"
+
+#: setup.php
+#, php-format
+msgid "%d Process"
+msgstr "Igikorwa %d"
+
+#: setup.php
+msgid "Host Auto Discovery Frequency"
+msgstr "Inshuro zo kwishakira Mwakirizi mu buryo bwikora"
+
+#: setup.php
+msgid "Auto Discovery Frequency"
+msgstr "Inshuro zo kuvumbura mu buryo bwikora"
+
+#: setup.php
+msgid "How often do you want to look for new Cacti Devices?"
+msgstr "Wifuza gushakisha Ibikoresho bishya bya Cacti inshuro zingahe?"
+
+#: setup.php
+msgid "Host Graph Automation"
+msgstr "Ikorwa ry'Igishushanyo rya Mwakirizi rwikora"
+
+#: setup.php
+msgid "Automatically Add New Graphs"
+msgstr "Ongeraho ibishushanyo bishya mu buryo bwikora"
+
+#: setup.php
+msgid "How often do you want to check for new objects to graph?"
+msgstr "Wifuza kugenzura inshuro zingahe ibintu bishya byo gushyira mu gishushanyo?"
+
+#: setup.php
+msgid "Never"
+msgstr "Nta na rimwe"
+
+#: setup.php
+#, php-format
+msgid "%d Hour"
+msgstr "Isaha %d"
+
+#: setup.php
+#, php-format
+msgid "%d Hours"
+msgstr "Amasaha %d"
+
+#: setup.php
+#, php-format
+msgid "%d Day"
+msgstr "Umunsi %d"
+
+#: setup.php
+msgid "Host MIB Table Collection Frequencies"
+msgstr "Inshuro z'Ikusanya ry'Imbonerahamwe ya Mwakirizi MIB"
+
+#: setup.php
+msgid "Running Programs Frequency"
+msgstr "Inshuro porogaramu zikora"
+
+#: setup.php
+msgid "How often do you want to scan running software?"
+msgstr "Ni kangahe wifuza gusikana porogaramu zirimo gukora?"
+
+#: setup.php
+msgid "Running Programs CPU/Memory Frequency"
+msgstr "Inshuro porogaramu zikora zikoresha CPU/Ububiko"
+
+#: setup.php
+msgid "How often do you want to scan running software for performance data?"
+msgstr "Ni kangahe wifuza gusikana porogaramu zirimo gukora ushaka amakuru y'imikorere?"
+
+#: setup.php
+msgid "Installed Software Frequency"
+msgstr "Inshuro za porogaramu zashyizwemo"
+
+#: setup.php
+msgid "How often do you want to scan for installed software?"
+msgstr "Ni kangahe wifuza gusikana porogaramu zashyizwemo?"
+
+#: setup.php
+msgid "Storage Frequency"
+msgstr "Inshuro zo kubika"
+
+#: setup.php
+msgid "How often do you want to scan for Storage performance data?"
+msgstr "Ni kangahe wifuza gusikana amakuru y'imikorere y'Ububiko?"
+
+#: setup.php
+msgid "Device Frequency"
+msgstr "Inshuro z'Igikoresho"
+
+#: setup.php
+msgid "How often do you want to scan for Device performance data?"
+msgstr "Ni kangahe wifuza gusikana amakuru y'imikorere y'Igikoresho?"
+
+#: setup.php
+msgid "Processor Frequency"
+msgstr "Umuvuduko wa poroseseri"
+
+#: setup.php
+msgid "How often do you want to scan for Processor performance data?"
+msgstr "Ni kangahe wifuza gusikana amakuru y'imikorere ya Poroseseri?"
+
+#: setup.php
+#, php-format
+msgid "%d Minute"
+msgstr "Umunota %d"
+
+#: setup.php
+#, php-format
+msgid "%d Minutes"
+msgstr "Iminota %d"
+
+#: setup.php
+msgid "Management"
+msgstr "Imicungire"
+
+#: setup.php
+msgid "Normal User"
+msgstr "Ukoresha Usanzwe"
+
+#: setup.php
+msgid "General Administration"
+msgstr "Ubuyobozi Rusange"
+
+#: setup.php
+msgid "Host MIB Fleet Dashboard"
+msgstr "Imbonerahamwe y'Itsinda ry'Ibikoresho ya Mwakirizi MIB"
+
+#: setup.php
+msgid "Host MIB Inventory Summary"
+msgstr "Incamake y'Urutonde rwa Mwakirizi MIB"
+
+#: setup.php
+msgid "Host MIB Details"
+msgstr "Amakuru arambuye ya Mwakirizi MIB"
+
+#: setup.php
+msgid "Host MIB Device Dashboard"
+msgstr "Imbonerahamwe y'Igikoresho ya Mwakirizi MIB"
+
+#: setup.php
+msgid "Host MIB Storage"
+msgstr "Ububiko bwa Mwakirizi MIB"
+
+#: setup.php
+msgid "Host MIB Hardware"
+msgstr "Ibikoresho fatizo bya Mwakirizi MIB"
+
+#: setup.php
+msgid "Host MIB Running Processes"
+msgstr "Porosesi ziri gukora za Mwakirizi MIB"
+
+#: setup.php
+msgid "Host MIB Process Use History"
+msgstr "Amateka y'Ikoreshwa rya Porosesi za Mwakirizi MIB"
+
+#: setup.php
+msgid "Host MIB Software Inventory"
+msgstr "Urutonde rwa Porogaramu za Mwakirizi MIB"
+
+#: setup.php
+msgid "Host MIB Graphs"
+msgstr "Ibishushanyo bya Mwakirizi MIB"
+
+#: setup.php
+msgid "Host MIB OS Types"
+msgstr "Ubwoko bwa OS bwa Mwakirizi MIB"
+
+#: setup.php
+msgid "(Edit)"
+msgstr "(Hindura)"
+
