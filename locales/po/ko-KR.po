@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Korean <https://translate.cacti.net/projects/cacti/hmib/ko/>\nLanguage: ko-KR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Korean <https://translate.cacti.net/projects/cacti/hmib/ko/>\nLanguage: ko-KR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -56,7 +56,7 @@ msgstr "테스트"
 
 #: hmib.php
 msgid "Down"
-msgstr "아래로"
+msgstr "다운"
 
 #: hmib.php hmib_types.php
 msgid "OS Type"
@@ -92,7 +92,7 @@ msgstr "검색"
 
 #: hmib.php
 msgid "Process"
-msgstr "프로세스"
+msgstr "처리"
 
 #: hmib.php
 msgid "Entries"
@@ -140,7 +140,7 @@ msgstr "매개변수"
 
 #: hmib.php
 msgid "CPU (Hrs)"
-msgstr "CPU (Hrs)"
+msgstr "CPU (시간)"
 
 #: hmib.php
 msgid "Memory (MB)"
@@ -236,7 +236,7 @@ msgstr "총 (MB)"
 
 #: hmib.php
 msgid "Alloc (KB)"
-msgstr "Alloc (KB)"
+msgstr "할당 (KB)"
 
 #: hmib.php
 msgid "No Storage Devices Found"
@@ -256,7 +256,7 @@ msgstr "위로"
 
 #: hmib.php setup.php
 msgid "Disabled"
-msgstr "비활성화됨"
+msgstr "비활성화"
 
 #: hmib.php setup.php
 msgid "Actions"
@@ -478,7 +478,7 @@ msgstr "프로세스 이름"
 
 #: hmib.php
 msgid "Num Paths"
-msgstr "Num Paths"
+msgstr "경로 수"
 
 #: hmib.php hmib_types.php
 msgid "Hosts"
@@ -929,7 +929,7 @@ msgstr "결과 가져 오기"
 
 #: hmib_types.php
 msgid "Cacti has imported the following items:"
-msgstr "Cacti는 다음 항목을 가져 왔습니다."
+msgstr "Cacti는 다음 항목을 가져 왔습니다.:"
 
 #: hmib_types.php
 msgid "Import Host MIB OS Types"
@@ -1043,7 +1043,7 @@ msgstr "OS 버전"
 
 #: hmib_types.php
 msgid "SNMP ObjectID"
-msgstr "SNMP ObjectID"
+msgstr "SNMP 객체 ID"
 
 #: hmib_types.php
 msgid "SNMP Sys Description Match"
@@ -1176,7 +1176,7 @@ msgstr "기본 상위 프로세스"
 #: setup.php
 #, php-format
 msgid "%d Processes"
-msgstr "프로세스 %d개"
+msgstr "%d개 프로세스"
 
 #: setup.php
 msgid "Maximum Concurrent Collectors"
