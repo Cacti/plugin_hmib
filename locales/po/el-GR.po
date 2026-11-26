@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Greek <https://translate.cacti.net/projects/cacti/hmib/el/>\nLanguage: el-GR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Greek <https://translate.cacti.net/projects/cacti/hmib/el/>\nLanguage: el-GR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -236,7 +236,7 @@ msgstr "Σύνολο (MB)"
 
 #: hmib.php
 msgid "Alloc (KB)"
-msgstr "Alloc (KB)"
+msgstr "Δέσμευση (KB)"
 
 #: hmib.php
 msgid "No Storage Devices Found"
@@ -324,7 +324,7 @@ msgstr "Δεν έχουν οριστεί γραφήματα"
 
 #: hmib.php
 msgid "N/A"
-msgstr "Μη Διαθέσιμο"
+msgstr "Μη Εφαρμόσιμο"
 
 #: hmib.php
 msgid "No Devices Found"
@@ -434,11 +434,11 @@ msgstr "Μέγιστη CPU"
 
 #: hmib.php
 msgid "Avg Mem"
-msgstr "Avg Mem"
+msgstr "Μέση μνήμη"
 
 #: hmib.php
 msgid "Max Mem"
-msgstr "Max Mem"
+msgstr "Μέγ. μνήμη"
 
 #: hmib.php
 msgid "Avg Swap"
@@ -450,11 +450,11 @@ msgstr "Max Swap"
 
 #: hmib.php
 msgid "Avg Proc"
-msgstr "Avg Proc"
+msgstr "Μέσος όρος διεργασιών"
 
 #: hmib.php
 msgid "Max Proc"
-msgstr "Max Proc"
+msgstr "Μέγ. διεργασίες"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
@@ -953,7 +953,7 @@ msgstr "Πρέπει να επιτραπεί στη διαδικασία εισ�
 
 #: hmib_types.php
 msgid "Allow Existing Rows to be Updated?"
-msgstr "Να επιτρέπεται η ενημέρωση υφιστάμενων σειρών;"
+msgstr "Να επιτρέπεται η ενημέρωση των υφιστάμενων σειρών;"
 
 #: hmib_types.php
 msgid "Required File Format Notes"
@@ -1354,7 +1354,7 @@ msgstr "Υποστηρίξτε τους τύπους OS MIB"
 
 #: setup.php
 msgid "(Edit)"
-msgstr "(επεξεργασία)"
+msgstr "(Eπεξεργασία)"
 
 #~ msgid "Top"
 #~ msgstr "Κορυφή"
