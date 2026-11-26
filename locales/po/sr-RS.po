@@ -1,0 +1,1367 @@
+# Serbian translation for Cacti.
+# Copyright (C) 2004-2026 The Cacti Group
+# This file is distributed under the same license as the Cacti package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cacti\n"
+"Report-Msgid-Bugs-To: developers@cacti.net\n"
+"POT-Creation-Date: 2026-10-24 06:10-0400\n"
+"PO-Revision-Date: 2026-11-26 18:57+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Serbian <developers@cacti.net>\n"
+"Language: sr-RS\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+
+#: hmib.php
+msgid "Error"
+msgstr "Грешка"
+
+#: hmib.php hmib_types.php
+msgid "Unknown"
+msgstr "Непознато"
+
+#: hmib.php
+msgid "Operating System"
+msgstr "Оперативни систем"
+
+#: hmib.php
+msgid "Device Driver"
+msgstr "Управљачки програм уређаја"
+
+#: hmib.php
+msgid "Application"
+msgstr "Апликација"
+
+#: hmib.php
+msgid "Running"
+msgstr "У току"
+
+#: hmib.php
+msgid "Runnable"
+msgstr "Извршиво"
+
+#: hmib.php
+msgid "Not Runnable"
+msgstr "Није извршиво"
+
+#: hmib.php
+msgid "Invalid"
+msgstr "Неважеће"
+
+#: hmib.php
+msgid "Present"
+msgstr "Присутно"
+
+#: hmib.php
+msgid "Warning"
+msgstr "Упозорење"
+
+#: hmib.php
+msgid "Testing"
+msgstr "Тестирање"
+
+#: hmib.php
+msgid "Down"
+msgstr "Недоступан"
+
+#: hmib.php hmib_types.php
+msgid "OS Type"
+msgstr "Тип OS-а"
+
+#: hmib.php
+msgid "All"
+msgstr "Све"
+
+#: hmib.php
+msgid "Device"
+msgstr "Уређај"
+
+#: hmib.php
+msgid "Template"
+msgstr "Шаблон"
+
+#: hmib.php
+msgid "Running Process History"
+msgstr "Историја покренутих процеса"
+
+#: hmib.php hmib_types.php
+msgid "Go"
+msgstr "Иди"
+
+#: hmib.php hmib_types.php
+msgid "Clear"
+msgstr "Очисти"
+
+#: hmib.php hmib_types.php
+msgid "Search"
+msgstr "Претражи"
+
+#: hmib.php
+msgid "Process"
+msgstr "Процес"
+
+#: hmib.php
+msgid "Entries"
+msgstr "Уноси"
+
+#: hmib.php hmib_types.php
+msgid "Default"
+msgstr "Подразумевано"
+
+#: hmib.php
+msgid "Hostname"
+msgstr "Име домаћина"
+
+#: hmib.php
+msgid "Last Seen"
+msgstr "Последњи пут виђено"
+
+#: hmib.php
+msgid "Use Time (d:h:m)"
+msgstr "Време коришћења (д:ч:м)"
+
+#: hmib.php
+msgid "History"
+msgstr "Историја"
+
+#: hmib.php
+msgid "Edit Device"
+msgstr "Уреди уређај"
+
+#: hmib.php
+msgid "No Process History Found"
+msgstr "Није пронађена историја процеса"
+
+#: hmib.php
+msgid "Running Processes"
+msgstr "Покренути процеси"
+
+#: hmib.php
+msgid "Path"
+msgstr "Путања"
+
+#: hmib.php
+msgid "Parameters"
+msgstr "Параметри"
+
+#: hmib.php
+msgid "CPU (Hrs)"
+msgstr "CPU (сати)"
+
+#: hmib.php
+msgid "Memory (MB)"
+msgstr "Меморија (MB)"
+
+#: hmib.php
+msgid "Type"
+msgstr "Тип"
+
+#: hmib.php
+msgid "Status"
+msgstr "Статус"
+
+#: hmib.php
+msgid "Processes"
+msgstr "Процеси"
+
+#: hmib.php
+msgid "No Running Software Found"
+msgstr "Није пронађен покренути софтвер"
+
+#: hmib.php
+msgid "Total CPU [h]:"
+msgstr "Укупно CPU [h]:"
+
+#: hmib.php
+msgid "Total Size [MB]:"
+msgstr "Укупна величина [MB]:"
+
+#: hmib.php
+msgid "Avg. CPU [h]:"
+msgstr "Прос. CPU [h]:"
+
+#: hmib.php
+msgid "Avg. Size [MB]:"
+msgstr "Прос. величина [MB]:"
+
+#: hmib.php
+msgid "Hardware Inventory"
+msgstr "Инвентар хардвера"
+
+#: hmib.php
+msgid "Hardware Description"
+msgstr "Опис хардвера"
+
+#: hmib.php
+msgid "Hardware Type"
+msgstr "Тип хардвера"
+
+#: hmib.php
+msgid "Errors"
+msgstr "Грешке"
+
+#: hmib.php
+msgid "Devices"
+msgstr "Уређаји"
+
+#: hmib.php
+msgid "No Hardware Found"
+msgstr "Хардвер није пронађен"
+
+#: hmib.php
+msgid "Click to filter by this status"
+msgstr "Кликните да бисте филтрирали по овом статусу"
+
+#: hmib.php
+msgid "Storage Inventory"
+msgstr "Инвентар складишта"
+
+#: hmib.php
+msgid "Volumes"
+msgstr "Волумени"
+
+#: hmib.php
+msgid "Storage Description"
+msgstr "Опис складишта"
+
+#: hmib.php
+msgid "Storage Type"
+msgstr "Тип складишта"
+
+#: hmib.php
+msgid "Percent Used"
+msgstr "Проценат искоришћености"
+
+#: hmib.php
+msgid "Used (MB)"
+msgstr "Искоришћено (MB)"
+
+#: hmib.php
+msgid "Total (MB)"
+msgstr "Укупно (MB)"
+
+#: hmib.php
+msgid "Alloc (KB)"
+msgstr "Додељено (KB)"
+
+#: hmib.php
+msgid "No Storage Devices Found"
+msgstr "Нису пронађени уређаји за складиштење"
+
+#: hmib.php
+msgid "Device Filter"
+msgstr "Филтер уређаја"
+
+#: hmib.php
+msgid "Recovering"
+msgstr "Опоравак"
+
+#: hmib.php
+msgid "Up"
+msgstr "Доступан"
+
+#: hmib.php setup.php
+msgid "Disabled"
+msgstr "Онемогућено"
+
+#: hmib.php setup.php
+msgid "Actions"
+msgstr "Радње"
+
+#: hmib.php
+msgid "Uptime(d:h:m)"
+msgstr "Време рада (д:ч:м)"
+
+#: hmib.php
+msgid "Users"
+msgstr "Корисници"
+
+#: hmib.php
+msgid "CPU %%%"
+msgstr "CPU %%%"
+
+#: hmib.php
+msgid "CPUs"
+msgstr "Процесори"
+
+#: hmib.php
+msgid "Total Mem"
+msgstr "Укупна меморија"
+
+#: hmib.php
+msgid "Used Mem"
+msgstr "Заузета меморија"
+
+#: hmib.php
+msgid "Total Swap"
+msgstr "Укупан Swap"
+
+#: hmib.php
+msgid "Used Swap"
+msgstr "Искоришћени Swap"
+
+#: hmib.php
+msgid "View Dashboard"
+msgstr "Прикажи контролну таблу"
+
+#: hmib.php
+msgid "View Storage"
+msgstr "Прикажи складиште"
+
+#: hmib.php
+msgid "View Hardware"
+msgstr "Прикажи хардвер"
+
+#: hmib.php
+msgid "View Processes"
+msgstr "Прикажи процесе"
+
+#: hmib.php
+msgid "View Software Inventory"
+msgstr "Прикажи инвентар софтвера"
+
+#: hmib.php
+msgid "View Graphs"
+msgstr "Преглед графикона"
+
+#: hmib.php
+msgid "No Graphs Defined"
+msgstr "Нема дефинисаних графикона"
+
+#: hmib.php
+msgid "N/A"
+msgstr "Н/Д"
+
+#: hmib.php
+msgid "No Devices Found"
+msgstr "Није пронађен ниједан уређај"
+
+#: hmib.php
+msgid "Software Inventory"
+msgstr "Инвентар софтвера"
+
+#: hmib.php
+msgid "Applications"
+msgstr "Апликације"
+
+#: hmib.php
+msgid "Package"
+msgstr "Пакет"
+
+#: hmib.php
+msgid "Installed"
+msgstr "Инсталирано"
+
+#: hmib.php
+msgid "No Software Packages Found"
+msgstr "Није пронађен ниједан софтверски пакет"
+
+#: hmib.php
+msgid "Fleet Dashboard"
+msgstr "Контролна табла флоте"
+
+#: hmib.php
+msgid "Summary"
+msgstr "Сажето"
+
+#: hmib.php
+msgid "Storage"
+msgstr "Складиште"
+
+#: hmib.php
+msgid "Hardware"
+msgstr "Хардвер"
+
+#: hmib.php
+msgid "Use History"
+msgstr "Историја коришћења"
+
+#: hmib.php
+msgid "Inventory"
+msgstr "Инвентар"
+
+#: hmib.php
+msgid "Graphs"
+msgstr "Графикони"
+
+#: hmib.php
+msgid "Dashboard"
+msgstr "Контролна табла"
+
+#: hmib.php
+msgid "Summary Filter"
+msgstr "Филтер сажетка"
+
+#: hmib.php
+msgid "Types"
+msgstr "Типови"
+
+#: hmib.php
+msgid "All Records"
+msgstr "Сви записи"
+
+#: hmib.php
+#, php-format
+msgid "%d Records"
+msgstr "%d записа"
+
+#: hmib.php
+#, php-format
+msgid "%d Record"
+msgstr "%d запис"
+
+#: hmib.php
+msgid "NOTE: Import the Host MIB Device Package to view Graphs."
+msgstr "НАПОМЕНА: Увезите Host MIB пакет уређаја да бисте приказали графиконе."
+
+#: hmib.php
+msgid "Device Type Summary Statistics"
+msgstr "Збирна статистика типова уређаја"
+
+#: hmib.php hmib_types.php
+msgid "Version"
+msgstr "Верзија"
+
+#: hmib.php
+msgid "Logins"
+msgstr "Пријаве"
+
+#: hmib.php
+msgid "CPUS"
+msgstr "CPU-ови"
+
+#: hmib.php
+msgid "Avg CPU"
+msgstr "Прос. CPU"
+
+#: hmib.php
+msgid "Max CPU"
+msgstr "Макс. CPU"
+
+#: hmib.php
+msgid "Avg Mem"
+msgstr "Прос. меморија"
+
+#: hmib.php
+msgid "Max Mem"
+msgstr "Макс. меморија"
+
+#: hmib.php
+msgid "Avg Swap"
+msgstr "Прос. своп"
+
+#: hmib.php
+msgid "Max Swap"
+msgstr "Макс. своп"
+
+#: hmib.php
+msgid "Avg Proc"
+msgstr "Прос. процеси"
+
+#: hmib.php
+msgid "Max Proc"
+msgstr "Макс. процеси"
+
+#: hmib.php
+msgid "View Fleet Dashboard"
+msgstr "Прикажи контролну таблу флоте"
+
+#: hmib.php
+msgid "View Devices"
+msgstr "Прикажи уређаје"
+
+#: hmib.php
+msgid "No Device Types"
+msgstr "Нема типова уређаја"
+
+#: hmib.php
+msgid "Process Summary Filter"
+msgstr "Филтер сажетка процеса"
+
+#: hmib.php
+msgid "Process Name"
+msgstr "Назив процеса"
+
+#: hmib.php
+msgid "Num Paths"
+msgstr "Број путања"
+
+#: hmib.php hmib_types.php
+msgid "Hosts"
+msgstr "Хостови"
+
+#: hmib.php
+msgid "Avg Memory"
+msgstr "Просечна меморија"
+
+#: hmib.php
+msgid "Max Memory"
+msgstr "Максимална меморија"
+
+#: hmib.php
+msgid "Summary Stats"
+msgstr "Збирна статистика"
+
+#: hmib.php
+#, php-format
+msgid "%s Hrs"
+msgstr "%s сати"
+
+#: hmib.php
+#, php-format
+msgid "%s MB"
+msgstr "%s MB"
+
+#: hmib.php
+msgid "No Processes"
+msgstr "Нема процеса"
+
+#: hmib.php
+msgid "Custom Graph List Applied - Filtering from List"
+msgstr "Примењена прилагођена листа графикона - филтрирање са листе"
+
+#: hmib.php
+msgid "Graph Preview Filters"
+msgstr "Филтери прегледа графикона"
+
+#: hmib.php
+msgid "System Information"
+msgstr "Информације о систему"
+
+#: hmib.php
+msgid "CPU Utilization"
+msgstr "Искоришћеност CPU-а"
+
+#: hmib.php
+msgid "Memory Utilization"
+msgstr "Искоришћеност меморије"
+
+#: hmib.php
+msgid "Swap Utilization"
+msgstr "Искоришћеност свопа"
+
+#: hmib.php
+msgid "Users and Logins"
+msgstr "Корисници и пријаве"
+
+#: hmib.php
+msgid "Per-Processor Load"
+msgstr "Оптерећење по процесору"
+
+#: hmib.php
+msgid "Storage Volumes"
+msgstr "Волумени складишта"
+
+#: hmib.php
+msgid "Top Processes"
+msgstr "Водећи процеси"
+
+#: hmib.php
+msgid "Process Use History"
+msgstr "Историја коришћења процеса"
+
+#: hmib.php
+msgid "Hardware Devices"
+msgstr "Хардверски уређаји"
+
+#: hmib.php
+msgid "Installed Software"
+msgstr "Инсталирани софтвер"
+
+#: hmib.php
+msgid "No system information has been collected for this device yet."
+msgstr "За овај уређај још увек нису прикупљене информације о систему."
+
+#: hmib.php
+msgid "Management Address"
+msgstr "Адреса за управљање"
+
+#: hmib.php
+msgid "System Name"
+msgstr "Назив система"
+
+#: hmib.php
+msgid "Description"
+msgstr "Опис"
+
+#: hmib.php
+msgid "Contact"
+msgstr "Контакт"
+
+#: hmib.php
+msgid "Location"
+msgstr "Локација"
+
+#: hmib.php
+msgid "Uptime"
+msgstr "Време непрекидног рада"
+
+#: hmib.php
+msgid "System Time"
+msgstr "Системско време"
+
+#: hmib.php
+msgid "No processor data available."
+msgstr "Нема доступних података о процесору."
+
+#: hmib.php
+#, php-format
+msgid "%d CPU(s)"
+msgstr "%d CPU"
+
+#: hmib.php
+msgid "No memory data available."
+msgstr "Нема доступних података о меморији."
+
+#: hmib.php
+#, php-format
+msgid "%s total"
+msgstr "%s укупно"
+
+#: hmib.php
+msgid "No swap configured on this device."
+msgstr "На овом уређају није конфигурисан своп."
+
+#: hmib.php
+msgid "No session data available."
+msgstr "Нема доступних података о сесијама."
+
+#: hmib.php
+msgid "Logged-in Users"
+msgstr "Пријављени корисници"
+
+#: hmib.php
+msgid "Maximum Processes"
+msgstr "Максималан број процеса"
+
+#: hmib.php
+msgid "Unlimited"
+msgstr "Неограничено"
+
+#: hmib.php
+msgid "CPU"
+msgstr "CPU"
+
+#: hmib.php
+msgid "Load"
+msgstr "Оптерећење"
+
+#: hmib.php
+msgid "Utilization"
+msgstr "Искоришћеност"
+
+#: hmib.php
+#, php-format
+msgid "CPU %d"
+msgstr "CPU %d"
+
+#: hmib.php
+msgid "No per-processor load reported."
+msgstr "Није пријављено оптерећење по процесору."
+
+#: hmib.php
+msgid "Volume"
+msgstr "Волумен"
+
+#: hmib.php
+msgid "Used"
+msgstr "Искоришћено"
+
+#: hmib.php
+msgid "Total"
+msgstr "Укупно"
+
+#: hmib.php
+msgid "Used %"
+msgstr "Искоришћено %"
+
+#: hmib.php
+msgid "No storage volumes detected."
+msgstr "Нису откривени волумени складишта."
+
+#: hmib.php
+msgid "CPU (s)"
+msgstr "CPU (с)"
+
+#: hmib.php
+msgid "Memory"
+msgstr "Меморија"
+
+#: hmib.php
+msgid "No running processes recorded."
+msgstr "Није забележен ниједан покренути процес."
+
+#: hmib.php
+msgid "No hardware devices detected."
+msgstr "Нису откривени хардверски уређаји."
+
+#: hmib.php
+msgid "Installed Packages"
+msgstr "Инсталирани пакети"
+
+#: hmib.php hmib_types.php
+msgid "Name"
+msgstr "Назив"
+
+#: hmib.php
+msgid "No installed software inventory collected."
+msgstr "Није прикупљен инвентар инсталираног софтвера."
+
+#: hmib.php
+msgid "No process use history recorded."
+msgstr "Није забележена историја коришћења процеса."
+
+#: hmib.php
+msgid "Show more"
+msgstr "Прикажи више"
+
+#: hmib.php
+msgid "Show less"
+msgstr "Прикажи мање"
+
+#: hmib.php
+msgid "Open in a dialog"
+msgstr "Отвори у дијалогу"
+
+#: hmib.php
+msgid "Refresh"
+msgstr "Освежи"
+
+#: hmib.php
+msgid "Remove from page"
+msgstr "Уклони са странице"
+
+#: hmib.php
+msgid "Drag to reorder card"
+msgstr "Превуците за промену редоследа картице"
+
+#: hmib.php
+msgid "Invalid request. Please try again."
+msgstr "Неважећи захтев. Покушајте поново."
+
+#: hmib.php
+msgid "Invalid refresh interval."
+msgstr "Неважећи интервал освежавања."
+
+#: hmib.php
+msgid "No device selected."
+msgstr "Није изабран уређај."
+
+#: hmib.php
+msgid "Unknown card."
+msgstr "Непозната картица."
+
+#: hmib.php
+msgid "Host MIB Dashboard"
+msgstr "Host MIB контролна табла"
+
+#: hmib.php
+msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
+msgstr "Отворите контролну таблу уређаја са картице Уређаји кликом на иконицу контролне табле у колони Радње. Контролна табла памти последњи уређај који сте отворили."
+
+#: hmib.php
+#, php-format
+msgid "Device %d"
+msgstr "Уређај %d"
+
+#: hmib.php
+msgid "1 Minute"
+msgstr "1 минут"
+
+#: hmib.php
+msgid "30 Seconds"
+msgstr "30 секунди"
+
+#: hmib.php
+msgid "5 Minutes"
+msgstr "5 минута"
+
+#: hmib.php
+msgid "No Refresh"
+msgstr "Без освежавања"
+
+#: hmib.php
+msgid "Search Host MIB devices as you type to open that device's dashboard."
+msgstr "Претражујте Host MIB уређаје док куцате да бисте отворили контролну таблу тог уређаја."
+
+#: hmib.php
+msgid "Add card"
+msgstr "Додај картицу"
+
+#: hmib.php
+msgid "Add a card…"
+msgstr "Додај картицу…"
+
+#: hmib.php
+msgid "Fleet Overview"
+msgstr "Преглед флоте"
+
+#: hmib.php
+msgid "Resource Utilization"
+msgstr "Искоришћеност ресурса"
+
+#: hmib.php
+msgid "Device Status"
+msgstr "Статус уређаја"
+
+#: hmib.php
+msgid "Storage Utilization"
+msgstr "Искоришћеност складишта"
+
+#: hmib.php
+msgid "Uptime Distribution"
+msgstr "Расподела времена непрекидног рада"
+
+#: hmib.php
+msgid "OS Type Distribution"
+msgstr "Расподела типова ОС-а"
+
+#: hmib.php
+msgid "Top Processes by CPU"
+msgstr "Најзахтевнији процеси по CPU"
+
+#: hmib.php
+msgid "Top Processes by Memory"
+msgstr "Најзахтевнији процеси по меморији"
+
+#: hmib.php
+msgid "No Host MIB devices in this scope yet."
+msgstr "Још нема Host MIB уређаја у овом опсегу."
+
+#: hmib.php
+msgid "Total RAM"
+msgstr "Укупно RAM"
+
+#: hmib.php
+msgid "CPU %"
+msgstr "CPU %"
+
+#: hmib.php
+msgid "Memory %"
+msgstr "Меморија %"
+
+#: hmib.php
+msgid "Swap %"
+msgstr "Swap %"
+
+#: hmib.php
+msgid "Processes / host"
+msgstr "Процеси / хост"
+
+#: hmib.php
+msgid "No storage volumes detected in this scope."
+msgstr "Нису откривени волумени складишта у овом опсегу."
+
+#: hmib.php
+msgid "Total Capacity"
+msgstr "Укупни капацитет"
+
+#: hmib.php
+msgid "No OS types recorded."
+msgstr "Нема забележених типова ОС-а."
+
+#: hmib.php
+msgid "Max CPU (s)"
+msgstr "Макс. CPU (s)"
+
+#: hmib.php
+msgid "Relative"
+msgstr "Релативно"
+
+#: hmib.php
+msgid "No process statistics recorded."
+msgstr "Нема забележених статистика процеса."
+
+#: hmib.php
+msgid "Scope"
+msgstr "Опсег"
+
+#: hmib.php
+msgid "All Types"
+msgstr "Сви типови"
+
+#: hmib_types.php
+msgid "Delete"
+msgstr "Обриши"
+
+#: hmib_types.php
+msgid "Duplicate"
+msgstr "Дуплирај"
+
+#: hmib_types.php
+msgid "Click 'Continue' to Delete the following Host Type(s)"
+msgstr "Кликните на 'Настави' да бисте обрисали следећи(е) тип(ове) хоста"
+
+#: hmib_types.php
+msgid "Cancel"
+msgstr "Откажи"
+
+#: hmib_types.php
+msgid "Continue"
+msgstr "Настави"
+
+#: hmib_types.php
+msgid "Delete Host Type(s)"
+msgstr "Обриши тип(ове) хоста"
+
+#: hmib_types.php
+msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
+msgstr "Кликните на 'Настави' да бисте дуплирали следећи(е) тип(ове) хоста. Опционо можете променити опис за нови(е) тип(ове) хоста. У супротном, не мењајте вредност испод и оригинални назив ће бити умножен са новим суфиксом."
+
+#: hmib_types.php
+msgid "Host Type Prefix:"
+msgstr "Префикс типа хоста:"
+
+#: hmib_types.php
+msgid "Duplicate Host Type(s)"
+msgstr "Дуплирај тип(ове) хоста"
+
+#: hmib_types.php
+msgid "New Type"
+msgstr "Нови тип"
+
+#: hmib_types.php
+#, php-format
+msgid "There were %d Device Types Added!"
+msgstr "Додато је %d типова уређаја!"
+
+#: hmib_types.php
+msgid "No New Host Types Found!"
+msgstr "Нису пронађени нови типови хоста!"
+
+#: hmib_types.php
+msgid "Import Results"
+msgstr "Резултати увоза"
+
+#: hmib_types.php
+msgid "Cacti has imported the following items:"
+msgstr "Cacti је увезао следеће ставке:"
+
+#: hmib_types.php
+msgid "Import Host MIB OS Types"
+msgstr "Увези Host MIB типове ОС-а"
+
+#: hmib_types.php
+msgid "Import Device Types from Local File"
+msgstr "Увези типове уређаја из локалне датотеке"
+
+#: hmib_types.php
+msgid "Please specify the location of the CSV file containing your device type information."
+msgstr "Наведите локацију CSV датотеке која садржи податке о типовима уређаја."
+
+#: hmib_types.php
+msgid "Overwrite Existing Data?"
+msgstr "Преписати постојеће податке?"
+
+#: hmib_types.php
+msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
+msgstr "Да ли процесу увоза треба дозволити да препише постојеће податке? Имајте у виду да ово не значи брисање старог реда, већ само замену дуплираних редова."
+
+#: hmib_types.php
+msgid "Allow Existing Rows to be Updated?"
+msgstr "Дозволити ажурирање постојећих редова?"
+
+#: hmib_types.php
+msgid "Required File Format Notes"
+msgstr "Напомене о обавезном формату датотеке"
+
+#: hmib_types.php
+msgid "The file must contain a header row with the following column headings."
+msgstr "Датотека мора да садржи ред заглавља са следећим насловима колона."
+
+#: hmib_types.php
+msgid "A common name for the Host Type.  For example, Windows 7"
+msgstr "Уобичајени назив за тип хоста. На пример, Windows 7"
+
+#: hmib_types.php
+msgid "The OS version for the Host Type"
+msgstr "Верзија ОС-а за тип хоста"
+
+#: hmib_types.php
+msgid "A unique set of characters from the snmp sysDescr that uniquely identify this device"
+msgstr "Јединствени скуп знакова из snmp sysDescr који јединствено идентификује овај уређај"
+
+#: hmib_types.php
+msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
+msgstr "Специфични snmp sysObjectID произвођача који разликује овај уређај од других"
+
+#: hmib_types.php
+msgid "The primary key for this table is a combination of the following two fields:"
+msgstr "Примарни кључ за ову табелу је комбинација следећа два поља:"
+
+#: hmib_types.php
+msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
+msgstr "Стога, ако покушате да увезете дуплиране типове уређаја, постојећи подаци ће бити ажурирани новим информацијама."
+
+#: hmib_types.php
+msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
+msgstr "Тип хоста се одређује скенирањем његовог snmp агента ради добијања sysObjectID и sysDescription и њиховим поређењем са вредностима у бази типова хостова. Прво подударање пронађено у бази користи се за агрегацију података о хосту. Због тога је веома важно да изаберете исправне sysObjectID и sysDescrMatch вредности за ваше хостове."
+
+#: hmib_types.php
+msgid "Device Scanning Function Options"
+msgstr "Опције функције скенирања уређаја"
+
+#: hmib_types.php
+msgid "Give this Host Type a meaningful name."
+msgstr "Дајте овом типу хоста смислен назив."
+
+#: hmib_types.php
+msgid "Fill in the name for the version of this Host Type."
+msgstr "Унесите назив верзије овог типа хоста."
+
+#: hmib_types.php
+msgid "System Description Match"
+msgstr "Подударање описа система"
+
+#: hmib_types.php
+#, no-php-format
+msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
+msgstr "Наведите кључне информације које помажу додатку HMIB да открије тип хоста. Подржани су SQL Where изрази. Џокер знак за SQL Where је знак '%'. Регуларни изрази су уклоњени због проблема са компатибилношћу."
+
+#: hmib_types.php
+msgid "Vendor snmp Object ID"
+msgstr "snmp Object ID произвођача"
+
+#: hmib_types.php
+#, php-format
+msgid "Host MIB OS Types [edit: %s]"
+msgstr "Host MIB типови ОС-а [уређивање: %s]"
+
+#: hmib_types.php
+msgid "Host MIB OS Types [new]"
+msgstr "Host MIB типови ОС-а [ново]"
+
+#: hmib_types.php
+msgid "Host MIB OS Type Filters"
+msgstr "Филтери типова ОС-а за Host MIB"
+
+#: hmib_types.php setup.php
+msgid "OS Types"
+msgstr "Типови ОС-а"
+
+#: hmib_types.php
+msgid "Host Type Name"
+msgstr "Назив типа хоста"
+
+#: hmib_types.php
+msgid "OS Version"
+msgstr "Верзија ОС-а"
+
+#: hmib_types.php
+msgid "SNMP ObjectID"
+msgstr "SNMP ObjectID"
+
+#: hmib_types.php
+msgid "SNMP Sys Description Match"
+msgstr "Подударање за SNMP Sys Description"
+
+#: hmib_types.php
+msgid "No Host Types Found"
+msgstr "Није пронађен ниједан тип хоста"
+
+#: hmib_types.php
+msgid "Choose an action:"
+msgstr "Изаберите радњу:"
+
+#: hmib_types.php
+msgid "Rescan"
+msgstr "Поново скенирај"
+
+#: hmib_types.php
+msgid "Scan for New or Unknown Device Types"
+msgstr "Скенирај за нове или непознате типове уређаја"
+
+#: hmib_types.php setup.php
+msgid "Import"
+msgstr "Увези"
+
+#: hmib_types.php
+msgid "Import Host Types from a CSV File"
+msgstr "Увези типове хоста из CSV датотеке"
+
+#: hmib_types.php
+msgid "Export"
+msgstr "Извези"
+
+#: hmib_types.php
+msgid "Export Host Types to Share with Others"
+msgstr "Извези типове хоста за дељење са другима"
+
+#: setup.php
+msgid "Host MIB Viewer"
+msgstr "Host MIB прегледач"
+
+#: setup.php
+msgid "Host MIB Admin"
+msgstr "Host MIB администрација"
+
+#: setup.php
+msgid "Host MIB"
+msgstr "Host MIB"
+
+#: setup.php
+msgid "Host MIB General Settings"
+msgstr "Општа подешавања за Host MIB"
+
+#: setup.php
+msgid "Host MIB Poller Enabled"
+msgstr "Host MIB анкетер омогућен"
+
+#: setup.php
+msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
+msgstr "Означите ово поље ако желите да Host MIB анкетирање буде омогућено. У супротном, анкетер неће радити."
+
+#: setup.php
+msgid "Automatically Discover Cacti Devices"
+msgstr "Аутоматско откривање Cacti уређаја"
+
+#: setup.php
+msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
+msgstr "Да ли желите да аутоматски скенирате и додате уређаје који подржавају Host Resource MIB из Cacti табеле хостова?"
+
+#: setup.php
+msgid "Automatically Purge Devices"
+msgstr "Аутоматско чишћење уређаја"
+
+#: setup.php
+msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
+msgstr "Да ли желите да аутоматски очистите уређаје који су уклоњени из Cacti система?"
+
+#: setup.php
+msgid "Process History Retention"
+msgstr "Задржавање историје процеса"
+
+#: setup.php
+msgid "How long should the Use History tab keep a process after it was last seen running?"
+msgstr "Колико дуго картица Историја коришћења треба да чува процес након што је последњи пут виђен да ради?"
+
+#: setup.php
+msgid "Never Purge"
+msgstr "Никада не чисти"
+
+#: setup.php
+#, php-format
+msgid "%d Days"
+msgstr "%d дана"
+
+#: setup.php
+#, php-format
+msgid "%d Year"
+msgstr "%d година"
+
+#: setup.php
+#, php-format
+msgid "%d Years"
+msgstr "%d година"
+
+#: setup.php
+msgid "Default Row Count"
+msgstr "Подразумевани број редова"
+
+#: setup.php
+msgid "How many rows do you wish to see on the HMIB OS Type by default?"
+msgstr "Колико редова подразумевано желите да видите на HMIB типу OS?"
+
+#: setup.php
+msgid "Default Top Host Types"
+msgstr "Подразумевани водећи типови хостова"
+
+#: setup.php
+msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
+msgstr "Колико процеса подразумевано желите да видите на HMIB контролној табли?"
+
+#: setup.php
+#, php-format
+msgid "%d Types"
+msgstr "%d типова"
+
+#: setup.php
+msgid "Default Top Processes"
+msgstr "Подразумевани водећи процеси"
+
+#: setup.php
+#, php-format
+msgid "%d Processes"
+msgstr "%d процеса"
+
+#: setup.php
+msgid "Maximum Concurrent Collectors"
+msgstr "Максималан број истовремених сакупљача"
+
+#: setup.php
+msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
+msgstr "Који је максималан број истовремених процеса сакупљача које желите да покренете одједном?"
+
+#: setup.php
+#, php-format
+msgid "%d Process"
+msgstr "%d процес"
+
+#: setup.php
+msgid "Host Auto Discovery Frequency"
+msgstr "Учесталост аутоматског откривања хостова"
+
+#: setup.php
+msgid "Auto Discovery Frequency"
+msgstr "Учесталост аутоматског откривања"
+
+#: setup.php
+msgid "How often do you want to look for new Cacti Devices?"
+msgstr "Колико често желите да тражите нове Cacti уређаје?"
+
+#: setup.php
+msgid "Host Graph Automation"
+msgstr "Аутоматизација графикона хоста"
+
+#: setup.php
+msgid "Automatically Add New Graphs"
+msgstr "Аутоматско додавање нових графикона"
+
+#: setup.php
+msgid "How often do you want to check for new objects to graph?"
+msgstr "Колико често желите да проверавате да ли има нових објеката за приказивање на графикону?"
+
+#: setup.php
+msgid "Never"
+msgstr "Никада"
+
+#: setup.php
+#, php-format
+msgid "%d Hour"
+msgstr "%d сат"
+
+#: setup.php
+#, php-format
+msgid "%d Hours"
+msgstr "%d сати"
+
+#: setup.php
+#, php-format
+msgid "%d Day"
+msgstr "%d дан"
+
+#: setup.php
+msgid "Host MIB Table Collection Frequencies"
+msgstr "Учесталости прикупљања Host MIB табела"
+
+#: setup.php
+msgid "Running Programs Frequency"
+msgstr "Учесталост за покренуте програме"
+
+#: setup.php
+msgid "How often do you want to scan running software?"
+msgstr "Колико често желите да скенирате покренути софтвер?"
+
+#: setup.php
+msgid "Running Programs CPU/Memory Frequency"
+msgstr "Учесталост за CPU/меморију покренутих програма"
+
+#: setup.php
+msgid "How often do you want to scan running software for performance data?"
+msgstr "Колико често желите да скенирате покренути софтвер ради података о перформансама?"
+
+#: setup.php
+msgid "Installed Software Frequency"
+msgstr "Учесталост за инсталирани софтвер"
+
+#: setup.php
+msgid "How often do you want to scan for installed software?"
+msgstr "Колико често желите да скенирате инсталирани софтвер?"
+
+#: setup.php
+msgid "Storage Frequency"
+msgstr "Учесталост за складиште"
+
+#: setup.php
+msgid "How often do you want to scan for Storage performance data?"
+msgstr "Колико често желите да скенирате податке о перформансама складишта?"
+
+#: setup.php
+msgid "Device Frequency"
+msgstr "Учесталост за уређаје"
+
+#: setup.php
+msgid "How often do you want to scan for Device performance data?"
+msgstr "Колико често желите да скенирате податке о перформансама уређаја?"
+
+#: setup.php
+msgid "Processor Frequency"
+msgstr "Учесталост за процесор"
+
+#: setup.php
+msgid "How often do you want to scan for Processor performance data?"
+msgstr "Колико често желите да скенирате податке о перформансама процесора?"
+
+#: setup.php
+#, php-format
+msgid "%d Minute"
+msgstr "%d минут"
+
+#: setup.php
+#, php-format
+msgid "%d Minutes"
+msgstr "%d минута"
+
+#: setup.php
+msgid "Management"
+msgstr "Управљање"
+
+#: setup.php
+msgid "Normal User"
+msgstr "Обичан корисник"
+
+#: setup.php
+msgid "General Administration"
+msgstr "Општа администрација"
+
+#: setup.php
+msgid "Host MIB Fleet Dashboard"
+msgstr "Host MIB контролна табла флоте"
+
+#: setup.php
+msgid "Host MIB Inventory Summary"
+msgstr "Host MIB сажетак инвентара"
+
+#: setup.php
+msgid "Host MIB Details"
+msgstr "Host MIB детаљи"
+
+#: setup.php
+msgid "Host MIB Device Dashboard"
+msgstr "Host MIB контролна табла уређаја"
+
+#: setup.php
+msgid "Host MIB Storage"
+msgstr "Host MIB складиште"
+
+#: setup.php
+msgid "Host MIB Hardware"
+msgstr "Host MIB хардвер"
+
+#: setup.php
+msgid "Host MIB Running Processes"
+msgstr "Host MIB покренути процеси"
+
+#: setup.php
+msgid "Host MIB Process Use History"
+msgstr "Host MIB историја коришћења процеса"
+
+#: setup.php
+msgid "Host MIB Software Inventory"
+msgstr "Host MIB инвентар софтвера"
+
+#: setup.php
+msgid "Host MIB Graphs"
+msgstr "Host MIB графикони"
+
+#: setup.php
+msgid "Host MIB OS Types"
+msgstr "Host MIB типови OS"
+
+#: setup.php
+msgid "(Edit)"
+msgstr "(Уреди)"
