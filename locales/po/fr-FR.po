@@ -328,7 +328,7 @@ msgstr "N/A"
 
 #: hmib.php
 msgid "No Devices Found"
-msgstr "Aucun périphérique n&apos;a été trouvé"
+msgstr "Aucun périphérique n'a été trouvé"
 
 #: hmib.php
 msgid "Software Inventory"
@@ -482,7 +482,7 @@ msgstr "Nombre Chemins"
 
 #: hmib.php hmib_types.php
 msgid "Hosts"
-msgstr "Hôtes‪"
+msgstr "Hôtes"
 
 #: hmib.php
 msgid "Avg Memory"
