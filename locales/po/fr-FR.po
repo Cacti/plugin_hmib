@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: French <https://translate.cacti.net/projects/cacti/hmib/fr/>\nLanguage: fr-FR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n > 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: French <https://translate.cacti.net/projects/cacti/hmib/fr/>\nLanguage: fr-FR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n > 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -32,7 +32,7 @@ msgstr "En cours"
 
 #: hmib.php
 msgid "Runnable"
-msgstr "Runnable"
+msgstr "Exécutable"
 
 #: hmib.php
 msgid "Not Runnable"
@@ -92,7 +92,7 @@ msgstr "Rechercher"
 
 #: hmib.php
 msgid "Process"
-msgstr "Processus"
+msgstr "Traiter"
 
 #: hmib.php
 msgid "Entries"
@@ -430,7 +430,7 @@ msgstr "Moyenne CPU"
 
 #: hmib.php
 msgid "Max CPU"
-msgstr "Processeur max"
+msgstr "Processeur maximal"
 
 #: hmib.php
 msgid "Avg Mem"
@@ -438,7 +438,7 @@ msgstr "Moyenne Mem"
 
 #: hmib.php
 msgid "Max Mem"
-msgstr "Max Mem"
+msgstr "Mém. max"
 
 #: hmib.php
 msgid "Avg Swap"
@@ -454,7 +454,7 @@ msgstr "Proc. moy"
 
 #: hmib.php
 msgid "Max Proc"
-msgstr "Max Proc"
+msgstr "Proc. max"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
@@ -1005,7 +1005,7 @@ msgstr "Entrez le nom de la version de ce type d'hôte."
 
 #: hmib_types.php
 msgid "System Description Match"
-msgstr "Correspondance de la description du système"
+msgstr "Correspondance de la description système"
 
 #: hmib_types.php
 #, php-format
@@ -1043,11 +1043,11 @@ msgstr "Version du système d’exploitation"
 
 #: hmib_types.php
 msgid "SNMP ObjectID"
-msgstr "SNMP ObjectID"
+msgstr "ID d'objet SNMP"
 
 #: hmib_types.php
 msgid "SNMP Sys Description Match"
-msgstr "SNMP Sys Description Match"
+msgstr "Correspondance de description système SNMP"
 
 #: hmib_types.php
 msgid "No Host Types Found"
@@ -1141,12 +1141,12 @@ msgstr "%d jours"
 #: setup.php
 #, php-format
 msgid "%d Year"
-msgstr "%d année"
+msgstr "%d an"
 
 #: setup.php
 #, php-format
 msgid "%d Years"
-msgstr "%d années"
+msgstr "%d ans"
 
 #: setup.php
 msgid "Default Row Count"
@@ -1176,7 +1176,7 @@ msgstr "Processus supérieurs par défaut"
 #: setup.php
 #, php-format
 msgid "%d Processes"
-msgstr "Processus %d"
+msgstr "%d processus"
 
 #: setup.php
 msgid "Maximum Concurrent Collectors"
