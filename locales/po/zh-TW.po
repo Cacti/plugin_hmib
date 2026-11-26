@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Chinese (Traditional Han script) <https://translate.cacti.net/projects/cacti/hmib/zh_Hant/>\nLanguage: zh-TW\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Chinese (Traditional Han script) <https://translate.cacti.net/projects/cacti/hmib/zh_Hant/>\nLanguage: zh-TW\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -28,7 +28,7 @@ msgstr "應用程式"
 
 #: hmib.php
 msgid "Running"
-msgstr "執行中"
+msgstr "運行"
 
 #: hmib.php
 msgid "Runnable"
@@ -56,7 +56,7 @@ msgstr "測試"
 
 #: hmib.php
 msgid "Down"
-msgstr "離線"
+msgstr "向下"
 
 #: hmib.php hmib_types.php
 msgid "OS Type"
@@ -72,7 +72,7 @@ msgstr "裝置"
 
 #: hmib.php
 msgid "Template"
-msgstr "範本"
+msgstr "模板"
 
 #: hmib.php
 msgid "Running Process History"
@@ -92,7 +92,7 @@ msgstr "搜尋"
 
 #: hmib.php
 msgid "Process"
-msgstr "程序"
+msgstr "處理"
 
 #: hmib.php
 msgid "Entries"
@@ -120,7 +120,7 @@ msgstr "歷史"
 
 #: hmib.php
 msgid "Edit Device"
-msgstr "編輯裝置"
+msgstr "編輯設備"
 
 #: hmib.php
 msgid "No Process History Found"
@@ -168,7 +168,7 @@ msgstr "總CPU [h]："
 
 #: hmib.php
 msgid "Total Size [MB]:"
-msgstr "總大小 [MB]："
+msgstr "總大小[MB]:"
 
 #: hmib.php
 msgid "Avg. CPU [h]:"
@@ -196,7 +196,7 @@ msgstr "錯誤"
 
 #: hmib.php
 msgid "Devices"
-msgstr "裝置"
+msgstr "設備"
 
 #: hmib.php
 msgid "No Hardware Found"
@@ -252,11 +252,11 @@ msgstr "正在復原"
 
 #: hmib.php
 msgid "Up"
-msgstr "運作中"
+msgstr "向上"
 
 #: hmib.php setup.php
 msgid "Disabled"
-msgstr "已停用"
+msgstr "停用"
 
 #: hmib.php setup.php
 msgid "Actions"
@@ -316,7 +316,7 @@ msgstr "檢視軟體清冊"
 
 #: hmib.php
 msgid "View Graphs"
-msgstr "檢視圖表"
+msgstr "查看圖表"
 
 #: hmib.php
 msgid "No Graphs Defined"
@@ -328,7 +328,7 @@ msgstr "N/A"
 
 #: hmib.php
 msgid "No Devices Found"
-msgstr "找不到裝置"
+msgstr "未找到裝置"
 
 #: hmib.php
 msgid "Software Inventory"
@@ -340,7 +340,7 @@ msgstr "應用"
 
 #: hmib.php
 msgid "Package"
-msgstr "方案"
+msgstr "套件"
 
 #: hmib.php
 msgid "Installed"
@@ -426,7 +426,7 @@ msgstr "CPU"
 
 #: hmib.php
 msgid "Avg CPU"
-msgstr "平均CPU"
+msgstr "平均 CPU"
 
 #: hmib.php
 msgid "Max CPU"
@@ -438,7 +438,7 @@ msgstr "平均記憶"
 
 #: hmib.php
 msgid "Max Mem"
-msgstr "Max Mem"
+msgstr "最大記憶體"
 
 #: hmib.php
 msgid "Avg Swap"
@@ -450,11 +450,11 @@ msgstr "Max Swap"
 
 #: hmib.php
 msgid "Avg Proc"
-msgstr "Avg Proc"
+msgstr "平均程序數"
 
 #: hmib.php
 msgid "Max Proc"
-msgstr "Max Proc"
+msgstr "最大程序數"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
@@ -478,7 +478,7 @@ msgstr "流程名稱"
 
 #: hmib.php
 msgid "Num Paths"
-msgstr "Num Paths"
+msgstr "路徑數"
 
 #: hmib.php hmib_types.php
 msgid "Hosts"
@@ -516,7 +516,7 @@ msgstr "已套用自訂圖表清單 - 從清單篩選"
 
 #: hmib.php
 msgid "Graph Preview Filters"
-msgstr "圖表預覽篩選器"
+msgstr "圖形預覽過濾器"
 
 #: hmib.php
 msgid "System Information"
@@ -580,15 +580,15 @@ msgstr "描述"
 
 #: hmib.php
 msgid "Contact"
-msgstr "聯絡資訊"
+msgstr "聯絡"
 
 #: hmib.php
 msgid "Location"
-msgstr "位置"
+msgstr "地點"
 
 #: hmib.php
 msgid "Uptime"
-msgstr "運作時間"
+msgstr "運行時間"
 
 #: hmib.php
 msgid "System Time"
@@ -630,7 +630,7 @@ msgstr "處理程序數量上限"
 
 #: hmib.php
 msgid "Unlimited"
-msgstr "無限制"
+msgstr "無限"
 
 #: hmib.php
 msgid "CPU"
@@ -796,7 +796,7 @@ msgstr "資源使用率"
 
 #: hmib.php
 msgid "Device Status"
-msgstr "裝置狀態"
+msgstr "設備狀態"
 
 #: hmib.php
 msgid "Storage Utilization"
@@ -929,7 +929,7 @@ msgstr "匯入結果"
 
 #: hmib_types.php
 msgid "Cacti has imported the following items:"
-msgstr "Cacti 已匯入下列項目："
+msgstr "Cacti已導入以下物品:"
 
 #: hmib_types.php
 msgid "Import Host MIB OS Types"
@@ -945,7 +945,7 @@ msgstr "請指定包含裝置類型資訊的 CSV 檔案位置。"
 
 #: hmib_types.php
 msgid "Overwrite Existing Data?"
-msgstr "覆寫現有資料？"
+msgstr "覆蓋現有數據？"
 
 #: hmib_types.php
 msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
@@ -953,15 +953,15 @@ msgstr "是否允許導入過程覆蓋現有數據？請注意，這並不意味
 
 #: hmib_types.php
 msgid "Allow Existing Rows to be Updated?"
-msgstr "允許更新現有資料列？"
+msgstr "允許更新現有行？"
 
 #: hmib_types.php
 msgid "Required File Format Notes"
-msgstr "必要檔案格式說明"
+msgstr "所需的文件格式說明"
 
 #: hmib_types.php
 msgid "The file must contain a header row with the following column headings."
-msgstr "檔案必須包含帶有下列欄標題的標題列。"
+msgstr "該文件必須包含帶有以下列標題的標題行。"
 
 #: hmib_types.php
 msgid "A common name for the Host Type.  For example, Windows 7"
@@ -1005,7 +1005,7 @@ msgstr "填寫此主機類型版本的名稱。"
 
 #: hmib_types.php
 msgid "System Description Match"
-msgstr "系統描述比對"
+msgstr "系統描述匹配"
 
 #: hmib_types.php
 #, php-format
@@ -1043,7 +1043,7 @@ msgstr "版本"
 
 #: hmib_types.php
 msgid "SNMP ObjectID"
-msgstr "SNMP ObjectID"
+msgstr "SNMP 物件 ID"
 
 #: hmib_types.php
 msgid "SNMP Sys Description Match"
@@ -1141,12 +1141,12 @@ msgstr "%d 天"
 #: setup.php
 #, php-format
 msgid "%d Year"
-msgstr "%d 年"
+msgstr "%d年"
 
 #: setup.php
 #, php-format
 msgid "%d Years"
-msgstr "%d 年"
+msgstr "%d年"
 
 #: setup.php
 msgid "Default Row Count"
@@ -1176,7 +1176,7 @@ msgstr "預設熱門處理程序"
 #: setup.php
 #, php-format
 msgid "%d Processes"
-msgstr "%d 個處理程序"
+msgstr "%d進程"
 
 #: setup.php
 msgid "Maximum Concurrent Collectors"
@@ -1302,7 +1302,7 @@ msgstr "管理"
 
 #: setup.php
 msgid "Normal User"
-msgstr "一般使用者"
+msgstr "普通用戶"
 
 #: setup.php
 msgid "General Administration"
