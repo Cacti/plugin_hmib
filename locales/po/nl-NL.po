@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Dutch <https://translate.cacti.net/projects/cacti/hmib/nl/>\nLanguage: nl-NL\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Dutch <https://translate.cacti.net/projects/cacti/hmib/nl/>\nLanguage: nl-NL\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -16,7 +16,7 @@ msgstr "Onbekend"
 
 #: hmib.php
 msgid "Operating System"
-msgstr "Operating System"
+msgstr "Besturingssysteem"
 
 #: hmib.php
 msgid "Device Driver"
@@ -28,7 +28,7 @@ msgstr "Applicatie"
 
 #: hmib.php
 msgid "Running"
-msgstr "Actief"
+msgstr "Wordt uitgevoerd"
 
 #: hmib.php
 msgid "Runnable"
@@ -140,7 +140,7 @@ msgstr "Parameters"
 
 #: hmib.php
 msgid "CPU (Hrs)"
-msgstr "CPU (Hrs)"
+msgstr "CPU (uren)"
 
 #: hmib.php
 msgid "Memory (MB)"
@@ -272,7 +272,7 @@ msgstr "Gebruikers"
 
 #: hmib.php
 msgid "CPU %%%"
-msgstr "CPU %"
+msgstr "CPU %%%"
 
 #: hmib.php
 msgid "CPUs"
@@ -397,12 +397,12 @@ msgstr "Alle records"
 #: hmib.php
 #, php-format
 msgid "%d Records"
-msgstr "%d Records"
+msgstr "%d records"
 
 #: hmib.php
 #, php-format
 msgid "%d Record"
-msgstr "%d Record"
+msgstr "%d record"
 
 #: hmib.php
 msgid "NOTE: Import the Host MIB Device Package to view Graphs."
@@ -418,7 +418,7 @@ msgstr "Versie"
 
 #: hmib.php
 msgid "Logins"
-msgstr "Logins"
+msgstr "Aanmeldingen"
 
 #: hmib.php
 msgid "CPUS"
@@ -426,7 +426,7 @@ msgstr "CPU's"
 
 #: hmib.php
 msgid "Avg CPU"
-msgstr "Avg CPU"
+msgstr "Gemiddelde CPU"
 
 #: hmib.php
 msgid "Max CPU"
@@ -434,7 +434,7 @@ msgstr "Max. CPU"
 
 #: hmib.php
 msgid "Avg Mem"
-msgstr "Avg Mem"
+msgstr "Gem. geheugen"
 
 #: hmib.php
 msgid "Max Mem"
@@ -442,7 +442,7 @@ msgstr "Max. Mem"
 
 #: hmib.php
 msgid "Avg Swap"
-msgstr "Avg Swap"
+msgstr "Gem. swap"
 
 #: hmib.php
 msgid "Max Swap"
@@ -450,7 +450,7 @@ msgstr "Max. Swap"
 
 #: hmib.php
 msgid "Avg Proc"
-msgstr "Avg Proc"
+msgstr "Gem. processen"
 
 #: hmib.php
 msgid "Max Proc"
@@ -588,7 +588,7 @@ msgstr "Locatie"
 
 #: hmib.php
 msgid "Uptime"
-msgstr "Uptime"
+msgstr "Bedrijfstijd"
 
 #: hmib.php
 msgid "System Time"
@@ -892,7 +892,7 @@ msgstr "Annuleer"
 
 #: hmib_types.php
 msgid "Continue"
-msgstr "Volgende"
+msgstr "Doorgaan"
 
 #: hmib_types.php
 msgid "Delete Host Type(s)"
@@ -1014,7 +1014,7 @@ msgstr "Geef belangrijke informatie op om HMIB te helpen het type host te detect
 
 #: hmib_types.php
 msgid "Vendor snmp Object ID"
-msgstr "Vendor snmp Object ID"
+msgstr "snmp-object-ID van leverancier"
 
 #: hmib_types.php
 #, php-format
@@ -1047,7 +1047,7 @@ msgstr "SNMP-objectID"
 
 #: hmib_types.php
 msgid "SNMP Sys Description Match"
-msgstr "SNMP Sys Beschrijving Beschrijving Match"
+msgstr "SNMP Sys Beschrijving Match"
 
 #: hmib_types.php
 msgid "No Host Types Found"
@@ -1146,7 +1146,7 @@ msgstr "%d Jaar"
 #: setup.php
 #, php-format
 msgid "%d Years"
-msgstr "%d Jaren"
+msgstr "%d jaar"
 
 #: setup.php
 msgid "Default Row Count"
@@ -1350,7 +1350,7 @@ msgstr "Gastheer MIB-grafieken"
 
 #: setup.php
 msgid "Host MIB OS Types"
-msgstr "Host MIB OS Types"
+msgstr "Host MIB OS-typen"
 
 #: setup.php
 msgid "(Edit)"
