@@ -1366,4 +1366,3 @@ msgstr "Типи ОС Host MIB"
 #: setup.php
 msgid "(Edit)"
 msgstr "(Редагувати)"
-
