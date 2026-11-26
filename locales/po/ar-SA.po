@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Arabic (Saudi Arabia) <https://translate.cacti.net/projects/cacti/hmib/ar_SA/>\nLanguage: ar-SA\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Arabic (Saudi Arabia) <https://translate.cacti.net/projects/cacti/hmib/ar_SA/>\nLanguage: ar-SA\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -32,7 +32,7 @@ msgstr "مفتوح"
 
 #: hmib.php
 msgid "Runnable"
-msgstr "Runnable"
+msgstr "قابل للتشغيل"
 
 #: hmib.php
 msgid "Not Runnable"
@@ -92,7 +92,7 @@ msgstr "بحث"
 
 #: hmib.php
 msgid "Process"
-msgstr "عملية"
+msgstr "معالجة"
 
 #: hmib.php
 msgid "Entries"
@@ -136,7 +136,7 @@ msgstr "المسار"
 
 #: hmib.php
 msgid "Parameters"
-msgstr "المعلمات"
+msgstr "المعاملات"
 
 #: hmib.php
 msgid "CPU (Hrs)"
@@ -236,7 +236,7 @@ msgstr "المجموع (ميغابايت)"
 
 #: hmib.php
 msgid "Alloc (KB)"
-msgstr "Alloc (KB)"
+msgstr "التخصيص (KB)"
 
 #: hmib.php
 msgid "No Storage Devices Found"
@@ -272,7 +272,7 @@ msgstr "المستخدمين"
 
 #: hmib.php
 msgid "CPU %%%"
-msgstr "وحدة المعالجة المركزية %"
+msgstr "وحدة المعالجة المركزية %%%"
 
 #: hmib.php
 msgid "CPUs"
@@ -719,7 +719,7 @@ msgstr "فتح في مربع حوار"
 
 #: hmib.php
 msgid "Refresh"
-msgstr "تحديث"
+msgstr "إنعاش"
 
 #: hmib.php
 msgid "Remove from page"
@@ -760,7 +760,7 @@ msgstr "الجهاز %d"
 
 #: hmib.php
 msgid "1 Minute"
-msgstr "1 دقيقة"
+msgstr "دقيقة واحدة"
 
 #: hmib.php
 msgid "30 Seconds"
@@ -1043,7 +1043,7 @@ msgstr "إصدار نظام التشغيل"
 
 #: hmib_types.php
 msgid "SNMP ObjectID"
-msgstr "SNMP ObjectID"
+msgstr "معرف كائن SNMP"
 
 #: hmib_types.php
 msgid "SNMP Sys Description Match"
@@ -1176,7 +1176,7 @@ msgstr "عمليات الأعلى الافتراضية"
 #: setup.php
 #, php-format
 msgid "%d Processes"
-msgstr "العمليات %d"
+msgstr "%d عمليات"
 
 #: setup.php
 msgid "Maximum Concurrent Collectors"
@@ -1232,7 +1232,7 @@ msgstr "%d د ساعات"
 #: setup.php
 #, php-format
 msgid "%d Day"
-msgstr "يوم %d"
+msgstr "%d يوم"
 
 #: setup.php
 msgid "Host MIB Table Collection Frequencies"
@@ -1289,7 +1289,7 @@ msgstr "كم مرة تريد البحث عن بيانات أداء المعال�
 #: setup.php
 #, php-format
 msgid "%d Minute"
-msgstr "دقيقة %d"
+msgstr "%d دقيقة"
 
 #: setup.php
 #, php-format
