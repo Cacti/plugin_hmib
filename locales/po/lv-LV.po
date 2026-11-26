@@ -4,19 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr ""
-"Project-Id-Version: Cacti\n"
-"Report-Msgid-Bugs-To: developers@cacti.net\n"
-"POT-Creation-Date: 2026-10-24 06:10-0400\n"
-"PO-Revision-Date: 2026-05-09 07:18+0000\n"
-"Last-Translator: \"Coool (github.com/Coool)\" <coool@mail.lv>\n"
-"Language-Team: Latvian <https://translate.cacti.net/projects/cacti/hmib/lv/>\n"
-"Language: lv-LV\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\n"
-"X-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Latvian <https://translate.cacti.net/projects/cacti/hmib/lv/>\nLanguage: lv-LV\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -216,7 +204,7 @@ msgstr "Nav atrasta neviena aparatūra"
 
 #: hmib.php
 msgid "Click to filter by this status"
-msgstr ""
+msgstr "Noklikšķiniet, lai filtrētu pēc šī statusa"
 
 #: hmib.php
 msgid "Storage Inventory"
@@ -308,7 +296,7 @@ msgstr "Izmantotā apmaiņas vieta"
 
 #: hmib.php
 msgid "View Dashboard"
-msgstr ""
+msgstr "Skatīt informācijas paneli"
 
 #: hmib.php
 msgid "View Storage"
@@ -336,7 +324,7 @@ msgstr "Nav nevienu definētu grafiku"
 
 #: hmib.php
 msgid "N/A"
-msgstr ""
+msgstr "Nav pieejams"
 
 #: hmib.php
 msgid "No Devices Found"
@@ -363,10 +351,8 @@ msgid "No Software Packages Found"
 msgstr "Nav atrastas programmas pakotnes"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Fleet Dashboard"
-msgstr "Resursdatora MIB detalizēta informācija"
+msgstr "Ierīču parka informācijas panelis"
 
 #: hmib.php
 msgid "Summary"
@@ -394,17 +380,15 @@ msgstr "Grafiki"
 
 #: hmib.php
 msgid "Dashboard"
-msgstr ""
+msgstr "Informācijas panelis"
 
 #: hmib.php
 msgid "Summary Filter"
 msgstr "Kopsavilkuma filtrēšana"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Type"
 msgid "Types"
-msgstr "Tips"
+msgstr "Tipi"
 
 #: hmib.php
 msgid "All Records"
@@ -474,7 +458,7 @@ msgstr "Maksimālais procesu"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
-msgstr ""
+msgstr "Skatīt ierīču parka informācijas paneli"
 
 #: hmib.php
 msgid "View Devices"
@@ -509,10 +493,8 @@ msgid "Max Memory"
 msgstr "Maksimālais atmiņas"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Summary"
 msgid "Summary Stats"
-msgstr "Kopsavilkums"
+msgstr "Kopsavilkuma statistika"
 
 #: hmib.php
 #, php-format
@@ -530,7 +512,7 @@ msgstr "Nav procesu"
 
 #: hmib.php
 msgid "Custom Graph List Applied - Filtering from List"
-msgstr "Pielietots pielāgotais grafika saraksts - filtrēšana no saraksta"
+msgstr "Lietots pielāgots grafiku saraksts — filtrēšana no saraksta"
 
 #: hmib.php
 msgid "Graph Preview Filters"
@@ -538,223 +520,178 @@ msgstr "Grafika priekšskatījuma filtrēšana"
 
 #: hmib.php
 msgid "System Information"
-msgstr ""
+msgstr "Sistēmas informācija"
 
 #: hmib.php
 msgid "CPU Utilization"
-msgstr ""
+msgstr "CPU noslodze"
 
 #: hmib.php
 msgid "Memory Utilization"
-msgstr ""
+msgstr "Atmiņas izmantojums"
 
 #: hmib.php
 msgid "Swap Utilization"
-msgstr ""
+msgstr "Maiņvietas izmantojums"
 
 #: hmib.php
 msgid "Users and Logins"
-msgstr ""
+msgstr "Lietotāji un pieteikšanās"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Process Name"
 msgid "Per-Processor Load"
-msgstr "Procesa nosaukums"
+msgstr "Katra procesora noslodze"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Storage Type"
 msgid "Storage Volumes"
-msgstr "Krātuves tips"
+msgstr "Krātuves sējumi"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes"
-msgstr "Nav procesu"
+msgstr "Noslogotākie procesi"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Process Use History"
 msgid "Process Use History"
-msgstr "Resursdatora MIB procesa izmantošanas vēsture"
+msgstr "Procesu izmantošanas vēsture"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Hardware Type"
 msgid "Hardware Devices"
-msgstr "Aparatūras tips"
+msgstr "Aparatūras ierīces"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Installed Software Frequency"
 msgid "Installed Software"
-msgstr "Uzstādītās programmas biežums"
+msgstr "Instalētā programmatūra"
 
 #: hmib.php
 msgid "No system information has been collected for this device yet."
-msgstr ""
+msgstr "Šai ierīcei vēl nav apkopota sistēmas informācija."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Management"
 msgid "Management Address"
-msgstr "Vadība"
+msgstr "Pārvaldības adrese"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host Type Name"
 msgid "System Name"
-msgstr "Resursdatora tipa nosaukums"
+msgstr "Sistēmas nosaukums"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Storage Description"
 msgid "Description"
-msgstr "Krātuves apraksts"
+msgstr "Apraksts"
 
 #: hmib.php
 msgid "Contact"
-msgstr ""
+msgstr "Kontaktinformācija"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Actions"
 msgid "Location"
-msgstr "Darbības"
+msgstr "Atrašanās vieta"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Uptime(d:h:m)"
 msgid "Uptime"
-msgstr "Darbošanās laiks (d:s:m)"
+msgstr "Darbības laiks"
 
 #: hmib.php
 msgid "System Time"
-msgstr ""
+msgstr "Sistēmas laiks"
 
 #: hmib.php
 msgid "No processor data available."
-msgstr ""
+msgstr "Nav pieejami procesora dati."
 
 #: hmib.php
 #, php-format
 msgid "%d CPU(s)"
-msgstr ""
+msgstr "%d CPU"
 
 #: hmib.php
 msgid "No memory data available."
-msgstr ""
+msgstr "Nav pieejami atmiņas dati."
 
 #: hmib.php
 #, php-format
 msgid "%s total"
-msgstr ""
+msgstr "%s kopā"
 
 #: hmib.php
 msgid "No swap configured on this device."
-msgstr ""
+msgstr "Šajā ierīcē nav konfigurēta maiņvieta."
 
 #: hmib.php
 msgid "No session data available."
-msgstr ""
+msgstr "Nav pieejami sesijas dati."
 
 #: hmib.php
 msgid "Logged-in Users"
-msgstr ""
+msgstr "Pieteikušies lietotāji"
 
 #: hmib.php
-#, fuzzy
-#| msgid "View Processes"
 msgid "Maximum Processes"
-msgstr "Skatīt procesus"
+msgstr "Maksimālais procesu skaits"
 
 #: hmib.php
 msgid "Unlimited"
-msgstr ""
+msgstr "Neierobežots"
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPUs"
 msgid "CPU"
-msgstr "Procesori"
+msgstr "CPU"
 
 #: hmib.php
 msgid "Load"
-msgstr ""
+msgstr "Noslodze"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Utilization"
-msgstr "Programmatūra"
+msgstr "Izmantojums"
 
 #: hmib.php
-#, fuzzy, php-format
-#| msgid "CPU %%%"
+#, php-format
 msgid "CPU %d"
-msgstr "CPU %%%"
+msgstr "CPU %d"
 
 #: hmib.php
 msgid "No per-processor load reported."
-msgstr ""
+msgstr "Nav ziņota katra procesora noslodze."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Volumes"
 msgid "Volume"
-msgstr "Apjomi"
+msgstr "Sējums"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Used Mem"
 msgid "Used"
-msgstr "Izmantotā atmiņa"
+msgstr "Izmantots"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Mem"
 msgid "Total"
-msgstr "Kopējā atmiņa"
+msgstr "Kopā"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Used Mem"
 msgid "Used %"
-msgstr "Izmantotā atmiņa"
+msgstr "Izmantots %"
 
 #: hmib.php
 msgid "No storage volumes detected."
-msgstr ""
+msgstr "Krātuves sējumi nav konstatēti."
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPU (Hrs)"
 msgid "CPU (s)"
-msgstr "CPU (stundas)"
+msgstr "CPU (s)"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Avg Memory"
 msgid "Memory"
-msgstr "Vidējais atmiņas"
+msgstr "Atmiņa"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No running processes recorded."
-msgstr "Darbojošies procesi"
+msgstr "Darbojošies procesi nav reģistrēti."
 
 #: hmib.php
 msgid "No hardware devices detected."
-msgstr ""
+msgstr "Aparatūras ierīces nav konstatētas."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Installed"
 msgid "Installed Packages"
-msgstr "Uzstādīts"
+msgstr "Instalētās pakotnes"
 
 #: hmib.php hmib_types.php
 msgid "Name"
@@ -762,219 +699,180 @@ msgstr "Nosaukums"
 
 #: hmib.php
 msgid "No installed software inventory collected."
-msgstr ""
+msgstr "Instalētās programmatūras uzskaite nav apkopota."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No process use history recorded."
-msgstr "Darbojošies procesi"
+msgstr "Procesu izmantošanas vēsture nav reģistrēta."
 
 #: hmib.php
 msgid "Show more"
-msgstr ""
+msgstr "Rādīt vairāk"
 
 #: hmib.php
 msgid "Show less"
-msgstr ""
+msgstr "Rādīt mazāk"
 
 #: hmib.php
 msgid "Open in a dialog"
-msgstr ""
+msgstr "Atvērt dialoglodziņā"
 
 #: hmib.php
 msgid "Refresh"
-msgstr ""
+msgstr "Atsvaidzināt"
 
 #: hmib.php
 msgid "Remove from page"
-msgstr ""
+msgstr "Noņemt no lapas"
 
 #: hmib.php
 msgid "Drag to reorder card"
-msgstr ""
+msgstr "Velciet, lai pārkārtotu kartīti"
 
 #: hmib.php
 msgid "Invalid request. Please try again."
-msgstr ""
+msgstr "Nederīgs pieprasījums. Lūdzu, mēģiniet vēlreiz."
 
 #: hmib.php
 msgid "Invalid refresh interval."
-msgstr ""
+msgstr "Nederīgs atsvaidzināšanas intervāls."
 
 #: hmib.php
 msgid "No device selected."
-msgstr ""
+msgstr "Nav atlasīta neviena ierīce."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Unknown"
 msgid "Unknown card."
-msgstr "Nezināms"
+msgstr "Nezināma kartīte."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Dashboard"
-msgstr "Resursdatora MIB detalizēta informācija"
+msgstr "Resursdatora MIB informācijas panelis"
 
 #: hmib.php
 msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
-msgstr ""
+msgstr "Atveriet ierīces informācijas paneli cilnē Ierīces, noklikšķinot uz informācijas paneļa ikonas tās kolonnā Darbības. Informācijas panelis atceras pēdējo atvērto ierīci."
 
 #: hmib.php
-#, fuzzy, php-format
-#| msgid "Device"
+#, php-format
 msgid "Device %d"
-msgstr "Ierīce"
+msgstr "Ierīce %d"
 
 #: hmib.php
-#, fuzzy
-#| msgid "%d Minute"
 msgid "1 Minute"
-msgstr "%d minūte"
+msgstr "1 minūte"
 
 #: hmib.php
 msgid "30 Seconds"
-msgstr ""
+msgstr "30 sekundes"
 
 #: hmib.php
-#, fuzzy
-#| msgid "%d Minutes"
 msgid "5 Minutes"
-msgstr "%d minūtes"
+msgstr "5 minūtes"
 
 #: hmib.php
 msgid "No Refresh"
-msgstr ""
+msgstr "Bez atsvaidzināšanas"
 
 #: hmib.php
 msgid "Search Host MIB devices as you type to open that device's dashboard."
-msgstr ""
+msgstr "Rakstiet, lai meklētu resursdatora MIB ierīces un atvērtu attiecīgās ierīces informācijas paneli."
 
 #: hmib.php
 msgid "Add card"
-msgstr ""
+msgstr "Pievienot kartīti"
 
 #: hmib.php
 msgid "Add a card…"
-msgstr ""
+msgstr "Pievienot kartīti…"
 
 #: hmib.php
 msgid "Fleet Overview"
-msgstr ""
+msgstr "Ierīču parka pārskats"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Resource Utilization"
-msgstr "Programmatūra"
+msgstr "Resursu izmantojums"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Devices"
 msgid "Device Status"
-msgstr "Ierīces"
+msgstr "Ierīces statuss"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Application"
 msgid "Storage Utilization"
-msgstr "Programmatūra"
+msgstr "Krātuves izmantojums"
 
 #: hmib.php
 msgid "Uptime Distribution"
-msgstr ""
+msgstr "Darbspējas laika sadalījums"
 
 #: hmib.php
 msgid "OS Type Distribution"
-msgstr ""
+msgstr "OS tipu sadalījums"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes by CPU"
-msgstr "Nav procesu"
+msgstr "Top procesi pēc CPU"
 
 #: hmib.php
-#, fuzzy
-#| msgid "No Processes"
 msgid "Top Processes by Memory"
-msgstr "Nav procesu"
+msgstr "Top procesi pēc atmiņas"
 
 #: hmib.php
 msgid "No Host MIB devices in this scope yet."
-msgstr ""
+msgstr "Šajā tvērumā vēl nav resursdatora MIB ierīču."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Mem"
 msgid "Total RAM"
-msgstr "Kopējā atmiņa"
+msgstr "Kopējā RAM"
 
 #: hmib.php
-#, fuzzy
-#| msgid "CPU %%%"
 msgid "CPU %"
-msgstr "CPU %%%"
+msgstr "CPU %"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Avg Memory"
 msgid "Memory %"
-msgstr "Vidējais atmiņas"
+msgstr "Atmiņa %"
 
 #: hmib.php
 msgid "Swap %"
-msgstr ""
+msgstr "Maiņvieta %"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Processes"
 msgid "Processes / host"
-msgstr "Procesi"
+msgstr "Procesi / resursdators"
 
 #: hmib.php
 msgid "No storage volumes detected in this scope."
-msgstr ""
+msgstr "Šajā tvērumā krātuves sējumi nav konstatēti."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Total Swap"
 msgid "Total Capacity"
-msgstr "Kopējā apmaiņas vieta"
+msgstr "Kopējā ietilpība"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No OS types recorded."
-msgstr "Darbojošies procesi"
+msgstr "OS tipi nav reģistrēti."
 
 #: hmib.php
-#, fuzzy
-#| msgid "Max CPU"
 msgid "Max CPU (s)"
-msgstr "Maksimālais CPU"
+msgstr "Maksimālais CPU (s)"
 
 #: hmib.php
 msgid "Relative"
-msgstr ""
+msgstr "Relatīvs"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Running Processes"
 msgid "No process statistics recorded."
-msgstr "Darbojošies procesi"
+msgstr "Procesu statistika nav reģistrēta."
 
 #: hmib.php
 msgid "Scope"
-msgstr ""
+msgstr "Tvērums"
 
 #: hmib.php
-#, fuzzy
-#| msgid "Type"
 msgid "All Types"
-msgstr "Tips"
+msgstr "Visi veidi"
 
 #: hmib_types.php
 msgid "Delete"
@@ -1110,9 +1008,9 @@ msgid "System Description Match"
 msgstr "Sistēmas apraksts sakrīt"
 
 #: hmib_types.php
-#, fuzzy, php-format
+#, php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
-msgstr "Norādiet galveno informāciju, lai palīdzētu HMIB noteikt resursdatora tipu.  SQL pieprasījums, kur tiek atbalstītas izteiksmes.  SQL pieprasījums, kur aizstājējzīmes rakstzīme ir '%'. Regulārās izteiksmes nav izmantojamas saderības problēmu dēļ."
+msgstr "Norādiet galveno informāciju, lai palīdzētu HMIB noteikt resursdatora tipu. Tiek atbalstītas SQL Where izteiksmes. SQL Where aizstājējzīme ir '%' zīme. Regulārās izteiksmes ir noņemtas saderības problēmu dēļ."
 
 #: hmib_types.php
 msgid "Vendor snmp Object ID"
@@ -1217,27 +1115,23 @@ msgstr "Vai vēlaties automātiski meklēt un pievienot ierīces, kas atbalsta r
 
 #: setup.php
 msgid "Automatically Purge Devices"
-msgstr "Automātiski tīrīt ierīces"
+msgstr "Automātiski iztīrīt ierīces"
 
 #: setup.php
 msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
-msgstr "Vai vēlaties automātiski tīrīt ierīces, kuras tiek dzēstas no Cacti sistēmas?"
+msgstr "Vai vēlaties automātiski iztīrīt ierīces, kas ir noņemtas no Cacti sistēmas?"
 
 #: setup.php
-#, fuzzy
-#| msgid "No Process History Found"
 msgid "Process History Retention"
-msgstr "Nav atrasta neviena procesa vēsture"
+msgstr "Procesu vēstures saglabāšana"
 
 #: setup.php
 msgid "How long should the Use History tab keep a process after it was last seen running?"
-msgstr ""
+msgstr "Cik ilgi cilnē Izmantošanas vēsture saglabāt procesu pēc tam, kad tas pēdējo reizi tika redzēts darbojamies?"
 
 #: setup.php
-#, fuzzy
-#| msgid "Never"
 msgid "Never Purge"
-msgstr "Nekad"
+msgstr "Nekad nedzēst"
 
 #: setup.php
 #, php-format
@@ -1247,12 +1141,12 @@ msgstr "%d dienas"
 #: setup.php
 #, php-format
 msgid "%d Year"
-msgstr ""
+msgstr "%d gads"
 
 #: setup.php
 #, php-format
 msgid "%d Years"
-msgstr ""
+msgstr "%d gadi"
 
 #: setup.php
 msgid "Default Row Count"
@@ -1286,11 +1180,11 @@ msgstr "%d procesi"
 
 #: setup.php
 msgid "Maximum Concurrent Collectors"
-msgstr "Maksimālais vienlaicīgo savācēju skaits"
+msgstr "Maksimālais vienlaicīgo vācēju skaits"
 
 #: setup.php
 msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
-msgstr "Kāds ir maksimālais vienlaicīgo savācēju procesu skaits, ko vēlaties palaist vienā reizē?"
+msgstr "Kāds ir maksimālais vienlaicīgi darbināmo datu vākšanas procesu skaits?"
 
 #: setup.php
 #, php-format
@@ -1415,10 +1309,8 @@ msgid "General Administration"
 msgstr "Pamatadministrācija"
 
 #: setup.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Fleet Dashboard"
-msgstr "Resursdatora MIB detalizēta informācija"
+msgstr "Resursdatora MIB ierīču parka informācijas panelis"
 
 #: setup.php
 msgid "Host MIB Inventory Summary"
@@ -1429,10 +1321,8 @@ msgid "Host MIB Details"
 msgstr "Resursdatora MIB detalizēta informācija"
 
 #: setup.php
-#, fuzzy
-#| msgid "Host MIB Details"
 msgid "Host MIB Device Dashboard"
-msgstr "Resursdatora MIB detalizēta informācija"
+msgstr "Resursdatora MIB ierīces informācijas panelis"
 
 #: setup.php
 msgid "Host MIB Storage"
