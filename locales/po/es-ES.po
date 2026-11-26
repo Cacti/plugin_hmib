@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Spanish <https://translate.cacti.net/projects/cacti/hmib/es/>\nLanguage: es-ES\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Spanish <https://translate.cacti.net/projects/cacti/hmib/es/>\nLanguage: es-ES\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -92,7 +92,7 @@ msgstr "Buscar"
 
 #: hmib.php
 msgid "Process"
-msgstr "Proceso"
+msgstr "Procesar"
 
 #: hmib.php
 msgid "Entries"
@@ -418,7 +418,7 @@ msgstr "Versión"
 
 #: hmib.php
 msgid "Logins"
-msgstr "Logins"
+msgstr "Inicios de sesión"
 
 #: hmib.php
 msgid "CPUS"
@@ -426,11 +426,11 @@ msgstr "UPCs"
 
 #: hmib.php
 msgid "Avg CPU"
-msgstr "Promedio CPU"
+msgstr "Promedio de CPU"
 
 #: hmib.php
 msgid "Max CPU"
-msgstr "Máximo CPU"
+msgstr "CPU máxima"
 
 #: hmib.php
 msgid "Avg Mem"
@@ -438,7 +438,7 @@ msgstr "Promedio Mem"
 
 #: hmib.php
 msgid "Max Mem"
-msgstr "Max Mem"
+msgstr "Memoria máxima"
 
 #: hmib.php
 msgid "Avg Swap"
@@ -454,7 +454,7 @@ msgstr "Promedio de proceso"
 
 #: hmib.php
 msgid "Max Proc"
-msgstr "Proc. máx."
+msgstr "Máximo de procesos"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
@@ -482,7 +482,7 @@ msgstr "Caminos Numéricos"
 
 #: hmib.php hmib_types.php
 msgid "Hosts"
-msgstr "Hosts"
+msgstr "Equipos"
 
 #: hmib.php
 msgid "Avg Memory"
@@ -601,7 +601,7 @@ msgstr "No hay datos de procesador disponibles."
 #: hmib.php
 #, php-format
 msgid "%d CPU(s)"
-msgstr "%d CPU(s)"
+msgstr "%d CPU"
 
 #: hmib.php
 msgid "No memory data available."
@@ -719,7 +719,7 @@ msgstr "Abrir en un cuadro de diálogo"
 
 #: hmib.php
 msgid "Refresh"
-msgstr "Actualizar"
+msgstr "Refrescar"
 
 #: hmib.php
 msgid "Remove from page"
@@ -1043,7 +1043,7 @@ msgstr "Version de OS"
 
 #: hmib_types.php
 msgid "SNMP ObjectID"
-msgstr "SNMP ObjectID"
+msgstr "ID de objeto SNMP"
 
 #: hmib_types.php
 msgid "SNMP Sys Description Match"
