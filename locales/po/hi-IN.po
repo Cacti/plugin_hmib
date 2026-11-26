@@ -1008,7 +1008,7 @@ msgid "System Description Match"
 msgstr "सिस्टम विवरण मिलान"
 
 #: hmib_types.php
-#, php-format
+#, no-php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
 msgstr "HMIB को होस्ट का प्रकार पहचानने में मदद करने के लिए मुख्य जानकारी प्रदान करें। SQL Where एक्सप्रेशन समर्थित हैं। SQL Where वाइल्डकार्ड वर्ण '%' चिह्न है। संगतता समस्याओं के कारण रेगुलर एक्सप्रेशन हटा दिए गए हैं।"
 

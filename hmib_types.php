@@ -944,6 +944,7 @@ function hmib_host_type_edit(): void {
 	'sysDescrMatch' => [
 		'method'        => 'textbox',
 		'friendly_name' => __('System Description Match', 'hmib'),
+		/* xgettext:no-php-format */
 		'description'   => __('Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the \'%\' sign. Regular Expressions have been removed due to compatibility issues.', 'hmib'),
 		'value'         => '|arg1:sysDescrMatch|',
 		'max_length'    => '250'
@@ -951,6 +952,7 @@ function hmib_host_type_edit(): void {
 	'sysObjectID' => [
 		'method'        => 'textbox',
 		'friendly_name' => __('Vendor snmp Object ID', 'hmib'),
+		/* xgettext:no-php-format */
 		'description'   => __('Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the \'%\' sign. Regular Expressions have been removed due to compatibility issues.', 'hmib'),
 		'value'         => '|arg1:sysObjectID|',
 		'max_length'    => '250'

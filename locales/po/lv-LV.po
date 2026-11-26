@@ -1008,7 +1008,7 @@ msgid "System Description Match"
 msgstr "Sistēmas apraksts sakrīt"
 
 #: hmib_types.php
-#, php-format
+#, no-php-format
 msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
 msgstr "Norādiet galveno informāciju, lai palīdzētu HMIB noteikt resursdatora tipu. Tiek atbalstītas SQL Where izteiksmes. SQL Where aizstājējzīme ir '%' zīme. Regulārās izteiksmes ir noņemtas saderības problēmu dēļ."
 

@@ -1222,7 +1222,7 @@ msgstr "לעולם לא"
 #: setup.php
 #, php-format
 msgid "%d Hour"
-msgstr "‫%d שעה"
+msgstr "%d שעה"
 
 #: setup.php
 #, php-format
@@ -1289,7 +1289,7 @@ msgstr "באיזו תדירות ברצונך לסרוק את נתוני הביצ
 #: setup.php
 #, php-format
 msgid "%d Minute"
-msgstr "‫%d דקה"
+msgstr "%d דקה"
 
 #: setup.php
 #, php-format
