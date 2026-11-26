@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Portuguese (Portugal) <https://translate.cacti.net/projects/cacti/hmib/pt_PT/>\nLanguage: pt-PT\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n > 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Portuguese (Portugal) <https://translate.cacti.net/projects/cacti/hmib/pt_PT/>\nLanguage: pt-PT\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n > 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -56,7 +56,7 @@ msgstr "A testar"
 
 #: hmib.php
 msgid "Down"
-msgstr "Inativo"
+msgstr "Em baixo"
 
 #: hmib.php hmib_types.php
 msgid "OS Type"
@@ -92,11 +92,11 @@ msgstr "Pesquisar"
 
 #: hmib.php
 msgid "Process"
-msgstr "Processo"
+msgstr "Processar"
 
 #: hmib.php
 msgid "Entries"
-msgstr "Registos"
+msgstr "Entradas"
 
 #: hmib.php hmib_types.php
 msgid "Default"
@@ -140,7 +140,7 @@ msgstr "Parâmetros"
 
 #: hmib.php
 msgid "CPU (Hrs)"
-msgstr "CPU (Hrs)"
+msgstr "CPU (Horas)"
 
 #: hmib.php
 msgid "Memory (MB)"
@@ -172,7 +172,7 @@ msgstr "Tamanho total [MB]:"
 
 #: hmib.php
 msgid "Avg. CPU [h]:"
-msgstr "Avg. CPU [h]:"
+msgstr "Média de CPU [h]:"
 
 #: hmib.php
 msgid "Avg. Size [MB]:"
@@ -272,7 +272,7 @@ msgstr "Utilizadores"
 
 #: hmib.php
 msgid "CPU %%%"
-msgstr "CPU %"
+msgstr "CPU %%%"
 
 #: hmib.php
 msgid "CPUs"
@@ -418,7 +418,7 @@ msgstr "Versão"
 
 #: hmib.php
 msgid "Logins"
-msgstr "Logins"
+msgstr "Inícios de sessão"
 
 #: hmib.php
 msgid "CPUS"
@@ -442,7 +442,7 @@ msgstr "Máximo Mem"
 
 #: hmib.php
 msgid "Avg Swap"
-msgstr "Avg Swap"
+msgstr "Média de Swap"
 
 #: hmib.php
 msgid "Max Swap"
@@ -454,7 +454,7 @@ msgstr "Média Proc"
 
 #: hmib.php
 msgid "Max Proc"
-msgstr "Max Proc"
+msgstr "Máx. Processos"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
@@ -719,7 +719,7 @@ msgstr "Abrir numa caixa de diálogo"
 
 #: hmib.php
 msgid "Refresh"
-msgstr "Atualizar"
+msgstr "Recarregar"
 
 #: hmib.php
 msgid "Remove from page"
@@ -1043,11 +1043,11 @@ msgstr "Versão do SO"
 
 #: hmib_types.php
 msgid "SNMP ObjectID"
-msgstr "SNMP ObjectID"
+msgstr "ID do Objeto SNMP"
 
 #: hmib_types.php
 msgid "SNMP Sys Description Match"
-msgstr "SNMP Sys Descrição Descrição Correspondência"
+msgstr "SNMP Sys Descrição Correspondência"
 
 #: hmib_types.php
 msgid "No Host Types Found"
