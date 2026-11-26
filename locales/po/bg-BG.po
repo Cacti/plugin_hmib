@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Bulgarian <https://translate.cacti.net/projects/cacti/hmib/bg/>\nLanguage: bg-BG\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Bulgarian <https://translate.cacti.net/projects/cacti/hmib/bg/>\nLanguage: bg-BG\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -92,7 +92,7 @@ msgstr "Търсене"
 
 #: hmib.php
 msgid "Process"
-msgstr "В процес"
+msgstr "Процес"
 
 #: hmib.php
 msgid "Entries"
@@ -248,7 +248,7 @@ msgstr "Филтър за устройства"
 
 #: hmib.php
 msgid "Recovering"
-msgstr "Възстановяване"
+msgstr "Възстановява се"
 
 #: hmib.php
 msgid "Up"
@@ -256,7 +256,7 @@ msgstr "Нагоре"
 
 #: hmib.php setup.php
 msgid "Disabled"
-msgstr "деактивиран"
+msgstr "Изключен"
 
 #: hmib.php setup.php
 msgid "Actions"
@@ -324,7 +324,7 @@ msgstr "Няма дефинирани графики"
 
 #: hmib.php
 msgid "N/A"
-msgstr "Няма"
+msgstr "Неприложимо"
 
 #: hmib.php
 msgid "No Devices Found"
@@ -450,11 +450,11 @@ msgstr "Max Swap"
 
 #: hmib.php
 msgid "Avg Proc"
-msgstr "Avg Proc"
+msgstr "Ср. процеси"
 
 #: hmib.php
 msgid "Max Proc"
-msgstr "Max Proc"
+msgstr "Макс. процеси"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
@@ -478,7 +478,7 @@ msgstr "Име на процес"
 
 #: hmib.php
 msgid "Num Paths"
-msgstr "Num Paths"
+msgstr "Брой пътища"
 
 #: hmib.php hmib_types.php
 msgid "Hosts"
@@ -499,7 +499,7 @@ msgstr "Обобщена статистика"
 #: hmib.php
 #, php-format
 msgid "%s Hrs"
-msgstr "%s ч."
+msgstr "%s часа"
 
 #: hmib.php
 #, php-format
@@ -642,7 +642,7 @@ msgstr "Натоварване"
 
 #: hmib.php
 msgid "Utilization"
-msgstr "Натоварване"
+msgstr "Използване"
 
 #: hmib.php
 #, php-format
@@ -719,7 +719,7 @@ msgstr "Отваряне в диалогов прозорец"
 
 #: hmib.php
 msgid "Refresh"
-msgstr "Обновяване"
+msgstr "Опресняване"
 
 #: hmib.php
 msgid "Remove from page"
@@ -1043,7 +1043,7 @@ msgstr "Версия на ОС"
 
 #: hmib_types.php
 msgid "SNMP ObjectID"
-msgstr "SNMP ObjectID"
+msgstr "SNMP идентификатор на обект"
 
 #: hmib_types.php
 msgid "SNMP Sys Description Match"
