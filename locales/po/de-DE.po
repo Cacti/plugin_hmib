@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: German <https://translate.cacti.net/projects/cacti/hmib/de/>\nLanguage: de-DE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 10:49+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: German <https://translate.cacti.net/projects/cacti/hmib/de/>\nLanguage: de-DE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -1111,7 +1111,7 @@ msgstr "Cacti-Geräte automatisch erkennen"
 
 #: setup.php
 msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
-msgstr "Möchten Sie automatisch nach Geräten suchen und hinzufügen, die die Host Resource MIB aus der Cacti-Host-Tabelle unterstützen?"
+msgstr "Möchten Sie automatisch nach Geräten suchen und diese hinzufügen, welche die Host Resource MIB aus der Cacti-Host-Tabelle unterstützen?"
 
 #: setup.php
 msgid "Automatically Purge Devices"
