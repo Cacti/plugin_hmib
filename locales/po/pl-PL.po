@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Polish <https://translate.cacti.net/projects/cacti/hmib/pl/>\nLanguage: pl-PL\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Polish <https://translate.cacti.net/projects/cacti/hmib/pl/>\nLanguage: pl-PL\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -92,7 +92,7 @@ msgstr "Szukaj"
 
 #: hmib.php
 msgid "Process"
-msgstr "Przetwarzanie"
+msgstr "Proces"
 
 #: hmib.php
 msgid "Entries"
@@ -236,7 +236,7 @@ msgstr "Ogółem (MB)"
 
 #: hmib.php
 msgid "Alloc (KB)"
-msgstr "Alloc (KB)"
+msgstr "Przydział (KB)"
 
 #: hmib.php
 msgid "No Storage Devices Found"
@@ -360,7 +360,7 @@ msgstr "Podsumowanie"
 
 #: hmib.php
 msgid "Storage"
-msgstr "Pamięć"
+msgstr "Pamięć masowa"
 
 #: hmib.php
 msgid "Hardware"
@@ -434,7 +434,7 @@ msgstr "Maks. wydajność CPU"
 
 #: hmib.php
 msgid "Avg Mem"
-msgstr "Avg Mem"
+msgstr "Śr. pamięć"
 
 #: hmib.php
 msgid "Max Mem"
@@ -442,7 +442,7 @@ msgstr "Maks. ilość pamięci"
 
 #: hmib.php
 msgid "Avg Swap"
-msgstr "Avg Swap"
+msgstr "Śr. swap"
 
 #: hmib.php
 msgid "Max Swap"
@@ -450,11 +450,11 @@ msgstr "Maks. wymiana"
 
 #: hmib.php
 msgid "Avg Proc"
-msgstr "Avg Proc"
+msgstr "Śr. procesy"
 
 #: hmib.php
 msgid "Max Proc"
-msgstr "Max Proc"
+msgstr "Maks. procesy"
 
 #: hmib.php
 msgid "View Fleet Dashboard"
@@ -499,7 +499,7 @@ msgstr "Podsumowanie statystyk"
 #: hmib.php
 #, php-format
 msgid "%s Hrs"
-msgstr "%s godz."
+msgstr "%s godzin"
 
 #: hmib.php
 #, php-format
@@ -1014,7 +1014,7 @@ msgstr "Podaj kluczowe informacje, które pomogą HMIB wykryć typ hosta.  Obsł
 
 #: hmib_types.php
 msgid "Vendor snmp Object ID"
-msgstr "Vendor snmp Object ID"
+msgstr "Identyfikator obiektu snmp producenta"
 
 #: hmib_types.php
 #, php-format
@@ -1043,7 +1043,7 @@ msgstr "Wersja OS"
 
 #: hmib_types.php
 msgid "SNMP ObjectID"
-msgstr "SNMP ObjectID"
+msgstr "ID obiektu SNMP"
 
 #: hmib_types.php
 msgid "SNMP Sys Description Match"
@@ -1099,7 +1099,7 @@ msgstr "Ustawienia ogólne hosta MIB"
 
 #: setup.php
 msgid "Host MIB Poller Enabled"
-msgstr "Host MIB Poller Enabled"
+msgstr "Odpytywanie Host MIB włączone"
 
 #: setup.php
 msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
@@ -1146,7 +1146,7 @@ msgstr "%d rok"
 #: setup.php
 #, php-format
 msgid "%d Years"
-msgstr "%d Lata"
+msgstr "%d lat"
 
 #: setup.php
 msgid "Default Row Count"
@@ -1222,7 +1222,7 @@ msgstr "Nigdy"
 #: setup.php
 #, php-format
 msgid "%d Hour"
-msgstr "%d godz"
+msgstr "%d godzina"
 
 #: setup.php
 #, php-format
