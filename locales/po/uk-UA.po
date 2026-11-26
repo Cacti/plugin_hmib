@@ -1,0 +1,1369 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR The Cacti Group
+# This file is distributed under the same license as the Cacti package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cacti\n"
+"Report-Msgid-Bugs-To: developers@cacti.net\n"
+"POT-Creation-Date: 2026-10-24 06:10-0400\n"
+"PO-Revision-Date: 2026-11-25 06:55+0000\n"
+"Last-Translator: Thomas Vincent <thomasvincent@gmail.com>\n"
+"Language-Team: Ukrainian\n"
+"Language: uk-UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: hmib.php
+msgid "Error"
+msgstr "Помилка"
+
+#: hmib.php hmib_types.php
+msgid "Unknown"
+msgstr "Невідомо"
+
+#: hmib.php
+msgid "Operating System"
+msgstr "Операційна система"
+
+#: hmib.php
+msgid "Device Driver"
+msgstr "Драйвер пристрою"
+
+#: hmib.php
+msgid "Application"
+msgstr "Програма"
+
+#: hmib.php
+msgid "Running"
+msgstr "Працює"
+
+#: hmib.php
+msgid "Runnable"
+msgstr "Готовий до виконання"
+
+#: hmib.php
+msgid "Not Runnable"
+msgstr "Непридатний до запуску"
+
+#: hmib.php
+msgid "Invalid"
+msgstr "Невірний"
+
+#: hmib.php
+msgid "Present"
+msgstr "Присутній"
+
+#: hmib.php
+msgid "Warning"
+msgstr "Застереження"
+
+#: hmib.php
+msgid "Testing"
+msgstr "Тестування"
+
+#: hmib.php
+msgid "Down"
+msgstr "Оффлайн"
+
+#: hmib.php hmib_types.php
+msgid "OS Type"
+msgstr "Тип ОС"
+
+#: hmib.php
+msgid "All"
+msgstr "Всі"
+
+#: hmib.php
+msgid "Device"
+msgstr "Пристрій"
+
+#: hmib.php
+msgid "Template"
+msgstr "Шаблон"
+
+#: hmib.php
+msgid "Running Process History"
+msgstr "Історія запущених процесів"
+
+#: hmib.php hmib_types.php
+msgid "Go"
+msgstr "Перейти"
+
+#: hmib.php hmib_types.php
+msgid "Clear"
+msgstr "Очистити"
+
+#: hmib.php hmib_types.php
+msgid "Search"
+msgstr "Пошук"
+
+#: hmib.php
+msgid "Process"
+msgstr "Процес"
+
+#: hmib.php
+msgid "Entries"
+msgstr "Записи"
+
+#: hmib.php hmib_types.php
+msgid "Default"
+msgstr "За замовчуванням"
+
+#: hmib.php
+msgid "Hostname"
+msgstr "Ім'я хоста"
+
+#: hmib.php
+msgid "Last Seen"
+msgstr "Востаннє виявлено"
+
+#: hmib.php
+msgid "Use Time (d:h:m)"
+msgstr "Використовувати час (д:г:хв)"
+
+#: hmib.php
+msgid "History"
+msgstr "Історія"
+
+#: hmib.php
+msgid "Edit Device"
+msgstr "Редагувати пристрій"
+
+#: hmib.php
+msgid "No Process History Found"
+msgstr "Історії процесів не знайдено"
+
+#: hmib.php
+msgid "Running Processes"
+msgstr "Запущені процеси"
+
+#: hmib.php
+msgid "Path"
+msgstr "Шлях"
+
+#: hmib.php
+msgid "Parameters"
+msgstr "Параметри"
+
+#: hmib.php
+msgid "CPU (Hrs)"
+msgstr "ЦП (год)"
+
+#: hmib.php
+msgid "Memory (MB)"
+msgstr "Пам'ять (МБ)"
+
+#: hmib.php
+msgid "Type"
+msgstr "Тип"
+
+#: hmib.php
+msgid "Status"
+msgstr "Статус"
+
+#: hmib.php
+msgid "Processes"
+msgstr "Процеси"
+
+#: hmib.php
+msgid "No Running Software Found"
+msgstr "Запущеного програмного забезпечення не знайдено"
+
+#: hmib.php
+msgid "Total CPU [h]:"
+msgstr "Загальний час CPU [год]:"
+
+#: hmib.php
+msgid "Total Size [MB]:"
+msgstr "Загальний розмір [МБ]:"
+
+#: hmib.php
+msgid "Avg. CPU [h]:"
+msgstr "Сер. CPU [год]:"
+
+#: hmib.php
+msgid "Avg. Size [MB]:"
+msgstr "Сер. розмір [МБ]:"
+
+#: hmib.php
+msgid "Hardware Inventory"
+msgstr "Інвентаризація апаратного забезпечення"
+
+#: hmib.php
+msgid "Hardware Description"
+msgstr "Опис апаратного забезпечення"
+
+#: hmib.php
+msgid "Hardware Type"
+msgstr "Тип обладнання"
+
+#: hmib.php
+msgid "Errors"
+msgstr "Помилки"
+
+#: hmib.php
+msgid "Devices"
+msgstr "Пристрої"
+
+#: hmib.php
+msgid "No Hardware Found"
+msgstr "Апаратного забезпечення не знайдено"
+
+#: hmib.php
+msgid "Click to filter by this status"
+msgstr "Натисніть, щоб відфільтрувати за цим станом"
+
+#: hmib.php
+msgid "Storage Inventory"
+msgstr "Інвентаризація сховищ"
+
+#: hmib.php
+msgid "Volumes"
+msgstr "Томи"
+
+#: hmib.php
+msgid "Storage Description"
+msgstr "Опис сховища"
+
+#: hmib.php
+msgid "Storage Type"
+msgstr "Тип сховища"
+
+#: hmib.php
+msgid "Percent Used"
+msgstr "Використано у відсотках"
+
+#: hmib.php
+msgid "Used (MB)"
+msgstr "Використано (МБ)"
+
+#: hmib.php
+msgid "Total (MB)"
+msgstr "Усього (МБ)"
+
+#: hmib.php
+msgid "Alloc (KB)"
+msgstr "Виділено (КБ)"
+
+#: hmib.php
+msgid "No Storage Devices Found"
+msgstr "Пристроїв зберігання даних не знайдено"
+
+#: hmib.php
+msgid "Device Filter"
+msgstr "Фільтр пристроїв"
+
+#: hmib.php
+msgid "Recovering"
+msgstr "Відновлення"
+
+#: hmib.php
+msgid "Up"
+msgstr "Онлайн"
+
+#: hmib.php setup.php
+msgid "Disabled"
+msgstr "Вимкнен"
+
+#: hmib.php setup.php
+msgid "Actions"
+msgstr "Дії"
+
+#: hmib.php
+msgid "Uptime(d:h:m)"
+msgstr "Час роботи (д:г:хв)"
+
+#: hmib.php
+msgid "Users"
+msgstr "Користувачі"
+
+#: hmib.php
+msgid "CPU %%%"
+msgstr "ЦП %%%"
+
+#: hmib.php
+msgid "CPUs"
+msgstr "Процесори"
+
+#: hmib.php
+msgid "Total Mem"
+msgstr "Усього пам'яті"
+
+#: hmib.php
+msgid "Used Mem"
+msgstr "Використано пам'яті"
+
+#: hmib.php
+msgid "Total Swap"
+msgstr "Усього Swap"
+
+#: hmib.php
+msgid "Used Swap"
+msgstr "Використано Swap"
+
+#: hmib.php
+msgid "View Dashboard"
+msgstr "Перегляд панелі керування"
+
+#: hmib.php
+msgid "View Storage"
+msgstr "Перегляд сховищ"
+
+#: hmib.php
+msgid "View Hardware"
+msgstr "Перегляд обладнання"
+
+#: hmib.php
+msgid "View Processes"
+msgstr "Перегляд процесів"
+
+#: hmib.php
+msgid "View Software Inventory"
+msgstr "Перегляд інвентаризації ПЗ"
+
+#: hmib.php
+msgid "View Graphs"
+msgstr "Переглянути графіки"
+
+#: hmib.php
+msgid "No Graphs Defined"
+msgstr "Графіки не визначено"
+
+#: hmib.php
+msgid "N/A"
+msgstr "(відсутній)"
+
+#: hmib.php
+msgid "No Devices Found"
+msgstr "Пристроїв не знайдено"
+
+#: hmib.php
+msgid "Software Inventory"
+msgstr "Інвентаризація програмного забезпечення"
+
+#: hmib.php
+msgid "Applications"
+msgstr "Програми"
+
+#: hmib.php
+msgid "Package"
+msgstr "Пакет"
+
+#: hmib.php
+msgid "Installed"
+msgstr "Встановлена"
+
+#: hmib.php
+msgid "No Software Packages Found"
+msgstr "Пакетів програмного забезпечення не знайдено"
+
+#: hmib.php
+msgid "Fleet Dashboard"
+msgstr "Панель керування парком пристроїв"
+
+#: hmib.php
+msgid "Summary"
+msgstr "Резюме"
+
+#: hmib.php
+msgid "Storage"
+msgstr "Сховище"
+
+#: hmib.php
+msgid "Hardware"
+msgstr "Апаратне забезпечення"
+
+#: hmib.php
+msgid "Use History"
+msgstr "Використовувати історію"
+
+#: hmib.php
+msgid "Inventory"
+msgstr "Інвентаризація"
+
+#: hmib.php
+msgid "Graphs"
+msgstr "Графіки"
+
+#: hmib.php
+msgid "Dashboard"
+msgstr "Інформаційна панель"
+
+#: hmib.php
+msgid "Summary Filter"
+msgstr "Фільтр зведення"
+
+#: hmib.php
+msgid "Types"
+msgstr "Типи"
+
+#: hmib.php
+msgid "All Records"
+msgstr "Усі записи"
+
+#: hmib.php
+#, php-format
+msgid "%d Records"
+msgstr "%d записів"
+
+#: hmib.php
+#, php-format
+msgid "%d Record"
+msgstr "%d запис"
+
+#: hmib.php
+msgid "NOTE: Import the Host MIB Device Package to view Graphs."
+msgstr "ПРИМІТКА: Імпортуйте пакет пристрою Host MIB для перегляду графіків."
+
+#: hmib.php
+msgid "Device Type Summary Statistics"
+msgstr "Зведена статистика за типами пристроїв"
+
+#: hmib.php hmib_types.php
+msgid "Version"
+msgstr "Версія"
+
+#: hmib.php
+msgid "Logins"
+msgstr "Входи"
+
+#: hmib.php
+msgid "CPUS"
+msgstr "Процесори"
+
+#: hmib.php
+msgid "Avg CPU"
+msgstr "Сер. CPU"
+
+#: hmib.php
+msgid "Max CPU"
+msgstr "Макс. CPU"
+
+#: hmib.php
+msgid "Avg Mem"
+msgstr "Сер. пам'ять"
+
+#: hmib.php
+msgid "Max Mem"
+msgstr "Макс. пам'ять"
+
+#: hmib.php
+msgid "Avg Swap"
+msgstr "Сер. Swap"
+
+#: hmib.php
+msgid "Max Swap"
+msgstr "Макс. Swap"
+
+#: hmib.php
+msgid "Avg Proc"
+msgstr "Сер. процесів"
+
+#: hmib.php
+msgid "Max Proc"
+msgstr "Макс. процесів"
+
+#: hmib.php
+msgid "View Fleet Dashboard"
+msgstr "Перегляд зведеної панелі"
+
+#: hmib.php
+msgid "View Devices"
+msgstr "Перегляд пристроїв"
+
+#: hmib.php
+msgid "No Device Types"
+msgstr "Немає типів пристроїв"
+
+#: hmib.php
+msgid "Process Summary Filter"
+msgstr "Фільтр зведення процесів"
+
+#: hmib.php
+msgid "Process Name"
+msgstr "Назва процесу"
+
+#: hmib.php
+msgid "Num Paths"
+msgstr "Кількість шляхів"
+
+#: hmib.php hmib_types.php
+msgid "Hosts"
+msgstr "Хости"
+
+#: hmib.php
+msgid "Avg Memory"
+msgstr "Сер. пам'ять"
+
+#: hmib.php
+msgid "Max Memory"
+msgstr "Макс. пам'ять"
+
+#: hmib.php
+msgid "Summary Stats"
+msgstr "Зведена статистика"
+
+#: hmib.php
+#, php-format
+msgid "%s Hrs"
+msgstr "%s год"
+
+#: hmib.php
+#, php-format
+msgid "%s MB"
+msgstr "%s МБ"
+
+#: hmib.php
+msgid "No Processes"
+msgstr "Немає процесів"
+
+#: hmib.php
+msgid "Custom Graph List Applied - Filtering from List"
+msgstr "Застосовано власний список графіків — фільтрація зі списку"
+
+#: hmib.php
+msgid "Graph Preview Filters"
+msgstr "Фільтри попереднього перегляду графіка"
+
+#: hmib.php
+msgid "System Information"
+msgstr "Системна інформація"
+
+#: hmib.php
+msgid "CPU Utilization"
+msgstr "Використання ЦП"
+
+#: hmib.php
+msgid "Memory Utilization"
+msgstr "Використання пам'яті"
+
+#: hmib.php
+msgid "Swap Utilization"
+msgstr "Використання Swap"
+
+#: hmib.php
+msgid "Users and Logins"
+msgstr "Користувачі та входи"
+
+#: hmib.php
+msgid "Per-Processor Load"
+msgstr "Навантаження на кожен процесор"
+
+#: hmib.php
+msgid "Storage Volumes"
+msgstr "Томи сховища"
+
+#: hmib.php
+msgid "Top Processes"
+msgstr "Топ процесів"
+
+#: hmib.php
+msgid "Process Use History"
+msgstr "Історія використання процесів"
+
+#: hmib.php
+msgid "Hardware Devices"
+msgstr "Апаратні пристрої"
+
+#: hmib.php
+msgid "Installed Software"
+msgstr "Установлене програмне забезпечення"
+
+#: hmib.php
+msgid "No system information has been collected for this device yet."
+msgstr "Системна інформація для цього пристрою ще не зібрана."
+
+#: hmib.php
+msgid "Management Address"
+msgstr "Адреса керування"
+
+#: hmib.php
+msgid "System Name"
+msgstr "Системне ім'я"
+
+#: hmib.php
+msgid "Description"
+msgstr "Опис"
+
+#: hmib.php
+msgid "Contact"
+msgstr "Контакти"
+
+#: hmib.php
+msgid "Location"
+msgstr "Місцезнаходження"
+
+#: hmib.php
+msgid "Uptime"
+msgstr "Час роботи"
+
+#: hmib.php
+msgid "System Time"
+msgstr "Системний час"
+
+#: hmib.php
+msgid "No processor data available."
+msgstr "Дані про процесор недоступні."
+
+#: hmib.php
+#, php-format
+msgid "%d CPU(s)"
+msgstr "%d процесор(ів)"
+
+#: hmib.php
+msgid "No memory data available."
+msgstr "Дані про пам'ять недоступні."
+
+#: hmib.php
+#, php-format
+msgid "%s total"
+msgstr "%s усього"
+
+#: hmib.php
+msgid "No swap configured on this device."
+msgstr "На цьому пристрої не налаштовано файл підкачки (swap)."
+
+#: hmib.php
+msgid "No session data available."
+msgstr "Дані про сеанси недоступні."
+
+#: hmib.php
+msgid "Logged-in Users"
+msgstr "Користувачі в системі"
+
+#: hmib.php
+msgid "Maximum Processes"
+msgstr "Максимум процесів"
+
+#: hmib.php
+msgid "Unlimited"
+msgstr "Без ліміту"
+
+#: hmib.php
+msgid "CPU"
+msgstr "ЦП"
+
+#: hmib.php
+msgid "Load"
+msgstr "Навантаження"
+
+#: hmib.php
+msgid "Utilization"
+msgstr "Використання"
+
+#: hmib.php
+#, php-format
+msgid "CPU %d"
+msgstr "ЦП %d"
+
+#: hmib.php
+msgid "No per-processor load reported."
+msgstr "Дані про навантаження на окремі процесори відсутні."
+
+#: hmib.php
+msgid "Volume"
+msgstr "Том"
+
+#: hmib.php
+msgid "Used"
+msgstr "Використано"
+
+#: hmib.php
+msgid "Total"
+msgstr "Всього"
+
+#: hmib.php
+msgid "Used %"
+msgstr "Використано %"
+
+#: hmib.php
+msgid "No storage volumes detected."
+msgstr "Томів сховища не виявлено."
+
+#: hmib.php
+msgid "CPU (s)"
+msgstr "ЦП (с)"
+
+#: hmib.php
+msgid "Memory"
+msgstr "Пам'ять"
+
+#: hmib.php
+msgid "No running processes recorded."
+msgstr "Запущених процесів не зафіксовано."
+
+#: hmib.php
+msgid "No hardware devices detected."
+msgstr "Апаратних пристроїв не виявлено."
+
+#: hmib.php
+msgid "Installed Packages"
+msgstr "Установлені пакунки"
+
+#: hmib.php hmib_types.php
+msgid "Name"
+msgstr "Ім'я"
+
+#: hmib.php
+msgid "No installed software inventory collected."
+msgstr "Дані про встановлене програмне забезпечення не зібрано."
+
+#: hmib.php
+msgid "No process use history recorded."
+msgstr "Історія використання процесів не зафіксована."
+
+#: hmib.php
+msgid "Show more"
+msgstr "Показати більше"
+
+#: hmib.php
+msgid "Show less"
+msgstr "Показати менше"
+
+#: hmib.php
+msgid "Open in a dialog"
+msgstr "Відкрити в діалоговому вікні"
+
+#: hmib.php
+msgid "Refresh"
+msgstr "Оновити"
+
+#: hmib.php
+msgid "Remove from page"
+msgstr "Видалити зі сторінки"
+
+#: hmib.php
+msgid "Drag to reorder card"
+msgstr "Перетягніть для зміни порядку картки"
+
+#: hmib.php
+msgid "Invalid request. Please try again."
+msgstr "Неприпустимий запит. Спробуйте ще раз."
+
+#: hmib.php
+msgid "Invalid refresh interval."
+msgstr "Неприпустимий інтервал оновлення."
+
+#: hmib.php
+msgid "No device selected."
+msgstr "Пристрій не вибрано."
+
+#: hmib.php
+msgid "Unknown card."
+msgstr "Невідома картка."
+
+#: hmib.php
+msgid "Host MIB Dashboard"
+msgstr "Панель приладів Host MIB"
+
+#: hmib.php
+msgid "Open a device Dashboard from the Devices tab by clicking the dashboard glyph in its Actions column. The Dashboard remembers the last device you opened."
+msgstr "Відкрийте панель пристрою на вкладці «Пристрої», натиснувши піктограму панелі у стовпці «Дії». Панель запам'ятовує останній відкритий вами пристрій."
+
+#: hmib.php
+#, php-format
+msgid "Device %d"
+msgstr "Пристрій %d"
+
+#: hmib.php
+msgid "1 Minute"
+msgstr "1 хвилина"
+
+#: hmib.php
+msgid "30 Seconds"
+msgstr "30 секунд"
+
+#: hmib.php
+msgid "5 Minutes"
+msgstr "5 хвилин"
+
+#: hmib.php
+msgid "No Refresh"
+msgstr "Не оновлювати"
+
+#: hmib.php
+msgid "Search Host MIB devices as you type to open that device's dashboard."
+msgstr "Шукайте пристрої Host MIB під час введення, щоб відкрити інформаційну панель цього пристрою."
+
+#: hmib.php
+msgid "Add card"
+msgstr "Додати картку"
+
+#: hmib.php
+msgid "Add a card…"
+msgstr "Додати картку…"
+
+#: hmib.php
+msgid "Fleet Overview"
+msgstr "Огляд парку пристроїв"
+
+#: hmib.php
+msgid "Resource Utilization"
+msgstr "Використання ресурсів"
+
+#: hmib.php
+msgid "Device Status"
+msgstr "Стан пристрою"
+
+#: hmib.php
+msgid "Storage Utilization"
+msgstr "Використання сховища"
+
+#: hmib.php
+msgid "Uptime Distribution"
+msgstr "Розподіл часу безперервної роботи"
+
+#: hmib.php
+msgid "OS Type Distribution"
+msgstr "Розподіл за типом ОС"
+
+#: hmib.php
+msgid "Top Processes by CPU"
+msgstr "Топ процесів за CPU"
+
+#: hmib.php
+msgid "Top Processes by Memory"
+msgstr "Топ процесів за пам'яттю"
+
+#: hmib.php
+msgid "No Host MIB devices in this scope yet."
+msgstr "У цій області ще немає пристроїв Host MIB."
+
+#: hmib.php
+msgid "Total RAM"
+msgstr "Усього RAM"
+
+#: hmib.php
+msgid "CPU %"
+msgstr "ЦП %"
+
+#: hmib.php
+msgid "Memory %"
+msgstr "Пам'ять %"
+
+#: hmib.php
+msgid "Swap %"
+msgstr "Swap %"
+
+#: hmib.php
+msgid "Processes / host"
+msgstr "Процесів / вузол"
+
+#: hmib.php
+msgid "No storage volumes detected in this scope."
+msgstr "У цій області томів сховища не виявлено."
+
+#: hmib.php
+msgid "Total Capacity"
+msgstr "Загальна місткість"
+
+#: hmib.php
+msgid "No OS types recorded."
+msgstr "Типи ОС не зафіксовано."
+
+#: hmib.php
+msgid "Max CPU (s)"
+msgstr "Макс. CPU (с)"
+
+#: hmib.php
+msgid "Relative"
+msgstr "Відносний"
+
+#: hmib.php
+msgid "No process statistics recorded."
+msgstr "Статистика процесів не зафіксована."
+
+#: hmib.php
+msgid "Scope"
+msgstr "Область дії"
+
+#: hmib.php
+msgid "All Types"
+msgstr "Всі типи"
+
+#: hmib_types.php
+msgid "Delete"
+msgstr "Видалити"
+
+#: hmib_types.php
+msgid "Duplicate"
+msgstr "Дублювати"
+
+#: hmib_types.php
+msgid "Click 'Continue' to Delete the following Host Type(s)"
+msgstr "Натисніть 'Продовжити', щоб видалити наведені нижче типи хостів"
+
+#: hmib_types.php
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: hmib_types.php
+msgid "Continue"
+msgstr "Продовжити"
+
+#: hmib_types.php
+msgid "Delete Host Type(s)"
+msgstr "Видалити тип(и) вузлів"
+
+#: hmib_types.php
+msgid "Click 'Continue' to Duplicate the following Host Type(s). You may optionally change the description for the new Host Type(s).  Otherwise, do not change value below and the original name will be replicated with a new suffix."
+msgstr "Натисніть 'Продовжити', щоб дублювати наведені нижче типи хостів. За бажанням ви можете змінити опис для нових типів хостів. Інакше не змінюйте значення нижче, і початкову назву буде скопійовано з новим суфіксом."
+
+#: hmib_types.php
+msgid "Host Type Prefix:"
+msgstr "Префікс типу хоста:"
+
+#: hmib_types.php
+msgid "Duplicate Host Type(s)"
+msgstr "Дублювати тип(и) вузлів"
+
+#: hmib_types.php
+msgid "New Type"
+msgstr "Новий тип"
+
+#: hmib_types.php
+#, php-format
+msgid "There were %d Device Types Added!"
+msgstr "Додано типів пристроїв: %d!"
+
+#: hmib_types.php
+msgid "No New Host Types Found!"
+msgstr "Нових типів хостів не знайдено!"
+
+#: hmib_types.php
+msgid "Import Results"
+msgstr "Імпортувати результати"
+
+#: hmib_types.php
+msgid "Cacti has imported the following items:"
+msgstr "Cacti імпортував такі товари:"
+
+#: hmib_types.php
+msgid "Import Host MIB OS Types"
+msgstr "Імпортувати типи ОС Host MIB"
+
+#: hmib_types.php
+msgid "Import Device Types from Local File"
+msgstr "Імпортувати типи пристроїв із локального файлу"
+
+#: hmib_types.php
+msgid "Please specify the location of the CSV file containing your device type information."
+msgstr "Будь ласка, вкажіть розташування CSV-файлу з інформацією про типи пристроїв."
+
+#: hmib_types.php
+msgid "Overwrite Existing Data?"
+msgstr "Перезаписати наявні дані?"
+
+#: hmib_types.php
+msgid "Should the import process be allowed to overwrite existing data?  Please note, this does not mean delete old row, only replace duplicate rows."
+msgstr "Чи дозволяти процесу імпорту перезаписувати наявні дані? Зверніть увагу: це не означає видалення старих рядків, а лише заміну дублікатів рядків."
+
+#: hmib_types.php
+msgid "Allow Existing Rows to be Updated?"
+msgstr "Дозволити оновлення наявних рядків?"
+
+#: hmib_types.php
+msgid "Required File Format Notes"
+msgstr "Примітки щодо необхідного формату файлу"
+
+#: hmib_types.php
+msgid "The file must contain a header row with the following column headings."
+msgstr "Файл повинен містити рядок заголовка з наступними заголовками стовпців."
+
+#: hmib_types.php
+msgid "A common name for the Host Type.  For example, Windows 7"
+msgstr "Загальна назва для типу вузла. Наприклад, Windows 7"
+
+#: hmib_types.php
+msgid "The OS version for the Host Type"
+msgstr "Версія ОС для типу вузла"
+
+#: hmib_types.php
+msgid "A unique set of characters from the snmp sysDescr that uniquely identify this device"
+msgstr "Унікальний набір символів зі значення SNMP sysDescr, що однозначно ідентифікує цей пристрій"
+
+#: hmib_types.php
+msgid "The vendor specific snmp sysObjectID that distinguishes this device from the next"
+msgstr "Специфічний для виробника SNMP sysObjectID, що відрізняє цей пристрій від іншого"
+
+#: hmib_types.php
+msgid "The primary key for this table is a combination of the following two fields:"
+msgstr "Первинним ключем цієї таблиці є комбінація таких двох полів:"
+
+#: hmib_types.php
+msgid "Therefore, if you attempt to import duplicate device types, the existing data will be updated with the new information."
+msgstr "Отже, якщо ви спробуєте імпортувати дублікати типів пристроїв, наявні дані буде оновлено новою інформацією."
+
+#: hmib_types.php
+msgid "The Host Type is determined by scanning its snmp agent for the sysObjectID and sysDescription and comparing it against values in the Host Types database.  The first match that is found in the database is used aggregate Host data.  Therefore, it is very important that you select valid sysObjectID, sysDescrMatch for your Hosts."
+msgstr "Тип вузла визначається шляхом опитування його SNMP-агента щодо sysObjectID і sysDescription та порівняння зі значеннями у базі даних типів вузлів. Перший знайдений збіг у базі використовується для агрегування даних вузла. Тому дуже важливо вказати коректні значення sysObjectID та sysDescrMatch для ваших вузлів."
+
+#: hmib_types.php
+msgid "Device Scanning Function Options"
+msgstr "Параметри функції сканування пристрою"
+
+#: hmib_types.php
+msgid "Give this Host Type a meaningful name."
+msgstr "Задайте змістовну назву для цього типу вузла."
+
+#: hmib_types.php
+msgid "Fill in the name for the version of this Host Type."
+msgstr "Вкажіть назву версії цього типу хоста."
+
+#: hmib_types.php
+msgid "System Description Match"
+msgstr "Відповідність опису системи"
+
+#: hmib_types.php
+#, no-php-format
+msgid "Provide key information to help HMIB detect the type of Host.  SQL Where expressions are supported.  SQL Where wildcard character is the '%' sign. Regular Expressions have been removed due to compatibility issues."
+msgstr "Укажіть ключову інформацію, яка допоможе HMIB визначити тип вузла. Підтримуються вирази SQL Where. Символом підстановки SQL Where є '%' sign. Регулярні вирази видалено через проблеми сумісності."
+
+#: hmib_types.php
+msgid "Vendor snmp Object ID"
+msgstr "Ідентифікатор об'єкта SNMP виробника"
+
+#: hmib_types.php
+#, php-format
+msgid "Host MIB OS Types [edit: %s]"
+msgstr "Типи ОС Host MIB [редагування: %s]"
+
+#: hmib_types.php
+msgid "Host MIB OS Types [new]"
+msgstr "Типи ОС Host MIB [новий]"
+
+#: hmib_types.php
+msgid "Host MIB OS Type Filters"
+msgstr "Фільтри типів ОС Host MIB"
+
+#: hmib_types.php setup.php
+msgid "OS Types"
+msgstr "Типи ОС"
+
+#: hmib_types.php
+msgid "Host Type Name"
+msgstr "Назва типу хоста"
+
+#: hmib_types.php
+msgid "OS Version"
+msgstr "Версія ОС"
+
+#: hmib_types.php
+msgid "SNMP ObjectID"
+msgstr "SNMP ObjectID"
+
+#: hmib_types.php
+msgid "SNMP Sys Description Match"
+msgstr "Відповідність опису системи SNMP"
+
+#: hmib_types.php
+msgid "No Host Types Found"
+msgstr "Типів хостів не знайдено"
+
+#: hmib_types.php
+msgid "Choose an action:"
+msgstr "Виберіть дію:"
+
+#: hmib_types.php
+msgid "Rescan"
+msgstr "Повторне сканування"
+
+#: hmib_types.php
+msgid "Scan for New or Unknown Device Types"
+msgstr "Сканувати на нові або невідомі типи пристроїв"
+
+#: hmib_types.php setup.php
+msgid "Import"
+msgstr "Імпорт"
+
+#: hmib_types.php
+msgid "Import Host Types from a CSV File"
+msgstr "Імпортувати типи хостів із файлу CSV"
+
+#: hmib_types.php
+msgid "Export"
+msgstr "Експорт"
+
+#: hmib_types.php
+msgid "Export Host Types to Share with Others"
+msgstr "Експортувати типи хостів для обміну з іншими"
+
+#: setup.php
+msgid "Host MIB Viewer"
+msgstr "Переглядач Host MIB"
+
+#: setup.php
+msgid "Host MIB Admin"
+msgstr "Адміністрування Host MIB"
+
+#: setup.php
+msgid "Host MIB"
+msgstr "Host MIB"
+
+#: setup.php
+msgid "Host MIB General Settings"
+msgstr "Загальні налаштування Host MIB"
+
+#: setup.php
+msgid "Host MIB Poller Enabled"
+msgstr "Опитувач Host MIB увімкнено"
+
+#: setup.php
+msgid "Check this box, if you want Host MIB polling to be enabled.  Otherwise, the poller will not function."
+msgstr "Позначте цей прапорець, щоб увімкнути опитування Host MIB. Інакше опитувач не працюватиме."
+
+#: setup.php
+msgid "Automatically Discover Cacti Devices"
+msgstr "Автоматично виявляти пристрої Cacti"
+
+#: setup.php
+msgid "Do you wish to automatically scan for and add devices which support the Host Resource MIB from the Cacti host table?"
+msgstr "Автоматично сканувати та додавати пристрої з таблиці вузлів Cacti, що підтримують Host Resource MIB?"
+
+#: setup.php
+msgid "Automatically Purge Devices"
+msgstr "Автоматично очищати пристрої"
+
+#: setup.php
+msgid "Do you wish to automatically purge devices that are removed from the Cacti system?"
+msgstr "Автоматично очищати пристрої, видалені із системи Cacti?"
+
+#: setup.php
+msgid "Process History Retention"
+msgstr "Зберігання історії процесів"
+
+#: setup.php
+msgid "How long should the Use History tab keep a process after it was last seen running?"
+msgstr "Як довго вкладка «Історія використання» повинна зберігати процес після того, як його востаннє бачили запущеним?"
+
+#: setup.php
+msgid "Never Purge"
+msgstr "Ніколи не очищати"
+
+#: setup.php
+#, php-format
+msgid "%d Days"
+msgstr "%d днів"
+
+#: setup.php
+#, php-format
+msgid "%d Year"
+msgstr "%d Рік"
+
+#: setup.php
+#, php-format
+msgid "%d Years"
+msgstr "%d років"
+
+#: setup.php
+msgid "Default Row Count"
+msgstr "Типова кількість рядків"
+
+#: setup.php
+msgid "How many rows do you wish to see on the HMIB OS Type by default?"
+msgstr "Скільки рядків ви хочете бачити у списку типів ОС HMIB типово?"
+
+#: setup.php
+msgid "Default Top Host Types"
+msgstr "Типовий топ типів вузлів"
+
+#: setup.php
+msgid "How many processes do you wish to see on the HMIB Dashboard by default?"
+msgstr "Скільки процесів ви хочете бачити на панелі приладів HMIB типово?"
+
+#: setup.php
+#, php-format
+msgid "%d Types"
+msgstr "%d типів"
+
+#: setup.php
+msgid "Default Top Processes"
+msgstr "Типовий топ процесів"
+
+#: setup.php
+#, php-format
+msgid "%d Processes"
+msgstr "%d Процеси"
+
+#: setup.php
+msgid "Maximum Concurrent Collectors"
+msgstr "Максимум одночасних збирачів"
+
+#: setup.php
+msgid "What is the maximum number of concurrent collector process that you want to run at one time?"
+msgstr "Яка максимальна кількість паралельних процесів збирача, яку ви хочете запускати одночасно?"
+
+#: setup.php
+#, php-format
+msgid "%d Process"
+msgstr "%d процес"
+
+#: setup.php
+msgid "Host Auto Discovery Frequency"
+msgstr "Частота автовиявлення хостів"
+
+#: setup.php
+msgid "Auto Discovery Frequency"
+msgstr "Частота автовиявлення"
+
+#: setup.php
+msgid "How often do you want to look for new Cacti Devices?"
+msgstr "Як часто ви хочете шукати нові пристрої Cacti?"
+
+#: setup.php
+msgid "Host Graph Automation"
+msgstr "Автоматизація графіків хоста"
+
+#: setup.php
+msgid "Automatically Add New Graphs"
+msgstr "Автоматично додавати нові графіки"
+
+#: setup.php
+msgid "How often do you want to check for new objects to graph?"
+msgstr "Як часто ви хочете перевіряти наявність нових об'єктів для побудови графіків?"
+
+#: setup.php
+msgid "Never"
+msgstr "Ніколи"
+
+#: setup.php
+#, php-format
+msgid "%d Hour"
+msgstr "%d година"
+
+#: setup.php
+#, php-format
+msgid "%d Hours"
+msgstr "%d Годин"
+
+#: setup.php
+#, php-format
+msgid "%d Day"
+msgstr "%d день"
+
+#: setup.php
+msgid "Host MIB Table Collection Frequencies"
+msgstr "Частоти збору таблиць Host MIB"
+
+#: setup.php
+msgid "Running Programs Frequency"
+msgstr "Частота запущених програм"
+
+#: setup.php
+msgid "How often do you want to scan running software?"
+msgstr "Як часто потрібно сканувати запущене програмне забезпечення?"
+
+#: setup.php
+msgid "Running Programs CPU/Memory Frequency"
+msgstr "Частота використання CPU/пам'яті запущеними програмами"
+
+#: setup.php
+msgid "How often do you want to scan running software for performance data?"
+msgstr "Як часто потрібно сканувати запущене програмне забезпечення для збору даних про продуктивність?"
+
+#: setup.php
+msgid "Installed Software Frequency"
+msgstr "Частота встановленого програмного забезпечення"
+
+#: setup.php
+msgid "How often do you want to scan for installed software?"
+msgstr "Як часто ви хочете сканувати встановлене програмне забезпечення?"
+
+#: setup.php
+msgid "Storage Frequency"
+msgstr "Частота опитування сховища"
+
+#: setup.php
+msgid "How often do you want to scan for Storage performance data?"
+msgstr "Як часто ви хочете сканувати дані продуктивності сховища?"
+
+#: setup.php
+msgid "Device Frequency"
+msgstr "Частота пристрою"
+
+#: setup.php
+msgid "How often do you want to scan for Device performance data?"
+msgstr "Як часто ви хочете сканувати дані продуктивності пристрою?"
+
+#: setup.php
+msgid "Processor Frequency"
+msgstr "Частота процесора"
+
+#: setup.php
+msgid "How often do you want to scan for Processor performance data?"
+msgstr "Як часто ви хочете сканувати дані продуктивності процесора?"
+
+#: setup.php
+#, php-format
+msgid "%d Minute"
+msgstr "%d Хвилина"
+
+#: setup.php
+#, php-format
+msgid "%d Minutes"
+msgstr "%d хвилин"
+
+#: setup.php
+msgid "Management"
+msgstr "Управління"
+
+#: setup.php
+msgid "Normal User"
+msgstr "Звичайний користувач"
+
+#: setup.php
+msgid "General Administration"
+msgstr "Загальне управління"
+
+#: setup.php
+msgid "Host MIB Fleet Dashboard"
+msgstr "Панель парку пристроїв Host MIB"
+
+#: setup.php
+msgid "Host MIB Inventory Summary"
+msgstr "Зведення інвентаризації Host MIB"
+
+#: setup.php
+msgid "Host MIB Details"
+msgstr "Деталі Host MIB"
+
+#: setup.php
+msgid "Host MIB Device Dashboard"
+msgstr "Панель пристрою Host MIB"
+
+#: setup.php
+msgid "Host MIB Storage"
+msgstr "Сховище Host MIB"
+
+#: setup.php
+msgid "Host MIB Hardware"
+msgstr "Обладнання Host MIB"
+
+#: setup.php
+msgid "Host MIB Running Processes"
+msgstr "Запущені процеси Host MIB"
+
+#: setup.php
+msgid "Host MIB Process Use History"
+msgstr "Історія використання процесів Host MIB"
+
+#: setup.php
+msgid "Host MIB Software Inventory"
+msgstr "Інвентаризація ПЗ Host MIB"
+
+#: setup.php
+msgid "Host MIB Graphs"
+msgstr "Графіки Host MIB"
+
+#: setup.php
+msgid "Host MIB OS Types"
+msgstr "Типи ОС Host MIB"
+
+#: setup.php
+msgid "(Edit)"
+msgstr "(Редагувати)"
+
