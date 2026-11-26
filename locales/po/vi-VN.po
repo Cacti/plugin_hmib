@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Vietnamese <https://translate.cacti.net/projects/cacti/hmib/vi/>\nLanguage: vi-VN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 10:49+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Vietnamese <https://translate.cacti.net/projects/cacti/hmib/vi/>\nLanguage: vi-VN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -368,7 +368,7 @@ msgstr "Phần cứng"
 
 #: hmib.php
 msgid "Use History"
-msgstr "Lịch sử sử dụng"
+msgstr "Nhật ký sử dụng"
 
 #: hmib.php
 msgid "Inventory"
@@ -552,7 +552,7 @@ msgstr "Tiến trình hàng đầu"
 
 #: hmib.php
 msgid "Process Use History"
-msgstr "Lịch sử sử dụng tiến trình"
+msgstr "Nhật ký sử dụng tiến trình"
 
 #: hmib.php
 msgid "Hardware Devices"
@@ -703,7 +703,7 @@ msgstr "Chưa thu thập được danh mục phần mềm đã cài đặt nào.
 
 #: hmib.php
 msgid "No process use history recorded."
-msgstr "Chưa có lịch sử sử dụng tiến trình nào được ghi nhận."
+msgstr "Chưa có nhật ký sử dụng tiến trình nào được ghi nhận."
 
 #: hmib.php
 msgid "Show more"
@@ -1127,7 +1127,7 @@ msgstr "Thời gian lưu giữ lịch sử tiến trình"
 
 #: setup.php
 msgid "How long should the Use History tab keep a process after it was last seen running?"
-msgstr "Thẻ Lịch sử sử dụng nên giữ một tiến trình trong bao lâu sau lần cuối nhìn thấy tiến trình đó chạy?"
+msgstr "Thẻ Nhật ký sử dụng nên giữ một tiến trình trong bao lâu sau lần cuối nhìn thấy tiến trình đó chạy?"
 
 #: setup.php
 msgid "Never Purge"
@@ -1338,7 +1338,7 @@ msgstr "Lưu trữ quy trình chạy MIB"
 
 #: setup.php
 msgid "Host MIB Process Use History"
-msgstr "Lịch sử sử dụng tiến trình Host MIB"
+msgstr "Nhật ký sử dụng tiến trình Host MIB"
 
 #: setup.php
 msgid "Host MIB Software Inventory"
