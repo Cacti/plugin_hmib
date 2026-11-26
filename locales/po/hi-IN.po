@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Hindi <https://translate.cacti.net/projects/cacti/hmib/hi/>\nLanguage: hi-IN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n > 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Hindi <https://translate.cacti.net/projects/cacti/hmib/hi/>\nLanguage: hi-IN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n > 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -80,7 +80,7 @@ msgstr "रनिंग प्रोसेस हिस्ट्री"
 
 #: hmib.php hmib_types.php
 msgid "Go"
-msgstr "लागू करें"
+msgstr "जाएं"
 
 #: hmib.php hmib_types.php
 msgid "Clear"
@@ -92,7 +92,7 @@ msgstr "खोजें"
 
 #: hmib.php
 msgid "Process"
-msgstr "प्रक्रिया"
+msgstr "प्रोसेस"
 
 #: hmib.php
 msgid "Entries"
@@ -140,7 +140,7 @@ msgstr "पैरामीटर"
 
 #: hmib.php
 msgid "CPU (Hrs)"
-msgstr "CPU (Hrs)"
+msgstr "CPU (घंटे)"
 
 #: hmib.php
 msgid "Memory (MB)"
@@ -1176,7 +1176,7 @@ msgstr "डिफ़ॉल्ट शीर्ष प्रक्रियाए�
 #: setup.php
 #, php-format
 msgid "%d Processes"
-msgstr "%d प्रोसेस"
+msgstr "%d प्रक्रियाएँ"
 
 #: setup.php
 msgid "Maximum Concurrent Collectors"
@@ -1354,7 +1354,7 @@ msgstr "होस्ट MIB OS प्रकार"
 
 #: setup.php
 msgid "(Edit)"
-msgstr "संपादित करें"
+msgstr "(संपादित करें)"
 
 #~ msgid "Top"
 #~ msgstr "चोटी"
