@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-25 00:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Vietnamese <https://translate.cacti.net/projects/cacti/hmib/vi/>\nLanguage: vi-VN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2026-10-24 06:10-0400\nPO-Revision-Date: 2026-11-26 01:18+0000\nLast-Translator: Thomas Vincent <balder.infuser.6n@icloud.com>\nLanguage-Team: Vietnamese <https://translate.cacti.net/projects/cacti/hmib/vi/>\nLanguage: vi-VN\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Generator: Weblate 5.11.4\n"
 
 #: hmib.php
 msgid "Error"
@@ -92,7 +92,7 @@ msgstr "Tìm kiếm"
 
 #: hmib.php
 msgid "Process"
-msgstr "Quy trình"
+msgstr "Xử lý"
 
 #: hmib.php
 msgid "Entries"
@@ -136,7 +136,7 @@ msgstr "Đường dẫn"
 
 #: hmib.php
 msgid "Parameters"
-msgstr "Thông số"
+msgstr "Tham số"
 
 #: hmib.php
 msgid "CPU (Hrs)"
@@ -256,7 +256,7 @@ msgstr "Lên trên"
 
 #: hmib.php setup.php
 msgid "Disabled"
-msgstr "đã vô hiệu hóa"
+msgstr "Vô hiệu hóa"
 
 #: hmib.php setup.php
 msgid "Actions"
@@ -340,7 +340,7 @@ msgstr "Ứng tuyển"
 
 #: hmib.php
 msgid "Package"
-msgstr "Gói"
+msgstr "Gói tập tin"
 
 #: hmib.php
 msgid "Installed"
@@ -392,7 +392,7 @@ msgstr "Loại"
 
 #: hmib.php
 msgid "All Records"
-msgstr "Tất cả hồ sơ"
+msgstr "Tất cả bản ghi"
 
 #: hmib.php
 #, php-format
@@ -796,7 +796,7 @@ msgstr "Mức sử dụng tài nguyên"
 
 #: hmib.php
 msgid "Device Status"
-msgstr "Trạng thái thiết bị"
+msgstr "Tình trạng thiết bị"
 
 #: hmib.php
 msgid "Storage Utilization"
@@ -1193,7 +1193,7 @@ msgstr "%d tiến trình"
 
 #: setup.php
 msgid "Host Auto Discovery Frequency"
-msgstr "Máy chủ tần số Discovery Discovery"
+msgstr "Tần suất tự động phát hiện máy chủ"
 
 #: setup.php
 msgid "Auto Discovery Frequency"
@@ -1338,7 +1338,7 @@ msgstr "Lưu trữ quy trình chạy MIB"
 
 #: setup.php
 msgid "Host MIB Process Use History"
-msgstr "Lịch sử sử dụng máy chủ MIB Lịch sử sử dụng"
+msgstr "Lịch sử sử dụng tiến trình Host MIB"
 
 #: setup.php
 msgid "Host MIB Software Inventory"
